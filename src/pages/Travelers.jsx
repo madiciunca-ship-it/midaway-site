@@ -2,26 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Travelers() {
-  // poți schimba titlurile/texte/ID-urile cum vrei (id-ul e folosit în URL)
   const items = [
-    { id: "nomad-bali", icon: "🏝️", title: "Nomadul din Bali", subtitle: "Ocean, cod și mango" },
-    { id: "scriitoare-saigon", icon: "✍️", title: "Scriitoarea din Saigon", subtitle: "Cafele, pagini, ploaie" },
-    { id: "calatoare-barca", icon: "🚤", title: "Călătoarea cu barca", subtitle: "Insule, vânt, povești" },
-    { id: "nomad-tokyo", icon: "🗼", title: "Nomadul din Tokyo", subtitle: "Luminile orașului, liniștea trenurilor" }
+    { id: "nomad-bali",        icon: "🏝️", title: "Nomadul din Bali",        subtitle: "Ocean, cod și mango" },
+    { id: "scriitoare-saigon", icon: "✍️", title: "Scriitoarea din Saigon",  subtitle: "Cafele, pagini, ploaie" },
+    { id: "calatoare-barca",   icon: "🚤", title: "Călătoarea cu barca",      subtitle: "Insule, vânt, povești" },
+    { id: "nomad-tokyo",       icon: "🗼", title: "Nomadul din Tokyo",       subtitle: "Luminile orașului, liniștea trenurilor" },
   ];
 
   return (
     <div style={{ padding: 24 }}>
-      {/* Intro poetic */}
       <section style={{ marginBottom: 16 }}>
         <h1 style={{ marginTop: 0 }}>🧳 Călători & Călătorii</h1>
         <p style={{ color: "#555", lineHeight: 1.7, margin: "6px 0 0 0" }}>
-          Sunt oameni care își poartă casele în rucsac și poveștile în priviri. 
+          Sunt oameni care își poartă casele în rucsac și poveștile în priviri.
           Ne întâlnim aici — într-o hartă de pași, vânt și pagini.
         </p>
       </section>
 
-      {/* Grid portrete */}
       <div
         style={{
           display: "grid",

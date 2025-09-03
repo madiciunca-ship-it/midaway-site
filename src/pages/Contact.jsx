@@ -9,16 +9,55 @@ export default function Contact() {
       </p>
 
       {/* Date de contact directe */}
-      <div style={{ marginBottom: 24 }}>
-        <p><strong>Email:</strong> contact@midaway.ro</p>
-        <p><strong>Locație:</strong> Ploiești, România</p>
-        <p>
-          <strong>Social:</strong>{" "}
-          <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a> •{" "}
-          <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a> •{" "}
-          <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-        </p>
-      </div>
+      {/* Social links */}
+<div style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}>
+  <a
+    href="https://www.instagram.com/midaway.official/" // schimbă cu pagina ta
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      padding: "10px 12px",
+      borderRadius: 10,
+      border: "1px solid #ddd",
+      textDecoration: "none",
+      color: "#111",
+      background: "#fff",
+    }}
+  >
+    📸 Instagram
+  </a>
+  <a
+    href="https://www.facebook.com/share/1B9AJBjdX1/?mibextid=wwXIfr" // schimbă cu pagina ta
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      padding: "10px 12px",
+      borderRadius: 10,
+      border: "1px solid #ddd",
+      textDecoration: "none",
+      color: "#111",
+      background: "#fff",
+    }}
+  >
+    👍 Facebook
+  </a>
+  <a
+    href="https://www.youtube.com/channel/UCKos5McBc44j6dViovnKiZw" // schimbă cu canalul tău
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      padding: "10px 12px",
+      borderRadius: 10,
+      border: "1px solid #ddd",
+      textDecoration: "none",
+      color: "#111",
+      background: "#fff",
+    }}
+  >
+    ▶️ YouTube
+  </a>
+</div>
+
 
       {/* Formular de contact */}
 <form

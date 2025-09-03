@@ -10,7 +10,10 @@ const TRAVELERS = {
 Povestea unui nomad între oceane și linii de cod. Dimineți cu mango și apusuri pe scuter.
 Cum arată o zi în care munca și libertatea sunt același loc?
     `,
-    links: [{ label: "Instagram", url: "#" }],
+    links: [
+      { label: "Instagram", url: "https://instagram.com/midaway_ro" },
+      { label: "YouTube",   url: "https://youtube.com/@midaway" }
+    ],
   },
   "scriitoare-saigon": {
     title: "✍️ Scriitoarea din Saigon",
