@@ -3,17 +3,13 @@ import { useParams, Link } from "react-router-dom";
 
 const TRAVELERS = {
   "nomad-bali": {
-    title: "🏔️ Nomadul din Bali",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-    content: `
-Povestea unui nomad între oceane și linii de cod. Dimineți cu mango și apusuri pe scuter.
-Cum arată o zi în care munca și libertatea sunt același loc?
-    `,
+    title: "🏝️ Nomadul din Bali",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
+    content: `Povestea unui nomad între oceane și linii de cod. Dimineți cu surfing, seri cu scris. Cum arată o zi în care munca și libertatea sunt același drum.`,
     links: [
-      { label: "Instagram", url: "https://instagram.com/midaway_ro" },
+      { label: "Instagram", url: "https://www.instagram.com/midaway.official" },
       { label: "YouTube",   url: "https://youtube.com/@midaway" }
-    ],
+    ]
   },
   "scriitoare-saigon": {
     title: "✍️ Scriitoarea din Saigon",

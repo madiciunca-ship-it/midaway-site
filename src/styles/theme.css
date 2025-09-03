@@ -1,0 +1,212 @@
+:root {
+    --bg:#FAF8F5; 
+    --text:#2E2E2E; 
+    --accent:#8B2C34; 
+    --accent-hover:#72222A;
+    --secondary:#4D8C91; 
+    --line:#EFE7DF; 
+    --card1:#E0B45C; 
+    --card2:#4D8C91; 
+    --card3:#E8D7C7;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+  }
+  
+  /* Folosim Cormorant doar unde vrem explicit */
+  .font-cormorant {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  /* Header */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(6px);
+    background: rgba(255,255,255,.9);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+  }
+  .brand {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: .25em;
+  }
+  
+  /* Nav */
+  .nav a {
+    color: var(--secondary);
+    margin-left: 16px;
+    text-decoration: none;
+    transition: .2s;
+  }
+  .nav a:hover {
+    opacity: .8;
+  }
+  .nav a.active {
+    color: var(--accent);
+  }
+  
+  /* Hero */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 16px;
+  }
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 18px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: var(--accent-hover);
+  }
+  
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px 16px;
+  }
+  @media(min-width:768px) {
+    .cards {
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
+  .card {
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  }
+  
+  /* Carousel */
+  .carousel {
+    position: relative;
+    height: 35vh;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 24px 0;
+  }
+  @media(min-width:768px) {
+    .carousel {
+      height: 45vh;
+    }
+  }
+  .carousel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity .7s;
+  }
+  .caption-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.35));
+  }
+  .caption {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+  .dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.7);
+    background: transparent;
+  }
+  .dot.active {
+    background: var(--accent);
+  }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.7);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+  .arrow:hover {
+    background: #fff;
+  }
+  .arrow.left { left:16px; }
+  .arrow.right { right:16px; }
+  
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--line);
+    color: var(--secondary);
+    margin-top: 32px;
+  }
+  .footer-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0;
+    font-size: 13px;
+    letter-spacing: .04em;
+  }
+  @media(min-width:768px) {
+    .footer-bar {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .footer-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .footer-links a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  

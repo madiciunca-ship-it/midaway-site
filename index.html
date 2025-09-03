@@ -1,10 +1,48 @@
 <!doctype html>
-<html lang="en">
+<html lang="ro">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- TITLE -->
+    <title>MIDAWAY — Povești de la capătul lumii</title>
+    <meta name="description" content="Midaway este spațiul unde se împletesc cărțile, oamenii și drumurile. Povești reale, călătorii autentice, creație și comunitate." />
+    <meta name="author" content="Mida Malena · Asociația Midaway" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#8B2C34" />
+
+    <!-- CANONICAL (pune domeniul final când migrăm) -->
+    <link rel="canonical" href="https://midaway.vercel.app/" />
+
+    <!-- FAVICONS (înlocuiește fișierele când ai sigla finală) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- OPEN GRAPH / TWITTER (update og:image când ai vizualul) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://midaway.vercel.app/" />
+    <meta property="og:title" content="MIDAWAY — Povești de la capătul lumii" />
+    <meta property="og:description" content="Cărți, călătorii și comunitate. Povești reale pentru cei care caută sens și curaj." />
+    <meta property="og:image" content="/og-cover.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MIDAWAY — Povești de la capătul lumii" />
+    <meta name="twitter:description" content="Cărți, călătorii și comunitate. Povești reale pentru cei care caută sens și curaj." />
+    <meta name="twitter:image" content="/og-cover.jpg" />
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Mică resetare vizuală + font utilitar (opțional) -->
+    <style>
+      :root { color-scheme: light; }
+      html, body { margin: 0; padding: 0; }
+      /* Nu aplic global Cormorant, îl folosim pe titluri.
+         Dacă vrei să fie peste tot: body { font-family:'Cormorant Garamond', serif; } */
+    </style>
   </head>
   <body>
     <div id="root"></div>
