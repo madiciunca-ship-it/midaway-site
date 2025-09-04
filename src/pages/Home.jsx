@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-/* === Carousel local (integrat în același fișier pentru simplitate) === */
+/* === Carousel local (în același fișier pentru simplitate) === */
 function Carousel({ slides }) {
   const [i, setI] = useState(0);
+
   useEffect(() => {
     const id = setInterval(() => setI((v) => (v + 1) % slides.length), 5000);
     return () => clearInterval(id);
@@ -75,57 +77,69 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="hero">
-        <div>
-          <h1
-            className="font-cormorant"
-            style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}
-          >
+      <section className="hero hero--compact">
+        <div className="font-cormorant">
+          <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>
             MIDAWAY
           </h1>
           <p
-            className="font-cormorant"
-            style={{ color: "var(--secondary)", fontStyle: "italic", marginTop: 8 }}
+            style={{
+              color: "var(--secondary)",
+              fontStyle: "italic",
+              marginTop: 8,
+            }}
           >
             „Povești de la capătul lumii”
           </p>
-
           <p
-            className="font-cormorant"
-            style={{ maxWidth: 720, margin: "24px auto 0", fontSize: 20, lineHeight: 1.6 }}
+            style={{
+              maxWidth: 720,
+              margin: "24px auto 0",
+              fontSize: 20,
+              lineHeight: 1.6,
+            }}
           >
-            Mă numesc Mida Malena. Scriu și călătoresc, adun povești și le las să circule mai departe.
+            Mă numesc Mida Malena. Scriu și călătoresc, adun povești și le las
+            să circule mai departe.
             <br />
             Midaway este spațiul unde cărțile, oamenii și drumurile se împletesc.
           </p>
 
           <div style={{ marginTop: 24 }}>
-            {/* Duce către secțiunea de mai jos; dacă vrei să ducă la /proiecte, schimbăm href */}
-            <a className="btn" href="#sectiuni">Explorează proiectul</a>
+            <Link className="btn" to="/proiecte">
+              Explorează proiectul
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* SECȚIUNI RAPIDE */}
-      <div id="sectiuni" className="container">
+            {/* SECȚIUNI RAPIDE */}
+            <div id="sectiuni" className="container">
         <div className="cards">
-          <div className="card" style={{ background: "var(--card1)" }}>
+          {/* CĂRȚI */}
+          <Link to="/carti" className="card" style={{ background: "var(--card1)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Cărți</h3>
             <p style={{ margin: 0 }}>Cărți care inspiră și provoacă gândirea.</p>
-          </div>
-          <div className="card" style={{ background: "var(--card2)", color: "#fff" }}>
+          </Link>
+
+          {/* BLOG */}
+          <Link to="/blog" className="card" style={{ background: "var(--card2)", color: "#fff", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Blog</h3>
             <p style={{ margin: 0 }}>Gânduri, povești și reflecții din drum.</p>
-          </div>
-          <div className="card" style={{ background: "var(--card3)" }}>
+          </Link>
+
+          {/* VOLUNTARIAT */}
+          <Link to="/voluntari" className="card" style={{ background: "var(--card3)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Voluntariat</h3>
             <p style={{ margin: 0 }}>Fii parte din comunitatea noastră creativă.</p>
-          </div>
+          </Link>
         </div>
       </div>
 
-      {/* BANNER ROTATIV / CAROUSEL */}
+
+      {/* BANNER ROTATIV */}
       <Carousel slides={slides} />
     </>
   );
 }
+

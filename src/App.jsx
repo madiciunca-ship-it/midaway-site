@@ -2,6 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -42,6 +45,9 @@ export default function App() {
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
+          <Route path="/privacy" element={<Privacy />} />
+<Route path="/termeni" element={<Terms />} />
+<Route path="/cookies" element={<Cookies />} />
 
           {/* Static */}
           <Route path="/despre" element={<About />} />

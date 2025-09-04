@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const navItems = [
@@ -13,28 +14,78 @@ const navItems = [
 ];
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  // închide meniul când se dă click pe un link
+  const close = () => setOpen(false);
+
   return (
     <header className="header">
-      <div className="container header-inner">
+      <div className="container header-inner" style={{ gap: 16 }}>
         {/* Logo */}
-        <img 
-          src="/logo-midaway.png" 
-          alt="Midaway logo" 
-          style={{ height: 48 }} 
+        <img
+          src="/logo-midaway.png"
+          alt="Midaway logo"
+          style={{ height: 44, width: "auto", display: "block", borderRadius: 8 }}
         />
 
-        {/* Navigation */}
-        <nav className="nav" style={{ marginLeft: "auto" }}>
+        {/* Desktop nav */}
+        <nav
+          className="nav nav-desktop"
+          style={{
+            marginLeft: "auto",
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            alignItems: "center",
+            fontSize: 15,
+          }}
+        >
           {navItems.map(({ label, to }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) => (isActive ? "active" : undefined)}
+              style={{ padding: "6px 10px", borderRadius: 10 }}
             >
               {label}
             </NavLink>
           ))}
         </nav>
+
+        {/* Mobile toggle */}
+        <button
+          className="mobile-toggle"
+          aria-label={open ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? (
+            // X
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          ) : (
+            // burger
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile menu (slide-down) */}
+      <div className={`mobile-menu${open ? " open" : ""}`}>
+        {navItems.map(({ label, to }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+            onClick={close}
+          >
+            {label}
+          </NavLink>
+        ))}
       </div>
     </header>
   );
