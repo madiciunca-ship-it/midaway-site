@@ -15,8 +15,6 @@ const navItems = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-
-  // închide meniul când se dă click pe un link
   const close = () => setOpen(false);
 
   return (
@@ -34,7 +32,6 @@ export default function Header() {
           className="nav nav-desktop"
           style={{
             marginLeft: "auto",
-            display: "flex",
             gap: 12,
             flexWrap: "wrap",
             alignItems: "center",
@@ -61,12 +58,10 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
         >
           {open ? (
-            // X
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           ) : (
-            // burger
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
@@ -74,7 +69,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu (slide-down) */}
+      {/* Mobile menu */}
       <div className={`mobile-menu${open ? " open" : ""}`}>
         {navItems.map(({ label, to }) => (
           <NavLink
