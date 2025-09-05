@@ -1,21 +1,37 @@
 // src/pages/Projects.jsx
-import { useState } from "react"; 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import projects from "../data/projects";
 
 const filters = [
   { key: "all", label: "Toate" },
+  { key: "nou", label: "Nou" },
   { key: "educatie", label: "Educație" },
   { key: "media", label: "Media" },
   { key: "evenimente", label: "Evenimente" },
+  { key: "sustinere", label: "Susținere" },   // ⬅️ nou
 ];
+
+const getCategories = (p) => {
+  if (Array.isArray(p.categories)) return p.categories;
+  if (typeof p.category === "string") return [p.category];
+  return [];
+};
+
+const matchCategory = (p, key) => {
+  if (key === "all") return true;
+  const cats = getCategories(p);
+  if (key === "nou") {
+    const isBadgeNou = (p.badge || "").toLowerCase().includes("nou");
+    const isCatNou = cats.includes("nou");
+    return isBadgeNou || isCatNou;
+  }
+  return cats.includes(key);
+};
 
 export default function Projects() {
   const [active, setActive] = useState("all");
-
-  const filtered = active === "all"
-    ? projects
-    : projects.filter((p) => p.category === active);
+  const filtered = projects.filter((p) => matchCategory(p, active));
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
