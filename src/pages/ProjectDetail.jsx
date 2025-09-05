@@ -1,68 +1,55 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
-
-const PROJECTS = {
-  biblioteca: {
-    title: "📚 Biblioteca Midaway",
-    content: `
-O colecție de cărți, jurnale și texte publicate. 
-Un loc unde cititorii pot descoperi fragmente, cumpăra volume și găsi inspirație.
-    `,
-  },
-  erasmus: {
-    title: "🌍 Erasmus+",
-    content: `
-Proiecte educaționale și culturale în parteneriat internațional. 
-Midaway participă la schimburi de experiență și dezvoltă proiecte pentru tineri.
-    `,
-  },
-  media: {
-    title: "🎥 Conținut media",
-    content: `
-Documentare, podcasturi și materiale video care spun povești reale. 
-Proiectele media sunt gândite să aducă lumea mai aproape de tine.
-    `,
-  },
-  editura: {
-    title: "✍️ Editura Midaway",
-    content: `
-Un spațiu de publicare pentru autori independenți și texte inovatoare. 
-Aici se nasc volume noi și colecții speciale.
-    `,
-  },
-  evenimente: {
-    title: "🧭 Evenimente & Retreaturi",
-    content: `
-Întâlniri culturale, workshopuri și retreaturi dedicate scrisului și explorării. 
-O oportunitate de a cunoaște oameni și povești noi.
-    `,
-  },
-};
+import projects from "../data/projects";
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const project = PROJECTS[id];
+  const p = projects.find((x) => x.id === id);
 
-  if (!project) {
+  if (!p) {
     return (
-      <div style={{ padding: 24 }}>
-        <h2>Proiectul nu există</h2>
+      <div className="container" style={{ padding: "40px 16px" }}>
+        <h1 className="font-cormorant">Proiectul nu există</h1>
         <p>
-          <Link to="/proiecte">← Înapoi la proiecte</Link>
+          Înapoi la{" "}
+          <Link to="/proiecte" style={{ color: "var(--accent)", textDecoration: "none" }}>
+            Proiecte
+          </Link>
+          .
         </p>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 24 }}>
-      <p style={{ fontSize: 14, margin: 0 }}>
-        <Link to="/proiecte">← Înapoi la proiecte</Link>
-      </p>
-      <h1 style={{ margin: "8px 0 16px 0" }}>{project.title}</h1>
-      <div style={{ lineHeight: 1.7, color: "#333", whiteSpace: "pre-line" }}>
-        {project.content}
+    <>
+      {/* HERO imagine, în ton cu Home */}
+      <div className="proj-hero" style={{ backgroundImage: `url(${p.cover})` }}>
+        <div className="proj-hero-overlay" />
+        <div className="container">
+          <h1 className="font-cormorant" style={{ color: "#fff", margin: 0, display: "flex", gap: 12, alignItems: "center" }}>
+            <span style={{ fontSize: 34 }}>{p.emoji}</span> {p.title}
+          </h1>
+          <p style={{ color: "#fff", opacity: 0.9, marginTop: 8 }}>{p.tagline}</p>
+        </div>
       </div>
-    </div>
+
+      {/* Conținut */}
+      <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
+        {p.body.map((para, i) => (
+          <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
+        ))}
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>
+          {p.links.map((l, i) => (
+            <Link key={i} to={l.href} className="btn" style={{ textDecoration: "none" }}>
+              {l.label}
+            </Link>
+          ))}
+          <Link to="/proiecte" style={{ alignSelf: "center", color: "var(--secondary)", textDecoration: "none" }}>
+            ← Înapoi la proiecte
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
