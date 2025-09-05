@@ -7,7 +7,7 @@ const projects = [
       tagline: "O colecție de cărți, jurnale și texte publicate.",
       cover:
         "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
-      colorVar: "--card1", // bejul cald (ca pe Home)
+      colorVar: "--card1",
       body: [
         "Un loc unde cititorii pot descoperi fragmente, cumpăra volume și găsi inspirație.",
         "Construim o bibliotecă digitală și fizică pentru comunitate, cu acces gratuit la materiale selectate."
@@ -24,7 +24,7 @@ const projects = [
       tagline: "Proiecte educaționale și culturale în parteneriat internațional.",
       cover:
         "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
-      colorVar: "--card3", // bej-roz (cald)
+      colorVar: "--card3",
       body: [
         "Midaway participă la schimburi de experiență și dezvoltă proiecte pentru tineri.",
         "Învățare non-formală, mobilități, comunități internaționale și storytelling aplicat."
@@ -41,8 +41,8 @@ const projects = [
       tagline: "Podcasturi, interviuri și minidocumentare.",
       cover:
         "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop",
-      colorVar: "--card2", // teal (ca pe cardul Blog)
-      darkOnCard: true,     // cardul devine cu text alb
+      colorVar: "--card2",
+      darkOnCard: true,
       body: [
         "Documentăm voci autentice din călătorii, educație alternativă și creație.",
         "Podcasturi, interviuri, clipuri scurte – povești din mersul lumii."
@@ -70,22 +70,22 @@ const projects = [
       ]
     },
     {
-        id: "evenimente",
-        emoji: "🧭",
-        title: "Evenimente & Retreaturi",
-        tagline: "Spații pentru scris, respirație și întâlniri vii.",
-        cover:
-          "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop", // <— nou
-        colorVar: "--card1",
-        body: [
-          "Workshopuri de scris, rezidențe creative și retreaturi în locuri care te așază pe interior.",
-          "Program scurt, tihnă multă, exerciții de imaginație și o comunitate bună."
-        ],
-        links: [
-          { label: "Înscrie-te", href: "/voluntari" },
-          { label: "Detalii & întrebări", href: "/contact" }
-        ]
-      }      
+      id: "evenimente",
+      emoji: "🧭",
+      title: "Evenimente & Retreaturi",
+      tagline: "Spații pentru scris, respirație și întâlniri vii.",
+      cover:
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop",
+      colorVar: "--card1",
+      body: [
+        "Workshopuri de scris, rezidențe creative și retreaturi în locuri care te așază pe interior.",
+        "Program scurt, tihnă multă, exerciții de imaginație și o comunitate bună."
+      ],
+      links: [
+        { label: "Înscrie-te", href: "/voluntari" },
+        { label: "Detalii & întrebări", href: "/contact" }
+      ]
+    }
   ];
   
   export default projects;

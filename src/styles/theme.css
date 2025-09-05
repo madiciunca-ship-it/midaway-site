@@ -316,30 +316,29 @@ body {
   /* ===== Proiecte ===== */
 .proj-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 22px;
-}
-@media (min-width: 680px) {
-  .proj-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1000px) {
-  .proj-grid { grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
 }
 
 .proj-card {
   border-radius: 20px;
   overflow: hidden;
+  background: #fff;
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
   transition: transform .25s ease, box-shadow .25s ease;
-  display: block;
-  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 .proj-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 26px rgba(0,0,0,.12);
 }
+
 .proj-cover {
-  height: 160px;                  /* puțin mai înalt, ca pe Home */
+  height: 160px;
   background-size: cover;
   background-position: center;
   filter: saturate(.9);
@@ -347,14 +346,15 @@ body {
 
 .proj-body {
   padding: 16px 18px 20px;
-  text-align: center;             /* <— centrare text */
-  display: flex;                  /* centrare verticală plăcută */
+  text-align: center;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  min-height: 120px;              /* consistență între carduri */
+  min-height: 120px;
 }
 
+/* detaliu proiect */
 .proj-hero {
   position: relative;
   height: 36vh;
@@ -371,7 +371,4 @@ body {
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45));
 }
-.proj-hero .container {
-  position: relative;
-  padding-bottom: 18px;
-}
+.proj-hero .container { position: relative; padding-bottom: 18px; }

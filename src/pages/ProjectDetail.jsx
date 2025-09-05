@@ -22,7 +22,6 @@ export default function ProjectDetail() {
 
   return (
     <>
-      {/* HERO imagine, în ton cu Home */}
       <div className="proj-hero" style={{ backgroundImage: `url(${p.cover})` }}>
         <div className="proj-hero-overlay" />
         <div className="container">
@@ -33,12 +32,10 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      {/* Conținut */}
       <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
         {p.body.map((para, i) => (
           <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
         ))}
-
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>
           {p.links.map((l, i) => (
             <Link key={i} to={l.href} className="btn" style={{ textDecoration: "none" }}>
