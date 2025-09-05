@@ -8,6 +8,9 @@ const projects = [
       cover:
         "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
       colorVar: "--card1",
+      category: "educatie",
+      badge: "Nou",
+      badgeColor: "#4CAF50", // verde (Educație)
       body: [
         "Un loc unde cititorii pot descoperi fragmente, cumpăra volume și găsi inspirație.",
         "Construim o bibliotecă digitală și fizică pentru comunitate, cu acces gratuit la materiale selectate."
@@ -25,6 +28,9 @@ const projects = [
       cover:
         "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
       colorVar: "--card3",
+      category: "educatie",
+      badge: "Educație",
+      badgeColor: "#4CAF50", // verde (Educație)
       body: [
         "Midaway participă la schimburi de experiență și dezvoltă proiecte pentru tineri.",
         "Învățare non-formală, mobilități, comunități internaționale și storytelling aplicat."
@@ -43,6 +49,9 @@ const projects = [
         "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop",
       colorVar: "--card2",
       darkOnCard: true,
+      category: "media",
+      badge: "Media",
+      badgeColor: "#2196F3", // albastru (Media)
       body: [
         "Documentăm voci autentice din călătorii, educație alternativă și creație.",
         "Podcasturi, interviuri, clipuri scurte – povești din mersul lumii."
@@ -60,6 +69,9 @@ const projects = [
       cover:
         "https://images.unsplash.com/photo-1491841651911-c44c30c34548?q=80&w=1600&auto=format&fit=crop",
       colorVar: "--card3",
+      category: "educatie",
+      badge: "Nou",
+      badgeColor: "#4CAF50", // verde (Educație)
       body: [
         "Publicăm jurnale de drum, eseuri, proză scurtă și traduceri din culturile explorate.",
         "Model editorial curat, tiraje sustenabile, atenție la obiectul carte."
@@ -77,6 +89,9 @@ const projects = [
       cover:
         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop",
       colorVar: "--card1",
+      category: "evenimente",
+      badge: "În derulare",
+      badgeColor: "#9C27B0", // mov (Evenimente)
       body: [
         "Workshopuri de scris, rezidențe creative și retreaturi în locuri care te așază pe interior.",
         "Program scurt, tihnă multă, exerciții de imaginație și o comunitate bună."
