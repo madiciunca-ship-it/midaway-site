@@ -353,22 +353,3 @@ body {
   gap: 6px;
   min-height: 120px;
 }
-
-/* detaliu proiect */
-.proj-hero {
-  position: relative;
-  height: 36vh;
-  min-height: 240px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: end;
-  margin: 12px 0 24px;
-  border-radius: 16px;
-  overflow: hidden;
-}
-.proj-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45));
-}
-.proj-hero .container { position: relative; padding-bottom: 18px; }

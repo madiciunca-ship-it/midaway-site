@@ -1,3 +1,4 @@
+// src/pages/Projects.jsx
 import { Link } from "react-router-dom";
 import projects from "../data/projects";
 
@@ -5,15 +6,14 @@ export default function Projects() {
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
       <header
-  className="font-cormorant"
-  style={{ marginBottom: 24, textAlign: "center" }}
->
-  <h1 style={{ margin: 0, fontSize: 40 }}>Proiecte Midaway</h1>
-  <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-    Direcțiile prin care Midaway crește și aduce oamenii împreună.
-  </p>
-</header>
-
+        className="font-cormorant"
+        style={{ marginBottom: 24, textAlign: "center" }}
+      >
+        <h1 style={{ margin: 0, fontSize: 40 }}>Proiecte Midaway</h1>
+        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+          Direcțiile prin care Midaway crește și aduce oamenii împreună.
+        </p>
+      </header>
 
       <div className="proj-grid">
         {projects.map((p) => {
@@ -26,7 +26,7 @@ export default function Projects() {
               style={{
                 textDecoration: "none",
                 color: textColor,
-                background: `var(${p.colorVar})`
+                background: `var(${p.colorVar})`,
               }}
             >
               <div
@@ -49,4 +49,3 @@ export default function Projects() {
     </div>
   );
 }
-
