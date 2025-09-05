@@ -1,10 +1,9 @@
+// src/App.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Cookies from "./pages/Cookies";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -20,12 +19,16 @@ import Travelers from "./pages/Travelers";
 import TravelerDetail from "./pages/TravelerDetail";
 import Multimedia from "./pages/Multimedia";
 
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
+
 export default function App() {
   return (
     <>
       <Header />
 
-      <main className="container" style={{ padding: 24 }}>
+      <main className="container">
         <Routes>
           {/* Acasă */}
           <Route path="/" element={<Home />} />
@@ -38,16 +41,20 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
 
-          {/* Alte secțiuni */}
+          {/* Proiecte */}
           <Route path="/proiecte" element={<Projects />} />
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
+
+          {/* Alte secțiuni */}
           <Route path="/voluntari" element={<Volunteers />} />
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
+
+          {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
-<Route path="/termeni" element={<Terms />} />
-<Route path="/cookies" element={<Cookies />} />
+          <Route path="/termeni" element={<Terms />} />
+          <Route path="/cookies" element={<Cookies />} />
 
           {/* Static */}
           <Route path="/despre" element={<About />} />

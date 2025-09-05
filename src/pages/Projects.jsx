@@ -5,6 +5,7 @@ import projects from "../data/projects";
 export default function Projects() {
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
+      {/* Header centrat (în ton cu Home) */}
       <header
         className="font-cormorant"
         style={{ marginBottom: 24, textAlign: "center" }}
@@ -15,6 +16,7 @@ export default function Projects() {
         </p>
       </header>
 
+      {/* Grid de proiecte în stil card */}
       <div className="proj-grid">
         {projects.map((p) => {
           const textColor = p.darkOnCard ? "#fff" : "inherit";
