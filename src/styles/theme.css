@@ -1,7 +1,18 @@
-:root{
-  --bg:#FAF8F5; --text:#2E2E2E; --accent:#8B2C34; --accent-hover:#72222A;
-  --secondary:#4D8C91; --line:#EFE7DF; --card1:#E0B45C; --card2:#4D8C91; --card3:#E8D7C7;
+:root {
+  --bg:#FAF8F5;
+  --text:#2E2E2E;
+  --accent:#8B2C34;
+  --accent-hover:#72222A;
+  --secondary:#4D8C91;
+  --line:#EFE7DF;
+
+  /* Cards */
+  --card1:#E0B45C;   /* auriu cald – Bibliotecă / Evenimente */
+  --card2:#4D8C91;   /* teal – Media (text alb) */
+  --card3:#E8D7C7;   /* bej-roz – Erasmus / Editura */
+  --card4:#EAC1A8;   /* nou: piersică/terracotta light – Susținere */
 }
+
 
 /* Base */
 *{box-sizing:border-box}
@@ -200,3 +211,38 @@ body{margin:0;background:var(--bg);color:var(--text)}
   background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45));
 }
 .proj-hero .container{ position: relative; padding-bottom: 18px; }
+
+/* ====== Support / Plans (Susține Midaway) ====== */
+.plan-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-top:16px;
+}
+@media(min-width:768px){
+  .plan-grid{ grid-template-columns: repeat(3,1fr); }
+}
+.plan-card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.plan-title{
+  font-family:'Cormorant Garamond', serif;
+  font-size:22px;
+  margin:0;
+}
+.plan-price{ font-weight:700; color:var(--accent); }
+.plan-ul{ margin:0; padding-left:18px; line-height:1.5; }
+.plan-actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.btn-outline{
+  background:transparent; color:var(--accent);
+  border:1px solid var(--accent); border-radius:999px;
+  padding:8px 14px; cursor:pointer; text-decoration:none;
+}
+.btn-outline:hover{ background:#fff0f0; }
+/* ====== Badge mic, deja există .proj-badge în codul tău, păstrăm stilul curent ====== */
