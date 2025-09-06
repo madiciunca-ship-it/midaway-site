@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Midaway — Blog</title>
+    <link>/blog</link>
+    <description>Gânduri, povești și fragmente de drum.</description>
+    <language>ro-RO</language>
+
+    <item>
+      <title>Cum a început călătoria mea</title>
+      <link>/blog/cum-a-inceput-calatoria-mea</link>
+      <guid>/blog/cum-a-inceput-calatoria-mea</guid>
+      <pubDate>Mon, 15 Jan 2025 00:00:00 GMT</pubDate>
+      <description>Povestea startului: primele zile, primele decizii…</description>
+    </item>
+  </channel>
+</rss>

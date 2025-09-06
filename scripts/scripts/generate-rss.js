@@ -1,46 +1,51 @@
 // scripts/generate-rss.js
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import path from "node:path";
+import posts from "../src/data/posts.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const site = ""; // lasă gol în dev. Vercel va servi /feed.xml la rădăcină
 
-const { default: posts } = await import(
-  path.resolve(__dirname, "../src/data/posts.js")
-);
+function escapeXml(s) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
-const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+function toRssItem(p) {
+  const link = `/blog/${encodeURIComponent(p.slug)}`;
+  const desc = escapeXml((p.excerpt || "").trim());
+  const pub = new Date(p.date).toUTCString();
+  return `
+    <item>
+      <title>${escapeXml(p.title)}</title>
+      <link>${link}</link>
+      <guid>${link}</guid>
+      <pubDate>${pub}</pubDate>
+      <description>${desc}</description>
+    </item>`;
+}
 
-const list = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-
-const items = list
-  .map((p) => {
-    const url = `${SITE}/blog/${encodeURIComponent(p.slug)}`;
-    const desc =
-      p.excerpt || (p.content?.[0] ?? "").slice(0, 200).replace(/</g, "&lt;");
-    return `
-<item>
-  <title><![CDATA[${p.title}]]></title>
-  <link>${url}</link>
-  <guid>${url}</guid>
-  <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-  <description><![CDATA[${desc}]]></description>
-</item>`;
-  })
+const items = posts
+  .slice()
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .map(toRssItem)
   .join("\n");
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>Midaway — Blog</title>
-    <link>${SITE}/blog</link>
-    <description>Articole și fragmente de drum.</description>
+    <link>${site}/blog</link>
+    <description>Gânduri, povești și fragmente de drum.</description>
+    <language>ro-RO</language>
     ${items}
   </channel>
 </rss>`;
 
-const out = path.resolve(__dirname, "../dist/feed.xml");
-fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, xml, "utf8");
-console.log("[rss] feed.xml generat:", out);
+const outDir = path.join(process.cwd(), "public");
+fs.mkdirSync(outDir, { recursive: true });
+fs.writeFileSync(path.join(outDir, "feed.xml"), rss.trim(), "utf8");
+
+console.log(`[RSS] generat ${posts.length} articole -> public/feed.xml`);
