@@ -61,6 +61,8 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Explorator%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Explorator%20-%20Întrebări">Întrebări</a>
+                  {/* Buton nou */}
+                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
                 </div>
               </div>
 
@@ -84,6 +86,8 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Călător%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Călător%20-%20Întrebări">Întrebări</a>
+                  {/* Buton nou */}
+                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
                 </div>
               </div>
 
@@ -98,22 +102,9 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Povestitor%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Povestitor%20-%20Întrebări">Întrebări</a>
+                  {/* Buton nou */}
+                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
                 </div>
-              </div>
-            </div>
-
-            <div style={{ marginTop: 24, background: "#fff", borderRadius: 14, padding: 16, boxShadow: "0 6px 16px rgba(0,0,0,.06)" }}>
-              <h3 className="font-cormorant" style={{ marginTop: 0 }}>Donație prin transfer bancar</h3>
-              <p style={{ marginTop: 4 }}>Poți susține Midaway și prin transfer direct:</p>
-              <div style={{ display: "grid", gap: 8 }}>
-                <div><strong>Asociația MIDAWAY</strong></div>
-                <div>IBAN RON: <code>RO00 BANK 0000 0000 0000 0000</code></div>
-                <div>IBAN EUR: <code>RO00 BANK 0000 0000 0000 0000</code> (SWIFT: <code>BANKROBU</code>)</div>
-                <div>Detalii plată: <em>Donație Midaway – Nume Prenume</em></div>
-              </div>
-              <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                <a className="btn-outline" href="/donatii">Vreau să donez o dată</a>
-                <a className="btn-outline" href="/contact?subject=Parteneriat%20instituțional">Parteneriat instituțional</a>
               </div>
             </div>
           </>
