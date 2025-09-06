@@ -1,3 +1,4 @@
+// scripts/generate-rss.js
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -13,7 +14,7 @@ const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 
 const list = [...posts].sort((a, b) => b.date.localeCompare(a.date));
 
-const itemsXml = list
+const items = list
   .map((p) => {
     const url = `${SITE}/blog/${encodeURIComponent(p.slug)}`;
     const desc =
@@ -29,16 +30,17 @@ const itemsXml = list
   })
   .join("\n");
 
-const rss = `<?xml version="1.0" encoding="UTF-8"?>
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>Midaway — Blog</title>
     <link>${SITE}/blog</link>
     <description>Articole și fragmente de drum.</description>
-    ${itemsXml}
+    ${items}
   </channel>
 </rss>`;
 
-const outPath = path.resolve(__dirname, "../dist/feed.xml");
-fs.writeFileSync(outPath, rss, "utf8");
-console.log("[rss] feed.xml generat la:", outPath);
+const out = path.resolve(__dirname, "../dist/feed.xml");
+fs.mkdirSync(path.dirname(out), { recursive: true });
+fs.writeFileSync(out, xml, "utf8");
+console.log("[rss] feed.xml generat:", out);

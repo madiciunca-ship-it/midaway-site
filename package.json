@@ -2,26 +2,20 @@
   "name": "midaway-site",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "node scripts/generate-rss.js || echo 'rss skipped'",
+    "preview": "vite preview --port 5173"
+  },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^9.34.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "vite": "^7.1.3"
-  },
-  {
-    "type": "module",
-    "scripts": {
-      "dev": "vite",
-      "build": "vite build",
-      "postbuild": "node scripts/generate-rss.js",
-      "preview": "vite preview"
-    }
-  }  
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^5.3.3"
+  }
 }
