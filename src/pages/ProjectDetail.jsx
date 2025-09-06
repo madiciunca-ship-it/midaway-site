@@ -61,8 +61,7 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Explorator%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Explorator%20-%20Întrebări">Întrebări</a>
-                  {/* Buton nou */}
-                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
+                  <Link to="/donatii" className="btn-danger">Donează acum</Link>
                 </div>
               </div>
 
@@ -86,8 +85,7 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Călător%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Călător%20-%20Întrebări">Întrebări</a>
-                  {/* Buton nou */}
-                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
+                  <Link to="/donatii" className="btn-danger">Donează acum</Link>
                 </div>
               </div>
 
@@ -102,8 +100,7 @@ export default function ProjectDetail() {
                 <div className="plan-actions">
                   <a className="btn" href="/contact?subject=Povestitor%20-%20Abonament">Înscrie-te</a>
                   <a className="btn-outline" href="/contact?subject=Povestitor%20-%20Întrebări">Întrebări</a>
-                  {/* Buton nou */}
-                  <Link to="/donatii" className="btn-outline">Donează acum</Link>
+                  <Link to="/donatii" className="btn-danger">Donează acum</Link>
                 </div>
               </div>
             </div>
