@@ -3,110 +3,187 @@ import { Link } from "react-router-dom";
 
 export default function Sponsorizari() {
   return (
-    <div className="container" style={{ padding: "32px 0 48px", maxWidth: 900 }}>
-      <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 16 }}>
-        <h1 style={{ margin: 0, fontSize: 40 }}>Sponsorizări & Redirecționare impozit</h1>
+    <div className="container" style={{ padding: "32px 0 48px" }}>
+      {/* Header */}
+      <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 24 }}>
+        <h1 style={{ margin: 0, fontSize: 40 }}>Sponsorizări</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Susține Midaway prin sponsorizare sau redirecționarea unei părți din impozit.
+          Susține Midaway: donații unice sau lunare, redirecționare impozit, parteneriate.
         </p>
       </header>
 
+      {/* 3 căi rapide */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: 16,
+          marginBottom: 20,
+        }}
+      >
+        <Card
+          title="Donație unică"
+          text="Susține un proiect punctual sau pur și simplu Midaway, o singură dată."
+          actions={
+            <Link to="/donatii" className="btn" style={{ textDecoration: "none" }}>
+              Donează acum
+            </Link>
+          }
+        />
+
+        <Card
+          title="Abonamente lunare"
+          text="Explorator, Călător sau Povestitor — planuri cu beneficii pentru membri."
+          actions={
+            <Link to="/proiecte/sustinere" className="btn" style={{ textDecoration: "none" }}>
+              Detalii abonamente
+            </Link>
+          }
+        />
+
+        <Card
+          title="Sponsorizare (PF & PJ)"
+          text="Redirecționare impozit pentru persoane fizice și juridice sau parteneriat."
+          actions={
+            <Link
+              to="/contact?s=Intrebari%20sponsorizare"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
+              Întrebări
+            </Link>
+          }
+        />
+      </div>
+
       {/* Persoane fizice */}
-      <section style={card}>
-        <h2 className="font-cormorant" style={h2}>Persoane fizice</h2>
-        <p style={p}>
-          Poți redirecționa o cotă din impozitul pe venit (ex.: 3,5%) către Asociația MIDAWAY.
-          Se completează <strong>Formularul 230</strong> (pentru venituri din salarii/pensii) sau prin
-          declarația unică (PFA). Detaliile exacte pot varia în funcție de anul fiscal – te ajutăm să le completezi corect.
+      <section style={{ marginTop: 24 }}>
+        <h2 className="font-cormorant" style={{ margin: "0 0 8px 0", fontSize: 28 }}>
+          Persoane fizice
+        </h2>
+        <p style={{ marginTop: 4, lineHeight: 1.6 }}>
+          Poți redirecționa <b>3.5%</b> din impozitul pe venit către Asociație, completând
+          <i> Formularul 230</i>. Îl poți depune online în Spațiul Privat Virtual sau la ANAF.
         </p>
-        <div style={btnRow}>
-          <a className="btn" href="/docs/formular-230.pdf" target="_blank" rel="noopener noreferrer">
-            Descarcă Formular 230 (PDF)
+
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
+          <a
+            href="/docs/formular-230.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            style={{ textDecoration: "none" }}
+          >
+            Descarcă Formular 230
           </a>
-          <a className="btn-outline" href="/contact?subject=Întrebări%20Formular%20230">
-            Am nevoie de ajutor
-          </a>
+          <Link
+            to="/contact?s=Ajutor%20Formular%20230"
+            className="btn"
+            style={{ textDecoration: "none" }}
+          >
+            Ajutor completare
+          </Link>
         </div>
       </section>
 
       {/* Persoane juridice */}
-      <section style={card}>
-        <h2 className="font-cormorant" style={h2}>Persoane juridice</h2>
-        <p style={p}>
-          Companiile pot face sponsorizări deductibile în anumite limite (micro/profit). Îți punem la dispoziție
-          un <strong>model de contract</strong> și te ghidăm pentru încadrarea fiscală corectă.
+      <section style={{ marginTop: 28 }}>
+        <h2 className="font-cormorant" style={{ margin: "0 0 8px 0", fontSize: 28 }}>
+          Persoane juridice
+        </h2>
+        <p style={{ marginTop: 4, lineHeight: 1.6 }}>
+          Companiile pot sponsoriza în limita a <b>20%</b> din impozitul pe profit (sau 0.75% din
+          cifra de afaceri, dacă e mai mică). Sponsorizarea se deduce conform legii în vigoare.
         </p>
-        <ul style={{ marginTop: 6, lineHeight: 1.6 }}>
-          <li>Sponsorizare pentru microîntreprinderi / plătitori de impozit pe profit</li>
-          <li>Promovare pe canalele Midaway (dacă dorești vizibilitate)</li>
-          <li>Raport de impact și transparență privind utilizarea fondurilor</li>
-        </ul>
-        <div style={btnRow}>
-          <a className="btn" href="/docs/contract-sponsorizare.docx">
-            Descarcă Contract sponsorizare (DOCX)
+
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
+          <a
+            href="/docs/contract-sponsorizare.docx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            style={{ textDecoration: "none" }}
+          >
+            Contract sponsorizare
           </a>
-          <a className="btn-outline" href="/contact?subject=Sponsorizare%20companie">
-            Vreau să discutăm
-          </a>
+          <Link
+            to="/contact?s=Parteneriat%20institu%C8%9Bional"
+            className="btn"
+            style={{ textDecoration: "none" }}
+          >
+            Parteneriat instituțional
+          </Link>
         </div>
       </section>
 
-      {/* Date organizație (pentru transfer direct) */}
-      <section style={card}>
-        <h2 className="font-cormorant" style={h2}>Date organizație</h2>
-        <div style={{ display: "grid", gap: 8 }}>
-          <div><strong>Asociația MIDAWAY</strong></div>
-          <div>CIF: <code>—</code></div>
-          <div>IBAN RON: <code>RO00 BANK 0000 0000 0000 0000</code></div>
-          <div>IBAN EUR: <code>RO00 BANK 0000 0000 0000 0000</code> · SWIFT: <code>BANKROBU</code></div>
-          <div>Email: <a href="mailto:contact@midaway.ro">contact@midaway.ro</a></div>
-        </div>
-        <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <a className="btn-outline" href="/donatii">Donații & abonamente</a>
-          <Link className="btn-outline" to="/contact?subject=Întrebări%20sponsorizări">Întrebări</Link>
+      {/* Detalii bancare */}
+      <section style={{ marginTop: 28 }}>
+        <h2 className="font-cormorant" style={{ margin: "0 0 8px 0", fontSize: 28 }}>
+          Detalii bancare
+        </h2>
+
+        <div
+          style={{
+            padding: 16,
+            borderRadius: 12,
+            border: "1px solid var(--line)",
+            background: "#fff",
+            boxShadow: "0 4px 12px rgba(0,0,0,.06)",
+          }}
+        >
+          <Line label="Denumire asociație" value="Asociația MIDAWAY" />
+          <Line label="CUI" value="RO-XXXXXXX" />
+          <Line label="IBAN" value="RO00 BANK 0000 0000 0000 0000" />
+          <Line label="Banca" value="Banca Exemplu SA, Sucursala …" />
+          <Line label="Adresa" value="Str. Exemplu nr. 00, București" />
+          <small style={{ color: "var(--secondary)" }}>
+            *Înlocuim cu datele finale imediat ce sunt emise.
+          </small>
         </div>
       </section>
 
-      {/* FAQ scurt */}
-      <section style={card}>
-        <h2 className="font-cormorant" style={h2}>Întrebări frecvente</h2>
-        <details style={details}>
-          <summary>Care este procentul pe care îl pot redirecționa?</summary>
-          <div style={ans}>
-            Cota pentru persoane fizice a fost în trecut 2% / 3,5%, în funcție de tipul entității. Verificăm împreună
-            varianta actualizată și îți trimitem pașii concreți.
-          </div>
-        </details>
-        <details style={details}>
-          <summary>La firme este deductibilă sponsorizarea?</summary>
-          <div style={ans}>
-            Da, în limitele prevăzute de lege (micro/profit). Îți oferim model de contract și discutăm cu contabilul tău
-            detaliile pentru încadrarea corectă.
-          </div>
-        </details>
-        <details style={details}>
-          <summary>Pot primi un raport despre cum folosim fondurile?</summary>
-          <div style={ans}>
-            Desigur. Publicăm periodic un raport de impact și utilizare a resurselor, iar partenerii primesc update-uri dedicate.
-          </div>
-        </details>
+      <section style={{ marginTop: 20 }}>
+        <p style={{ color: "var(--secondary)" }}>
+          Pentru orice întrebare:{" "}
+          <Link to="/contact?s=Intrebari%20sponsorizare">contactează-ne</Link>.
+          Îți mulțumim că ajuți proiectele Midaway să crească. 🤍
+        </p>
       </section>
     </div>
   );
 }
 
-const card = {
-  background: "#fff",
-  borderRadius: 14,
-  padding: 16,
-  boxShadow: "0 6px 16px rgba(0,0,0,.06)",
-  marginTop: 18,
-};
-const h2 = { margin: "0 0 8px 0", fontSize: 26 };
-const p = { marginTop: 4, lineHeight: 1.6 };
-const btnRow = { marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" };
-const details = {
-  padding: "10px 0",
-  borderTop: "1px solid #eee",
-};
-const ans = { marginTop: 8, color: "#444", lineHeight: 1.6 };
+/* ——— mici componente interne ——— */
+
+function Card({ title, text, actions }) {
+  return (
+    <div
+      style={{
+        padding: 16,
+        borderRadius: 16,
+        border: "1px solid var(--line)",
+        background: "#fff",
+        minHeight: 160,
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+        boxShadow: "0 6px 16px rgba(0,0,0,.06)",
+      }}
+    >
+      <h3 className="font-cormorant" style={{ margin: 0, fontSize: 22 }}>
+        {title}
+      </h3>
+      <p style={{ margin: 0, color: "var(--secondary)" }}>{text}</p>
+      <div style={{ marginTop: "auto" }}>{actions}</div>
+    </div>
+  );
+}
+
+function Line({ label, value }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: 12, marginBottom: 8 }}>
+      <span style={{ color: "var(--secondary)" }}>{label}</span>
+      <b>{value}</b>
+    </div>
+  );
+}
