@@ -9,6 +9,7 @@ const navItems = [
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
   { label: "Multimedia", to: "/multimedia" },
+  { label: "Sponsorizări", to: "/sponsorizari" },  // ⬅️ nou
   { label: "Despre", to: "/despre" },
   { label: "Contact", to: "/contact" },
 ];
