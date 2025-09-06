@@ -10,6 +10,8 @@ export default function Footer() {
 
         {/* mijloc (links legale) */}
         <div className="footer-links">
+        // în interiorul unuia dintre <div className="footer-links"> ... </div>
+<a href="/rss.xml" rel="alternate">RSS</a>
           <Link to="/privacy">Politica de confidențialitate</Link>
           <span>·</span>
           <Link to="/termeni">Termeni & condiții</Link>

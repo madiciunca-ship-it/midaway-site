@@ -20,6 +20,7 @@ import TravelerDetail from "./pages/TravelerDetail";
 import Multimedia from "./pages/Multimedia";
 import Donate from "./pages/Donate";
 import Sponsorizari from "./pages/Sponsorizari";
+import ThanksNewsletter from "./pages/ThanksNewsletter";
 
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -53,7 +54,7 @@ export default function App() {
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
-          
+          <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
           {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />

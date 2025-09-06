@@ -1,30 +1,153 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
-import POSTS from "../data/posts";
+// src/pages/BlogDetail.jsx
+import { Link, useParams } from "react-router-dom";
+import posts from "../data/posts";
+import { useEffect } from "react";
+
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString("ro-RO", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+// elimină diacritice (fallback pt. slugs cu ăâîșț)
+const stripDiacritics = (s) =>
+  s.normalize("NFD").replace(/\p{Diacritic}/gu, "");
 
 export default function BlogDetail() {
-  const { id } = useParams();
-  const post = POSTS.find((p) => String(p.id) === id);
+  const { id: rawId } = useParams();
+  const id = decodeURIComponent(rawId || "");
+
+  // 1) potrivire directă
+  let post = posts.find((p) => p.slug === id);
+  // 2) fallback fără diacritice
+  if (!post) {
+    const idStripped = stripDiacritics(id);
+    post = posts.find((p) => stripDiacritics(p.slug) === idStripped);
+  }
+
+  // SEO minim: titlu + meta description
+  useEffect(() => {
+    if (!post) return;
+    document.title = `${post.title} — Midaway`;
+    const desc = post.excerpt || (post.content?.[0] ?? "").slice(0, 150);
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    meta.content = desc;
+  }, [post]);
 
   if (!post) {
     return (
-      <div style={{ padding: 24 }}>
-        <h2>Articolul nu există</h2>
+      <div className="container" style={{ padding: "32px 0 48px" }}>
+        <h1 className="font-cormorant">Articolul nu există</h1>
         <p>
-          <Link to="/blog">← Înapoi la blog</Link>
+          Înapoi la{" "}
+          <Link to="/blog" style={{ color: "var(--accent)", textDecoration: "none" }}>
+            Blog
+          </Link>
+          .
         </p>
       </div>
     );
   }
 
+  // Articole înrudite (max 3) – au cel puțin un tag comun, diferite de articolul curent
+  const related = posts
+    .filter(x => x.slug !== post.slug && x.tags.some(t => post.tags.includes(t)))
+    .slice(0, 3);
+
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 24 }}>
-      <p style={{ fontSize: 14, margin: 0 }}>
-        <Link to="/blog">← Înapoi la blog</Link>
-      </p>
-      <h1 style={{ margin: "8px 0 16px 0" }}>{post.title}</h1>
-      <div style={{ lineHeight: 1.7, color: "#333", whiteSpace: "pre-line" }}>
-        {post.content}
+    <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
+      {/* cover */}
+      {post.cover && (
+        <div
+          style={{
+            borderRadius: 16,
+            overflow: "hidden",
+            boxShadow: "0 10px 24px rgba(0,0,0,.08)",
+            marginBottom: 16,
+          }}
+        >
+          <img
+            src={post.cover}
+            alt={post.title}
+            style={{ width: "100%", display: "block", height: "auto" }}
+          />
+        </div>
+      )}
+
+      {/* meta + titlu */}
+      <div style={{ color: "var(--secondary)", marginBottom: 8 }}>
+        {formatDate(post.date)}{post.minutes ? ` · ${post.minutes} min` : ""}
+      </div>
+      <h1 className="font-cormorant" style={{ marginTop: 0 }}>{post.title}</h1>
+
+      {/* conținut */}
+      <div style={{ lineHeight: 1.85, fontSize: 18 }}>
+        {post.content.map((para, i) => (
+          <p key={i} style={{ margin: "16px 0" }}>
+            {para}
+          </p>
+        ))}
+      </div>
+
+      {/* tags */}
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 16 }}>
+        {post.tags.map((t) => (
+          <span
+            key={t}
+            style={{
+              border: "1px solid var(--line)",
+              borderRadius: 999,
+              padding: "6px 10px",
+              fontSize: 12,
+              color: "var(--secondary)",
+              background: "#fff",
+            }}
+          >
+            #{t}
+          </span>
+        ))}
+      </div>
+
+      {/* Related posts */}
+      {related.length > 0 && (
+        <section style={{ marginTop: 32 }}>
+          <h3 className="font-cormorant" style={{ marginBottom: 12 }}>Articole înrudite</h3>
+          <div className="blog-grid">
+            {related.map((r) => (
+              <Link
+                key={r.slug}
+                to={`/blog/${encodeURIComponent(r.slug)}`}
+                className="blog-card"
+              >
+                <div
+                  className="blog-card-cover"
+                  style={{ backgroundImage: `url(${r.cover})` }}
+                />
+                <div className="blog-card-body">
+                  <div className="blog-meta">
+                    <span>{formatDate(r.date)}</span>
+                  </div>
+                  <h4 className="font-cormorant" style={{ margin: 0 }}>{r.title}</h4>
+                  <p className="excerpt">{r.excerpt}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* back */}
+      <div style={{ marginTop: 24 }}>
+        <Link to="/blog" className="btn" style={{ textDecoration: "none" }}>
+          ← Înapoi la blog
+        </Link>
       </div>
     </div>
   );

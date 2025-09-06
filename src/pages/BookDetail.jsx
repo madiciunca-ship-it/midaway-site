@@ -1,3 +1,4 @@
+// src/pages/BookDetail.jsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
@@ -34,6 +35,19 @@ export default function BookDetail() {
       </div>
     );
   }
+
+  // --- Recomandări (cărți cu tag-uri comune sau același gen) ---
+  const related = BOOKS
+    .filter((b) => String(b.id) !== String(id))
+    .filter((b) => {
+      const shareGenre = b.genre && book.genre && b.genre === book.genre;
+      const shareTags =
+        Array.isArray(b.tags) &&
+        Array.isArray(book.tags) &&
+        b.tags.some((t) => book.tags.includes(t));
+      return shareGenre || shareTags;
+    })
+    .slice(0, 3);
 
   return (
     <div style={{ padding: 24 }}>
@@ -78,8 +92,8 @@ export default function BookDetail() {
 
         <div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <Tag>{book.genre}</Tag>
-            <Tag>📍 {book.location}</Tag>
+            {book.genre && <Tag>{book.genre}</Tag>}
+            {book.location && <Tag>📍 {book.location}</Tag>}
             <span style={{ marginLeft: "auto", fontSize: 12, color: "#999" }}>
               {book.year}
             </span>
@@ -114,44 +128,97 @@ export default function BookDetail() {
           )}
 
           <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <a
-              href={book.sampleUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                flex: 1,
-                textAlign: "center",
-                padding: "10px 12px",
-                borderRadius: 10,
-                background: "#111",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 14,
-              }}
-            >
-              📖 Citește un fragment
-            </a>
-            <a
-              href={book.buyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                flex: 1,
-                textAlign: "center",
-                padding: "10px 12px",
-                borderRadius: 10,
-                border: "1px solid #ddd",
-                background: "#fff",
-                color: "#111",
-                textDecoration: "none",
-                fontSize: 14,
-              }}
-            >
-              🛒 Cumpără
-            </a>
+            {book.sampleUrl && (
+              <a
+                href={book.sampleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  padding: "10px 12px",
+                  borderRadius: 10,
+                  background: "#111",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontSize: 14,
+                }}
+              >
+                📖 Citește un fragment
+              </a>
+            )}
+            {book.buyUrl && (
+              <a
+                href={book.buyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  padding: "10px 12px",
+                  borderRadius: 10,
+                  border: "1px solid #ddd",
+                  background: "#fff",
+                  color: "#111",
+                  textDecoration: "none",
+                  fontSize: 14,
+                }}
+              >
+                🛒 Cumpără
+              </a>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Recomandări */}
+      {related.length > 0 && (
+        <div style={{ marginTop: 32 }}>
+          <h3 className="font-cormorant" style={{ marginBottom: 12 }}>
+            Poate te mai interesează
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 16,
+            }}
+          >
+            {related.map((b) => (
+              <Link
+                key={b.id}
+                to={`/carti/${b.id}`}
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  border: "1px solid #eee",
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  background: "#fff",
+                  boxShadow: "0 8px 18px rgba(0,0,0,.06)",
+                }}
+              >
+                <div
+                  style={{
+                    height: 160,
+                    backgroundImage: `url(${b.coverUrl})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+                <div style={{ padding: 12 }}>
+                  <div style={{ fontWeight: 700 }}>{b.title}</div>
+                  {b.subtitle && (
+                    <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
+                      {b.subtitle}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
