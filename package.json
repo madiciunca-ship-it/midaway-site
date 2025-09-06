@@ -23,5 +23,5 @@
       "postbuild": "node scripts/generate-rss.js",
       "preview": "vite preview"
     }
-  } 
+  }  
 }

@@ -1,4 +1,3 @@
-// src/pages/Blog.jsx
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import posts from "../data/posts";
@@ -11,7 +10,10 @@ function formatDate(iso) {
   });
 }
 function estimateMinutes(p) {
-  const words = [p.title, p.excerpt, ...(p.content || [])].join(" ").trim().split(/\s+/).length;
+  const words = [p.title, p.excerpt, ...(p.content || [])]
+    .join(" ")
+    .trim()
+    .split(/\s+/).length;
   return Math.max(1, Math.round(words / 220));
 }
 
@@ -43,15 +45,13 @@ export default function Blog() {
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
-      {/* Header */}
       <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 24 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>Blog Midaway</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Gânduri, povești și fragmente de drum.
+          Texte literare & reflecții. Click pe titlu pentru a citi articolul.
         </p>
       </header>
 
-      {/* Căutare + tag-uri */}
       <div className="blog-toolbar">
         <input
           className="input"
@@ -72,7 +72,6 @@ export default function Blog() {
         </div>
       </div>
 
-      {/* Grid postări */}
       {filtered.length === 0 ? (
         <div style={{ marginTop: 16, color: "var(--secondary)" }}>
           N-am găsit articole pentru filtrul/căutarea ta.
@@ -114,7 +113,7 @@ export default function Blog() {
                     </span>
                   ))}
                 </div>
-                <span className="read-more">Citește mai departe →</span>
+                <span className="read-more">Citește articolul →</span>
               </div>
             </Link>
           ))}
