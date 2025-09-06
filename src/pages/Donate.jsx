@@ -54,7 +54,7 @@ export default function Donate() {
           Ești companie sau instituție? Hai să configurăm o sponsorizare sau un parteneriat.
           Îți trimitem model de contract și detalii fiscale.
         </p>
-        <a className="btn" href="/contact?subject=Parteneriat%20instituțional">Propune parteneriat</a>
+        <a className="btn" href="/sponsorizari">Detalii sponsorizări</a>
       </section>
     </div>
   );

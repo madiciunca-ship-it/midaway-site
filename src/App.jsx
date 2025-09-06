@@ -19,6 +19,7 @@ import Travelers from "./pages/Travelers";
 import TravelerDetail from "./pages/TravelerDetail";
 import Multimedia from "./pages/Multimedia";
 import Donate from "./pages/Donate";
+import Sponsorizari from "./pages/Sponsorizari";
 
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route path="/sponsorizari" element={<Sponsorizari />} />
 
           {/* Static */}
           <Route path="/despre" element={<About />} />
