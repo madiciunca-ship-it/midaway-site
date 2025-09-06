@@ -1,17 +1,23 @@
-// src/components/Footer.jsx
 import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-bar">
-        {/* stânga (copyright) */}
-        <div className="footer-copy">© {new Date().getFullYear()} MIDAWAY</div>
+        {/* Logo – mobil only (se ascunde pe desktop din CSS) */}
+        <img
+          className="footer-logo"
+          src="/logo-midaway.png"
+          alt="Midaway"
+          height={28}
+        />
 
-        {/* mijloc (links legale) */}
+        {/* Links */}
         <div className="footer-links">
-        // în interiorul unuia dintre <div className="footer-links"> ... </div>
-<a href="/rss.xml" rel="alternate">RSS</a>
+          {/* RSS (unic) */}
+          <a href="/feed.xml" rel="alternate">RSS</a>
+
+          <span>·</span>
           <Link to="/privacy">Politica de confidențialitate</Link>
           <span>·</span>
           <Link to="/termeni">Termeni & condiții</Link>
@@ -19,7 +25,7 @@ export default function Footer() {
           <Link to="/cookies">Politica cookies</Link>
         </div>
 
-        {/* dreapta (acțiuni utile) */}
+        {/* Sub-linie (donatii/contact) */}
         <div className="footer-links">
           <Link to="/donatii">Donații</Link>
           <span>·</span>
