@@ -1,12 +1,15 @@
 {
   "name": "midaway-site",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
   "type": "module",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-rss.js",
     "build": "vite build",
-    "postbuild": "node scripts/generate-rss.js",
     "preview": "vite preview --port 5173"
   },
   "dependencies": {
