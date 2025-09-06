@@ -18,6 +18,7 @@ import Volunteers from "./pages/Volunteers";
 import Travelers from "./pages/Travelers";
 import TravelerDetail from "./pages/TravelerDetail";
 import Multimedia from "./pages/Multimedia";
+import Donate from "./pages/Donate";
 
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -44,13 +45,14 @@ export default function App() {
           {/* Proiecte */}
           <Route path="/proiecte" element={<Projects />} />
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
+          <Route path="/donatii" element={<Donate />} />
 
           {/* Alte secțiuni */}
           <Route path="/voluntari" element={<Volunteers />} />
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
-
+          
           {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />

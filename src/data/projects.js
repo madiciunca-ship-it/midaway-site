@@ -120,8 +120,8 @@ const projects = [
       "Transparență totală: publicăm periodic raportul de impact și direcțiile în care merg resursele."
     ],
     links: [
-      { label: "Înscrie-mă pe lista de interes", href: "/contact?subject=Abonamente%20Midaway" },
-      { label: "Detalii abonamente", href: "/proiecte/sustinere" }
+      { label: "Vreau să donez o dată", href: "/donatii" },   // <-- nou
+      { label: "Întrebări", href: "/contact?subject=Întrebări%20donații" }
     ]
   }
 ];
