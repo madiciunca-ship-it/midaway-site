@@ -48,7 +48,7 @@ export default function ProjectDetail() {
         {/* Dacă e Susținere – afișăm planuri (tiers) */}
         {isSupport && (
           <>
-            <h2 className="font-cormorant" style={{ marginTop: 24 }}>Planuri de abonament</h2>
+            <h2 id="planuri" className="font-cormorant" style={{ marginTop: 24 }}>Planuri de abonament</h2>
             <div className="plan-grid">
               <div className="plan-card">
                 <h3 className="plan-title">Explorator</h3>
@@ -64,7 +64,16 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              <div className="plan-card">
+              <div className="plan-card" style={{ position: "relative", border: "1px solid #f1d6d6" }}>
+                <span
+                  style={{
+                    position: "absolute", top: 12, right: 12,
+                    background: "var(--accent)", color: "#fff",
+                    padding: "4px 10px", borderRadius: 999, fontSize: 12
+                  }}
+                >
+                  Popular
+                </span>
                 <h3 className="plan-title">Călător</h3>
                 <div className="plan-price">10 € / lună</div>
                 <ul className="plan-ul">
@@ -93,19 +102,24 @@ export default function ProjectDetail() {
               </div>
             </div>
 
-            <div style={{ marginTop: 14 }}>
-              <a className="btn-outline" href="/contact?subject=Donație%20unică">
-                Vreau să donez o dată
-              </a>
-              {" "}
-              <a className="btn-outline" href="/contact?subject=Parteneriat%20instituțional">
-                Parteneriat instituțional
-              </a>
+            <div style={{ marginTop: 24, background: "#fff", borderRadius: 14, padding: 16, boxShadow: "0 6px 16px rgba(0,0,0,.06)" }}>
+              <h3 className="font-cormorant" style={{ marginTop: 0 }}>Donație prin transfer bancar</h3>
+              <p style={{ marginTop: 4 }}>Poți susține Midaway și prin transfer direct:</p>
+              <div style={{ display: "grid", gap: 8 }}>
+                <div><strong>Asociația MIDAWAY</strong></div>
+                <div>IBAN RON: <code>RO00 BANK 0000 0000 0000 0000</code></div>
+                <div>IBAN EUR: <code>RO00 BANK 0000 0000 0000 0000</code> (SWIFT: <code>BANKROBU</code>)</div>
+                <div>Detalii plată: <em>Donație Midaway – Nume Prenume</em></div>
+              </div>
+              <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <a className="btn-outline" href="/donatii">Vreau să donez o dată</a>
+                <a className="btn-outline" href="/contact?subject=Parteneriat%20instituțional">Parteneriat instituțional</a>
+              </div>
             </div>
           </>
         )}
 
-        {/* Butoane standard */}
+        {/* Butoane standard din data.links */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
           {p.links.map((l, i) => (
             <Link key={i} to={l.href} className="btn" style={{ textDecoration: "none" }}>

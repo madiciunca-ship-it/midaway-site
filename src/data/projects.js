@@ -121,9 +121,9 @@ const projects = [
     ],
     links: [
       { label: "Înscrie-mă pe lista de interes", href: "/contact?subject=Abonamente%20Midaway" },
-      { label: "Detalii abonamente", href: "/proiecte/sustinere" },
-      { label: "Sponsorizări (PF & PJ)", href: "/sponsorizari" } // ⬅️ extra CTA
-    ]    
+      { label: "Detalii abonamente", href: "/proiecte/sustinere#planuri" }, // ← duce fix la secțiunea de planuri
+      { label: "Sponsorizări (PF & PJ)", href: "/sponsorizari" }
+    ]     
   }
 ];
 

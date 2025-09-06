@@ -9,6 +9,12 @@ export default function Donate() {
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
           Abonamente, donații unice și parteneriate. Împreună ducem poveștile mai departe.
         </p>
+        {/* Buton mic spre sponsorizări */}
+        <div style={{ marginTop: 10 }}>
+          <Link className="btn-outline" to="/sponsorizari">
+            Sponsorizări (PF & PJ)
+          </Link>
+        </div>
       </header>
 
       <section style={{
@@ -34,9 +40,9 @@ export default function Donate() {
 
       <section style={{ marginTop: 24 }}>
         <h2 className="font-cormorant" style={{ fontSize: 26 }}>Abonamente</h2>
-        <p>Vrei abonament lunar? Alege unul dintre planurile din pagina
-          {" "}
-          <Link to="/proiecte/sustinere" style={{ color: "var(--accent)", textDecoration: "none" }}>
+        <p>
+          Vrei abonament lunar? Alege unul dintre planurile din pagina{" "}
+          <Link to="/proiecte/sustinere#planuri" style={{ color: "var(--accent)", textDecoration: "none" }}>
             Susține Midaway
           </Link>
           . Ulterior putem activa plata directă cu cardul (Stripe).
@@ -54,7 +60,10 @@ export default function Donate() {
           Ești companie sau instituție? Hai să configurăm o sponsorizare sau un parteneriat.
           Îți trimitem model de contract și detalii fiscale.
         </p>
-        <a className="btn" href="/sponsorizari">Detalii sponsorizări</a>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Link className="btn" to="/sponsorizari">Detalii sponsorizări</Link>
+          <a className="btn-outline" href="/contact?subject=Parteneriat%20instituțional">Propune parteneriat</a>
+        </div>
       </section>
     </div>
   );
