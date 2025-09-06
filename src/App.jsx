@@ -55,11 +55,12 @@ export default function App() {
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
+          
           {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />
           <Route path="/cookies" element={<Cookies />} />
-          <Route path="/sponsorizari" element={<Sponsorizari />} />
+          <Route path="/multumesc-newsletter" element={<ThanksNewsletter />} />
 
           {/* Static */}
           <Route path="/despre" element={<About />} />
