@@ -49,7 +49,7 @@ export default function App() {
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
           <Route path="/donatii" element={<Donate />} />
           <Route path="/sponsorizari" element={<Sponsorizari />} />
-          
+
           {/* Alte secțiuni */}
           <Route path="/voluntari" element={<Volunteers />} />
           <Route path="/calatori" element={<Travelers />} />

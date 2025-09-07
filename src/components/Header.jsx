@@ -9,7 +9,8 @@ const navItems = [
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
   { label: "Multimedia", to: "/multimedia" },
-  { label: "Sponsorizări", to: "/sponsorizari" },  // ⬅️ nou
+  { label: "Donații", to: "/donatii" },            // ← AICI lipsea!
+  { label: "Sponsorizări", to: "/sponsorizari" },
   { label: "Despre", to: "/despre" },
   { label: "Contact", to: "/contact" },
 ];
@@ -18,7 +19,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // urmărește lățimea ecranului și setează mobil/desktop
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
     const update = () => setIsMobile(mq.matches);
@@ -39,7 +39,7 @@ export default function Header() {
           style={{ height: 44, width: "auto", display: "block", borderRadius: 8 }}
         />
 
-        {/* Desktop nav (doar pe desktop) */}
+        {/* Desktop nav */}
         {!isMobile && (
           <nav
             className="nav"
@@ -65,7 +65,7 @@ export default function Header() {
           </nav>
         )}
 
-        {/* Mobile toggle (doar pe mobil) */}
+        {/* Mobile toggle */}
         {isMobile && (
           <button
             className="mobile-toggle"
@@ -75,18 +75,18 @@ export default function Header() {
           >
             {open ? (
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             ) : (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               </svg>
             )}
           </button>
         )}
       </div>
 
-      {/* Mobile menu (doar pe mobil) */}
+      {/* Mobile menu */}
       {isMobile && (
         <div className={`mobile-menu${open ? " open" : ""}`}>
           {navItems.map(({ label, to }) => (

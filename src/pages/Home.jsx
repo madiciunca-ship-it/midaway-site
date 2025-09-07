@@ -113,33 +113,37 @@ export default function Home() {
         </div>
       </section>
 
-            {/* SECȚIUNI RAPIDE */}
-            <div id="sectiuni" className="container">
+      {/* SECȚIUNI RAPIDE */}
+      <div id="sectiuni" className="container">
         <div className="cards">
           {/* CĂRȚI */}
           <Link to="/carti" className="card" style={{ background: "var(--card1)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Cărți</h3>
-            <p style={{ margin: 0 }}>Cărți care inspiră și provoacă gândirea.</p>
+            <p style={{ margin: 0 }}>
+              Cărți care inspiră și provoacă gândirea.
+            </p>
           </Link>
 
           {/* BLOG */}
           <Link to="/blog" className="card" style={{ background: "var(--card2)", color: "#fff", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Blog</h3>
-            <p style={{ margin: 0 }}>Gânduri, povești și reflecții din drum.</p>
+            <p style={{ margin: 0 }}>
+              Gânduri, povești și reflecții din drum.
+            </p>
           </Link>
 
           {/* VOLUNTARIAT */}
           <Link to="/voluntari" className="card" style={{ background: "var(--card3)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Voluntariat</h3>
-            <p style={{ margin: 0 }}>Fii parte din comunitatea noastră creativă.</p>
+            <p style={{ margin: 0 }}>
+              Fii parte din comunitatea noastră creativă.
+            </p>
           </Link>
         </div>
       </div>
-
 
       {/* BANNER ROTATIV */}
       <Carousel slides={slides} />
     </>
   );
 }
-

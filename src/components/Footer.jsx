@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-links">
-          <Link to="/donate">Donații</Link>
+          <Link to="/donatii">Donații</Link>
           <span>•</span>
           <Link to="/sponsorizari">Sponsorizări</Link>
           <span>•</span>
