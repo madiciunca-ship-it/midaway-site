@@ -52,18 +52,18 @@ export default function Donate() {
             flexWrap: "wrap",
           }}
         >
-          <a
+          <Link
             className="btn"
-            href="/contact?subject=Confirmare%20donație%20prin%20transfer"
+            to="/contact?subject=Confirmare%20donație%20prin%20transfer"
           >
             Confirm donația
-          </a>
-          <a
+          </Link>
+          <Link
             className="btn-outline"
-            href="/contact?subject=Întrebări%20donații"
+            to="/contact?subject=Întrebări%20donații"
           >
             Întrebări
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -90,24 +90,24 @@ export default function Donate() {
             marginTop: 8,
           }}
         >
-          <a
+          <Link
             className="btn-outline"
-            href="/contact?subject=Abonament%20Explorator"
+            to="/contact?subject=Abonament%20Explorator"
           >
             Explorator
-          </a>
-          <a
+          </Link>
+          <Link
             className="btn-outline"
-            href="/contact?subject=Abonament%20Călător"
+            to="/contact?subject=Abonament%20Călător"
           >
             Călător
-          </a>
-          <a
+          </Link>
+          <Link
             className="btn-outline"
-            href="/contact?subject=Abonament%20Povestitor"
+            to="/contact?subject=Abonament%20Povestitor"
           >
             Povestitor
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -119,9 +119,12 @@ export default function Donate() {
           Ești companie sau instituție? Hai să configurăm o sponsorizare sau un
           parteneriat. Îți trimitem model de contract și detalii fiscale.
         </p>
-        <a className="btn" href="/contact?subject=Parteneriat%20instituțional">
+        <Link
+          className="btn"
+          to="/contact?subject=Parteneriat%20instituțional"
+        >
           Propune parteneriat
-        </a>
+        </Link>
       </section>
     </div>
   );
