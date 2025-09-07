@@ -3,11 +3,10 @@ import fs from "node:fs";
 import path from "node:path";
 import posts from "../src/data/posts.js";
 
-// ia domeniul din env dacă există; altfel cade pe vercel.app (poți pune midaway.ro când îl legi)
 const site = process.env.SITE_URL || "https://midaway.vercel.app";
 
 function escapeXml(s = "") {
-  return String(s)
+  return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -15,15 +14,14 @@ function escapeXml(s = "") {
 }
 
 function toRssItem(p) {
-  const permalink = `${site}/blog/${encodeURIComponent(p.slug)}`;
-  const desc = escapeXml(p.excerpt || (p.content?.[0] ?? "").slice(0, 200));
+  const url = `${site}/blog/${encodeURIComponent(p.slug)}`;
+  const desc = escapeXml((p.excerpt || "").trim());
   const pub = new Date(p.date).toUTCString();
-
   return `
     <item>
       <title>${escapeXml(p.title)}</title>
-      <link>${permalink}</link>
-      <guid>${permalink}</guid>
+      <link>${url}</link>
+      <guid>${url}</guid>
       <pubDate>${pub}</pubDate>
       <description>${desc}</description>
     </item>`;
@@ -44,11 +42,10 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
     <language>ro-RO</language>
 ${items}
   </channel>
-</rss>
-`;
+</rss>`.trim();
 
 const outDir = path.join(process.cwd(), "public");
 fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, "feed.xml"), rss.trim(), "utf8");
+fs.writeFileSync(path.join(outDir, "feed.xml"), rss, "utf8");
 
 console.log(`[RSS] generat ${posts.length} articole -> public/feed.xml (${site})`);

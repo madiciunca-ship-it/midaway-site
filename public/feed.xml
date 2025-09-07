@@ -2,16 +2,32 @@
 <rss version="2.0">
   <channel>
     <title>Midaway — Blog</title>
-    <link>/blog</link>
+    <link>https://midaway.vercel.app/blog</link>
     <description>Gânduri, povești și fragmente de drum.</description>
     <language>ro-RO</language>
 
     <item>
+      <title>De ce alegem drumuri neștiute?</title>
+      <link>https://midaway.vercel.app/blog/de-ce-alegem-drumuri-nestiute</link>
+      <guid>https://midaway.vercel.app/blog/de-ce-alegem-drumuri-nestiute</guid>
+      <pubDate>Sun, 02 Mar 2025 00:00:00 GMT</pubDate>
+      <description>Nu alegem drumuri neștiute pentru că sunt comode. Le alegem tocmai pentru că nu știm…</description>
+    </item>
+
+    <item>
+      <title>Yda – între ficțiune și realitate?</title>
+      <link>https://midaway.vercel.app/blog/yda-intre-fictiune-si-realitate</link>
+      <guid>https://midaway.vercel.app/blog/yda-intre-fictiune-si-realitate</guid>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
+      <description>Despre felul în care un personaj poate deveni oglindă pentru cine ești tu.</description>
+    </item>
+
+    <item>
       <title>Cum a început călătoria mea</title>
-      <link>/blog/cum-a-inceput-calatoria-mea</link>
-      <guid>/blog/cum-a-inceput-calatoria-mea</guid>
-      <pubDate>Mon, 15 Jan 2025 00:00:00 GMT</pubDate>
-      <description>Povestea startului: primele zile, primele decizii…</description>
+      <link>https://midaway.vercel.app/blog/cum-a-inceput-calatoria-mea</link>
+      <guid>https://midaway.vercel.app/blog/cum-a-inceput-calatoria-mea</guid>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 GMT</pubDate>
+      <description>Povestea startului: primele zile, primele decizii, primul pas în necunoscut.</description>
     </item>
   </channel>
 </rss>
