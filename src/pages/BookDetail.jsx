@@ -68,28 +68,55 @@ export default function BookDetail() {
         }}
       >
         <div>
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "3/4",
-              overflow: "hidden",
-              borderRadius: 10,
-              background: "#f3f3f3",
-              border: "1px solid #eee",
-            }}
-          >
-            <img
-              src={book.coverUrl}
-              alt={book.title}
-              loading="lazy"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+  {/* Coperta față */}
+  <div
+    style={{
+      width: "100%",
+      aspectRatio: "3/4",
+      overflow: "hidden",
+      borderRadius: 10,
+      background: "#f3f3f3",
+      border: "1px solid #eee",
+    }}
+  >
+    <img
+      src={book.coverUrl}
+      alt={book.title}
+      loading="lazy"
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        display: "block",
+      }}
+    />
+  </div>
+
+  {/* Coperta spate */}
+  {book.extraImage && (
+    <div
+      style={{
+        width: "100%",
+        borderRadius: 10,
+        border: "1px solid #eee",
+        overflow: "hidden",
+        background: "#f9f9f9",
+      }}
+    >
+      <img
+        src={book.extraImage}
+        alt="Coperta spate"
+        loading="lazy"
+        style={{
+          width: "100%",
+          display: "block",
+        }}
+      />
+    </div>
+  )}
+</div>
+
 
           {/* Galerie cu imagini suplimentare */}
                  </div>
