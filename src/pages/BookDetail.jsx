@@ -92,29 +92,6 @@ export default function BookDetail() {
       }}
     />
   </div>
-
-  {/* Coperta spate */}
-  {book.extraImage && (
-    <div
-      style={{
-        width: "100%",
-        borderRadius: 10,
-        border: "1px solid #eee",
-        overflow: "hidden",
-        background: "#f9f9f9",
-      }}
-    >
-      <img
-        src={book.extraImage}
-        alt="Coperta spate"
-        loading="lazy"
-        style={{
-          width: "100%",
-          display: "block",
-        }}
-      />
-    </div>
-  )}
 </div>
 
 
