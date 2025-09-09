@@ -1,4 +1,4 @@
-export const BOOKS = [ 
+export const BOOKS = [
   {
     id: "o-zi-de-care-sa-ti-amintesti",
     title: "O zi de care să-ți amintești",
@@ -8,16 +8,20 @@ export const BOOKS = [
     genre: "Travel",
     location: "Filipine",
     year: 2023,
-    publisher: "Dreams Publishing House",  // ← nou!
+    publisher: "Dreams Publishing House",
     tags: ["călătorii", "Filipine", "jurnal", "autentic"],
     coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
-    sampleUrl:
-      "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
+    sampleUrl: "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
     buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
     prices: {
-      "Paperback": 65,
-      "eBook": 45
-    }
+      Paperback: 65,
+      eBook: 45
+    },
+    gallery: [
+      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
+      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
+      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-extra.jpeg"
+    ]
   },
   {
     id: "2",
@@ -28,9 +32,8 @@ export const BOOKS = [
     location: "Vietnam",
     year: 2022,
     tags: ["călătorii", "Vietnam", "cultură"],
-    coverUrl:
-      "https://images.unsplash.com/photo-1504788363733-507549153474?q=80&w=1200&auto=format&fit=crop",
+    coverUrl: "https://images.unsplash.com/photo-1504788363733-507549153474?q=80&w=1200&auto=format&fit=crop",
     sampleUrl: "#sample-2",
-    buyUrl: "#cumpara-2",
-  },
+    buyUrl: "#cumpara-2"
+  }
 ];
