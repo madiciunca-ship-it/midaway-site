@@ -92,10 +92,7 @@ export default function BookDetail() {
           </div>
 
           {/* Galerie cu imagini suplimentare */}
-          {book.gallery && book.gallery.length > 0 && (
-            <BookGallery images={book.gallery} />
-          )}
-        </div>
+                 </div>
 
         <div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -122,6 +119,23 @@ export default function BookDetail() {
           <p style={{ marginTop: 16, lineHeight: 1.6 }}>
             {book.description}
           </p>
+
+          {book.extraImage && (
+  <div style={{ marginTop: 16 }}>
+    <img
+      src={book.extraImage}
+      alt="Coperta spate"
+      style={{
+        width: "100%",
+        maxWidth: 400,
+        borderRadius: 10,
+        border: "1px solid #eee",
+        display: "block"
+      }}
+    />
+  </div>
+)}
+
 
           <p style={{ marginTop: 12, lineHeight: 1.6 }}>
             <strong>Editura:</strong> Midaway

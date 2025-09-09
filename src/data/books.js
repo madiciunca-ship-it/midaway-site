@@ -17,11 +17,7 @@ export const BOOKS = [
       Paperback: 65,
       eBook: 45
     },
-    gallery: [
-      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
-      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
-      "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-extra.jpeg"
-    ]
+    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG"
   },
   {
     id: "2",
