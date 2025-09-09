@@ -58,6 +58,7 @@ export default function BookDetail() {
       <h1 style={{ margin: "8px 0 0 0" }}>{book.title}</h1>
       <p style={{ margin: 0, color: "#666" }}>{book.subtitle}</p>
 
+      {/* Layout 2 coloane: imagine + detalii */}
       <div
         style={{
           display: "grid",
@@ -67,37 +68,57 @@ export default function BookDetail() {
           alignItems: "start",
         }}
       >
-        <div>
+        {/* Coloana 1 – Coperta față + spate */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-  {/* Coperta față */}
-  <div
-    style={{
-      width: "100%",
-      aspectRatio: "3/4",
-      overflow: "hidden",
-      borderRadius: 10,
-      background: "#f3f3f3",
-      border: "1px solid #eee",
-    }}
-  >
-    <img
-      src={book.coverUrl}
-      alt={book.title}
-      loading="lazy"
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        display: "block",
-      }}
-    />
-  </div>
-</div>
+          {/* Coperta față */}
+          <div
+            style={{
+              width: "100%",
+              aspectRatio: "3/4",
+              overflow: "hidden",
+              borderRadius: 10,
+              background: "#f3f3f3",
+              border: "1px solid #eee",
+            }}
+          >
+            <img
+              src={book.coverUrl}
+              alt={book.title}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
 
+          {/* Coperta spate */}
+          {book.extraImage && (
+            <div
+              style={{
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #eee",
+                overflow: "hidden",
+                background: "#f9f9f9",
+              }}
+            >
+              <img
+                src={book.extraImage}
+                alt="Coperta spate"
+                loading="lazy"
+                style={{
+                  width: "100%",
+                  display: "block",
+                }}
+              />
+            </div>
+          )}
+        </div>
 
-          {/* Galerie cu imagini suplimentare */}
-                 </div>
-
+        {/* Coloana 2 – Detalii carte */}
         <div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {book.genre && <Tag>{book.genre}</Tag>}
@@ -120,31 +141,13 @@ export default function BookDetail() {
             ))}
           </div>
 
-          <p style={{ marginTop: 16, lineHeight: 1.6 }}>
-            {book.description}
-          </p>
-
-          {book.extraImage && (
-  <div style={{ marginTop: 16 }}>
-    <img
-      src={book.extraImage}
-      alt="Coperta spate"
-      style={{
-        width: "100%",
-        maxWidth: 400,
-        borderRadius: 10,
-        border: "1px solid #eee",
-        display: "block"
-      }}
-    />
-  </div>
-)}
-
+          <p style={{ marginTop: 16, lineHeight: 1.6 }}>{book.description}</p>
 
           <p style={{ marginTop: 12, lineHeight: 1.6 }}>
             <strong>Editura:</strong> Midaway
             <br />
-            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
+            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin
+            curier (livrarea se plătește separat).
             <br />
             Ebook în format PDF și EPUB.
             <br />
@@ -246,7 +249,9 @@ export default function BookDetail() {
                 <div style={{ padding: 12 }}>
                   <div style={{ fontWeight: 700 }}>{b.title}</div>
                   {b.subtitle && (
-                    <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
+                    <div
+                      style={{ fontSize: 13, color: "#666", marginTop: 4 }}
+                    >
                       {b.subtitle}
                     </div>
                   )}
