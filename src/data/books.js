@@ -9,7 +9,7 @@ export const BOOKS = [
     location: "Filipine",
     year: 2023,
     tags: ["călătorii", "Filipine", "jurnal", "autentic"],
-    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.jpg",
+    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     sampleUrl:
       "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
     buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
