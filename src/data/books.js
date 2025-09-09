@@ -1,19 +1,20 @@
 // src/data/books.js
 export const BOOKS = [
   {
-    id: "1",
+    id: "o-zi-de-care-sa-ti-amintesti",
     title: "O zi de care să-ți amintești",
     subtitle: "Călătorie în Filipine",
-    description: "Un jurnal intim al zilelor tropicale, plaje albe și oameni.",
+    description:
+      "Un jurnal intim al zilelor tropicale, plaje albe și oameni. O incursiune autentică într-o lume a regăsirii de sine.",
     genre: "Travel",
     location: "Filipine",
     year: 2023,
-    tags: ["călătorii", "Filipine", "jurnal"],
-    coverUrl:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
-    sampleUrl: "#sample-1",
-    buyUrl: "#cumpara-1",
+    tags: ["călătorii", "Filipine", "jurnal", "autentic"],
+    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.jpg",
+    sampleUrl: "/assets/books/O-zi-de-care-sa-ti-amintesti-Sample.zip",
+    buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
   },
+];
   {
     id: "2",
     title: "Zile și nopți de Vietnam",
