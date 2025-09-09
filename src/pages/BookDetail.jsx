@@ -95,7 +95,7 @@ export default function BookDetail() {
             {book.genre && <Tag>{book.genre}</Tag>}
             {book.location && <Tag>📍 {book.location}</Tag>}
             <span style={{ marginLeft: "auto", fontSize: 12, color: "#999" }}>
-              {book.year}
+            {book.year} • {book.publisher}
             </span>
           </div>
 
