@@ -1,4 +1,3 @@
-// src/data/books.js
 export const BOOKS = [
   {
     id: "o-zi-de-care-sa-ti-amintesti",
@@ -11,10 +10,10 @@ export const BOOKS = [
     year: 2023,
     tags: ["călătorii", "Filipine", "jurnal", "autentic"],
     coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.jpg",
-    sampleUrl: "/assets/books/O-zi-de-care-sa-ti-amintesti-Sample.zip",
+    sampleUrl:
+      "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
     buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
   },
-];
   {
     id: "2",
     title: "Zile și nopți de Vietnam",
@@ -28,5 +27,5 @@ export const BOOKS = [
       "https://images.unsplash.com/photo-1504788363733-507549153474?q=80&w=1200&auto=format&fit=crop",
     sampleUrl: "#sample-2",
     buyUrl: "#cumpara-2",
-  }
+  },
 ];
