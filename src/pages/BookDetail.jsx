@@ -2,6 +2,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
+import BookGallery from "../components/BookGallery";
 
 const Tag = ({ children }) => (
   <span
@@ -36,7 +37,6 @@ export default function BookDetail() {
     );
   }
 
-  // --- Recomandări (cărți cu tag-uri comune sau același gen) ---
   const related = BOOKS
     .filter((b) => String(b.id) !== String(id))
     .filter((b) => {
@@ -67,27 +67,34 @@ export default function BookDetail() {
           alignItems: "start",
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            aspectRatio: "3/4",
-            overflow: "hidden",
-            borderRadius: 10,
-            background: "#f3f3f3",
-            border: "1px solid #eee",
-          }}
-        >
-          <img
-            src={book.coverUrl}
-            alt={book.title}
-            loading="lazy"
+        <div>
+          <div
             style={{
               width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
+              aspectRatio: "3/4",
+              overflow: "hidden",
+              borderRadius: 10,
+              background: "#f3f3f3",
+              border: "1px solid #eee",
             }}
-          />
+          >
+            <img
+              src={book.coverUrl}
+              alt={book.title}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
+
+          {/* Galerie cu imagini suplimentare */}
+          {book.gallery && book.gallery.length > 0 && (
+            <BookGallery images={book.gallery} />
+          )}
         </div>
 
         <div>
@@ -95,7 +102,7 @@ export default function BookDetail() {
             {book.genre && <Tag>{book.genre}</Tag>}
             {book.location && <Tag>📍 {book.location}</Tag>}
             <span style={{ marginLeft: "auto", fontSize: 12, color: "#999" }}>
-            {book.year} • {book.publisher}
+              {book.year} • {book.publisher}
             </span>
           </div>
 
@@ -112,17 +119,19 @@ export default function BookDetail() {
             ))}
           </div>
 
-          <p style={{ marginTop: 16, lineHeight: 1.6 }}>{book.description}</p>
+          <p style={{ marginTop: 16, lineHeight: 1.6 }}>
+            {book.description}
+          </p>
 
-<p style={{ marginTop: 12, lineHeight: 1.6 }}>
-  <strong>Editura:</strong> Midaway
-  <br />
-  <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
-  <br />
-  Ebook în format PDF și EPUB.
-  <br />
-  Versiune audio – în curând.
-</p>
+          <p style={{ marginTop: 12, lineHeight: 1.6 }}>
+            <strong>Editura:</strong> Midaway
+            <br />
+            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
+            <br />
+            Ebook în format PDF și EPUB.
+            <br />
+            Versiune audio – în curând.
+          </p>
 
           {book.prices && (
             <div style={{ marginTop: 12 }}>
