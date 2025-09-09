@@ -1,4 +1,4 @@
-export const BOOKS = [
+export const BOOKS = [ 
   {
     id: "o-zi-de-care-sa-ti-amintesti",
     title: "O zi de care să-ți amintești",
@@ -13,6 +13,10 @@ export const BOOKS = [
     sampleUrl:
       "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
     buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
+    prices: {
+      "Paperback": 65,
+      "eBook": 45
+    }
   },
   {
     id: "2",

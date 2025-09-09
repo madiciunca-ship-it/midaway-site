@@ -114,6 +114,16 @@ export default function BookDetail() {
 
           <p style={{ marginTop: 16, lineHeight: 1.6 }}>{book.description}</p>
 
+<p style={{ marginTop: 12, lineHeight: 1.6 }}>
+  <strong>Editura:</strong> Midaway
+  <br />
+  <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
+  <br />
+  Ebook în format PDF și EPUB.
+  <br />
+  Versiune audio – în curând.
+</p>
+
           {book.prices && (
             <div style={{ marginTop: 12 }}>
               <h3 style={{ margin: "0 0 8px 0" }}>Formate & prețuri</h3>
