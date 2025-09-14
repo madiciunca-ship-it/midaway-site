@@ -13,14 +13,33 @@ export const BOOKS = [
     tags: ["memorii", "călătorii", "jurnal", "autentic"],
     coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     sampleUrl: "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
-    ebookUrl: "/carti/o-zi-de-care-sa-ti-amintesti-ebook", // <– NOU
     buyUrl: "/carti/o-zi-de-care-sa-ti-amintesti",
     prices: {
       Paperback: 65,
-      eBook: 45
     },
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG"
   },
+  {
+    id: "o-zi-de-care-sa-ti-amintesti-ebook",
+    title: "O zi de care să-ți amintești",
+    subtitle: "Jurnal de călătorie în Filipine",
+    author: "Autor: Mida-Malena",
+    genre: "Travel",
+    location: "Filipine",
+    year: 2023,
+    publisher: "Dreams Publishing House",
+    tags: ["eBook", "PDF", "EPUB", "călătorii"],
+    format: "eBook", // optional, dar util
+    ebookFormats: ["PDF", "EPUB"],
+    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-ebook.JPEG",
+    sampleUrl: "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
+    ebookUrl: "https://gumroad.com/l/o-zi-de-care-sa-ti-amintesti",
+    prices: {
+      eBook: 45
+    },
+    description:
+      "Yda pornește singură în călătoria vieții ei, împinsă de o forță pe care nu și-o putea explica. [...]",
+  },  
   {
     id: "2",
     title: "Zile și nopți de Vietnam",

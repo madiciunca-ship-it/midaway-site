@@ -39,6 +39,7 @@ export default function App() {
           {/* Cărți */}
           <Route path="/carti" element={<Books />} />
           <Route path="/carti/:id" element={<BookDetail />} />
+          <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetail />} />
 
           {/* Blog */}
           <Route path="/blog" element={<Blog />} />

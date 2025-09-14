@@ -58,7 +58,7 @@ export default function BookDetail() {
       <h1 style={{ margin: "8px 0 0 0" }}>{book.title}</h1>
       <p style={{ margin: 0, color: "#666" }}>{book.subtitle}</p>
 
-      {/* Layout 2 coloane: imagine + detalii */}
+      {/* Layout 2 coloane */}
       <div
         style={{
           display: "grid",
@@ -68,9 +68,8 @@ export default function BookDetail() {
           alignItems: "start",
         }}
       >
-        {/* Coloana 1 – Coperta față + spate */}
+        {/* Copertă față + spate */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {/* Coperta față */}
           <div
             style={{
               width: "100%",
@@ -94,7 +93,6 @@ export default function BookDetail() {
             />
           </div>
 
-          {/* Coperta spate */}
           {book.extraImage && (
             <div
               style={{
@@ -118,7 +116,7 @@ export default function BookDetail() {
           )}
         </div>
 
-        {/* Coloana 2 – Detalii carte */}
+        {/* Detalii carte */}
         <div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {book.genre && <Tag>{book.genre}</Tag>}
@@ -146,8 +144,7 @@ export default function BookDetail() {
           <p style={{ marginTop: 12, lineHeight: 1.6 }}>
             <strong>Editura:</strong> Midaway
             <br />
-            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin
-            curier (livrarea se plătește separat).
+            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
             <br />
             Ebook în format PDF și EPUB.
             <br />
@@ -167,14 +164,14 @@ export default function BookDetail() {
             </div>
           )}
 
-          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+          {/* Butoane acțiune */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
             {book.sampleUrl && (
               <a
                 href={book.sampleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  flex: 1,
                   textAlign: "center",
                   padding: "10px 12px",
                   borderRadius: 10,
@@ -187,13 +184,59 @@ export default function BookDetail() {
                 📖 Citește un fragment
               </a>
             )}
-            {book.buyUrl && (
+
+            {/* eBook buttons PDF + EPUB */}
+            {book.format === "eBook" && book.ebookUrl && book.ebookFormats && (
+              <>
+                {book.ebookFormats.includes("PDF") && (
+                  <a
+                    href={book.ebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      textAlign: "center",
+                      padding: "10px 12px",
+                      borderRadius: 10,
+                      border: "1px solid #ddd",
+                      background: "#fff",
+                      color: "#111",
+                      textDecoration: "none",
+                      fontSize: 14,
+                    }}
+                  >
+                    📄 Cumpără PDF – {book.prices?.eBook} lei
+                  </a>
+                )}
+
+                {book.ebookFormats.includes("EPUB") && (
+                  <a
+                    href={book.ebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      textAlign: "center",
+                      padding: "10px 12px",
+                      borderRadius: 10,
+                      border: "1px solid #ddd",
+                      background: "#fff",
+                      color: "#111",
+                      textDecoration: "none",
+                      fontSize: 14,
+                    }}
+                  >
+                    📘 Cumpără EPUB – {book.prices?.eBook} lei
+                  </a>
+                )}
+              </>
+            )}
+
+            {/* Paperback doar dacă nu e eBook */}
+            {book.format !== "eBook" && book.buyUrl && book.prices?.Paperback && (
               <a
                 href={book.buyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  flex: 1,
                   textAlign: "center",
                   padding: "10px 12px",
                   borderRadius: 10,
@@ -204,9 +247,24 @@ export default function BookDetail() {
                   fontSize: 14,
                 }}
               >
-                🛒 Cumpără
+                🛒 Cumpără Paperback – {book.prices.Paperback} lei
               </a>
             )}
+
+            {/* Audiobook */}
+            <span
+              style={{
+                textAlign: "center",
+                padding: "10px 12px",
+                borderRadius: 10,
+                border: "1px dashed #ccc",
+                background: "#f9f9f9",
+                color: "#aaa",
+                fontSize: 14,
+              }}
+            >
+              🎧 Audiobook – în curând
+            </span>
           </div>
         </div>
       </div>
@@ -249,9 +307,7 @@ export default function BookDetail() {
                 <div style={{ padding: 12 }}>
                   <div style={{ fontWeight: 700 }}>{b.title}</div>
                   {b.subtitle && (
-                    <div
-                      style={{ fontSize: 13, color: "#666", marginTop: 4 }}
-                    >
+                    <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
                       {b.subtitle}
                     </div>
                   )}
