@@ -166,8 +166,9 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  background: "#111",
-                  color: "#fff",
+                  background: "#d4a017",   // auriu
+color: "#fff",
+border: "none",
                   textDecoration: "none",
                   fontSize: 15,
                   fontWeight: "bold",
@@ -186,8 +187,9 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  background: "#008080",
-                  color: "#fff",
+                  background: "#2a9d8f",   // verde-albăstrui
+color: "#fff",
+border: "none",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
@@ -205,8 +207,9 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  background: "#f4c542",
-                  color: "#111",
+                  background: "#2a9d8f",   // verde-albăstrui
+color: "#fff",
+border: "none",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
@@ -224,8 +227,9 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  background: "#8b2d39",
-                  color: "#fff",
+                  background: "#2a9d8f",   // verde-albăstrui
+color: "#fff",
+border: "none",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
