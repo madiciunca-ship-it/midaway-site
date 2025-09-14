@@ -36,9 +36,7 @@ export default function BookDetail() {
     );
   }
 
-  const related = BOOKS
-    .filter((b) => String(b.id) !== String(id))
-    .slice(0, 3);
+  const related = BOOKS.filter((b) => String(b.id) !== String(id)).slice(0, 3);
 
   return (
     <div style={{ padding: 24 }}>
@@ -47,24 +45,26 @@ export default function BookDetail() {
       </p>
 
       <h1 style={{ margin: "8px 0 0 0" }}>{book.title}</h1>
-      <p style={{ margin: 0, color: "#666" }}>{book.subtitle}</p>
+      <p style={{ margin: "4px 0 0 0", color: "#666", fontStyle: "italic" }}>
+        {book.subtitle}
+      </p>
 
       {/* Layout 2 coloane */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "minmax(260px, 360px) 1fr",
-          gap: 24,
+          gridTemplateColumns: "minmax(220px, 300px) 1fr",
+          gap: 32,
           marginTop: 16,
           alignItems: "start",
         }}
       >
-        {/* Coperta față + spate */}
+        {/* Copertă */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div
             style={{
               width: "100%",
-              aspectRatio: "3/4",
+              aspectRatio: "2/3",
               overflow: "hidden",
               borderRadius: 12,
               background: "#f3f3f3",
@@ -110,6 +110,7 @@ export default function BookDetail() {
 
         {/* Detalii carte */}
         <div>
+          {/* Taguri */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {book.genre && <Tag>{book.genre}</Tag>}
             {book.location && <Tag>📍 {book.location}</Tag>}
@@ -131,29 +132,21 @@ export default function BookDetail() {
             ))}
           </div>
 
+          {/* Descriere */}
           <p style={{ marginTop: 16, lineHeight: 1.6 }}>{book.description}</p>
 
-          <p style={{ marginTop: 12, lineHeight: 1.6 }}>
-            <strong>Editura:</strong> Midaway
-            <br />
-            <strong>Disponibilitate:</strong> Carte paperback prin curier
-            (livrare separată). Ebook în format PDF și EPUB.
-            <br />
-            Versiune audio – în curând.
-          </p>
-
-          {book.prices && (
-            <div style={{ marginTop: 12 }}>
-              <h3 style={{ margin: "0 0 8px 0" }}>Formate & prețuri</h3>
-              <ul style={{ margin: 0, paddingLeft: 18 }}>
-                {Object.entries(book.prices).map(([format, price]) => (
-                  <li key={format} style={{ lineHeight: 1.6 }}>
-                    {format}: {price} lei
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* Detalii tehnice */}
+          <div style={{ marginTop: 16 }}>
+            <h3 style={{ margin: "0 0 8px 0" }}>Detalii tehnice</h3>
+            <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
+              {book.pages && <li>{book.format} • {book.pages} pagini</li>}
+              {book.isbn && <li>ISBN: {book.isbn}</li>}
+              {book.dimensions && <li>Dimensiuni: {book.dimensions}</li>}
+              {book.weight && <li>Greutate: {book.weight}</li>}
+              <li>Editura: {book.publisher}</li>
+              <li>An: {book.year}</li>
+            </ul>
+          </div>
 
           {/* Butoane acțiune */}
           <div
@@ -161,7 +154,7 @@ export default function BookDetail() {
               display: "flex",
               flexDirection: "column",
               gap: 10,
-              marginTop: 16,
+              marginTop: 20,
             }}
           >
             {book.sampleUrl && (
@@ -184,7 +177,6 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* PDF */}
             {book.ebookUrlPDF && (
               <a
                 href={book.ebookUrlPDF}
@@ -194,9 +186,8 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  border: "1px solid #ddd",
-                  background: "#fff",
-                  color: "#111",
+                  background: "#008080",
+                  color: "#fff",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
@@ -205,7 +196,6 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* EPUB */}
             {book.ebookUrlEPUB && (
               <a
                 href={book.ebookUrlEPUB}
@@ -215,8 +205,7 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  border: "1px solid #ddd",
-                  background: "#fff",
+                  background: "#f4c542",
                   color: "#111",
                   textDecoration: "none",
                   fontSize: 14,
@@ -226,7 +215,6 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* Paperback */}
             {book.buyUrl && book.prices?.Paperback && (
               <a
                 href={book.buyUrl}
@@ -236,9 +224,8 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  border: "1px solid #ddd",
-                  background: "#fff",
-                  color: "#111",
+                  background: "#8b2d39",
+                  color: "#fff",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
@@ -247,7 +234,6 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* Audiobook */}
             <span
               style={{
                 textAlign: "center",
@@ -267,15 +253,13 @@ export default function BookDetail() {
 
       {/* Recomandări */}
       {related.length > 0 && (
-        <div style={{ marginTop: 32 }}>
-          <h3 className="font-cormorant" style={{ marginBottom: 12 }}>
-            Poate te mai interesează
-          </h3>
+        <div style={{ marginTop: 40 }}>
+          <h3 style={{ marginBottom: 16 }}>Poate te mai interesează</h3>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 16,
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 20,
             }}
           >
             {related.map((b) => (
@@ -289,12 +273,13 @@ export default function BookDetail() {
                   borderRadius: 12,
                   overflow: "hidden",
                   background: "#fff",
-                  boxShadow: "0 8px 18px rgba(0,0,0,.06)",
+                  boxShadow: "0 4px 12px rgba(0,0,0,.08)",
+                  transition: "transform 0.2s",
                 }}
               >
                 <div
                   style={{
-                    height: 160,
+                    height: 200,
                     backgroundImage: `url(${b.coverUrl})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
@@ -303,9 +288,7 @@ export default function BookDetail() {
                 <div style={{ padding: 12 }}>
                   <div style={{ fontWeight: 700 }}>{b.title}</div>
                   {b.subtitle && (
-                    <div
-                      style={{ fontSize: 13, color: "#666", marginTop: 4 }}
-                    >
+                    <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
                       {b.subtitle}
                     </div>
                   )}
