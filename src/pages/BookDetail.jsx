@@ -2,7 +2,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
-import BookGallery from "../components/BookGallery";
 
 const Tag = ({ children }) => (
   <span
@@ -39,14 +38,6 @@ export default function BookDetail() {
 
   const related = BOOKS
     .filter((b) => String(b.id) !== String(id))
-    .filter((b) => {
-      const shareGenre = b.genre && book.genre && b.genre === book.genre;
-      const shareTags =
-        Array.isArray(b.tags) &&
-        Array.isArray(book.tags) &&
-        b.tags.some((t) => book.tags.includes(t));
-      return shareGenre || shareTags;
-    })
     .slice(0, 3);
 
   return (
@@ -68,16 +59,17 @@ export default function BookDetail() {
           alignItems: "start",
         }}
       >
-        {/* Copertă față + spate */}
+        {/* Coperta față + spate */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <div
             style={{
               width: "100%",
               aspectRatio: "3/4",
               overflow: "hidden",
-              borderRadius: 10,
+              borderRadius: 12,
               background: "#f3f3f3",
               border: "1px solid #eee",
+              boxShadow: "0 8px 18px rgba(0,0,0,.06)",
             }}
           >
             <img
@@ -97,7 +89,7 @@ export default function BookDetail() {
             <div
               style={{
                 width: "100%",
-                borderRadius: 10,
+                borderRadius: 12,
                 border: "1px solid #eee",
                 overflow: "hidden",
                 background: "#f9f9f9",
@@ -144,9 +136,8 @@ export default function BookDetail() {
           <p style={{ marginTop: 12, lineHeight: 1.6 }}>
             <strong>Editura:</strong> Midaway
             <br />
-            <strong>Disponibilitate:</strong> Carte paperback disponibilă prin curier (livrarea se plătește separat).
-            <br />
-            Ebook în format PDF și EPUB.
+            <strong>Disponibilitate:</strong> Carte paperback prin curier
+            (livrare separată). Ebook în format PDF și EPUB.
             <br />
             Versiune audio – în curând.
           </p>
@@ -165,7 +156,14 @@ export default function BookDetail() {
           )}
 
           {/* Butoane acțiune */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+              marginTop: 16,
+            }}
+          >
             {book.sampleUrl && (
               <a
                 href={book.sampleUrl}
@@ -173,72 +171,70 @@ export default function BookDetail() {
                 rel="noopener noreferrer"
                 style={{
                   textAlign: "center",
-                  padding: "10px 12px",
+                  padding: "12px",
                   borderRadius: 10,
                   background: "#111",
                   color: "#fff",
                   textDecoration: "none",
-                  fontSize: 14,
+                  fontSize: 15,
+                  fontWeight: "bold",
                 }}
               >
                 📖 Citește un fragment
               </a>
             )}
 
-            {/* eBook buttons PDF + EPUB */}
-            {book.format === "eBook" && book.ebookUrl && book.ebookFormats && (
-              <>
-                {book.ebookFormats.includes("PDF") && (
-                  <a
-                    href={book.ebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      textAlign: "center",
-                      padding: "10px 12px",
-                      borderRadius: 10,
-                      border: "1px solid #ddd",
-                      background: "#fff",
-                      color: "#111",
-                      textDecoration: "none",
-                      fontSize: 14,
-                    }}
-                  >
-                    📄 Cumpără PDF – {book.prices?.PDF} lei
-                  </a>
-                )}
-
-                {book.ebookFormats.includes("EPUB") && (
-                  <a
-                    href={book.ebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      textAlign: "center",
-                      padding: "10px 12px",
-                      borderRadius: 10,
-                      border: "1px solid #ddd",
-                      background: "#fff",
-                      color: "#111",
-                      textDecoration: "none",
-                      fontSize: 14,
-                    }}
-                  >
-                    📘 Cumpără PDF – {book.prices?.PDF} lei
-                  </a>
-                )}
-              </>
+            {/* PDF */}
+            {book.ebookUrlPDF && (
+              <a
+                href={book.ebookUrlPDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  border: "1px solid #ddd",
+                  background: "#fff",
+                  color: "#111",
+                  textDecoration: "none",
+                  fontSize: 14,
+                }}
+              >
+                📄 Cumpără PDF – {book.prices?.PDF} lei
+              </a>
             )}
 
-            {/* Paperback doar dacă nu e eBook */}
-            {book.format !== "eBook" && book.buyUrl && book.prices?.Paperback && (
+            {/* EPUB */}
+            {book.ebookUrlEPUB && (
+              <a
+                href={book.ebookUrlEPUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  border: "1px solid #ddd",
+                  background: "#fff",
+                  color: "#111",
+                  textDecoration: "none",
+                  fontSize: 14,
+                }}
+              >
+                📘 Cumpără EPUB – {book.prices?.EPUB} lei
+              </a>
+            )}
+
+            {/* Paperback */}
+            {book.buyUrl && book.prices?.Paperback && (
               <a
                 href={book.buyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   textAlign: "center",
-                  padding: "10px 12px",
+                  padding: "12px",
                   borderRadius: 10,
                   border: "1px solid #ddd",
                   background: "#fff",
@@ -255,7 +251,7 @@ export default function BookDetail() {
             <span
               style={{
                 textAlign: "center",
-                padding: "10px 12px",
+                padding: "12px",
                 borderRadius: 10,
                 border: "1px dashed #ccc",
                 background: "#f9f9f9",
@@ -307,7 +303,9 @@ export default function BookDetail() {
                 <div style={{ padding: 12 }}>
                   <div style={{ fontWeight: 700 }}>{b.title}</div>
                   {b.subtitle && (
-                    <div style={{ fontSize: 13, color: "#666", marginTop: 4 }}>
+                    <div
+                      style={{ fontSize: 13, color: "#666", marginTop: 4 }}
+                    >
                       {b.subtitle}
                     </div>
                   )}
