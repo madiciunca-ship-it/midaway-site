@@ -204,7 +204,7 @@ export default function BookDetail() {
                       fontSize: 14,
                     }}
                   >
-                    📄 Cumpără PDF – {book.prices?.eBook} lei
+                    📄 Cumpără PDF – {book.prices?.PDF} lei
                   </a>
                 )}
 
@@ -224,7 +224,7 @@ export default function BookDetail() {
                       fontSize: 14,
                     }}
                   >
-                    📘 Cumpără EPUB – {book.prices?.eBook} lei
+                    📘 Cumpără PDF – {book.prices?.PDF} lei
                   </a>
                 )}
               </>
