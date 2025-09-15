@@ -26,6 +26,10 @@ export default function BookDetail() {
   const book = BOOKS.find((b) => String(b.id) === String(id));
   const [open, setOpen] = useState({ pdf: false, epub: false, audio: false });
 
+  // Link-uri Revolut (45 lei & 65 lei)
+  const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
+  const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
+
   if (!book) {
     return (
       <div style={{ padding: 24 }}>
@@ -37,7 +41,17 @@ export default function BookDetail() {
     );
   }
 
-  const related = BOOKS.filter((b) => String(b.id) !== String(id)).slice(0, 3);
+  const related = BOOKS
+    .filter((b) => String(b.id) !== String(id))
+    .filter((b) => {
+      const shareGenre = b.genre && book.genre && b.genre === book.genre;
+      const shareTags =
+        Array.isArray(b.tags) &&
+        Array.isArray(book.tags) &&
+        b.tags.some((t) => book.tags.includes(t));
+      return shareGenre || shareTags;
+    })
+    .slice(0, 3);
 
   return (
     <div style={{ padding: 24 }}>
@@ -168,7 +182,7 @@ export default function BookDetail() {
                   textAlign: "center",
                   padding: "12px",
                   borderRadius: 10,
-                  background: "#d4a017",
+                  background: "#d4a017", // auriu
                   color: "#fff",
                   textDecoration: "none",
                   fontSize: 15,
@@ -179,117 +193,139 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* PDF */}
-            <a
-              href="https://revolut.me/r/1bDPKVQoBh"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textAlign: "center",
-                padding: "12px",
-                borderRadius: 10,
-                background: "#2a9d8f",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 600,
-                marginTop: 8,
-              }}
-            >
-              📄 Cumpără PDF (RO/EN) – 45 lei
-            </a>
-            <div
-              style={{
-                display: "flex",
-                gap: 8,
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: 8,
-              }}
-            >
-              <span
+            {/* PDF (RO/EN) – buton verde + sub-opțiuni */}
+            <>
+              <button
+                onClick={() => setOpen((o) => ({ ...o, pdf: !o.pdf }))}
                 style={{
-                  padding: "8px 12px",
-                  borderRadius: 999,
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
                   background: "#2a9d8f",
                   color: "#fff",
-                  fontSize: 13,
-                  fontWeight: 600,
+                  border: "none",
+                  fontSize: 14,
+                  cursor: "pointer",
                 }}
               >
-                RO
-              </span>
-              <span
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: 999,
-                  border: "1px dashed #ccc",
-                  background: "#f9f9f9",
-                  color: "#aaa",
-                  fontSize: 13,
-                }}
-              >
-                EN – în curând
-              </span>
-            </div>
+                📄 Cumpără PDF (RO/EN) – 45 lei
+              </button>
 
-            {/* EPUB */}
-            <a
-              href="https://revolut.me/r/1bDPKVQoBh"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textAlign: "center",
-                padding: "12px",
-                borderRadius: 10,
-                background: "#2a9d8f",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 600,
-                marginTop: 8,
-              }}
-            >
-              📘 Cumpără EPUB (RO/EN) – 45 lei
-            </a>
-            <div
-              style={{
-                display: "flex",
-                gap: 8,
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: 8,
-              }}
-            >
-              <span
+              {open.pdf && (
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  <a
+                    href={PAY_45}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: "8px 12px",
+                      borderRadius: 999,
+                      background: "#2a9d8f",
+                      color: "#fff",
+                      textDecoration: "none",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    RO
+                  </a>
+
+                  <a
+                    href={PAY_45}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: "8px 12px",
+                      borderRadius: 999,
+                      background: "#2a9d8f",
+                      color: "#fff",
+                      textDecoration: "none",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    EN
+                  </a>
+                </div>
+              )}
+            </>
+
+            {/* EPUB (RO/EN) – buton verde + sub-opțiuni */}
+            <>
+              <button
+                onClick={() => setOpen((o) => ({ ...o, epub: !o.epub }))}
                 style={{
-                  padding: "8px 12px",
-                  borderRadius: 999,
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
                   background: "#2a9d8f",
                   color: "#fff",
-                  fontSize: 13,
-                  fontWeight: 600,
+                  border: "none",
+                  fontSize: 14,
+                  cursor: "pointer",
                 }}
               >
-                RO
-              </span>
-              <span
-                style={{
-                  padding: "8px 12px",
-                  borderRadius: 999,
-                  border: "1px dashed #ccc",
-                  background: "#f9f9f9",
-                  color: "#aaa",
-                  fontSize: 13,
-                }}
-              >
-                EN – în curând
-              </span>
-            </div>
+                📘 Cumpără EPUB (RO/EN) – 45 lei
+              </button>
 
-            {/* Paperback */}
+              {open.epub && (
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  <a
+                    href={PAY_45}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: "8px 12px",
+                      borderRadius: 999,
+                      background: "#2a9d8f",
+                      color: "#fff",
+                      textDecoration: "none",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    RO
+                  </a>
+
+                  <a
+                    href={PAY_45}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: "8px 12px",
+                      borderRadius: 999,
+                      background: "#2a9d8f",
+                      color: "#fff",
+                      textDecoration: "none",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    EN
+                  </a>
+                </div>
+              )}
+            </>
+
+            {/* Paperback – 65 lei */}
             <a
-              href="https://revolut.me/r/dLpZN4yYgC"
+              href={PAY_65}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -300,14 +336,12 @@ export default function BookDetail() {
                 color: "#fff",
                 textDecoration: "none",
                 fontSize: 14,
-                fontWeight: 600,
-                marginTop: 8,
               }}
             >
               🛒 Cumpără Paperback – 65 lei
             </a>
 
-            {/* Audiobook */}
+            {/* Audiobook – bară dezactivată + sub-opțiuni „în curând” */}
             <button
               disabled
               style={{
@@ -318,12 +352,12 @@ export default function BookDetail() {
                 color: "#fff",
                 border: "none",
                 fontSize: 14,
-                marginTop: 8,
                 opacity: 0.7,
               }}
             >
               🎧 Audiobook (RO/EN) – în curând
             </button>
+
             <div
               style={{
                 display: "flex",
@@ -345,6 +379,7 @@ export default function BookDetail() {
               >
                 RO – în curând
               </span>
+
               <span
                 style={{
                   padding: "8px 12px",
