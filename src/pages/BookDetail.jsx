@@ -307,24 +307,26 @@ export default function BookDetail() {
               )}
             </>
 
-            {/* Paperback – doar RO */}
-            <a
-              href="https://revolut.me/r/1bDPKVQoBh"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textAlign: "center",
-                padding: "12px",
-                borderRadius: 10,
-                background: "#2a9d8f",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 14,
-                marginTop: 8,
-              }}
-            >
-              🛒 Cumpără Paperback – 65 lei
-            </a>
+            {/* Paperback – direct către Revolut */}
+<a
+  href="https://revolut.me/r/dLpZN4yYgC"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    textAlign: "center",
+    padding: "12px",
+    borderRadius: 10,
+    background: "#2a9d8f",
+    color: "#fff",
+    textDecoration: "none",
+    fontSize: 14,
+    fontWeight: 600,
+    marginTop: 8,
+  }}
+>
+  🛒 Cumpără Paperback – 65 lei
+</a>
+
 
             {/* Audiobook (RO/EN) – în curând */}
             <button
