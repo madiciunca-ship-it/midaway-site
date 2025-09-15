@@ -213,7 +213,7 @@ export default function BookDetail() {
                       </button>
 
                       {open.pdf && (
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
                           {pdfRO ? (
                             <a
                               href={pdfRO}
@@ -305,7 +305,7 @@ export default function BookDetail() {
                       </button>
 
                       {open.epub && (
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
                           {epubRO ? (
                             <a
                               href={epubRO}
@@ -416,7 +416,7 @@ export default function BookDetail() {
                   </button>
 
                   {open.audio && (
-                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginTop: 8 }}>
                       {audioRO ? (
                         <a
                           href={audioRO}
