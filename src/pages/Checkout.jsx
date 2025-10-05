@@ -30,10 +30,10 @@ export default function Checkout() {
         body: JSON.stringify({ items }),
       });
       const data = await res.json();
-      if (data.url) {
+      if (res.ok && data.url) {
         window.location.href = data.url; // redirect către Stripe
       } else {
-        alert("Eroare la inițierea plății.");
+        alert(data?.error || "Eroare la inițierea plății.");
       }
     } catch (e) {
       console.error(e);
@@ -86,6 +86,14 @@ export default function Checkout() {
             style={{ display: "grid", gap: 10, marginTop: 16 }}
             onSubmit={() => setTimeout(clear, 1000)}
           >
+            {/* anti-spam + redirect după submit */}
+            <input type="text" name="_gotcha" style={{ display: "none" }} />
+            <input
+              type="hidden"
+              name="_redirect"
+              value="https://midaway.vercel.app/#/thanks"
+            />
+
             <input name="name" required placeholder="Nume complet" style={field} />
             <input name="email" type="email" required placeholder="Email" style={field} />
             <input name="phone" placeholder="Telefon (opțional)" style={field} />
