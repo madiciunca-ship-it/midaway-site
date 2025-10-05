@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 
-// ✅ citește endpointul real din Vercel/.env
+// endpoint Formspree
 const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mrbaajzn";
 
@@ -12,13 +12,34 @@ export default function Checkout() {
     if (items.length === 0) return "Coș gol.";
     return items
       .map(
-        i =>
+        (i) =>
           `${i.title} – ${i.format}${i.lang ? ` ${i.lang}` : ""} × ${i.qty} = ${
             i.price * i.qty
           } lei`
       )
       .join("\n");
   }, [items]);
+
+  // ⚡ funcția Stripe
+  const payWithCard = async () => {
+    if (!items.length) return alert("Coșul este gol!");
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url; // redirect către Stripe
+      } else {
+        alert("Eroare la inițierea plății.");
+      }
+    } catch (e) {
+      console.error(e);
+      alert("A apărut o eroare.");
+    }
+  };
 
   return (
     <div style={{ padding: 24, maxWidth: 720, margin: "0 auto" }}>
@@ -30,7 +51,7 @@ export default function Checkout() {
         <>
           <h3>Sumar produse</h3>
           <ul style={{ paddingLeft: 18 }}>
-            {items.map(i => (
+            {items.map((i) => (
               <li key={i.key}>
                 {i.title} — {i.format}
                 {i.lang ? ` ${i.lang}` : ""} × {i.qty} — {i.price * i.qty} lei
@@ -41,37 +62,39 @@ export default function Checkout() {
             <strong>Total: {total} lei</strong>
           </p>
 
-          {/* Formspree: folosește endpointul din .env / Vercel */}
+          {/* 🟢 Buton Stripe */}
+          <button
+            type="button"
+            onClick={payWithCard}
+            style={{
+              padding: "12px",
+              borderRadius: 10,
+              background: "#2a9d8f",
+              color: "#fff",
+              border: "none",
+              fontWeight: 700,
+              cursor: "pointer",
+              marginBottom: 10,
+            }}
+          >
+            💳 Plătește acum cu cardul (Stripe)
+          </button>
+
           <form
             action={FORMSPREE_ENDPOINT}
             method="POST"
             style={{ display: "grid", gap: 10, marginTop: 16 }}
             onSubmit={() => setTimeout(clear, 1000)}
           >
-            {/* honeypot anti-spam (adăugat) */}
-            <input type="text" name="_gotcha" style={{ display: "none" }} />
-
-            {/* ✅ redirect după succes (hash route) */}
-            <input
-              type="hidden"
-              name="_redirect"
-              value="https://midaway.vercel.app/#/thanks"
-            />
-            {/* când treci pe domeniul final, schimbă cu:
-                https://midaway.ro/#/thanks
-            */}
-
-            {/* meta utile în email (nu afectează UI) */}
-            <input type="hidden" name="_subject" value="Comandă nouă – Midaway" />
-            <input type="hidden" name="items_count" value={String(items.length)} />
-            <input type="hidden" name="order_total_lei" value={String(total)} />
-
             <input name="name" required placeholder="Nume complet" style={field} />
             <input name="email" type="email" required placeholder="Email" style={field} />
             <input name="phone" placeholder="Telefon (opțional)" style={field} />
-            <textarea name="address" placeholder="Adresă (pentru paperback)" rows={3} style={field} />
-
-            {/* atașăm sumarul comenzii */}
+            <textarea
+              name="address"
+              placeholder="Adresă (pentru paperback)"
+              rows={3}
+              style={field}
+            />
             <textarea
               name="order"
               readOnly
@@ -80,7 +103,6 @@ export default function Checkout() {
               style={{ ...field, fontFamily: "monospace" }}
             />
             <input name="total" readOnly value={`${total} lei`} style={field} />
-
             <button
               type="submit"
               style={{
@@ -93,17 +115,17 @@ export default function Checkout() {
                 cursor: "pointer",
               }}
             >
-              Trimite comanda
+              Trimite comanda (fără plată)
             </button>
           </form>
-
-          <p style={{ marginTop: 8, fontSize: 13, color: "#666" }}>
-            După trimitere, îți confirmăm pe email și primești instrucțiunile de plată (sau link-urile directe, dacă alegi să plătești separat pe produse).
-          </p>
         </>
       )}
     </div>
   );
 }
 
-const field = { padding: "10px 12px", borderRadius: 10, border: "1px solid #ddd" };
+const field = {
+  padding: "10px 12px",
+  borderRadius: 10,
+  border: "1px solid #ddd",
+};
