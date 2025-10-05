@@ -1,4 +1,4 @@
-// api/create-checkout-session.js
+// api/create-checkout-session.mjs
 import Stripe from "stripe";
 
 // env + fallback-uri sigure
