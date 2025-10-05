@@ -1,12 +1,23 @@
 import React, { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 
+// ✅ citește endpointul real din Vercel/.env
+const FORMSPREE_ENDPOINT =
+  import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mrbaajzn";
+
 export default function Checkout() {
   const { items, total, clear } = useCart();
 
   const orderText = useMemo(() => {
     if (items.length === 0) return "Coș gol.";
-    return items.map(i => `${i.title} – ${i.format}${i.lang ? ` ${i.lang}` : ""} × ${i.qty} = ${i.price * i.qty} lei`).join("\n");
+    return items
+      .map(
+        i =>
+          `${i.title} – ${i.format}${i.lang ? ` ${i.lang}` : ""} × ${i.qty} = ${
+            i.price * i.qty
+          } lei`
+      )
+      .join("\n");
   }, [items]);
 
   return (
@@ -20,28 +31,68 @@ export default function Checkout() {
           <h3>Sumar produse</h3>
           <ul style={{ paddingLeft: 18 }}>
             {items.map(i => (
-              <li key={i.key}>{i.title} — {i.format}{i.lang ? ` ${i.lang}` : ""} × {i.qty} — {i.price * i.qty} lei</li>
+              <li key={i.key}>
+                {i.title} — {i.format}
+                {i.lang ? ` ${i.lang}` : ""} × {i.qty} — {i.price * i.qty} lei
+              </li>
             ))}
           </ul>
-          <p><strong>Total: {total} lei</strong></p>
+          <p>
+            <strong>Total: {total} lei</strong>
+          </p>
 
-          {/* Formspree: înlocuiește cu endpointul tău */}
+          {/* Formspree: folosește endpointul din .env / Vercel */}
           <form
-            action="https://formspree.io/f/your-form-id"
+            action={FORMSPREE_ENDPOINT}
             method="POST"
             style={{ display: "grid", gap: 10, marginTop: 16 }}
             onSubmit={() => setTimeout(clear, 1000)}
           >
+            {/* honeypot anti-spam (adăugat) */}
+            <input type="text" name="_gotcha" style={{ display: "none" }} />
+
+            {/* ✅ redirect după succes (hash route) */}
+            <input
+              type="hidden"
+              name="_redirect"
+              value="https://midaway.vercel.app/#/thanks"
+            />
+            {/* când treci pe domeniul final, schimbă cu:
+                https://midaway.ro/#/thanks
+            */}
+
+            {/* meta utile în email (nu afectează UI) */}
+            <input type="hidden" name="_subject" value="Comandă nouă – Midaway" />
+            <input type="hidden" name="items_count" value={String(items.length)} />
+            <input type="hidden" name="order_total_lei" value={String(total)} />
+
             <input name="name" required placeholder="Nume complet" style={field} />
             <input name="email" type="email" required placeholder="Email" style={field} />
             <input name="phone" placeholder="Telefon (opțional)" style={field} />
             <textarea name="address" placeholder="Adresă (pentru paperback)" rows={3} style={field} />
 
             {/* atașăm sumarul comenzii */}
-            <textarea name="order" readOnly value={orderText} rows={Math.min(8, items.length + 3)} style={{ ...field, fontFamily: "monospace" }} />
+            <textarea
+              name="order"
+              readOnly
+              value={orderText}
+              rows={Math.min(8, items.length + 3)}
+              style={{ ...field, fontFamily: "monospace" }}
+            />
             <input name="total" readOnly value={`${total} lei`} style={field} />
 
-            <button type="submit" style={{ padding: "12px", borderRadius: 10, background: "#2a9d8f", color: "#fff", border: "none", fontWeight: 700, cursor: "pointer" }}>
+            <button
+              type="submit"
+              style={{
+                padding: "12px",
+                borderRadius: 10,
+                background: "#2a9d8f",
+                color: "#fff",
+                border: "none",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
               Trimite comanda
             </button>
           </form>

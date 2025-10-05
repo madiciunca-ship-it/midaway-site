@@ -29,6 +29,8 @@ import Cookies from "./pages/Cookies";
 // 👇 nou: contextul coșului + pagina de checkout
 import { CartProvider } from "./context/CartContext";
 import Checkout from "./pages/Checkout";
+import ThanksOrder from "./pages/ThanksOrder.jsx";
+
 
 export default function App() {
   return (
@@ -64,6 +66,7 @@ export default function App() {
 
           {/* Checkout (nou) */}
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/thanks" element={<ThanksOrder />} />
 
           {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
