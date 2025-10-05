@@ -1,5 +1,5 @@
 // api/create-checkout-session.js
-const Stripe = require("stripe");
+import Stripe from "stripe";
 
 // env + fallback-uri sigure
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
@@ -24,7 +24,7 @@ function readBody(req) {
   });
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 405;
     res.setHeader("Allow", "POST");
@@ -58,11 +58,11 @@ module.exports = async (req, res) => {
           metadata: {
             id: item.id || "",
             format: item.format || "",
-            lang: item.lang || "",
-          },
-        },
+            lang: item.lang || ""
+          }
+        }
       },
-      quantity: Number(item.qty) || 1,
+      quantity: Number(item.qty) || 1
     }));
 
     const hasPaperback = items.some(
@@ -76,21 +76,8 @@ module.exports = async (req, res) => {
       cancel_url: `${SITE}/#/checkout`,
       billing_address_collection: "auto",
       shipping_address_collection: hasPaperback
-        ? {
-            allowed_countries: [
-              "RO",
-              "DE",
-              "FR",
-              "IT",
-              "ES",
-              "NL",
-              "GB",
-              "AT",
-              "BE",
-              "IE",
-            ],
-          }
-        : undefined,
+        ? { allowed_countries: ["RO","DE","FR","IT","ES","NL","GB","AT","BE","IE"] }
+        : undefined
     });
 
     res.statusCode = 200;
@@ -102,4 +89,4 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ error: "Stripe init failed" }));
   }
-};
+}
