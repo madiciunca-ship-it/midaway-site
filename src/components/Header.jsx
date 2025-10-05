@@ -1,5 +1,10 @@
+// src/components/Header.jsx
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
+// 👇 nou: cart context + drawer
+import { useCart } from "../context/CartContext";
+import CartDrawer from "./CartDrawer";
 
 const navItems = [
   { label: "Acasă", to: "/" },
@@ -9,15 +14,17 @@ const navItems = [
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
   { label: "Multimedia", to: "/multimedia" },
-  { label: "Donații", to: "/donatii" },            // ← AICI lipsea!
+  { label: "Donații", to: "/donatii" },
   { label: "Sponsorizări", to: "/sponsorizari" },
   { label: "Despre", to: "/despre" },
   { label: "Contact", to: "/contact" },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);          // mobile menu
   const [isMobile, setIsMobile] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);  // 👈 nou: cart drawer
+  const { count } = useCart();                      // 👈 nou: badge coș
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -29,9 +36,35 @@ export default function Header() {
 
   const close = () => setOpen(false);
 
+  // 👇 stil buton coș (reutilizabil)
+  const cartBtnStyle = {
+    position: "relative",
+    padding: "8px 12px",
+    borderRadius: 999,
+    border: "1px solid #ddd",
+    background: "#fff",
+    cursor: "pointer",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+  };
+
+  const badgeStyle = {
+    position: "absolute",
+    top: -6,
+    right: -6,
+    background: "#d4a017", // auriu
+    color: "#fff",
+    borderRadius: 999,
+    padding: "2px 6px",
+    fontSize: 12,
+    fontWeight: 700,
+    lineHeight: 1,
+  };
+
   return (
     <header className="header">
-      <div className="container header-inner" style={{ gap: 16 }}>
+      <div className="container header-inner" style={{ display: "flex", alignItems: "center", gap: 16, padding: "8px 0" }}>
         {/* Logo */}
         <img
           src="/logo-midaway.png"
@@ -62,27 +95,57 @@ export default function Header() {
                 {label}
               </NavLink>
             ))}
+
+            {/* 👇 nou: buton coș (desktop) */}
+            <button
+              onClick={() => setCartOpen(true)}
+              aria-label="Deschide coșul"
+              style={cartBtnStyle}
+            >
+              🧺 Coș
+              {count > 0 && <span style={badgeStyle}>{count}</span>}
+            </button>
           </nav>
         )}
 
-        {/* Mobile toggle */}
+        {/* Mobile actions (coș + toggle) */}
         {isMobile && (
-          <button
-            className="mobile-toggle"
-            aria-label={open ? "Închide meniul" : "Deschide meniul"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            )}
-          </button>
+          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
+            {/* 👇 nou: buton coș (mobile) */}
+            <button
+              onClick={() => setCartOpen(true)}
+              aria-label="Deschide coșul"
+              style={cartBtnStyle}
+            >
+              🧺
+              {count > 0 && <span style={badgeStyle}>{count}</span>}
+            </button>
+
+            {/* Mobile toggle */}
+            <button
+              className="mobile-toggle"
+              aria-label={open ? "Închide meniul" : "Deschide meniul"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              style={{
+                padding: 8,
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "#fff",
+                display: "inline-flex",
+              }}
+            >
+              {open ? (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              )}
+            </button>
+          </div>
         )}
       </div>
 
@@ -101,6 +164,9 @@ export default function Header() {
           ))}
         </div>
       )}
+
+      {/* 👇 nou: drawer coș (comun pentru desktop & mobile) */}
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </header>
   );
 }

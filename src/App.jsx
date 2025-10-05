@@ -26,9 +26,13 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 
+// 👇 nou: contextul coșului + pagina de checkout
+import { CartProvider } from "./context/CartContext";
+import Checkout from "./pages/Checkout";
+
 export default function App() {
   return (
-    <>
+    <CartProvider>
       <Header />
 
       <main className="container">
@@ -57,7 +61,10 @@ export default function App() {
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
-          
+
+          {/* Checkout (nou) */}
+          <Route path="/checkout" element={<Checkout />} />
+
           {/* Legale */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />
@@ -74,6 +81,6 @@ export default function App() {
       </main>
 
       <Footer />
-    </>
+    </CartProvider>
   );
 }

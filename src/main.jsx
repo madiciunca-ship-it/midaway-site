@@ -1,11 +1,17 @@
-import './styles/theme.css';
+// src/main.jsx
+import "./styles/theme.css";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom";  // ← modificat aici
+import { HashRouter } from "react-router-dom";
+import { CartProvider } from "./context/CartContext"; // ← import context coș
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <HashRouter> {/* ← modificat aici */}
-    <App />
-  </HashRouter>
+  <React.StrictMode>
+    <HashRouter>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </HashRouter>
+  </React.StrictMode>
 );

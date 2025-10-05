@@ -1,7 +1,8 @@
-// src/pages/BookDetail.jsx
+// src/pages/BookDetail.jsx 
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
+import { useCart } from "../context/CartContext";
 
 const Tag = ({ children }) => (
   <span
@@ -21,10 +22,38 @@ const Tag = ({ children }) => (
   </span>
 );
 
+// 👇 stil „pill” + componentă mică de adăugat în coș
+const pill = {
+  display: "inline-block",
+  padding: "8px 12px",
+  borderRadius: 999,
+  border: "1px solid #ddd",
+  background: "#fff",
+  cursor: "pointer",
+  fontSize: 13,
+};
+
+function AddToCart({ id, title, format, lang, price, payLink, children }) {
+  const { add } = useCart();
+  return (
+    <button
+      onClick={() => add({ id, title, format, lang, price, payLink })}
+      style={{ ...pill, marginTop: 6 }}
+      type="button"
+    >
+      {children || "Adaugă în coș"}
+    </button>
+  );
+}
+
 export default function BookDetail() {
   const { id } = useParams();
   const book = BOOKS.find((b) => String(b.id) === String(id));
   const [open, setOpen] = useState({ pdf: false, epub: false, audio: false });
+
+  // Link-uri Revolut (45 lei & 65 lei)
+  const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
+  const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
 
   if (!book) {
     return (
@@ -37,7 +66,17 @@ export default function BookDetail() {
     );
   }
 
-  const related = BOOKS.filter((b) => String(b.id) !== String(id)).slice(0, 3);
+  const related = BOOKS
+    .filter((b) => String(b.id) !== String(id))
+    .filter((b) => {
+      const shareGenre = b.genre && book.genre && b.genre === book.genre;
+      const shareTags =
+        Array.isArray(b.tags) &&
+        Array.isArray(book.tags) &&
+        b.tags.some((t) => book.tags.includes(t));
+      return shareGenre || shareTags;
+    })
+    .slice(0, 3);
 
   return (
     <div style={{ padding: 24 }}>
@@ -140,7 +179,7 @@ export default function BookDetail() {
           <div style={{ marginTop: 16 }}>
             <h3 style={{ margin: "0 0 8px 0" }}>Detalii tehnice</h3>
             <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
-              {book.pages && <li>{book.format} • {book.pages} pagini</li>}
+              {book.pages && <li>eBook • {book.pages} pagini</li>}
               {book.isbn && <li>ISBN: {book.isbn}</li>}
               {book.dimensions && <li>Dimensiuni: {book.dimensions}</li>}
               {book.weight && <li>Greutate: {book.weight}</li>}
@@ -179,308 +218,280 @@ export default function BookDetail() {
               </a>
             )}
 
-            {/* Helperi pentru URL-uri (nou + fallback vechi) */}
-            {(() => {
-              const pdfRO = book.ebook?.pdf?.ro || book.ebookUrlPDF || null;
-              const pdfEN = book.ebook?.pdf?.en || null;
-              const epubRO = book.ebook?.epub?.ro || book.ebookUrlEPUB || null;
-              const epubEN = book.ebook?.epub?.en || null;
-              const audioRO = book.audiobook?.ro || null;
-              const audioEN = book.audiobook?.en || null;
+            {/* PDF (RO/EN) – buton verde + sub-opțiuni */}
+            <>
+              <button
+                onClick={() => setOpen((o) => ({ ...o, pdf: !o.pdf }))}
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  background: "#2a9d8f",
+                  color: "#fff",
+                  border: "none",
+                  fontSize: 14,
+                  cursor: "pointer",
+                }}
+                type="button"
+              >
+                📄 Cumpără PDF (RO/EN) – 45 lei
+              </button>
 
-              return (
-                <>
-                  {/* PDF (RO/EN) */}
-                  {(pdfRO || pdfEN) && (
-                    <>
-                      <button
-                        onClick={() => setOpen((o) => ({ ...o, pdf: !o.pdf }))}
-                        style={{
-                          textAlign: "center",
-                          padding: "12px",
-                          borderRadius: 10,
-                          background: "#2a9d8f",
-                          color: "#fff",
-                          border: "none",
-                          fontSize: 14,
-                          cursor: "pointer",
-                        }}
-                      >
-                        📄 Cumpără PDF (RO/EN)
-                        {book.prices?.PDF ? ` – ${book.prices.PDF} lei` : ""}
-                      </button>
-
-                      {open.pdf && (
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                          {pdfRO ? (
-                            <a
-                              href={pdfRO}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                background: "#2a9d8f",
-                                color: "#fff",
-                                textDecoration: "none",
-                                fontSize: 13,
-                                fontWeight: 600,
-                              }}
-                            >
-                              RO
-                            </a>
-                          ) : (
-                            <span
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                border: "1px dashed #ccc",
-                                background: "#f9f9f9",
-                                color: "#aaa",
-                                fontSize: 13,
-                              }}
-                            >
-                              RO – în curând
-                            </span>
-                          )}
-
-                          {pdfEN ? (
-                            <a
-                              href={pdfEN}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                background: "#2a9d8f",
-                                color: "#fff",
-                                textDecoration: "none",
-                                fontSize: 13,
-                                fontWeight: 600,
-                              }}
-                            >
-                              EN
-                            </a>
-                          ) : (
-                            <span
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                border: "1px dashed #ccc",
-                                background: "#f9f9f9",
-                                color: "#aaa",
-                                fontSize: 13,
-                              }}
-                            >
-                              EN – în curând
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </>
-                  )}
-
-                  {/* EPUB (RO/EN) */}
-                  {(epubRO || epubEN) && (
-                    <>
-                      <button
-                        onClick={() => setOpen((o) => ({ ...o, epub: !o.epub }))}
-                        style={{
-                          textAlign: "center",
-                          padding: "12px",
-                          borderRadius: 10,
-                          background: "#2a9d8f",
-                          color: "#fff",
-                          border: "none",
-                          fontSize: 14,
-                          cursor: "pointer",
-                        }}
-                      >
-                        📘 Cumpără EPUB (RO/EN)
-                        {book.prices?.EPUB ? ` – ${book.prices.EPUB} lei` : ""}
-                      </button>
-
-                      {open.epub && (
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                          {epubRO ? (
-                            <a
-                              href={epubRO}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                background: "#2a9d8f",
-                                color: "#fff",
-                                textDecoration: "none",
-                                fontSize: 13,
-                                fontWeight: 600,
-                              }}
-                            >
-                              RO
-                            </a>
-                          ) : (
-                            <span
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                border: "1px dashed #ccc",
-                                background: "#f9f9f9",
-                                color: "#aaa",
-                                fontSize: 13,
-                              }}
-                            >
-                              RO – în curând
-                            </span>
-                          )}
-
-                          {epubEN ? (
-                            <a
-                              href={epubEN}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                background: "#2a9d8f",
-                                color: "#fff",
-                                textDecoration: "none",
-                                fontSize: 13,
-                                fontWeight: 600,
-                              }}
-                            >
-                              EN
-                            </a>
-                          ) : (
-                            <span
-                              style={{
-                                padding: "8px 12px",
-                                borderRadius: 999,
-                                border: "1px dashed #ccc",
-                                background: "#f9f9f9",
-                                color: "#aaa",
-                                fontSize: 13,
-                              }}
-                            >
-                              EN – în curând
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </>
-                  )}
-
-                  {/* Paperback – doar RO */}
-                  {book.buyUrl && book.prices?.Paperback && (
+              {open.pdf && (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(120px, max-content))",
+                    justifyContent: "center",
+                    gap: 10,
+                    marginTop: 8,
+                  }}
+                >
+                  {/* PDF RO */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <a
-                      href={book.buyUrl}
+                      href={PAY_45}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
-                        textAlign: "center",
-                        padding: "12px",
-                        borderRadius: 10,
+                        padding: "8px 12px",
+                        borderRadius: 999,
                         background: "#2a9d8f",
                         color: "#fff",
                         textDecoration: "none",
-                        fontSize: 14,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        minWidth: 60,
+                        textAlign: "center",
                       }}
                     >
-                      🛒 Cumpără Paperback – {book.prices.Paperback} lei
+                      RO
                     </a>
-                  )}
+                    <AddToCart
+                      id={book.id}
+                      title={book.title}
+                      format="PDF"
+                      lang="RO"
+                      price={45}
+                      payLink={PAY_45}
+                    >
+                      + coș
+                    </AddToCart>
+                  </div>
 
-                  {/* Audiobook (RO/EN) */}
-                  <div>
-                    <button
-                      onClick={() => setOpen((o) => ({ ...o, audio: !o.audio }))}
+                  {/* PDF EN */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <a
+                      href={PAY_45}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{
-                        textAlign: "center",
-                        padding: "12px",
-                        borderRadius: 10,
+                        padding: "8px 12px",
+                        borderRadius: 999,
                         background: "#2a9d8f",
                         color: "#fff",
-                        border: "none",
-                        fontSize: 14,
-                        cursor: "pointer",
-                        opacity: audioRO || audioEN ? 1 : 0.7,
+                        textDecoration: "none",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        minWidth: 60,
+                        textAlign: "center",
                       }}
                     >
-                      🎧 Audiobook (RO/EN)
-                      {audioRO || audioEN ? "" : " – în curând"}
-                    </button>
-
-                    {open.audio && (
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                        {audioRO ? (
-                          <a
-                            href={audioRO}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              padding: "8px 12px",
-                              borderRadius: 999,
-                              background: "#2a9d8f",
-                              color: "#fff",
-                              textDecoration: "none",
-                              fontSize: 13,
-                              fontWeight: 600,
-                            }}
-                          >
-                            RO
-                          </a>
-                        ) : (
-                          <span
-                            style={{
-                              padding: "8px 12px",
-                              borderRadius: 999,
-                              border: "1px dashed #ccc",
-                              background: "#f9f9f9",
-                              color: "#aaa",
-                              fontSize: 13,
-                            }}
-                          >
-                            RO – în curând
-                          </span>
-                        )}
-
-                        {audioEN ? (
-                          <a
-                            href={audioEN}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              padding: "8px 12px",
-                              borderRadius: 999,
-                              background: "#2a9d8f",
-                              color: "#fff",
-                              textDecoration: "none",
-                              fontSize: 13,
-                              fontWeight: 600,
-                            }}
-                          >
-                            EN
-                          </a>
-                        ) : (
-                          <span
-                            style={{
-                              padding: "8px 12px",
-                              borderRadius: 999,
-                              border: "1px dashed #ccc",
-                              background: "#f9f9f9",
-                              color: "#aaa",
-                              fontSize: 13,
-                            }}
-                          >
-                            EN – în curând
-                          </span>
-                        )}
-                      </div>
-                    )}
+                      EN
+                    </a>
+                    <AddToCart
+                      id={book.id}
+                      title={book.title}
+                      format="PDF"
+                      lang="EN"
+                      price={45}
+                      payLink={PAY_45}
+                    >
+                      + coș
+                    </AddToCart>
                   </div>
-                </>
-              );
-            })()}
+                </div>
+              )}
+            </>
+
+            {/* EPUB (RO/EN) – buton verde + sub-opțiuni */}
+            <>
+              <button
+                onClick={() => setOpen((o) => ({ ...o, epub: !o.epub }))}
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  background: "#2a9d8f",
+                  color: "#fff",
+                  border: "none",
+                  fontSize: 14,
+                  cursor: "pointer",
+                }}
+                type="button"
+              >
+                📘 Cumpără EPUB (RO/EN) – 45 lei
+              </button>
+
+              {open.epub && (
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(120px, max-content))",
+                    justifyContent: "center",
+                    gap: 10,
+                    marginTop: 8,
+                  }}
+                >
+                  {/* EPUB RO */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <a
+                      href={PAY_45}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        padding: "8px 12px",
+                        borderRadius: 999,
+                        background: "#2a9d8f",
+                        color: "#fff",
+                        textDecoration: "none",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        minWidth: 60,
+                        textAlign: "center",
+                      }}
+                    >
+                      RO
+                    </a>
+                    <AddToCart
+                      id={book.id}
+                      title={book.title}
+                      format="EPUB"
+                      lang="RO"
+                      price={45}
+                      payLink={PAY_45}
+                    >
+                      + coș
+                    </AddToCart>
+                  </div>
+
+                  {/* EPUB EN */}
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <a
+                      href={PAY_45}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        padding: "8px 12px",
+                        borderRadius: 999,
+                        background: "#2a9d8f",
+                        color: "#fff",
+                        textDecoration: "none",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        minWidth: 60,
+                        textAlign: "center",
+                      }}
+                    >
+                      EN
+                    </a>
+                    <AddToCart
+                      id={book.id}
+                      title={book.title}
+                      format="EPUB"
+                      lang="EN"
+                      price={45}
+                      payLink={PAY_45}
+                    >
+                      + coș
+                    </AddToCart>
+                  </div>
+                </div>
+              )}
+            </>
+
+            {/* Paperback – 65 lei */}
+            <a
+              href={PAY_65}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                textAlign: "center",
+                padding: "12px",
+                borderRadius: 10,
+                background: "#2a9d8f",
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: 14,
+              }}
+            >
+              🛒 Cumpără Paperback – 65 lei
+            </a>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <AddToCart
+                id={book.id}
+                title={book.title}
+                format="Paperback"
+                lang="RO"
+                price={65}
+                payLink={PAY_65}
+              >
+                + coș Paperback
+              </AddToCart>
+            </div>
+
+            {/* Audiobook – bară dezactivată + sub-opțiuni „în curând” */}
+            <button
+              disabled
+              style={{
+                textAlign: "center",
+                padding: "12px",
+                borderRadius: 10,
+                background: "#7fc8c8",
+                color: "#fff",
+                border: "none",
+                fontSize: 14,
+                opacity: 0.7,
+              }}
+            >
+              🎧 Audiobook (RO/EN) – în curând
+            </button>
+
+            <div
+              style={{
+                display: "flex",
+                gap: 8,
+                flexWrap: "wrap",
+                justifyContent: "center",
+                marginTop: 8,
+              }}
+            >
+              <span
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: 999,
+                  border: "1px dashed #ccc",
+                  background: "#f9f9f9",
+                  color: "#aaa",
+                  fontSize: 13,
+                }}
+              >
+                RO – în curând
+              </span>
+
+              <span
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: 999,
+                  border: "1px dashed #ccc",
+                  background: "#f9f9f9",
+                  color: "#aaa",
+                  fontSize: 13,
+                }}
+              >
+                EN – în curând
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -518,7 +529,7 @@ export default function BookDetail() {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
-                ></div>
+                />
                 <div style={{ padding: 12 }}>
                   <div style={{ fontWeight: 700 }}>{b.title}</div>
                   {b.subtitle && (
