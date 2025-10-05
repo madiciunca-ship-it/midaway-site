@@ -26,15 +26,17 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 
-// 👇 nou: contextul coșului + pagina de checkout
-import { CartProvider } from "./context/CartContext";
+// 👇 contextul coșului + pagina de checkout
+import { CartProvider, ClearCartOnThanks } from "./context/CartContext";
 import Checkout from "./pages/Checkout";
 import ThanksOrder from "./pages/ThanksOrder.jsx";
-
 
 export default function App() {
   return (
     <CartProvider>
+      {/* ✅ golește coșul automat când ajungem pe /thanks */}
+      <ClearCartOnThanks />
+
       <Header />
 
       <main className="container">

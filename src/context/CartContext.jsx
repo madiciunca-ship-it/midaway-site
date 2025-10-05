@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { useLocation } from "react-router-dom"; // ✅ nou: pentru detectarea rutei /thanks
 
 const CartContext = createContext(null);
 
@@ -23,9 +24,10 @@ function cartReducer(state, action) {
     case "ADD": {
       const { key, item } = action;
       const idx = state.items.findIndex((i) => i.key === key);
-      const items = idx >= 0
-        ? state.items.map((it, i) => (i === idx ? { ...it, qty: it.qty + item.qty } : it))
-        : [...state.items, item];
+      const items =
+        idx >= 0
+          ? state.items.map((it, i) => (i === idx ? { ...it, qty: it.qty + item.qty } : it))
+          : [...state.items, item];
       const next = { ...state, items };
       save(next);
       return next;
@@ -59,28 +61,31 @@ export function CartProvider({ children }) {
     [state.items]
   );
 
-  const value = useMemo(() => ({
-    items: state.items,
-    total,
-    count,
-    add: ({ id, title, format, lang, price, payLink }) => {
-      const safeLang = lang || "RO";
-      const key = [id, format, safeLang].join("|");
-      const item = {
-        key,
-        id,
-        title,
-        format,
-        lang: safeLang,
-        price: Number(price || 0),
-        qty: 1,
-        payLink,
-      };
-      dispatch({ type: "ADD", key, item });
-    },
-    remove: (key) => dispatch({ type: "REMOVE", key }),
-    clear: () => dispatch({ type: "CLEAR" }),
-  }), [state.items, total, count]);
+  const value = useMemo(
+    () => ({
+      items: state.items,
+      total,
+      count,
+      add: ({ id, title, format, lang, price, payLink }) => {
+        const safeLang = lang || "RO";
+        const key = [id, format, safeLang].join("|");
+        const item = {
+          key,
+          id,
+          title,
+          format,
+          lang: safeLang,
+          price: Number(price || 0),
+          qty: 1,
+          payLink,
+        };
+        dispatch({ type: "ADD", key, item });
+      },
+      remove: (key) => dispatch({ type: "REMOVE", key }),
+      clear: () => dispatch({ type: "CLEAR" }),
+    }),
+    [state.items, total, count]
+  );
 
   useEffect(() => {}, []);
 
@@ -91,4 +96,23 @@ export function useCart() {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
+}
+
+/* ✅ Nou: golește coșul automat când ajungem pe pagina de mulțumire (#/thanks).
+   - Funcționează cu HashRouter: useLocation().pathname === "/thanks".
+   - Are fallback și pe window.location.hash === "#/thanks".
+*/
+export function ClearCartOnThanks() {
+  const { clear, count } = useCart();
+  const location = useLocation();
+
+  useEffect(() => {
+    const isThanks =
+      location?.pathname === "/thanks" || window.location.hash === "#/thanks";
+    if (isThanks && count > 0) {
+      clear();
+    }
+  }, [location, clear, count]);
+
+  return null;
 }
