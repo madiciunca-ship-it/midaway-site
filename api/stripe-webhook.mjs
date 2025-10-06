@@ -1,18 +1,18 @@
-// /api/stripe-webhook.mjs
+// api/stripe-webhook.mjs
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Citește RAW body (obligatoriu pentru verificarea semnăturii Stripe)
+// raw body pt. verificarea semnăturii Stripe
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
-// Semnează payload-ul (HMAC-SHA256). Tokenul va conține sid + email + exp.
+// semnează payload-ul cu HMAC-SHA256 (token valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -51,22 +51,18 @@ export default async function handler(req, res) {
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
-
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
         return res.json({ received: true });
       }
 
-      // Token cu expirare 48h
+      // token cu id-ul sesiunii + expirare 48h
       const exp = Date.now() + 48 * 60 * 60 * 1000;
       const token = signToken({ sid: session.id, email, exp });
+      const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+      const downloadLink = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
 
-      const base = process.env.SITE_URL || "https://midaway.vercel.app";
-      const downloadLink = `${base}/api/download?token=${encodeURIComponent(
-        token
-      )}`;
-
-      // Mailer (Gmail App Password)
+      // mailer (Gmail app password)
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -75,20 +71,47 @@ export default async function handler(req, res) {
         },
       });
 
-      // Email cu CTA către linkul unic
+      // resurse brand
+      const logoUrl = `${SITE}/logo-midaway.png`; // public/logo-midaway.png
+      const brand = {
+        primary: "#2a9d8f",
+        text: "#222",
+        light: "#f7faf9",
+      };
+
+      // email branduit
       const html = `
-        <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6">
-          <h2 style="color:#2a9d8f;margin:0 0 8px">Mulțumim pentru comanda ta, ${name}!</h2>
-          <p>Plata a fost procesată cu succes.</p>
-          <p style="margin:22px 0">
-            <a href="${downloadLink}" style="background:#2a9d8f;color:#fff;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block">
+  <div style="background:${brand.light};padding:28px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;color:${brand.text}">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e9f3f1">
+      <tr>
+        <td style="padding:20px 24px;background:#fff;border-bottom:1px solid #eef5f3">
+          <img src="${logoUrl}" alt="Midaway" height="28" style="display:inline-block;vertical-align:middle" />
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:28px 24px 8px 24px">
+          <h2 style="margin:0 0 8px 0;color:${brand.primary};font-size:22px">Mulțumim pentru comanda ta, ${name}!</h2>
+          <p style="margin:0 0 14px 0">Plata a fost procesată cu succes.</p>
+          <p style="margin:0 0 18px 0">Apasă butonul de mai jos pentru a descărca eBook-urile tale (PDF și/sau EPUB). Linkul este valabil 48 de ore.</p>
+          <div style="margin:20px 0 26px 0">
+            <a href="${downloadLink}"
+               style="display:inline-block;background:${brand.primary};color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:700">
               📥 Descarcă eBook-urile
             </a>
+          </div>
+          <p style="margin:0;font-size:12px;color:#666">
+            Dacă nu ai inițiat tu această comandă sau întâmpini probleme, răspunde acestui email și îți revenim în cel mai scurt timp.
           </p>
-          <p style="color:#555"><small>Linkul este valabil 48 de ore.</small></p>
-          <hr/>
-          <p style="font-size:12px;color:#888;margin-top:12px">ID sesiune: ${session.id}</p>
-        </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:16px 24px;color:#889; font-size:12px;border-top:1px solid #eef5f3">
+          ID sesiune: ${session.id}<br/>
+          <a href="${SITE}" style="color:${brand.primary};text-decoration:none">${SITE.replace(/^https?:\/\//,'')}</a>
+        </td>
+      </tr>
+    </table>
+  </div>
       `;
 
       await transporter.sendMail({
