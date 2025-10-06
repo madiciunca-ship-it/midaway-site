@@ -1,24 +1,26 @@
 // /api/stripe-webhook.mjs
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
+import crypto from "crypto";
 
-// inițializare Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// funcție pentru a citi corpul "raw" (necesar pt. semnătura Stripe)
+// Citește RAW body (obligatoriu pentru verificarea semnăturii Stripe)
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
-// mapăm formatele la linkurile reale (actualizează tu mai târziu)
-const DOWNLOADS = {
-  "PDF/RO": "https://exemplu.link/downloads/pdf-ro",
-  "PDF/EN": "https://exemplu.link/downloads/pdf-en",
-  "EPUB/RO": "https://exemplu.link/downloads/epub-ro",
-  "EPUB/EN": "https://exemplu.link/downloads/epub-en",
-};
+// Semnează payload-ul (HMAC-SHA256). Tokenul va conține sid + email + exp.
+function signToken(payloadObj) {
+  const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
+  const sig = crypto
+    .createHmac("sha256", process.env.DOWNLOAD_SECRET || "dev-secret")
+    .update(body)
+    .digest("base64url");
+  return `${body}.${sig}`;
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -26,11 +28,10 @@ export default async function handler(req, res) {
     return;
   }
 
-  const sig = req.headers["stripe-signature"];
   let event;
-
   try {
     const raw = await readRawBody(req);
+    const sig = req.headers["stripe-signature"];
     event = stripe.webhooks.constructEvent(
       raw,
       sig,
@@ -43,43 +44,29 @@ export default async function handler(req, res) {
 
   if (event.type === "checkout.session.completed") {
     try {
-      const session = await stripe.checkout.sessions.retrieve(event.data.object.id, {
-        expand: ["line_items.data.price.product", "customer_details"],
-      });
+      const session = await stripe.checkout.sessions.retrieve(
+        event.data.object.id,
+        { expand: ["line_items.data.price.product", "customer_details"] }
+      );
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
-      const items = session.line_items?.data || [];
 
-      // trimite email doar dacă avem adresa
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
         return res.json({ received: true });
       }
 
-      // pregătim linkurile pentru fiecare produs digital
-      const lines = items.map((item) => {
-        const title = item.price?.product?.name || item.description;
-        const amount = (item.amount_total / 100).toFixed(2);
-        const cur = (item.currency || "eur").toUpperCase();
-        const upper = title.toUpperCase();
-        let link = null;
+      // Token cu expirare 48h
+      const exp = Date.now() + 48 * 60 * 60 * 1000;
+      const token = signToken({ sid: session.id, email, exp });
 
-        if (upper.includes("PDF") && upper.includes("RO")) link = DOWNLOADS["PDF/RO"];
-        else if (upper.includes("PDF") && upper.includes("EN")) link = DOWNLOADS["PDF/EN"];
-        else if (upper.includes("EPUB") && upper.includes("RO")) link = DOWNLOADS["EPUB/RO"];
-        else if (upper.includes("EPUB") && upper.includes("EN")) link = DOWNLOADS["EPUB/EN"];
+      const base = process.env.SITE_URL || "https://midaway.vercel.app";
+      const downloadLink = `${base}/api/download?token=${encodeURIComponent(
+        token
+      )}`;
 
-        return {
-          title,
-          amount,
-          cur,
-          qty: item.quantity || 1,
-          link,
-        };
-      });
-
-      // configurăm nodemailer (Gmail App Password)
+      // Mailer (Gmail App Password)
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -88,29 +75,19 @@ export default async function handler(req, res) {
         },
       });
 
-      // compunem emailul
+      // Email cu CTA către linkul unic
       const html = `
         <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6">
-          <h2 style="color:#2a9d8f">Mulțumim pentru comanda ta, ${name}!</h2>
-          <p>Plata a fost procesată cu succes. Mai jos găsești detaliile:</p>
-          <ul>
-            ${lines
-              .map(
-                (l) => `
-                <li>
-                  <strong>${l.title}</strong> × ${l.qty} — ${l.amount} ${l.cur}<br/>
-                  ${
-                    l.link
-                      ? `<a href="${l.link}" target="_blank">📥 Descarcă eBook</a>`
-                      : `<em>Cartea va fi livrată fizic.</em>`
-                  }
-                </li>`
-              )
-              .join("")}
-          </ul>
-          <p style="margin-top:20px">Poți reveni oricând pe site: <a href="${process.env.SITE_URL}">${process.env.SITE_URL}</a></p>
+          <h2 style="color:#2a9d8f;margin:0 0 8px">Mulțumim pentru comanda ta, ${name}!</h2>
+          <p>Plata a fost procesată cu succes.</p>
+          <p style="margin:22px 0">
+            <a href="${downloadLink}" style="background:#2a9d8f;color:#fff;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block">
+              📥 Descarcă eBook-urile
+            </a>
+          </p>
+          <p style="color:#555"><small>Linkul este valabil 48 de ore.</small></p>
           <hr/>
-          <p style="font-size:12px;color:#888">ID sesiune: ${session.id}</p>
+          <p style="font-size:12px;color:#888;margin-top:12px">ID sesiune: ${session.id}</p>
         </div>
       `;
 
