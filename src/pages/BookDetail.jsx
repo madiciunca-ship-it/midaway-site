@@ -52,8 +52,11 @@ export default function BookDetail() {
   const [open, setOpen] = useState({ pdf: false, epub: false, audio: false });
 
   // Link-uri Revolut (45 lei & 65 lei)
-  const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
-  const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
+  // const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
+  // const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
+  // 🔒 dezactivat: nu mai folosim linkuri Revolut (expiră); păstrăm UI-ul, fără navigare
+  const PAY_45 = "";
+  const PAY_65 = "";
 
   if (!book) {
     return (
@@ -249,31 +252,50 @@ export default function BookDetail() {
                 >
                   {/* PDF RO */}
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <a
-                      href={PAY_45}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: "8px 12px",
-                        borderRadius: 999,
-                        background: "#2a9d8f",
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        minWidth: 60,
-                        textAlign: "center",
-                      }}
-                    >
-                      RO
-                    </a>
+                    {PAY_45 ? (
+                      <a
+                        href={PAY_45}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#2a9d8f",
+                          color: "#fff",
+                          textDecoration: "none",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                        }}
+                      >
+                        RO
+                      </a>
+                    ) : (
+                      <span
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#e8f3f1",
+                          color: "#2a9d8f",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                          border: "1px solid #cfe7e3",
+                        }}
+                        aria-disabled="true"
+                      >
+                        RO
+                      </span>
+                    )}
                     <AddToCart
                       id={book.id}
                       title={book.title}
                       format="PDF"
                       lang="RO"
                       price={45}
-                      payLink={PAY_45}
+                      payLink={PAY_45 || undefined}
                     >
                       + coș
                     </AddToCart>
@@ -281,31 +303,50 @@ export default function BookDetail() {
 
                   {/* PDF EN */}
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <a
-                      href={PAY_45}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: "8px 12px",
-                        borderRadius: 999,
-                        background: "#2a9d8f",
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        minWidth: 60,
-                        textAlign: "center",
-                      }}
-                    >
-                      EN
-                    </a>
+                    {PAY_45 ? (
+                      <a
+                        href={PAY_45}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#2a9d8f",
+                          color: "#fff",
+                          textDecoration: "none",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                        }}
+                      >
+                        EN
+                      </a>
+                    ) : (
+                      <span
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#e8f3f1",
+                          color: "#2a9d8f",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                          border: "1px solid #cfe7e3",
+                        }}
+                        aria-disabled="true"
+                      >
+                        EN
+                      </span>
+                    )}
                     <AddToCart
                       id={book.id}
                       title={book.title}
                       format="PDF"
                       lang="EN"
                       price={45}
-                      payLink={PAY_45}
+                      payLink={PAY_45 || undefined}
                     >
                       + coș
                     </AddToCart>
@@ -345,31 +386,50 @@ export default function BookDetail() {
                 >
                   {/* EPUB RO */}
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <a
-                      href={PAY_45}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: "8px 12px",
-                        borderRadius: 999,
-                        background: "#2a9d8f",
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        minWidth: 60,
-                        textAlign: "center",
-                      }}
-                    >
-                      RO
-                    </a>
+                    {PAY_45 ? (
+                      <a
+                        href={PAY_45}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#2a9d8f",
+                          color: "#fff",
+                          textDecoration: "none",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                        }}
+                      >
+                        RO
+                      </a>
+                    ) : (
+                      <span
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#e8f3f1",
+                          color: "#2a9d8f",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                          border: "1px solid #cfe7e3",
+                        }}
+                        aria-disabled="true"
+                      >
+                        RO
+                      </span>
+                    )}
                     <AddToCart
                       id={book.id}
                       title={book.title}
                       format="EPUB"
                       lang="RO"
                       price={45}
-                      payLink={PAY_45}
+                      payLink={PAY_45 || undefined}
                     >
                       + coș
                     </AddToCart>
@@ -377,31 +437,50 @@ export default function BookDetail() {
 
                   {/* EPUB EN */}
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <a
-                      href={PAY_45}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: "8px 12px",
-                        borderRadius: 999,
-                        background: "#2a9d8f",
-                        color: "#fff",
-                        textDecoration: "none",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        minWidth: 60,
-                        textAlign: "center",
-                      }}
-                    >
-                      EN
-                    </a>
+                    {PAY_45 ? (
+                      <a
+                        href={PAY_45}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#2a9d8f",
+                          color: "#fff",
+                          textDecoration: "none",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                        }}
+                      >
+                        EN
+                      </a>
+                    ) : (
+                      <span
+                        style={{
+                          padding: "8px 12px",
+                          borderRadius: 999,
+                          background: "#e8f3f1",
+                          color: "#2a9d8f",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          minWidth: 60,
+                          textAlign: "center",
+                          border: "1px solid #cfe7e3",
+                        }}
+                        aria-disabled="true"
+                      >
+                        EN
+                      </span>
+                    )}
                     <AddToCart
                       id={book.id}
                       title={book.title}
                       format="EPUB"
                       lang="EN"
                       price={45}
-                      payLink={PAY_45}
+                      payLink={PAY_45 || undefined}
                     >
                       + coș
                     </AddToCart>
@@ -411,22 +490,39 @@ export default function BookDetail() {
             </>
 
             {/* Paperback – 65 lei */}
-            <a
-              href={PAY_65}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                textAlign: "center",
-                padding: "12px",
-                borderRadius: 10,
-                background: "#2a9d8f",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 14,
-              }}
-            >
-              🛒 Cumpără Paperback – 65 lei
-            </a>
+            {PAY_65 ? (
+              <a
+                href={PAY_65}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  background: "#2a9d8f",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontSize: 14,
+                }}
+              >
+                🛒 Cumpără Paperback – 65 lei
+              </a>
+            ) : (
+              <span
+                style={{
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: 10,
+                  background: "#e8f3f1",
+                  color: "#2a9d8f",
+                  fontSize: 14,
+                  border: "1px solid #cfe7e3",
+                }}
+                aria-disabled="true"
+              >
+                🛒 Cumpără Paperback – 65 lei
+              </span>
+            )}
             <div style={{ display: "flex", justifyContent: "center" }}>
               <AddToCart
                 id={book.id}
@@ -434,7 +530,7 @@ export default function BookDetail() {
                 format="Paperback"
                 lang="RO"
                 price={65}
-                payLink={PAY_65}
+                payLink={PAY_65 || undefined}
               >
                 + coș Paperback
               </AddToCart>

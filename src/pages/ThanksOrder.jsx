@@ -17,6 +17,13 @@ export default function ThanksOrder() {
         cu instrucțiunile de plată sau link-urile directe către produse.
       </p>
 
+      {/* ✅ adăugat: mesaj clar pentru Stripe + linkuri de descărcare */}
+      <p style={{ marginTop: 12, fontSize: 16, color: "#333" }}>
+        Dacă plata a fost finalizată prin Stripe, vei primi automat pe email
+        <strong> linkurile securizate de descărcare</strong> pentru eBook-urile tale
+        (valabile 48 de ore). Verifică și folderele „Spam” / „Promotions” dacă nu le vezi imediat.
+      </p>
+
       <div style={{ marginTop: 40 }}>
         <Link
           to="/carti"
