@@ -1,36 +1,15 @@
-// api/download.mjs
+// /api/download.mjs
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 
-// mapare cheie → fișier
-// poți schimba denumirile și ordinea după preferință
+// mapare format → fișier din /public/files
 const FILES = {
-  "PDF/RO": {
-    path: "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
-    filename: "o-zi-de-care-sa-ti-amintesti-RO.pdf",
-  },
-  "PDF/EN": {
-    path: "./public/files/o-zi-de-care-sa-ti-amintesti-en.pdf",
-    filename: "o-zi-de-care-sa-ti-amintesti-EN.pdf",
-  },
-  "EPUB/RO": {
-    path: "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
-    filename: "o-zi-de-care-sa-ti-amintesti-RO.epub",
-  },
-  "EPUB/EN": {
-    path: "./public/files/o-zi-de-care-sa-ti-amintesti-en.epub",
-    filename: "o-zi-de-care-sa-ti-amintesti-EN.epub",
-  },
+  "PDF/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
+  "PDF/EN": "./public/files/o-zi-de-care-sa-ti-amintesti-en.pdf",
+  "EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+  "EPUB/EN": "./public/files/o-zi-de-care-sa-ti-amintesti-en.epub",
 };
-
-// content-type în funcție de extensie
-function contentTypeFor(filePath) {
-  const ext = (filePath.split(".").pop() || "").toLowerCase();
-  if (ext === "pdf") return "application/pdf";
-  if (ext === "epub") return "application/epub+zip";
-  return "application/octet-stream";
-}
 
 function verifyToken(token) {
   try {
@@ -55,7 +34,7 @@ function verifyToken(token) {
 
 export default async function handler(req, res) {
   try {
-    const { token, file } = req.query;
+    const { token, f } = req.query;
     if (!token) {
       res.status(400).send("Token lipsă.");
       return;
@@ -69,75 +48,79 @@ export default async function handler(req, res) {
       return;
     }
 
-    // dacă avem ?file=..., servim fișierul direct (stream)
-    if (file) {
-      const entry = FILES[file.toUpperCase()];
-      if (!entry) {
-        res.status(404).send("Fișierul solicitat nu există.");
-        return;
-      }
-      const filePath = path.resolve(entry.path);
+    // dacă s-a cerut direct un format (ex: ?f=EPUB/RO), încearcă descărcarea
+    if (f && FILES[f]) {
+      const filePath = path.resolve(FILES[f]);
       if (!fs.existsSync(filePath)) {
         res.status(404).send("Fișierul nu a fost găsit.");
         return;
       }
 
-      res.setHeader("Content-Type", contentTypeFor(filePath));
+      // content-type corect
+      const isPDF = filePath.toLowerCase().endsWith(".pdf");
+      const isEPUB = filePath.toLowerCase().endsWith(".epub");
+
       res.setHeader(
         "Content-Disposition",
-        `attachment; filename="${entry.filename || path.basename(filePath)}"`
+        `attachment; filename="${path.basename(filePath)}"`
       );
-      return fs.createReadStream(filePath).pipe(res);
+      res.setHeader(
+        "Content-Type",
+        isPDF
+          ? "application/pdf"
+          : isEPUB
+          ? "application/epub+zip"
+          : "application/octet-stream"
+      );
+
+      fs.createReadStream(filePath).pipe(res);
+      return;
     }
 
-    // altfel, afișăm pagina cu link-urile (toate) – fiecare merge prin /api/download?token=...&file=CHEIE
-    const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-    const brand = {
-      primary: "#2a9d8f",
-      text: "#222",
-      light: "#f7faf9",
-    };
+    // altfel: afișează pagina cu linkuri DOAR pentru fișierele existente
+    const available = Object.entries(FILES).filter(([, p]) =>
+      fs.existsSync(path.resolve(p))
+    );
 
-    const links = Object.keys(FILES)
-      .map((k) => {
-        const url = `${SITE}/api/download?token=${encodeURIComponent(token)}&file=${encodeURIComponent(
-          k
-        )}`;
-        return `<li style="margin:10px 0">
-          <a href="${url}" style="color:${brand.primary};text-decoration:none;font-weight:600">📥 ${k}</a>
-        </li>`;
-      })
+    const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+    const links = available
+      .map(
+        ([label]) =>
+          `<li><a href="${SITE}/api/download?token=${encodeURIComponent(
+            token
+          )}&f=${encodeURIComponent(label)}" style="color:#2a9d8f;text-decoration:none;font-weight:600">${label}</a></li>`
+      )
       .join("");
 
-    const page = `<!doctype html>
-<html lang="ro">
-  <head>
-    <meta charset="utf-8" />
-    <title>Descărcări eBook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body style="background:${brand.light};margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;color:${brand.text}">
-    <div style="max-width:720px;margin:32px auto;background:#fff;border-radius:16px;border:1px solid #e9f3f1;overflow:hidden">
-      <div style="padding:22px 24px;border-bottom:1px solid #eef5f3;display:flex;align-items:center;gap:12px">
-        <img src="${SITE}/logo-midaway.png" alt="Midaway" height="28" />
-        <strong style="font-size:18px">Descărcări eBook</strong>
-      </div>
-      <div style="padding:24px">
-        <h1 style="margin:0 0 8px 0;color:${brand.primary};font-size:22px">Descărcări eBook</h1>
-        <p style="margin:0 0 8px 0">Linkul tău este activ și valabil <strong>48 de ore</strong> de la primirea emailului.</p>
-        <ul style="padding:0 0 0 18px;margin:16px 0 18px 0">
-          ${links}
-        </ul>
-        <p style="color:#666;font-size:12px;margin-top:12px"><small>ID sesiune: ${data.sid}</small></p>
-      </div>
-    </div>
-  </body>
-</html>`;
+    const html = `
+      <!doctype html>
+      <html lang="ro">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Descărcări eBook</title>
+      </head>
+      <body style="margin:0;background:#f6f8f9;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
+        <div style="max-width:720px;margin:40px auto;background:#fff;border-radius:14px;padding:24px 20px;box-shadow:0 8px 30px rgba(0,0,0,.06)">
+          <h1 style="margin:0 0 10px 0;color:#2a9d8f">Descărcări eBook</h1>
+          <p>Linkul tău este activ și valabil 48 de ore de la primirea emailului.</p>
+          ${
+            available.length
+              ? `<ul style="line-height:1.9;margin:14px 0 0 18px">${links}</ul>`
+              : `<div style="margin-top:16px;padding:14px;border:1px solid #eee;border-radius:10px;background:#fafafa;color:#666">
+                   Nu există fișiere disponibile momentan pentru această comandă. Te rugăm să ne scrii la 
+                   <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>.
+                 </div>`
+          }
+          <p style="color:#666;font-size:12px;margin-top:22px"><small>ID sesiune: ${data.sid}</small></p>
+        </div>
+      </body>
+      </html>`;
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.status(200).send(page);
+    res.status(200).send(html);
   } catch (err) {
     console.error("Download error:", err);
-    res.status(500).send("A apărut o eroare. Te rugăm să ne scrii.");
+    res.status(500).send("A apărut o eroare. Te rugăm să reîncerci.");
   }
 }
