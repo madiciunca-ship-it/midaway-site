@@ -44,10 +44,15 @@ export default async function handler(req, res) {
 
   if (event.type === "checkout.session.completed") {
     try {
-      const session = await stripe.checkout.sessions.retrieve(
-        event.data.object.id,
-        { expand: ["line_items.data.price.product", "customer_details"] }
-      );
+      // 1) Luăm sesiunea (pentru email / customer)
+      const session = await stripe.checkout.sessions.retrieve(event.data.object.id, {
+        expand: ["customer_details"], // doar detalii client aici
+      });
+
+      // 2) Luăm line items separat (cu product expandat) – ASTA e crucial
+      const li = await stripe.checkout.sessions.listLineItems(session.id, {
+        expand: ["data.price.product"],
+      });
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
@@ -56,21 +61,18 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // 1) EXTRAGEM fileKey-urile din produsele cumpărate
-      //    (create-checkout-session pune fileKey în product_data.metadata.fileKey)
+      // 3) EXTRAGEM fileKey-urile din produsele cumpărate (din listLineItems)
       const keys =
-        session?.line_items?.data
+        li?.data
           ?.map((it) => it?.price?.product?.metadata?.fileKey)
           ?.filter(Boolean) || [];
 
-      // 2) token cu id-ul sesiunii + email + fileKey-urile + expirare 48h
+      // 4) token cu id-ul sesiunii + email + fileKey-urile + expirare 48h
       const exp = Date.now() + 48 * 60 * 60 * 1000;
       const token = signToken({ sid: session.id, email, keys, exp });
 
       const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(
-        token
-      )}`;
+      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
 
       const transporter = nodemailer.createTransport({
         service: "gmail",
