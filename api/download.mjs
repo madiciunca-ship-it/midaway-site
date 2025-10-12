@@ -26,29 +26,44 @@ function verifyToken(token) {
 }
 
 // === HARTA: <bookId>:<FORMAT>/<LANG> → fișier real din /public/files
-// (exact pe fișierele pe care le-ai urcat în repo)
+// suportăm și id-urile „scurte” (o-zi, vietnam) și pe cele actuale din UI (o-zi-de-care..., "2")
 const FILES = {
-  // O zi de care să-ți amintești (bookId: o-zi)
+  // O zi de care să-ți amintești (RO) – același fișier pentru ambele id-uri
   "o-zi:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
   "o-zi:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
-  // (EN pentru "o-zi" încă nu există, deci nu mapăm nimic aici)
+  "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
+  "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+  // (EN pentru „O zi...” nu există încă → nu mapăm nimic)
 
-  // Zile și nopți de Vietnam… (bookId: vietnam)
+  // Zile și nopți de Vietnam — RO + EN (alias: „vietnam” și „2”)
   "vietnam:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
   "vietnam:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
   "vietnam:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
   "vietnam:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
+
+  "2:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+  "2:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
+  "2:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
+  "2:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
 };
+
 
 // etichete frumoase în listă
 const LABELS = {
   "o-zi:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
   "o-zi:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
+  "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
+  "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
 
   "vietnam:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
   "vietnam:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
   "vietnam:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
   "vietnam:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
+
+  "2:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
+  "2:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
+  "2:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
+  "2:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
 };
 
 export default async function handler(req, res) {
