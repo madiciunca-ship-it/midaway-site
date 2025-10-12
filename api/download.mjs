@@ -26,22 +26,21 @@ function verifyToken(token) {
 // === HARTA: <bookId>:<FORMAT>/<LANG> → URL public din /public/files
 const FILES = {
   // O zi de care să-ți amintești
-  "o-zi:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
-  "o-zi:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+  "o-zi:PDF/RO":  "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
+  "o-zi:EPUB/RO": "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
 
   // Zile și nopți de Vietnam — canonical
-  "vietnam:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
-  "vietnam:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "vietnam:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "vietnam:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
+  "vietnam:PDF/RO":  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+  "vietnam:EPUB/RO": "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
+  "vietnam:PDF/EN":  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
+  "vietnam:EPUB/EN": "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
 
   // ✅ aliasuri pentru ID vechi "2"
-  "2:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
-  "2:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "2:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "2:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
+  "2:PDF/RO":  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+  "2:EPUB/RO": "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
+  "2:PDF/EN":  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
+  "2:EPUB/EN": "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
 };
-
 
 // etichete frumoase în listă
 const LABELS = {
@@ -60,23 +59,17 @@ const LABELS = {
   "2:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
 };
 
-
 // ——— NORMALIZARE CHEI ———
 // orice cheie care începe cu `zile-si-nopti-de-vietnam...:` sau `vietnam:`
 // o transformăm în varianta canonică `2:<FORMAT>/<LANG>`
 function normalizeKey(key) {
   if (!key) return key;
-  // scoatem whitespace accidental
   const k = String(key).trim();
 
-  // match prefixele posibile pentru Vietnam
   if (/^zile-si-nopti-de-vietnam/i.test(k) || /^vietnam:/i.test(k)) {
-    // înlocuim prefixul până la ":" cu "2"
     return k.replace(/^[^:]+:/, "2:");
   }
-
-  // „O zi…” lăsăm așa cum vine
-  return k;
+  return k; // „O zi…” lăsăm așa cum vine
 }
 
 export default async function handler(req, res) {
@@ -108,7 +101,7 @@ export default async function handler(req, res) {
     if (f) {
       const nf = normalizeKey(f);
       if (FILES[nf] && allowedKeys.includes(nf)) {
-        const fileUrl = `${SITE}${FILES[nf]}`;
+        const fileUrl = `${SITE}${FILES[nf]}`; // URL public (din /public/files)
         res.writeHead(302, { Location: fileUrl });
         res.end();
         return;
