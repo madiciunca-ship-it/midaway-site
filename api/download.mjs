@@ -1,156 +1,148 @@
-// /api/download.mjs
-import fs from "fs";
-import path from "path";
+// /api/create-checkout-session.mjs
+// Creează o sesiune Stripe Checkout pe baza coșului primit din frontend.
+// Coșul așteptat: [{ id, title, format, lang, price, qty, image? }]
+//
+// Important pentru livrarea de fișiere:
+//  - pentru fiecare line_item adăugăm metadata.fileKey = `${FORMAT}/${LANG}`
+//  - în webhook (checkout.session.completed) vei ști exact ce s-a plătit
+//  - în /api/download vei valida tokenul și vei servi exact fișierele cumpărate
+
 import Stripe from "stripe";
-import crypto from "crypto";
+
+// --- Config & helpers -------------------------------------------------------
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// —— HMAC verify (token semnat în webhook) ——
-function verifyToken(token) {
-  try {
-    const [bodyB64, sig] = String(token || "").split(".");
-    if (!bodyB64 || !sig) return null;
-
-    const expectedSig = crypto
-      .createHmac("sha256", process.env.DOWNLOAD_SECRET || "dev-secret")
-      .update(bodyB64)
-      .digest("base64url");
-
-    if (sig !== expectedSig) return null;
-
-    const payload = JSON.parse(
-      Buffer.from(bodyB64, "base64url").toString("utf8")
-    );
-
-    if (!payload.exp || Date.now() > Number(payload.exp)) return null;
-    return payload; // { sid, email, exp }
-  } catch {
-    return null;
-  }
+// extrage în siguranță o valoare string din input
+function asStr(v, d = "") {
+  return (v ?? d).toString();
 }
 
-// —— Mapă format → nume fișier EXACT în /public/files ——
-const FILES = {
-  "PDF/RO": "o-zi-de-care-sa-ti-amintesti-ro.pdf",
-  "PDF/EN": "days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "EPUB/RO": "zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "EPUB/EN": "zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-en.epub",
-  // paperback nu are fișier digital
-};
-
-function pickFileFromTitle(title) {
-  const upper = String(title || "").toUpperCase();
-  if (upper.includes("PDF") && upper.includes("RO")) return FILES["PDF/RO"];
-  if (upper.includes("PDF") && upper.includes("EN")) return FILES["PDF/EN"];
-  if (upper.includes("EPUB") && upper.includes("RO")) return FILES["EPUB/RO"];
-  if (upper.includes("EPUB") && upper.includes("EN")) return FILES["EPUB/EN"];
-  return null;
+// transformă lei/euro în bani/cent (integer)
+function toMinorUnits(amount) {
+  const n = Number(amount);
+  if (!Number.isFinite(n)) return 0;
+  // round la 2 zecimale, apoi *100
+  return Math.round(Math.round(n * 100) /* ev. floating imprecision */);
 }
 
-function contentTypeByExt(file) {
-  if (file.endsWith(".pdf")) return "application/pdf";
-  if (file.endsWith(".epub")) return "application/epub+zip";
-  return "application/octet-stream";
+// sanitize currency (ISO 4217, lowercase pt. Stripe)
+function safeCurrency() {
+  const cur = asStr(process.env.CURRENCY || "RON").trim().toLowerCase();
+  // Stripe cere coduri ISO 4217 valide; fallback „ron”
+  return ["ron", "eur", "usd", "gbp"].includes(cur) ? cur : "ron";
 }
+
+// compune fileKey din format/lang
+function buildFileKey(format, lang) {
+  const f = asStr(format).toUpperCase().trim();
+  const l = asStr(lang).toUpperCase().trim();
+  return l ? `${f}/${l}` : f; // ex: "PDF/RO" sau doar "PDF"
+}
+
+// --- Handler ----------------------------------------------------------------
 
 export default async function handler(req, res) {
-  try {
-    // query din runtime vercel classic (StackBlitz)
-    const token = req.query?.token;
-    const requestedFile = req.query?.file;
+  // Acceptăm doar POST
+  if (req.method !== "POST") {
+    res.status(405).json({ error: "Method Not Allowed" });
+    return;
+  }
 
-    // 1) Validăm tokenul
-    const payload = verifyToken(token);
-    if (!payload) {
-      res
-        .status(403)
-        .send("Link invalid sau expirat. Te rugăm să ne contactezi.");
+  try {
+    // În unele medii, body poate fi deja obiect; în altele string
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
+
+    // Așteptăm: { cart: [...], customerEmail?: string, clientRef?: string }
+    const cart = Array.isArray(body.cart) ? body.cart : [];
+    const customerEmail = asStr(body.customerEmail || ""); // opțional, dacă îl colectezi înainte de checkout
+    const clientRef = asStr(body.clientRef || "");         // opțional, pentru corelare internă
+
+    if (!cart.length) {
+      res.status(400).json({ error: "Coșul de cumpărături este gol." });
       return;
     }
 
-    // 2) Luăm sesiunea Stripe și derivăm fișierele permise
-    const session = await stripe.checkout.sessions.retrieve(payload.sid, {
-      expand: ["line_items.data.price.product"],
+    const currency = safeCurrency();
+    const SITE = asStr(process.env.SITE_URL || "https://midaway.vercel.app");
+
+    // Construim line_items pentru Stripe
+    const line_items = cart.map((item, idx) => {
+      const id = asStr(item.id || idx);
+      const title = asStr(item.title || "Produs");
+      const format = asStr(item.format || "").toUpperCase();
+      const lang = asStr(item.lang || "").toUpperCase();
+      const qty = Math.max(1, Number(item.qty || 1));
+      const unit_amount = toMinorUnits(item.price || 0); // în bani/cent
+      const image = asStr(item.image || ""); // opțional (poți trimite cover-ul cărții)
+
+      // cheia pentru livrare
+      const fileKey = buildFileKey(format, lang);
+
+      const name = lang ? `${title} — ${format}/${lang}` : `${title} — ${format}`;
+
+      const product_data = {
+        name,
+        metadata: {
+          bookId: id,
+          format,
+          lang,
+          fileKey,   // <— va fi folosit ulterior la livrare
+          site: "midaway",
+        },
+      };
+
+      // atașăm imaginea dacă e disponibilă (Stripe va valida URL absolut)
+      if (image.startsWith("http")) {
+        product_data.images = [image];
+      }
+
+      return {
+        quantity: qty,
+        price_data: {
+          currency,
+          unit_amount,
+          product_data,
+        },
+      };
     });
 
-    const items = session.line_items?.data || [];
-    const files = [];
-    for (const it of items) {
-      const name =
-        it.price?.product?.name || it.description || it.price?.nickname;
-      const file = pickFileFromTitle(name);
-      if (file && !files.includes(file)) files.push(file);
-    }
+    // Sesiunea Stripe Checkout
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items,
+      success_url: `${SITE}/#/thanks`,
+      cancel_url: `${SITE}/#/checkout`,
 
-    if (!files.length) {
-      res
-        .status(404)
-        .send(
-          "Nu am găsit fișiere digitale pentru această comandă. Dacă ai cumpărat Paperback, acesta va fi livrat fizic."
-        );
-      return;
-    }
+      // dacă ai colectat email-ul deja (de la formă), îl poți precompleta
+      customer_email: customerEmail || undefined,
 
-    // 3) Dacă primim ?file=..., livrăm DIRECT fișierul (doar dacă e permis)
-    if (requestedFile) {
-      if (!files.includes(requestedFile)) {
-        res.status(403).send("Nu ai acces la acest fișier.");
-        return;
-      }
-      const filePath = path.resolve(`./public/files/${requestedFile}`);
-      if (!fs.existsSync(filePath)) {
-        res.status(404).send("Fișierul nu a fost găsit.");
-        return;
-      }
+      // cont de client dacă e necesar
+      customer_creation: "if_required",
 
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename="${requestedFile}"`
-      );
-      res.setHeader("Content-Type", contentTypeByExt(requestedFile));
-      fs.createReadStream(filePath).pipe(res);
-      return;
-    }
+      // pentru produse digitale nu avem nevoie de adrese
+      billing_address_collection: "auto",
+      shipping_address_collection: undefined,
 
-    // 4) Altminteri, arătăm o pagină simplă cu link-uri către fiecare fișier
-    const base = process.env.SITE_URL || "https://midaway.vercel.app";
-    const links = files
-      .map(
-        (f) =>
-          `<li><a href="${base}/api/download?token=${encodeURIComponent(
-            token
-          )}&file=${encodeURIComponent(f)}">📥 ${f}</a></li>`
-      )
-      .join("");
+      // taxă/TVA – închise deocamdată
+      automatic_tax: { enabled: false },
 
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end(`
-      <!doctype html>
-      <html lang="ro">
-      <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Descărcări eBook</title>
-        <style>
-          body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 24px; line-height: 1.6; }
-          .card { max-width: 680px; margin: 0 auto; padding: 24px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
-          h1 { color: #2a9d8f; margin-top: 0; }
-          ul { padding-left: 18px; }
-        </style>
-      </head>
-      <body>
-        <div class="card">
-          <h1>Descărcări eBook</h1>
-          <p>Linkul tău este activ și valabil 48 de ore de la primirea emailului.</p>
-          <ul>${links}</ul>
-          <p style="color:#666"><small>ID sesiune: ${payload.sid}</small></p>
-        </div>
-      </body>
-      </html>
-    `);
+      // coduri promo – off; poți porni oricând
+      allow_promotion_codes: false,
+
+      // referință utilă în rapoarte interne
+      client_reference_id: clientRef || undefined,
+
+      // metadata globală a sesiunii
+      metadata: {
+        origin: "midaway-site",
+        currency,
+      },
+    });
+
+    res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error("Download error:", err);
-    res.status(500).send("A apărut o eroare. Te rugăm să reîncerci.");
+    console.error("Create Checkout Session error:", err);
+    res.status(500).json({ error: "A apărut o eroare la crearea sesiunii." });
   }
 }

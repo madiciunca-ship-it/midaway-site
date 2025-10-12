@@ -5,14 +5,14 @@ import crypto from "crypto";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Citește RAW body (obligatoriu pentru verificarea semnăturii Stripe)
+// raw body pt. verificarea semnăturii Stripe
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
-// Semnează payload-ul (HMAC-SHA256). Tokenul va conține sid + email + exp.
+// semnează payload-ul cu HMAC-SHA256 (token valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -51,22 +51,20 @@ export default async function handler(req, res) {
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
-
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
         return res.json({ received: true });
       }
 
-      // Token cu expirare 48h
+      // token cu id-ul sesiunii + expirare 48h
       const exp = Date.now() + 48 * 60 * 60 * 1000;
       const token = signToken({ sid: session.id, email, exp });
 
-      const base = process.env.SITE_URL || "https://midaway.vercel.app";
-      const downloadLink = `${base}/api/download?token=${encodeURIComponent(
+      const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(
         token
       )}`;
 
-      // Mailer (Gmail App Password)
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -75,21 +73,48 @@ export default async function handler(req, res) {
         },
       });
 
-      // Email cu CTA către linkul unic
+      // ====== EMAIL BRANDUIT MIDAWAY ======
       const html = `
-        <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6">
-          <h2 style="color:#2a9d8f;margin:0 0 8px">Mulțumim pentru comanda ta, ${name}!</h2>
-          <p>Plata a fost procesată cu succes.</p>
-          <p style="margin:22px 0">
-            <a href="${downloadLink}" style="background:#2a9d8f;color:#fff;padding:12px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block">
-              📥 Descarcă eBook-urile
-            </a>
-          </p>
-          <p style="color:#555"><small>Linkul este valabil 48 de ore.</small></p>
-          <hr/>
-          <p style="font-size:12px;color:#888;margin-top:12px">ID sesiune: ${session.id}</p>
-        </div>
-      `;
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)">
+          <tr>
+            <td align="center" style="padding:22px;background:#e8f4f2;">
+              <img src="${SITE}/logo-midaway.png" width="64" height="64" alt="Midaway" style="display:block;border-radius:12px;border:1px solid #dfe9e7" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:28px">
+              <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
+                Mulțumim pentru comanda ta, ${name.toLowerCase()}!
+              </h1>
+              <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
+                Plata a fost procesată cu succes. Linkul tău de descărcare este valabil 48 de ore.
+              </p>
+
+              <div style="margin:22px 0">
+                <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
+                  📥 Descarcă eBook-urile
+                </a>
+              </div>
+
+              <p style="margin:12px 0 0 0;color:#6a6a6a;font-size:12px">
+                Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:16px 28px;background:#fafafa;color:#888;font-size:12px">
+              © 2025 MIDAWAY • <a href="${SITE}" style="color:#2a9d8f;text-decoration:none">midaway.vercel.app</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>`;
 
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,
