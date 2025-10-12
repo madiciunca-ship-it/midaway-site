@@ -24,14 +24,12 @@ function verifyToken(token) {
 }
 
 // === HARTA: <bookId>:<FORMAT>/<LANG> → URL public din /public/files
-// Cheile TREBUIE să fie exact cele care apar în logs (Stripe webhook).
 const FILES = {
   // O zi de care să-ți amintești (există doar RO)
   "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
   "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
-  // Versiunile EN nu există încă – nu mapăm nimic
 
-  // Zile și nopți de Vietnam… (bookId: "2")
+  // Zile și nopți de Vietnam… (canonic: id "2")
   "2:PDF/RO":  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
   "2:EPUB/RO": "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
   "2:PDF/EN":  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
@@ -49,9 +47,26 @@ const LABELS = {
   "2:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
 };
 
+// ——— NORMALIZARE CHEI ———
+// orice cheie care începe cu `zile-si-nopti-de-vietnam...:` sau `vietnam:`
+// o transformăm în varianta canonică `2:<FORMAT>/<LANG>`
+function normalizeKey(key) {
+  if (!key) return key;
+  // scoatem whitespace accidental
+  const k = String(key).trim();
+
+  // match prefixele posibile pentru Vietnam
+  if (/^zile-si-nopti-de-vietnam/i.test(k) || /^vietnam:/i.test(k)) {
+    // înlocuim prefixul până la ":" cu "2"
+    return k.replace(/^[^:]+:/, "2:");
+  }
+
+  // „O zi…” lăsăm așa cum vine
+  return k;
+}
+
 export default async function handler(req, res) {
   try {
-    // DOWNLOAD = GET
     if (req.method !== "GET") {
       res.status(405).json({ error: "Method Not Allowed" });
       return;
@@ -70,17 +85,23 @@ export default async function handler(req, res) {
     }
 
     const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-    const allowedKeys = Array.isArray(data.keys) ? data.keys : [];
+    const rawKeys = Array.isArray(data.keys) ? data.keys : [];
 
-    // DESCĂRCARE DIRECTĂ: ?f=<key> → doar dacă e cumpărată și avem mapare
-    if (f && FILES[f] && allowedKeys.includes(f)) {
-      const fileUrl = `${SITE}${FILES[f]}`; // URL public (din /public/files)
-      res.writeHead(302, { Location: fileUrl });
-      res.end();
-      return;
+    // normalizăm toate cheile din token
+    const allowedKeys = rawKeys.map(normalizeKey);
+
+    // DESCĂRCARE DIRECTĂ: ?f=<key>
+    if (f) {
+      const nf = normalizeKey(f);
+      if (FILES[nf] && allowedKeys.includes(nf)) {
+        const fileUrl = `${SITE}${FILES[nf]}`;
+        res.writeHead(302, { Location: fileUrl });
+        res.end();
+        return;
+      }
     }
 
-    // PAGINĂ LISTĂ: doar link-urile pentru cheile cumpărate care există în FILES
+    // LISTA: doar cheile permise + care există în FILES
     const links = allowedKeys
       .filter((key) => !!FILES[key])
       .map(
