@@ -1,3 +1,4 @@
+// /api/create-checkout-session.mjs
 import Stripe from "stripe";
 
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
@@ -5,6 +6,19 @@ const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 const CURRENCY = (process.env.CURRENCY || "EUR").toLowerCase();
 
 const stripe = new Stripe(STRIPE_KEY);
+
+// 🔒 cheile de formate/limbi care AU fișier încărcat (oglindă cu /api/download.mjs)
+const ALLOWED_KEYS = new Set([
+  // O zi de care să-ți amintești — doar RO
+  "o-zi-de-care-sa-ti-amintesti:PDF/RO",
+  "o-zi-de-care-sa-ti-amintesti:EPUB/RO",
+
+  // Vietnam — RO + EN
+  "2:PDF/RO",
+  "2:EPUB/RO",
+  "2:PDF/EN",
+  "2:EPUB/EN",
+]);
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -19,6 +33,14 @@ function readBody(req) {
     });
     req.on("error", reject);
   });
+}
+
+// helper pt. cheie unică (bookId:FORMAT/LANG)
+function buildFileKey(id, format, lang) {
+  const fmt = String(format || "").toUpperCase();
+  const lng = String(lang || "").toUpperCase();
+  const bid = String(id || "");
+  return bid && fmt ? `${bid}:${fmt}${lng ? `/${lng}` : ""}` : "";
 }
 
 export default async function handler(req, res) {
@@ -43,18 +65,39 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // construim line_items + colecție de fileKey-uri pentru metadata sesiunii
-    const fileKeysForSession = [];
+    // ✅ filtrăm coșul la server – doar formatele care AU fișier
+    const cleaned = [];
+    const rejected = [];
 
-    const line_items = items.map((item) => {
-      const id = String(item.id || "");
+    for (const it of items) {
+      const id = String(it.id || "");
+      const fmt = String(it.format || "").toUpperCase();
+      const lng = String(it.lang || "").toUpperCase();
+      const fileKey = buildFileKey(id, fmt, lng);
+
+      if (ALLOWED_KEYS.has(fileKey)) {
+        cleaned.push({ ...it, _fileKey: fileKey });
+      } else {
+        rejected.push(fileKey || `${id}:${fmt}${lng ? `/${lng}` : ""}`);
+      }
+    }
+
+    if (cleaned.length === 0) {
+      res.statusCode = 400;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(
+        JSON.stringify({
+          error:
+            "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
+          rejected,
+        })
+      );
+    }
+
+    const line_items = cleaned.map((item) => {
       const fmt = String(item.format || "").toUpperCase();
       const lng = String(item.lang || "").toUpperCase();
       const qty = Number(item.qty) || 1;
-
-      const fileKey = id && fmt ? `${id}:${fmt}${lng ? `/${lng}` : ""}` : "";
-
-      if (fileKey) fileKeysForSession.push(fileKey);
 
       return {
         price_data: {
@@ -63,10 +106,10 @@ export default async function handler(req, res) {
           product_data: {
             name: `${item.title} — ${fmt}${lng ? `/${lng}` : ""}`,
             metadata: {
-              id,
+              id: String(item.id || ""),
               format: item.format || "",
               lang: item.lang || "",
-              fileKey, // rămâne și la product, pentru fallback
+              fileKey: item._fileKey, // <— livrarea se bazează pe asta
             },
           },
         },
@@ -74,7 +117,7 @@ export default async function handler(req, res) {
       };
     });
 
-    const hasPaperback = items.some(
+    const hasPaperback = cleaned.some(
       (it) => String(it.format || "").toLowerCase() === "paperback"
     );
 
@@ -87,12 +130,6 @@ export default async function handler(req, res) {
       shipping_address_collection: hasPaperback
         ? { allowed_countries: ["RO", "DE", "FR", "IT", "ES", "NL", "GB", "AT", "BE", "IE"] }
         : undefined,
-      metadata: {
-        origin: "midaway-site",
-        currency: CURRENCY,
-        // 🔐 bagăm și aici toate fileKey-urile
-        keys: JSON.stringify(fileKeysForSession),
-      },
     });
 
     res.statusCode = 200;
