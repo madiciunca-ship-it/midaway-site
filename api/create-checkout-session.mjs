@@ -11,7 +11,11 @@ function readBody(req) {
     let data = "";
     req.on("data", (c) => (data += c));
     req.on("end", () => {
-      try { resolve(JSON.parse(data || "{}")); } catch (e) { reject(e); }
+      try {
+        resolve(JSON.parse(data || "{}"));
+      } catch (e) {
+        reject(e);
+      }
     });
     req.on("error", reject);
   });
@@ -39,19 +43,36 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    const line_items = items.map((item) => ({
-      price_data: {
-        currency: CURRENCY,
-        unit_amount: Math.round(Number(item.price) * 100),
-        product_data: {
-          name: `${item.title} — ${String(item.format || "").toUpperCase()}${item.lang ? `/${String(item.lang).toUpperCase()}` : ""}`,
-          metadata: { id: item.id || "", format: item.format || "", lang: item.lang || "" }
-        }
-      },
-      quantity: Number(item.qty) || 1
-    }));
+    const line_items = items.map((item) => {
+      const id = String(item.id || "");
+      const fmt = String(item.format || "").toUpperCase();
+      const lng = String(item.lang || "").toUpperCase();
+      const qty = Number(item.qty) || 1;
 
-    const hasPaperback = items.some((it) => (it.format || "").toLowerCase() === "paperback");
+      // cheia unică pentru livrare (bookId + format/limbă)
+      const fileKey = id && fmt ? `${id}:${fmt}${lng ? `/${lng}` : ""}` : "";
+
+      return {
+        price_data: {
+          currency: CURRENCY,
+          unit_amount: Math.round(Number(item.price) * 100),
+          product_data: {
+            name: `${item.title} — ${fmt}${lng ? `/${lng}` : ""}`,
+            metadata: {
+              id,
+              format: item.format || "",
+              lang: item.lang || "",
+              fileKey, // <— va fi folosit ulterior la livrare
+            },
+          },
+        },
+        quantity: qty,
+      };
+    });
+
+    const hasPaperback = items.some(
+      (it) => (String(it.format || "")).toLowerCase() === "paperback"
+    );
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -60,8 +81,8 @@ export default async function handler(req, res) {
       cancel_url: `${SITE}/#/checkout`,
       billing_address_collection: "auto",
       shipping_address_collection: hasPaperback
-        ? { allowed_countries: ["RO","DE","FR","IT","ES","NL","GB","AT","BE","IE"] }
-        : undefined
+        ? { allowed_countries: ["RO", "DE", "FR", "IT", "ES", "NL", "GB", "AT", "BE", "IE"] }
+        : undefined,
     });
 
     res.statusCode = 200;
