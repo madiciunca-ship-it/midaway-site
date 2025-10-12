@@ -56,9 +56,16 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // token cu id-ul sesiunii + expirare 48h
+      // 1) EXTRAGEM fileKey-urile din produsele cumpărate
+      //    (create-checkout-session pune fileKey în product_data.metadata.fileKey)
+      const keys =
+        session?.line_items?.data
+          ?.map((it) => it?.price?.product?.metadata?.fileKey)
+          ?.filter(Boolean) || [];
+
+      // 2) token cu id-ul sesiunii + email + fileKey-urile + expirare 48h
       const exp = Date.now() + 48 * 60 * 60 * 1000;
-      const token = signToken({ sid: session.id, email, exp });
+      const token = signToken({ sid: session.id, email, keys, exp });
 
       const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
       const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(
@@ -123,7 +130,7 @@ export default async function handler(req, res) {
         html,
       });
 
-      console.log("✅ Email de livrare trimis către:", email);
+      console.log("✅ Email de livrare trimis către:", email, "| keys:", keys);
     } catch (err) {
       console.error("Eroare procesare checkout.session.completed:", err);
     }
