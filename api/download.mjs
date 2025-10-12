@@ -25,38 +25,25 @@ function verifyToken(token) {
 }
 
 // === HARTA: <bookId>:<FORMAT>/<LANG> → fișier real din /public/files
-// Acceptăm ALIASURI pentru bookId (ca să nu mai conteze ce id vine din coș)
 const FILES = {
-  // O zi de care să-ți amintești (aliasuri: o-zi, o-zi-de-care-sa-ti-amintesti)
-  "o-zi:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
-  "o-zi:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+  // O zi de care să-ți amintești
   "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
   "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
-  // (EN lipsește încă, deci nu mapăm nimic pt EN)
+  // Versiunile EN nu există încă
+  // "o-zi-de-care-sa-ti-amintesti:PDF/EN": "./public/files/o-zi-de-care-sa-ti-amintesti-en.pdf",
+  // "o-zi-de-care-sa-ti-amintesti:EPUB/EN": "./public/files/o-zi-de-care-sa-ti-amintesti-en.epub",
 
-  // Zile și nopți de Vietnam… (aliasuri: vietnam, 2)
-  "vietnam:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
-  "vietnam:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "vietnam:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "vietnam:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
-
+  // Zile și nopți de Vietnam
   "2:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
   "2:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
   "2:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
   "2:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
 };
 
+
 const LABELS = {
-  "o-zi:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
-  "o-zi:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
   "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
   "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
-
-  "vietnam:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
-  "vietnam:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
-  "vietnam:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
-  "vietnam:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
-
   "2:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
   "2:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
   "2:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
