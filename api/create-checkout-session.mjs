@@ -94,11 +94,18 @@ export default async function handler(req, res) {
       );
     }
 
-    const line_items = cleaned.map((item) => {
+    const line_items = items.map((item) => {
+      const rawId = String(item.id || "");
+      // ✅ normalizare ID pt. compatibilitate în livrare
+      const id = rawId === "2" ? "vietnam" : rawId;
+    
       const fmt = String(item.format || "").toUpperCase();
       const lng = String(item.lang || "").toUpperCase();
       const qty = Number(item.qty) || 1;
-
+    
+      // cheia unică pentru livrare (bookId + format/limbă)
+      const fileKey = id && fmt ? `${id}:${fmt}${lng ? `/${lng}` : ""}` : "";
+    
       return {
         price_data: {
           currency: CURRENCY,
@@ -106,16 +113,18 @@ export default async function handler(req, res) {
           product_data: {
             name: `${item.title} — ${fmt}${lng ? `/${lng}` : ""}`,
             metadata: {
-              id: String(item.id || ""),
+              id: rawId,              // păstrăm în metadata ce a trimis UI
+              normId: id,             // ✅ ce folosim la livrare
               format: item.format || "",
               lang: item.lang || "",
-              fileKey: item._fileKey, // <— livrarea se bazează pe asta
+              fileKey,                // ✅ pentru webhook + download
             },
           },
         },
         quantity: qty,
       };
     });
+    
 
     const hasPaperback = cleaned.some(
       (it) => String(it.format || "").toLowerCase() === "paperback"
