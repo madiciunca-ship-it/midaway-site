@@ -43,14 +43,18 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
+    // construim line_items + colecție de fileKey-uri pentru metadata sesiunii
+    const fileKeysForSession = [];
+
     const line_items = items.map((item) => {
       const id = String(item.id || "");
       const fmt = String(item.format || "").toUpperCase();
       const lng = String(item.lang || "").toUpperCase();
       const qty = Number(item.qty) || 1;
 
-      // cheia unică pentru livrare (bookId + format/limbă)
       const fileKey = id && fmt ? `${id}:${fmt}${lng ? `/${lng}` : ""}` : "";
+
+      if (fileKey) fileKeysForSession.push(fileKey);
 
       return {
         price_data: {
@@ -62,7 +66,7 @@ export default async function handler(req, res) {
               id,
               format: item.format || "",
               lang: item.lang || "",
-              fileKey, // <— va fi folosit ulterior la livrare
+              fileKey, // rămâne și la product, pentru fallback
             },
           },
         },
@@ -71,7 +75,7 @@ export default async function handler(req, res) {
     });
 
     const hasPaperback = items.some(
-      (it) => (String(it.format || "")).toLowerCase() === "paperback"
+      (it) => String(it.format || "").toLowerCase() === "paperback"
     );
 
     const session = await stripe.checkout.sessions.create({
@@ -83,6 +87,12 @@ export default async function handler(req, res) {
       shipping_address_collection: hasPaperback
         ? { allowed_countries: ["RO", "DE", "FR", "IT", "ES", "NL", "GB", "AT", "BE", "IE"] }
         : undefined,
+      metadata: {
+        origin: "midaway-site",
+        currency: CURRENCY,
+        // 🔐 bagăm și aici toate fileKey-urile
+        keys: JSON.stringify(fileKeysForSession),
+      },
     });
 
     res.statusCode = 200;
