@@ -44,12 +44,12 @@ export default async function handler(req, res) {
 
   if (event.type === "checkout.session.completed") {
     try {
-      // 1) Luăm sesiunea (pentru email / customer)
+      // 1) sesiunea pt. email/nume
       const session = await stripe.checkout.sessions.retrieve(event.data.object.id, {
-        expand: ["customer_details"], // doar detalii client aici
+        expand: ["customer_details"],
       });
 
-      // 2) Luăm line items separat (cu product expandat) – ASTA e crucial
+      // 2) line items + product expand (AICI scoatem fileKey sigur)
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
@@ -61,13 +61,9 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // 3) EXTRAGEM fileKey-urile din produsele cumpărate (din listLineItems)
       const keys =
-        li?.data
-          ?.map((it) => it?.price?.product?.metadata?.fileKey)
-          ?.filter(Boolean) || [];
+        li?.data?.map((it) => it?.price?.product?.metadata?.fileKey).filter(Boolean) || [];
 
-      // 4) token cu id-ul sesiunii + email + fileKey-urile + expirare 48h
       const exp = Date.now() + 48 * 60 * 60 * 1000;
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -82,7 +78,6 @@ export default async function handler(req, res) {
         },
       });
 
-      // ====== EMAIL BRANDUIT MIDAWAY ======
       const html = `
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
     <tr>
@@ -132,7 +127,7 @@ export default async function handler(req, res) {
         html,
       });
 
-      console.log("✅ Email de livrare trimis către:", email, "| keys:", keys);
+      console.log("✅ Email trimis către:", email, "| keys:", keys);
     } catch (err) {
       console.error("Eroare procesare checkout.session.completed:", err);
     }
