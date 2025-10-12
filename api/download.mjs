@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 
-// verificare token HMAC (valabilitate 48h)
 function verifyToken(token) {
   try {
     const [bodyB64, sig] = String(token || "").split(".");
@@ -17,8 +16,8 @@ function verifyToken(token) {
     if (sig !== expectedSig) return null;
 
     const data = JSON.parse(Buffer.from(bodyB64, "base64url").toString("utf8"));
-    if (!data || !data.exp || Date.now() > Number(data.exp)) return null; // expirat
-    return data; // { sid, email, keys?, exp }
+    if (!data || !data.exp || Date.now() > Number(data.exp)) return null;
+    return data; // { sid, email, keys, exp }
   } catch (err) {
     console.error("Eroare verificare token:", err);
     return null;
@@ -26,16 +25,16 @@ function verifyToken(token) {
 }
 
 // === HARTA: <bookId>:<FORMAT>/<LANG> → fișier real din /public/files
-// suportăm și id-urile „scurte” (o-zi, vietnam) și pe cele actuale din UI (o-zi-de-care..., "2")
+// Acceptăm ALIASURI pentru bookId (ca să nu mai conteze ce id vine din coș)
 const FILES = {
-  // O zi de care să-ți amintești (RO) – același fișier pentru ambele id-uri
+  // O zi de care să-ți amintești (aliasuri: o-zi, o-zi-de-care-sa-ti-amintesti)
   "o-zi:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
   "o-zi:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
   "o-zi-de-care-sa-ti-amintesti:PDF/RO":  "./public/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
   "o-zi-de-care-sa-ti-amintesti:EPUB/RO": "./public/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
-  // (EN pentru „O zi...” nu există încă → nu mapăm nimic)
+  // (EN lipsește încă, deci nu mapăm nimic pt EN)
 
-  // Zile și nopți de Vietnam — RO + EN (alias: „vietnam” și „2”)
+  // Zile și nopți de Vietnam… (aliasuri: vietnam, 2)
   "vietnam:PDF/RO":  "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
   "vietnam:EPUB/RO": "./public/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
   "vietnam:PDF/EN":  "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
@@ -47,8 +46,6 @@ const FILES = {
   "2:EPUB/EN": "./public/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
 };
 
-
-// etichete frumoase în listă
 const LABELS = {
   "o-zi:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
   "o-zi:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
@@ -68,7 +65,6 @@ const LABELS = {
 
 export default async function handler(req, res) {
   try {
-    // DOWNLOAD = GET
     if (req.method !== "GET") {
       res.status(405).json({ error: "Method Not Allowed" });
       return;
@@ -86,17 +82,15 @@ export default async function handler(req, res) {
       return;
     }
 
-    // lista de chei permise (cumpărate) venite din token (webhook)
     const allowedKeys = Array.isArray(data.keys) ? data.keys : [];
 
-    // DESCĂRCARE DIRECTĂ: ?f=<key> (doar dacă a fost cumpărată și există)
+    // DESCĂRCARE DIRECTĂ
     if (f && FILES[f] && allowedKeys.includes(f)) {
       const filePath = path.resolve(FILES[f]);
       if (!fs.existsSync(filePath)) {
         res.status(404).send("Fișierul nu a fost găsit.");
         return;
       }
-
       const lower = filePath.toLowerCase();
       const isPDF = lower.endsWith(".pdf");
       const isEPUB = lower.endsWith(".epub");
@@ -107,31 +101,25 @@ export default async function handler(req, res) {
       );
       res.setHeader(
         "Content-Type",
-        isPDF
-          ? "application/pdf"
-          : isEPUB
-          ? "application/epub+zip"
-          : "application/octet-stream"
+        isPDF ? "application/pdf" : isEPUB ? "application/epub+zip" : "application/octet-stream"
       );
 
       fs.createReadStream(filePath).pipe(res);
       return;
     }
 
-    // PAGINĂ LISTĂ: doar linkurile pentru cheile cumpărate + fișiere existente
+    // PAGINĂ LISTĂ
     const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-    const links = allowedKeys
+    const items = allowedKeys
       .filter((key) => FILES[key] && fs.existsSync(path.resolve(FILES[key])))
       .map(
         (key) =>
-          `<li>📥 <a href="${SITE}/api/download?token=${encodeURIComponent(
-            token
-          )}&f=${encodeURIComponent(key)}" style="color:#2a9d8f;text-decoration:none;font-weight:600">${LABELS[key] || key}</a></li>`
+          `<li>📥 <a href="${SITE}/api/download?token=${encodeURIComponent(token)}&f=${encodeURIComponent(key)}" style="color:#2a9d8f;text-decoration:none;font-weight:600">${LABELS[key] || key}</a></li>`
       )
       .join("");
 
     const bodyHtml =
-      links ||
+      items ||
       `<div style="margin-top:16px;padding:14px;border:1px solid #eee;border-radius:10px;background:#fafafa;color:#666">
          Nu există fișiere disponibile pentru comanda ta.
          Scrie-ne la <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>.
