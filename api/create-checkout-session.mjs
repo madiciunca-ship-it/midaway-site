@@ -7,17 +7,25 @@ const CURRENCY = (process.env.CURRENCY || "EUR").toLowerCase();
 
 const stripe = new Stripe(STRIPE_KEY);
 
+// ✅ normalizăm id-urile din UI în cele folosite la livrare/download
+function normalizeId(raw) {
+  const s = String(raw || "");
+  if (s === "2") return "vietnam";
+  if (s.startsWith("o-zi-de-care-sa-ti-amintesti")) return "o-zi";
+  return s;
+}
+
 // 🔒 cheile de formate/limbi care AU fișier încărcat (oglindă cu /api/download.mjs)
 const ALLOWED_KEYS = new Set([
   // O zi de care să-ți amintești — doar RO
-  "o-zi-de-care-sa-ti-amintesti:PDF/RO",
-  "o-zi-de-care-sa-ti-amintesti:EPUB/RO",
+  "o-zi:PDF/RO",
+  "o-zi:EPUB/RO",
 
   // Vietnam — RO + EN
-  "2:PDF/RO",
-  "2:EPUB/RO",
-  "2:PDF/EN",
-  "2:EPUB/EN",
+  "vietnam:PDF/RO",
+  "vietnam:EPUB/RO",
+  "vietnam:PDF/EN",
+  "vietnam:EPUB/EN",
 ]);
 
 function readBody(req) {
@@ -35,12 +43,12 @@ function readBody(req) {
   });
 }
 
-// helper pt. cheie unică (bookId:FORMAT/LANG)
-function buildFileKey(id, format, lang) {
+// helper pt. cheie unică (bookId:FORMAT/LANG) – folosește id normalizat
+function buildNormFileKey(rawId, format, lang) {
   const fmt = String(format || "").toUpperCase();
   const lng = String(lang || "").toUpperCase();
-  const bid = String(id || "");
-  return bid && fmt ? `${bid}:${fmt}${lng ? `/${lng}` : ""}` : "";
+  const normId = normalizeId(rawId);
+  return normId && fmt ? `${normId}:${fmt}${lng ? `/${lng}` : ""}` : "";
 }
 
 export default async function handler(req, res) {
@@ -70,15 +78,16 @@ export default async function handler(req, res) {
     const rejected = [];
 
     for (const it of items) {
-      const id = String(it.id || "");
+      const rawId = String(it.id || "");
       const fmt = String(it.format || "").toUpperCase();
       const lng = String(it.lang || "").toUpperCase();
-      const fileKey = buildFileKey(id, fmt, lng);
 
-      if (ALLOWED_KEYS.has(fileKey)) {
-        cleaned.push({ ...it, _fileKey: fileKey });
+      const fileKeyNorm = buildNormFileKey(rawId, fmt, lng);
+
+      if (ALLOWED_KEYS.has(fileKeyNorm)) {
+        cleaned.push({ ...it, _fileKey: fileKeyNorm });
       } else {
-        rejected.push(fileKey || `${id}:${fmt}${lng ? `/${lng}` : ""}`);
+        rejected.push(fileKeyNorm || `${rawId}:${fmt}${lng ? `/${lng}` : ""}`);
       }
     }
 
@@ -94,37 +103,34 @@ export default async function handler(req, res) {
       );
     }
 
-    const line_items = items.map((item) => {
-      const rawId = String(item.id || "");
-      // ✅ normalizare ID pt. compatibilitate în livrare
-      const id = rawId === "2" ? "vietnam" : rawId;
-    
-      const fmt = String(item.format || "").toUpperCase();
-      const lng = String(item.lang || "").toUpperCase();
-      const qty = Number(item.qty) || 1;
-    
-      // cheia unică pentru livrare (bookId + format/limbă)
-      const fileKey = id && fmt ? `${id}:${fmt}${lng ? `/${lng}` : ""}` : "";
-    
+    // ✅ Stripe line items DOAR din coșul filtrat
+    const line_items = cleaned.map((it) => {
+      const rawId = String(it.id || "");
+      const normId = normalizeId(rawId);
+      const fmt = String(it.format || "").toUpperCase();
+      const lng = String(it.lang || "").toUpperCase();
+      const qty = Number(it.qty) || 1;
+
+      const fileKey = `${normId}:${fmt}${lng ? `/${lng}` : ""}`;
+
       return {
         price_data: {
           currency: CURRENCY,
-          unit_amount: Math.round(Number(item.price) * 100),
+          unit_amount: Math.round(Number(it.price) * 100),
           product_data: {
-            name: `${item.title} — ${fmt}${lng ? `/${lng}` : ""}`,
+            name: `${it.title} — ${fmt}${lng ? `/${lng}` : ""}`,
             metadata: {
-              id: rawId,              // păstrăm în metadata ce a trimis UI
-              normId: id,             // ✅ ce folosim la livrare
-              format: item.format || "",
-              lang: item.lang || "",
-              fileKey,                // ✅ pentru webhook + download
+              id: rawId,       // ce a trimis UI (pentru debugging)
+              normId,          // ce folosim la livrare
+              format: it.format || "",
+              lang: it.lang || "",
+              fileKey,         // pentru webhook + download
             },
           },
         },
         quantity: qty,
       };
     });
-    
 
     const hasPaperback = cleaned.some(
       (it) => String(it.format || "").toLowerCase() === "paperback"
