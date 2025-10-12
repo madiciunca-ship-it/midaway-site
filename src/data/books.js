@@ -26,6 +26,12 @@ export const BOOKS = [
       PDF: 45,
       EPUB: 45,
     },
+    // ✅ adaugă asta:
+    availability: {
+      PDF:  { RO: true,  EN: false },  // EN = „SOON”
+      EPUB: { RO: true,  EN: false },
+      // dacă ai și Paperback pe viitor: Paperback: { RO: true, EN: false }
+    },
 
     // 🔹 info tehnice
     pages: 272,
@@ -61,6 +67,11 @@ export const BOOKS = [
       Paperback: 65,
       PDF: 45,
       EPUB: 45,
+    },
+    // ✅ adaugă asta:
+    availability: {
+      PDF:  { RO: true, EN: true },
+      EPUB: { RO: true, EN: true },
     },
 
     // info opționale
