@@ -31,6 +31,10 @@ import { CartProvider, ClearCartOnThanks } from "./context/CartContext";
 import Checkout from "./pages/Checkout";
 import ThanksOrder from "./pages/ThanksOrder.jsx";
 
+// 👇 ADĂUGAT: flags + wrapper route
+import { SITE_FLAGS } from "./config";
+import ProtectedFlagRoute from "./components/ProtectedFlagRoute";
+
 export default function App() {
   return (
     <CartProvider>
@@ -56,11 +60,37 @@ export default function App() {
           {/* Proiecte */}
           <Route path="/proiecte" element={<Projects />} />
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
-          <Route path="/donatii" element={<Donate />} />
-          <Route path="/sponsorizari" element={<Sponsorizari />} />
+
+          {/* Pagini controlate prin flags */}
+          <Route
+            path="/donatii"
+            element={
+              <ProtectedFlagRoute
+                flag={SITE_FLAGS.showDonations}
+                element={<Donate />}
+              />
+            }
+          />
+          <Route
+            path="/sponsorizari"
+            element={
+              <ProtectedFlagRoute
+                flag={SITE_FLAGS.showSponsorships}
+                element={<Sponsorizari />}
+              />
+            }
+          />
+          <Route
+            path="/voluntari"
+            element={
+              <ProtectedFlagRoute
+                flag={SITE_FLAGS.showVolunteers}
+                element={<Volunteers />}
+              />
+            }
+          />
 
           {/* Alte secțiuni */}
-          <Route path="/voluntari" element={<Volunteers />} />
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
