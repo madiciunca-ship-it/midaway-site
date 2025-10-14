@@ -7,7 +7,8 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
-import BookDetail from "./pages/BookDetail";
+import BookDetail from "./pages/BookDetail"; // păstrat pt. alte importuri interne
+import BookDetailWithPurchase from "./pages/BookDetailWithPurchase";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
@@ -50,8 +51,9 @@ export default function App() {
 
           {/* Cărți */}
           <Route path="/carti" element={<Books />} />
-          <Route path="/carti/:id" element={<BookDetail />} />
-          <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetail />} />
+          <Route path="/carti/:id" element={<BookDetailWithPurchase />} />
+          
+          <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetailWithPurchase />} />
 
           {/* Blog */}
           <Route path="/blog" element={<Blog />} />
