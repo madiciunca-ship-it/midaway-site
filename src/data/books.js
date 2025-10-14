@@ -37,7 +37,7 @@ export const BOOKS = [
     availability: {
       PDF: true,
       EPUB: true,
-      Paperback: false,
+      Paperback: true,
       Audiobook: false,
     },
 
@@ -128,7 +128,7 @@ export const BOOKS = [
     availability: {
       PDF: true,
       EPUB: true,
-      Paperback: false,
+      Paperback: true,
       Audiobook: false,
     },
 
@@ -170,7 +170,7 @@ export const BOOKS = [
     tags: ["memoir", "travel", "culture", "authentic"],
     format: "eBook",
 
-    prices: { PDF: 45, EPUB: 45, Paperback: 65, Audiobook: 0 },
+    prices: { PDF: 10, EPUB: 10, Paperback: 20, Audiobook: 0 },
 
     availability: {
       PDF: true,
