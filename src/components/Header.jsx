@@ -6,6 +6,9 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer";
 
+// 👇 nou: flags
+import { SITE_FLAGS } from "../config";
+
 const navItems = [
   { label: "Acasă", to: "/" },
   { label: "Cărți", to: "/carti" },
@@ -19,6 +22,16 @@ const navItems = [
   { label: "Despre", to: "/despre" },
   { label: "Contact", to: "/contact" },
 ];
+
+// 👇 filtrăm doar cele trei rute controlate de flags
+function applyFlags(items) {
+  return items.filter(({ to }) => {
+    if (to === "/donatii" && !SITE_FLAGS.showDonations) return false;
+    if (to === "/sponsorizari" && !SITE_FLAGS.showSponsorships) return false;
+    if (to === "/voluntari" && !SITE_FLAGS.showVolunteers) return false;
+    return true;
+  });
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);          // mobile menu
@@ -62,6 +75,9 @@ export default function Header() {
     lineHeight: 1,
   };
 
+  // 👇 aplicăm flags pe navItems
+  const visibleNavItems = applyFlags(navItems);
+
   return (
     <header className="header">
       <div className="container header-inner" style={{ display: "flex", alignItems: "center", gap: 16, padding: "8px 0" }}>
@@ -85,7 +101,7 @@ export default function Header() {
               fontSize: 15,
             }}
           >
-            {navItems.map(({ label, to }) => (
+            {visibleNavItems.map(({ label, to }) => (
               <NavLink
                 key={to}
                 to={to}
@@ -152,7 +168,7 @@ export default function Header() {
       {/* Mobile menu */}
       {isMobile && (
         <div className={`mobile-menu${open ? " open" : ""}`}>
-          {navItems.map(({ label, to }) => (
+          {visibleNavItems.map(({ label, to }) => (
             <NavLink
               key={to}
               to={to}
