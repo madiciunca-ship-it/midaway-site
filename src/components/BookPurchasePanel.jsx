@@ -25,51 +25,43 @@ function findBookByIdOrAlias(bookId) {
   return null;
 }
 
-/**
- * Panel cumpărare: 4 formate (PDF, EPUB, Paperback, Audiobook)
- * - arată prețul + monedă corectă
- * - dacă availability[fmt] === false → buton disabled + badge SOON
- * - fără butoane RO/EN (cartea e deja pe limbă unică)
- */
 export default function BookPurchasePanel({ book, bookId }) {
   const resolvedBook = useMemo(
     () => book || findBookByIdOrAlias(bookId),
     [book, bookId]
   );
-  const { addToCart } = useCart ? useCart() : { addToCart: () => {} };
+  const { add } = useCart(); // ✅ folosește API-ul existent
 
   if (!resolvedBook) return null;
   const { prices = {}, availability = {}, currency, title, id } = resolvedBook;
 
   const onAdd = (format) => {
     const price = prices?.[format] ?? 0;
-    addToCart({
+    add({
       id,
       title,
-      format,
+      format,       // "PDF" | "EPUB" | "Paperback" | "Audiobook"
       price,
-      currency,
+      // lang nu mai e necesar (book.id include limba)
       qty: 1,
     });
   };
 
-  const card = (fmt) => {
+  const card = (fmt, icon) => {
     const avail = Boolean(availability?.[fmt]);
     const price = prices?.[fmt];
     const label =
-      avail && Number.isFinite(Number(price))
-        ? money(price, currency)
-        : "În curând";
+      avail && Number.isFinite(Number(price)) ? money(price, currency) : "În curând";
 
     return (
       <div
         key={fmt}
         style={{
           border: "1px solid #e7e7e7",
-          borderRadius: 12,
-          padding: 12,
-          background: avail ? "#ffffff" : "#f4f7f7",
-          opacity: avail ? 1 : 0.8,
+          borderRadius: 16,
+          padding: 16,
+          background: "#fff",
+          boxShadow: "0 8px 24px rgba(0,0,0,.06)",
         }}
       >
         <div
@@ -80,20 +72,16 @@ export default function BookPurchasePanel({ book, bookId }) {
             marginBottom: 8,
           }}
         >
-          <strong style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            {fmt === "PDF" && "📄"}
-            {fmt === "EPUB" && "📘"}
-            {fmt === "Paperback" && "🛒"}
-            {fmt === "Audiobook" && "🎧"}
-            {fmt}
+          <strong style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span>{icon}</span> {fmt}
           </strong>
           {!avail && (
             <span
               style={{
-                background: "#ddd",
+                background: "#e5e7eb",
                 color: "#555",
                 borderRadius: 999,
-                padding: "2px 8px",
+                padding: "2px 10px",
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -103,17 +91,15 @@ export default function BookPurchasePanel({ book, bookId }) {
           )}
         </div>
 
-        <div style={{ fontSize: 14, color: "#333", marginBottom: 10 }}>
-          {label}
-        </div>
+        <div style={{ fontSize: 14, color: "#333", marginBottom: 12 }}>{label}</div>
 
         <button
           disabled={!avail}
           onClick={() => onAdd(fmt)}
           style={{
             width: "100%",
-            padding: "10px 12px",
-            borderRadius: 10,
+            padding: "12px",
+            borderRadius: 12,
             border: "1px solid #ddd",
             background: avail ? "#2a9d8f" : "#e5e5e5",
             color: avail ? "#fff" : "#666",
@@ -132,24 +118,25 @@ export default function BookPurchasePanel({ book, bookId }) {
 
   return (
     <section
+      id="purchase-panel"
       aria-label="Cumpără cartea"
       style={{
-        marginTop: 24,
+        marginTop: 16,
         padding: 16,
         border: "1px solid #eee",
-        borderRadius: 12,
+        borderRadius: 16,
         background: "#fff",
       }}
     >
       <h2
         style={{
-          marginTop: 0,
+          margin: 0,
           marginBottom: 12,
           textAlign: "center",
           background: "#2a9d8f",
           color: "#fff",
           padding: "10px 12px",
-          borderRadius: 10,
+          borderRadius: 12,
           fontSize: 16,
         }}
       >
@@ -159,14 +146,17 @@ export default function BookPurchasePanel({ book, bookId }) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: 12,
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gap: 16,
         }}
       >
-        {FORMATS.map(card)}
+        {card("PDF", "📄")}
+        {card("EPUB", "📘")}
+        {card("Paperback", "🛒")}
+        {card("Audiobook", "🎧")}
       </div>
 
-      <p style={{ marginTop: 10, color: "#666", fontSize: 12, textAlign: "center" }}>
+      <p style={{ marginTop: 12, color: "#666", fontSize: 12, textAlign: "center" }}>
         După plată vei primi pe email linkurile de descărcare (48h valabile).
       </p>
     </section>

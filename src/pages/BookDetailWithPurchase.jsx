@@ -1,59 +1,50 @@
 // src/pages/BookDetailWithPurchase.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import BookDetail from "./BookDetail";
 import BookPurchasePanel from "../components/BookPurchasePanel";
 
-/**
- * Nu modificăm BookDetail.jsx. Aici doar îl afișăm
- * și ascundem din DOM butoanele vechi de cumpărare (RO/EN).
- */
 export default function BookDetailWithPurchase() {
   const { id } = useParams();
+  const panelRef = useRef(null);
 
   useEffect(() => {
-    // Ascundem butoanele/titlurile legate de cumpărare veche
-    const hideByButtonText = (textStart) => {
-      document
-        .querySelectorAll("button")
-        .forEach((btn) => {
-          const t = (btn.textContent || "").trim();
-          if (t.startsWith(textStart)) {
-            // ascunde butonul + containerul imediat următor (sub-opțiuni)
-            btn.style.display = "none";
-            if (btn.nextElementSibling && btn.nextElementSibling.tagName === "DIV") {
-              btn.nextElementSibling.style.display = "none";
-            }
-          }
-        });
-      // paperback vechi (poate fi button sau link/span)
-      Array.from(document.querySelectorAll("a, span, button")).forEach((el) => {
+    // 1) Ascundem vechiul UI de cumpărare (fără a atinge codul)
+    const hideBlocks = (startsWith) => {
+      Array.from(document.querySelectorAll("button, a, span")).forEach((el) => {
         const t = (el.textContent || "").trim();
-        if (t.startsWith("🛒 Cumpără Paperback")) {
+        if (t.startsWith(startsWith)) {
           el.style.display = "none";
-        }
-        if (t.startsWith("🎧 Audiobook")) {
-          // ascunde butonul + containerul cu "RO – în curând / EN – în curând"
-          el.style.display = "none";
-          if (el.parentElement && el.parentElement.nextElementSibling) {
-            const sib = el.parentElement.nextElementSibling;
-            // verificăm dacă e lista cu pilule
-            if (sib && sib.querySelector && sib.querySelector("span")) {
-              sib.style.display = "none";
-            }
+          // ascunde și containerul următor cu opțiuni (grid-ul de RO/EN sau pilule)
+          if (el.nextElementSibling && el.nextElementSibling.tagName === "DIV") {
+            el.nextElementSibling.style.display = "none";
           }
         }
       });
     };
+    hideBlocks("📄 Cumpără PDF");
+    hideBlocks("📘 Cumpără EPUB");
+    hideBlocks("🛒 Cumpără Paperback");
+    hideBlocks("🎧 Audiobook");
 
-    hideByButtonText("📄 Cumpără PDF");
-    hideByButtonText("📘 Cumpără EPUB");
+    // 2) Mutăm panelul nou IMEDIAT după butonul „Citește un fragment”
+    const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find(
+      (el) => (el.textContent || "").trim().startsWith("📖 Citește un fragment")
+    );
+    const panelEl = panelRef.current;
+    if (fragmentBtn && panelEl && panelEl.parentElement) {
+      // dacă nu e deja inserat lângă, îl mutăm după „Citește un fragment”
+      fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
+    }
   }, []);
 
   return (
     <div>
       <BookDetail />
-      <BookPurchasePanel bookId={id} />
+      {/* panelul e randat la final, apoi mutat în DOM sub „Citește un fragment” */}
+      <div ref={panelRef}>
+        <BookPurchasePanel bookId={id} />
+      </div>
     </div>
   );
 }
