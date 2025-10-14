@@ -1,32 +1,25 @@
 // /api/create-checkout-session.mjs
 import Stripe from "stripe";
+import { BOOKS } from "../src/data/books.js";
 
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
 const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-const CURRENCY = (process.env.CURRENCY || "EUR").toLowerCase();
-
 const stripe = new Stripe(STRIPE_KEY);
 
-// ✅ normalizăm id-urile din UI în cele folosite la livrare/download
-function normalizeId(raw) {
-  const s = String(raw || "");
-  if (s === "2") return "vietnam";
-  if (s.startsWith("o-zi-de-care-sa-ti-amintesti")) return "o-zi";
-  return s;
+// Construim ALLOWED_KEYS din books.js (ex: "o-zi-ro:PDF")
+const ALLOWED_KEYS = new Set();
+const BOOK_MAP = new Map();
+
+for (const book of BOOKS) {
+  BOOK_MAP.set(book.id, book);
+  if (book.files) {
+    for (const fmt of Object.keys(book.files)) {
+      if (book.availability?.[fmt]) {
+        ALLOWED_KEYS.add(`${book.id}:${fmt.toUpperCase()}`);
+      }
+    }
+  }
 }
-
-// 🔒 cheile de formate/limbi care AU fișier încărcat (oglindă cu /api/download.mjs)
-const ALLOWED_KEYS = new Set([
-  // O zi de care să-ți amintești — doar RO
-  "o-zi:PDF/RO",
-  "o-zi:EPUB/RO",
-
-  // Vietnam — RO + EN
-  "vietnam:PDF/RO",
-  "vietnam:EPUB/RO",
-  "vietnam:PDF/EN",
-  "vietnam:EPUB/EN",
-]);
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -41,14 +34,6 @@ function readBody(req) {
     });
     req.on("error", reject);
   });
-}
-
-// helper pt. cheie unică (bookId:FORMAT/LANG) – folosește id normalizat
-function buildNormFileKey(rawId, format, lang) {
-  const fmt = String(format || "").toUpperCase();
-  const lng = String(lang || "").toUpperCase();
-  const normId = normalizeId(rawId);
-  return normId && fmt ? `${normId}:${fmt}${lng ? `/${lng}` : ""}` : "";
 }
 
 export default async function handler(req, res) {
@@ -73,21 +58,20 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // ✅ filtrăm coșul la server – doar formatele care AU fișier
+    // ✅ filtrăm coșul doar la fișiere valide
     const cleaned = [];
     const rejected = [];
 
     for (const it of items) {
       const rawId = String(it.id || "");
       const fmt = String(it.format || "").toUpperCase();
-      const lng = String(it.lang || "").toUpperCase();
+      const fileKey = `${rawId}:${fmt}`;
+      const book = BOOK_MAP.get(rawId);
 
-      const fileKeyNorm = buildNormFileKey(rawId, fmt, lng);
-
-      if (ALLOWED_KEYS.has(fileKeyNorm)) {
-        cleaned.push({ ...it, _fileKey: fileKeyNorm });
+      if (book && ALLOWED_KEYS.has(fileKey)) {
+        cleaned.push({ ...it, _book: book, _fileKey: fileKey });
       } else {
-        rejected.push(fileKeyNorm || `${rawId}:${fmt}${lng ? `/${lng}` : ""}`);
+        rejected.push(fileKey);
       }
     }
 
@@ -96,35 +80,42 @@ export default async function handler(req, res) {
       res.setHeader("Content-Type", "application/json");
       return res.end(
         JSON.stringify({
-          error:
-            "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
+          error: "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
           rejected,
         })
       );
     }
 
-    // ✅ Stripe line items DOAR din coșul filtrat
-    const line_items = cleaned.map((it) => {
-      const rawId = String(it.id || "");
-      const normId = normalizeId(rawId);
-      const fmt = String(it.format || "").toUpperCase();
-      const lng = String(it.lang || "").toUpperCase();
-      const qty = Number(it.qty) || 1;
+    // ✅ verificăm monedă unică în tot coșul
+    const currencies = [...new Set(cleaned.map((it) => it._book.currency))];
+    if (currencies.length > 1) {
+      res.statusCode = 409;
+      res.setHeader("Content-Type", "application/json");
+      return res.end(
+        JSON.stringify({
+          error: "Finalizează separat comenzile pentru RON (RO) și EUR (EN).",
+        })
+      );
+    }
 
-      const fileKey = `${normId}:${fmt}${lng ? `/${lng}` : ""}`;
+    const currency = currencies[0].toLowerCase();
+
+    // ✅ Stripe line_items
+    const line_items = cleaned.map((it) => {
+      const fmt = String(it.format || "").toUpperCase();
+      const qty = Number(it.qty) || 1;
+      const book = it._book;
 
       return {
         price_data: {
-          currency: CURRENCY,
+          currency,
           unit_amount: Math.round(Number(it.price) * 100),
           product_data: {
-            name: `${it.title} — ${fmt}${lng ? `/${lng}` : ""}`,
+            name: `${book.title} — ${fmt}`,
             metadata: {
-              id: rawId,       // ce a trimis UI (pentru debugging)
-              normId,          // ce folosim la livrare
-              format: it.format || "",
-              lang: it.lang || "",
-              fileKey,         // pentru webhook + download
+              id: book.id,
+              format: fmt,
+              fileKey: `${book.id}:${fmt}`,
             },
           },
         },
