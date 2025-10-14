@@ -31,7 +31,9 @@ export default function Books() {
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
-    let list = [...BOOKS];
+
+    // ✅ pornește de la cărțile vizibile (hidden=false)
+    let list = BOOKS.filter((b) => !b.hidden);
 
     if (s) {
       list = list.filter((b) =>
@@ -163,7 +165,7 @@ export default function Books() {
               padding: 16,
               border: "1px solid #ddd",
               borderRadius: 16,
-              background: i % 2 === 0 ? "#fffef9" : "#f9fbfb", // fundal alternant
+              background: i % 2 === 0 ? "#fffef9" : "#f9fbfb",
               boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
               display: "flex",
               flexDirection: "column",
@@ -235,8 +237,8 @@ export default function Books() {
                     textAlign: "center",
                     padding: "10px 12px",
                     borderRadius: 10,
-                    background: "#d4a017",   // auriu cald
-      color: "#fff",
+                    background: "#d4a017",
+                    color: "#fff",
                     textDecoration: "none",
                     fontSize: 14,
                   }}
@@ -251,8 +253,8 @@ export default function Books() {
                   textAlign: "center",
                   padding: "10px 12px",
                   borderRadius: 10,
-                  background: "#2a9d8f",   // verde-albăstrui
-    color: "#fff",
+                  background: "#2a9d8f",
+                  color: "#fff",
                   textDecoration: "none",
                   fontSize: 14,
                 }}
