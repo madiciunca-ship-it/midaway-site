@@ -49,7 +49,7 @@ export const BOOKS = [
     pages: 272,
     isbn: "978-606-95545-7-9",
     dimensions: "13 x 20 cm",
-    weight: "—",
+    weight: "380 gr.",
 
     description: `Yda pornește singură în călătoria vieții ei, împinsă de o forță pe care nu și-o putea explica. Nu știe cu adevărat ce caută, dar speră să găsească răspunsuri la multitudinea de frământări și necunoscute din mintea ei. Pașii o poartă pe una dintre cele mai minunate insule ale lumii, nu numai pentru a o admira în splendoarea și desăvârșirea ei, dar și pentru că doar aici, în acest cadru și în tot acest context, reușește să își exploreze interiorul, să își depășească multe dintre barierele mentale auto-impuse, tipare adânc înrădăcinate. Oamenii, locurile, întâmplările, toate au însoțit-o pe traseu, Yda fiind prezentă acolo cu toată ființa ei. Palawan este copleșitor pentru ea, o transformă și o desăvârșește la un nivel pe care nici măcar ea nu și l-ar fi imaginat. Plină de inspirație, cartea a fost o reală provocare. Cu fiecare pagină parcursă, vei descoperi o lume nouă, vei simți ce a trăit Yda.`,
     hidden: false,
@@ -107,8 +107,8 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam",
-    subtitle: "Bucăți dintr-un suflet nomad",
+    title: "Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad",
+    subtitle: "Jurnal de călătorie în Filipine",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Vietnam",
@@ -133,16 +133,16 @@ export const BOOKS = [
     },
 
     files: {
-      PDF: "/files/zile-si-nopti-de-vietnam-ro.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-ro.epub",
+      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
     },
 
     pages: 314,
     isbn: "978-9-7304-1386-1",
     dimensions: "13 x 20 cm",
-    weight: "—",
+    weight: "380 gr.",
 
-    description: `Această călătorie nu este doar despre mine – este despre tine și despre oamenii care ne intersectează drumul, modelând ceea ce suntem și ceea ce urmează să devenim. Pășește spre extraordinar și lasă în urmă previzibilul...`,
+    description: `Această călătorie nu este doar despre mine – este despre tine și despre oamenii care ne intersectează drumul, modelând ceea ce suntem și ceea ce urmează să devenim. Pășește spre extraordinar și lasă în urmă previzibilul. Această carte te invită să ieși din zona de confort, chiar și pentru câteva momente, și să redescoperi fragmentele autentice din tine, ascunse în imprevizibil. Cum ar fi dacă fiecare pas spre necunoscut te-ar aduce mai aproape de cine ești cu adevărat? „Zile și Nopți de Vietnam: Bucăți dintr-un suflet nomad” nu este doar un jurnal de călătorie – este o explorare a sinelui. Prin agitația vibrantă și frumusețea calmă a Vietnamului, Yda descoperă magia din banalul fiecărei zile, țesând povești despre curaj, vulnerabilitate și bucuria de a trăi cu autenticitate. De la forfota orașelor aglomerate până la liniștea satelor ascunse în munți, fiecare moment se transformă într-o piesă dintr-un puzzle mai mare, dezvăluind adevăruri neașteptate ce ies la iveală atunci când te aventurezi dincolo de predictibil. Pentru cei care tânjesc după aventură, introspecție și curajul de a îmbrățișa viața în toate nuanțele sale, această carte este o invitație de a te rătăci și, totodată, de a te regăsi.`,
     hidden: false,
   },
 
@@ -180,8 +180,8 @@ export const BOOKS = [
     },
 
     files: {
-      PDF: "/files/zile-si-nopti-de-vietnam-en.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-en.epub",
+      PDF:  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
+      EPUB: "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
     },
 
     pages: 314,

@@ -14,8 +14,9 @@ for (const book of BOOKS) {
   BOOK_MAP.set(book.id, book);
   if (book.files) {
     for (const fmt of Object.keys(book.files)) {
-      if (book.availability?.[fmt]) {
-        ALLOWED_KEYS.add(`${book.id}:${fmt.toUpperCase()}`);
+      const up = String(fmt).toUpperCase();
+      if (book.availability?.[up]) {
+        ALLOWED_KEYS.add(`${book.id}:${up}`);
       }
     }
   }
@@ -58,7 +59,8 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // ✅ filtrăm coșul doar la fișiere valide
+    // 🔎 Filtrăm coșul: permit PDF/EPUB numai dacă avem fișier;
+    // pentru PAPERBACK permitem mereu (produs fizic → fără fișier).
     const cleaned = [];
     const rejected = [];
 
@@ -68,7 +70,17 @@ export default async function handler(req, res) {
       const fileKey = `${rawId}:${fmt}`;
       const book = BOOK_MAP.get(rawId);
 
-      if (book && ALLOWED_KEYS.has(fileKey)) {
+      if (!book) {
+        rejected.push(fileKey);
+        continue;
+      }
+
+      if (fmt === "PAPERBACK") {
+        cleaned.push({ ...it, _book: book, _fileKey: fileKey });
+        continue;
+      }
+
+      if (ALLOWED_KEYS.has(fileKey)) {
         cleaned.push({ ...it, _book: book, _fileKey: fileKey });
       } else {
         rejected.push(fileKey);
@@ -80,13 +92,14 @@ export default async function handler(req, res) {
       res.setHeader("Content-Type", "application/json");
       return res.end(
         JSON.stringify({
-          error: "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
+          error:
+            "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
           rejected,
         })
       );
     }
 
-    // ✅ verificăm monedă unică în tot coșul
+    // ✅ Monedă unică în tot coșul (din carte)
     const currencies = [...new Set(cleaned.map((it) => it._book.currency))];
     if (currencies.length > 1) {
       res.statusCode = 409;
@@ -97,10 +110,9 @@ export default async function handler(req, res) {
         })
       );
     }
+    const currency = (currencies[0] || "EUR").toLowerCase();
 
-    const currency = currencies[0].toLowerCase();
-
-    // ✅ Stripe line_items
+    // ✅ Line items Stripe
     const line_items = cleaned.map((it) => {
       const fmt = String(it.format || "").toUpperCase();
       const qty = Number(it.qty) || 1;
@@ -115,7 +127,7 @@ export default async function handler(req, res) {
             metadata: {
               id: book.id,
               format: fmt,
-              fileKey: `${book.id}:${fmt}`,
+              fileKey: `${book.id}:${fmt}`, // pentru webhook/download
             },
           },
         },
@@ -124,7 +136,7 @@ export default async function handler(req, res) {
     });
 
     const hasPaperback = cleaned.some(
-      (it) => String(it.format || "").toLowerCase() === "paperback"
+      (it) => String(it.format || "").toUpperCase() === "PAPERBACK"
     );
 
     const session = await stripe.checkout.sessions.create({
@@ -134,7 +146,20 @@ export default async function handler(req, res) {
       cancel_url: `${SITE}/#/checkout`,
       billing_address_collection: "auto",
       shipping_address_collection: hasPaperback
-        ? { allowed_countries: ["RO", "DE", "FR", "IT", "ES", "NL", "GB", "AT", "BE", "IE"] }
+        ? {
+            allowed_countries: [
+              "RO",
+              "DE",
+              "FR",
+              "IT",
+              "ES",
+              "NL",
+              "GB",
+              "AT",
+              "BE",
+              "IE",
+            ],
+          }
         : undefined,
     });
 
