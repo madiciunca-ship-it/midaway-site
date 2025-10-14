@@ -92,41 +92,54 @@ export default async function handler(req, res) {
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
       });
 
+      const hasDownloads = keys && keys.length > 0;
+
+      const actionBlock = hasDownloads
+        ? `
+          <div style="margin:22px 0">
+            <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
+              📥 Descarcă eBook-urile
+            </a>
+          </div>`
+        : `
+          <div style="margin:22px 0;padding:12px 14px;border-radius:10px;background:#f6f8f9;border:1px solid #e8ecef;color:#444;">
+            Comanda ta conține produse fizice (Paperback). Vei primi un email cu detalii de livrare în 24–48h.
+            Dacă ai întrebări, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>.
+          </div>`;
+      
       const html = `
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
-    <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)">
-        <tr>
-          <td align="center" style="padding:22px;background:#e8f4f2;">
-            <img src="${SITE}/logo-midaway.png" width="64" height="64" alt="Midaway" style="display:block;border-radius:12px;border:1px solid #dfe9e7" />
-          </td>
-        </tr>
-        <tr>
-          <td style="padding:28px">
-            <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
-              Mulțumim pentru comanda ta, ${name.toLowerCase()}!
-            </h1>
-            <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
-              Plata a fost procesată cu succes. Linkul tău de descărcare este valabil 48 de ore.
-            </p>
-            <div style="margin:22px 0">
-              <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
-                📥 Descarcă eBook-urile
-              </a>
-            </div>
-            <p style="margin:12px 0 0 0;color:#6a6a6a;font-size:12px">
-              Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="padding:16px 28px;background:#fafafa;color:#888;font-size:12px">
-            © 2025 MIDAWAY • <a href="${SITE}" style="color:#2a9d8f;text-decoration:none">midaway.vercel.app</a>
-          </td>
-        </tr>
-      </table>
-    </td></tr>
-  </table>`;
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
+          <tr><td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)">
+              <tr>
+                <td align="center" style="padding:22px;background:#e8f4f2;">
+                  <img src="${SITE}/logo-midaway.png" width="64" height="64" alt="Midaway" style="display:block;border-radius:12px;border:1px solid #dfe9e7" />
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:28px">
+                  <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
+                    Mulțumim pentru comanda ta, ${name.toLowerCase()}!
+                  </h1>
+                  <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
+                    Plata a fost procesată cu succes.
+                    ${hasDownloads ? "Linkul tău de descărcare este valabil 48 de ore." : "Am înregistrat comanda ta pentru produsele fizice."}
+                  </p>
+                  ${actionBlock}
+                  <p style="margin:12px 0 0 0;color:#6a6a6a;font-size:12px">
+                    Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="padding:16px 28px;background:#fafafa;color:#888;font-size:12px">
+                  © 2025 MIDAWAY • <a href="${SITE}" style="color:#2a9d8f;text-decoration:none">midaway.vercel.app</a>
+                </td>
+              </tr>
+            </table>
+          </td></tr>
+        </table>`;
+      
 
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,

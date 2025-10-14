@@ -7,17 +7,22 @@ const FORMSPREE_ENDPOINT =
 
 export default function Checkout() {
   const { items, total, clear } = useCart();
-  const [error, setError] = useState(null); // 🟢 nou: stare pentru erori
+  const [error, setError] = useState(null); // 🟢 pentru mesajele din server (409 etc.)
+
+  const currencyOf = (i) =>
+    (i?.currency || "").toUpperCase() === "EUR" ? "EUR" : "RON";
+
+  const primaryCurrency = items.length ? currencyOf(items[0]) : "RON";
 
   const orderText = useMemo(() => {
     if (items.length === 0) return "Coș gol.";
     return items
-      .map(
-        (i) =>
-          `${i.title} – ${i.format}${i.lang ? ` ${i.lang}` : ""} × ${i.qty} = ${
-            i.price * i.qty
-          } lei`
-      )
+      .map((i) => {
+        const cur = currencyOf(i);
+        return `${i.title} – ${i.format}${
+          i.lang ? ` ${i.lang}` : ""
+        } × ${i.qty} = ${i.price * i.qty} ${cur}`;
+      })
       .join("\n");
   }, [items]);
 
@@ -26,13 +31,14 @@ export default function Checkout() {
     if (!items.length) return alert("Coșul este gol!");
     try {
       setError(null); // resetăm erorile anterioare
+
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items }),
       });
 
-      // 🟠 dacă primim 409 (coș mixt RON/EUR)
+      // 🟠 coș mixt RON/EUR → mesaj clar
       if (res.status === 409) {
         const data = await res.json().catch(() => ({}));
         setError(
@@ -42,11 +48,17 @@ export default function Checkout() {
         return;
       }
 
-      const data = await res.json();
-      if (res.ok && data.url) {
-        window.location.href = data.url; // redirect către Stripe
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data?.error || "A apărut o eroare la inițierea plății.");
+        return;
+      }
+
+      const { url } = await res.json();
+      if (url) {
+        window.location.href = url; // redirect către Stripe
       } else {
-        setError(data?.error || "Eroare la inițierea plății.");
+        setError("Nu am primit URL-ul de plată de la Stripe.");
       }
     } catch (e) {
       console.error(e);
@@ -67,15 +79,18 @@ export default function Checkout() {
             {items.map((i) => (
               <li key={i.key}>
                 {i.title} — {i.format}
-                {i.lang ? ` ${i.lang}` : ""} × {i.qty} — {i.price * i.qty} lei
+                {i.lang ? ` ${i.lang}` : ""} × {i.qty} — {i.price * i.qty}{" "}
+                {currencyOf(i)}
               </li>
             ))}
           </ul>
           <p>
-            <strong>Total: {total} lei</strong>
+            <strong>
+              Total: {total} {primaryCurrency}
+            </strong>
           </p>
 
-          {/* 🟢 Mesaj eroare, dacă există */}
+          {/* 🟢 banner eroare, dacă e cazul */}
           {error && (
             <div
               style={{
@@ -140,7 +155,12 @@ export default function Checkout() {
               rows={Math.min(8, items.length + 3)}
               style={{ ...field, fontFamily: "monospace" }}
             />
-            <input name="total" readOnly value={`${total} lei`} style={field} />
+            <input
+              name="total"
+              readOnly
+              value={`${total} ${primaryCurrency}`}
+              style={field}
+            />
             <button
               type="submit"
               style={{

@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { SITE_FLAGS } from "../config";
 
 export default function Footer() {
+  const showDon = SITE_FLAGS.showDonations;
+  const showSpon = SITE_FLAGS.showSponsorships;
+
   return (
     <footer className="footer">
       <div className="container footer-bar">
@@ -15,9 +19,19 @@ export default function Footer() {
         </div>
 
         <div className="footer-links">
-          <Link to="/donatii">Donații</Link>
-          <span>•</span>
-          <Link to="/sponsorizari">Sponsorizări</Link>
+          {showDon && (
+            <>
+              <Link to="/donatii">Donații</Link>
+              <span>•</span>
+            </>
+          )}
+          {showSpon && (
+            <>
+              <Link to="/sponsorizari">Sponsorizări</Link>
+              <span>•</span>
+            </>
+          )}
+          <Link to="/contact">Contact</Link>
           <span>•</span>
           <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>
         </div>

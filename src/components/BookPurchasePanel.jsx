@@ -37,15 +37,17 @@ export default function BookPurchasePanel({ book, bookId }) {
 
   const onAdd = (format) => {
     const price = prices?.[format] ?? 0;
+    const currencyLabel = (currency || "RON").toUpperCase(); // "RON" | "EUR"
     add({
       id,
       title,
-      format,       // "PDF" | "EPUB" | "Paperback" | "Audiobook"
+      format,
       price,
-      // lang nu mai e necesar (book.id include limba)
+      currency: currencyLabel, // ✅ acum fiecare item are moneda lui
       qty: 1,
     });
   };
+  
 
   const card = (fmt, icon) => {
     const avail = Boolean(availability?.[fmt]);
