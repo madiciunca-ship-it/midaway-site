@@ -11,6 +11,7 @@ async function readRawBody(req) {
   return Buffer.concat(chunks);
 }
 
+// semnăm tokenul de download (valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -42,9 +43,10 @@ export default async function handler(req, res) {
 
   if (event.type === "checkout.session.completed") {
     try {
-      const session = await stripe.checkout.sessions.retrieve(event.data.object.id, {
-        expand: ["customer_details"],
-      });
+      const session = await stripe.checkout.sessions.retrieve(
+        event.data.object.id,
+        { expand: ["customer_details"] }
+      );
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
@@ -53,7 +55,7 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // 1) ÎNCERCĂM ÎNTÂI din metadata-ul sesiunii
+      // 1️⃣ Încercăm întâi să citim direct metadata-ul sesiunii (dacă a fost pus acolo)
       let keys = [];
       try {
         if (session.metadata?.keys) {
@@ -62,21 +64,29 @@ export default async function handler(req, res) {
         }
       } catch (_) {}
 
-      // 2) FALLBACK: citim line items + product.metadata.fileKey
+      // 2️⃣ Fallback: extragem fileKey din line_items
       if (!keys.length) {
         const li = await stripe.checkout.sessions.listLineItems(session.id, {
           expand: ["data.price.product"],
         });
         keys =
-          li?.data?.map((it) => it?.price?.product?.metadata?.fileKey).filter(Boolean) || [];
+          li?.data
+            ?.map((it) => it?.price?.product?.metadata?.fileKey)
+            ?.filter(Boolean) || [];
       }
 
-      const exp = Date.now() + 48 * 60 * 60 * 1000;
+      // Eliminăm duplicate, sortăm pentru consistență
+      keys = [...new Set(keys)].sort();
+
+      const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
       const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
+      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(
+        token
+      )}`;
 
+      // ✉️ configurăm email-ul
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
