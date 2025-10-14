@@ -1,5 +1,6 @@
 // /api/download.mjs
 import crypto from "crypto";
+import { BOOKS } from "../src/data/books.js";
 
 // verificare token HMAC (valabilitate 48h)
 function verifyToken(token) {
@@ -16,60 +17,26 @@ function verifyToken(token) {
 
     const data = JSON.parse(Buffer.from(bodyB64, "base64url").toString("utf8"));
     if (!data || !data.exp || Date.now() > Number(data.exp)) return null; // expirat
-    return data; // { sid, email, keys?, exp }
+    return data; // { sid, email, keys, exp }
   } catch (err) {
     console.error("Eroare verificare token:", err);
     return null;
   }
 }
 
-// === HARTA: <bookId>:<FORMAT>/<LANG> → URL public din /public/files
-const FILES = {
-  // O zi de care să-ți amintești
-  "o-zi:PDF/RO":  "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
-  "o-zi:EPUB/RO": "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+// Construim dinamic hărțile: <bookId>:<FORMAT> → url și etichetă
+const FILES = {};
+const LABELS = {};
 
-  // Zile și nopți de Vietnam — canonical
-  "vietnam:PDF/RO":  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
-  "vietnam:EPUB/RO": "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "vietnam:PDF/EN":  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "vietnam:EPUB/EN": "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
-
-  // ✅ aliasuri pentru ID vechi "2"
-  "2:PDF/RO":  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
-  "2:EPUB/RO": "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.epub",
-  "2:PDF/EN":  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-  "2:EPUB/EN": "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
-};
-
-// etichete frumoase în listă
-const LABELS = {
-  "o-zi:PDF/RO":  "O zi de care să-ți amintești — PDF/RO",
-  "o-zi:EPUB/RO": "O zi de care să-ți amintești — EPUB/RO",
-
-  "vietnam:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
-  "vietnam:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
-  "vietnam:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
-  "vietnam:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
-
-  // ✅ aliasuri etichete pentru "2:*"
-  "2:PDF/RO":  "Zile și nopți de Vietnam — PDF/RO",
-  "2:EPUB/RO": "Zile și nopți de Vietnam — EPUB/RO",
-  "2:PDF/EN":  "Days and Nights of Vietnam — PDF/EN",
-  "2:EPUB/EN": "Days and Nights of Vietnam — EPUB/EN",
-};
-
-// ——— NORMALIZARE CHEI ———
-// orice cheie care începe cu `zile-si-nopti-de-vietnam...:` sau `vietnam:`
-// o transformăm în varianta canonică `2:<FORMAT>/<LANG>`
-function normalizeKey(key) {
-  if (!key) return key;
-  const k = String(key).trim();
-
-  if (/^zile-si-nopti-de-vietnam/i.test(k) || /^vietnam:/i.test(k)) {
-    return k.replace(/^[^:]+:/, "2:");
+for (const book of BOOKS) {
+  if (!book?.files) continue;
+  const title = book.title || book.id;
+  for (const [fmtRaw, url] of Object.entries(book.files)) {
+    const fmt = String(fmtRaw).toUpperCase();
+    const key = `${book.id}:${fmt}`;
+    FILES[key] = url; // ex: "/files/....pdf"
+    LABELS[key] = `${title} — ${fmt}`;
   }
-  return k; // „O zi…” lăsăm așa cum vine
 }
 
 export default async function handler(req, res) {
@@ -87,21 +54,22 @@ export default async function handler(req, res) {
 
     const data = verifyToken(token);
     if (!data) {
-      res.status(403).send("Link invalid sau expirat. Te rugăm să ne contactezi pentru reactivare.");
+      res
+        .status(403)
+        .send("Link invalid sau expirat. Te rugăm să ne contactezi pentru reactivare.");
       return;
     }
 
     const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
     const rawKeys = Array.isArray(data.keys) ? data.keys : [];
+    // Cheile din token sunt deja în forma nouă <bookId>:<FORMAT>
+    const allowedKeys = rawKeys.filter(Boolean);
 
-    // normalizăm toate cheile din token
-    const allowedKeys = rawKeys.map(normalizeKey);
-
-    // DESCĂRCARE DIRECTĂ: ?f=<key>
+    // DESCĂRCARE DIRECTĂ: ?f=<bookId>:<FORMAT>
     if (f) {
-      const nf = normalizeKey(f);
-      if (FILES[nf] && allowedKeys.includes(nf)) {
-        const fileUrl = `${SITE}${FILES[nf]}`; // URL public (din /public/files)
+      const key = String(f);
+      if (FILES[key] && allowedKeys.includes(key)) {
+        const fileUrl = `${SITE}${FILES[key]}`; // URL public (din /public/files)
         res.writeHead(302, { Location: fileUrl });
         res.end();
         return;
@@ -115,7 +83,9 @@ export default async function handler(req, res) {
         (key) =>
           `<li>📥 <a href="${SITE}/api/download?token=${encodeURIComponent(
             token
-          )}&f=${encodeURIComponent(key)}" style="color:#2a9d8f;text-decoration:none;font-weight:600">${LABELS[key] || key}</a></li>`
+          )}&f=${encodeURIComponent(
+            key
+          )}" style="color:#2a9d8f;text-decoration:none;font-weight:600">${LABELS[key] || key}</a></li>`
       )
       .join("");
 
