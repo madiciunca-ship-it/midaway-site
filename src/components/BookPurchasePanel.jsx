@@ -49,10 +49,9 @@ export default function BookPurchasePanel({ book, bookId }) {
 
   const card = (fmt, icon) => {
     const avail = Boolean(availability?.[fmt]);
-    const price = prices?.[fmt];
-    const label =
-      avail && Number.isFinite(Number(price)) ? money(price, currency) : 
-      currency === "EUR" ? "soon" : "în curând";
+    const price = Number(prices?.[fmt]) || 0;
+    const currencyLabel = currency?.toUpperCase() === "EUR" ? "EUR" : "RON";
+    const labelSoon = currency === "EUR" ? "soon" : "în curând";
   
     return (
       <div
@@ -63,8 +62,11 @@ export default function BookPurchasePanel({ book, bookId }) {
           padding: 12,
           background: "#fff",
           boxShadow: "0 6px 16px rgba(0,0,0,.05)",
+          width: "100%",
+          minWidth: 180,
         }}
       >
+        {/* titlu + badge */}
         <div
           style={{
             display: "flex",
@@ -73,7 +75,14 @@ export default function BookPurchasePanel({ book, bookId }) {
             marginBottom: 6,
           }}
         >
-          <strong style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 14 }}>
+          <strong
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              fontSize: 14,
+            }}
+          >
             <span>{icon}</span> {fmt}
           </strong>
           {!avail && (
@@ -88,15 +97,25 @@ export default function BookPurchasePanel({ book, bookId }) {
                 textTransform: "uppercase",
               }}
             >
-              {currency === "EUR" ? "soon" : "în curând"}
+              {labelSoon}
             </span>
           )}
         </div>
   
-        <div style={{ fontSize: 13, color: "#333", marginBottom: 10, textAlign: "center" }}>
-          {label}
+        {/* preț + monedă */}
+        <div
+          style={{
+            fontSize: 13,
+            color: "#333",
+            marginBottom: 10,
+            textAlign: "center",
+            minHeight: 18,
+          }}
+        >
+          {avail ? `${price} ${currencyLabel}` : `0 ${currencyLabel}`}
         </div>
   
+        {/* buton */}
         <button
           disabled={!avail}
           onClick={() => onAdd(fmt)}
@@ -111,15 +130,13 @@ export default function BookPurchasePanel({ book, bookId }) {
             fontWeight: 600,
             fontSize: 13,
           }}
-          aria-label={
-            avail ? `Adaugă în coș ${title} — ${fmt}` : `${fmt} indisponibil`
-          }
         >
-          {avail ? "Adaugă în coș" : currency === "EUR" ? "soon" : "în curând"}
+          {avail ? "Adaugă în coș" : labelSoon}
         </button>
       </div>
     );
   };
+  
   
 
   return (
@@ -150,12 +167,14 @@ export default function BookPurchasePanel({ book, bookId }) {
       </h2>
 
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: 16,
-        }}
-      >
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 12,
+    marginTop: 12,
+  }}
+>
+
         {card("PDF", "📄")}
         {card("EPUB", "📘")}
         {card("Paperback", "🛒")}
