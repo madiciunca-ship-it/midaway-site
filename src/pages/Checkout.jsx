@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useCart } from "../context/CartContext";
 
 // endpoint Formspree
@@ -7,6 +7,7 @@ const FORMSPREE_ENDPOINT =
 
 export default function Checkout() {
   const { items, total, clear } = useCart();
+  const [error, setError] = useState(null); // 🟢 nou: stare pentru erori
 
   const orderText = useMemo(() => {
     if (items.length === 0) return "Coș gol.";
@@ -24,20 +25,32 @@ export default function Checkout() {
   const payWithCard = async () => {
     if (!items.length) return alert("Coșul este gol!");
     try {
+      setError(null); // resetăm erorile anterioare
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items }),
       });
+
+      // 🟠 dacă primim 409 (coș mixt RON/EUR)
+      if (res.status === 409) {
+        const data = await res.json().catch(() => ({}));
+        setError(
+          data?.error ||
+            "Finalizează separat comenzile pentru RON (RO) și EUR (EN)."
+        );
+        return;
+      }
+
       const data = await res.json();
       if (res.ok && data.url) {
         window.location.href = data.url; // redirect către Stripe
       } else {
-        alert(data?.error || "Eroare la inițierea plății.");
+        setError(data?.error || "Eroare la inițierea plății.");
       }
     } catch (e) {
       console.error(e);
-      alert("A apărut o eroare.");
+      setError("A apărut o eroare de rețea.");
     }
   };
 
@@ -61,6 +74,23 @@ export default function Checkout() {
           <p>
             <strong>Total: {total} lei</strong>
           </p>
+
+          {/* 🟢 Mesaj eroare, dacă există */}
+          {error && (
+            <div
+              style={{
+                margin: "12px 0",
+                padding: "10px 12px",
+                borderRadius: 10,
+                border: "1px solid #f3d2d2",
+                background: "#fff0f0",
+                color: "#b42318",
+                fontSize: 14,
+              }}
+            >
+              {error}
+            </div>
+          )}
 
           {/* 🟢 Buton Stripe */}
           <button

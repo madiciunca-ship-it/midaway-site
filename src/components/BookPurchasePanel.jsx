@@ -51,17 +51,18 @@ export default function BookPurchasePanel({ book, bookId }) {
     const avail = Boolean(availability?.[fmt]);
     const price = prices?.[fmt];
     const label =
-      avail && Number.isFinite(Number(price)) ? money(price, currency) : "În curând";
-
+      avail && Number.isFinite(Number(price)) ? money(price, currency) : 
+      currency === "EUR" ? "soon" : "în curând";
+  
     return (
       <div
         key={fmt}
         style={{
           border: "1px solid #e7e7e7",
-          borderRadius: 16,
-          padding: 16,
+          borderRadius: 14,
+          padding: 12,
           background: "#fff",
-          boxShadow: "0 8px 24px rgba(0,0,0,.06)",
+          boxShadow: "0 6px 16px rgba(0,0,0,.05)",
         }}
       >
         <div
@@ -69,52 +70,57 @@ export default function BookPurchasePanel({ book, bookId }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginBottom: 8,
+            marginBottom: 6,
           }}
         >
-          <strong style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <strong style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 14 }}>
             <span>{icon}</span> {fmt}
           </strong>
           {!avail && (
             <span
               style={{
-                background: "#e5e7eb",
+                background: "#e7e7e7",
                 color: "#555",
                 borderRadius: 999,
-                padding: "2px 10px",
-                fontSize: 12,
-                fontWeight: 700,
+                padding: "1px 6px",
+                fontSize: 11,
+                fontWeight: 600,
+                textTransform: "uppercase",
               }}
             >
-              SOON
+              {currency === "EUR" ? "soon" : "în curând"}
             </span>
           )}
         </div>
-
-        <div style={{ fontSize: 14, color: "#333", marginBottom: 12 }}>{label}</div>
-
+  
+        <div style={{ fontSize: 13, color: "#333", marginBottom: 10, textAlign: "center" }}>
+          {label}
+        </div>
+  
         <button
           disabled={!avail}
           onClick={() => onAdd(fmt)}
           style={{
             width: "100%",
-            padding: "12px",
-            borderRadius: 12,
+            padding: "8px 10px",
+            borderRadius: 10,
             border: "1px solid #ddd",
             background: avail ? "#2a9d8f" : "#e5e5e5",
             color: avail ? "#fff" : "#666",
             cursor: avail ? "pointer" : "not-allowed",
-            fontWeight: 700,
+            fontWeight: 600,
+            fontSize: 13,
           }}
           aria-label={
             avail ? `Adaugă în coș ${title} — ${fmt}` : `${fmt} indisponibil`
           }
         >
-          {avail ? "Adaugă în coș" : "Indisponibil"}
+          {avail ? "Adaugă în coș" : currency === "EUR" ? "soon" : "în curând"}
         </button>
       </div>
     );
   };
+  
 
   return (
     <section
