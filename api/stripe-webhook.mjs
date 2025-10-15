@@ -55,25 +55,23 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // 1️⃣ Încercăm întâi să citim direct metadata-ul sesiunii (dacă a fost pus acolo)
-      let keys = [];
-      try {
-        if (session.metadata?.keys) {
-          const parsed = JSON.parse(session.metadata.keys);
-          if (Array.isArray(parsed)) keys = parsed.filter(Boolean);
-        }
-      } catch (_) {}
+      // 🔎 CITIM ÎNTOTDEAUNA line items → știm sigur dacă avem Paperback și ce eBooks există
+      const li = await stripe.checkout.sessions.listLineItems(session.id, {
+        expand: ["data.price.product"],
+      });
 
-      // 2️⃣ Fallback: extragem fileKey din line_items
-      if (!keys.length) {
-        const li = await stripe.checkout.sessions.listLineItems(session.id, {
-          expand: ["data.price.product"],
-        });
-        keys =
-          li?.data
-            ?.map((it) => it?.price?.product?.metadata?.fileKey)
-            ?.filter(Boolean) || [];
-      }
+      // fileKeys (doar pentru digitale)
+      let keys =
+        li?.data
+          ?.map((it) => it?.price?.product?.metadata?.fileKey)
+          ?.filter(Boolean) || [];
+
+      // detectăm dacă există Paperback în comandă
+      const formats =
+        li?.data
+          ?.map((it) => it?.price?.product?.metadata?.format?.toUpperCase())
+          ?.filter(Boolean) || [];
+      const hasPaperback = formats.some((f) => f === "PAPERBACK");
 
       // Eliminăm duplicate, sortăm pentru consistență
       keys = [...new Set(keys)].sort();
@@ -94,19 +92,22 @@ export default async function handler(req, res) {
 
       const hasDownloads = keys && keys.length > 0;
 
-      const actionBlock = hasDownloads
+      const downloadBlock = hasDownloads
         ? `
           <div style="margin:22px 0">
             <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
               📥 Descarcă eBook-urile
             </a>
           </div>`
-        : `
-          <div style="margin:22px 0;padding:12px 14px;border-radius:10px;background:#f6f8f9;border:1px solid #e8ecef;color:#444;">
-            Comanda ta conține produse fizice (Paperback). Vei primi un email cu detalii de livrare în 24–48h.
-            Dacă ai întrebări, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>.
-          </div>`;
-      
+        : "";
+
+      const paperbackNote = hasPaperback
+        ? `
+          <div style="margin:12px 0 0 0;padding:12px 14px;border-radius:10px;background:#f6f8f9;border:1px solid #e8ecef;color:#444;">
+            Comanda ta include și produse fizice (Paperback). Te contactăm în 24–48h cu detalii de livrare.
+          </div>`
+        : "";
+
       const html = `
         <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
           <tr><td align="center">
@@ -125,7 +126,8 @@ export default async function handler(req, res) {
                     Plata a fost procesată cu succes.
                     ${hasDownloads ? "Linkul tău de descărcare este valabil 48 de ore." : "Am înregistrat comanda ta pentru produsele fizice."}
                   </p>
-                  ${actionBlock}
+                  ${downloadBlock}
+                  ${paperbackNote}
                   <p style="margin:12px 0 0 0;color:#6a6a6a;font-size:12px">
                     Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>
                   </p>
@@ -139,7 +141,6 @@ export default async function handler(req, res) {
             </table>
           </td></tr>
         </table>`;
-      
 
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,
@@ -148,7 +149,7 @@ export default async function handler(req, res) {
         html,
       });
 
-      console.log("✅ Email trimis către:", email, "| keys:", keys);
+      console.log("✅ Email trimis către:", email, "| keys:", keys, "| hasPaperback:", hasPaperback);
     } catch (err) {
       console.error("Eroare procesare checkout.session.completed:", err);
     }

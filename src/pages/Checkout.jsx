@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useCart } from "../context/CartContext";
+import { BOOKS } from "../data/books"; // 🟢 nou
 
 // endpoint Formspree
 const FORMSPREE_ENDPOINT =
@@ -7,12 +8,18 @@ const FORMSPREE_ENDPOINT =
 
 export default function Checkout() {
   const { items, total, clear } = useCart();
-  const [error, setError] = useState(null); // 🟢 pentru mesajele din server (409 etc.)
+  const [error, setError] = useState(null);
 
-  const currencyOf = (i) =>
-    (i?.currency || "").toUpperCase() === "EUR" ? "EUR" : "RON";
+  // 🟢 determină moneda din item sau, dacă lipsește, din books.js
+  const currencyOf = (i) => {
+    const direct = (i?.currency || "").toUpperCase();
+    if (direct === "RON" || direct === "EUR") return direct;
+    const b = BOOKS.find((x) => x.id === i?.id);
+    return (b?.currency || "RON").toUpperCase();
+  };
 
   const primaryCurrency = items.length ? currencyOf(items[0]) : "RON";
+
 
   const orderText = useMemo(() => {
     if (items.length === 0) return "Coș gol.";

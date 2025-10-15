@@ -165,7 +165,7 @@ export default function Books() {
               padding: 16,
               border: "1px solid #ddd",
               borderRadius: 16,
-              background: i % 2 === 0 ? "#fffef9" : "#f9fbfb",
+              background: "#fffef9",
               boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
               display: "flex",
               flexDirection: "column",
