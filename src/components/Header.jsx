@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 // 👇 nou: cart context + drawer
 import { useCart } from "../context/CartContext";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "./CartDrawer.jsx";
 
 // 👇 nou: flags
 import { SITE_FLAGS } from "../config";

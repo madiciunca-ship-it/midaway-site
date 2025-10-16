@@ -1,10 +1,14 @@
 // src/components/CartDrawer.jsx
+console.log("CartDrawer v2 loaded");
+
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
+// DEBUG marker: dacă nu vezi asta în consolă, nu se încarcă fișierul corect
+console.log("CartDrawer v3 loaded — items:", items.length);
 
   // Închidere la ESC
   const onKeyDown = useCallback(
@@ -86,7 +90,7 @@ export default function CartDrawer({ open, onClose }) {
             borderBottom: "1px solid #eee",
           }}
         >
-          <strong>Coș</strong>
+          <strong>Coș — versiunea cu +/-</strong>
           <button
             type="button"
             onClick={onClose}
