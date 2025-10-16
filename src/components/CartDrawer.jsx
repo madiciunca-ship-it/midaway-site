@@ -1,16 +1,11 @@
 // src/components/CartDrawer.jsx
-console.log("CartDrawer v2 loaded");
-
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
-// DEBUG marker: dacă nu vezi asta în consolă, nu se încarcă fișierul corect
-console.log("CartDrawer v3 loaded — items:", items.length);
 
-  // Închidere la ESC
   const onKeyDown = useCallback(
     (e) => {
       if (!open) return;
@@ -18,13 +13,13 @@ console.log("CartDrawer v3 loaded — items:", items.length);
     },
     [open, onClose]
   );
-  
+
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
-  // Totaluri pe monedă
+  // totaluri pe monedă
   const totalsByCurrency = useMemo(() => {
     const map = new Map();
     for (const i of items) {
@@ -32,7 +27,7 @@ console.log("CartDrawer v3 loaded — items:", items.length);
       const addVal = Number(i.price) * (Number(i.qty) || 1);
       map.set(cur, (map.get(cur) || 0) + addVal);
     }
-    return Array.from(map.entries()); // ex: [ ["RON", 155], ["EUR", 20] ]
+    return Array.from(map.entries());
   }, [items]);
 
   const mixedCurrencies = totalsByCurrency.length > 1;
@@ -90,7 +85,7 @@ console.log("CartDrawer v3 loaded — items:", items.length);
             borderBottom: "1px solid #eee",
           }}
         >
-          <strong>Coș — versiunea cu +/-</strong>
+          <strong>Coș</strong>
           <button
             type="button"
             onClick={onClose}
@@ -144,6 +139,7 @@ console.log("CartDrawer v3 loaded — items:", items.length);
                     {it.lang ? ` • ${it.lang}` : ""}
                   </div>
 
+                  {/* cantitate + subtotal */}
                   <div
                     style={{
                       marginTop: 8,
@@ -152,7 +148,6 @@ console.log("CartDrawer v3 loaded — items:", items.length);
                       gap: 10,
                     }}
                   >
-                    {/* controale cantitate */}
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <button
                         type="button"
@@ -173,7 +168,6 @@ console.log("CartDrawer v3 loaded — items:", items.length);
                       </button>
                     </div>
 
-                    {/* subtotal */}
                     <div style={{ marginLeft: "auto", fontSize: 14 }}>
                       {unit} {cur} / buc • <strong>{sub} {cur}</strong>
                     </div>
@@ -217,7 +211,7 @@ console.log("CartDrawer v3 loaded — items:", items.length);
         </div>
 
         {/* footer */}
-        <div style={{ padding: 16, borderTop: "1px solid #eee" }}>
+        <div style={{ padding: 16, borderTop: "1px solid #eee", background: "#fff" }}>
           {mixedCurrencies && (
             <div
               style={{
@@ -234,7 +228,6 @@ console.log("CartDrawer v3 loaded — items:", items.length);
             </div>
           )}
 
-          {/* totaluri pe monedă */}
           <div style={{ display: "grid", gap: 6 }}>
             {totalsByCurrency.map(([cur, sum]) => (
               <div key={cur} style={{ display: "flex", justifyContent: "space-between" }}>

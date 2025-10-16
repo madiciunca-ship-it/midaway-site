@@ -1,13 +1,17 @@
 // src/components/Header.jsx
+
+
+
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // 👇 nou: cart context + drawer
 import { useCart } from "../context/CartContext";
-import CartDrawer from "./CartDrawerV2.jsx";
+import CartDrawer from "./CartDrawer.jsx";
 
 // 👇 nou: flags
 import { SITE_FLAGS } from "../config";
+
 
 const navItems = [
   { label: "Acasă", to: "/" },
@@ -37,7 +41,12 @@ export default function Header() {
   const [open, setOpen] = useState(false);          // mobile menu
   const [isMobile, setIsMobile] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);  // 👈 nou: cart drawer
-  const { count } = useCart();                      // 👈 nou: badge coș
+  const { count } = useCart();
+    // 👇 log pentru debugging 
+  useEffect(() => {
+    console.log("cartOpen =", cartOpen);
+  }, [cartOpen]);
+                     // 👈 nou: badge coș
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -87,6 +96,7 @@ export default function Header() {
           alt="Midaway logo"
           style={{ height: 44, width: "auto", display: "block", borderRadius: 8 }}
         />
+        <span id="marker-vizibil" style={{marginLeft:8,color:"#c00"}}>HEADER v2</span>
 
         {/* Desktop nav */}
         {!isMobile && (
@@ -127,15 +137,20 @@ export default function Header() {
         {/* Mobile actions (coș + toggle) */}
         {isMobile && (
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
-            {/* 👇 nou: buton coș (mobile) */}
+            {/* buton coș (desktop sau mobile) */}
             <button
-              onClick={() => setCartOpen(true)}
-              aria-label="Deschide coșul"
-              style={cartBtnStyle}
-            >
-              🧺
-              {count > 0 && <span style={badgeStyle}>{count}</span>}
-            </button>
+  onClick={() => {
+    console.log("🧺 CLICK cart — setCartOpen(true)");
+    setCartOpen(true);
+  }}
+  aria-label="Deschide coșul"
+  style={cartBtnStyle}
+>
+  🧺 Coș
+  {cartOpen && <span style={{ marginLeft: 6, fontSize: 12, color: "#c00" }}>(deschis)</span>}
+  {count > 0 && <span style={badgeStyle}>{count}</span>}
+</button>
+
 
             {/* Mobile toggle */}
             <button
@@ -183,6 +198,7 @@ export default function Header() {
 
       {/* 👇 nou: drawer coș (comun pentru desktop & mobile) */}
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+
     </header>
   );
 }
