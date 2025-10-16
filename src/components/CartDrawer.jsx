@@ -20,6 +20,7 @@ export default function CartDrawer({ open, onClose }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
+  // Totaluri pe monedă
   const totalsByCurrency = useMemo(() => {
     const map = new Map();
     for (const i of items) {
@@ -27,7 +28,7 @@ export default function CartDrawer({ open, onClose }) {
       const addVal = Number(i.price) * (Number(i.qty) || 1);
       map.set(cur, (map.get(cur) || 0) + addVal);
     }
-    return Array.from(map.entries()); // [ ["RON", 155], ["EUR", 20] ]
+    return Array.from(map.entries()); // ex: [ ["RON", 155], ["EUR", 20] ]
   }, [items]);
 
   const mixedCurrencies = totalsByCurrency.length > 1;
@@ -75,6 +76,7 @@ export default function CartDrawer({ open, onClose }) {
           flexDirection: "column",
         }}
       >
+        {/* header */}
         <div
           style={{
             padding: 16,
@@ -103,6 +105,7 @@ export default function CartDrawer({ open, onClose }) {
           </button>
         </div>
 
+        {/* listă produse */}
         <div
           style={{
             padding: 16,
@@ -120,6 +123,7 @@ export default function CartDrawer({ open, onClose }) {
               const qty = Number(it.qty) || 1;
               const unit = Number(it.price) || 0;
               const sub = unit * qty;
+
               return (
                 <div
                   key={it.key ?? i}
@@ -144,7 +148,7 @@ export default function CartDrawer({ open, onClose }) {
                       gap: 10,
                     }}
                   >
-                    {/* qty controls */}
+                    {/* controale cantitate */}
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <button
                         type="button"
@@ -165,6 +169,7 @@ export default function CartDrawer({ open, onClose }) {
                       </button>
                     </div>
 
+                    {/* subtotal */}
                     <div style={{ marginLeft: "auto", fontSize: 14 }}>
                       {unit} {cur} / buc • <strong>{sub} {cur}</strong>
                     </div>
@@ -207,6 +212,7 @@ export default function CartDrawer({ open, onClose }) {
           )}
         </div>
 
+        {/* footer */}
         <div style={{ padding: 16, borderTop: "1px solid #eee" }}>
           {mixedCurrencies && (
             <div

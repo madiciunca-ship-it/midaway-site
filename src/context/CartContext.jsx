@@ -93,16 +93,17 @@ export function CartProvider({ children }) {
           price: Number(price || 0),
           qty: 1,
           payLink,
-          currency: (currency || "RON").toUpperCase(), // ✅ păstrăm moneda pe item (RON/EUR)
+          currency: (currency || "RON").toUpperCase(),
         };
         dispatch({ type: "ADD", key, item });
       },
-      decrement: (key) => dispatch({ type: "DECREMENT", key }), // ✅ nou
+      decrement: (key) => dispatch({ type: "DECREMENT", key }),
       remove: (key) => dispatch({ type: "REMOVE", key }),
       clear: () => dispatch({ type: "CLEAR" }),
     }),
     [state.items, total, count]
   );
+  
 
   useEffect(() => {}, []);
 
