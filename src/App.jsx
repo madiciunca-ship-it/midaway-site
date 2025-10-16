@@ -27,19 +27,19 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 
-// 👇 contextul coșului + pagina de checkout
+// ✅ doar ClearCartOnThanks, FĂRĂ CartProvider aici
 import { ClearCartOnThanks } from "./context/CartContext";
 import Checkout from "./pages/Checkout";
 import ThanksOrder from "./pages/ThanksOrder.jsx";
 
-// 👇 ADĂUGAT: flags + wrapper route
+// flags + wrapper route
 import { SITE_FLAGS } from "./config";
 import ProtectedFlagRoute from "./components/ProtectedFlagRoute";
 
 export default function App() {
   return (
     <>
-      {/* ✅ golește coșul automat când ajungem pe /thanks */}
+      {/* golește coșul automat când ajungem pe /thanks */}
       <ClearCartOnThanks />
 
       <Header />
@@ -52,7 +52,6 @@ export default function App() {
           {/* Cărți */}
           <Route path="/carti" element={<Books />} />
           <Route path="/carti/:id" element={<BookDetailWithPurchase />} />
-          
           <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetailWithPurchase />} />
 
           {/* Blog */}
@@ -98,7 +97,7 @@ export default function App() {
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
 
-          {/* Checkout (nou) */}
+          {/* Checkout */}
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/thanks" element={<ThanksOrder />} />
 
@@ -114,7 +113,7 @@ export default function App() {
 
           {/* 404 */}
           <Route path="*" element={<div style={{ padding: 24 }}>Pagina nu există.</div>} />
-          </Routes>
+        </Routes>
       </main>
 
       <Footer />
