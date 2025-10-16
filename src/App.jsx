@@ -28,7 +28,7 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 
 // 👇 contextul coșului + pagina de checkout
-import { CartProvider, ClearCartOnThanks } from "./context/CartContext";
+import { ClearCartOnThanks } from "./context/CartContext";
 import Checkout from "./pages/Checkout";
 import ThanksOrder from "./pages/ThanksOrder.jsx";
 
@@ -38,7 +38,7 @@ import ProtectedFlagRoute from "./components/ProtectedFlagRoute";
 
 export default function App() {
   return (
-    <CartProvider>
+    <>
       {/* ✅ golește coșul automat când ajungem pe /thanks */}
       <ClearCartOnThanks />
 
@@ -114,10 +114,10 @@ export default function App() {
 
           {/* 404 */}
           <Route path="*" element={<div style={{ padding: 24 }}>Pagina nu există.</div>} />
-        </Routes>
+          </Routes>
       </main>
 
       <Footer />
-    </CartProvider>
+    </>
   );
 }
