@@ -160,7 +160,17 @@ export default function CartDrawer({ open, onClose }) {
                       <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
                       <button
                         type="button"
-                        onClick={() => add(it)}
+                        onClick={() =>
+                          add({
+                            id: it.id,
+                            title: it.title,
+                            format: it.format,
+                            lang: it.lang,
+                            price: it.price,
+                            payLink: it.payLink,
+                            currency: it.currency,
+                          })
+                        }
                         aria-label="Crește cantitatea"
                         style={qtyBtn}
                       >

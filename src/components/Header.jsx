@@ -96,7 +96,7 @@ export default function Header() {
           alt="Midaway logo"
           style={{ height: 44, width: "auto", display: "block", borderRadius: 8 }}
         />
-        <span id="marker-vizibil" style={{marginLeft:8,color:"#c00"}}>HEADER v2</span>
+        
 
         {/* Desktop nav */}
         {!isMobile && (
@@ -140,7 +140,7 @@ export default function Header() {
             {/* buton coș (desktop sau mobile) */}
             <button
   onClick={() => {
-    console.log("🧺 CLICK cart — setCartOpen(true)");
+    
     setCartOpen(true);
   }}
   aria-label="Deschide coșul"

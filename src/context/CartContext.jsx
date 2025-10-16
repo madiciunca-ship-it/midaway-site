@@ -26,23 +26,18 @@ function cartReducer(state, action) {
       const idx = state.items.findIndex((i) => i.key === key);
       const items =
         idx >= 0
-          ? state.items.map((it, i) => (i === idx ? { ...it, qty: it.qty + item.qty } : it))
-          : [...state.items, item];
+          ? state.items.map((it, i) =>
+              i === idx ? { ...it, qty: (Number(it.qty) || 0) + (Number(item.qty) || 1) } : it
+            )
+          : [...state.items, { ...item, qty: Number(item.qty) || 1 }];
       const next = { ...state, items };
       save(next);
       return next;
     }
     case "DECREMENT": {
-      const { key } = action;
-      const idx = state.items.findIndex((i) => i.key === key);
-      if (idx < 0) return state;
-      const cur = state.items[idx];
-      let items;
-      if ((cur.qty || 1) > 1) {
-        items = state.items.map((it, i) => (i === idx ? { ...it, qty: it.qty - 1 } : it));
-      } else {
-        items = state.items.filter((i) => i.key !== key);
-      }
+      const items = state.items
+        .map((it) => (it.key === action.key ? { ...it, qty: Math.max(0, (Number(it.qty) || 0) - 1) } : it))
+        .filter((it) => (Number(it.qty) || 0) > 0); // scoate itemul dacă ajunge la 0
       const next = { ...state, items };
       save(next);
       return next;
@@ -62,6 +57,7 @@ function cartReducer(state, action) {
       return state;
   }
 }
+
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, undefined, load);
@@ -85,11 +81,7 @@ export function CartProvider({ children }) {
         const safeLang = lang || "RO";
         const key = [id, format, safeLang].join("|");
         const item = {
-          key,
-          id,
-          title,
-          format,
-          lang: safeLang,
+          key, id, title, format, lang: safeLang,
           price: Number(price || 0),
           qty: 1,
           payLink,
