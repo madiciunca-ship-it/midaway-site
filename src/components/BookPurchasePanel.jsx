@@ -30,31 +30,42 @@ export default function BookPurchasePanel({ book, bookId }) {
     () => book || findBookByIdOrAlias(bookId),
     [book, bookId]
   );
-  const { add } = useCart(); // ✅ folosește API-ul existent
+  const { add } = useCart();
 
   if (!resolvedBook) return null;
-  const { prices = {}, availability = {}, currency, title, id } = resolvedBook;
+  const {
+    prices = {},
+    availability = {},
+    currency,
+    title,
+    id,
+    lang: bookLang, // 👈 avem limba din model (RO|EN)
+  } = resolvedBook;
+
+  // normalizăm limba/moneda pentru coș
+  const langLabel = (bookLang || "RO").toUpperCase();        // "RO" | "EN"
+  const currencyLabel = (currency || "RON").toUpperCase();   // "RON" | "EUR"
 
   const onAdd = (format) => {
     const price = prices?.[format] ?? 0;
-    const currencyLabel = (currency || "RON").toUpperCase(); // "RON" | "EUR"
     add({
       id,
       title,
       format,
+      lang: langLabel,            // ✅ PASĂM LIMBA ÎN COȘ
       price,
-      currency: currencyLabel, // ✅ acum fiecare item are moneda lui
+      currency: currencyLabel,    // ✅ monedă per carte
       qty: 1,
     });
   };
-  
 
   const card = (fmt, icon) => {
     const avail = Boolean(availability?.[fmt]);
     const price = Number(prices?.[fmt]) || 0;
-    const currencyLabel = currency?.toUpperCase() === "EUR" ? "EUR" : "RON";
-    const labelSoon = currency === "EUR" ? "soon" : "în curând";
-  
+
+    // ✅ badge bazat pe limba cărții, nu pe monedă
+    const labelSoon = langLabel === "EN" ? "soon" : "în curând";
+
     return (
       <div
         key={fmt}
@@ -103,7 +114,7 @@ export default function BookPurchasePanel({ book, bookId }) {
             </span>
           )}
         </div>
-  
+
         {/* preț + monedă */}
         <div
           style={{
@@ -116,7 +127,7 @@ export default function BookPurchasePanel({ book, bookId }) {
         >
           {avail ? `${price} ${currencyLabel}` : `0 ${currencyLabel}`}
         </div>
-  
+
         {/* buton */}
         <button
           disabled={!avail}
@@ -138,8 +149,6 @@ export default function BookPurchasePanel({ book, bookId }) {
       </div>
     );
   };
-  
-  
 
   return (
     <section
@@ -169,14 +178,13 @@ export default function BookPurchasePanel({ book, bookId }) {
       </h2>
 
       <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: 12,
-    marginTop: 12,
-  }}
->
-
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+          gap: 12,
+          marginTop: 12,
+        }}
+      >
         {card("PDF", "📄")}
         {card("EPUB", "📘")}
         {card("Paperback", "🛒")}

@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
-  const { items, add, decrement, remove, clear } = useCart();
+  const { items, increment, decrement, remove, clear } = useCart();
 
   const onKeyDown = useCallback(
     (e) => {
@@ -160,17 +160,7 @@ export default function CartDrawer({ open, onClose }) {
                       <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
                       <button
                         type="button"
-                        onClick={() =>
-                          add({
-                            id: it.id,
-                            title: it.title,
-                            format: it.format,
-                            lang: it.lang,
-                            price: it.price,
-                            payLink: it.payLink,
-                            currency: it.currency,
-                          })
-                        }
+                        onClick={() => increment(it.key)}
                         aria-label="Crește cantitatea"
                         style={qtyBtn}
                       >

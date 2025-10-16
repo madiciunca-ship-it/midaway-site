@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useReducer } from "react";
-import { useLocation } from "react-router-dom"; // ✅ nou: pentru detectarea rutei /thanks
+import { useLocation } from "react-router-dom"; // pentru detectarea rutei /thanks
 
 const CartContext = createContext(null);
 
@@ -34,30 +34,44 @@ function cartReducer(state, action) {
       save(next);
       return next;
     }
+
+    case "INCREMENT": {
+      const items = state.items.map((it) =>
+        it.key === action.key ? { ...it, qty: (Number(it.qty) || 0) + 1 } : it
+      );
+      const next = { ...state, items };
+      save(next);
+      return next;
+    }
+
     case "DECREMENT": {
       const items = state.items
-        .map((it) => (it.key === action.key ? { ...it, qty: Math.max(0, (Number(it.qty) || 0) - 1) } : it))
+        .map((it) =>
+          it.key === action.key ? { ...it, qty: Math.max(0, (Number(it.qty) || 0) - 1) } : it
+        )
         .filter((it) => (Number(it.qty) || 0) > 0); // scoate itemul dacă ajunge la 0
       const next = { ...state, items };
       save(next);
       return next;
     }
+
     case "REMOVE": {
       const items = state.items.filter((i) => i.key !== action.key);
       const next = { ...state, items };
       save(next);
       return next;
     }
+
     case "CLEAR": {
       const next = { items: [] };
       save(next);
       return next;
     }
+
     default:
       return state;
   }
 }
-
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, undefined, load);
@@ -78,10 +92,15 @@ export function CartProvider({ children }) {
       total,
       count,
       add: ({ id, title, format, lang, price, payLink, currency }) => {
-        const safeLang = lang || "RO";
+        // IMPORTANT: lang trebuie trimis corect din locul de add (ex. book.lang pentru EN)
+        const safeLang = (lang || "RO").toUpperCase();
         const key = [id, format, safeLang].join("|");
         const item = {
-          key, id, title, format, lang: safeLang,
+          key,
+          id,
+          title,
+          format,
+          lang: safeLang,
           price: Number(price || 0),
           qty: 1,
           payLink,
@@ -89,13 +108,13 @@ export function CartProvider({ children }) {
         };
         dispatch({ type: "ADD", key, item });
       },
+      increment: (key) => dispatch({ type: "INCREMENT", key }),
       decrement: (key) => dispatch({ type: "DECREMENT", key }),
       remove: (key) => dispatch({ type: "REMOVE", key }),
       clear: () => dispatch({ type: "CLEAR" }),
     }),
     [state.items, total, count]
   );
-  
 
   useEffect(() => {}, []);
 
@@ -108,10 +127,7 @@ export function useCart() {
   return ctx;
 }
 
-/* ✅ Nou: golește coșul automat când ajungem pe pagina de mulțumire (#/thanks).
-   - Funcționează cu HashRouter: useLocation().pathname === "/thanks".
-   - Are fallback și pe window.location.hash === "#/thanks".
-*/
+/* golește coșul automat când ajungem pe pagina de mulțumire (#/thanks). */
 export function ClearCartOnThanks() {
   const { clear, count } = useCart();
   const location = useLocation();
