@@ -1,11 +1,11 @@
-// src/components/CartDrawer.jsx
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
-  const { items, increment, decrement, remove, clear } = useCart();
+  const { items, add, decrement, remove, clear } = useCart();
 
+  // ESC închide
   const onKeyDown = useCallback(
     (e) => {
       if (!open) return;
@@ -21,13 +21,13 @@ export default function CartDrawer({ open, onClose }) {
 
   // totaluri pe monedă
   const totalsByCurrency = useMemo(() => {
-    const map = new Map();
+    const m = new Map();
     for (const i of items) {
       const cur = (i.currency || "RON").toUpperCase();
       const addVal = Number(i.price) * (Number(i.qty) || 1);
-      map.set(cur, (map.get(cur) || 0) + addVal);
+      m.set(cur, (m.get(cur) || 0) + addVal);
     }
-    return Array.from(map.entries());
+    return Array.from(m.entries());
   }, [items]);
 
   const mixedCurrencies = totalsByCurrency.length > 1;
@@ -148,6 +148,7 @@ export default function CartDrawer({ open, onClose }) {
                       gap: 10,
                     }}
                   >
+                    {/* controale cantitate */}
                     <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                       <button
                         type="button"
@@ -160,7 +161,7 @@ export default function CartDrawer({ open, onClose }) {
                       <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
                       <button
                         type="button"
-                        onClick={() => increment(it.key)}
+                        onClick={() => add(it)}
                         aria-label="Crește cantitatea"
                         style={qtyBtn}
                       >
@@ -168,6 +169,7 @@ export default function CartDrawer({ open, onClose }) {
                       </button>
                     </div>
 
+                    {/* subtotal */}
                     <div style={{ marginLeft: "auto", fontSize: 14 }}>
                       {unit} {cur} / buc • <strong>{sub} {cur}</strong>
                     </div>
@@ -187,22 +189,6 @@ export default function CartDrawer({ open, onClose }) {
                     >
                       🗑 Șterge
                     </button>
-                    {it.payLink && (
-                      <a
-                        href={it.payLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          padding: "6px 10px",
-                          borderRadius: 8,
-                          background: "#2a9d8f",
-                          color: "#fff",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Plătește acest produs
-                      </a>
-                    )}
                   </div>
                 </div>
               );
