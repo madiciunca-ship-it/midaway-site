@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AdminOrders from "./pages/AdminOrders";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -53,7 +54,7 @@ export default function App() {
           <Route path="/carti" element={<Books />} />
           <Route path="/carti/:id" element={<BookDetailWithPurchase />} />
           <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetailWithPurchase />} />
-
+          <Route path="/admin/orders" element={<AdminOrders />} />
           {/* Blog */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />

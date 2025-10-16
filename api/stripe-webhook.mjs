@@ -2,6 +2,8 @@
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+import { appendOrder } from "./_orders-store.mjs";
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -47,6 +49,41 @@ export default async function handler(req, res) {
         event.data.object.id,
         { expand: ["customer_details"] }
       );
+      // listăm line items pentru sumar comanda (și pentru currency corect)
+const li = await stripe.checkout.sessions.listLineItems(session.id, {
+  expand: ["data.price.product"],
+});
+
+const items = (li?.data || []).map((it) => ({
+  description: it.description,
+  quantity: it.quantity,
+  amount_total: (it.amount_total || 0) / 100,
+  currency: it.currency?.toUpperCase() || session.currency?.toUpperCase() || "RON",
+  fileKey: it?.price?.product?.metadata?.fileKey || null,
+}));
+
+const total_amount = (session.amount_total || 0) / 100;
+const currency = (session.currency || items[0]?.currency || "ron").toUpperCase();
+
+const order = {
+  id: session.id,
+  createdAt: Date.now(),
+  email,
+  name,
+  amount: total_amount,
+  currency,
+  items,
+  hasDownloads: Array.isArray(keys) && keys.length > 0,
+  status: "paid",
+};
+
+try {
+  await appendOrder(order);
+  console.log("🗂️ Order logged:", order.id);
+} catch (e) {
+  console.error("❌ Failed to append order:", e);
+}
+
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
