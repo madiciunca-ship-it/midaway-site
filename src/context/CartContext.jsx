@@ -1,3 +1,4 @@
+// src/context/CartContext.jsx
 import React, {
   createContext,
   useContext,
@@ -28,23 +29,33 @@ function save(state) {
 
 // ——— reducer
 function cartReducer(state, action) {
+  console.log("[CART] action =", action.type, action);
   switch (action.type) {
     case "ADD": {
       const { key, item } = action;
       const idx = state.items.findIndex((i) => i.key === key);
-      const items =
-        idx >= 0
-          ? state.items.map((it, i) =>
-              i === idx
-                ? { ...it, qty: (Number(it.qty) || 0) + (Number(item.qty) || 1) }
-                : it
-            )
-          : [...state.items, { ...item, qty: Number(item.qty) || 1 }];
+
+      let items;
+      if (idx >= 0) {
+        const nextQty =
+          (Number(state.items[idx]?.qty) || 0) + (Number(item.qty) || 1);
+        console.log("[CART] ADD → idx:", idx, "nextQty:", nextQty);
+        items = state.items.map((it, i) =>
+          i === idx ? { ...it, qty: nextQty } : it
+        );
+      } else {
+        const nextQty = Number(item.qty) || 1;
+        console.log("[CART] ADD new item → qty:", nextQty);
+        items = [...state.items, { ...item, qty: nextQty }];
+      }
+
       const next = { ...state, items };
       save(next);
       return next;
     }
+
     case "DECREMENT": {
+      console.log("[CART] DECREMENT key =", action.key);
       const items = state.items
         .map((it) =>
           it.key === action.key
@@ -56,17 +67,22 @@ function cartReducer(state, action) {
       save(next);
       return next;
     }
+
     case "REMOVE": {
+      console.log("[CART] REMOVE key =", action.key);
       const items = state.items.filter((i) => i.key !== action.key);
       const next = { ...state, items };
       save(next);
       return next;
     }
+
     case "CLEAR": {
+      console.log("[CART] CLEAR");
       const next = { items: [] };
       save(next);
       return next;
     }
+
     default:
       return state;
   }

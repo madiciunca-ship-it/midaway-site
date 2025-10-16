@@ -1,9 +1,15 @@
+// src/components/CartDrawer.jsx
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
+
+  // debug ușor — vezi în consolă când componenta e montată și câte iteme are
+  useEffect(() => {
+    console.log("🧺 CartDrawer mounted. items:", items.length, "open:", open);
+  }, [items.length, open]);
 
   // ESC închide
   const onKeyDown = useCallback(
