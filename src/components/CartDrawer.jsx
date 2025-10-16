@@ -69,7 +69,7 @@ export default function CartDrawer({ open, onClose }) {
           position: "absolute",
           top: 0,
           right: 0,
-          height: "100%",
+          height: "100vh",          // ← full viewport height (înainte era "100%")
           width: 360,
           maxWidth: "90vw",
           background: "#fff",
@@ -79,6 +79,7 @@ export default function CartDrawer({ open, onClose }) {
           transition: "transform .25s",
           display: "flex",
           flexDirection: "column",
+          zIndex: 999999,            // sigur peste orice
         }}
       >
         {/* header */}
@@ -110,11 +111,12 @@ export default function CartDrawer({ open, onClose }) {
           </button>
         </div>
 
-        {/* listă produse */}
-        <div
+         {/* listă produse */}
+         <div
           style={{
             padding: 16,
             flex: 1,
+            minHeight: 0,            // ← important ca overflow-ul să funcționeze în flex
             overflowY: "auto",
             display: "grid",
             gap: 12,
