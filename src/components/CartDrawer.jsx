@@ -1,10 +1,10 @@
 // src/components/CartDrawer.jsx
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 export default function CartDrawer({ open, onClose }) {
-  const { items, total, remove, clear } = useCart();
+  const { items, add, decrement, remove, clear } = useCart();
 
   // Închidere la ESC
   const onKeyDown = useCallback(
@@ -19,6 +19,18 @@ export default function CartDrawer({ open, onClose }) {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
+
+  const totalsByCurrency = useMemo(() => {
+    const map = new Map();
+    for (const i of items) {
+      const cur = (i.currency || "RON").toUpperCase();
+      const addVal = Number(i.price) * (Number(i.qty) || 1);
+      map.set(cur, (map.get(cur) || 0) + addVal);
+    }
+    return Array.from(map.entries()); // [ ["RON", 155], ["EUR", 20] ]
+  }, [items]);
+
+  const mixedCurrencies = totalsByCurrency.length > 1;
 
   return (
     <div
@@ -103,73 +115,126 @@ export default function CartDrawer({ open, onClose }) {
           {items.length === 0 ? (
             <div style={{ color: "#666" }}>Coșul este gol.</div>
           ) : (
-            items.map((it, i) => (
-              <div
-                key={it.key ?? i}
-                style={{
-                  border: "1px solid #eee",
-                  borderRadius: 12,
-                  padding: 12,
-                }}
-              >
-                <div style={{ fontWeight: 600 }}>{it.title}</div>
-                <div style={{ fontSize: 13, color: "#666" }}>
-                  {it.format}
-                  {it.lang ? ` • ${it.lang}` : ""}
-                </div>
-                <div style={{ marginTop: 6 }}>
-                  {it.price} lei × {it.qty}
-                </div>
-                <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
-                  <button
-                    type="button"
-                    onClick={() => remove(it.key)}
+            items.map((it, i) => {
+              const cur = (it.currency || "RON").toUpperCase();
+              const qty = Number(it.qty) || 1;
+              const unit = Number(it.price) || 0;
+              const sub = unit * qty;
+              return (
+                <div
+                  key={it.key ?? i}
+                  style={{
+                    border: "1px solid #eee",
+                    borderRadius: 12,
+                    padding: 12,
+                    background: "#fffef9",
+                  }}
+                >
+                  <div style={{ fontWeight: 600 }}>{it.title}</div>
+                  <div style={{ fontSize: 13, color: "#666" }}>
+                    {it.format}
+                    {it.lang ? ` • ${it.lang}` : ""}
+                  </div>
+
+                  <div
                     style={{
-                      padding: "6px 10px",
-                      borderRadius: 8,
-                      border: "1px solid #ddd",
-                      background: "#fff",
-                      cursor: "pointer",
+                      marginTop: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
                     }}
                   >
-                    Șterge
-                  </button>
-                  {it.payLink && (
-                    <a
-                      href={it.payLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    {/* qty controls */}
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <button
+                        type="button"
+                        onClick={() => decrement(it.key)}
+                        aria-label="Scade cantitatea"
+                        style={qtyBtn}
+                      >
+                        −
+                      </button>
+                      <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
+                      <button
+                        type="button"
+                        onClick={() => add(it)}
+                        aria-label="Crește cantitatea"
+                        style={qtyBtn}
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <div style={{ marginLeft: "auto", fontSize: 14 }}>
+                      {unit} {cur} / buc • <strong>{sub} {cur}</strong>
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
+                    <button
+                      type="button"
+                      onClick={() => remove(it.key)}
                       style={{
                         padding: "6px 10px",
                         borderRadius: 8,
-                        background: "#2a9d8f",
-                        color: "#fff",
-                        textDecoration: "none",
+                        border: "1px solid #ddd",
+                        background: "#fff",
+                        cursor: "pointer",
                       }}
                     >
-                      Plătește acest produs
-                    </a>
-                  )}
+                      🗑 Șterge
+                    </button>
+                    {it.payLink && (
+                      <a
+                        href={it.payLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: "6px 10px",
+                          borderRadius: 8,
+                          background: "#2a9d8f",
+                          color: "#fff",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Plătește acest produs
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
         <div style={{ padding: 16, borderTop: "1px solid #eee" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: 12,
-            }}
-          >
-            <span>Total</span>
-            <strong>
-              {typeof total === "number" ? total.toFixed(2) : total} lei
-            </strong>
+          {mixedCurrencies && (
+            <div
+              style={{
+                marginBottom: 10,
+                padding: "8px 10px",
+                borderRadius: 10,
+                border: "1px solid #f3d2d2",
+                background: "#fff0f0",
+                color: "#b42318",
+                fontSize: 12,
+              }}
+            >
+              Ai produse în RON și EUR. Finalizează plățile pe rând.
+            </div>
+          )}
+
+          {/* totaluri pe monedă */}
+          <div style={{ display: "grid", gap: 6 }}>
+            {totalsByCurrency.map(([cur, sum]) => (
+              <div key={cur} style={{ display: "flex", justifyContent: "space-between" }}>
+                <span>Total ({cur})</span>
+                <strong>{sum} {cur}</strong>
+              </div>
+            ))}
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
+
+          <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
             <button
               type="button"
               onClick={clear}
@@ -206,3 +271,11 @@ export default function CartDrawer({ open, onClose }) {
     </div>
   );
 }
+
+const qtyBtn = {
+  padding: "6px 10px",
+  border: "1px solid #ddd",
+  borderRadius: 8,
+  background: "#fff",
+  cursor: "pointer",
+};

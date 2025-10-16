@@ -32,6 +32,21 @@ function cartReducer(state, action) {
       save(next);
       return next;
     }
+    case "DECREMENT": {
+      const { key } = action;
+      const idx = state.items.findIndex((i) => i.key === key);
+      if (idx < 0) return state;
+      const cur = state.items[idx];
+      let items;
+      if ((cur.qty || 1) > 1) {
+        items = state.items.map((it, i) => (i === idx ? { ...it, qty: it.qty - 1 } : it));
+      } else {
+        items = state.items.filter((i) => i.key !== key);
+      }
+      const next = { ...state, items };
+      save(next);
+      return next;
+    }
     case "REMOVE": {
       const items = state.items.filter((i) => i.key !== action.key);
       const next = { ...state, items };
@@ -66,7 +81,7 @@ export function CartProvider({ children }) {
       items: state.items,
       total,
       count,
-      add: ({ id, title, format, lang, price, payLink }) => {
+      add: ({ id, title, format, lang, price, payLink, currency }) => {
         const safeLang = lang || "RO";
         const key = [id, format, safeLang].join("|");
         const item = {
@@ -78,9 +93,11 @@ export function CartProvider({ children }) {
           price: Number(price || 0),
           qty: 1,
           payLink,
+          currency: (currency || "RON").toUpperCase(), // ✅ păstrăm moneda pe item (RON/EUR)
         };
         dispatch({ type: "ADD", key, item });
       },
+      decrement: (key) => dispatch({ type: "DECREMENT", key }), // ✅ nou
       remove: (key) => dispatch({ type: "REMOVE", key }),
       clear: () => dispatch({ type: "CLEAR" }),
     }),
