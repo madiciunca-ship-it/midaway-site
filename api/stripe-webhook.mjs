@@ -4,7 +4,6 @@ import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { appendOrder } from "./_orders-store.mjs";
 
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 async function readRawBody(req) {
@@ -49,41 +48,6 @@ export default async function handler(req, res) {
         event.data.object.id,
         { expand: ["customer_details"] }
       );
-      // listăm line items pentru sumar comanda (și pentru currency corect)
-const li = await stripe.checkout.sessions.listLineItems(session.id, {
-  expand: ["data.price.product"],
-});
-
-const items = (li?.data || []).map((it) => ({
-  description: it.description,
-  quantity: it.quantity,
-  amount_total: (it.amount_total || 0) / 100,
-  currency: it.currency?.toUpperCase() || session.currency?.toUpperCase() || "RON",
-  fileKey: it?.price?.product?.metadata?.fileKey || null,
-}));
-
-const total_amount = (session.amount_total || 0) / 100;
-const currency = (session.currency || items[0]?.currency || "ron").toUpperCase();
-
-const order = {
-  id: session.id,
-  createdAt: Date.now(),
-  email,
-  name,
-  amount: total_amount,
-  currency,
-  items,
-  hasDownloads: Array.isArray(keys) && keys.length > 0,
-  status: "paid",
-};
-
-try {
-  await appendOrder(order);
-  console.log("🗂️ Order logged:", order.id);
-} catch (e) {
-  console.error("❌ Failed to append order:", e);
-}
-
 
       const email = session.customer_details?.email;
       const name = session.customer_details?.name || "Client";
@@ -92,27 +56,65 @@ try {
         return res.json({ received: true });
       }
 
-      // 🔎 CITIM ÎNTOTDEAUNA line items → știm sigur dacă avem Paperback și ce eBooks există
+      // 🔎 CITIM line items O SINGURĂ DATĂ — le folosim pentru:
+      //   - keys (ebook-uri)
+      //   - detectare Paperback
+      //   - sumar pentru log (mini-dashboard)
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
 
-      // fileKeys (doar pentru digitale)
+      // items pentru log (mini-dashboard)
+      const items =
+        (li?.data || []).map((it) => ({
+          description: it.description,
+          quantity: it.quantity,
+          amount_total: (it.amount_total || 0) / 100,
+          currency:
+            it.currency?.toUpperCase() ||
+            session.currency?.toUpperCase() ||
+            "RON",
+          fileKey: it?.price?.product?.metadata?.fileKey || null,
+          format:
+            it?.price?.product?.metadata?.format?.toUpperCase() || null,
+        })) || [];
+
+      // fileKeys pentru link de download (doar digitale)
       let keys =
-        li?.data
-          ?.map((it) => it?.price?.product?.metadata?.fileKey)
-          ?.filter(Boolean) || [];
+        items.map((it) => it.fileKey).filter(Boolean) || [];
 
-      // detectăm dacă există Paperback în comandă
-      const formats =
-        li?.data
-          ?.map((it) => it?.price?.product?.metadata?.format?.toUpperCase())
-          ?.filter(Boolean) || [];
-      const hasPaperback = formats.some((f) => f === "PAPERBACK");
+      // Paperback?
+      const hasPaperback = items.some((it) => it.format === "PAPERBACK");
 
-      // Eliminăm duplicate, sortăm pentru consistență
+      // unic + ordonat
       keys = [...new Set(keys)].sort();
 
+      // total & currency pentru log
+      const total_amount = (session.amount_total || 0) / 100;
+      const currency =
+        (session.currency || items[0]?.currency || "RON").toUpperCase();
+
+      // ——— LOG în mini-dashboard
+      try {
+        const order = {
+          id: session.id,
+          createdAt: Date.now(),
+          email,
+          name,
+          amount: total_amount,
+          currency,
+          items,
+          hasDownloads: keys.length > 0,
+          hasPaperback,
+          status: "paid",
+        };
+        await appendOrder(order);
+        console.log("🗂️ Order logged:", order.id);
+      } catch (e) {
+        console.error("❌ Failed to append order:", e);
+      }
+
+      // ——— Token descărcare (doar dacă există chei)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -127,7 +129,7 @@ try {
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
       });
 
-      const hasDownloads = keys && keys.length > 0;
+      const hasDownloads = keys.length > 0;
 
       const downloadBlock = hasDownloads
         ? `
@@ -161,7 +163,11 @@ try {
                   </h1>
                   <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
                     Plata a fost procesată cu succes.
-                    ${hasDownloads ? "Linkul tău de descărcare este valabil 48 de ore." : "Am înregistrat comanda ta pentru produsele fizice."}
+                    ${
+                      hasDownloads
+                        ? "Linkul tău de descărcare este valabil 48 de ore."
+                        : "Am înregistrat comanda ta pentru produsele fizice."
+                    }
                   </p>
                   ${downloadBlock}
                   ${paperbackNote}
@@ -186,7 +192,14 @@ try {
         html,
       });
 
-      console.log("✅ Email trimis către:", email, "| keys:", keys, "| hasPaperback:", hasPaperback);
+      console.log(
+        "✅ Email trimis către:",
+        email,
+        "| keys:",
+        keys,
+        "| hasPaperback:",
+        hasPaperback
+      );
     } catch (err) {
       console.error("Eroare procesare checkout.session.completed:", err);
     }
