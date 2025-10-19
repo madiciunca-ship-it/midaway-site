@@ -11,13 +11,12 @@
     "preview": "vite preview --port 5173"
   },
   "dependencies": {
+    "react": "x.y.z",
+    "react-dom": "x.y.z",
+    "react-router-dom": "x.y.z",
+    "stripe": "x.y.z",
+    "nodemailer": "x.y.z",
     "@vercel/blob": "^0.23.4"
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-image-gallery": "^1.4.0",
-    "react-router-dom": "^6.22.3",
-    "stripe": "^13.10.0",
-    "nodemailer": "^6.9.15"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.0",
