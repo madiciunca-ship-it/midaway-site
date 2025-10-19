@@ -2,75 +2,73 @@
 import { put } from "@vercel/blob";
 
 const FILE = "orders.json";
-const PUBLIC_URL = `https://blob.vercel-storage.com/${FILE}`;
 
-/**
- * Citește lista de comenzi din Blob Storage.
- * - încearcă public (Hobby, access: "public")
- * - fallback: cu token (dacă e cazul)
- */
-export async function readOrders() {
-  // 1) încercare publică
-  try {
-    const r = await fetch(PUBLIC_URL, { cache: "no-store" });
-    if (r.status === 404) {
-      console.log("[orders-store] public GET 404 (încă nu există).");
-    } else if (!r.ok) {
-      console.warn("[orders-store] public GET not ok:", r.status, r.statusText);
-    } else {
-      const txt = await r.text();
-      if (!txt) return [];
-      return JSON.parse(txt);
-    }
-  } catch (e) {
-    console.warn("[orders-store] public GET error:", e);
-  }
+// ⚠️ Hostul public al Blob-ului (setează în Vercel → Environment Variables)
+// Exemplu de valoare: https://midaway-abc123.public.blob.vercel-storage.com
+const PUBLIC_BASE = (process.env.BLOB_PUBLIC_BASE || "").replace(/\/+$/, "");
 
-  // 2) fallback cu token (unele setup-uri mai vechi)
+async function fetchJson(url) {
+  const r = await fetch(url, { cache: "no-store" });
+  if (r.status === 404) return { ok: false, status: 404, json: [] };
+  if (!r.ok) return { ok: false, status: r.status, text: await r.text() };
   try {
-    const r2 = await fetch(PUBLIC_URL, {
-      cache: "no-store",
-      headers: { Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` },
-    });
-    if (r2.status === 404) {
-      console.log("[orders-store] token GET 404 (încă nu există).");
-      return [];
-    }
-    if (!r2.ok) {
-      console.error("[orders-store] token GET not ok:", r2.status, r2.statusText);
-      return [];
-    }
-    const txt2 = await r2.text();
-    return txt2 ? JSON.parse(txt2) : [];
+    const txt = await r.text();
+    return { ok: true, status: 200, json: txt ? JSON.parse(txt) : [] };
   } catch (e) {
-    console.error("[orders-store] token GET error:", e);
-    return [];
+    return { ok: false, status: 500, text: "invalid_json" };
   }
 }
 
 /**
- * Adaugă o comandă nouă și rescrie fișierul JSON.
- * Hobby Blob => access: "public", addRandomSuffix: false
+ * Citește lista de comenzi din Blob Storage (public).
+ * Necesită BLOB_PUBLIC_BASE setat corect.
+ */
+export async function readOrders() {
+  if (!PUBLIC_BASE) {
+    console.warn(
+      "⚠️ BLOB_PUBLIC_BASE nu este setat. Setează hostul public din logul scrierii (🟢 Blob write url)."
+    );
+    return [];
+  }
+
+  const url = `${PUBLIC_BASE}/${FILE}`;
+  const res = await fetchJson(url);
+
+  if (!res.ok) {
+    console.error("readOrders error:", { url, status: res.status, text: res.text });
+    return [];
+  }
+  return Array.isArray(res.json) ? res.json : [];
+}
+
+/**
+ * Adaugă o comandă nouă în începutul listei și rescrie fișierul JSON.
+ * Planul Hobby → necesită { access: "public" } la scriere.
  */
 export async function appendOrder(order) {
-  const list = await readOrders();
-  list.unshift(order);
+  // Citiți ce avem deja (poate fi gol prima dată)
+  let list = [];
+  try {
+    list = await readOrders();
+  } catch {
+    list = [];
+  }
 
+  list.unshift(order);
   const body = JSON.stringify(list, null, 2);
 
-  try {
-    const result = await put(FILE, body, {
-      access: "public",                 // ⬅️ obligatoriu pe Hobby
-      contentType: "application/json",
-      addRandomSuffix: false,           // suprascriem același fișier
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-    });
+  // scriem / suprascriem fișierul public
+  const { url } = await put(FILE, body, {
+    access: "public",                 // ⬅️ important pe Hobby
+    contentType: "application/json",
+    addRandomSuffix: false,           // suprascriem același fișier
+    token: process.env.BLOB_READ_WRITE_TOKEN, // token RW
+  });
 
-    // log-uri ajutătoare
-    console.log("🗂️ Order logged:", order.id);
-    console.log("🟢 Blob write url:", result?.url || "(no url)");
-  } catch (e) {
-    console.error("❌ appendOrder put() failed:", e);
-    throw e;
-  }
+  // Log clar pentru setare BLOB_PUBLIC_BASE
+  const origin = new URL(url).origin;
+  console.log("🟢 Blob write url:", url);
+  console.log("ℹ️  SUGESTIE: setează BLOB_PUBLIC_BASE =", origin, "dacă nu este setat.");
+
+  console.log("🗂️ Order logged:", order.id);
 }
