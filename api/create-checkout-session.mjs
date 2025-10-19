@@ -146,10 +146,9 @@ export default async function handler(req, res) {
       success_url: `${SITE}/#/thanks`,
       cancel_url: `${SITE}/#/checkout`,
 
-      // ✅ ca să avem email, nume și țară în webhook:
-      customer_creation: "always",
-      customer_update: { address: "auto", name: "auto" },
-      billing_address_collection: "required",
+      // ❗ Fără `customer` și fără `customer_update`
+  customer_creation: "always",          // sau "if_required" – ambele sunt OK
+  billing_address_collection: "required",
 
       // colectăm adresă de livrare doar dacă e produs fizic
       shipping_address_collection: hasPaperback
