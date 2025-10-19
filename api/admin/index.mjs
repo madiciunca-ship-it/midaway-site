@@ -1,6 +1,7 @@
 // /api/admin/index.mjs
 export default async function handler(req, res) {
-  const BASE = (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
+  const BASE =
+    (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
   const token = (req.query?.token || "").trim();
   const dataUrl = `${BASE}/api/admin/orders?token=${encodeURIComponent(token)}`;
 
@@ -12,153 +13,218 @@ export default async function handler(req, res) {
 <title>Comenzi – Admin</title>
 <style>
   :root{
-    --bg:#fafafa; --card:#fff; --muted:#6b7280; --line:#e5e7eb;
-    --accent:#2a9d8f; --gold:#d4a017; --danger:#b42318;
+    --bg:#fafafa;
+    --card:#fff;
+    --muted:#6b7280;
+    --line:#ececec;
+    --chip:#eef2ff;
+    --chip-txt:#4338ca;
+    --ok:#e7f4ee;
+    --ok-t:#2a7c4a;
+    --warn:#fff4e5;
+    --warn-t:#9a5b13;
+    --err:#fee2e2;
+    --err-t:#b42318;
   }
-  * { box-sizing:border-box }
-  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 24px; background: var(--bg); color:#222; }
-  h1 { margin: 0 0 16px 0; display:flex; align-items:center; gap:10px; }
-  h1::before{content:"📦"; font-size:28px}
-
-  .bar { display:grid; grid-template-columns: 1fr repeat(4, minmax(140px, 220px)) auto; gap:8px; align-items:center; margin-bottom:12px; }
-  .bar input, .bar select { padding:8px 10px; border:1px solid var(--line); border-radius:8px; background: #fff; }
-  .bar .url { grid-column: 1 / -2; display:inline-block; font-size:12px; color:var(--muted); border:1px dashed var(--line); border-radius:8px; padding:8px 10px; background:#fff; overflow:auto; white-space:nowrap}
-  .bar button { padding:8px 12px; border-radius:8px; border:1px solid #ccc; background:#fff; cursor:pointer; }
-
-  .table-wrap { background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,.06); }
-  table { width:100%; border-collapse:collapse; }
-  th, td { padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top; font-size:14px; }
-  th { text-align:left; background:#f3f6f7; position:sticky; top:0; z-index:2; }
-  code { background:#f3f6f7; padding:2px 6px; border-radius:6px; }
-  .chip { display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:600 }
-  .chip.paid { background:#e7f4ee; color:#2a7c4a; }
-  .chip.refunded { background:#ffecec; color:#b42318; }
-  .muted { color:var(--muted) }
-  .no-orders { color:#777; text-align:center; padding:20px; }
-
-  .nowrap{ white-space:nowrap }
-  .right{ text-align:right }
+  *{box-sizing:border-box}
+  body{
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    margin:0; padding:20px; background:var(--bg); color:#222;
+  }
+  h1{ margin:0 0 14px 0; font-weight:800; letter-spacing:.3px; }
+  .bar{ display:grid; grid-template-columns: 1fr 180px 180px 180px 220px auto; gap:8px; align-items:center; margin-bottom:12px; }
+  @media (max-width:960px){ .bar{ grid-template-columns: 1fr 1fr; } }
+  input,select,button{
+    padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font:inherit;
+  }
+  input{ min-width:160px; }
+  button{ cursor:pointer; background:#fff; }
+  .hint{ color:var(--muted); font-size:12px; margin: 4px 0 12px; display:block; }
+  table{
+    width:100%; border-collapse:separate; border-spacing:0; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  }
+  th, td{ padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; font-size:14px; }
+  th{ text-align:left; background:#f8fafc; position:sticky; top:0; z-index:2; font-weight:700; }
+  tr:last-child td{ border-bottom:0; }
+  .row{ background:#fff; }
+  .id{
+    max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    display:inline-block; vertical-align:bottom;
+  }
+  .chip{
+    display:inline-block; padding:2px 8px; border-radius:999px; background:var(--chip); color:var(--chip-txt);
+    font-size:12px; font-weight:700; margin-right:6px; vertical-align:middle;
+  }
+  .status{ margin-right:8px; }
+  .status.paid{ background:var(--ok); color:var(--ok-t); }
+  .status.failed{ background:var(--err); color:var(--err-t); }
+  .status.expired{ background:#eef0f2; color:#444; }
+  .muted{ color:var(--muted); }
+  .right{ text-align:right; white-space:nowrap; }
+  .nowrap{ white-space:nowrap; }
+  .products{ color:#111; }
+  .products small{ color:var(--muted); }
+  .t{ font-feature-settings:"tnum" 1,"lnum" 1; letter-spacing:.3px; }
+  .tiny{ font-size:12px; color:var(--muted); }
+  .formats{ color:#111; }
+  .typeChip{
+    display:inline-block; padding:2px 6px; border-radius:999px; background:#eefaf8; color:#11725f; font-size:12px; font-weight:700;
+  }
+  .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
+  .country{ font-weight:600; }
+  .controls{ display:flex; gap:8px; align-items:center; }
 </style>
 </head>
 <body>
-  <h1>Comenzi Midaway</h1>
+  <h1>📦 Comenzi Midaway</h1>
 
   <div class="bar">
     <input id="token" value="${token}" placeholder="token admin" />
-    <select id="statusFilter">
+    <select id="status">
       <option value="">Status (toate)</option>
       <option value="paid">paid</option>
-      <option value="refunded">refunded</option>
+      <option value="failed">failed</option>
+      <option value="expired">expired</option>
     </select>
-    <select id="currencyFilter">
+    <select id="currency">
       <option value="">Monedă (toate)</option>
       <option value="RON">RON</option>
       <option value="EUR">EUR</option>
     </select>
-    <select id="countryFilter">
+    <select id="country">
       <option value="">Țară (toate)</option>
     </select>
-    <select id="formatFilter">
+    <select id="format">
       <option value="">Format (toate)</option>
       <option value="PDF">PDF</option>
       <option value="EPUB">EPUB</option>
-      <option value="PAPERBACK">PAPERBACK</option>
+      <option value="PAPERBACK">Paperback</option>
+      <option value="AUDIOBOOK">Audiobook</option>
     </select>
     <button onclick="reload()">Reîncarcă</button>
-
-    <div class="url" id="urlView">Citesc din: ${dataUrl}</div>
   </div>
 
-  <div id="root" class="table-wrap">Încărcare…</div>
+  <div class="hint">Citesc din: <code id="src" class="muted tiny">${dataUrl}</code></div>
+
+  <div id="root">Încărcare…</div>
 
 <script>
-const BASE = ${JSON.stringify(BASE)};
-
 function fmtDate(ts){
-  try{ return new Date(ts||0).toLocaleString('ro-RO') }catch{ return '-' }
+  if(!ts) return "-";
+  try{
+    const d = new Date(ts);
+    return d.toLocaleDateString('ro-RO', { day:'2-digit', month:'2-digit', year:'numeric'}) + ", " + d.toLocaleTimeString('ro-RO', { hour:'2-digit', minute:'2-digit' });
+  }catch{ return "-"; }
 }
-function orderType(o){
-  if (o.hasDownloads && o.hasPaperback) return 'Mix';
-  if (o.hasDownloads) return 'eBooks';
-  return 'Fizic';
+function sumFormats(items){
+  const f = Array.from(new Set((items||[]).map(i => (i.format||'').toUpperCase()).filter(Boolean)));
+  return f.join(", ") || "-";
 }
-function unique(arr){ return Array.from(new Set(arr)); }
-
-let RAW = [];
+function typeFromItems(items){
+  const hasE = (items||[]).some(i => (i.format||"").toUpperCase()!=="PAPERBACK");
+  const hasP = (items||[]).some(i => (i.format||"").toUpperCase()==="PAPERBACK");
+  if (hasE && hasP) return {label:"mix", cls:"mix"};
+  if (hasP) return {label:"fizic", cls:""};
+  return {label:"eBooks", cls:""};
+}
+function countryName(code){
+  if(!code) return "-";
+  try{
+    return new Intl.DisplayNames(['ro'], { type: 'region' }).of(code) || code;
+  }catch{ return code; }
+}
+function money(n, cur){ return \`\${n} \${(cur||'').toUpperCase()}\`; }
 
 async function load(){
   const t = document.getElementById('token').value.trim();
-  const statusFilter = document.getElementById('statusFilter').value;
-  const currencyFilter = document.getElementById('currencyFilter').value;
-  const countrySel = document.getElementById('countryFilter');
-  const formatFilter = document.getElementById('formatFilter').value;
+  const s = document.getElementById('status').value.trim();
+  const c = document.getElementById('currency').value.trim();
+  const k = document.getElementById('country').value.trim();
+  const f = document.getElementById('format').value.trim();
 
-  const url = BASE + '/api/admin/orders?token=' + encodeURIComponent(t);
-  document.getElementById('urlView').textContent = 'Citesc din: ' + url;
-
-  const res = await fetch(url, { cache: 'no-store' });
-  const root = document.getElementById('root');
-  if (!res.ok){
-    root.innerHTML = '<div class="no-orders">Eroare: ' + res.status + '</div>';
+  if(!t){
+    document.getElementById('root').innerHTML = '<p style="color:#b42318">Introdu tokenul admin mai sus.</p>';
     return;
   }
-  const orders = await res.json();
-  RAW = Array.isArray(orders) ? orders : [];
 
-  // populăm dinamic dropdown Țară
-  const countries = unique(RAW.map(o => o.country || '').filter(Boolean)).sort();
-  const countrySelHtml = ['<option value="">Țară (toate)</option>']
-    .concat(countries.map(c => '<option value="'+c+'">'+c+'</option>')).join('');
-  countrySel.innerHTML = countrySelHtml;
+  const url = new URL('${BASE}/api/admin/orders');
+  url.searchParams.set('token', t);
 
-  render();
-}
+  document.getElementById('src').textContent = url.toString();
 
-function render(){
-  const t = document.getElementById('token').value.trim();
-  const statusFilter = document.getElementById('statusFilter').value;
-  const currencyFilter = document.getElementById('currencyFilter').value;
-  const countryFilter = document.getElementById('countryFilter').value;
-  const formatFilter = document.getElementById('formatFilter').value;
+  const res = await fetch(url);
+  if(!res.ok){
+    document.getElementById('root').innerHTML = '<p style="color:#b42318">Eroare: ' + res.status + '</p>';
+    return;
+  }
+  let orders = await res.json();
 
-  const filtered = RAW.filter(o => {
-    if (statusFilter && (o.status||'') !== statusFilter) return false;
-    if (currencyFilter && (o.currency||'').toUpperCase() !== currencyFilter) return false;
-    if (countryFilter && (o.country||'') !== countryFilter) return false;
-    if (formatFilter){
-      const fmts = Array.isArray(o.formats) ? o.formats : [];
-      if (!fmts.includes(formatFilter)) return false;
+  // populate country select (distinct din date)
+  const allCountries = Array.from(new Set(orders.map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();
+  const cSel = document.getElementById('country');
+  if (cSel.getAttribute('data-init')!=='1'){
+    allCountries.forEach(cc => {
+      const opt = document.createElement('option');
+      opt.value = cc; opt.textContent = cc + " — " + countryName(cc);
+      cSel.appendChild(opt);
+    });
+    cSel.setAttribute('data-init','1');
+  }
+
+  // FILTRE
+  orders = orders.filter(o => {
+    if (s && (o.status||'') !== s) return false;
+    if (c && (o.currency||'').toUpperCase() !== c) return false;
+    if (k && (o.country||'').toUpperCase() !== k) return false;
+    if (f){
+      const hasFmt = (o.items||[]).some(it => (it.format||'').toUpperCase() === f);
+      if (!hasFmt) return false;
     }
     return true;
   });
 
-  if (!filtered.length){
-    document.getElementById('root').innerHTML = '<div class="no-orders">Fără comenzi pentru filtrele selectate.</div>';
+  if(!orders.length){
+    document.getElementById('root').innerHTML = '<div class="muted" style="padding:16px;background:#fff;border:1px solid var(--line);border-radius:12px;">Fără comenzi pentru filtrele curente.</div>';
     return;
   }
 
-  const rows = filtered.map(o => {
+  const rows = orders.map(o => {
     const when = fmtDate(o.createdAt);
-    const items = (o.items||[]).map(it =>
-      \`\${it.description || (it.title || '')} — \${it.quantity} × \${it.amount_total} \${(it.currency||'').toUpperCase()}\`
-    ).join('<br/>');
+    const email = o.email || '';
+    const name = o.name || '';
+    const id = o.id || '';
+    const total = money(o.amount || 0, o.currency || '');
+    const status = (o.status || 'paid').toLowerCase();
 
-    const total = \`\${o.amount} \${(o.currency||'').toUpperCase()}\`;
-    const chipClass = (o.status === 'paid') ? 'chip paid' : 'chip refunded';
-    const fmts = (Array.isArray(o.formats) && o.formats.length) ? o.formats.join(', ') : '-';
-    const country = o.country || '-';
-    const type = orderType(o);
+    const prods = (o.items||[]).map(it => {
+      const d = it.description || (it.title || '') || '-';
+      const q = it.quantity || 1;
+      const amt = it.amount_total || 0;
+      const cur = (it.currency||'').toUpperCase();
+      return \`\${d}<br/><small class="muted">— \${q} × \${amt} \${cur}</small>\`;
+    }).join('<br/>');
+
+    const fmts = sumFormats(o.items);
+    const type = typeFromItems(o.items);
+    const country = (o.country||"").toUpperCase();
 
     return \`
-      <tr>
-        <td><code>\${o.id}</code><br/><span class="\${chipClass}">\${o.status || 'paid'}</span></td>
-        <td class="nowrap">\${when}</td>
-        <td>\${o.name || ''}<br/>\${o.email ? '<a href="mailto:'+o.email+'">'+o.email+'</a>' : ''}</td>
-        <td class="nowrap">\${country}</td>
-        <td>\${items || '-'}</td>
-        <td class="nowrap">\${fmts}</td>
-        <td class="right"><strong>\${total}</strong></td>
-        <td class="nowrap">\${type}</td>
+      <tr class="row">
+        <td>
+          <span class="chip status \${status}">\${status}</span>
+          <span class="id"><code>\${id}</code></span>
+        </td>
+        <td class="nowrap t">\${when}</td>
+        <td>
+          \${name ? name : '<span class="muted">-</span>'}
+          <br/><a href="mailto:\${email}">\${email}</a>
+        </td>
+        <td class="country">\${country ? country : '-' }<br/><span class="tiny">\${country ? countryName(country) : ''}</span></td>
+        <td class="products">\${prods || '-'}</td>
+        <td class="formats">\${fmts}</td>
+        <td class="right t"><strong>\${total}</strong></td>
+        <td><span class="typeChip \${type.cls}">\${type.label}</span></td>
       </tr>\`;
   }).join('');
 
@@ -166,27 +232,20 @@ function render(){
     <table>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>ID / Status</th>
           <th>Data</th>
           <th>Client</th>
           <th>Țară</th>
-          <th>Produse</th>
+          <th style="min-width:320px">Produse</th>
           <th>Format(e)</th>
-          <th>Total</th>
+          <th class="right">Total</th>
           <th>Tip</th>
         </tr>
       </thead>
       <tbody>\${rows}</tbody>
     </table>\`;
 }
-
 function reload(){ load(); }
-
-// re-render la schimbarea filtrelor fără a re-cere rețeaua
-['statusFilter','currencyFilter','countryFilter','formatFilter'].forEach(id => {
-  document.getElementById(id).addEventListener('change', render);
-});
-
 load();
 </script>
 </body>

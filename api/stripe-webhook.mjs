@@ -5,7 +5,8 @@ import crypto from "crypto";
 import { appendOrder } from "./_orders-store.mjs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+const country =
+  (session.customer_details?.address?.country || "").toUpperCase() || null;
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
@@ -222,19 +223,20 @@ if (event.type === "payment_intent.payment_failed") {
     const amount = (pi?.amount || 0) / 100;
 
     // log minimal – fără items; doar ca să vezi eșecurile în admin
-    await appendOrder({
-      id: sessionId || pi.id,
-      createdAt: Date.now(),
-      email,
-      name,
-      amount,
-      currency,
-      items: [],
-      hasDownloads: false,
-      hasPaperback: false,
-      status: "failed",
-      failureReason: reason,
-    });
+    // ...în obiectul order:
+await appendOrder({
+  id: session.id,
+  createdAt: Date.now(),
+  email,
+  name,
+  amount: total_amount,
+  currency,
+  items,
+  hasDownloads: keys.length > 0,
+  hasPaperback,
+  status: "paid",
+  country, // 👈 adăugat
+});
 
     console.log("🟥 payment_failed logged:", sessionId || pi.id, reason);
   } catch (e) {
@@ -257,6 +259,62 @@ if (event.type === "checkout.session.expired") {
       hasDownloads: false,
       hasPaperback: false,
       status: "expired",
+    });
+    console.log("🟨 session expired logged:", s.id);
+  } catch (e) {
+    console.error("session.expired append error:", e);
+  }
+}
+// 👉 ADAUGĂ asta în același fișier, pe lângă branch-ul existent:
+
+// A) card respins (payment failed)
+if (event.type === "payment_intent.payment_failed") {
+  try {
+    const pi = event.data.object;
+    const last = pi?.charges?.data?.[0] || {};
+    const email = last?.billing_details?.email || null;
+    const name = last?.billing_details?.name || null;
+    const currency = (pi?.currency || "").toUpperCase();
+    const amount = (pi?.amount || 0) / 100;
+    const reason = pi?.last_payment_error?.message || "Payment failed";
+
+    await appendOrder({
+      id: pi.id,
+      createdAt: Date.now(),
+      email,
+      name,
+      amount,
+      currency,
+      items: [],
+      hasDownloads: false,
+      hasPaperback: false,
+      status: "failed",
+      failureReason: reason,
+      country: (last?.billing_details?.address?.country || "").toUpperCase() || null,
+    });
+
+    console.log("🟥 payment_failed logged:", pi.id, reason);
+  } catch (e) {
+    console.error("payment_failed append error:", e);
+  }
+}
+
+// B) sesiune abandonată/expirată
+if (event.type === "checkout.session.expired") {
+  try {
+    const s = event.data.object;
+    await appendOrder({
+      id: s.id,
+      createdAt: Date.now(),
+      email: s.customer_details?.email || null,
+      name: s.customer_details?.name || null,
+      amount: (s.amount_total || 0) / 100,
+      currency: (s.currency || "").toUpperCase(),
+      items: [],
+      hasDownloads: false,
+      hasPaperback: false,
+      status: "expired",
+      country: (s.customer_details?.address?.country || "").toUpperCase() || null,
     });
     console.log("🟨 session expired logged:", s.id);
   } catch (e) {
