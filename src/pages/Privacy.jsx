@@ -9,7 +9,7 @@ export default function Privacy() {
       </p>
 
       <p>
-        Această Politică explică modul în care Asociația Midaway („noi”) colectează, utilizează și
+        Această Politică explică modul în care Midaway Publishing House („noi”) colectează, utilizează și
         protejează datele tale personale atunci când folosești site-ul midaway.ro / midaway.vercel.app
         („Site-ul”). Respectăm cadrul legal aplicabil (GDPR).
       </p>

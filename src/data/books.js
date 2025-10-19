@@ -107,8 +107,8 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad",
-    subtitle: "Jurnal de călătorie în Filipine",
+    title: "Zile și nopți de Vietnam",
+    subtitle: "Bucăți dintr-un suflet nomad",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Vietnam",
@@ -155,7 +155,7 @@ export const BOOKS = [
     currency: "EUR",
 
     title: "Days and Nights of Vietnam",
-    subtitle: "Pieces from a Nomad Soul",
+    subtitle: "The Puzzle of My Soul",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Vietnam",

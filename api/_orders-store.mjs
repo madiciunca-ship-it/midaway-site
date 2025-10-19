@@ -1,35 +1,33 @@
 // /api/_orders-store.mjs
-import fs from "fs/promises";
-import path from "path";
+import { put, get } from "@vercel/blob";
 
-const ORDERS_PATH = path.join("/tmp", "orders.json");
-
-async function ensureFile() {
-  try {
-    await fs.access(ORDERS_PATH);
-  } catch {
-    await fs.writeFile(ORDERS_PATH, "[]", "utf8");
-  }
-}
+const FILE = "orders.json"; // un singur fișier JSON în Blob
 
 export async function readOrders() {
-  await ensureFile();
-  const raw = await fs.readFile(ORDERS_PATH, "utf8");
   try {
-    const arr = JSON.parse(raw);
-    return Array.isArray(arr) ? arr : [];
+    const resp = await get(FILE, {
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+    if (!resp?.body) return [];
+    const txt = await resp.body.text();
+    return JSON.parse(txt || "[]");
   } catch {
+    // prima dată poate nu există fișierul
     return [];
   }
 }
 
 export async function appendOrder(order) {
   const list = await readOrders();
-  list.unshift(order); // cele noi la început
-  await fs.writeFile(ORDERS_PATH, JSON.stringify(list, null, 2), "utf8");
-  return order;
-}
+  // adăugăm ultima comandă sus
+  list.unshift(order);
 
-export async function clearOrders() {
-  await fs.writeFile(ORDERS_PATH, "[]", "utf8");
+  await put(FILE, JSON.stringify(list, null, 2), {
+    token: process.env.BLOB_READ_WRITE_TOKEN,
+    contentType: "application/json",
+    addRandomSuffix: false, // suprascriem același fișier
+    access: "private",
+  });
+
+  console.log("🗂️ Order logged:", order.id);
 }
