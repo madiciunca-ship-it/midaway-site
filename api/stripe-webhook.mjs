@@ -56,15 +56,12 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // 🔎 CITIM line items O SINGURĂ DATĂ — le folosim pentru:
-      //   - keys (ebook-uri)
-      //   - detectare Paperback
-      //   - sumar pentru log (mini-dashboard)
+      // 🔎 CITIM o singură dată line items
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
 
-      // items pentru log (mini-dashboard)
+      // items pt. log mini-dashboard
       const items =
         (li?.data || []).map((it) => ({
           description: it.description,
@@ -79,24 +76,19 @@ export default async function handler(req, res) {
             it?.price?.product?.metadata?.format?.toUpperCase() || null,
         })) || [];
 
-      // fileKeys pentru link de download (doar digitale)
-      let keys =
-        items.map((it) => it.fileKey).filter(Boolean) || [];
-
-      // Paperback?
+      // fileKeys pt. download (doar digitale)
+      let keys = items.map((it) => it.fileKey).filter(Boolean) || [];
       const hasPaperback = items.some((it) => it.format === "PAPERBACK");
-
-      // unic + ordonat
       keys = [...new Set(keys)].sort();
 
-      // total & currency pentru log
       const total_amount = (session.amount_total || 0) / 100;
       const currency =
         (session.currency || items[0]?.currency || "RON").toUpperCase();
 
-      // ——— LOG în mini-dashboard
+      // ——— LOG în mini-dashboard (with logs!)
       try {
-        const order = {
+        console.log("→ appendOrder START for session:", session.id);
+        await appendOrder({
           id: session.id,
           createdAt: Date.now(),
           email,
@@ -107,14 +99,13 @@ export default async function handler(req, res) {
           hasDownloads: keys.length > 0,
           hasPaperback,
           status: "paid",
-        };
-        await appendOrder(order);
-        console.log("🗂️ Order logged:", order.id);
+        });
+        console.log("→ appendOrder DONE for session:", session.id);
       } catch (e) {
         console.error("❌ Failed to append order:", e);
       }
 
-      // ——— Token descărcare (doar dacă există chei)
+      // ——— Token descărcare (dacă există chei)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -123,7 +114,7 @@ export default async function handler(req, res) {
         token
       )}`;
 
-      // ✉️ configurăm email-ul
+      // ✉️ Email
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
