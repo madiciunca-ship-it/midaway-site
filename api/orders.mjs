@@ -1,50 +1,31 @@
-// /api/_orders-store.mjs
-import { put } from "@vercel/blob";
+// /api/admin/orders.mjs
+import { readOrders } from "../_orders-store.mjs";
 
-const FILE = "orders.json";
-const BLOB_BASE = "https://blob.vercel-storage.com";
-
-/**
- * Citește lista de comenzi din Blob Storage.
- * Folosește fetch cu Authorization: Bearer <BLOB_READ_WRITE_TOKEN>
- */
-export async function readOrders() {
+export default async function handler(req, res) {
   try {
-    const r = await fetch(`${BLOB_BASE}/${FILE}`, {
-      // token server-side
-      headers: {
-        Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`,
-      },
-      cache: "no-store",
-    });
+    // Acceptăm doar GET ca să nu existe confuzii
+    if (req.method !== "GET") {
+      res.setHeader("Allow", "GET");
+      return res.status(405).json({ error: "Method Not Allowed" });
+    }
 
-    if (r.status === 404) return []; // prima rulare: fișier inexistent
-    if (!r.ok) throw new Error(`readOrders failed: ${r.status} ${r.statusText}`);
+    // Token admin (trebuie să fie IDENTIC cu ADMIN_DASH_TOKEN din Vercel)
+    const token = (req.query?.token || "").trim();
+    const ADMIN = (process.env.ADMIN_DASH_TOKEN || "").trim();
 
-    const txt = await r.text();
-    if (!txt) return [];
-    return JSON.parse(txt);
+    if (!token || !ADMIN || token !== ADMIN) {
+      return res.status(401).json({ error: "unauthorized" });
+    }
+
+    // Citim comenzile din Blob
+    const orders = await readOrders();
+    const count = Array.isArray(orders) ? orders.length : 0;
+    console.log("admin/orders → count:", count);
+
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    return res.status(200).send(JSON.stringify(orders || []));
   } catch (e) {
-    console.error("readOrders error:", e);
-    return [];
+    console.error("admin/orders ERROR:", e);
+    return res.status(500).json({ error: "server_error" });
   }
-}
-
-/**
- * Adaugă o comandă nouă în începutul listei și rescrie fișierul JSON.
- */
-export async function appendOrder(order) {
-  const list = await readOrders();
-  list.unshift(order);
-
-  const body = JSON.stringify(list, null, 2);
-
-  await put(FILE, body, {
-    access: "private",
-    contentType: "application/json",
-    addRandomSuffix: false,               // suprascriem același fișier
-    token: process.env.BLOB_READ_WRITE_TOKEN, // token server-side
-  });
-
-  console.log("🗂️ Order logged:", order.id);
 }
