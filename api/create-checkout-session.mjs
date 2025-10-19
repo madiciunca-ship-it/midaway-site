@@ -142,9 +142,16 @@ export default async function handler(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+      // HashRouter: păstrăm #/thanks și #/checkout exact ca la tine
       success_url: `${SITE}/#/thanks`,
       cancel_url: `${SITE}/#/checkout`,
-      billing_address_collection: "auto",
+
+      // ✅ ca să avem email, nume și țară în webhook:
+      customer_creation: "always",
+      customer_update: { address: "auto", name: "auto" },
+      billing_address_collection: "required",
+
+      // colectăm adresă de livrare doar dacă e produs fizic
       shipping_address_collection: hasPaperback
         ? {
             allowed_countries: [
@@ -161,11 +168,15 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
+
+      allow_promotion_codes: true,
     });
+
+    console.log("✅ create-checkout-session OK:", session.id);
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify({ url: session.url }));
+    res.end(JSON.stringify({ id: session.id, url: session.url }));
   } catch (err) {
     console.error("Stripe error:", err);
     res.statusCode = 500;
