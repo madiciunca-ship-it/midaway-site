@@ -6,14 +6,14 @@ import { appendOrder } from "./_orders-store.mjs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// — util: citim corpul raw pentru verificarea semnăturii
+// citește raw body (necesar pentru verificarea semnăturii Stripe)
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
-// — semnăm tokenul de download (valabil 48h)
+// semnăm tokenul de download (valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -43,9 +43,9 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // -------------------------------
-  // 1) PLATĂ REUȘITĂ
-  // -------------------------------
+  // ———————————————————————————————————————————
+  // 1) COMANDĂ FINALIZATĂ
+  // ———————————————————————————————————————————
   if (event.type === "checkout.session.completed") {
     try {
       const session = await stripe.checkout.sessions.retrieve(
@@ -55,13 +55,12 @@ export default async function handler(req, res) {
 
       const email = session.customer_details?.email || null;
       const name = session.customer_details?.name || "Client";
-
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
         return res.json({ received: true });
       }
 
-      // citim line items o singură dată
+      // citim o singură dată line items
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
@@ -81,22 +80,26 @@ export default async function handler(req, res) {
             it?.price?.product?.metadata?.format?.toUpperCase() || null,
         })) || [];
 
-      // fileKeys pentru download (doar digitale)
-      let keys = items.map((it) => it.fileKey).filter(Boolean) || [];
+      // chei pentru descărcare (doar digitale)
+      let keys = items.map((it) => it.fileKey).filter(Boolean);
       const hasPaperback = items.some((it) => it.format === "PAPERBACK");
       keys = [...new Set(keys)].sort();
 
-      // total & currency
       const total_amount = (session.amount_total || 0) / 100;
       const currency =
         (session.currency || items[0]?.currency || "RON").toUpperCase();
 
-      // listă (unică) de formate pt. raportare/filtrare
+      // listă unică de formate (pentru filtrare/raport)
       const formatsList = Array.from(
         new Set(items.map((it) => it.format).filter(Boolean))
       );
 
-      // ——— LOG în mini-dashboard
+      // țara clientului (dacă e disponibilă)
+      const country =
+        (session.customer_details?.address?.country || "")
+          .toUpperCase() || null;
+
+      // LOG în mini-dashboard (Blob)
       try {
         const order = {
           id: session.id,
@@ -109,10 +112,8 @@ export default async function handler(req, res) {
           hasDownloads: keys.length > 0,
           hasPaperback,
           status: "paid",
-          country:
-            (session.customer_details?.address?.country || "")
-              .toUpperCase() || null,
-          formats: formatsList,
+          country,       // ex: "RO", "DE"
+          formats: formatsList, // ex: ["PDF", "EPUB"] sau ["PAPERBACK"]
         };
         await appendOrder(order);
         console.log("🗂️ Order logged:", order.id);
@@ -120,7 +121,7 @@ export default async function handler(req, res) {
         console.error("❌ Failed to append order:", e);
       }
 
-      // ——— Token descărcare (dacă există chei)
+      // Token de descărcare (dacă există fișiere)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -129,7 +130,7 @@ export default async function handler(req, res) {
         token
       )}`;
 
-      // ✉️ Email de confirmare
+      // ✉️ Email
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
@@ -213,9 +214,9 @@ export default async function handler(req, res) {
     }
   }
 
-  // -------------------------------
-  // 2) CARD RESPINS (payment failed)
-  // -------------------------------
+  // ———————————————————————————————————————————
+  // 2) CARD RESPINS (payment_intent.payment_failed)
+  // ———————————————————————————————————————————
   if (event.type === "payment_intent.payment_failed") {
     try {
       const pi = event.data.object;
@@ -225,9 +226,11 @@ export default async function handler(req, res) {
       const currency = (pi?.currency || "").toUpperCase();
       const amount = (pi?.amount || 0) / 100;
       const reason = pi?.last_payment_error?.message || "Payment failed";
+      const country =
+        (last?.billing_details?.address?.country || "").toUpperCase() || null;
 
       await appendOrder({
-        id: pi.id, // PI poate fi diferit de checkout session
+        id: pi.id,
         createdAt: Date.now(),
         email,
         name,
@@ -238,9 +241,8 @@ export default async function handler(req, res) {
         hasPaperback: false,
         status: "failed",
         failureReason: reason,
-        country:
-          (last?.billing_details?.address?.country || "")
-            .toUpperCase() || null,
+        country,
+        formats: [], // nu avem formate când plata eșuează înainte de checkout complet
       });
 
       console.log("🟥 payment_failed logged:", pi.id, reason);
@@ -249,9 +251,9 @@ export default async function handler(req, res) {
     }
   }
 
-  // -----------------------------------------
-  // 3) SESIUNE ABANDONATĂ / EXPIREATĂ Stripe
-  // -----------------------------------------
+  // ———————————————————————————————————————————
+  // 3) SESIUNE EXPIRATĂ / ABANDONATĂ
+  // ———————————————————————————————————————————
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
@@ -268,6 +270,7 @@ export default async function handler(req, res) {
         status: "expired",
         country:
           (s.customer_details?.address?.country || "").toUpperCase() || null,
+        formats: [],
       });
       console.log("🟨 session expired logged:", s.id);
     } catch (e) {
@@ -275,6 +278,6 @@ export default async function handler(req, res) {
     }
   }
 
-  // răspuns generic
+  // răspuns standard pentru Stripe
   res.json({ received: true });
 }
