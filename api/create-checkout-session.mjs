@@ -150,6 +150,9 @@ export default async function handler(req, res) {
   customer_creation: "always",          // sau "if_required" – ambele sunt OK
   billing_address_collection: "required",
 
+  // 👇 ascunde câmpul de cod promo (setează true dacă vrei să-l folosești)
+  allow_promotion_codes: false,
+  
       // colectăm adresă de livrare doar dacă e produs fizic
       shipping_address_collection: hasPaperback
         ? {

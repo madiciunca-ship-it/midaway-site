@@ -56,6 +56,7 @@ export default function BookPurchasePanel({ book, bookId }) {
       price,
       currency: currencyLabel,    // ✅ monedă per carte
       qty: 1,
+      image, // 👈 NOU
     });
   };
 

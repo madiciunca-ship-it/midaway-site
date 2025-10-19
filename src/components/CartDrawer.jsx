@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
 
-  // debug ușor — vezi în consolă când componenta e montată și câte iteme are
+  // debug ușor
   useEffect(() => {
     console.log("🧺 CartDrawer mounted. items:", items.length, "open:", open);
   }, [items.length, open]);
@@ -69,7 +69,7 @@ export default function CartDrawer({ open, onClose }) {
           position: "absolute",
           top: 0,
           right: 0,
-          height: "100vh",          // ← full viewport height (înainte era "100%")
+          height: "100vh", // full viewport
           width: 360,
           maxWidth: "90vw",
           background: "#fff",
@@ -79,7 +79,7 @@ export default function CartDrawer({ open, onClose }) {
           transition: "transform .25s",
           display: "flex",
           flexDirection: "column",
-          zIndex: 999999,            // sigur peste orice
+          zIndex: 999999,
         }}
       >
         {/* header */}
@@ -111,12 +111,12 @@ export default function CartDrawer({ open, onClose }) {
           </button>
         </div>
 
-         {/* listă produse */}
-         <div
+        {/* listă produse */}
+        <div
           style={{
             padding: 16,
             flex: 1,
-            minHeight: 0,            // ← important ca overflow-ul să funcționeze în flex
+            minHeight: 0, // pentru overflow în flex
             overflowY: "auto",
             display: "grid",
             gap: 12,
@@ -141,62 +141,96 @@ export default function CartDrawer({ open, onClose }) {
                     background: "#fffef9",
                   }}
                 >
-                  <div style={{ fontWeight: 600 }}>{it.title}</div>
-                  <div style={{ fontSize: 13, color: "#666" }}>
-                    {it.format}
-                    {it.lang ? ` • ${it.lang}` : ""}
-                  </div>
-
-                  {/* cantitate + subtotal */}
-                  <div
-                    style={{
-                      marginTop: 8,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 10,
-                    }}
-                  >
-                    {/* controale cantitate */}
-                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <button
-                        type="button"
-                        onClick={() => decrement(it.key)}
-                        aria-label="Scade cantitatea"
-                        style={qtyBtn}
+                  {/* wrapper: thumbnail + conținut */}
+                  <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    {/* thumbnail */}
+                    {it.image ? (
+                      <img
+                        src={it.image}
+                        alt={it.title}
+                        width={48}
+                        height={64}
+                        style={{ objectFit: "cover", borderRadius: 6, flexShrink: 0 }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 48,
+                          height: 64,
+                          borderRadius: 6,
+                          background: "#eee",
+                          display: "grid",
+                          placeItems: "center",
+                          color: "#999",
+                          fontSize: 11,
+                          flexShrink: 0,
+                        }}
                       >
-                        −
-                      </button>
-                      <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
-                      <button
-                        type="button"
-                        onClick={() => add(it)}
-                        aria-label="Crește cantitatea"
-                        style={qtyBtn}
+                        no cover
+                      </div>
+                    )}
+
+                    {/* conținut */}
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div style={{ fontWeight: 600 }}>{it.title}</div>
+                      <div style={{ fontSize: 13, color: "#666" }}>
+                        {it.format}
+                        {it.lang ? ` • ${it.lang}` : ""}
+                      </div>
+
+                      {/* cantitate + subtotal */}
+                      <div
+                        style={{
+                          marginTop: 8,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 10,
+                        }}
                       >
-                        +
-                      </button>
-                    </div>
+                        {/* controale cantitate */}
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <button
+                            type="button"
+                            onClick={() => decrement(it.key)}
+                            aria-label="Scade cantitatea"
+                            style={qtyBtn}
+                          >
+                            −
+                          </button>
+                          <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
+                          <button
+                            type="button"
+                            onClick={() => add(it)}
+                            aria-label="Crește cantitatea"
+                            style={qtyBtn}
+                          >
+                            +
+                          </button>
+                        </div>
 
-                    {/* subtotal */}
-                    <div style={{ marginLeft: "auto", fontSize: 14 }}>
-                      {unit} {cur} / buc • <strong>{sub} {cur}</strong>
-                    </div>
-                  </div>
+                        {/* subtotal */}
+                        <div style={{ marginLeft: "auto", fontSize: 14 }}>
+                          {unit} {cur} / buc • <strong>{sub} {cur}</strong>
+                        </div>
+                      </div>
 
-                  <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
-                    <button
-                      type="button"
-                      onClick={() => remove(it.key)}
-                      style={{
-                        padding: "6px 10px",
-                        borderRadius: 8,
-                        border: "1px solid #ddd",
-                        background: "#fff",
-                        cursor: "pointer",
-                      }}
-                    >
-                      🗑 Șterge
-                    </button>
+                      {/* acțiuni item */}
+                      <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
+                        <button
+                          type="button"
+                          onClick={() => remove(it.key)}
+                          style={{
+                            padding: "6px 10px",
+                            borderRadius: 8,
+                            border: "1px solid #ddd",
+                            background: "#fff",
+                            cursor: "pointer",
+                          }}
+                        >
+                          🗑 Șterge
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );

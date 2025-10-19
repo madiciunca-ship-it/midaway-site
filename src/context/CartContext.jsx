@@ -124,6 +124,7 @@ export function CartProvider({ children }) {
           qty: 1,
           payLink,
           currency: (currency || "RON").toUpperCase(),
+          image: image || null, // 👈 NOU
         };
         dispatch({ type: "ADD", key, item });
       },
