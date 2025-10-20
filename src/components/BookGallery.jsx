@@ -1,51 +1,102 @@
+// src/components/BookGallery.jsx
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { BOOKS } from "../data/books";
 
 export default function BookGallery({ images }) {
-  const items = images.map((src) => ({
-    original: src,
-    thumbnail: src,
-  }));
-  const ordered = [...BOOKS].reverse(); // cele mai noi primele (după ordinea din array)
+  // 1) Mod "galerie de imagini" (dacă primește images)
+  if (Array.isArray(images) && images.length > 0) {
+    const items = images.map((src) => ({
+      original: src,
+      thumbnail: src,
+    }));
+    return (
+      <div style={{ marginTop: 24 }}>
+        <ImageGallery
+          items={items}
+          showPlayButton={false}
+          showFullscreenButton={true}
+          showNav={true}
+          slideDuration={350}
+          thumbnailPosition="bottom"
+        />
+      </div>
+    );
+  }
+
+  // 2) Mod "grilă de cărți" (fallback când NU primim images)
+  const ordered = [...BOOKS].reverse(); // cele mai noi primele
+
   return (
-    <div className="grid">
-      {ordered.map((book, idx) => {
-        const isNew = idx < 2; // primele două din listă
-        return (
-          <div key={book.id} className="card">
-            <div className="coverWrap">
-              <img src={book.cover || book.image} alt={book.title} />
-              {isNew && (
-                <span className="chip">NEW</span>
-              )}
+    <>
+      {/* Stiluri locale minime */}
+      <style>{`
+        .book-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 16px;
+        }
+        .book-card {
+          background: #fff;
+          border: 1px solid #eee;
+          border-radius: 12px;
+          padding: 12px;
+          box-shadow: 0 4px 14px rgba(0,0,0,.05);
+        }
+        .coverWrap { position: relative; }
+        .coverWrap img {
+          width: 100%;
+          height: 280px;
+          object-fit: cover;
+          border-radius: 10px;
+          display: block;
+        }
+        .chip {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          background: #d97706;
+          color: #fff;
+          font-weight: 700;
+          padding: 2px 8px;
+          border-radius: 999px;
+          font-size: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+        .book-title {
+          margin: 10px 0 0 0;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 1.25;
+        }
+      `}</style>
+
+      <div className="book-grid">
+        {ordered.map((book, idx) => {
+          const isNew = idx < 2; // primele două din listă
+          const cover =
+            book.cover ||
+            book.image ||
+            (Array.isArray(book.images) ? book.images[0] : null);
+
+          return (
+            <div key={book.id} className="book-card">
+              <div className="coverWrap">
+                <img
+                  src={cover || "/placeholder-cover.png"}
+                  alt={book.title}
+                  loading="lazy"
+                />
+                {isNew && <span className="chip">NEW</span>}
+              </div>
+
+              <h3 className="book-title">{book.title}</h3>
+              {/* aici poți adăuga autor, limbă, preț etc. */}
             </div>
-            <h3>{book.title}</h3>
-            {/* restul cardului */}
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
-  
-  return (
-    <div style={{ marginTop: 24 }}>
-      <ImageGallery
-        items={items}
-        showPlayButton={false}
-        showFullscreenButton={true}
-        showNav={true}
-        slideDuration={350}
-        thumbnailPosition="bottom"
-      />
-    </div>
-  );
-}
-.coverWrap { position: relative; }
-.chip {
-  position: absolute; top: 8px; left: 8px;
-  background: #d97706; color: #fff; font-weight: 700;
-  padding: 2px 8px; border-radius: 999px; font-size: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }

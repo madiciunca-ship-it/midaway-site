@@ -1,17 +1,20 @@
 // src/components/BookPurchasePanel.jsx
 import React, { useMemo } from "react";
 import { useCart } from "../context/CartContext";
-import { FORMATS, BOOKS } from "../data/books";
+import { BOOKS } from "../data/books";
 
+// —————————————————————————————————————————————
+// mici utilitare
 function money(amount, currency) {
   if (!Number.isFinite(Number(amount))) return "";
-  if (currency === "EUR") return `€${amount}`;
-  if (currency === "RON") return `${amount} lei`;
-  return `${amount} ${currency || ""}`.trim();
+  if ((currency || "").toUpperCase() === "EUR") return `€${amount}`;
+  if ((currency || "").toUpperCase() === "RON") return `${amount} lei`;
+  return `${amount} ${(currency || "").toUpperCase()}`.trim();
 }
 
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
+
   const direct = BOOKS.find((b) => b.id === bookId);
   if (direct) return direct;
 
@@ -25,51 +28,68 @@ function findBookByIdOrAlias(bookId) {
   return null;
 }
 
+// —————————————————————————————————————————————
+
 export default function BookPurchasePanel({ book, bookId }) {
+  // cartea activă: primită ca prop sau rezolvată din id/alias
   const resolvedBook = useMemo(
     () => book || findBookByIdOrAlias(bookId),
     [book, bookId]
   );
-  const { add } = useCart();
 
+  const { add } = useCart();
   if (!resolvedBook) return null;
+
   const {
     prices = {},
     availability = {},
     currency,
     title,
     id,
-    lang: bookLang, // 👈 avem limba din model (RO|EN)
+    lang: bookLang, // "RO" | "EN"
   } = resolvedBook;
 
-  // normalizăm limba/moneda pentru coș
-  const langLabel = (bookLang || "RO").toUpperCase();        // "RO" | "EN"
-  const currencyLabel = (currency || "RON").toUpperCase();   // "RON" | "EUR"
+  // copertă sigură (folosită în coș)
+  const cover =
+    resolvedBook?.cover ||
+    resolvedBook?.image ||
+    (Array.isArray(resolvedBook?.images) ? resolvedBook.images[0] : null) ||
+    null;
 
+  // normalizări
+  const langLabel = (resolvedBook?.lang || resolvedBook?.language || "RO").toUpperCase();
+  const currencyLabel = (currency || "RON").toUpperCase();
+
+  // adăugare în coș
   const onAdd = (format) => {
-    const price = prices?.[format] ?? 0;
+    const fmt = String(format || "").toUpperCase(); // PDF | EPUB | PAPERBACK | AUDIOBOOK
+    const price = Number(prices?.[fmt]) || 0;
+
     add({
       id,
       title,
-      format,
-      lang: langLabel,            // ✅ PASĂM LIMBA ÎN COȘ
+      format: fmt,
+      lang: langLabel,
       price,
-      currency: currencyLabel,    // ✅ monedă per carte
+      currency: currencyLabel,
+      image: cover,           // 👈 rezolvă "image is not defined"
+      payLink: resolvedBook.payLink || null,
       qty: 1,
-      image, // 👈 NOU
     });
+
+    console.log("[BUY] add ->", { id, title, fmt, price, currency: currencyLabel, cover });
   };
 
+  // card pentru fiecare format
   const card = (fmt, icon) => {
-    const avail = Boolean(availability?.[fmt]);
-    const price = Number(prices?.[fmt]) || 0;
-
-    // ✅ badge bazat pe limba cărții, nu pe monedă
+    const KEY = String(fmt).toUpperCase();         // cheie în obiectele prices/availability
+    const avail = Boolean(availability?.[KEY]);
+    const price = Number(prices?.[KEY]) || 0;
     const labelSoon = langLabel === "EN" ? "soon" : "în curând";
 
     return (
       <div
-        key={fmt}
+        key={KEY}
         style={{
           border: "1px solid #e7e7e7",
           borderRadius: 14,
@@ -97,7 +117,7 @@ export default function BookPurchasePanel({ book, bookId }) {
               fontSize: 14,
             }}
           >
-            <span>{icon}</span> {fmt}
+            <span>{icon}</span> {KEY}
           </strong>
           {!avail && (
             <span
@@ -126,13 +146,13 @@ export default function BookPurchasePanel({ book, bookId }) {
             minHeight: 18,
           }}
         >
-          {avail ? `${price} ${currencyLabel}` : `0 ${currencyLabel}`}
+          {avail ? money(price, currencyLabel) : money(0, currencyLabel)}
         </div>
 
         {/* buton */}
         <button
           disabled={!avail}
-          onClick={() => onAdd(fmt)}
+          onClick={() => onAdd(KEY)}
           style={{
             width: "100%",
             padding: "8px 10px",
@@ -188,12 +208,13 @@ export default function BookPurchasePanel({ book, bookId }) {
       >
         {card("PDF", "📄")}
         {card("EPUB", "📘")}
-        {card("Paperback", "🛒")}
-        {card("Audiobook", "🎧")}
+        {card("PAPERBACK", "🛒")}
+        {/* Dacă vei avea audiobook, lasă-l; altfel îl poți comenta */}
+        {card("AUDIOBOOK", "🎧")}
       </div>
 
       <p style={{ marginTop: 12, color: "#666", fontSize: 12, textAlign: "center" }}>
-        După plată vei primi pe email linkurile de descărcare (48h valabile).
+        După plată vei primi pe email linkurile de descărcare (valabile 48h).
       </p>
     </section>
   );

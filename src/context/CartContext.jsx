@@ -8,46 +8,50 @@ import React, {
 } from "react";
 import { useLocation } from "react-router-dom";
 
-const CartContext = createContext(null);
+/* -------------------- persist in localStorage -------------------- */
+const STORAGE_KEY = "midaway_cart";
 
-// ——— localStorage
 function load() {
   try {
-    const raw = localStorage.getItem("midaway_cart");
+    const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : { items: [] };
   } catch {
     return { items: [] };
   }
 }
+
 function save(state) {
   try {
-    localStorage.setItem("midaway_cart", JSON.stringify(state));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch {
-    /* ignore quota errors */
+    /* ignore quota */
   }
 }
 
-// ——— reducer
+/* ----------------------------- context --------------------------- */
+const CartContext = createContext(null);
+
+/* ----------------------------- reducer --------------------------- */
 function cartReducer(state, action) {
-  console.log("[CART] action =", action.type, action);
   switch (action.type) {
     case "ADD": {
       const { key, item } = action;
       const idx = state.items.findIndex((i) => i.key === key);
 
-      let items;
-      if (idx >= 0) {
-        const nextQty =
-          (Number(state.items[idx]?.qty) || 0) + (Number(item.qty) || 1);
-        console.log("[CART] ADD → idx:", idx, "nextQty:", nextQty);
-        items = state.items.map((it, i) =>
-          i === idx ? { ...it, qty: nextQty } : it
-        );
-      } else {
-        const nextQty = Number(item.qty) || 1;
-        console.log("[CART] ADD new item → qty:", nextQty);
-        items = [...state.items, { ...item, qty: nextQty }];
-      }
+      const items =
+        idx >= 0
+          ? state.items.map((it, i) =>
+              i === idx
+                ? { ...it, qty: (Number(it.qty) || 0) + (Number(item.qty) || 1) }
+                : it
+            )
+          : [
+              ...state.items,
+              {
+                ...item,
+                qty: Number(item.qty) || 1,
+              },
+            ];
 
       const next = { ...state, items };
       save(next);
@@ -55,7 +59,6 @@ function cartReducer(state, action) {
     }
 
     case "DECREMENT": {
-      console.log("[CART] DECREMENT key =", action.key);
       const items = state.items
         .map((it) =>
           it.key === action.key
@@ -63,13 +66,13 @@ function cartReducer(state, action) {
             : it
         )
         .filter((it) => (Number(it.qty) || 0) > 0);
+
       const next = { ...state, items };
       save(next);
       return next;
     }
 
     case "REMOVE": {
-      console.log("[CART] REMOVE key =", action.key);
       const items = state.items.filter((i) => i.key !== action.key);
       const next = { ...state, items };
       save(next);
@@ -77,7 +80,6 @@ function cartReducer(state, action) {
     }
 
     case "CLEAR": {
-      console.log("[CART] CLEAR");
       const next = { items: [] };
       save(next);
       return next;
@@ -88,7 +90,7 @@ function cartReducer(state, action) {
   }
 }
 
-// ——— provider
+/* ---------------------------- provider --------------------------- */
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, undefined, load);
 
@@ -111,7 +113,9 @@ export function CartProvider({ children }) {
       items: state.items,
       total,
       count,
-      add: ({ id, title, format, lang, price, payLink, currency }) => {
+
+      // ✅ primește image, currency, lang etc.
+      add: ({ id, title, format, lang, price, payLink, currency, image }) => {
         const safeLang = (lang || "RO").toUpperCase();
         const key = [id, format, safeLang].join("|");
         const item = {
@@ -122,12 +126,14 @@ export function CartProvider({ children }) {
           lang: safeLang,
           price: Number(price || 0),
           qty: 1,
-          payLink,
+          payLink: payLink || null,
           currency: (currency || "RON").toUpperCase(),
-          image: image || null, // 👈 NOU
+          image: image || null, // 👈 FIX: folosim parametrul "image", nu "cover"
         };
+        console.log("[CART] add() call:", item);
         dispatch({ type: "ADD", key, item });
       },
+
       decrement: (key) => dispatch({ type: "DECREMENT", key }),
       remove: (key) => dispatch({ type: "REMOVE", key }),
       clear: () => dispatch({ type: "CLEAR" }),
@@ -135,28 +141,44 @@ export function CartProvider({ children }) {
     [state.items, total, count]
   );
 
+  useEffect(() => {
+    // console.log("[cart] items:", state.items);
+  }, [state.items]);
+
   return (
     <CartContext.Provider value={value}>{children}</CartContext.Provider>
   );
 }
 
+/* ----------------------------- hook ------------------------------ */
 export function useCart() {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
 }
 
-/* ✅ golește coșul automat pe /thanks (HashRouter compatibil) */
+/* ------------------ clear cart pe pagina de thanks --------------- */
 export function ClearCartOnThanks() {
-  const { clear, count } = useCart();
-  const location = useLocation();
+  const { clear } = useCart();
+  const { pathname, hash } = useLocation();
 
-  useEffect(() => {
-    const isThanks =
-      location?.pathname === "/thanks" ||
-      window.location.hash === "#/thanks";
-    if (isThanks && count > 0) clear();
-  }, [location, clear, count]);
+  React.useEffect(() => {
+    // folosim HashRouter → "thanks" vine în hash (ex: "#/thanks")
+    const atThanks =
+      (hash && hash.includes("thanks")) ||
+      (pathname && pathname.endsWith("/thanks"));
+
+    if (atThanks) {
+      const key = "midaway:cart-cleared-on-thanks";
+      if (!sessionStorage.getItem(key)) {
+        clear();
+        sessionStorage.setItem(key, "1");
+        console.log("[CART] Cleared on thanks page");
+      }
+    } else {
+      sessionStorage.removeItem("midaway:cart-cleared-on-thanks");
+    }
+  }, [clear, pathname, hash]);
 
   return null;
 }

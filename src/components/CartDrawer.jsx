@@ -6,12 +6,10 @@ import { Link } from "react-router-dom";
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
 
-  // debug ușor
   useEffect(() => {
     console.log("🧺 CartDrawer mounted. items:", items.length, "open:", open);
   }, [items.length, open]);
 
-  // ESC închide
   const onKeyDown = useCallback(
     (e) => {
       if (!open) return;
@@ -25,7 +23,6 @@ export default function CartDrawer({ open, onClose }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
-  // totaluri pe monedă
   const totalsByCurrency = useMemo(() => {
     const m = new Map();
     for (const i of items) {
@@ -69,7 +66,7 @@ export default function CartDrawer({ open, onClose }) {
           position: "absolute",
           top: 0,
           right: 0,
-          height: "100vh", // full viewport
+          height: "100vh",
           width: 360,
           maxWidth: "90vw",
           background: "#fff",
@@ -116,7 +113,7 @@ export default function CartDrawer({ open, onClose }) {
           style={{
             padding: 16,
             flex: 1,
-            minHeight: 0, // pentru overflow în flex
+            minHeight: 0,
             overflowY: "auto",
             display: "grid",
             gap: 12,
@@ -141,7 +138,6 @@ export default function CartDrawer({ open, onClose }) {
                     background: "#fffef9",
                   }}
                 >
-                  {/* wrapper: thumbnail + conținut */}
                   <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                     {/* thumbnail */}
                     {it.image ? (
@@ -170,7 +166,7 @@ export default function CartDrawer({ open, onClose }) {
                       </div>
                     )}
 
-                    {/* conținut */}
+                    {/* titlu + meta + controale */}
                     <div style={{ minWidth: 0, flex: 1 }}>
                       <div style={{ fontWeight: 600 }}>{it.title}</div>
                       <div style={{ fontSize: 13, color: "#666" }}>
@@ -187,7 +183,6 @@ export default function CartDrawer({ open, onClose }) {
                           gap: 10,
                         }}
                       >
-                        {/* controale cantitate */}
                         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                           <button
                             type="button"
@@ -208,13 +203,11 @@ export default function CartDrawer({ open, onClose }) {
                           </button>
                         </div>
 
-                        {/* subtotal */}
                         <div style={{ marginLeft: "auto", fontSize: 14 }}>
                           {unit} {cur} / buc • <strong>{sub} {cur}</strong>
                         </div>
                       </div>
 
-                      {/* acțiuni item */}
                       <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
                         <button
                           type="button"
