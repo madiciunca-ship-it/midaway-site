@@ -23,8 +23,8 @@ export const BOOKS = [
     year: 2023,
     publisher: "Dreams Publishing House",
 
-    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.jpeg",
-    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.jpeg",
+    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
+    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
 
     sampleUrl:
       "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
@@ -71,8 +71,8 @@ export const BOOKS = [
     year: 2023,
     publisher: "Dreams Publishing House",
 
-    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.jpeg",
-    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.jpeg",
+    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
+    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
 
     sampleUrl: "#",
 
@@ -162,8 +162,8 @@ export const BOOKS = [
     year: 2025,
     publisher: "Independent Publisher Mida Malena",
 
-    coverUrl: "/assets/books/gallery/days-and-nights-of-vietnam-cover.png",
-    extraImage: "/assets/books/gallery/days-and-nights-of-vietnam-spate.png",
+    coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
+    extraImage: "/assets/books/zile-si-nopti-de-vietnam-spate.png",
 
     sampleUrl: "#",
 
