@@ -3,18 +3,19 @@ import React, { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { BOOKS } from "../data/books";
 
-// —————————————————————————————————————————————
-// mici utilitare
+// util – afișare bani
 function money(amount, currency) {
-  if (!Number.isFinite(Number(amount))) return "";
-  if ((currency || "").toUpperCase() === "EUR") return `€${amount}`;
-  if ((currency || "").toUpperCase() === "RON") return `${amount} lei`;
-  return `${amount} ${(currency || "").toUpperCase()}`.trim();
+  const n = Number(amount);
+  if (!Number.isFinite(n)) return "";
+  const cur = String(currency || "").toUpperCase();
+  if (cur === "EUR") return `€${n}`;
+  if (cur === "RON") return `${n} RON`;
+  return `${n} ${cur}`.trim();
 }
 
+// căutare carte după id/alias (cum aveai deja)
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
-
   const direct = BOOKS.find((b) => b.id === bookId);
   if (direct) return direct;
 
@@ -28,42 +29,44 @@ function findBookByIdOrAlias(bookId) {
   return null;
 }
 
-// —————————————————————————————————————————————
-
 export default function BookPurchasePanel({ book, bookId }) {
-  // cartea activă: primită ca prop sau rezolvată din id/alias
   const resolvedBook = useMemo(
     () => book || findBookByIdOrAlias(bookId),
     [book, bookId]
   );
 
   const { add } = useCart();
+
   if (!resolvedBook) return null;
 
-  const {
-    prices = {},
-    availability = {},
-    currency,
-    title,
-    id,
-    lang: bookLang, // "RO" | "EN"
-  } = resolvedBook;
-
-  // copertă sigură (folosită în coș)
+  // coperta sigură pt. coș
   const cover =
     resolvedBook?.cover ||
     resolvedBook?.image ||
     (Array.isArray(resolvedBook?.images) ? resolvedBook.images[0] : null) ||
     null;
 
-  // normalizări
-  const langLabel = (resolvedBook?.lang || resolvedBook?.language || "RO").toUpperCase();
-  const currencyLabel = (currency || "RON").toUpperCase();
+  // ---------------- NORMALIZARE CHEI LA UPPERCASE ----------------
+  const rawPrices = resolvedBook?.prices || {};
+  const rawAvailability = resolvedBook?.availability || {};
 
-  // adăugare în coș
+  const prices = Object.fromEntries(
+    Object.entries(rawPrices).map(([k, v]) => [String(k).toUpperCase(), Number(v)])
+  );
+  const availability = Object.fromEntries(
+    Object.entries(rawAvailability).map(([k, v]) => [String(k).toUpperCase(), Boolean(v)])
+  );
+
+  // restul câmpurilor
+  const currencyLabel = (resolvedBook?.currency || "RON").toUpperCase();
+  const title = resolvedBook?.title;
+  const id = resolvedBook?.id;
+  const langLabel = (resolvedBook?.lang || "RO").toUpperCase();
+
+  // adaugă în coș
   const onAdd = (format) => {
-    const fmt = String(format || "").toUpperCase(); // PDF | EPUB | PAPERBACK | AUDIOBOOK
-    const price = Number(prices?.[fmt]) || 0;
+    const fmt = String(format || "").toUpperCase();
+    const price = prices[fmt] ?? 0;
 
     add({
       id,
@@ -72,17 +75,23 @@ export default function BookPurchasePanel({ book, bookId }) {
       lang: langLabel,
       price,
       currency: currencyLabel,
-      image: cover,           // 👈 rezolvă "image is not defined"
-      payLink: resolvedBook.payLink || null,
-      qty: 1,
+      image: cover, // 👈 important
+      payLink: resolvedBook?.payLink || null,
     });
 
-    console.log("[BUY] add ->", { id, title, fmt, price, currency: currencyLabel, cover });
+    console.log("[BUY] add ->", {
+      id,
+      title,
+      fmt,
+      price,
+      currencyLabel,
+      cover,
+    });
   };
 
-  // card pentru fiecare format
+  // cardul de format (PDF/EPUB/PAPERBACK/etc.)
   const card = (fmt, icon) => {
-    const KEY = String(fmt).toUpperCase();         // cheie în obiectele prices/availability
+    const KEY = String(fmt).toUpperCase();
     const avail = Boolean(availability?.[KEY]);
     const price = Number(prices?.[KEY]) || 0;
     const labelSoon = langLabel === "EN" ? "soon" : "în curând";
@@ -209,7 +218,7 @@ export default function BookPurchasePanel({ book, bookId }) {
         {card("PDF", "📄")}
         {card("EPUB", "📘")}
         {card("PAPERBACK", "🛒")}
-        {/* Dacă vei avea audiobook, lasă-l; altfel îl poți comenta */}
+        {/* dacă vei avea audiobook, lasă-l; altfel comentează-l */}
         {card("AUDIOBOOK", "🎧")}
       </div>
 
