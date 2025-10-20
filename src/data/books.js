@@ -23,8 +23,8 @@ export const BOOKS = [
     year: 2023,
     publisher: "Dreams Publishing House",
 
-    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
-    extraImage: "/assets/books/o-zi-de-care-sa-ti-amintesti-spate.jpeg",
+    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.jpeg",
+    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.jpeg",
 
     sampleUrl:
       "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
@@ -71,8 +71,8 @@ export const BOOKS = [
     year: 2023,
     publisher: "Dreams Publishing House",
 
-    coverUrl: "/assets/books/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
-    extraImage: "/assets/books/o-zi-de-care-sa-ti-amintesti-spate.jpeg",
+    coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.jpeg",
+    extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.jpeg",
 
     sampleUrl: "#",
 
@@ -162,8 +162,8 @@ export const BOOKS = [
     year: 2025,
     publisher: "Independent Publisher Mida Malena",
 
-    coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
-    extraImage: "/assets/books/zile-si-nopti-de-vietnam-spate.png",
+    coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
+    extraImage: "/assets/books/days-and-nights-of-vietnam-spate.png",
 
     sampleUrl: "#",
 
@@ -185,7 +185,7 @@ export const BOOKS = [
     },
 
     pages: 314,
-    isbn: "978-9-7304-1386-1",
+    isbn: "-",
     dimensions: "13 x 20 cm",
     weight: "—",
 

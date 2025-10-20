@@ -2,6 +2,7 @@
 import React, { useEffect, useCallback, useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { BOOKS } from "../data/books";
 
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
@@ -34,6 +35,19 @@ export default function CartDrawer({ open, onClose }) {
   }, [items]);
 
   const mixedCurrencies = totalsByCurrency.length > 1;
+
+  // Fallback pentru thumb: folosește cover/coverUrl/image/extraImage/images[0] sau placeholder.
+  const resolveThumb = (it) => {
+    if (it?.image) return it.image;
+    const book = BOOKS.find((b) => b.id === it?.id);
+    const fromBook =
+      book?.cover ||
+      book?.coverUrl ||
+      book?.image ||
+      book?.extraImage ||
+      (Array.isArray(book?.images) ? book.images[0] : null);
+    return fromBook || "/placeholder-cover.png";
+  };
 
   return (
     <div
@@ -128,6 +142,8 @@ export default function CartDrawer({ open, onClose }) {
               const unit = Number(it.price) || 0;
               const sub = unit * qty;
 
+              const thumb = resolveThumb(it);
+
               return (
                 <div
                   key={it.key ?? i}
@@ -140,13 +156,20 @@ export default function CartDrawer({ open, onClose }) {
                 >
                   <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                     {/* thumbnail */}
-                    {it.image ? (
+                    {thumb ? (
                       <img
-                        src={it.image}
+                        src={thumb}
                         alt={it.title}
                         width={48}
                         height={64}
                         style={{ objectFit: "cover", borderRadius: 6, flexShrink: 0 }}
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (e?.currentTarget?.src !== "/placeholder-cover.png") {
+                            e.currentTarget.src = "/placeholder-cover.png";
+                          }
+                        }}
                       />
                     ) : (
                       <div

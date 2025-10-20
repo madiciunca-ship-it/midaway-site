@@ -39,10 +39,12 @@ export default function BookPurchasePanel({ book, bookId }) {
 
   if (!resolvedBook) return null;
 
-  // coperta sigură pt. coș
+  // coperta sigură pt. coș (acum include coverUrl/extraImage)
   const cover =
     resolvedBook?.cover ||
+    resolvedBook?.coverUrl ||
     resolvedBook?.image ||
+    resolvedBook?.extraImage ||
     (Array.isArray(resolvedBook?.images) ? resolvedBook.images[0] : null) ||
     null;
 
@@ -218,7 +220,6 @@ export default function BookPurchasePanel({ book, bookId }) {
         {card("PDF", "📄")}
         {card("EPUB", "📘")}
         {card("PAPERBACK", "🛒")}
-        {/* dacă vei avea audiobook, lasă-l; altfel comentează-l */}
         {card("AUDIOBOOK", "🎧")}
       </div>
 
