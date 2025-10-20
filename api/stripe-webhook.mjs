@@ -23,6 +23,25 @@ function signToken(payloadObj) {
   return `${body}.${sig}`;
 }
 
+// ------------------------ ORDER NO ------------------------
+// Format: MID-YYYYMMDD-XXXXXX  (XXXXXX = ultimele 6 caractere alfanumerice din id)
+function makeOrderNo(id, createdMs) {
+  try {
+    const d = new Date(createdMs || Date.now());
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const suffix = String(id || "")
+      .replace(/[^a-z0-9]/gi, "")
+      .slice(-6)
+      .toUpperCase() || "XXXXXX";
+    return `MID-${y}${m}${day}-${suffix}`;
+  } catch {
+    return "MID-NA-XXXXXX";
+  }
+}
+// ---------------------------------------------------------
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method Not Allowed" });
@@ -99,11 +118,17 @@ export default async function handler(req, res) {
         (session.customer_details?.address?.country || "")
           .toUpperCase() || null;
 
+      // 🆕 număr de comandă
+      const createdMs =
+        typeof session.created === "number" ? session.created * 1000 : Date.now();
+      const orderNo = makeOrderNo(session.id, createdMs);
+
       // LOG în mini-dashboard (Blob)
       try {
         const order = {
           id: session.id,
-          createdAt: Date.now(),
+          orderNo,                    // 🆕
+          createdAt: createdMs,
           email,
           name,
           amount: total_amount,
@@ -116,7 +141,7 @@ export default async function handler(req, res) {
           formats: formatsList, // ex: ["PDF", "EPUB"] sau ["PAPERBACK"]
         };
         await appendOrder(order);
-        console.log("🗂️ Order logged:", order.id);
+        console.log("🗂️ Order logged:", order.orderNo, order.id);
       } catch (e) {
         console.error("❌ Failed to append order:", e);
       }
@@ -165,12 +190,13 @@ export default async function handler(req, res) {
               </tr>
               <tr>
                 <td style="padding:28px">
-                  <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
-                    Mulțumim pentru comanda ta, ${String(name || "")
-                      .toLowerCase()
-                      .trim()}!
+                  <h1 style="margin:0 0 6px 0;color:#2a9d8f;font-size:22px;line-height:1.3">
+                    Mulțumim pentru comanda ta!
                   </h1>
-                  <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
+                  <p style="margin:0 0 8px 0;font-size:14px;color:#333;">
+                    <strong>Număr comandă:</strong> ${orderNo}
+                  </p>
+                  <p style="margin:8px 0 16px 0;font-size:16px;color:#333;">
                     Plata a fost procesată cu succes.
                     ${
                       hasDownloads
@@ -197,13 +223,15 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: "Comanda ta Midaway este confirmată ✅",
+        subject: `Comanda #${orderNo} este confirmată ✅`,
         html,
       });
 
       console.log(
         "✅ Email trimis către:",
         email,
+        "| orderNo:",
+        orderNo,
         "| keys:",
         keys,
         "| hasPaperback:",
@@ -229,8 +257,11 @@ export default async function handler(req, res) {
       const country =
         (last?.billing_details?.address?.country || "").toUpperCase() || null;
 
+      const orderNo = makeOrderNo(pi.id, Date.now());
+
       await appendOrder({
         id: pi.id,
+        orderNo,             // 🆕
         createdAt: Date.now(),
         email,
         name,
@@ -242,10 +273,10 @@ export default async function handler(req, res) {
         status: "failed",
         failureReason: reason,
         country,
-        formats: [], // nu avem formate când plata eșuează înainte de checkout complet
+        formats: [],
       });
 
-      console.log("🟥 payment_failed logged:", pi.id, reason);
+      console.log("🟥 payment_failed logged:", orderNo, pi.id, reason);
     } catch (e) {
       console.error("payment_failed append error:", e);
     }
@@ -257,9 +288,14 @@ export default async function handler(req, res) {
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
+      const createdMs =
+        typeof s.created === "number" ? s.created * 1000 : Date.now();
+      const orderNo = makeOrderNo(s.id, createdMs);
+
       await appendOrder({
         id: s.id,
-        createdAt: Date.now(),
+        orderNo,            // 🆕
+        createdAt: createdMs,
         email: s.customer_details?.email || null,
         name: s.customer_details?.name || null,
         amount: (s.amount_total || 0) / 100,
@@ -272,7 +308,7 @@ export default async function handler(req, res) {
           (s.customer_details?.address?.country || "").toUpperCase() || null,
         formats: [],
       });
-      console.log("🟨 session expired logged:", s.id);
+      console.log("🟨 session expired logged:", orderNo, s.id);
     } catch (e) {
       console.error("session.expired append error:", e);
     }
