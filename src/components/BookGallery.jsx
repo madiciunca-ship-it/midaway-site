@@ -75,18 +75,28 @@ export default function BookGallery({ images }) {
       <div className="book-grid">
         {ordered.map((book, idx) => {
           const isNew = idx < 2; // primele două din listă
-          const cover =
-            book.cover ||
-            book.image ||
-            (Array.isArray(book.images) ? book.images[0] : null);
+          const coverCandidate =
+            book?.cover ||
+            book?.coverUrl ||
+            book?.image ||
+            book?.extraImage ||
+            (Array.isArray(book?.images) ? book.images[0] : null);
+          const cover = coverCandidate || "/placeholder-cover.png";
 
           return (
             <div key={book.id} className="book-card">
               <div className="coverWrap">
                 <img
-                  src={cover || "/placeholder-cover.png"}
+                  src={cover}
                   alt={book.title}
                   loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    if (e?.currentTarget?.src !== "/placeholder-cover.png") {
+                      e.currentTarget.src = "/placeholder-cover.png";
+                    }
+                  }}
                 />
                 {isNew && <span className="chip">NEW</span>}
               </div>

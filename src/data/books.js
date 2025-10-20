@@ -162,8 +162,8 @@ export const BOOKS = [
     year: 2025,
     publisher: "Independent Publisher Mida Malena",
 
-    coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
-    extraImage: "/assets/books/days-and-nights-of-vietnam-spate.png",
+    coverUrl: "/assets/books/gallery/days-and-nights-of-vietnam-cover.png",
+    extraImage: "/assets/books/gallery/days-and-nights-of-vietnam-spate.png",
 
     sampleUrl: "#",
 
