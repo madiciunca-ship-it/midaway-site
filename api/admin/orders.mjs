@@ -28,21 +28,29 @@ export default async function handler(req, res) {
     });
 
     const count = sorted.length;
-    const hasOrderNo = sorted.some(o => o?.orderNo);
-    const hasCourierFee = sorted.some(o => typeof o?.courierFee === "number");
+    const hasOrderNo = sorted.some((o) => o?.orderNo);
+    const hasCourierFee = sorted.some((o) => typeof o?.courierFee === "number");
     const lastUpdated =
       count > 0 ? new Date(sorted[0]?.createdAt || Date.now()).toISOString() : null;
 
     console.log(`admin/orders → count: ${count}`);
 
-    // Meta în HEADERE (UI-ul rămâne identic – primește array)
+    // Meta în HEADERE (UI vechi compatibil)
     res.setHeader("X-Orders-Count", String(count));
     res.setHeader("X-Orders-HasOrderNo", hasOrderNo ? "1" : "0");
     res.setHeader("X-Orders-HasCourierFee", hasCourierFee ? "1" : "0");
     if (lastUpdated) res.setHeader("X-Orders-LastUpdated", lastUpdated);
 
+    // Evităm cache (browser/CDN)
     res.setHeader("Content-Type", "application/json; charset=utf-8");
-    return res.status(200).send(JSON.stringify(sorted));
+    res.setHeader("Cache-Control", "no-store, max-age=0");
+
+    // ✅ Body în formatul așteptat de AdminOrders.jsx: { orders: [...] }
+    return res.status(200).json({
+      orders: sorted,
+      total: count,
+      ts: Date.now(),
+    });
   } catch (e) {
     console.error("admin/orders ERROR:", e);
     return res.status(500).json({ error: "server_error" });
