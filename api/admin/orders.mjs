@@ -19,11 +19,36 @@ export default async function handler(req, res) {
 
     // Citim comenzile din Blob
     const orders = await readOrders();
-    const count = Array.isArray(orders) ? orders.length : 0;
-    console.log("admin/orders → count:", count);
+    const list = Array.isArray(orders) ? orders : [];
+    const count = list.length;
+
+    // log clar în consola Vercel
+    console.log(`admin/orders → count: ${count}`);
+
+    // determinăm dacă există câmpuri noi
+    const hasOrderNo = list.some((o) => o?.orderNo);
+    const hasCourierFee = list.some((o) => typeof o?.courierFee === "number");
+
+    // sortăm desc dacă nu sunt deja
+    const sorted = [...list].sort((a, b) => {
+      const aa = typeof a?.createdAt === "number" ? a.createdAt : 0;
+      const bb = typeof b?.createdAt === "number" ? b.createdAt : 0;
+      return bb - aa;
+    });
+
+    // optional, trimitem și meta info
+    const payload = {
+      meta: {
+        count,
+        hasOrderNo,
+        hasCourierFee,
+        lastUpdated: count > 0 ? new Date(sorted[0].createdAt || Date.now()).toISOString() : null,
+      },
+      orders: sorted,
+    };
 
     res.setHeader("Content-Type", "application/json; charset=utf-8");
-    return res.status(200).send(JSON.stringify(orders || []));
+    return res.status(200).send(JSON.stringify(payload, null, 2));
   } catch (e) {
     console.error("admin/orders ERROR:", e);
     return res.status(500).json({ error: "server_error" });
