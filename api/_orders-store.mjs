@@ -42,11 +42,13 @@ export async function readOrders() {
 }
 
 /**
- * Adaugă o comandă nouă în începutul listei și rescrie fișierul JSON.
+ * Adaugă / actualizează o comandă și rescrie fișierul JSON.
+ * - idempotent pe `order.id`: dacă există, face merge (nu pierdem câmpuri vechi).
+ * - sortare desc după `createdAt` (fallback la ordonare pe apariție).
  * Planul Hobby → necesită { access: "public" } la scriere.
  */
 export async function appendOrder(order) {
-  // Citiți ce avem deja (poate fi gol prima dată)
+  // 1) Citim ce avem deja (poate fi gol prima dată)
   let list = [];
   try {
     list = await readOrders();
@@ -54,10 +56,41 @@ export async function appendOrder(order) {
     list = [];
   }
 
-  list.unshift(order);
-  const body = JSON.stringify(list, null, 2);
+  // 2) Normalizări minime (nu stricăm nimic existent)
+  const normalized = {
+    ...order,
+    createdAt:
+      typeof order.createdAt === "number"
+        ? order.createdAt
+        : Date.now(),
+    status: order.status || "paid",
+    // câmpuri noi – doar le trecem prin dacă există; altfel lăsăm nedefinite
+    orderNo: order.orderNo || order.order_no || undefined,
+    courierFee:
+      typeof order.courierFee === "number"
+        ? order.courierFee
+        : undefined,
+  };
 
-  // scriem / suprascriem fișierul public
+  // 3) Idempotent update (după `id`)
+  const idx = list.findIndex((o) => o && o.id === normalized.id);
+  if (idx >= 0) {
+    // merge: nu pierdem nimic ce era deja în ordine
+    list[idx] = { ...list[idx], ...normalized };
+  } else {
+    // introducem la început
+    list.unshift(normalized);
+  }
+
+  // 4) Sortăm desc după createdAt dacă există pe ambele rânduri
+  list.sort((a, b) => {
+    const aa = typeof a?.createdAt === "number" ? a.createdAt : 0;
+    const bb = typeof b?.createdAt === "number" ? b.createdAt : 0;
+    return bb - aa;
+  });
+
+  // 5) Scriem / suprascriem fișierul public
+  const body = JSON.stringify(list, null, 2);
   const { url } = await put(FILE, body, {
     access: "public",                 // ⬅️ important pe Hobby
     contentType: "application/json",
@@ -70,5 +103,5 @@ export async function appendOrder(order) {
   console.log("🟢 Blob write url:", url);
   console.log("ℹ️  SUGESTIE: setează BLOB_PUBLIC_BASE =", origin, "dacă nu este setat.");
 
-  console.log("🗂️ Order logged:", order.id);
+  console.log("🗂️ Order logged:", normalized.orderNo || normalized.id);
 }

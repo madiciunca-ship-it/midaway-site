@@ -23,24 +23,15 @@ function signToken(payloadObj) {
   return `${body}.${sig}`;
 }
 
-// ------------------------ ORDER NO ------------------------
-// Format: MID-YYYYMMDD-XXXXXX  (XXXXXX = ultimele 6 caractere alfanumerice din id)
-function makeOrderNo(id, createdMs) {
-  try {
-    const d = new Date(createdMs || Date.now());
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    const suffix = String(id || "")
-      .replace(/[^a-z0-9]/gi, "")
-      .slice(-6)
-      .toUpperCase() || "XXXXXX";
-    return `MID-${y}${m}${day}-${suffix}`;
-  } catch {
-    return "MID-NA-XXXXXX";
-  }
+// număr comandă simplu și lizibil: MID-YYYYMMDD-XXXXXX
+function genOrderNo(sessionId) {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  const tail = String(sessionId || "").slice(-6).toUpperCase();
+  return `MID-${y}${m}${day}-${tail}`;
 }
-// ---------------------------------------------------------
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -84,31 +75,42 @@ export default async function handler(req, res) {
         expand: ["data.price.product"],
       });
 
-      // items pentru log (mini-dashboard)
+      // items pentru log + detecție courier fee
       const items =
-        (li?.data || []).map((it) => ({
-          description: it.description,
-          quantity: it.quantity,
-          amount_total: (it.amount_total || 0) / 100,
-          currency:
-            it.currency?.toUpperCase() ||
-            session.currency?.toUpperCase() ||
-            "RON",
-          fileKey: it?.price?.product?.metadata?.fileKey || null,
-          format:
-            it?.price?.product?.metadata?.format?.toUpperCase() || null,
-        })) || [];
+        (li?.data || []).map((it) => {
+          const meta = it?.price?.product?.metadata || {};
+          const type = meta?.type || null; // ex: "courier_fee"
+          return {
+            description: it.description,
+            quantity: it.quantity,
+            amount_total: (it.amount_total || 0) / 100,
+            currency:
+              it.currency?.toUpperCase() ||
+              session.currency?.toUpperCase() ||
+              "RON",
+            fileKey: meta?.fileKey || null,
+            format: meta?.format ? String(meta.format).toUpperCase() : null,
+            type,
+          };
+        }) || [];
+
+      const hasPaperback = items.some((it) => it.format === "PAPERBACK");
+      const hasDownloads = items.some((it) => !!it.fileKey);
+
+      // sumăm separat taxa de curier (dacă există)
+      const courierFee = items
+        .filter((it) => it.type === "courier_fee")
+        .reduce((s, it) => s + Number(it.amount_total || 0), 0);
 
       // chei pentru descărcare (doar digitale)
       let keys = items.map((it) => it.fileKey).filter(Boolean);
-      const hasPaperback = items.some((it) => it.format === "PAPERBACK");
       keys = [...new Set(keys)].sort();
 
       const total_amount = (session.amount_total || 0) / 100;
       const currency =
         (session.currency || items[0]?.currency || "RON").toUpperCase();
 
-      // listă unică de formate (pentru filtrare/raport)
+      // listă unică de formate (ignoram liniile fără format, ex: courier_fee)
       const formatsList = Array.from(
         new Set(items.map((it) => it.format).filter(Boolean))
       );
@@ -118,27 +120,26 @@ export default async function handler(req, res) {
         (session.customer_details?.address?.country || "")
           .toUpperCase() || null;
 
-      // 🆕 număr de comandă
-      const createdMs =
-        typeof session.created === "number" ? session.created * 1000 : Date.now();
-      const orderNo = makeOrderNo(session.id, createdMs);
+      // număr de comandă
+      const orderNo = genOrderNo(session.id);
 
-      // LOG în mini-dashboard (Blob)
+      // LOG în mini-dashboard (Blob/JSON)
       try {
         const order = {
           id: session.id,
-          orderNo,                    // 🆕
-          createdAt: createdMs,
+          orderNo,                 // 👈 nou
+          createdAt: Date.now(),
           email,
           name,
           amount: total_amount,
           currency,
           items,
-          hasDownloads: keys.length > 0,
+          hasDownloads,
           hasPaperback,
+          courierFee,              // 👈 nou (sumă)
           status: "paid",
-          country,       // ex: "RO", "DE"
-          formats: formatsList, // ex: ["PDF", "EPUB"] sau ["PAPERBACK"]
+          country,                 // ex: "RO", "DE"
+          formats: formatsList,    // ex: ["PDF","PAPERBACK"]
         };
         await appendOrder(order);
         console.log("🗂️ Order logged:", order.orderNo, order.id);
@@ -161,9 +162,9 @@ export default async function handler(req, res) {
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
       });
 
-      const hasDownloads = keys.length > 0;
+      const hasDownloadsBlock = keys.length > 0;
 
-      const downloadBlock = hasDownloads
+      const downloadBlock = hasDownloadsBlock
         ? `
           <div style="margin:22px 0">
             <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
@@ -190,16 +191,16 @@ export default async function handler(req, res) {
               </tr>
               <tr>
                 <td style="padding:28px">
-                  <h1 style="margin:0 0 6px 0;color:#2a9d8f;font-size:22px;line-height:1.3">
-                    Mulțumim pentru comanda ta!
+                  <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
+                    Comanda ta <strong>Midaway</strong> #${orderNo} este confirmată ✅
                   </h1>
-                  <p style="margin:0 0 8px 0;font-size:14px;color:#333;">
-                    <strong>Număr comandă:</strong> ${orderNo}
+                  <p style="margin:0 0 8px 0;font-size:14px;color:#666;">
+                    Total: <strong>${total_amount} ${currency}</strong>
                   </p>
-                  <p style="margin:8px 0 16px 0;font-size:16px;color:#333;">
+                  <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
                     Plata a fost procesată cu succes.
                     ${
-                      hasDownloads
+                      hasDownloadsBlock
                         ? "Linkul tău de descărcare este valabil 48 de ore."
                         : "Am înregistrat comanda ta pentru produsele fizice."
                     }
@@ -223,7 +224,7 @@ export default async function handler(req, res) {
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: `Comanda #${orderNo} este confirmată ✅`,
+        subject: `Midaway • Confirmare comanda #${orderNo}`,
         html,
       });
 
@@ -232,8 +233,6 @@ export default async function handler(req, res) {
         email,
         "| orderNo:",
         orderNo,
-        "| keys:",
-        keys,
         "| hasPaperback:",
         hasPaperback
       );
@@ -257,11 +256,9 @@ export default async function handler(req, res) {
       const country =
         (last?.billing_details?.address?.country || "").toUpperCase() || null;
 
-      const orderNo = makeOrderNo(pi.id, Date.now());
-
       await appendOrder({
         id: pi.id,
-        orderNo,             // 🆕
+        orderNo: genOrderNo(pi.id),
         createdAt: Date.now(),
         email,
         name,
@@ -274,9 +271,10 @@ export default async function handler(req, res) {
         failureReason: reason,
         country,
         formats: [],
+        courierFee: 0,
       });
 
-      console.log("🟥 payment_failed logged:", orderNo, pi.id, reason);
+      console.log("🟥 payment_failed logged:", pi.id, reason);
     } catch (e) {
       console.error("payment_failed append error:", e);
     }
@@ -288,14 +286,10 @@ export default async function handler(req, res) {
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
-      const createdMs =
-        typeof s.created === "number" ? s.created * 1000 : Date.now();
-      const orderNo = makeOrderNo(s.id, createdMs);
-
       await appendOrder({
         id: s.id,
-        orderNo,            // 🆕
-        createdAt: createdMs,
+        orderNo: genOrderNo(s.id),
+        createdAt: Date.now(),
         email: s.customer_details?.email || null,
         name: s.customer_details?.name || null,
         amount: (s.amount_total || 0) / 100,
@@ -307,8 +301,9 @@ export default async function handler(req, res) {
         country:
           (s.customer_details?.address?.country || "").toUpperCase() || null,
         formats: [],
+        courierFee: 0,
       });
-      console.log("🟨 session expired logged:", orderNo, s.id);
+      console.log("🟨 session expired logged:", s.id);
     } catch (e) {
       console.error("session.expired append error:", e);
     }
