@@ -6,6 +6,10 @@ const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
 const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 const stripe = new Stripe(STRIPE_KEY);
 
+// taxe curier configurabile per monedă (fallback-uri sensibile)
+const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 20);
+const COURIER_FEE_EUR = Number(process.env.COURIER_FEE_EUR ?? 10);
+
 // Construim ALLOWED_KEYS din books.js (ex: "o-zi-ro:PDF")
 const ALLOWED_KEYS = new Set();
 const BOOK_MAP = new Map();
@@ -112,7 +116,7 @@ export default async function handler(req, res) {
     }
     const currency = (currencies[0] || "EUR").toLowerCase();
 
-    // ✅ Line items Stripe
+    // ✅ Line items Stripe (produse din coș)
     const line_items = cleaned.map((it) => {
       const fmt = String(it.format || "").toUpperCase();
       const qty = Number(it.qty) || 1;
@@ -135,24 +139,44 @@ export default async function handler(req, res) {
       };
     });
 
+    // 🧾 Taxă curier — adăugăm O SINGURĂ LINIE dacă există PAPERBACK
     const hasPaperback = cleaned.some(
       (it) => String(it.format || "").toUpperCase() === "PAPERBACK"
     );
 
+    if (hasPaperback) {
+      const fee =
+        currency === "ron"
+          ? Math.round(COURIER_FEE_RON * 100)
+          : Math.round(COURIER_FEE_EUR * 100);
+
+      line_items.push({
+        price_data: {
+          currency,
+          unit_amount: fee,
+          product_data: {
+            name: "Taxă curier",
+            metadata: {
+              type: "courier_fee",
+            },
+          },
+        },
+        quantity: 1,
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+
       // HashRouter: păstrăm #/thanks și #/checkout exact ca la tine
       success_url: `${SITE}/#/thanks`,
       cancel_url: `${SITE}/#/checkout`,
 
-      // ❗ Fără `customer` și fără `customer_update`
-  customer_creation: "always",          // sau "if_required" – ambele sunt OK
-  billing_address_collection: "required",
+      customer_creation: "always",               // sau "if_required"
+      billing_address_collection: "required",
+      allow_promotion_codes: true,               // păstrăm activ (poți seta false)
 
-  // 👇 ascunde câmpul de cod promo (setează true dacă vrei să-l folosești)
-  allow_promotion_codes: false,
-  
       // colectăm adresă de livrare doar dacă e produs fizic
       shipping_address_collection: hasPaperback
         ? {
@@ -170,8 +194,6 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
-
-      allow_promotion_codes: true,
     });
 
     console.log("✅ create-checkout-session OK:", session.id);
