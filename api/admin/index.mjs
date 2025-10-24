@@ -3,7 +3,6 @@ export default async function handler(req, res) {
   const BASE =
     (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
   const token = (req.query?.token || "").trim();
-  const dataUrl = `${BASE}/api/admin/orders?token=${encodeURIComponent(token)}`;
 
   const html = `<!doctype html>
 <html lang="ro">
@@ -13,67 +12,33 @@ export default async function handler(req, res) {
 <title>Comenzi – Admin</title>
 <style>
   :root{
-    --bg:#fafafa;
-    --card:#fff;
-    --muted:#6b7280;
-    --line:#ececec;
-    --chip:#eef2ff;
-    --chip-txt:#4338ca;
-    --ok:#e7f4ee;
-    --ok-t:#2a7c4a;
-    --warn:#fff4e5;
-    --warn-t:#9a5b13;
-    --err:#fee2e2;
-    --err-t:#b42318;
+    --bg:#fafafa; --card:#fff; --muted:#6b7280; --line:#ececec;
+    --chip:#eef2ff; --chip-txt:#4338ca; --ok:#e7f4ee; --ok-t:#2a7c4a;
+    --warn:#fff4e5; --warn-t:#9a5b13; --err:#fee2e2; --err-t:#b42318;
   }
   *{box-sizing:border-box}
-  body{
-    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    margin:0; padding:20px; background:var(--bg); color:#222;
-  }
-  h1{ margin:0 0 14px 0; font-weight:800; letter-spacing:.3px; }
-  .bar{ display:grid; grid-template-columns: 1fr 180px 180px 180px 220px auto; gap:8px; align-items:center; margin-bottom:12px; }
-  @media (max-width:960px){ .bar{ grid-template-columns: 1fr 1fr; } }
-  input,select,button{
-    padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font:inherit;
-  }
-  input{ min-width:160px; }
-  button{ cursor:pointer; background:#fff; }
-  .hint{ color:var(--muted); font-size:12px; margin: 4px 0 12px; display:block; }
-  table{
-    width:100%; border-collapse:separate; border-spacing:0; background:var(--card);
-    border:1px solid var(--line); border-radius:12px; overflow:hidden;
-  }
-  th, td{ padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; font-size:14px; }
-  th{ text-align:left; background:#f8fafc; position:sticky; top:0; z-index:2; font-weight:700; }
-  tr:last-child td{ border-bottom:0; }
-  .row{ background:#fff; }
-  .id{
-    max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-    display:inline-block; vertical-align:bottom;
-  }
-  .chip{
-    display:inline-block; padding:2px 8px; border-radius:999px; background:var(--chip); color:var(--chip-txt);
-    font-size:12px; font-weight:700; margin-right:6px; vertical-align:middle;
-  }
-  .status{ margin-right:8px; }
-  .status.paid{ background:var(--ok); color:var(--ok-t); }
-  .status.failed{ background:var(--err); color:var(--err-t); }
-  .status.expired{ background:#eef0f2; color:#444; }
-  .muted{ color:var(--muted); }
-  .right{ text-align:right; white-space:nowrap; }
-  .nowrap{ white-space:nowrap; }
-  .products{ color:#111; }
-  .products small{ color:var(--muted); }
-  .t{ font-feature-settings:"tnum" 1,"lnum" 1; letter-spacing:.3px; }
-  .tiny{ font-size:12px; color:var(--muted); }
-  .formats{ color:#111; }
-  .typeChip{
-    display:inline-block; padding:2px 6px; border-radius:999px; background:#eefaf8; color:#11725f; font-size:12px; font-weight:700;
-  }
-  .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
-  .country{ font-weight:600; }
-  .controls{ display:flex; gap:8px; align-items:center; }
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:20px;background:var(--bg);color:#222;}
+  h1{margin:0 0 14px 0;font-weight:800;letter-spacing:.3px;}
+  .bar{display:grid;grid-template-columns:1fr 180px 180px 180px 220px auto;gap:8px;align-items:center;margin-bottom:12px;}
+  @media (max-width:960px){.bar{grid-template-columns:1fr 1fr}}
+  input,select,button{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit}
+  button{cursor:pointer}
+  .hint{color:var(--muted);font-size:12px;margin:4px 0 12px;display:block}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+  th{text-align:left;background:#f8fafc;position:sticky;top:0;z-index:2;font-weight:700}
+  tr:last-child td{border-bottom:0}
+  .id{max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:bottom}
+  .chip{display:inline-block;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--chip-txt);font-size:12px;font-weight:700;margin-right:6px;vertical-align:middle}
+  .status.paid{background:var(--ok);color:var(--ok-t)}
+  .status.failed{background:var(--err);color:var(--err-t)}
+  .status.expired{background:#eef0f2;color:#444}
+  .muted{color:var(--muted)} .right{text-align:right;white-space:nowrap} .nowrap{white-space:nowrap}
+  .products{color:#111} .products small{color:var(--muted)}
+  .t{font-feature-settings:"tnum" 1,"lnum" 1;letter-spacing:.3px}
+  .tiny{font-size:12px;color:var(--muted)}
+  .typeChip{display:inline-block;padding:2px 6px;border-radius:999px;background:#eefaf8;color:#11725f;font-size:12px;font-weight:700}
+  .typeChip.mix{background:#fff7e6;color:#9a5b13}
 </style>
 </head>
 <body>
@@ -105,8 +70,7 @@ export default async function handler(req, res) {
     <button onclick="reload()">Reîncarcă</button>
   </div>
 
-  <div class="hint">Citesc din: <code id="src" class="muted tiny">${dataUrl}</code></div>
-
+  <div class="hint">Citesc din: <code id="src" class="muted tiny"></code></div>
   <div id="root">Încărcare…</div>
 
 <script>
@@ -114,25 +78,20 @@ function fmtDate(ts){
   if(!ts) return "-";
   try{
     const d = new Date(ts);
-    return d.toLocaleDateString('ro-RO', { day:'2-digit', month:'2-digit', year:'numeric'}) + ", " + d.toLocaleTimeString('ro-RO', { hour:'2-digit', minute:'2-digit' });
+    return d.toLocaleDateString('ro-RO',{day:'2-digit',month:'2-digit',year:'numeric'}) + ", " +
+           d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'});
   }catch{ return "-"; }
 }
-function sumFormats(items){
-  const f = Array.from(new Set((items||[]).map(i => (i.format||'').toUpperCase()).filter(Boolean)));
-  return f.join(", ") || "-";
-}
 function typeFromItems(items){
-  const hasE = (items||[]).some(i => (i.format||"").toUpperCase()!=="PAPERBACK");
-  const hasP = (items||[]).some(i => (i.format||"").toUpperCase()==="PAPERBACK");
+  const hasE = (items||[]).some(i => (i.format||"").toUpperCase() !== "PAPERBACK");
+  const hasP = (items||[]).some(i => (i.format||"").toUpperCase() === "PAPERBACK");
   if (hasE && hasP) return {label:"mix", cls:"mix"};
   if (hasP) return {label:"fizic", cls:""};
   return {label:"eBooks", cls:""};
 }
 function countryName(code){
   if(!code) return "-";
-  try{
-    return new Intl.DisplayNames(['ro'], { type: 'region' }).of(code) || code;
-  }catch{ return code; }
+  try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code) || code; }catch{ return code; }
 }
 function money(n, cur){ return \`\${n} \${(cur||'').toUpperCase()}\`; }
 
@@ -150,30 +109,36 @@ async function load(){
 
   const url = new URL('${BASE}/api/admin/orders');
   url.searchParams.set('token', t);
-
   document.getElementById('src').textContent = url.toString();
 
-  const res = await fetch(url);
-  if(!res.ok){
-    document.getElementById('root').innerHTML = '<p style="color:#b42318">Eroare: ' + res.status + '</p>';
-    return;
-  }
-
-  // 🔧 AICI e FIX-ul: normalizăm răspunsul (array sau {orders:[]})
-  const data = await res.json();
   let orders = [];
-  if (Array.isArray(data)) {
-    orders = data;
-  } else if (Array.isArray(data.orders)) {
-    orders = data.orders;
-  } else if (data && typeof data === 'object') {
-    const firstArray = Object.values(data).find(v => Array.isArray(v));
-    orders = firstArray || [];
-  } else {
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    console.log("[admin] raw data:", data);
+    if (Array.isArray(data)) {
+      orders = data;
+    } else if (data && Array.isArray(data.orders)) {
+      orders = data.orders;
+    } else {
+      // fallback: prima proprietate array din obiect
+      const firstArr = data && typeof data === "object"
+        ? Object.values(data).find(v => Array.isArray(v))
+        : null;
+      orders = firstArr || [];
+    }
+  } catch(e){
+    console.error("[admin] fetch error:", e);
     orders = [];
   }
 
-  // populate country select (distinct din date)
+  if (!Array.isArray(orders)) {
+    console.warn("[admin] orders nu e array, forțez []:", orders);
+    orders = [];
+  }
+
+  // Populez țările (o singură dată)
   const allCountries = Array.from(new Set(orders.map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();
   const cSel = document.getElementById('country');
   if (cSel.getAttribute('data-init')!=='1'){
@@ -197,45 +162,38 @@ async function load(){
     return true;
   });
 
-  if(!orders.length){
-    document.getElementById('root').innerHTML = '<div class="muted" style="padding:16px;background:#fff;border:1px solid var(--line);border-radius:12px;">Fără comenzi pentru filtrele curente.</div>';
+  if (!orders.length) {
+    document.getElementById('root').innerHTML =
+      '<div class="muted" style="padding:16px;background:#fff;border:1px solid var(--line);border-radius:12px;">Fără comenzi pentru filtrele curente.</div>';
     return;
   }
 
   const rows = orders.map(o => {
     const when = fmtDate(o.createdAt);
     const email = o.email || '';
-    theName = o.name || '';
+    const theName = o.name || '';
     const id = o.id || '';
     const total = money(o.amount || 0, o.currency || '');
     const status = (o.status || 'paid').toLowerCase();
 
     const prods = (o.items||[]).map(it => {
-      const d = it.description || (it.title || '') || '-';
+      const d = it.description || it.title || '-';
       const q = it.quantity || 1;
       const amt = it.amount_total || 0;
       const cur = (it.currency||'').toUpperCase();
       return \`\${d}<br/><small class="muted">— \${q} × \${amt} \${cur}</small>\`;
     }).join('<br/>');
 
-    const fmts = sumFormats(o.items);
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
 
     return \`
       <tr class="row">
-        <td>
-          <span class="chip status \${status}">\${status}</span>
-          <span class="id"><code>\${id}</code></span>
-        </td>
+        <td><span class="chip status \${status}">\${status}</span> <span class="id"><code>\${id}</code></span></td>
         <td class="nowrap t">\${when}</td>
-        <td>
-          \${theName ? theName : '<span class="muted">-</span>'}
-          <br/><a href="mailto:\${email}">\${email}</a>
-        </td>
-        <td class="country">\${country ? country : '-' }<br/><span class="tiny">\${country ? countryName(country) : ''}</span></td>
+        <td>\${theName || '<span class="muted">-</span>'}<br/><a href="mailto:\${email}">\${email}</a></td>
+        <td>\${country || '-'}<br/><span class="tiny">\${country ? (${countryName.toString()})(country) : ''}</span></td>
         <td class="products">\${prods || '-'}</td>
-        <td class="formats">\${fmts}</td>
         <td class="right t"><strong>\${total}</strong></td>
         <td><span class="typeChip \${type.cls}">\${type.label}</span></td>
       </tr>\`;
@@ -250,7 +208,6 @@ async function load(){
           <th>Client</th>
           <th>Țară</th>
           <th style="min-width:320px">Produse</th>
-          <th>Format(e)</th>
           <th class="right">Total</th>
           <th>Tip</th>
         </tr>
