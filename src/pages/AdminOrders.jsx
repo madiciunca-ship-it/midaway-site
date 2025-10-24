@@ -23,16 +23,16 @@ export default function AdminOrders() {
       }
     } catch {}
   }, []);
-  
 
   const fetchOrders = async (tok) => {
     try {
       setLoading(true);
       setErr("");
-      const res = await fetch(`/api/orders?token=${encodeURIComponent(tok)}`);
+      const res = await fetch(`/api/admin/orders?token=${encodeURIComponent(tok)}`);
       if (!res.ok) throw new Error("Unauthorized sau eroare server");
       const data = await res.json();
-      setOrders(data.orders || []);
+      // endpoint-ul returnează array simplu; dacă totuși e {orders:[]}, îl acceptăm
+      setOrders(Array.isArray(data) ? data : (data.orders || []));
     } catch (e) {
       setErr(e.message || "Eroare");
     } finally {
@@ -57,12 +57,14 @@ export default function AdminOrders() {
     const head = ["id", "createdAt", "email", "name", "currency", "amount", "items"];
     const rows = orders.map((o) => [
       o.id,
-      new Date(o.createdAt).toISOString(),
+      new Date(Number(o.createdAt || 0)).toISOString(),
       o.email || "",
       o.name || "",
-      o.currency || "",
-      o.amount || "",
-      (o.items || []).map((i) => `${i.description} x${i.quantity} = ${i.amount_total} ${i.currency}`).join(" | "),
+      (o.currency || "").toUpperCase(),
+      o.amount ?? "",
+      (o.items || [])
+        .map((i) => `${i.description} x${i.quantity} = ${i.amount_total} ${(i.currency || "").toUpperCase()}`)
+        .join(" | "),
     ]);
     const csv = [head.join(","), ...rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(","))].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
@@ -121,15 +123,17 @@ export default function AdminOrders() {
                 <div style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap" }}>
                   <strong>{o.name || o.email}</strong>
                   <span style={{ color: "#666" }}>{o.email}</span>
-                  <span style={{ marginLeft: "auto" }}>{new Date(o.createdAt).toLocaleString()}</span>
+                  <span style={{ marginLeft: "auto" }}>
+                    {new Date(Number(o.createdAt || 0)).toLocaleString()}
+                  </span>
                 </div>
                 <div style={{ marginTop: 6 }}>
-                  <strong>{o.amount} {o.currency}</strong> • {o.status}
+                  <strong>{o.amount} {(o.currency || "").toUpperCase()}</strong> • {o.status}
                 </div>
                 <ul style={{ marginTop: 6, paddingLeft: 18 }}>
                   {(o.items || []).map((i, idx) => (
                     <li key={idx}>
-                      {i.description} — x{i.quantity} — {i.amount_total} {i.currency}
+                      {i.description} — x{i.quantity} — {i.amount_total} {(i.currency || "").toUpperCase()}
                     </li>
                   ))}
                 </ul>
