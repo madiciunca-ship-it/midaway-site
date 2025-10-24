@@ -7,6 +7,24 @@ export default function AdminOrders() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
 
+  useEffect(() => {
+    // acceptă token și din URL (ex: #/admin?token=XXXX)
+    try {
+      const hash = window.location.hash || "";
+      const q = hash.includes("?") ? hash.split("?")[1] : "";
+      const params = new URLSearchParams(q);
+      const t = (params.get("token") || "").trim();
+      if (t) {
+        sessionStorage.setItem("admin_token", t);
+        setToken(t);
+        // curăță token-ul din bară după ce l-am salvat
+        const cleanHash = hash.split("?")[0];
+        window.history.replaceState(null, "", cleanHash);
+      }
+    } catch {}
+  }, []);
+  
+
   const fetchOrders = async (tok) => {
     try {
       setLoading(true);
