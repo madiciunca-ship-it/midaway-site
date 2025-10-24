@@ -10,6 +10,7 @@ export default async function handler(req, res) {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-store" />
 <title>Comenzi – Admin</title>
 <style>
   :root{
@@ -153,15 +154,25 @@ async function load(){
 
   document.getElementById('src').textContent = url.toString();
 
-  const res = await fetch(url);
+  const res = await fetch(url, { cache:'no-store' });
+
+  // ▶ mesaj clar pentru 401/403
+  if (res.status === 401 || res.status === 403) {
+    document.getElementById('root').innerHTML =
+      '<p style="color:#b42318">Neautorizat (token invalid sau lipsă).</p>';
+    return;
+  }
   if(!res.ok){
     document.getElementById('root').innerHTML = '<p style="color:#b42318">Eroare: ' + res.status + '</p>';
     return;
   }
-  let orders = await res.json();
+
+  let data = await res.json();
+  // ▶ compat: acceptă fie array brut, fie {orders:[...]}
+  let orders = Array.isArray(data) ? data : (Array.isArray(data?.orders) ? data.orders : []);
 
   // populate country select (distinct din date)
-  const allCountries = Array.from(new Set(orders.map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();
+  const allCountries = Array.from(new Set((orders||[]).map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();
   const cSel = document.getElementById('country');
   if (cSel.getAttribute('data-init')!=='1'){
     allCountries.forEach(cc => {
@@ -173,7 +184,7 @@ async function load(){
   }
 
   // FILTRE
-  orders = orders.filter(o => {
+  orders = (orders||[]).filter(o => {
     if (s && (o.status||'') !== s) return false;
     if (c && (o.currency||'').toUpperCase() !== c) return false;
     if (k && (o.country||'').toUpperCase() !== k) return false;
@@ -252,5 +263,6 @@ load();
 </html>`;
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store"); // anti-cache la răspuns
   res.status(200).send(html);
 }
