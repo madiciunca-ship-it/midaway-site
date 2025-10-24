@@ -54,8 +54,12 @@ export default function App() {
           <Route path="/carti" element={<Books />} />
           <Route path="/carti/:id" element={<BookDetailWithPurchase />} />
           <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetailWithPurchase />} />
-          <Route path="/admin/orders" element={<AdminOrders />} />
+
+          {/* ✅ Admin – prinde /admin, /admin/, /admin/* și /admin/orders */}
           <Route path="/admin" element={<AdminOrders />} />
+          <Route path="/admin/*" element={<AdminOrders />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+
           {/* Blog */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
