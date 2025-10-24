@@ -138,7 +138,19 @@ export default async function handler(req, res) {
       }
 
       let data = await res.json();
-      let orders = Array.isArray(data) ? data : (Array.isArray(data.orders) ? data.orders : []);
+
+      // ✅ fix: suportă array sau obiect
+      let orders = [];
+      if (Array.isArray(data)) {
+        orders = data;
+      } else if (Array.isArray(data.orders)) {
+        orders = data.orders;
+      } else if (typeof data === "object") {
+        // dacă are doar 1 nivel și datele sunt chiar comenzile
+        orders = Object.values(data).find(v => Array.isArray(v)) || [];
+      } else {
+        orders = [];
+      }
 
       // populate țări (o singură dată)
       const allCountries = Array.from(new Set(orders.map(o => String(o.country||"").toUpperCase()).filter(Boolean))).sort();
