@@ -40,7 +40,7 @@ const projects = [
     title: "Autori Midaway",
     tagline: "Vocile independente care scriu lumea.",
     cover:
-      "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
     colorVar: "--card2", // teal (text alb)
     categories: ["educatie", "nou"], // apare la „Educație” și „Nou”
     badge: "Nou",
@@ -149,6 +149,7 @@ const projects = [
   categories: ["sustinere", "comunitate"],
   badge: "Colaborare",
   badgeColor: "#9C27B0",
+  showPlans: false,   // ⬅️ asta oprește planurile
   body: [
     "Midaway crește prin oameni. Căutăm colaboratori, parteneri culturali și prieteni care vor să pună umăr lângă noi la proiecte editoriale, evenimente și conținut media.",
     "Dacă ești autor, editor, traducător, grafician, fotograf, librar sau pur și simplu iubești cartea — scrie-ne. Construim proiecte curate, cu ritm omenos și cu atenție la detalii.",

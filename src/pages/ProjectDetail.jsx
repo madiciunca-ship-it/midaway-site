@@ -21,7 +21,9 @@ export default function ProjectDetail() {
     );
   }
 
+  // după ce știm că p există:
   const isSupport = p.id === "sustinere";
+  const showPlans = isSupport && p.showPlans === true;
 
   return (
     <>
@@ -45,10 +47,12 @@ export default function ProjectDetail() {
           <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
         ))}
 
-        {/* Dacă e Susținere – afișăm planuri (tiers) */}
-        {isSupport && (
+        {/* Planuri – randăm doar dacă sunt activate explicit în data */}
+        {showPlans && (
           <>
-            <h2 id="planuri" className="font-cormorant" style={{ marginTop: 24 }}>Planuri de abonament</h2>
+            <h2 id="planuri" className="font-cormorant" style={{ marginTop: 24 }}>
+              Planuri de abonament
+            </h2>
             <div className="plan-grid">
               <div className="plan-card">
                 <h3 className="plan-title">Explorator</h3>
