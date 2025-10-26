@@ -96,40 +96,48 @@ const projects = [
     cover:
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop",
     colorVar: "--card1",
-    categories: ["evenimente"],
-    badge: "În derulare",
-    badgeColor: "#9C27B0",
+    categories: ["evenimente", "educatie"],
+    badge: "În curând",
+    badgeColor: "#FF9800",
     body: [
-      "Workshopuri de scris, rezidențe creative și retreaturi în locuri care te așază pe interior.",
-      "Program scurt, tihnă multă, exerciții de imaginație și o comunitate bună.",
+      "Evenimentele Midaway adună oameni care scriu, citesc și trăiesc aproape de sensul lucrurilor. Fiecare retreat este o pauză de respirație — un loc unde tăcerea lucrează, iar cuvintele încep să curgă.",
+      "Organizăm workshopuri de scris, întâlniri cu autorii, discuții deschise despre cărți și procesul creativ. Fiecare participant devine parte dintr-un cerc viu de învățare și explorare.",
+      "Rezidențele creative Midaway oferă timp, spațiu și tihnă pentru scriitori aflați în lucru. Fiecare ediție are o temă, un loc inspirant și o comunitate mică, dar intensă.",
+      "Programul este scurt, atent construit: exerciții de imaginație, plimbări, conversații, reflecții. E un mod de a te întoarce la scris, dar și la tine însuți.",
+      "Toate evenimentele Midaway sunt gândite în spiritul editurii — autentic, simplu și profund uman."
     ],
     links: [
-      { label: "Înscrie-te", href: "/voluntari" },
-      { label: "Detalii & întrebări", href: "/contact" },
-    ],
+      { label: "Vezi calendarul", href: "/evenimente" },
+      { label: "Înscrie-te la următorul retreat", href: "/contact?subject=Retreat%20Midaway" },
+      { label: "Propune un workshop", href: "/contact?subject=Propunere%20Workshop" }
+    ]
   },
 
   // 5️⃣ CONȚINUT MEDIA
   {
     id: "media",
-    emoji: "🎥",
-    title: "Conținut media",
-    tagline: "Podcasturi, interviuri și minidocumentare.",
+    emoji: "🎙️",
+    title: "Conținut Media",
+    tagline: "Podcasturi, interviuri și minidocuri despre oameni și povești.",
     cover:
       "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop",
     colorVar: "--card2",
     darkOnCard: true,
-    categories: ["media"],
+    categories: ["media", "educatie"],
     badge: "Media",
     badgeColor: "#2196F3",
     body: [
-      "Documentăm voci autentice din călătorii, educație alternativă și creație.",
-      "Podcasturi, interviuri, clipuri scurte – povești din mersul lumii.",
+      "Secțiunea Media Midaway adună voci, imagini și idei din jurul cărților și al oamenilor care le dau viață. Este locul unde poveștile se aud, se văd și se simt altfel.",
+      "Realizăm podcasturi, interviuri și minidocumentare despre scris, călătorii, procesul editorial și tot ce se întâmplă în culisele unei edituri independente.",
+      "Invităm autorii Midaway, traducători, artiști, dar și oameni din comunitatea noastră — cititori, prieteni, colaboratori — să vorbească despre sens, curaj și creație.",
+      "Veți găsi aici fragmente audio, discuții relaxate și filmări din timpul retreaturilor sau al lansărilor de carte. Tot conținutul este creat intern, cu grijă și sinceritate.",
+      "Scopul nostru e simplu: să dăm mai departe energia din spatele fiecărei povești și să creăm un spațiu unde cultura respiră firesc, fără zgomot."
     ],
     links: [
-      { label: "Vezi Multimedia", href: "/multimedia" },
-      { label: "Propune un invitat", href: "/contact" },
-    ],
+      { label: "Vezi podcasturile & interviurile", href: "/multimedia" },
+      { label: "Abonează-te la canalul Midaway", href: "/blog" },
+      { label: "Propune un invitat sau subiect", href: "/contact?subject=Propunere%20Media" }
+    ]
   },
 
   // 6️⃣ IMPLICĂ-TE (fost „Susține”)
