@@ -3,13 +3,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import projects from "../data/projects";
 
+// Tabs de filtrare afișate sus
 const filters = [
   { key: "all", label: "Toate" },
   { key: "nou", label: "Nou" },
-  { key: "educatie", label: "Educație" },
   { key: "media", label: "Media" },
   { key: "evenimente", label: "Evenimente" },
-  { key: "sustinere", label: "Susținere" },   // ⬅️ nou
+  { key: "colaborare", label: "Colaborare" },
 ];
 
 const getCategories = (p) => {
@@ -20,13 +20,24 @@ const getCategories = (p) => {
 
 const matchCategory = (p, key) => {
   if (key === "all") return true;
-  const cats = getCategories(p);
-  if (key === "nou") {
-    const isBadgeNou = (p.badge || "").toLowerCase().includes("nou");
-    const isCatNou = cats.includes("nou");
-    return isBadgeNou || isCatNou;
+
+  const cats = getCategories(p).map((c) => String(c || "").toLowerCase());
+  const badge = String(p.badge || "").toLowerCase();
+
+  switch (key) {
+    case "nou":
+      // e „Nou” dacă are badge „Nou” sau categorie „nou”
+      return badge.includes("nou") || cats.includes("nou");
+    case "media":
+      return cats.includes("media");
+    case "evenimente":
+      return cats.includes("evenimente");
+    case "colaborare":
+      // folosim 'comunitate' pentru cardul „Implică-te”
+      return cats.includes("comunitate") || cats.includes("colaborare");
+    default:
+      return true;
   }
-  return cats.includes(key);
 };
 
 export default function Projects() {
@@ -36,13 +47,10 @@ export default function Projects() {
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
       {/* Header centrat */}
-      <header
-        className="font-cormorant"
-        style={{ marginBottom: 24, textAlign: "center" }}
-      >
-        <h1 style={{ margin: 0, fontSize: 40 }}>Proiecte Midaway</h1>
+      <header className="font-cormorant" style={{ marginBottom: 24, textAlign: "center" }}>
+        <h1 style={{ margin: 0, fontSize: 40 }}>Viziunea Midaway</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Direcțiile prin care Midaway crește și aduce oamenii împreună.
+          Direcțiile prin care Midaway publică, crește și aduce oamenii împreună.
         </p>
       </header>
 
@@ -74,10 +82,7 @@ export default function Projects() {
                 background: `var(${p.colorVar})`,
               }}
             >
-              <div
-                className="proj-cover"
-                style={{ backgroundImage: `url(${p.cover})` }}
-              >
+              <div className="proj-cover" style={{ backgroundImage: `url(${p.cover})` }}>
                 {p.badge && (
                   <span
                     className="proj-badge"
@@ -92,9 +97,7 @@ export default function Projects() {
                 <h3 className="font-cormorant" style={{ margin: "6px 0 6px" }}>
                   {p.title}
                 </h3>
-                <p style={{ margin: 0, opacity: p.darkOnCard ? 0.9 : 0.8 }}>
-                  {p.tagline}
-                </p>
+                <p style={{ margin: 0, opacity: p.darkOnCard ? 0.9 : 0.8 }}>{p.tagline}</p>
                 <p className="proj-details">Detalii →</p>
               </div>
             </Link>

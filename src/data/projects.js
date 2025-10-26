@@ -68,9 +68,9 @@ const projects = [
     cover:
       "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1600&auto=format&fit=crop",
     colorVar: "--card1",
-    categories: ["educatie", "nou"],
-    badge: "Nou",
-    badgeColor: "#E53935",
+    categories: ["educatie"],
+    badge: "Educație",
+    badgeColor: "#4CAF50", // verde
     body: [
       "Biblioteca Midaway nu este doar o arhivă. O gândim ca spațiu viu de lectură — digital și fizic — unde textele circulă, iar cititorii se întâlnesc.",
       "Construim o bibliotecă digitală cu fragmente, eseuri și selecții cu acces liber. La acestea adăugăm materiale bonus și recomandări curatoriate.",
@@ -148,7 +148,7 @@ const projects = [
   // păstrăm categoria 'sustinere' ca să apară în tabul existent
   categories: ["sustinere", "comunitate"],
   badge: "Colaborare",
-  badgeColor: "#FF9800",
+  badgeColor: "#9C27B0",
   body: [
     "Midaway crește prin oameni. Căutăm colaboratori, parteneri culturali și prieteni care vor să pună umăr lângă noi la proiecte editoriale, evenimente și conținut media.",
     "Dacă ești autor, editor, traducător, grafician, fotograf, librar sau pur și simplu iubești cartea — scrie-ne. Construim proiecte curate, cu ritm omenos și cu atenție la detalii.",
