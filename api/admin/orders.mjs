@@ -16,9 +16,9 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: "unauthorized" });
     }
 
-    // Citim comenzile
-    const orders = await readOrders();
-    const list = Array.isArray(orders) ? orders : [];
+    // Citim comenzile din Blob, garantăm un ARRAY
+    const raw = await readOrders();
+    const list = Array.isArray(raw) ? raw : [];
 
     // sort desc după createdAt (fallback 0)
     const sorted = [...list].sort((a, b) => {
@@ -27,30 +27,26 @@ export default async function handler(req, res) {
       return bb - aa;
     });
 
+    // Headere utile + NO-CACHE (evităm răspunsuri vechi din CDN)
     const count = sorted.length;
     const hasOrderNo = sorted.some((o) => o?.orderNo);
     const hasCourierFee = sorted.some((o) => typeof o?.courierFee === "number");
     const lastUpdated =
       count > 0 ? new Date(sorted[0]?.createdAt || Date.now()).toISOString() : null;
 
-    console.log(`admin/orders → count: ${count}`);
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
 
-    // Meta în HEADERE (UI vechi compatibil)
+    // Meta în headere (opțional, UI vechi compatibil)
     res.setHeader("X-Orders-Count", String(count));
     res.setHeader("X-Orders-HasOrderNo", hasOrderNo ? "1" : "0");
     res.setHeader("X-Orders-HasCourierFee", hasCourierFee ? "1" : "0");
     if (lastUpdated) res.setHeader("X-Orders-LastUpdated", lastUpdated);
 
-    // Evităm cache (browser/CDN)
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
-    res.setHeader("Cache-Control", "no-store, max-age=0");
-
-    // ✅ Body în formatul așteptat de AdminOrders.jsx: { orders: [...] }
-    return res.status(200).json({
-      orders: sorted,
-      total: count,
-      ts: Date.now(),
-    });
+    // IMPORTANT: trimitem DOAR array (nu {orders:[]})
+    return res.status(200).send(JSON.stringify(sorted));
   } catch (e) {
     console.error("admin/orders ERROR:", e);
     return res.status(500).json({ error: "server_error" });

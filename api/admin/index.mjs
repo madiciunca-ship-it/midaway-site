@@ -3,7 +3,6 @@ export default async function handler(req, res) {
   const BASE =
     (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
   const token = (req.query?.token || "").trim();
-  const dataUrl = `${BASE}/api/admin/orders?token=${encodeURIComponent(token)}`;
 
   const html = `<!doctype html>
 <html lang="ro">
@@ -105,7 +104,9 @@ export default async function handler(req, res) {
     <button onclick="reload()">Reîncarcă</button>
   </div>
 
-  <div class="hint">Citesc din: <code id="src" class="muted tiny">${dataUrl}</code></div>
+  <div class="hint">Citesc din: <code id="src" class="muted tiny">${BASE}/api/admin/orders?token=${encodeURIComponent(
+    token
+  )}</code></div>
 
   <div id="root">Încărcare…</div>
 
@@ -148,17 +149,23 @@ async function load(){
     return;
   }
 
+  // cache-busting + no-store
   const url = new URL('${BASE}/api/admin/orders');
   url.searchParams.set('token', t);
+  url.searchParams.set('v', String(Date.now()));
 
   document.getElementById('src').textContent = url.toString();
 
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-store" });
   if(!res.ok){
     document.getElementById('root').innerHTML = '<p style="color:#b42318">Eroare: ' + res.status + '</p>';
     return;
   }
-  let orders = await res.json();
+
+  // 🔧 Normalizare: acceptă atât array simplu, cât și {orders:[]}
+  const data = await res.json();
+  let orders = Array.isArray(data) ? data : (Array.isArray(data?.orders) ? data.orders : []);
+  if (!Array.isArray(orders)) orders = [];
 
   // populate country select (distinct din date)
   const allCountries = Array.from(new Set(orders.map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();

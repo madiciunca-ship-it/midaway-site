@@ -38,12 +38,39 @@ export default function AdminOrders() {
   const [currency, setCurrency] = useState("all");
   const [format, setFormat] = useState("all");
 
+  // ia token din #/admin?token=... sau ?token=...
+  useEffect(() => {
+    try {
+      const fromHash = (() => {
+        const hash = window.location.hash || "";
+        const q = hash.includes("?") ? hash.split("?")[1] : "";
+        const p = new URLSearchParams(q);
+        return (p.get("token") || "").trim();
+      })();
+
+      const fromQuery = (() => {
+        const p = new URLSearchParams(window.location.search);
+        return (p.get("token") || "").trim();
+      })();
+
+      const t = fromHash || fromQuery;
+      if (t) {
+        sessionStorage.setItem("admin_token", t);
+        setToken(t);
+        // curăță token-ul din bară
+        const cleanHash = (window.location.hash || "").split("?")[0] || "#/admin";
+        const cleanUrl = window.location.pathname + window.location.search + cleanHash;
+        window.history.replaceState(null, "", cleanUrl);
+      }
+    } catch {}
+  }, []);
+
   async function fetchOrders(tok) {
     try {
       setLoading(true);
       setErr("");
       const res = await fetch(`/api/admin/orders?token=${encodeURIComponent(tok)}`, {
-        headers: { "cache-control": "no-store" },
+        headers: { Accept: "application/json", "cache-control": "no-store" },
       });
       if (!res.ok) throw new Error("Unauthorized sau eroare server");
       const data = await res.json();
@@ -178,16 +205,12 @@ export default function AdminOrders() {
       o.status || "",
       Array.from(new Set((o.items || []).map((i) => String(i.format || "").toUpperCase()))).join("|"),
       (o.items || [])
-        .map(
-          (i) =>
-            `${i.description} x${i.quantity} = ${i.amount_total} ${(i.currency || "").toUpperCase()}`
-        )
+        .map((i) => `${i.description} x${i.quantity} = ${i.amount_total} ${(i.currency || "").toUpperCase()}`)
         .join(" | "),
     ]);
-    const csv = [
-      head.join(","),
-      ...rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(",")),
-    ].join("\n");
+    const csv = [head.join(","), ...rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(","))].join(
+      "\n"
+    );
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -344,14 +367,10 @@ export default function AdminOrders() {
             {filtered.map((o, index) => {
               const d = new Date(Number(o.createdAt || 0));
               const nr = filtered.length - index;
-              const fmtList = Array.from(
-                new Set((o.items || []).map((i) => String(i.format || "").toUpperCase()))
-              );
+              const fmtList = Array.from(new Set((o.items || []).map((i) => String(i.format || "").toUpperCase())));
               const hasCourierFee =
                 typeof o.courierFee === "number" ||
-                (o.items || []).some((i) =>
-                  String(i.description || "").toLowerCase().includes("taxă curier")
-                );
+                (o.items || []).some((i) => String(i.description || "").toLowerCase().includes("taxă curier"));
 
               return (
                 <div
@@ -408,12 +427,7 @@ export default function AdminOrders() {
                         >
                           {o.email}
                         </span>
-                        <button
-                          onClick={() => copyEmail(o.email)}
-                          title="Copiază email"
-                          style={btnMini}
-                          type="button"
-                        >
+                        <button onClick={() => copyEmail(o.email)} title="Copiază email" style={btnMini} type="button">
                           Copiază
                         </button>
                       </div>
@@ -423,9 +437,7 @@ export default function AdminOrders() {
                     <div style={{ color: "#444" }}>
                       <div>{!isNaN(d) ? d.toLocaleDateString() : "-"}</div>
                       <div style={{ fontSize: 12, color: "#888" }}>
-                        {!isNaN(d)
-                          ? d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-                          : "-"}
+                        {!isNaN(d) ? d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "-"}
                       </div>
                     </div>
 
@@ -437,17 +449,8 @@ export default function AdminOrders() {
                           padding: "2px 8px",
                           borderRadius: 999,
                           background:
-                            o.status === "paid"
-                              ? "#e6f4ea"
-                              : o.status === "failed"
-                              ? "#fee4e2"
-                              : "#fff4e5",
-                          color:
-                            o.status === "paid"
-                              ? "#1e7f4c"
-                              : o.status === "failed"
-                              ? "#b42318"
-                              : "#b46b00",
+                            o.status === "paid" ? "#e6f4ea" : o.status === "failed" ? "#fee4e2" : "#fff4e5",
+                          color: o.status === "paid" ? "#1e7f4c" : o.status === "failed" ? "#b42318" : "#b46b00",
                           fontSize: 12,
                           fontWeight: 700,
                           textTransform: "uppercase",
@@ -461,8 +464,8 @@ export default function AdminOrders() {
                     <div style={{ lineHeight: 1.4 }}>
                       {(o.items || []).map((i, k) => (
                         <div key={k} style={{ color: "#333" }}>
-                          {i.description} — <span style={{ color: "#888" }}>x{i.quantity}</span> —{" "}
-                          {i.amount_total} {(i.currency || "").toUpperCase()}
+                          {i.description} — <span style={{ color: "#888" }}>x{i.quantity}</span> — {i.amount_total}{" "}
+                          {(i.currency || "").toUpperCase()}
                         </div>
                       ))}
                       {typeof o.courierFee === "number" && (
@@ -477,9 +480,7 @@ export default function AdminOrders() {
                       <div style={{ fontWeight: 800 }}>
                         {o.amount} {(o.currency || "").toUpperCase()}
                       </div>
-                      <div style={{ fontSize: 12, color: "#666" }}>
-                        {fmtList.length ? fmtList.join(", ") : "—"}
-                      </div>
+                      <div style={{ fontSize: 12, color: "#666" }}>{fmtList.length ? fmtList.join(", ") : "—"}</div>
                     </div>
                   </div>
 
@@ -501,16 +502,12 @@ export default function AdminOrders() {
             })}
           </div>
 
-          {!loading && filtered.length === 0 && (
-            <div>Nu sunt comenzi pe criteriile selectate.</div>
-          )}
+          {!loading && filtered.length === 0 && <div>Nu sunt comenzi pe criteriile selectate.</div>}
         </>
       )}
 
       {!loading && !token && (
-        <div style={{ marginTop: 10, color: "#666" }}>
-          Introdu token-ul de admin pentru a încărca comenzile.
-        </div>
+        <div style={{ marginTop: 10, color: "#666" }}>Introdu token-ul de admin pentru a încărca comenzile.</div>
       )}
     </div>
   );
@@ -558,27 +555,7 @@ const pillBase = {
   border: "1px solid transparent",
 };
 
-const pillGreen = {
-  ...pillBase,
-  background: "#e9f7f1",
-  color: "#1b7f5a",
-  borderColor: "#cdeee2",
-};
-const pillYellow = {
-  ...pillBase,
-  background: "#fff7e6",
-  color: "#b36b00",
-  borderColor: "#ffe2b3",
-};
-const pillBlue = {
-  ...pillBase,
-  background: "#e8f1ff",
-  color: "#1a5fb4",
-  borderColor: "#cbdfff",
-};
-const pillGrey = {
-  ...pillBase,
-  background: "#f3f4f6",
-  color: "#555",
-  borderColor: "#e5e7eb",
-};
+const pillGreen = { ...pillBase, background: "#e9f7f1", color: "#1b7f5a", borderColor: "#cdeee2" };
+const pillYellow = { ...pillBase, background: "#fff7e6", color: "#b36b00", borderColor: "#ffe2b3" };
+const pillBlue = { ...pillBase, background: "#e8f1ff", color: "#1a5fb4", borderColor: "#cbdfff" };
+const pillGrey = { ...pillBase, background: "#f3f4f6", color: "#555", borderColor: "#e5e7eb" };
