@@ -41,7 +41,7 @@ const projects = [
     tagline: "Vocile independente care scriu lumea.",
     cover:
       "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1600&auto=format&fit=crop",
-    colorVar: "--card3", // bej-roz; merge frumos cu tema
+    colorVar: "--card2", // teal (text alb)
     categories: ["educatie", "nou"], // apare la „Educație” și „Nou”
     badge: "Nou",
     badgeColor: "#E53935",
@@ -59,25 +59,31 @@ const projects = [
     ],
   },
 
-  // 3️⃣ BIBLIOTECA MIDAWAY
+  // 3️⃣ BIBLIOTECA MIDAWAY — actualizată
   {
     id: "biblioteca",
     emoji: "📚",
     title: "Biblioteca Midaway",
-    tagline: "O colecție de cărți, jurnale și texte publicate.",
+    tagline: "Un loc unde cărțile se întorc spre comunitate.",
     cover:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1600&auto=format&fit=crop",
     colorVar: "--card1",
     categories: ["educatie", "nou"],
     badge: "Nou",
     badgeColor: "#E53935",
     body: [
-      "Un loc unde cititorii pot descoperi fragmente, cumpăra volume și găsi inspirație.",
-      "Construim o bibliotecă digitală și fizică pentru comunitate, cu acces gratuit la materiale selectate.",
+      "Biblioteca Midaway nu este doar o arhivă. O gândim ca spațiu viu de lectură — digital și fizic — unde textele circulă, iar cititorii se întâlnesc.",
+      "Construim o bibliotecă digitală cu fragmente, eseuri și selecții cu acces liber. La acestea adăugăm materiale bonus și recomandări curatoriate.",
+      "Pregătim și o sală de lectură fizică (în curând), cu întâlniri tematice și rafturi deschise atunci când ești în trecere prin oraș.",
+      "Cum poți contribui: propune titluri, donează exemplare pentru raftul comun sau spune-ne ce ți-ar plăcea să citești în continuare.",
     ],
     links: [
       { label: "Vezi cărțile", href: "/carti" },
-      { label: "Contact", href: "/contact" },
+      { label: "Fragmente & lecturi", href: "/blog" },
+      {
+        label: "Propune un titlu",
+        href: "/contact?subject=Propunere%20Biblioteca%20Midaway",
+      },
     ],
   },
 
