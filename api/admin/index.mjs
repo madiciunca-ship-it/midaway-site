@@ -159,6 +159,11 @@ async function load(){
     return;
   }
   let orders = await res.json();
+  // normalizează dacă cineva mai schimbă API-ul în {orders:[]}
+  if (!Array.isArray(orders)) {
+    orders = Array.isArray(orders?.orders) ? orders.orders : [];
+  }
+  
 
   // populate country select (distinct din date)
   const allCountries = Array.from(new Set(orders.map(o => (o.country||"").toUpperCase()).filter(Boolean))).sort();

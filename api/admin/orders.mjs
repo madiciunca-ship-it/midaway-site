@@ -3,54 +3,34 @@ import { readOrders } from "../_orders-store.mjs";
 
 export default async function handler(req, res) {
   try {
-    // Acceptăm doar GET
     if (req.method !== "GET") {
       res.setHeader("Allow", "GET");
       return res.status(405).json({ error: "Method Not Allowed" });
     }
 
-    // Token admin (identic cu ADMIN_DASH_TOKEN din Vercel)
     const token = (req.query?.token || "").trim();
     const ADMIN = (process.env.ADMIN_DASH_TOKEN || "").trim();
     if (!token || !ADMIN || token !== ADMIN) {
       return res.status(401).json({ error: "unauthorized" });
     }
 
-    // Citim comenzile
-    const orders = await readOrders();
-    const list = Array.isArray(orders) ? orders : [];
+    // Citește și garantează array
+    const raw = await readOrders();
+    const list = Array.isArray(raw) ? raw : [];
 
-    // sort desc după createdAt (fallback 0)
+    // sort desc după createdAt
     const sorted = [...list].sort((a, b) => {
       const aa = typeof a?.createdAt === "number" ? a.createdAt : 0;
       const bb = typeof b?.createdAt === "number" ? b.createdAt : 0;
       return bb - aa;
     });
 
-    const count = sorted.length;
-    const hasOrderNo = sorted.some((o) => o?.orderNo);
-    const hasCourierFee = sorted.some((o) => typeof o?.courierFee === "number");
-    const lastUpdated =
-      count > 0 ? new Date(sorted[0]?.createdAt || Date.now()).toISOString() : null;
-
-    console.log(`admin/orders → count: ${count}`);
-
-    // Meta în HEADERE (UI vechi compatibil)
-    res.setHeader("X-Orders-Count", String(count));
-    res.setHeader("X-Orders-HasOrderNo", hasOrderNo ? "1" : "0");
-    res.setHeader("X-Orders-HasCourierFee", hasCourierFee ? "1" : "0");
-    if (lastUpdated) res.setHeader("X-Orders-LastUpdated", lastUpdated);
-
-    // Evităm cache (browser/CDN)
+    // headere și NO-CACHE
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.setHeader("Cache-Control", "no-store, max-age=0");
 
-    // ✅ Body în formatul așteptat de AdminOrders.jsx: { orders: [...] }
-    return res.status(200).json({
-      orders: sorted,
-      total: count,
-      ts: Date.now(),
-    });
+    // ⬅️ IMPORTANT: trimitem DOAR array, nu {orders:[]}
+    return res.status(200).send(JSON.stringify(sorted));
   } catch (e) {
     console.error("admin/orders ERROR:", e);
     return res.status(500).json({ error: "server_error" });
