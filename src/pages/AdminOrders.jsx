@@ -541,7 +541,7 @@ const btn = {
 const btnMini = {
   padding: "4px 8px",
   borderRadius: 8,
-  border: "1px solid "#ddd",
+  border: "1px solid #ddd",
   background: "#f7f7f7",
   color: "#333",
   cursor: "pointer",
