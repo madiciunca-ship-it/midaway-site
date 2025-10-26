@@ -6,9 +6,12 @@ function Carousel({ slides }) {
   const [i, setI] = useState(0);
 
   useEffect(() => {
+    if (!slides?.length) return;
     const id = setInterval(() => setI((v) => (v + 1) % slides.length), 5000);
     return () => clearInterval(id);
   }, [slides.length]);
+
+  if (!slides?.length) return null;
 
   return (
     <div className="container">
@@ -56,21 +59,22 @@ function Carousel({ slides }) {
 
 /* === Pagina HOME === */
 export default function Home() {
+  // Carousel – pozele tale din /public/hero/
   const slides = [
     {
-      src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop",
-      alt: "Dune și urme de pași",
-      caption: "Pași pe nisipul timpului",
+      src: "/hero/side1.webp",
+      alt: "Apus de soare peste ocean",
+      caption: "Liniștea de la capătul lumii — începutul unei noi povești.",
     },
     {
-      src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
-      alt: "Munți și cețuri",
-      caption: "Drumuri ce duc înlăuntru",
+      src: "/hero/side2.webp",
+      alt: "Insulă tropicală în mijlocul oceanului",
+      caption: "Uneori, lumea întreagă încape într-o insulă de liniște.",
     },
     {
-      src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1400&auto=format&fit=crop",
-      alt: "Oameni în mișcare",
-      caption: "Oamenii sunt povești vii",
+      src: "/hero/side3.webp",
+      alt: "Barcă pe plajă, printre frunze de coastă",
+      caption: "Drumul continuă — cu fiecare pagină, cu fiecare val.",
     },
   ];
 
@@ -89,7 +93,7 @@ export default function Home() {
               marginTop: 8,
             }}
           >
-            „Povești de la capătul lumii”
+            „Cărți care pornesc la drum”
           </p>
           <p
             style={{
@@ -99,15 +103,14 @@ export default function Home() {
               lineHeight: 1.6,
             }}
           >
-            Mă numesc Mida Malena. Scriu și călătoresc, adun povești și le las
-            să circule mai departe.
-            <br />
-            Midaway este spațiul unde cărțile, oamenii și drumurile se împletesc.
+            Midaway este o editură independentă. Publicăm literatură de
+            călătorie, jurnale și eseuri care inspiră și aduc oamenii
+            împreună.
           </p>
 
           <div style={{ marginTop: 24 }}>
             <Link className="btn" to="/proiecte">
-              Explorează proiectul
+              Viziunea Midaway
             </Link>
           </div>
         </div>
@@ -117,27 +120,56 @@ export default function Home() {
       <div id="sectiuni" className="container">
         <div className="cards">
           {/* CĂRȚI */}
-          <Link to="/carti" className="card" style={{ background: "var(--card1)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
-            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Cărți</h3>
+          <Link
+            to="/carti"
+            className="card"
+            style={{
+              background: "var(--card1)",
+              color: "inherit",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              Cărți
+            </h3>
             <p style={{ margin: 0 }}>
-              Cărți care inspiră și provoacă gândirea.
+              Literatură vie — jurnale, eseuri, povești adevărate.
             </p>
           </Link>
 
           {/* BLOG */}
-          <Link to="/blog" className="card" style={{ background: "var(--card2)", color: "#fff", textDecoration: "none", cursor: "pointer" }}>
-            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Blog</h3>
-            <p style={{ margin: 0 }}>
-              Gânduri, povești și reflecții din drum.
-            </p>
+          <Link
+            to="/blog"
+            className="card"
+            style={{
+              background: "var(--card2)",
+              color: "#fff",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              Blog
+            </h3>
+            <p style={{ margin: 0 }}>Gânduri, texte, fragmente de drum.</p>
           </Link>
 
-          {/* VOLUNTARIAT */}
-          <Link to="/voluntari" className="card" style={{ background: "var(--card3)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
-            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>Voluntariat</h3>
-            <p style={{ margin: 0 }}>
-              Fii parte din comunitatea noastră creativă.
-            </p>
+          {/* IMPLICĂ-TE (în loc de Voluntariat) */}
+          <Link
+            to="/proiecte"
+            className="card"
+            style={{
+              background: "var(--card3)",
+              color: "inherit",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              Implică-te
+            </h3>
+            <p style={{ margin: 0 }}>Colaborări, parteneriate, comunitate.</p>
           </Link>
         </div>
       </div>
