@@ -1,0 +1,302 @@
+// /api/admin/v2.mjs
+import { readOrders } from "../_orders-store.mjs";
+
+export default async function handler(req, res) {
+  try {
+    if (req.method !== "GET") {
+      res.setHeader("Allow", "GET");
+      return res.status(405).json({ error: "Method Not Allowed" });
+    }
+
+    const token = (req.query?.token || "").trim();
+    const ADMIN = (process.env.ADMIN_DASH_TOKEN || "").trim();
+    if (!token || !ADMIN || token !== ADMIN) {
+      return res.status(401).send("Unauthorized");
+    }
+
+    // Citește comenzile (array sigur)
+    const raw = await readOrders();
+    const list = Array.isArray(raw) ? raw : [];
+
+    // Sort desc by createdAt
+    const sorted = [...list].sort((a, b) => {
+      const aa = typeof a?.createdAt === "number" ? a.createdAt : 0;
+      const bb = typeof b?.createdAt === "number" ? b.createdAt : 0;
+      return bb - aa;
+    });
+
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+
+    const BASE =
+      (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
+    const dataUrl = `${BASE}/api/admin/orders?token=${encodeURIComponent(token)}`;
+
+    const html = `<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comenzi – Admin v2</title>
+<style>
+  :root{
+    --bg:#fafafa;
+    --card:#fff;
+    --muted:#6b7280;
+    --line:#ececec;
+    --chip:#eef2ff;
+    --chip-txt:#4338ca;
+    --ok:#e7f4ee; --ok-t:#2a7c4a;
+    --warn:#fff4e5; --warn-t:#9a5b13;
+    --err:#fee2e2; --err-t:#b42318;
+  }
+  *{box-sizing:border-box}
+  body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0; padding:20px; background:var(--bg); color:#222;}
+  h1{ margin:0 0 14px 0; font-weight:800; letter-spacing:.3px; display:flex; gap:12px; align-items:baseline;}
+  .muted{ color:var(--muted) }
+  .bar{ display:grid; grid-template-columns: 1fr 160px 160px 160px 160px 160px auto; gap:8px; align-items:center; margin: 12px 0; }
+  @media (max-width:1100px){ .bar{ grid-template-columns: 1fr 1fr; } }
+  input,select,button{ padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font:inherit;}
+  input{ min-width:160px; }
+  button{ cursor:pointer; background:#2a9d8f; color:#fff; border:1px solid #228474; font-weight:700;}
+  .ghost{ background:#fff; color:#333; border-color: var(--line); }
+  .hint{ color:var(--muted); font-size:12px; margin: 6px 0 14px; display:block; }
+
+  .pill{ display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; border:1px solid #e5e7eb; }
+  .pill.green{ background:#e9f7f1; color:#1b7f5a; }
+  .pill.yellow{ background:#fff7e6; color:#b36b00; }
+  .pill.blue{ background:#e8f1ff; color:#1a5fb4; }
+  .pill.grey{ background:#f3f4f6; color:#555; }
+
+  table{ width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th, td{ padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; font-size:14px; }
+  th{ text-align:left; background:#f8fafc; position:sticky; top:0; z-index:2; font-weight:700; }
+  tr:last-child td{ border-bottom:0; }
+  .right{ text-align:right; white-space:nowrap; }
+  .chip{ display:inline-block; padding:2px 8px; border-radius:999px; background:var(--chip); color:var(--chip-txt); font-size:12px; font-weight:700; margin-right:6px; vertical-align:middle; }
+  .status{ margin-right:8px; }
+  .status.paid{ background:var(--ok); color:var(--ok-t); }
+  .status.failed{ background:var(--err); color:var(--err-t); }
+  .status.expired{ background:#eef0f2; color:#444; }
+  .formats{ color:#111; }
+  .typeChip{ display:inline-block; padding:2px 6px; border-radius:999px; background:#eefaf8; color:#11725f; font-size:12px; font-weight:700; }
+  .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
+  .id{ max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; vertical-align:bottom; }
+
+  .totals{ color:#666; margin:8px 0 14px; }
+  .summary{ margin:12px 0 16px; padding:12px; border:1px solid #eee; border-radius:12px; background:#fafafa; }
+  .row-flex{display:flex; justify-content:space-between;}
+</style>
+</head>
+<body>
+  <h1>📦 Comenzi Midaway <span class="muted" id="count"></span></h1>
+
+  <div class="bar">
+    <input id="token" value="${token}" placeholder="token admin" />
+    <input id="q" placeholder="Caută #comandă / email / nume" />
+    <select id="status"><option value="">Status (toate)</option></select>
+    <select id="currency"><option value="">Monedă (toate)</option></select>
+    <select id="country"><option value="">Țară (toate)</option></select>
+    <select id="format">
+      <option value="">Format (toate)</option>
+      <option value="PDF">PDF</option>
+      <option value="EPUB">EPUB</option>
+      <option value="PAPERBACK">Paperback</option>
+      <option value="AUDIOBOOK">Audiobook</option>
+    </select>
+    <div style="display:flex; gap:8px;">
+      <button class="ghost" onclick="reload()">Reîncarcă</button>
+      <button class="ghost" onclick="downloadCSV()">Export CSV</button>
+    </div>
+  </div>
+
+  <div class="hint">Citesc din: <code id="src" class="muted">${dataUrl}</code></div>
+  <div class="totals" id="totals"></div>
+  <div class="summary" id="monthly"></div>
+  <div id="root">Încărcare…</div>
+
+<script>
+const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
+const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
+const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
+const sumFormats = (items)=> Array.from(new Set((items||[]).map(i=>(i.format||'').toUpperCase()).filter(Boolean))).join(", ") || "-";
+const typeFromItems = (items)=>{
+  const hasE = (items||[]).some(i => (i.format||"").toUpperCase()!=="PAPERBACK");
+  const hasP = (items||[]).some(i => (i.format||"").toUpperCase()==="PAPERBACK");
+  if (hasE && hasP) return {label:"mix", cls:"mix"};
+  if (hasP) return {label:"fizic", cls:""};
+  return {label:"eBooks", cls:""};
+};
+
+let ORDERS = [];
+
+async function load(){
+  const t = document.getElementById('token').value.trim();
+  if(!t){ document.getElementById('root').innerHTML='<p style="color:#b42318">Introdu token.</p>'; return; }
+  const url = new URL('${BASE}/api/admin/orders'); url.searchParams.set('token', t);
+  document.getElementById('src').textContent = url.toString();
+
+  const res = await fetch(url, { headers: {'cache-control':'no-store'} });
+  if(!res.ok){ document.getElementById('root').innerHTML='<p style="color:#b42318">Eroare: '+res.status+'</p>'; return; }
+  let data = await res.json();
+  ORDERS = Array.isArray(data) ? data : Array.isArray(data?.orders) ? data.orders : [];
+
+  populateFilters(ORDERS);
+  render();
+}
+
+function populateFilters(list){
+  // status
+  const sSel = document.getElementById('status'); sSel.innerHTML = '<option value="">Status (toate)</option>';
+  const st = Array.from(new Set(list.map(o=>String(o.status||'').toLowerCase()).filter(Boolean))).sort();
+  st.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sSel.appendChild(o); });
+
+  // currency
+  const cSel = document.getElementById('currency'); cSel.innerHTML = '<option value="">Monedă (toate)</option>';
+  const cu = Array.from(new Set(list.map(o=>(o.currency||'').toUpperCase()).filter(Boolean))).sort();
+  cu.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; cSel.appendChild(o); });
+
+  // country
+  const kSel = document.getElementById('country'); kSel.innerHTML = '<option value="">Țară (toate)</option>';
+  const co = Array.from(new Set(list.map(o=>(o.country||'').toUpperCase()).filter(Boolean))).sort();
+  co.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent = v+' — '+countryName(v); kSel.appendChild(o); });
+}
+
+function applyFilters(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const s = document.getElementById('status').value.trim().toLowerCase();
+  const c = document.getElementById('currency').value.trim().toUpperCase();
+  const k = document.getElementById('country').value.trim().toUpperCase();
+  const f = document.getElementById('format').value.trim().toUpperCase();
+
+  return ORDERS.filter(o=>{
+    if(s && String(o.status||'').toLowerCase()!==s) return false;
+    if(c && (o.currency||'').toUpperCase()!==c) return false;
+    if(k && (o.country||'').toUpperCase()!==k) return false;
+    if(f){
+      const hasFmt = (o.items||[]).some(it => String(it.format||'').toUpperCase()===f);
+      if(!hasFmt) return false;
+    }
+    if(q){
+      const hay = \`\${o.orderNo||''} \${o.merchantOrderId||''} \${o.id||''} \${o.email||''} \${o.name||''}\`.toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function render(){
+  const flt = applyFilters();
+  document.getElementById('count').textContent = '• Total: '+flt.length;
+
+  // Totals per currency
+  const m = new Map(); for(const o of flt){ const cur=(o.currency||'RON').toUpperCase(); m.set(cur,(m.get(cur)||0)+Number(o.amount||0)); }
+  document.getElementById('totals').innerHTML =
+    'Totaluri: '+(Array.from(m.entries()).map(([cur,sum])=>\`<strong>\${sum}</strong> \${cur}\`).join(' • ')||'-');
+
+  // Monthly summary
+  const ym = (ts)=>{ const d=new Date(Number(ts||0)); if(isNaN(d)) return '—'; return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');};
+  const map = new Map();
+  for(const o of flt){ const key=ym(o.createdAt); if(!map.has(key)) map.set(key,new Map()); const cur=(o.currency||'RON').toUpperCase(); const prev=map.get(key).get(cur)||{sum:0,count:0}; map.get(key).set(cur,{sum:prev.sum+Number(o.amount||0),count:prev.count+1}); }
+  const ms = Array.from(map.entries()).sort(([a],[b])=>a<b?1:-1).map(([ym,curMap])=>{
+    const cells = Array.from(curMap.entries()).map(([cur,v])=>\`<span style="margin-right:12px"><strong>\${v.sum}</strong> \${cur} <span style="color:#888">(\${v.count} com.)</span></span>\`).join('');
+    return \`<div class="row-flex"><div style="color:#555">\${ym}</div><div>\${cells}</div></div>\`;
+  }).join('');
+  document.getElementById('monthly').innerHTML = '<div style="font-weight:700;margin-bottom:8px">Sumar lunar</div>'+(ms||'<span class="muted">-</span>');
+
+  // Table
+  const rows = flt.map(o=>{
+    const when = dfmt(o.createdAt);
+    const email = o.email||''; const name=o.name||''; const id=o.id||''; const orderNo=o.orderNo||'';
+    const total = fmt(o.amount||0, o.currency||'');
+    const status = (o.status||'paid').toLowerCase();
+    const fmts = sumFormats(o.items);
+    const type = typeFromItems(o.items);
+    const country = (o.country||"").toUpperCase();
+    const courier = (typeof o.courierFee==='number');
+    const items = (o.items||[]).map(it=>\`\${it.description} — <span class="muted">x\${it.quantity}</span> — \${it.amount_total} \${(it.currency||'').toUpperCase()}\`).join('<br/>');
+    const courierLine = courier ? \`<br/>Taxă curier — \${o.courierFee} \${(o.currency||'').toUpperCase()}\` : '';
+
+    return \`
+      <tr>
+        <td>
+          <div class="chip status \${status}">\${status}</div>
+          <div class="id"><code>\${id}</code></div>
+          \${orderNo ? \`<div class="muted" style="font-size:12px">#\${orderNo}</div>\` : '' }
+        </td>
+        <td class="nowrap">\${when}</td>
+        <td>
+          <div><strong>\${name || email}</strong></div>
+          <div><a href="mailto:\${email}">\${email}</a> <button class="pill grey" style="margin-left:6px" onclick="copyEmail('\${email.replace(/'/g,"\\'")}')">copiază</button></div>
+        </td>
+        <td>\${country || '-'}<br/><span class="muted" style="font-size:12px">\${country ? countryName(country) : ''}</span></td>
+        <td>\${items}\${courierLine}</td>
+        <td class="formats">\${fmts}</td>
+        <td class="right"><strong>\${total}</strong><br/><span class="typeChip \${type.cls}">\${type.label}</span></td>
+      </tr>\`;
+  }).join('');
+
+  document.getElementById('root').innerHTML = \`
+    <table>
+      <thead>
+        <tr>
+          <th>ID / Status</th>
+          <th>Data</th>
+          <th>Client</th>
+          <th>Țară</th>
+          <th style="min-width:320px">Produse</th>
+          <th>Format(e)</th>
+          <th class="right">Total</th>
+        </tr>
+      </thead>
+      <tbody>\${rows}</tbody>
+    </table>\`;
+}
+
+function reload(){ load(); }
+function copyEmail(email){ try{ navigator.clipboard.writeText(email||""); }catch{} }
+
+function downloadCSV(){
+  const flt = applyFilters();
+  const head = ["nr","orderNo","id","createdAtIso","email","name","country","currency","amount","courierFee","status","formats","items"];
+  const rows = flt.map((o,idx)=>[
+    flt.length-idx,
+    o.orderNo||"",
+    o.id||"",
+    new Date(Number(o.createdAt||0)).toISOString(),
+    o.email||"",
+    o.name||"",
+    (o.country||"").toUpperCase(),
+    (o.currency||"").toUpperCase(),
+    o.amount ?? "",
+    typeof o.courierFee==="number" ? o.courierFee : "",
+    o.status || "",
+    Array.from(new Set((o.items||[]).map(i => String(i.format||"").toUpperCase()))).join("|"),
+    (o.items||[]).map(i=>\`\${i.description} x\${i.quantity} = \${i.amount_total} \${(i.currency||"").toUpperCase()}\`).join(" | ")
+  ]);
+  const csv = [head.join(","), ...rows.map(r => r.map(c => \`"\${String(c).replace(/"/g,'""')}"\`).join(","))].join("\\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href = url; a.download = \`orders-\${Date.now()}.csv\`; a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('status').addEventListener('change', render);
+document.getElementById('currency').addEventListener('change', render);
+document.getElementById('country').addEventListener('change', render);
+document.getElementById('format').addEventListener('change', render);
+
+load();
+</script>
+</body>
+</html>`;
+
+    res.status(200).send(html);
+  } catch (e) {
+    console.error("admin/v2 ERROR:", e);
+    res.status(500).send("server_error");
+  }
+}
