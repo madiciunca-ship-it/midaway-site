@@ -3,13 +3,13 @@ import { readOrders } from "../_orders-store.mjs";
 
 export default async function handler(req, res) {
   try {
-    // Acceptăm doar GET ca să nu existe confuzii
+    // Acceptăm doar GET
     if (req.method !== "GET") {
       res.setHeader("Allow", "GET");
       return res.status(405).json({ error: "Method Not Allowed" });
     }
 
-    // Token admin (trebuie să fie IDENTIC cu ADMIN_DASH_TOKEN din Vercel)
+    // Token admin (identic cu ADMIN_DASH_TOKEN din Vercel)
     const token = (req.query?.token || "").trim();
     const ADMIN = (process.env.ADMIN_DASH_TOKEN || "").trim();
     if (!token || !ADMIN || token !== ADMIN) {
@@ -28,10 +28,22 @@ export default async function handler(req, res) {
     });
 
     // Headere utile + NO-CACHE (evităm răspunsuri vechi din CDN)
+    const count = sorted.length;
+    const hasOrderNo = sorted.some((o) => o?.orderNo);
+    const hasCourierFee = sorted.some((o) => typeof o?.courierFee === "number");
+    const lastUpdated =
+      count > 0 ? new Date(sorted[0]?.createdAt || Date.now()).toISOString() : null;
+
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
+
+    // Meta în headere (opțional, UI vechi compatibil)
+    res.setHeader("X-Orders-Count", String(count));
+    res.setHeader("X-Orders-HasOrderNo", hasOrderNo ? "1" : "0");
+    res.setHeader("X-Orders-HasCourierFee", hasCourierFee ? "1" : "0");
+    if (lastUpdated) res.setHeader("X-Orders-LastUpdated", lastUpdated);
 
     // IMPORTANT: trimitem DOAR array (nu {orders:[]})
     return res.status(200).send(JSON.stringify(sorted));
