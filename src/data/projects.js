@@ -113,59 +113,54 @@ const projects = [
     ]
   },
 
-  // 5️⃣ CONȚINUT MEDIA
-  {
-    id: "media",
-    emoji: "🎙️",
-    title: "Conținut Media",
-    tagline: "Podcasturi, interviuri și minidocuri despre oameni și povești.",
-    cover:
-      "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop",
-    colorVar: "--card2",
-    darkOnCard: true,
-    categories: ["media", "educatie"],
-    badge: "Media",
-    badgeColor: "#2196F3",
-    body: [
-      "Secțiunea Media Midaway adună voci, imagini și idei din jurul cărților și al oamenilor care le dau viață. Este locul unde poveștile se aud, se văd și se simt altfel.",
-      "Realizăm podcasturi, interviuri și minidocumentare despre scris, călătorii, procesul editorial și tot ce se întâmplă în culisele unei edituri independente.",
-      "Invităm autorii Midaway, traducători, artiști, dar și oameni din comunitatea noastră — cititori, prieteni, colaboratori — să vorbească despre sens, curaj și creație.",
-      "Veți găsi aici fragmente audio, discuții relaxate și filmări din timpul retreaturilor sau al lansărilor de carte. Tot conținutul este creat intern, cu grijă și sinceritate.",
-      "Scopul nostru e simplu: să dăm mai departe energia din spatele fiecărei povești și să creăm un spațiu unde cultura respiră firesc, fără zgomot."
-    ],
-    links: [
-      { label: "Vezi podcasturile & interviurile", href: "/multimedia" },
-      { label: "Abonează-te la canalul Midaway", href: "/blog" },
-      { label: "Propune un invitat sau subiect", href: "/contact?subject=Propunere%20Media" }
-    ]
-  },
+ // 5️⃣ CONȚINUT MEDIA
+{
+  id: "media",
+  emoji: "🎥",
+  title: "Conținut media",
+  tagline: "Podcasturi, interviuri și minidocumentare.",
+  cover:
+    "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop",
+  colorVar: "--card2",
+  darkOnCard: true,
+  categories: ["media"],
+  badge: "Media",
+  badgeColor: "#2196F3",
+  body: [
+    "Documentăm voci autentice din călătorii, educație alternativă și creație.",
+    "Podcasturi, interviuri, clipuri scurte – povești din mersul lumii.",
+  ],
+  links: [
+    { label: "Vezi Multimedia", href: "/multimedia" },
+    { label: "Propune un invitat", href: "/contact" },
+  ],
+}, // <— VIRGULĂ AICI, pentru că urmează încă un obiect
 
-  // 6️⃣ IMPLICĂ-TE (fost „Susține”)
-  {
-    id: "sustinere",
-    emoji: "🤝",
-    title: "Susține Midaway",
-    tagline: "Abonamente & donații pentru materiale și impact real.",
-    cover:
-      "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1600&auto=format&fit=crop",
-    colorVar: "--card4",
-    categories: ["sustinere"],
-    badge: "În curând",
-    badgeColor: "#FF9800",
-    body: [
-      "Devino parte din povestea Midaway și primește acces la materiale exclusive: fragmente în premieră, ebook-uri cadou, jurnal de proiecte și întâlniri online.",
-      "Pachete dedicate pentru persoane fizice și instituții (biblioteci, centre culturale): licență de folosire pentru materiale, invitații la lansări și beneficii speciale.",
-      "Transparență totală: publicăm periodic raportul de impact și direcțiile în care merg resursele.",
-    ],
-    links: [
-      {
-        label: "Înscrie-mă pe lista de interes",
-        href: "/contact?subject=Abonamente%20Midaway",
-      },
-      { label: "Detalii abonamente", href: "/proiecte/sustinere#planuri" },
-      { label: "Sponsorizări (PF & PJ)", href: "/sponsorizari" },
-    ],
-  },
-];
+// 6️⃣ IMPLICĂ-TE (fost „Susține”)
+{
+  id: "sustinere",
+  emoji: "🤝",
+  title: "Implică-te",
+  tagline: "Un loc pentru cei care cred în cuvânt și în frumos.",
+  cover:
+    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
+  colorVar: "--card3",
+  // păstrăm categoria 'sustinere' ca să apară în tabul existent
+  categories: ["sustinere", "comunitate"],
+  badge: "Colaborare",
+  badgeColor: "#FF9800",
+  body: [
+    "Midaway crește prin oameni. Căutăm colaboratori, parteneri culturali și prieteni care vor să pună umăr lângă noi la proiecte editoriale, evenimente și conținut media.",
+    "Dacă ești autor, editor, traducător, grafician, fotograf, librar sau pur și simplu iubești cartea — scrie-ne. Construim proiecte curate, cu ritm omenos și cu atenție la detalii.",
+    "Suntem deschiși la parteneriate cu biblioteci, centre culturale, festivaluri și școli pentru ateliere, lansări și programe educaționale.",
+    "Poți contribui cu idei, expertiză, spații, resurse logistice sau sprijin pentru tipărire și distribuție. Important este să aibă sens pentru comunitate."
+  ],
+  links: [
+    { label: "Propune o colaborare", href: "/contact?subject=Propunere%20colaborare%20Midaway" },
+    { label: "Devino partener cultural", href: "/contact?subject=Parteneriat%20cultural" },
+    { label: "Alătură-te comunității", href: "/blog" }
+  ]
+} // <— FĂRĂ virgulă dacă acesta e ULTIMUL obiect din array
+]; // <— închidem array-ul
 
 export default projects;
