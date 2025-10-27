@@ -2,7 +2,7 @@
 const authors = [
   {
     id: "mida-malena",                           // URL: /autori/mida-malena
-    photo: "public/assets/authors/mida-malena.webp",   // pune poza aici (public/assets/authors/)
+    photo: "/assets/books/authors/mida-malena.webp",   // pune poza aici (public/assets/authors/)
     socials: {
       instagram: "https://www.instagram.com/mida_malena/",
       facebook: "https://www.facebook.com/madi.ciunca",

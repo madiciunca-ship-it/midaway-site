@@ -20,10 +20,15 @@ export default function AuthorDetail() {
   if (!a) {
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">{lang === "en" ? "Author not found" : "Autorul nu există"}</h1>
+        <h1 className="font-cormorant">
+          {lang === "en" ? "Author not found" : "Autorul nu există"}
+        </h1>
         <p>
           {lang === "en" ? "Back to " : "Înapoi la "}
-          <Link to={`/autori?lang=${lang}`} style={{ color: "var(--accent)", textDecoration: "none" }}>
+          <Link
+            to={`/autori?lang=${lang}`}
+            style={{ color: "var(--accent)", textDecoration: "none" }}
+          >
             {lang === "en" ? "Authors" : "Autori"}
           </Link>
           .
@@ -51,19 +56,39 @@ export default function AuthorDetail() {
         style={{
           backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain", // 🔹 acum poza se vede întreagă, fără crop
+          minHeight: 380,             // 🔹 suficient spațiu să încapă
+          backgroundColor: "#ddd",    // fallback discret dacă poza are transparență
         }}
       >
         <div className="proj-hero-overlay" />
-        <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "end" }}>
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "end",
+          }}
+        >
           <div>
             <h1
               className="font-cormorant"
-              style={{ color: "#fff", margin: 0, display: "flex", gap: 12, alignItems: "center" }}
+              style={{
+                color: "#fff",
+                margin: 0,
+                display: "flex",
+                gap: 12,
+                alignItems: "center",
+              }}
             >
               <span style={{ fontSize: 34 }}>✒️</span> {d.name}
             </h1>
             <p style={{ color: "#fff", opacity: 0.9, marginTop: 8 }}>
-              {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""} {d.tagline ? `— ${d.tagline}` : ""}
+              {d.role
+                ? d.role.charAt(0).toUpperCase() + d.role.slice(1)
+                : ""}{" "}
+              {d.tagline ? `— ${d.tagline}` : ""}
             </p>
           </div>
 
@@ -79,8 +104,12 @@ export default function AuthorDetail() {
               background: "rgba(0,0,0,.25)",
             }}
           >
-            <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>RO</button>
-            <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>EN</button>
+            <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>
+              RO
+            </button>
+            <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>
+              EN
+            </button>
           </div>
         </div>
       </div>
@@ -90,27 +119,57 @@ export default function AuthorDetail() {
         {/* Socials */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
           {a.socials?.website && (
-            <a href={a.socials.website} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+            <a
+              href={a.socials.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
               🌐 Website
             </a>
           )}
           {a.socials?.instagram && (
-            <a href={a.socials.instagram} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+            <a
+              href={a.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
               📸 Instagram
             </a>
           )}
           {a.socials?.facebook && (
-            <a href={a.socials.facebook} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+            <a
+              href={a.socials.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
               👍 Facebook
             </a>
           )}
           {a.socials?.youtube && (
-            <a href={a.socials.youtube} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+            <a
+              href={a.socials.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
               ▶️ YouTube
             </a>
           )}
           {a.socials?.tiktok && (
-            <a href={a.socials.tiktok} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+            <a
+              href={a.socials.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
               🎵 TikTok
             </a>
           )}
@@ -119,15 +178,22 @@ export default function AuthorDetail() {
         {/* Featured book */}
         {a.featuredBook?.href && (
           <div style={{ margin: "8px 0 16px" }}>
-            <a href={a.featuredBook.href} className="btn" style={{ textDecoration: "none" }}>
-              {lang === "en" ? "See book:" : "Vezi cartea:"} {a.featuredBook.title}
+            <a
+              href={a.featuredBook.href}
+              className="btn"
+              style={{ textDecoration: "none" }}
+            >
+              {lang === "en" ? "See book:" : "Vezi cartea:"}{" "}
+              {a.featuredBook.title}
             </a>
           </div>
         )}
 
         {/* Bio */}
         {(d.bio || []).map((para, i) => (
-          <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
+          <p key={i} style={{ lineHeight: 1.7 }}>
+            {para}
+          </p>
         ))}
 
         {/* Cărți publicate (fallback simplu) */}
@@ -139,7 +205,10 @@ export default function AuthorDetail() {
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
+                  <Link
+                    to={`/carti`}
+                    style={{ textDecoration: "none", color: "var(--accent)" }}
+                  >
                     {slug}
                   </Link>
                 </li>
@@ -148,16 +217,33 @@ export default function AuthorDetail() {
           </>
         )}
 
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
-          <Link to={`/autori?lang=${lang}`} className="btn" style={{ textDecoration: "none" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 24,
+          }}
+        >
+          <Link
+            to={`/autori?lang=${lang}`}
+            className="btn"
+            style={{ textDecoration: "none" }}
+          >
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
-            to={`/contact?subject=${encodeURIComponent(lang === "en" ? "New author collaboration" : "Colaborare autor nou")}`}
+            to={`/contact?subject=${encodeURIComponent(
+              lang === "en"
+                ? "New author collaboration"
+                : "Colaborare autor nou"
+            )}`}
             className="btn-outline"
             style={{ textDecoration: "none" }}
           >
-            {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
+            {lang === "en"
+              ? "Propose a collaboration"
+              : "Propune o colaborare"}
           </Link>
         </div>
       </div>

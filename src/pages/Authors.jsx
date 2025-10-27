@@ -120,9 +120,11 @@ export default function Authors() {
                 style={{
                   backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
                   backgroundPosition: "center",
-                  height: 160,               // ⬅️ mic și elegant
-                }}
-              />
+                  backgroundSize: "cover",
+                  height: 160,
+                  paddingTop: 0,         // ⬅️ anulăm paddingul din CSS-ul global
+     }}
+   />
               <div className="proj-body" style={{ padding: 12 }}>
                 <div style={{ fontSize: 22, lineHeight: 1, opacity: 0.8 }}>✒️</div>
                 <h3 className="font-cormorant" style={{ margin: "6px 0 4px" }}>
