@@ -12,8 +12,9 @@ import { SITE_FLAGS } from "../config";
 const navItems = [
   { label: "Acasă", to: "/" },
   { label: "Cărți", to: "/carti" },
+  { label: "Autori", to: "/autori" },          // 👈 NOU
   { label: "Blog", to: "/blog" },
-  { label: "Proiecte", to: "/proiecte" },
+  { label: "Viziunea", to: "/proiecte" },      // 👈 Proiecte → Viziunea (ruta rămâne)
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
   { label: "Multimedia", to: "/multimedia" },
