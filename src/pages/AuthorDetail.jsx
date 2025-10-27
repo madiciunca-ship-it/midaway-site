@@ -17,6 +17,7 @@ export default function AuthorDetail() {
   const lang = params.get("lang") === "en" ? "en" : "ro";
 
   const a = authors.find((x) => x.id === slug);
+
   if (!a) {
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
@@ -50,161 +51,135 @@ export default function AuthorDetail() {
 
   return (
     <>
-      {/* HERO cu gradient cald + imagine întreagă */}
+      {/* HERO – imagine clară, benzi calde pe laterale (fără banner/overlay peste poză) */}
       <div
         className="proj-hero"
         style={{
-          // 2 straturi: 1) gradient cald care acoperă tot, 2) fotografia autorului
+          position: "relative",
+          // înălțime fluidă pentru portrete/peisaje (min 320, crește pe ecrane mari)
+          minHeight: "clamp(320px, 42vw, 520px)",
+          // 2 benzi bej pe lateral + poza în centru (contain)
           backgroundImage: `
-            linear-gradient(180deg, rgba(229,201,153,0.55) 0%, rgba(243,232,220,0.55) 45%, rgba(255,255,255,0.65) 100%),
+            linear-gradient(90deg, #f5efe6 0%, rgba(245,239,230,0) 22%),
+            linear-gradient(270deg, #f5efe6 0%, rgba(245,239,230,0) 22%),
             url(${a.photo || "/assets/placeholder-cover.png"})
           `,
-          backgroundPosition: "center, center",
-          backgroundRepeat: "no-repeat, no-repeat",
-          backgroundSize: "cover, contain", // foto este „contain” ca să se vadă întreagă
-          minHeight: 420,
+          backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+          backgroundSize: "26% 100%, 26% 100%, contain",
+          backgroundPosition: "left top, right top, center",
+          borderBottom: "1px solid rgba(0,0,0,.05)",
+        }}
+      />
+      {/* switch RO/EN — centrat sub fotografie */}
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: -18,
+          marginBottom: 8,
         }}
       >
-        {/* overlay păstrat pentru consistență, dar transparent */}
-        <div className="proj-hero-overlay" style={{ background: "transparent" }} />
         <div
-          className="container"
+          role="group"
+          aria-label="Language switch"
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "end",
+            display: "inline-flex",
+            border: "1px solid #d9d4c8",
+            borderRadius: 999,
+            overflow: "hidden",
+            background: "#fff",
           }}
         >
-          <div>
-            <h1
-              className="font-cormorant"
-              style={{
-                color: "#2c2a28",
-                margin: 0,
-                display: "flex",
-                gap: 12,
-                alignItems: "center",
-                textShadow: "0 1px 0 rgba(255,255,255,.5)",
-              }}
-            >
-              <span style={{ fontSize: 34 }}>✒️</span> {d.name}
-            </h1>
-            <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-              {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""}
-              {d.tagline ? ` — ${d.tagline}` : ""}
-            </p>
-          </div>
-
-          {/* Comutator RO/EN */}
-          <div
-            role="group"
-            aria-label="Language switch"
-            style={{
-              display: "inline-flex",
-              border: "1px solid rgba(0,0,0,.12)",
-              borderRadius: 999,
-              overflow: "hidden",
-              background: "rgba(255,255,255,.7)",
-              boxShadow: "0 2px 8px rgba(0,0,0,.06)",
-            }}
-          >
-            <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>
-              RO
-            </button>
-            <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>
-              EN
-            </button>
-          </div>
+          <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>
+            RO
+          </button>
+          <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>
+            EN
+          </button>
         </div>
       </div>
 
       {/* BODY */}
-      <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
-        {/* Social pills */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
+      <div className="container" style={{ padding: "16px 0 56px", maxWidth: 900 }}>
+        {/* Socials – pills pastelate (stil Midaway) */}
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
           {a.socials?.website && (
-            <a
-              href={a.socials.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pillStyle("website")}
-            >
+            <a href={a.socials.website} target="_blank" rel="noopener noreferrer" style={pill("#f1e6cf")}>
               🌐 Website
             </a>
           )}
           {a.socials?.instagram && (
-            <a
-              href={a.socials.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pillStyle("instagram")}
-            >
+            <a href={a.socials.instagram} target="_blank" rel="noopener noreferrer" style={pill("var(--card2)")}>
               📸 Instagram
             </a>
           )}
           {a.socials?.facebook && (
-            <a
-              href={a.socials.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pillStyle("facebook")}
-            >
+            <a href={a.socials.facebook} target="_blank" rel="noopener noreferrer" style={pill("#eadac7")}>
               👍 Facebook
             </a>
           )}
           {a.socials?.youtube && (
-            <a
-              href={a.socials.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pillStyle("youtube")}
-            >
+            <a href={a.socials.youtube} target="_blank" rel="noopener noreferrer" style={pill("#f8dabb")}>
               ▶️ YouTube
             </a>
           )}
           {a.socials?.tiktok && (
-            <a
-              href={a.socials.tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pillStyle("tiktok")}
-            >
+            <a href={a.socials.tiktok} target="_blank" rel="noopener noreferrer" style={pill("#e9e3d9")}>
               🎵 TikTok
             </a>
           )}
         </div>
 
-        {/* Cartea recomandată */}
+        {/* Featured book */}
         {a.featuredBook?.href && (
-          <div style={{ margin: "8px 0 16px" }}>
+          <div style={{ margin: "8px 0 14px" }}>
             <a
               href={a.featuredBook.href}
               className="btn"
-              style={{ textDecoration: "none" }}
+              style={{
+                textDecoration: "none",
+                borderRadius: 999,
+                padding: "10px 18px",
+                background: "var(--accent)",
+                color: "#fff",
+              }}
             >
               {lang === "en" ? "See book:" : "Vezi cartea:"} {a.featuredBook.title}
             </a>
           </div>
         )}
 
+        {/* Nume + rol/tagline – mutat aici, sub butonul „Vezi cartea” */}
+        <div style={{ margin: "6px 0 10px" }}>
+          <h1 className="font-cormorant" style={{ margin: "0 0 4px 0", fontSize: 34 }}>
+            ✒️ {d.name}
+          </h1>
+          {(d.role || d.tagline) && (
+            <p style={{ margin: 0, color: "#3e4a47", fontWeight: 500 }}>
+              {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""}
+              {d.tagline ? ` — ${d.tagline}` : ""}
+            </p>
+          )}
+        </div>
+
         {/* Bio */}
         {(d.bio || []).map((para, i) => (
-          <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
+          <p key={i} style={{ lineHeight: 1.7, color: "#3a3a3a" }}>
+            {para}
+          </p>
         ))}
 
-        {/* Cărți publicate – fallback simplu (lista către /carti) */}
+        {/* Cărți publicate */}
         {Array.isArray(a.books) && a.books.length > 0 && (
           <>
-            <h2 className="font-cormorant" style={{ marginTop: 24 }}>
+            <h2 className="font-cormorant" style={{ marginTop: 26 }}>
               {lang === "en" ? "Published books" : "Cărți publicate"}
             </h2>
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  <Link
-                    to={`/carti`}
-                    style={{ textDecoration: "none", color: "var(--accent)" }}
-                  >
+                  <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
                     {slug}
                   </Link>
                 </li>
@@ -213,17 +188,17 @@ export default function AuthorDetail() {
           </>
         )}
 
-        {/* CTA-uri */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
-          <Link to={`/autori?lang=${lang}`} className="btn" style={{ textDecoration: "none" }}>
+        {/* CTA */}
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
+          <Link to={`/autori?lang=${lang}`} className="btn-outline" style={{ textDecoration: "none" }}>
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
             to={`/contact?subject=${encodeURIComponent(
               lang === "en" ? "New author collaboration" : "Colaborare autor nou"
             )}`}
-            className="btn-outline"
-            style={{ textDecoration: "none" }}
+            className="btn"
+            style={{ background: "var(--card2)", color: "#fff", textDecoration: "none" }}
           >
             {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
           </Link>
@@ -244,33 +219,17 @@ function segBtnHero(active) {
   };
 }
 
-/* ——— stil „pill” pe paleta site-ului ——— */
-function pillStyle(kind) {
-  // culori inspirate din carduri: auriu, teal, bej-roz + nuanțe prietenoase
-  const palette = {
-    website:  { bg: "rgba(237, 213, 170, .35)", bd: "rgba(206, 167, 102, .55)", fg: "#3a2f1a" }, // auriu soft
-    instagram:{ bg: "rgba(67, 126, 126, .18)",  bd: "rgba(56, 104, 104, .35)",  fg: "#1f3a3a" }, // teal soft
-    facebook: { bg: "rgba(67, 126, 126, .18)",  bd: "rgba(56, 104, 104, .35)",  fg: "#1f3a3a" },
-    youtube:  { bg: "rgba(237, 213, 170, .28)", bd: "rgba(206, 167, 102, .45)",  fg: "#4a2d1a" },
-    tiktok:   { bg: "rgba(243, 232, 220, .75)", bd: "rgba(205, 185, 168, .55)", fg: "#3b2f2b" }, // bej-roz
-  };
-
-  const c = palette[kind] || palette.website;
-
+function pill(bg) {
   return {
     display: "inline-flex",
     alignItems: "center",
     gap: 8,
     padding: "10px 14px",
     borderRadius: 999,
-    border: `1px solid ${c.bd}`,
-    background: c.bg,
-    color: c.fg,
+    background: bg,
     textDecoration: "none",
+    color: "#2b2a28",
     fontWeight: 600,
-    boxShadow: "0 2px 8px rgba(0,0,0,.05)",
-    transition: "transform .12s ease",
-    willChange: "transform",
-    cursor: "pointer",
+    boxShadow: "0 2px 10px rgba(0,0,0,.05)",
   };
 }
