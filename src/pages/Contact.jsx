@@ -11,7 +11,15 @@ export default function Contact() {
       <header className="font-cormorant" style={{ marginBottom: 16 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>📬 Contact</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Pentru evenimente, colaborări sau întrebări, scrie-ne aici. Îți răspundem cu drag.
+          Scrie-ne dacă vrei să publici, să colaborezi sau doar să povestim despre cărți.
+          Ne bucurăm să descoperim oameni, idei și proiecte care vor să prindă viață.
+        </p>
+        <p style={{ color: "var(--secondary)", marginTop: 4 }}>
+          ✉️{" "}
+          <a href="mailto:contact@midaway.ro" style={{ color: "var(--secondary)" }}>
+            contact@midaway.ro
+          </a>{" "}
+          • Editura Midaway – locul unde cuvântul devine drum.
         </p>
       </header>
 
@@ -91,9 +99,7 @@ export default function Contact() {
         <input
           type="hidden"
           name="_subject"
-          value={
-            `Mesaj nou de pe midaway.ro` + (subjectPreset ? ` – ${subjectPreset}` : "")
-          }
+          value={`Mesaj nou de pe midaway.ro` + (subjectPreset ? ` – ${subjectPreset}` : "")}
         />
 
         {/* Antispam simplu */}
@@ -122,4 +128,3 @@ const socialBtnStyle = {
   color: "#111",
   background: "#fff",
 };
-

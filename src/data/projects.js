@@ -14,13 +14,13 @@ const projects = [
     cover:
       "https://images.unsplash.com/photo-1491841651911-c44c30c34548?q=80&w=1600&auto=format&fit=crop",
     // text scurt sub titlu (și în hero)
-    tagline: "Cărți independente — din real, spre ficțiune.",
+    tagline: "Cărți independente – din real, spre ficțiune.",
     // conținut detaliu (paragrafe)
     body: [
       "Publicăm jurnale de drum, eseuri, proză scurtă și traduceri din culturile întâlnite.",
-      "Ne interesează literatura vie: texte care nasc dialog, curaj și apropiere. Fiecare carte e făcută cu grijă — de la editare la tipar — pentru a rămâne.",
+      "Ne interesează literatura vie: texte care nasc dialog, curaj și apropiere. Fiecare carte e făcută cu grijă – de la editare la tipar – pentru a rămâne.",
       "• Ce publicăm: jurnale de drum & memorii; eseuri & literatură de idei; proză scurtă & nonficțiune narativă; traduceri selectate din spații „mai puțin cartografiate”.",
-      "• Cum lucrăm: curatoriere atentă și editare îngrijită; design tipografic clar, hârtie bună, tiraje sustenabile; tipărire locală, atenție la detaliul material; respect pentru autor — contract corect, transparență, promovare.",
+      "• Cum lucrăm: curatoriere atentă și editare îngrijită; design tipografic clar, hârtie bună, tiraje sustenabile; tipărire locală, atenție la detaliul material; respect pentru autor – contract editorial, transparență, promovare.",
       "Colecții: Jurnale de drum (călătorii care schimbă viața) • Eseuri din mers (idei care luminează prezentul) • Ficțiune vie (proză scurtă care respiră).",
     ],
     // butoanele din footer-ul paginii de detaliu
@@ -72,7 +72,7 @@ const projects = [
     badge: "Educație",
     badgeColor: "#4CAF50", // verde
     body: [
-      "Biblioteca Midaway nu este doar o arhivă. O gândim ca spațiu viu de lectură — digital și fizic — unde textele circulă, iar cititorii se întâlnesc.",
+      "Biblioteca Midaway nu este doar o arhivă. O gândim ca spațiu viu de lectură – digital și fizic – unde textele circulă, iar cititorii se întâlnesc.",
       "Construim o bibliotecă digitală cu fragmente, eseuri și selecții cu acces liber. La acestea adăugăm materiale bonus și recomandări curatoriate.",
       "Pregătim și o sală de lectură fizică (în curând), cu întâlniri tematice și rafturi deschise atunci când ești în trecere prin oraș.",
       "Cum poți contribui: propune titluri, donează exemplare pentru raftul comun sau spune-ne ce ți-ar plăcea să citești în continuare.",
@@ -100,11 +100,11 @@ const projects = [
     badge: "În curând",
     badgeColor: "#FF9800",
     body: [
-      "Evenimentele Midaway adună oameni care scriu, citesc și trăiesc aproape de sensul lucrurilor. Fiecare retreat este o pauză de respirație — un loc unde tăcerea lucrează, iar cuvintele încep să curgă.",
+      "Evenimentele Midaway adună oameni care scriu, citesc și trăiesc aproape de sensul lucrurilor. Fiecare retreat este o pauză de respirație – un loc unde tăcerea lucrează, iar cuvintele încep să curgă.",
       "Organizăm workshopuri de scris, întâlniri cu autorii, discuții deschise despre cărți și procesul creativ. Fiecare participant devine parte dintr-un cerc viu de învățare și explorare.",
       "Rezidențele creative Midaway oferă timp, spațiu și tihnă pentru scriitori aflați în lucru. Fiecare ediție are o temă, un loc inspirant și o comunitate mică, dar intensă.",
       "Programul este scurt, atent construit: exerciții de imaginație, plimbări, conversații, reflecții. E un mod de a te întoarce la scris, dar și la tine însuți.",
-      "Toate evenimentele Midaway sunt gândite în spiritul editurii — autentic, simplu și profund uman."
+      "Toate evenimentele Midaway sunt gândite în spiritul editurii – autentic, simplu și profund uman."
     ],
     links: [
       { label: "Vezi calendarul", href: "/evenimente" },
@@ -141,7 +141,7 @@ const projects = [
   id: "sustinere",
   emoji: "🤝",
   title: "Implică-te",
-  tagline: "Un loc pentru cei care cred în cuvânt și în frumos.",
+  tagline: "Comunitatea celor care cred în cuvânt și în frumos.",
   cover:
     "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop",
   colorVar: "--card3",
@@ -152,7 +152,7 @@ const projects = [
   showPlans: false,   // ⬅️ asta oprește planurile
   body: [
     "Midaway crește prin oameni. Căutăm colaboratori, parteneri culturali și prieteni care vor să pună umăr lângă noi la proiecte editoriale, evenimente și conținut media.",
-    "Dacă ești autor, editor, traducător, grafician, fotograf, librar sau pur și simplu iubești cartea — scrie-ne. Construim proiecte curate, cu ritm omenos și cu atenție la detalii.",
+    "Dacă ești autor, editor, traducător, grafician, fotograf, librar sau pur și simplu iubești cartea – scrie-ne. Construim proiecte curate, cu ritm omenos și cu atenție la detalii.",
     "Suntem deschiși la parteneriate cu biblioteci, centre culturale, festivaluri și școli pentru ateliere, lansări și programe educaționale.",
     "Poți contribui cu idei, expertiză, spații, resurse logistice sau sprijin pentru tipărire și distribuție. Important este să aibă sens pentru comunitate."
   ],
