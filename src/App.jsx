@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminOrders from "./pages/AdminOrders";
+import Authors from "./pages/Authors.jsx";
+import AuthorDetail from "./pages/AuthorDetail.jsx";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -97,7 +99,8 @@ export default function App() {
           <Route path="/calatori/:id" element={<TravelerDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
-
+          <Route path="/autori" element={<Authors />} />
+          <Route path="/autori/:slug" element={<AuthorDetail />} />
           {/* Checkout */}
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/thanks" element={<ThanksOrder />} />
