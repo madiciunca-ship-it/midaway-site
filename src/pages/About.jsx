@@ -1,4 +1,5 @@
-import React from "react";
+// src/pages/About.jsx
+import React from "react"; 
 import { Link } from "react-router-dom";
 
 export default function About() {
@@ -7,43 +8,43 @@ export default function About() {
       <h1 style={{ marginTop: 0 }}>🌸 Despre Midaway</h1>
 
       <p style={{ color: "#555", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
-        Eu sunt <strong>Mida Malena</strong> — scriitoare, călătoare și
-        povestitoare. Midaway este spațiul unde poveștile se întâlnesc cu
-        drumurile și cu oamenii.
-
-        {"\n\n"}
-        Am înțeles, în cei doi ani de rătăcire prin Asia, că nu ne alegem
-        poveștile – ele ne aleg pe noi. Că uneori trebuie să te pierzi cu
-        totul, ca să începi cu adevărat. Și că lumea nu se poate cunoaște
-        decât trăind-o, cu rucsacul în spate și sufletul deschis.
-
-        {"\n\n"}
-        MIDAWAY s-a născut nu dintr-o idee, ci dintr-o nevoie: nevoia de a
-        aduna povești vii, de a oferi un spațiu pentru vocile care nu se aud
-        destul, de a crea punți între lumi, oameni și inimi. Nu știam unde
-        duce drumul, dar am știut că trebuie să merg. Cu încredere, cu toate
-        fricile în rucsac și cu visul de a construi ceva care să aibă sens –
-        nu doar pentru mine, ci și pentru alții.
-
-        {"\n\n"}
-        Așa am început. Cu pași mici, cu mari întrebări și cu o singură
-        certitudine: că fiecare pas poate deveni o poveste. Și fiecare
-        poveste – un început pentru altcineva.
-
-        {"\n\n"}
-        Bine ai venit în Midaway. O lume care se clădește pe curaj, libertate
-        și adevăr. Pas cu pas.
-
-        {"\n\n"}
+        Eu sunt <strong>Mida Malena</strong> – scriitoare, călătoare și povestitoare.
+        <br />
+        <br />
+        Midaway este o <strong>editură independentă</strong> și un spațiu deschis pentru
+        povești vii – texte care nasc dialog, curaj și apropiere. A pornit din drum
+        și din nevoia de a aduna voci care nu se aud destul, de a le oferi un loc în
+        care cuvântul devine drum și întâlnire.
+        <br />
+        <br />
+        În cei doi ani de rătăcire prin Asia am înțeles că nu ne alegem poveștile –
+        <em> ele ne aleg pe noi</em>. Că uneori trebuie să te pierzi cu totul, ca să începi
+        cu adevărat. Și că lumea nu se poate cunoaște decât trăind-o, cu rucsacul
+        în spate și sufletul deschis.
+        <br />
+        <br />
+        MIDAWAY s-a născut din această certitudine: să facem loc textelor care
+        rămân. Curatoriere atentă, editare îngrijită, design tipografic clar, tiraje
+        sustenabile și respect pentru autor – acestea sunt reperele noastre.
+        <br />
+        <br />
+        Așa am început: cu pași mici, cu întrebări mari și cu o singură certitudine –
+        că fiecare pas poate deveni o poveste. Și fiecare poveste – un început
+        pentru altcineva.
+        <br />
+        <br />
+        Bine ai venit în Midaway. O lume care se clădește pe curaj, libertate și
+        adevăr. Pas cu pas.
+        <br />
+        <br />
         Mida Malena
       </p>
 
       <p style={{ marginTop: 16, lineHeight: 1.7 }}>
-        Totul a început dintr-o întrebare simplă:{" "}
+        Totul a pornit dintr-o întrebare simplă:{" "}
         <em>„Ce se întâmplă cu visul când ajungi să-l trăiești?”</em>.
-        Am ales necunoscutul în locul confortului și am pornit în călătorii
-        prin Asia, Europa și nu numai. Din aceste experiențe s-au născut
-        cărți, articole și proiecte.
+        Am ales necunoscutul în locul confortului și am pornit la drum. Din aceste
+        experiențe s-au născut cărți, articole și proiecte care astăzi alcătuiesc Midaway.
       </p>
 
       <blockquote
@@ -59,15 +60,16 @@ export default function About() {
 
       <h2>✨ Ce este Midaway?</h2>
       <ul style={{ lineHeight: 1.9 }}>
-        <li>📚 O bibliotecă de cărți și jurnale de drum</li>
-        <li>🌍 O comunitate de călători și cititori</li>
-        <li>✍️ Un loc pentru bloguri și texte literare</li>
-        <li>🤝 Un spațiu de voluntariat și proiecte comune</li>
+        <li>✍️ <strong>Editură</strong> pentru jurnale de drum, eseuri, proză scurtă și traduceri curate</li>
+        <li>🖋️ <strong>Autori Midaway</strong> – vocile independente care scriu lumea</li>
+        <li>📚 <strong>Biblioteca Midaway</strong> – fragmente, lecturi și o arhivă vie pentru comunitate</li>
+        <li>🎙️ <strong>Conținut media</strong> – podcasturi, interviuri și minidocumentare</li>
+        <li>🌄 <strong>Evenimente & Retreaturi</strong> – spații pentru scris, respirație și întâlniri vii</li>
+        <li>🤝 <strong>Implică-te</strong> – colaborări și parteneriate culturale care dau sens</li>
       </ul>
 
-      <p style={{ marginTop: 20 }}>
-        Dacă vrei să afli mai multe, explorează secțiunile site-ului sau
-        scrie-mi un mesaj prin{" "}
+      <p style={{ marginTop: 20, lineHeight: 1.7 }}>
+        Dacă vrei să afli mai multe, explorează secțiunile site-ului sau scrie-ne prin{" "}
         <Link
           to="/contact"
           style={{ color: "#0077cc", textDecoration: "none" }}
