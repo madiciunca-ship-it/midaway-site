@@ -4,7 +4,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import authors from "../data/authors";
 
 function getLocaleData(author, lang) {
-  // fallback EN → RO → primele câmpuri disponibile
   const data =
     (lang === "en" ? author.en : author.ro) ||
     author.ro ||
@@ -78,20 +77,8 @@ export default function Authors() {
             background: "#fff",
           }}
         >
-          <button
-            onClick={() => setLang("ro")}
-            className={`btn-outline ${lang === "ro" ? "active" : ""}`}
-            style={segBtnStyle(lang === "ro")}
-          >
-            RO
-          </button>
-          <button
-            onClick={() => setLang("en")}
-            className={`btn-outline ${lang === "en" ? "active" : ""}`}
-            style={segBtnStyle(lang === "en")}
-          >
-            EN
-          </button>
+          <button onClick={() => setLang("ro")} style={segBtnStyle(lang === "ro")}>RO</button>
+          <button onClick={() => setLang("en")} style={segBtnStyle(lang === "en")}>EN</button>
         </div>
       </header>
 
@@ -111,7 +98,7 @@ export default function Authors() {
         />
       </div>
 
-      {/* Grid */}
+      {/* Grid (folosim layoutul existent, dar card compact custom) */}
       <div className="proj-grid">
         {filtered.map((a) => {
           const d = getLocaleData(a, lang);
@@ -123,8 +110,9 @@ export default function Authors() {
               style={{
                 textDecoration: "none",
                 color: "inherit",
-                background: "var(--card2)", // teal (merge cu text alb)
-                color: "#fff",
+                background: "#fff",
+                border: "1px solid var(--line)",
+                boxShadow: "0 4px 12px rgba(0,0,0,.04)",
               }}
             >
               <div
@@ -132,18 +120,21 @@ export default function Authors() {
                 style={{
                   backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
                   backgroundPosition: "center",
+                  height: 160,               // ⬅️ mic și elegant
                 }}
               />
-              <div className="proj-body">
-                <div style={{ fontSize: 32, lineHeight: 1 }}>✒️</div>
-                <h3 className="font-cormorant" style={{ margin: "6px 0 6px" }}>
+              <div className="proj-body" style={{ padding: 12 }}>
+                <div style={{ fontSize: 22, lineHeight: 1, opacity: 0.8 }}>✒️</div>
+                <h3 className="font-cormorant" style={{ margin: "6px 0 4px" }}>
                   {d.name}
                 </h3>
-                <p style={{ margin: 0, opacity: 0.9 }}>
+                <p style={{ margin: 0, color: "var(--secondary)", fontSize: 14 }}>
                   {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""}
                   {d.tagline ? ` — ${d.tagline}` : ""}
                 </p>
-                <p className="proj-details">{lang === "en" ? "Details →" : "Detalii →"}</p>
+                <p className="proj-details" style={{ marginTop: 8 }}>
+                  {lang === "en" ? "Details →" : "Detalii →"}
+                </p>
               </div>
             </Link>
           );

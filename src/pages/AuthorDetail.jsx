@@ -20,7 +20,7 @@ export default function AuthorDetail() {
   if (!a) {
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">Autorul nu există</h1>
+        <h1 className="font-cormorant">{lang === "en" ? "Author not found" : "Autorul nu există"}</h1>
         <p>
           {lang === "en" ? "Back to " : "Înapoi la "}
           <Link to={`/autori?lang=${lang}`} style={{ color: "var(--accent)", textDecoration: "none" }}>
@@ -109,14 +109,28 @@ export default function AuthorDetail() {
               ▶️ YouTube
             </a>
           )}
+          {a.socials?.tiktok && (
+            <a href={a.socials.tiktok} target="_blank" rel="noopener noreferrer" className="btn" style={{ textDecoration: "none" }}>
+              🎵 TikTok
+            </a>
+          )}
         </div>
+
+        {/* Featured book */}
+        {a.featuredBook?.href && (
+          <div style={{ margin: "8px 0 16px" }}>
+            <a href={a.featuredBook.href} className="btn" style={{ textDecoration: "none" }}>
+              {lang === "en" ? "See book:" : "Vezi cartea:"} {a.featuredBook.title}
+            </a>
+          </div>
+        )}
 
         {/* Bio */}
         {(d.bio || []).map((para, i) => (
           <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
         ))}
 
-        {/* Cărți publicate */}
+        {/* Cărți publicate (fallback simplu) */}
         {Array.isArray(a.books) && a.books.length > 0 && (
           <>
             <h2 className="font-cormorant" style={{ marginTop: 24 }}>
@@ -125,7 +139,6 @@ export default function AuthorDetail() {
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  {/* dacă ai route dedicată la detaliu carte, schimbă linkul */}
                   <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
                     {slug}
                   </Link>
@@ -139,7 +152,11 @@ export default function AuthorDetail() {
           <Link to={`/autori?lang=${lang}`} className="btn" style={{ textDecoration: "none" }}>
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
-          <Link to={`/contact?subject=${encodeURIComponent(lang === "en" ? "New author collaboration" : "Colaborare autor nou")}`} className="btn-outline" style={{ textDecoration: "none" }}>
+          <Link
+            to={`/contact?subject=${encodeURIComponent(lang === "en" ? "New author collaboration" : "Colaborare autor nou")}`}
+            className="btn-outline"
+            style={{ textDecoration: "none" }}
+          >
             {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
           </Link>
         </div>
