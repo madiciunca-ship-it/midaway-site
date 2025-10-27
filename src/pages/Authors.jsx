@@ -33,7 +33,10 @@ export default function Authors() {
     const term = q.trim().toLowerCase();
     const list = authors.map((a) => ({
       a,
-      d: (lang === "en" ? a.en : a.ro) || a.ro || a.en || { name: a.id, role: "", tagline: "" },
+      d:
+        (lang === "en" ? a.en : a.ro) ||
+        a.ro ||
+        a.en || { name: a.id, role: "", tagline: "" },
     }));
     if (!term) return list;
     return list.filter(({ d }) =>
@@ -41,7 +44,7 @@ export default function Authors() {
     );
   }, [q, lang]);
 
-  // completează până la 3 carduri cu „placeholder” elegante
+  // completează până la 3 carduri cu placeholder colorate
   const placeholders = Math.max(0, 3 - filtered.length);
 
   return (
@@ -109,7 +112,7 @@ export default function Authors() {
         ))}
 
         {Array.from({ length: placeholders }).map((_, i) => (
-          <PlaceholderCard key={`ph-${i}`} lang={lang} />
+          <PlaceholderCard key={`ph-${i}`} lang={lang} index={i} />
         ))}
       </div>
     </div>
@@ -131,13 +134,15 @@ function AuthorCard({ a, d, lang }) {
         overflow: "hidden",
       }}
     >
-      {/* cover mic, 16:9 */}
+      {/* Cover — arată toată poza (contain) + fundal cald */}
       <div
         style={{
-          height: 170,
+          height: 220,
           backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
-          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
+          backgroundSize: "contain",
+          backgroundColor: "var(--card1)",
         }}
       />
       <div style={{ padding: 14 }}>
@@ -146,7 +151,8 @@ function AuthorCard({ a, d, lang }) {
           {d.name}
         </h3>
         <p style={{ margin: 0, color: "var(--secondary)" }}>
-          {d.role}{d.tagline ? ` — ${d.tagline}` : ""}
+          {d.role}
+          {d.tagline ? ` — ${d.tagline}` : ""}
         </p>
         <p className="proj-details" style={{ marginTop: 8 }}>
           {lang === "en" ? "Details →" : "Detalii →"}
@@ -156,34 +162,37 @@ function AuthorCard({ a, d, lang }) {
   );
 }
 
-function PlaceholderCard({ lang }) {
+function PlaceholderCard({ lang, index }) {
+  const palette = ["var(--card1)", "var(--card2)", "var(--card3)"];
+  const bg = palette[index % palette.length];
+  const dark = index % palette.length === 1; // teal -> text alb
+
   return (
     <div
       className="proj-card"
       style={{
-        background: "#fff",
-        border: "2px dashed #ddd",
+        background: bg,
+        color: dark ? "#fff" : "inherit",
+        border: "1px dashed rgba(0,0,0,.15)",
         borderRadius: 18,
-        padding: 16,
+        boxShadow: "0 6px 16px rgba(0,0,0,.04)",
+        overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        minHeight: 260,
       }}
     >
       <div
         style={{
-          height: 170,
-          borderRadius: 12,
+          height: 220,
           background:
-            "repeating-linear-gradient(45deg,#f7f7f7,#f7f7f7 10px,#fafafa 10px,#fafafa 20px)",
+            "repeating-linear-gradient(45deg, rgba(255,255,255,.25), rgba(255,255,255,.25) 10px, rgba(255,255,255,.15) 10px, rgba(255,255,255,.15) 20px)",
         }}
       />
-      <div>
-        <h3 className="font-cormorant" style={{ margin: "10px 0 6px", fontSize: 22 }}>
+      <div style={{ padding: 14 }}>
+        <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
           {lang === "en" ? "Your name here" : "Numele tău aici"}
         </h3>
-        <p style={{ margin: 0, color: "var(--secondary)" }}>
+        <p style={{ margin: 0, opacity: 0.9 }}>
           {lang === "en" ? "Future Midaway author" : "Autor Midaway în curând"}
         </p>
         <Link
@@ -191,7 +200,12 @@ function PlaceholderCard({ lang }) {
             lang === "en" ? "New author collaboration" : "Colaborare autor nou"
           )}`}
           className="btn"
-          style={{ textDecoration: "none", marginTop: 8, display: "inline-block" }}
+          style={{
+            textDecoration: "none",
+            marginTop: 10,
+            background: dark ? "rgba(255,255,255,.15)" : "var(--accent)",
+            color: dark ? "#fff" : "#fff",
+          }}
         >
           {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
         </Link>

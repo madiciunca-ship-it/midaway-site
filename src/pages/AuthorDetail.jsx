@@ -50,19 +50,23 @@ export default function AuthorDetail() {
 
   return (
     <>
-      {/* HERO cu foto */}
+      {/* HERO cu gradient cald + imagine întreagă */}
       <div
         className="proj-hero"
         style={{
-          backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain", // 🔹 acum poza se vede întreagă, fără crop
-          minHeight: 380,             // 🔹 suficient spațiu să încapă
-          backgroundColor: "#ddd",    // fallback discret dacă poza are transparență
+          // 2 straturi: 1) gradient cald care acoperă tot, 2) fotografia autorului
+          backgroundImage: `
+            linear-gradient(180deg, rgba(229,201,153,0.55) 0%, rgba(243,232,220,0.55) 45%, rgba(255,255,255,0.65) 100%),
+            url(${a.photo || "/assets/placeholder-cover.png"})
+          `,
+          backgroundPosition: "center, center",
+          backgroundRepeat: "no-repeat, no-repeat",
+          backgroundSize: "cover, contain", // foto este „contain” ca să se vadă întreagă
+          minHeight: 420,
         }}
       >
-        <div className="proj-hero-overlay" />
+        {/* overlay păstrat pentru consistență, dar transparent */}
+        <div className="proj-hero-overlay" style={{ background: "transparent" }} />
         <div
           className="container"
           style={{
@@ -75,33 +79,33 @@ export default function AuthorDetail() {
             <h1
               className="font-cormorant"
               style={{
-                color: "#fff",
+                color: "#2c2a28",
                 margin: 0,
                 display: "flex",
                 gap: 12,
                 alignItems: "center",
+                textShadow: "0 1px 0 rgba(255,255,255,.5)",
               }}
             >
               <span style={{ fontSize: 34 }}>✒️</span> {d.name}
             </h1>
-            <p style={{ color: "#fff", opacity: 0.9, marginTop: 8 }}>
-              {d.role
-                ? d.role.charAt(0).toUpperCase() + d.role.slice(1)
-                : ""}{" "}
-              {d.tagline ? `— ${d.tagline}` : ""}
+            <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+              {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""}
+              {d.tagline ? ` — ${d.tagline}` : ""}
             </p>
           </div>
 
-          {/* Lang toggle */}
+          {/* Comutator RO/EN */}
           <div
             role="group"
             aria-label="Language switch"
             style={{
               display: "inline-flex",
-              border: "1px solid rgba(255,255,255,.6)",
+              border: "1px solid rgba(0,0,0,.12)",
               borderRadius: 999,
               overflow: "hidden",
-              background: "rgba(0,0,0,.25)",
+              background: "rgba(255,255,255,.7)",
+              boxShadow: "0 2px 8px rgba(0,0,0,.06)",
             }}
           >
             <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>
@@ -116,15 +120,14 @@ export default function AuthorDetail() {
 
       {/* BODY */}
       <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
-        {/* Socials */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+        {/* Social pills */}
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 12 }}>
           {a.socials?.website && (
             <a
               href={a.socials.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
-              style={{ textDecoration: "none" }}
+              style={pillStyle("website")}
             >
               🌐 Website
             </a>
@@ -134,8 +137,7 @@ export default function AuthorDetail() {
               href={a.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
-              style={{ textDecoration: "none" }}
+              style={pillStyle("instagram")}
             >
               📸 Instagram
             </a>
@@ -145,8 +147,7 @@ export default function AuthorDetail() {
               href={a.socials.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
-              style={{ textDecoration: "none" }}
+              style={pillStyle("facebook")}
             >
               👍 Facebook
             </a>
@@ -156,8 +157,7 @@ export default function AuthorDetail() {
               href={a.socials.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
-              style={{ textDecoration: "none" }}
+              style={pillStyle("youtube")}
             >
               ▶️ YouTube
             </a>
@@ -167,15 +167,14 @@ export default function AuthorDetail() {
               href={a.socials.tiktok}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn"
-              style={{ textDecoration: "none" }}
+              style={pillStyle("tiktok")}
             >
               🎵 TikTok
             </a>
           )}
         </div>
 
-        {/* Featured book */}
+        {/* Cartea recomandată */}
         {a.featuredBook?.href && (
           <div style={{ margin: "8px 0 16px" }}>
             <a
@@ -183,20 +182,17 @@ export default function AuthorDetail() {
               className="btn"
               style={{ textDecoration: "none" }}
             >
-              {lang === "en" ? "See book:" : "Vezi cartea:"}{" "}
-              {a.featuredBook.title}
+              {lang === "en" ? "See book:" : "Vezi cartea:"} {a.featuredBook.title}
             </a>
           </div>
         )}
 
         {/* Bio */}
         {(d.bio || []).map((para, i) => (
-          <p key={i} style={{ lineHeight: 1.7 }}>
-            {para}
-          </p>
+          <p key={i} style={{ lineHeight: 1.7 }}>{para}</p>
         ))}
 
-        {/* Cărți publicate (fallback simplu) */}
+        {/* Cărți publicate – fallback simplu (lista către /carti) */}
         {Array.isArray(a.books) && a.books.length > 0 && (
           <>
             <h2 className="font-cormorant" style={{ marginTop: 24 }}>
@@ -217,33 +213,19 @@ export default function AuthorDetail() {
           </>
         )}
 
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            marginTop: 24,
-          }}
-        >
-          <Link
-            to={`/autori?lang=${lang}`}
-            className="btn"
-            style={{ textDecoration: "none" }}
-          >
+        {/* CTA-uri */}
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
+          <Link to={`/autori?lang=${lang}`} className="btn" style={{ textDecoration: "none" }}>
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
             to={`/contact?subject=${encodeURIComponent(
-              lang === "en"
-                ? "New author collaboration"
-                : "Colaborare autor nou"
+              lang === "en" ? "New author collaboration" : "Colaborare autor nou"
             )}`}
             className="btn-outline"
             style={{ textDecoration: "none" }}
           >
-            {lang === "en"
-              ? "Propose a collaboration"
-              : "Propune o colaborare"}
+            {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
           </Link>
         </div>
       </div>
@@ -256,8 +238,39 @@ function segBtnHero(active) {
     padding: "8px 14px",
     border: "none",
     background: active ? "var(--accent)" : "transparent",
-    color: "#fff",
+    color: active ? "#fff" : "#444",
     cursor: "pointer",
     fontWeight: 700,
+  };
+}
+
+/* ——— stil „pill” pe paleta site-ului ——— */
+function pillStyle(kind) {
+  // culori inspirate din carduri: auriu, teal, bej-roz + nuanțe prietenoase
+  const palette = {
+    website:  { bg: "rgba(237, 213, 170, .35)", bd: "rgba(206, 167, 102, .55)", fg: "#3a2f1a" }, // auriu soft
+    instagram:{ bg: "rgba(67, 126, 126, .18)",  bd: "rgba(56, 104, 104, .35)",  fg: "#1f3a3a" }, // teal soft
+    facebook: { bg: "rgba(67, 126, 126, .18)",  bd: "rgba(56, 104, 104, .35)",  fg: "#1f3a3a" },
+    youtube:  { bg: "rgba(237, 213, 170, .28)", bd: "rgba(206, 167, 102, .45)",  fg: "#4a2d1a" },
+    tiktok:   { bg: "rgba(243, 232, 220, .75)", bd: "rgba(205, 185, 168, .55)", fg: "#3b2f2b" }, // bej-roz
+  };
+
+  const c = palette[kind] || palette.website;
+
+  return {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "10px 14px",
+    borderRadius: 999,
+    border: `1px solid ${c.bd}`,
+    background: c.bg,
+    color: c.fg,
+    textDecoration: "none",
+    fontWeight: 600,
+    boxShadow: "0 2px 8px rgba(0,0,0,.05)",
+    transition: "transform .12s ease",
+    willChange: "transform",
+    cursor: "pointer",
   };
 }

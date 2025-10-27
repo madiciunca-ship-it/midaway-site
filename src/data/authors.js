@@ -24,7 +24,7 @@ const authors = [
 
     ro: {
       name: "Mida Malena",
-      role: "scriitoare",
+      role: "Scriitoare",
       tagline: "Povestitoare, aventurieră și căutătoare eternă.",
       bio: [
         "Bună, sunt Mida Malena – povestitoare, aventurieră și căutătoare eternă.",
