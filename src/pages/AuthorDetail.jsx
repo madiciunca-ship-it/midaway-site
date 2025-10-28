@@ -51,33 +51,75 @@ export default function AuthorDetail() {
 
   return (
     <>
-      {/* HERO – imagine clară, benzi calde pe laterale (fără banner/overlay peste poză) */}
+      {/* HERO – colaj panoramic */}
       <div
         className="proj-hero"
         style={{
           position: "relative",
-          // înălțime fluidă pentru portrete/peisaje (min 320, crește pe ecrane mari)
-          minHeight: "clamp(320px, 42vw, 520px)",
-          // 2 benzi bej pe lateral + poza în centru (contain)
-          backgroundImage: `
-            linear-gradient(90deg, #f5efe6 0%, rgba(245,239,230,0) 22%),
-            linear-gradient(270deg, #f5efe6 0%, rgba(245,239,230,0) 22%),
-            url(${a.photo || "/assets/placeholder-cover.png"})
-          `,
-          backgroundRepeat: "no-repeat, no-repeat, no-repeat",
-          backgroundSize: "26% 100%, 26% 100%, contain",
-          backgroundPosition: "left top, right top, center",
-          borderBottom: "1px solid rgba(0,0,0,.05)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
+          padding: "32px 0",
+          minHeight: "clamp(340px, 45vw, 540px)",
+          overflow: "hidden",
         }}
-      />
-      {/* switch RO/EN — centrat sub fotografie */}
+      >
+        {/* Imagine stânga */}
+        <img
+          src="/assets/books/authors/mida-malena-2.webp"
+          alt=""
+          style={{
+            height: "100%",
+            width: "auto",
+            borderRadius: "12px",
+            objectFit: "cover",
+            opacity: 0.9,
+            transform: "translateX(-10%)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+          }}
+          className="hide-mobile"
+        />
+
+        {/* Imagine centrală */}
+        <img
+          src={a.photo || "/assets/placeholder-cover.png"}
+          alt={d.name}
+          style={{
+            maxHeight: "480px",
+            width: "auto",
+            borderRadius: "16px",
+            objectFit: "contain",
+            margin: "0 24px",
+            boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+          }}
+        />
+
+        {/* Imagine dreapta */}
+        <img
+          src="/assets/books/authors/mida-malena-3.webp"
+          alt=""
+          style={{
+            height: "100%",
+            width: "auto",
+            borderRadius: "12px",
+            objectFit: "cover",
+            opacity: 0.9,
+            transform: "translateX(10%)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+          }}
+          className="hide-mobile"
+        />
+      </div>
+
+      {/* switch RO/EN – centrat sub colaj */}
       <div
         className="container"
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: -18,
-          marginBottom: 8,
+          marginTop: -10,
+          marginBottom: 20,
         }}
       >
         <div
@@ -101,8 +143,8 @@ export default function AuthorDetail() {
       </div>
 
       {/* BODY */}
-      <div className="container" style={{ padding: "16px 0 56px", maxWidth: 900 }}>
-        {/* Socials – pills pastelate (stil Midaway) */}
+      <div className="container" style={{ padding: "0 0 60px", maxWidth: 900 }}>
+        {/* Socials – pills pastelate */}
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
           {a.socials?.website && (
             <a href={a.socials.website} target="_blank" rel="noopener noreferrer" style={pill("#f1e6cf")}>
@@ -150,7 +192,7 @@ export default function AuthorDetail() {
           </div>
         )}
 
-        {/* Nume + rol/tagline – mutat aici, sub butonul „Vezi cartea” */}
+        {/* Nume + rol/tagline */}
         <div style={{ margin: "6px 0 10px" }}>
           <h1 className="font-cormorant" style={{ margin: "0 0 4px 0", fontSize: 34 }}>
             ✒️ {d.name}
