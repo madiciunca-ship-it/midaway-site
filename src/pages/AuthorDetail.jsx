@@ -224,24 +224,12 @@ export default function AuthorDetail() {
           )}
         </div>
 
-        {/* Featured book – buton centrat */}
-        {a.featuredBook?.href && (
-          <div style={{ margin: "8px 0 18px", display: "flex", justifyContent: "center" }}>
-            <a
-              href={a.featuredBook.href}
-              className="btn"
-              style={{
-                textDecoration: "none",
-                borderRadius: 999,
-                padding: "10px 18px",
-                background: "var(--accent)",
-                color: "#fff",
-              }}
-            >
-              {lang === "en" ? "See book:" : "Vezi cartea:"} {a.featuredBook.title}
-            </a>
-          </div>
-        )}
+       {/* CTA către toate cărțile autorului / editurii */}
+<div style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}>
+  <Link to="/carti" className="btn" style={{ textDecoration: "none" }}>
+    {lang === "en" ? "See books" : "Vezi cărțile"}
+  </Link>
+</div>
 
         {/* (Am scos blocul duplicat cu numele + tagline) */}
 
