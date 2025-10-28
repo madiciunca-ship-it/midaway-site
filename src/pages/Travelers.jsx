@@ -60,30 +60,52 @@ export default function Travelers() {
       </header>
 
       <section style={{ marginBottom: 16 }}>
-        <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
-        Eu sunt Mida Malena și, în ultimii trei ani, am călătorit prin lumi și
-            prin mine. Am adunat amintiri, oameni, povești și trăiri care mi-au
-            schimbat felul de a privi viața.
-        </p>
-        <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
-          În rubrica „Călători”, adun vocile celor care și-au făcut din drum o
-          casă și din necunoscut – prieten. Fiecare interviu e o fereastră
-          deschisă spre o altă lume, spusă cu vocea celui care a trăit-o. Unii
-          mi-au fost ghizi, alții prieteni, alții doar trecători frumoși în
-          poveștile mele.
-        </p>
-        <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
-          Am adunat infinit mai multe istorii decât pot încă așterne aici – dar
-          vor veni toate, pe rând. Pentru că fiecare om pe care l-am întâlnit
-          și-a lăsat o amprentă în mine, și, cumva, în fiecare carte a mea
-          există câte puțin din fiecare dintre ei.
-        </p>
-        <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
-          Citește aceste povești cu inima deschisă. S-ar putea să-ți dea curajul
-          să-ți faci și tu bagajele – sau, măcar, să începi călătoria ta,
-          oriunde te-ai afla.
-        </p>
-      </section>
+  {lang === "en" ? (
+    <>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        I’m Mida Malena, and for the past three years I’ve been traveling — through the world and through myself.
+        I’ve gathered memories, faces, stories, and moments that have forever changed the way I see life.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        In “Travelers”, I bring together the voices of those who have made the road their home and the unknown their friend.
+        Each interview is a window into another world — told in the voice of the one who lived it.
+        Some became my guides, others my friends, some just beautiful passersby in my own stories.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        I’ve collected far more stories than I can share here — but they’ll come, one by one.
+        Because every person I’ve met has left a trace in me,
+        and somehow, in each of my books, there’s a little piece of them.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        Read these stories with an open heart.
+        They might just give you the courage to pack your bags —
+        or simply to begin your own journey, wherever you are.
+      </p>
+    </>
+  ) : (
+    <>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        Eu sunt Mida Malena și, în ultimii trei ani, am călătorit prin lumi și prin mine.
+        Am adunat amintiri, oameni, povești și trăiri care mi-au schimbat felul de a privi viața.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut – prieten.
+        Fiecare interviu e o fereastră deschisă spre o altă lume, spusă cu vocea celui care a trăit-o.
+        Unii mi-au fost ghizi, alții prieteni, alții doar trecători frumoși în poveștile mele.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        Am adunat infinit mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând.
+        Pentru că fiecare om pe care l-am întâlnit și-a lăsat o amprentă în mine,
+        și, cumva, în fiecare carte a mea există câte puțin din fiecare dintre ei.
+      </p>
+      <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
+        Citește aceste povești cu inima deschisă.
+        S-ar putea să-ți dea curajul să-ți faci și tu bagajele –
+        sau, măcar, să începi călătoria ta, oriunde te-ai afla.
+      </p>
+    </>
+  )}
+</section>
 
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
         <input
