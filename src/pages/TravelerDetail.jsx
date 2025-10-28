@@ -36,14 +36,12 @@ export default function TravelerDetail() {
 
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
-      {/* back link */}
       <p style={{ marginTop: 0 }}>
         <Link to={`/calatori?lang=${lang}`} style={{ textDecoration: "none" }}>
           ← Înapoi la Călători
         </Link>
       </p>
 
-      {/* HERO strip (până la 3 imagini) + switch limbă centrat */}
       <div
         style={{
           display: "grid",
@@ -72,7 +70,6 @@ export default function TravelerDetail() {
         ))}
       </div>
 
-      {/* lang switch */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: 12 }}>
         <div
           role="group"
@@ -90,7 +87,6 @@ export default function TravelerDetail() {
         </div>
       </div>
 
-      {/* TITLU + TAGLINE */}
       <header className="font-cormorant" style={{ marginTop: 18 }}>
         <h1 style={{ margin: 0 }}>{t.emoji} {t.name}</h1>
         {t.tagline && (
@@ -98,17 +94,14 @@ export default function TravelerDetail() {
         )}
       </header>
 
-      {/* social buttons (toate 6, inactive dacă lipsesc) */}
       <SocialRow socials={t.socials} />
 
-      {/* intro */}
       {lc?.intro && (
         <section style={{ marginTop: 16 }}>
           <p style={{ lineHeight: 1.8, whiteSpace: "pre-wrap" }}>{lc.intro}</p>
         </section>
       )}
 
-      {/* Q&A */}
       {Array.isArray(lc?.qna) && lc.qna.length > 0 && (
         <section style={{ marginTop: 16 }}>
           {lc.qna.map((item, idx) => (
@@ -124,7 +117,6 @@ export default function TravelerDetail() {
         </section>
       )}
 
-      {/* video (opțional) */}
       {t.video && (
         <section style={{ marginTop: 16 }}>
           <div
@@ -155,7 +147,6 @@ export default function TravelerDetail() {
         </section>
       )}
 
-      {/* poveste comună / gând final */}
       {Array.isArray(lc?.story) && lc.story.length > 0 && (
         <section style={{ marginTop: 16 }}>
           {lc.story.map((p, i) => (
@@ -164,7 +155,6 @@ export default function TravelerDetail() {
         </section>
       )}
 
-      {/* back link bottom */}
       <div style={{ marginTop: 20 }}>
         <Link
           to={`/calatori?lang=${lang}`}

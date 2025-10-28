@@ -1,16 +1,15 @@
 // src/data/travelers.js
-
-// NOTE despre imagini:
-// Pune imaginile în public/assets/travelers/<id>/
-//   - cover.webp (eroul din listă + fallback în detaliu)
-//   - 1.webp, 2.webp, 3.webp (galeria din detaliu; pot fi mai puține)
 //
-// Ex: public/assets/travelers/nomad-bali/cover.webp
-//     public/assets/travelers/nomad-bali/1.webp
-//     public/assets/travelers/nomad-bali/2.webp
-//     public/assets/travelers/nomad-bali/3.webp
+// IMAGINI:
+// public/assets/travelers/<id>/cover.webp
+// public/assets/travelers/<id>/1.webp
+// public/assets/travelers/<id>/2.webp
+// public/assets/travelers/<id>/3.webp
 
 const travelers = [
+    // ────────────────────────────────────────────────────────────
+    // 1) Adi — Nomadul din Bali
+    // ────────────────────────────────────────────────────────────
     {
       id: "nomad-bali",
       emoji: "🏝️",
@@ -54,13 +53,11 @@ const travelers = [
           { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
         ],
         story: [
-          "La final, lasăm loc pentru povestea comună – sau un gând către cititori.",
+          "La final, lasăm loc pentru povestea comună — sau un gând către cititori.",
         ],
       },
       en: {
-        intro: `I met Adi back when we were both taking dance lessons. A few months later I was flirting with the idea of leaving for Bali — and one evening I saw a post from him: he was there, exactly where I dreamed of going. I had never spoken to him before, but I wrote a simple message: “How is Bali?”
-  
-  That’s how it all started... (translate/update as you wish)`,
+        intro: `I met Adi back when we were both taking dance lessons... (add full EN when ready).`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "" },
           { q: "2. What made you start traveling?", a: "" },
@@ -72,14 +69,179 @@ const travelers = [
           { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
           { q: "9. Bonus: How did we meet?", a: "" },
         ],
-        story: [
-          "Space for the shared story / final thought.",
-        ],
+        story: ["Shared story / final thought."],
       },
       video: null,
     },
   
-    // 🔻 alte intrări vor urma; doar adaugi obiecte la acest array.
+    // ────────────────────────────────────────────────────────────
+    // 2) Scriitoarea din Saigon
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "scriitoare-saigon",
+      emoji: "✍️",
+      name: "Scriitoarea din Saigon",
+      tagline: "Cafele, pagini, ploaie",
+      cover: "/assets/travelers/scriitoare-saigon/cover.webp",
+      gallery: [
+        "/assets/travelers/scriitoare-saigon/1.webp",
+        "/assets/travelers/scriitoare-saigon/2.webp",
+        "/assets/travelers/scriitoare-saigon/3.webp",
+      ],
+      socials: {
+        instagram: "",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: `Cafele negre, ploi calde, pagini scrise printre zgomote de oraș. 
+  Despre cum găsești liniștea într-o metropolă mereu trează.`,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "" },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+          { q: "3. Când ai știut că merită?", a: "" },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+        ],
+        story: [],
+      },
+      en: {
+        intro: `Black coffee, warm rains, pages written amid city noise...`,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "" },
+          { q: "2. What made you start traveling?", a: "" },
+          { q: "3. When did you know it was worth it?", a: "" },
+          { q: "4. A place that changed the way you see the world?", a: "" },
+          { q: "5. How did traveling change you as a person?", a: "" },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: How did we meet?", a: "" },
+        ],
+        story: [],
+      },
+      video: null,
+    },
+  
+    // ────────────────────────────────────────────────────────────
+    // 3) Călătoarea cu barca
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "calatoare-barca",
+      emoji: "🚤",
+      name: "Călătoarea cu barca",
+      tagline: "Insule, vânt, povești",
+      cover: "/assets/travelers/calatoare-barca/cover.webp",
+      gallery: [
+        "/assets/travelers/calatoare-barca/1.webp",
+        "/assets/travelers/calatoare-barca/2.webp",
+        "/assets/travelers/calatoare-barca/3.webp",
+      ],
+      socials: {
+        instagram: "",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: `Insule mici, vânt prieten bun, nopți pe ponton.
+  O hartă lichidă a curajului de a porni la drum fără acoperiș.`,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "" },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+          { q: "3. Când ai știut că merită?", a: "" },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+        ],
+        story: [],
+      },
+      en: {
+        intro: `Small islands, friendly winds, nights on a pontoon.`,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "" },
+          { q: "2. What made you start traveling?", a: "" },
+          { q: "3. When did you know it was worth it?", a: "" },
+          { q: "4. A place that changed the way you see the world?", a: "" },
+          { q: "5. How did traveling change you as a person?", a: "" },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: How did we meet?", a: "" },
+        ],
+        story: [],
+      },
+      video: null,
+    },
+  
+    // ────────────────────────────────────────────────────────────
+    // 4) Nomadul din Tokyo
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "nomad-tokyo",
+      emoji: "🗼",
+      name: "Nomadul din Tokyo",
+      tagline: "Luminile orașului, liniștea trenurilor",
+      cover: "/assets/travelers/nomad-tokyo/cover.webp",
+      gallery: [
+        "/assets/travelers/nomad-tokyo/1.webp",
+        "/assets/travelers/nomad-tokyo/2.webp",
+        "/assets/travelers/nomad-tokyo/3.webp",
+      ],
+      socials: {
+        instagram: "",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: `Tokyo nu e doar o metropolă — e un haos ordonat unde te poți pierde fără frică. Între lumini de neon și grădini zen, am descoperit că ritmul vieții poate fi simultan frenetic și meditativ.
+  
+  Trenurile sosesc la secundă, dar poveștile oamenilor se scriu în tăceri lungi. Tokyo e despre contrast — și exact acolo se naște frumusețea.`,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "" },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+          { q: "3. Când ai știut că merită?", a: "" },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+        ],
+        story: [],
+      },
+      en: {
+        intro: `Tokyo is not just a metropolis — a tidy chaos where you can lose yourself without fear.`,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "" },
+          { q: "2. What made you start traveling?", a: "" },
+          { q: "3. When did you know it was worth it?", a: "" },
+          { q: "4. A place that changed the way you see the world?", a: "" },
+          { q: "5. How did traveling change you as a person?", a: "" },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: How did we meet?", a: "" },
+        ],
+        story: [],
+      },
+      video: null,
+    },
   ];
   
   export default travelers;

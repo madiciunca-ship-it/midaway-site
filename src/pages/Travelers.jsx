@@ -31,7 +31,6 @@ export default function Travelers() {
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
-    // ultimul adăugat = primul afișat
     const list = travelers
       .slice()
       .reverse()
@@ -51,22 +50,20 @@ export default function Travelers() {
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
-      {/* Header */}
       <header className="font-cormorant" style={{ marginBottom: 8 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>🧳 Călători & Călătorii</h1>
         <p style={{ color: "var(--secondary)", marginTop: 6 }}>
           {lang === "en"
             ? "People who made the road their home and the unknown their friend."
-            : "Vocile independente pe care le publicăm — întâi oamenii, apoi cărțile."}
+            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
         </p>
       </header>
 
-      {/* Intro extins (textul tău) */}
       <section style={{ marginBottom: 16 }}>
         <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
-          Eu sunt Mida Malena și, în ultimii trei ani, am călătorit prin lumi și
-          prin mine. Am adunat amintiri, oameni, povești și trăiri care mi-au
-          schimbat felul de a privi viața.
+        Eu sunt Mida Malena și, în ultimii trei ani, am călătorit prin lumi și
+            prin mine. Am adunat amintiri, oameni, povești și trăiri care mi-au
+            schimbat felul de a privi viața.
         </p>
         <p style={{ lineHeight: 1.7, margin: "8px 0" }}>
           În rubrica „Călători”, adun vocile celor care și-au făcut din drum o
@@ -88,7 +85,6 @@ export default function Travelers() {
         </p>
       </section>
 
-      {/* Căutare + limbă */}
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
         <input
           value={q}
@@ -129,7 +125,6 @@ export default function Travelers() {
         </div>
       </div>
 
-      {/* Grid carduri */}
       <div
         style={{
           display: "grid",
