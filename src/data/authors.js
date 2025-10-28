@@ -1,8 +1,7 @@
-// src/data/authors.js
 const authors = [
   {
     id: "mida-malena",                           // URL: /autori/mida-malena
-    photo: "/assets/books/authors/mida-malena.webp",   // pune poza aici (public/assets/authors/)
+    photo: "/assets/books/authors/autor-name-mida-malena.webp", // ← poza nouă
     socials: {
       instagram: "https://www.instagram.com/mida_malena/",
       facebook: "https://www.facebook.com/madi.ciunca",
@@ -44,7 +43,6 @@ const authors = [
         "My first book, A Day to Remember, explored the beauty of seemingly small, everyday moments in an immersion through the Philippines. With my second book, Days and Nights in Vietnam: The Puzzle Of My Soul, I invite you to join me on a deeply personal adventure through the vibrant landscapes and quiet moments of introspection that shaped my journey. It is a story about courage, self-discovery, and the freedom that comes when you embrace the unknown. But my books don't stop there, the journey continues... I have many stories waiting to see the light of print.",
         "Through my travels, I have learned that fear is just an illusion, one that we can overcome when we take that first courageous step. And that is what I hope my books will inspire you to do—to step into your own adventure, face your fears, and rediscover the unlimited potential within yourself.",
         "When I'm not writing or exploring, I interact with readers like you, plan new stories, and find ways to leave small gestures of kindness wherever I go. Thank you for being part of my journey—I hope my stories bring a spark of courage and joy to your life.",
-      
       ],
     },
   },

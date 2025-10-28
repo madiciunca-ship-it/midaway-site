@@ -1,4 +1,3 @@
-// src/pages/Authors.jsx
 import { useMemo, useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import authors from "../data/authors";
@@ -44,8 +43,15 @@ export default function Authors() {
     );
   }, [q, lang]);
 
-  // completează până la 3 carduri cu placeholder colorate
+  // vrem până la 3 carduri „în curând”; când apar mai mulți autori, numărul scade natural
   const placeholders = Math.max(0, 3 - filtered.length);
+
+  // imagini pentru placeholder-ele vizuale (în ordinea apariției)
+  const phImages = [
+    "/assets/books/authors/autor-no-name-unu.webp",
+    "/assets/books/authors/autor-no-name-doi.webp",
+    "/assets/books/authors/autor-no-name-trei.webp",
+  ];
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
@@ -57,7 +63,13 @@ export default function Authors() {
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
           {lang === "en"
             ? "Independent voices we publish — people first, then books."
-            : "Vocile independente pe care le publicăm — întâi oamenii, apoi cărțile."}
+            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
+        </p>
+        {/* Paragraf suplimentar de context */}
+        <p style={{ color: "var(--secondary)", marginTop: 6, maxWidth: 900 }}>
+          {lang === "en"
+            ? "We believe in authenticity and in voices shaped by real journeys. Whether you’re a debut writer or already published, Midaway offers a caring space for editing, validation and thoughtful promotion — a place where your voice matters."
+            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
         </p>
       </header>
 
@@ -112,7 +124,12 @@ export default function Authors() {
         ))}
 
         {Array.from({ length: placeholders }).map((_, i) => (
-          <PlaceholderCard key={`ph-${i}`} lang={lang} index={i} />
+          <PlaceholderCard
+            key={`ph-${i}`}
+            lang={lang}
+            index={i}
+            image={phImages[i]}   // ← folosim imaginile noi
+          />
         ))}
       </div>
     </div>
@@ -127,14 +144,14 @@ function AuthorCard({ a, d, lang }) {
       style={{
         textDecoration: "none",
         color: "inherit",
-        background: "#fff",
+        background: "#fcfaee",
         border: "1px solid var(--line)",
         borderRadius: 18,
         boxShadow: "0 6px 16px rgba(0,0,0,.06)",
         overflow: "hidden",
       }}
     >
-      {/* Cover — arată toată poza (contain) + fundal cald */}
+      {/* Cover — poza întreagă (contain) + fundal cald */}
       <div
         style={{
           height: 220,
@@ -142,11 +159,11 @@ function AuthorCard({ a, d, lang }) {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "contain",
-          backgroundColor: "var(--card1)",
+          backgroundColor: "#fcfaee",
         }}
       />
-      <div style={{ padding: 14 }}>
-        <div style={{ fontSize: 26, lineHeight: 1 }}>✒️</div>
+      <div style={{ padding: 14, textAlign: "center" }}>
+        <div style={{ fontSize: 22, lineHeight: 1, opacity: .85 }}>✒️</div>
         <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
           {d.name}
         </h3>
@@ -162,7 +179,8 @@ function AuthorCard({ a, d, lang }) {
   );
 }
 
-function PlaceholderCard({ lang, index }) {
+function PlaceholderCard({ lang, index, image }) {
+  // fallback la paletă dacă lipsește imaginea (nu ar trebui)
   const palette = ["var(--card1)", "var(--card2)", "var(--card3)"];
   const bg = palette[index % palette.length];
   const dark = index % palette.length === 1; // teal -> text alb
@@ -171,11 +189,11 @@ function PlaceholderCard({ lang, index }) {
     <div
       className="proj-card"
       style={{
-        background: bg,
+        background: "#fff",
         color: dark ? "#fff" : "inherit",
-        border: "1px dashed rgba(0,0,0,.15)",
+        border: "1px solid var(--line)",
         borderRadius: 18,
-        boxShadow: "0 6px 16px rgba(0,0,0,.04)",
+        boxShadow: "0 6px 16px rgba(0,0,0,.06)",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -184,16 +202,19 @@ function PlaceholderCard({ lang, index }) {
       <div
         style={{
           height: 220,
-          background:
-            "repeating-linear-gradient(45deg, rgba(255,255,255,.25), rgba(255,255,255,.25) 10px, rgba(255,255,255,.15) 10px, rgba(255,255,255,.15) 20px)",
+          backgroundImage: image ? `url(${image})` : "none",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "contain",
+          backgroundColor: image ? "var(--card1)" : bg,
         }}
       />
-      <div style={{ padding: 14 }}>
+      <div style={{ padding: 14, textAlign: "center" }}>
         <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
-          {lang === "en" ? "Your name here" : "Numele tău aici"}
+          {lang === "en" ? "Your name here 😊" : "Aici va fi numele TĂU 😊"}
         </h3>
         <p style={{ margin: 0, opacity: 0.9 }}>
-          {lang === "en" ? "Future Midaway author" : "Autor Midaway în curând"}
+          {lang === "en" ? "Midaway author — soon" : "Autor Midaway — în curând"}
         </p>
         <Link
           to={`/contact?subject=${encodeURIComponent(
@@ -203,8 +224,6 @@ function PlaceholderCard({ lang, index }) {
           style={{
             textDecoration: "none",
             marginTop: 10,
-            background: dark ? "rgba(255,255,255,.15)" : "var(--accent)",
-            color: dark ? "#fff" : "#fff",
           }}
         >
           {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
