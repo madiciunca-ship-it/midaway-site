@@ -244,5 +244,66 @@ const travelers = [
     },
   ];
   
+  // ✅ TEMPLATE pentru adăugare rapidă de călător nou
+/*
+
+{
+  id: "exemplu-id",                   // folosit în URL: /calatori/exemplu-id
+  emoji: "🌍",                        // mică iconiță personalizată
+  name: "Numele Călătorului",
+  tagline: "O propoziție scurtă care îl descrie",
+  cover: "/assets/travelers/exemplu-id/cover.webp",  // imagine principală
+  gallery: [
+    "/assets/travelers/exemplu-id/1.webp",
+    "/assets/travelers/exemplu-id/2.webp",
+    "/assets/travelers/exemplu-id/3.webp",
+  ],
+  socials: {
+    instagram: "",
+    facebook: "",
+    tiktok: "",
+    youtube: "",
+    website: "",
+    blog: "",
+  },
+  ro: {
+    intro: `Scrie aici povestea introductivă — în limba română.
+Poate fi oricât de lungă, suportă paragrafe și newline (\n).`,
+    qna: [
+      { q: "1. Cine ești în câteva fraze?", a: "" },
+      { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+      { q: "3. Când ai știut că merită?", a: "" },
+      { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+      { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+      { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+      { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+      { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+      { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+    ],
+    story: [
+      "Aici poți adăuga gândul final sau povestea comună.",
+    ],
+  },
+  en: {
+    intro: `Write here the English version of the intro story.`,
+    qna: [
+      { q: "1. Who are you in a few sentences?", a: "" },
+      { q: "2. What made you start traveling?", a: "" },
+      { q: "3. When did you know it was worth it?", a: "" },
+      { q: "4. A place that changed the way you see the world?", a: "" },
+      { q: "5. How did traveling change you as a person?", a: "" },
+      { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+      { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+      { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+      { q: "9. Bonus: How did we meet?", a: "" },
+    ],
+    story: [
+      "Add here the final thought / shared story (English).",
+    ],
+  },
+  video: null, // dacă vrei, poți pune link YouTube: "https://www.youtube.com/embed/..."
+},
+
+*/
   export default travelers;
   
