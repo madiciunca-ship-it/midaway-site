@@ -72,6 +72,30 @@ export default function Authors() {
         </p>
       </header>
 
+      {/* Separator vizual animat */}
+<div
+  style={{
+    height: 2,
+    width: "100%",
+    background:
+      "linear-gradient(90deg, rgba(212,160,23,0.1), rgba(212,160,23,0.8), rgba(212,160,23,0.1))",
+    backgroundSize: "200% 100%",
+    borderRadius: 999,
+    margin: "28px 0 32px 0",
+    animation: "shimmer 3.5s linear infinite",
+  }}
+></div>
+
+<style>
+  {`
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  `}
+</style>
+
+
       {/* Search + Lang */}
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
         <input

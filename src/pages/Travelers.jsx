@@ -107,17 +107,30 @@ export default function Travelers() {
   )}
 </section>
 
-{/* Separator vizual */}
+{/* Separator vizual animat */}
 <div
   style={{
     height: 2,
     width: "100%",
     background:
-      "linear-gradient(to right, rgba(212,160,23,0.4), rgba(255,255,255,0.8), rgba(212,160,23,0.4))",
+      "linear-gradient(90deg, rgba(212,160,23,0.1), rgba(212,160,23,0.8), rgba(212,160,23,0.1))",
+    backgroundSize: "200% 100%",
     borderRadius: 999,
     margin: "28px 0 32px 0",
+    animation: "shimmer 3.5s linear infinite",
   }}
 ></div>
+
+{/* Stil animatie global */}
+<style>
+  {`
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  `}
+</style>
+
 
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
         <input
