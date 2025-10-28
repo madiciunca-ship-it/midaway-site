@@ -56,7 +56,7 @@ export default function Authors() {
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
       {/* Header */}
-      <header className="font-cormorant" style={{ marginBottom: 16 }}>
+      <header id="devino" className="font-cormorant" style={{ marginBottom: 16 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>
           {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
         </h1>

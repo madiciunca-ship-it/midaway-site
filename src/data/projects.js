@@ -54,7 +54,7 @@ const projects = [
     ],
     links: [
       { label: "Vezi cărțile autorilor", href: "/carti" },
-      { label: "Devino autor Midaway", href: "/contact?subject=Autor%20nou" },
+      { label: "Devino autor Midaway", href: "/autori?lang=ro#devino" }, // ⬅️ actualizat
       { label: "Interviuri & media", href: "/multimedia" },
     ],
   },
