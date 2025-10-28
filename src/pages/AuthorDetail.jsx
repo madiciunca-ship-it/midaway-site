@@ -49,6 +49,19 @@ export default function AuthorDetail() {
     localStorage.setItem("authors.lang", newLang);
   };
 
+  // ----- BIO: patch pentru RO (intro + paragraf nou) -----
+  let bio = Array.isArray(d.bio) ? [...d.bio] : [];
+  if (lang === "ro") {
+    const intro =
+      "Bună, sunt Mida Malena – scriitoare, povestitoare, aventurieră și căutătoare eternă.";
+    if (bio.length) bio[0] = intro;
+    else bio.unshift(intro);
+
+    const extra =
+      "Următoarele mele povești, primele două volume din seria „Pași prin Indonezia”, sunt despre transformare, curaj și magia de a te lăsa purtat(ă) de viață atunci când renunți la hartă: Bali – o insulă – oglindă ce arde lent și vindecă profund – și Java, un teritoriu haotic și viu, unde rătăcirea devine formă de regăsire.";
+    bio.splice(3, 0, extra);
+  }
+
   return (
     <>
       {/* HERO – colaj panoramic */}
@@ -144,38 +157,76 @@ export default function AuthorDetail() {
 
       {/* BODY */}
       <div className="container" style={{ padding: "0 0 60px", maxWidth: 900 }}>
-        {/* Socials – pills pastelate */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+        {/* Socials – centrate + icoane brand */}
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            marginBottom: 14,
+            justifyContent: "center",
+          }}
+        >
           {a.socials?.website && (
-            <a href={a.socials.website} target="_blank" rel="noopener noreferrer" style={pill("#f1e6cf")}>
-              🌐 Website
+            <a
+              href={a.socials.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={pill("#f1e6cf")}
+              aria-label="Website"
+            >
+              <IconGlobe /> Website
             </a>
           )}
           {a.socials?.instagram && (
-            <a href={a.socials.instagram} target="_blank" rel="noopener noreferrer" style={pill("var(--card2)")}>
-              📸 Instagram
+            <a
+              href={a.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={pill("var(--card2)")}
+              aria-label="Instagram"
+            >
+              <IconInstagram /> Instagram
             </a>
           )}
           {a.socials?.facebook && (
-            <a href={a.socials.facebook} target="_blank" rel="noopener noreferrer" style={pill("#eadac7")}>
-              👍 Facebook
+            <a
+              href={a.socials.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={pill("#eadac7")}
+              aria-label="Facebook"
+            >
+              <IconFacebook /> Facebook
             </a>
           )}
           {a.socials?.youtube && (
-            <a href={a.socials.youtube} target="_blank" rel="noopener noreferrer" style={pill("#f8dabb")}>
-              ▶️ YouTube
+            <a
+              href={a.socials.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={pill("#f8dabb")}
+              aria-label="YouTube"
+            >
+              <IconYouTube /> YouTube
             </a>
           )}
           {a.socials?.tiktok && (
-            <a href={a.socials.tiktok} target="_blank" rel="noopener noreferrer" style={pill("#e9e3d9")}>
-              🎵 TikTok
+            <a
+              href={a.socials.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={pill("#e9e3d9")}
+              aria-label="TikTok"
+            >
+              <IconTikTok /> TikTok
             </a>
           )}
         </div>
 
-        {/* Featured book */}
+        {/* Featured book – buton centrat */}
         {a.featuredBook?.href && (
-          <div style={{ margin: "8px 0 14px" }}>
+          <div style={{ margin: "8px 0 18px", display: "flex", justifyContent: "center" }}>
             <a
               href={a.featuredBook.href}
               className="btn"
@@ -192,21 +243,10 @@ export default function AuthorDetail() {
           </div>
         )}
 
-        {/* Nume + rol/tagline */}
-        <div style={{ margin: "6px 0 10px" }}>
-          <h1 className="font-cormorant" style={{ margin: "0 0 4px 0", fontSize: 34 }}>
-            ✒️ {d.name}
-          </h1>
-          {(d.role || d.tagline) && (
-            <p style={{ margin: 0, color: "#3e4a47", fontWeight: 500 }}>
-              {d.role ? d.role.charAt(0).toUpperCase() + d.role.slice(1) : ""}
-              {d.tagline ? ` — ${d.tagline}` : ""}
-            </p>
-          )}
-        </div>
+        {/* (Am scos blocul duplicat cu numele + tagline) */}
 
         {/* Bio */}
-        {(d.bio || []).map((para, i) => (
+        {bio.map((para, i) => (
           <p key={i} style={{ lineHeight: 1.7, color: "#3a3a3a" }}>
             {para}
           </p>
@@ -274,4 +314,49 @@ function pill(bg) {
     fontWeight: 600,
     boxShadow: "0 2px 10px rgba(0,0,0,.05)",
   };
+}
+
+/* ------- SVG brand icons (inline, fără librării externe) ------- */
+function IconGlobe({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="#2b2a28" strokeWidth="1.6" />
+      <path d="M2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20" stroke="#2b2a28" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+function IconInstagram({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" strokeOpacity=".9" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="4" stroke="#fff" strokeOpacity=".9" strokeWidth="1.6" />
+      <circle cx="17.5" cy="6.5" r="1.2" fill="#fff" />
+    </svg>
+  );
+}
+
+function IconFacebook({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M13.5 21v-7h2.3l.4-2.9h-2.7V8.6c0-.8.2-1.3 1.3-1.3H16V4.6c-.2 0-1-.1-1.9-.1-1.9 0-3.1 1.1-3.1 3.2v2h-2v2.9H11V21h2.5z" fill="#385898" />
+    </svg>
+  );
+}
+
+function IconYouTube({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="6" width="20" height="12" rx="4" fill="#ff0000" opacity=".9" />
+      <path d="M10 9l5 3-5 3V9z" fill="#fff" />
+    </svg>
+  );
+}
+
+function IconTikTok({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z" fill="#111" />
+    </svg>
+  );
 }
