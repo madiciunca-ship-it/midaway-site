@@ -1,27 +1,19 @@
 // src/pages/TravelerDetail.jsx
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
-
-// mici hărți pentru social pills
-const SOCIAL_META = {
-  instagram: { label: "Instagram", emoji: "📸" },
-  facebook:  { label: "Facebook",  emoji: "👍" },
-  tiktok:    { label: "TikTok",    emoji: "🎵" },
-  youtube:   { label: "YouTube",   emoji: "▶️" },
-  website:   { label: "Website",   emoji: "🌐" },
-  blog:      { label: "Blog",      emoji: "✍️" },
-};
 
 export default function TravelerDetail() {
   const { id } = useParams();
-  const t = travelers.find((x) => x.id === id);
+  const [params, setParams] = useSearchParams();
+  const lang = params.get("lang") === "en" ? "en" : "ro";
 
+  const t = travelers.find((x) => x.id === id);
   if (!t) {
     return (
-      <div className="container" style={{ padding: 24 }}>
-        <h2 className="font-cormorant">Povestea nu există</h2>
+      <div className="container" style={{ padding: "40px 16px" }}>
+        <h1 className="font-cormorant">Povestea nu există</h1>
         <p>
-          <Link to="/calatori" style={{ textDecoration: "none", color: "var(--accent)" }}>
+          <Link to="/calatori" style={{ color: "var(--accent)", textDecoration: "none" }}>
             ← Înapoi la Călători
           </Link>
         </p>
@@ -29,175 +21,226 @@ export default function TravelerDetail() {
     );
   }
 
-  const pills = Object.entries(t.socials || {})
-    .filter(([, href]) => href && href.trim().length > 0)
-    .map(([key, href]) => ({ key, href, ...SOCIAL_META[key] || { label: key, emoji: "🔗" } }));
+  const lc = (t[lang] || t.ro || t.en);
+  const gallery = Array.isArray(t.gallery) ? t.gallery.slice(0, 3) : [];
+  const cover = t.cover || gallery[0] || "/assets/placeholder-cover.png";
+
+  const setLang = (newLang) => {
+    setParams((p) => {
+      const copy = new URLSearchParams(p);
+      copy.set("lang", newLang);
+      return copy;
+    });
+    localStorage.setItem("travelers.lang", newLang);
+  };
 
   return (
-    <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1100 }}>
-      {/* back */}
-      <p style={{ margin: 0 }}>
-        <Link to="/calatori" style={{ textDecoration: "none", color: "var(--accent)" }}>
+    <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
+      {/* back link */}
+      <p style={{ marginTop: 0 }}>
+        <Link to={`/calatori?lang=${lang}`} style={{ textDecoration: "none" }}>
           ← Înapoi la Călători
         </Link>
       </p>
 
-      {/* HERO compus din 1-3 imagini (max 3) */}
+      {/* HERO strip (până la 3 imagini) + switch limbă centrat */}
       <div
         style={{
-          marginTop: 12,
-          padding: 12,
-          background: "linear-gradient(180deg,#f8f3ea 0%, #fdfbf7 100%)",
-          border: "1px solid var(--line)",
-          borderRadius: 18,
-          boxShadow: "0 6px 16px rgba(0,0,0,.06)",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 12,
+          alignItems: "stretch",
         }}
       >
+        {(gallery.length ? gallery : [cover]).map((src, i) => (
+          <div
+            key={i}
+            style={{
+              borderRadius: 16,
+              overflow: "hidden",
+              background: "linear-gradient(180deg,#f7eee0,#fff)",
+              border: "1px solid #eee",
+              minHeight: 220,
+            }}
+          >
+            <img
+              src={src}
+              alt={`${t.name} ${i + 1}`}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* lang switch */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 12 }}>
         <div
+          role="group"
+          aria-label="Language switch"
           style={{
-            display: "grid",
-            gridTemplateColumns:
-              (t.gallery && t.gallery.length >= 2) ? "1fr 1fr 1fr" : "1fr",
-            gap: 12,
-            alignItems: "center",
+            display: "inline-flex",
+            border: "1px solid #ddd",
+            borderRadius: 999,
+            overflow: "hidden",
+            background: "#fff",
           }}
         >
-          {(t.gallery && t.gallery.length > 0 ? t.gallery.slice(0, 3) : [t.cover]).map((src, i) => (
-            <div
-              key={i}
-              style={{
-                width: "100%",
-                height: 320,
-                backgroundImage: `url(${src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                borderRadius: 16,
-                overflow: "hidden",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* titlu + tagline */}
-        <div style={{ marginTop: 16, textAlign: "left" }}>
-          <h1 className="font-cormorant" style={{ margin: "0 0 4px 0", fontSize: 40 }}>
-            {t.emoji} {t.name}
-          </h1>
-          <p style={{ marginTop: 4, color: "var(--secondary)", fontSize: 18 }}>
-            {t.tagline}
-          </p>
+          <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>RO</button>
+          <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>EN</button>
         </div>
       </div>
 
-      {/* social pills */}
-      {pills.length > 0 && (
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            marginTop: 16,
-            justifyContent: "center",
-          }}
-        >
-          {pills.map((p) => (
-            <a
-              key={p.key}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                padding: "10px 14px",
-                borderRadius: 999,
-                border: "1px solid #ead9c2",
-                background: "#fff7ef",
-                textDecoration: "none",
-                color: "#333",
-                fontWeight: 600,
-                boxShadow: "0 2px 8px rgba(0,0,0,.05)",
-              }}
-            >
-              {p.emoji} {p.label}
-            </a>
-          ))}
-        </div>
-      )}
+      {/* TITLU + TAGLINE */}
+      <header className="font-cormorant" style={{ marginTop: 18 }}>
+        <h1 style={{ margin: 0 }}>{t.emoji} {t.name}</h1>
+        {t.tagline && (
+          <p style={{ color: "var(--secondary)", marginTop: 6 }}>{t.tagline}</p>
+        )}
+      </header>
+
+      {/* social buttons (toate 6, inactive dacă lipsesc) */}
+      <SocialRow socials={t.socials} />
 
       {/* intro */}
-      {t.intro && (
-        <p style={{ marginTop: 18, lineHeight: 1.8 }}>
-          {t.intro}
-        </p>
+      {lc?.intro && (
+        <section style={{ marginTop: 16 }}>
+          <p style={{ lineHeight: 1.8, whiteSpace: "pre-wrap" }}>{lc.intro}</p>
+        </section>
       )}
 
-      {/* video (opțional, ex. YouTube id) */}
-      {t.video && t.video.type === "youtube" && t.video.id && (
-        <div style={{ marginTop: 18 }}>
+      {/* Q&A */}
+      {Array.isArray(lc?.qna) && lc.qna.length > 0 && (
+        <section style={{ marginTop: 16 }}>
+          {lc.qna.map((item, idx) => (
+            <div key={idx} style={{ marginBottom: 12 }}>
+              <h3 className="font-cormorant" style={{ margin: "8px 0 4px 0", fontSize: 20 }}>
+                {item.q}
+              </h3>
+              <p style={{ margin: 0, lineHeight: 1.7, whiteSpace: "pre-wrap", color: "#333" }}>
+                {item.a || "—"}
+              </p>
+            </div>
+          ))}
+        </section>
+      )}
+
+      {/* video (opțional) */}
+      {t.video && (
+        <section style={{ marginTop: 16 }}>
           <div
             style={{
               position: "relative",
               paddingBottom: "56.25%",
               height: 0,
               overflow: "hidden",
-              borderRadius: 16,
-              boxShadow: "0 6px 16px rgba(0,0,0,.06)",
+              borderRadius: 12,
+              boxShadow: "0 8px 24px rgba(0,0,0,.08)",
             }}
           >
             <iframe
-              title="video"
-              src={`https://www.youtube.com/embed/${t.video.id}`}
+              src={t.video}
+              title={`${t.name} video`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 width: "100%",
                 height: "100%",
-                border: 0,
               }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
             />
-          </div>
-        </div>
-      )}
-
-      {/* Q&A (când apar răspunsuri) */}
-      {Array.isArray(t.qna) && t.qna.length > 0 && (
-        <section style={{ marginTop: 24 }}>
-          <h2 className="font-cormorant" style={{ margin: "0 0 8px 0" }}>
-            Întrebări & răspunsuri
-          </h2>
-          <div style={{ display: "grid", gap: 12 }}>
-            {t.qna.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 14,
-                  borderRadius: 14,
-                  background: "#fff",
-                  border: "1px solid var(--line)",
-                }}
-              >
-                <p style={{ margin: "0 0 6px 0", fontWeight: 700 }}>{item.q}</p>
-                <p style={{ margin: 0, lineHeight: 1.7 }}>{item.a}</p>
-              </div>
-            ))}
           </div>
         </section>
       )}
 
-      {/* Story (poveste liberă) */}
-      {Array.isArray(t.story) && t.story.length > 0 && (
-        <section style={{ marginTop: 24 }}>
-          <h2 className="font-cormorant" style={{ margin: "0 0 8px 0" }}>
-            Poveste
-          </h2>
-          {t.story.map((para, i) => (
-            <p key={i} style={{ lineHeight: 1.8 }}>{para}</p>
+      {/* poveste comună / gând final */}
+      {Array.isArray(lc?.story) && lc.story.length > 0 && (
+        <section style={{ marginTop: 16 }}>
+          {lc.story.map((p, i) => (
+            <p key={i} style={{ lineHeight: 1.8 }}>{p}</p>
           ))}
         </section>
       )}
+
+      {/* back link bottom */}
+      <div style={{ marginTop: 20 }}>
+        <Link
+          to={`/calatori?lang=${lang}`}
+          style={{ color: "var(--secondary)", textDecoration: "none" }}
+        >
+          ← Înapoi la Călători
+        </Link>
+      </div>
     </div>
   );
+}
+
+function SocialRow({ socials = {} }) {
+  const items = [
+    { key: "website", label: "Website", icon: "🌐" },
+    { key: "instagram", label: "Instagram", icon: "📸" },
+    { key: "facebook", label: "Facebook", icon: "👍" },
+    { key: "youtube", label: "YouTube", icon: "▶️" },
+    { key: "tiktok", label: "TikTok", icon: "🎵" },
+    { key: "blog", label: "Blog", icon: "✍️" },
+  ];
+
+  return (
+    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
+      {items.map((it) => {
+        const href = socials[it.key];
+        const commonStyle = {
+          padding: "10px 12px",
+          borderRadius: 10,
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          border: "1px solid #ddd",
+        };
+
+        if (!href) {
+          return (
+            <span
+              key={it.key}
+              style={{
+                ...commonStyle,
+                background: "#f7f7f7",
+                color: "#999",
+                cursor: "not-allowed",
+              }}
+              title="necompletat încă"
+            >
+              {it.icon} {it.label}
+            </span>
+          );
+        }
+
+        return (
+          <a
+            key={it.key}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ ...commonStyle, background: "#fff", color: "#111" }}
+          >
+            {it.icon} {it.label}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function segBtnHero(active) {
+  return {
+    padding: "8px 14px",
+    border: "none",
+    background: active ? "var(--accent)" : "transparent",
+    color: "#333",
+    cursor: "pointer",
+    fontWeight: 700,
+  };
 }
