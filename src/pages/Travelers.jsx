@@ -107,6 +107,18 @@ export default function Travelers() {
   )}
 </section>
 
+{/* Separator vizual */}
+<div
+  style={{
+    height: 2,
+    width: "100%",
+    background:
+      "linear-gradient(to right, rgba(212,160,23,0.4), rgba(255,255,255,0.8), rgba(212,160,23,0.4))",
+    borderRadius: 999,
+    margin: "28px 0 32px 0",
+  }}
+></div>
+
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
         <input
           value={q}
