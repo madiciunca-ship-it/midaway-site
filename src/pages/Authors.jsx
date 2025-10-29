@@ -1,7 +1,9 @@
-// src/pages/Authors.jsx
 import { useMemo, useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import authors from "../data/authors";
+
+// nuanța ramei calde ca la „Cărți”
+const FRAME_BG = "#f6efe4";
 
 export default function Authors() {
   const [params, setParams] = useSearchParams();
@@ -44,60 +46,52 @@ export default function Authors() {
     );
   }, [q, lang]);
 
+  // completează până la 3 carduri cu placeholder (rămâne compatibil)
   const placeholders = Math.max(0, 3 - filtered.length);
-
-  // pozele tale deja puse în /public
-  const phImages = [
-    "/assets/books/authors/autor-no-name-unu.webp",
-    "/assets/books/authors/autor-no-name-doi.webp",
-    "/assets/books/authors/autor-no-name-trei.webp",
-  ];
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
-      {/* Header */}
-      <header id="devino" className="font-cormorant" style={{ marginBottom: 16 }}>
-        <h1 style={{ margin: 0, fontSize: 40 }}>
+      {/* Header centrat */}
+      <header className="font-cormorant" style={{ marginBottom: 10, textAlign: "center" }}>
+        <h1 style={{ margin: 0, fontSize: 42 }}>
           {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
         </h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
           {lang === "en"
-            ? "Independent voices we publish — people first, then books."
-            : "Vocile independente pe care le publicăm — întâi oamenii, apoi cărțile."}
+            ? "Independent voices we publish – people first, then books."
+            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
         </p>
-        <p style={{ color: "var(--secondary)", marginTop: 6, maxWidth: 900 }}>
+
+        {/* descriere centrală cu negru (ca la Călători) */}
+        <p style={{ color: "#222", lineHeight: 1.75, margin: "8px auto 0", maxWidth: 980 }}>
           {lang === "en"
-            ? "We believe in authenticity and in voices shaped by real journeys. Whether you’re a debut writer or already published, Midaway offers a caring space for editing, validation and thoughtful promotion — a place where your voice matters."
-            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă — un loc în care vocea ta contează."}
+            ? "We believe in authenticity and voices that grow from real experiences. Whether you’re just starting out or already published, Midaway offers a space for attentive editing, fair validation and integrated promotion – a place where your voice truly matters."
+            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
         </p>
       </header>
 
-      {/* Separator vizual animat */}
-<div
-  style={{
-    height: 2,
-    width: "100%",
-    background:
-      "linear-gradient(90deg, rgba(212,160,23,0.1), rgba(212,160,23,0.8), rgba(212,160,23,0.1))",
-    backgroundSize: "200% 100%",
-    borderRadius: 999,
-    margin: "28px 0 32px 0",
-    animation: "shimmer 3.5s linear infinite",
-  }}
-></div>
+      {/* Separator */}
+      <div
+        style={{
+          height: 2,
+          width: "100%",
+          background:
+            "linear-gradient(90deg, rgba(212,160,23,0.1), rgba(212,160,23,0.8), rgba(212,160,23,0.1))",
+          backgroundSize: "200% 100%",
+          borderRadius: 999,
+          margin: "28px 0 20px 0",
+          animation: "shimmer 3.5s linear infinite",
+        }}
+      />
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
 
-<style>
-  {`
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-  `}
-</style>
-
-
-      {/* Search + Lang */}
-      <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
+      {/* Căutare + limbi */}
+      <div style={{ display: "flex", gap: 12, alignItems: "center", margin: "0 auto 16px", maxWidth: 980 }}>
         <input
           value={q}
           onChange={(e) => {
@@ -126,7 +120,7 @@ export default function Authors() {
             border: "1px solid #ddd",
             borderRadius: 999,
             overflow: "hidden",
-            background: "#fcfaee",
+            background: "#fff",
           }}
         >
           <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>RO</button>
@@ -134,127 +128,110 @@ export default function Authors() {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Grid carduri – identic cu Books/Travelers */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: 16,
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: 18,
         }}
       >
         {filtered.map(({ a, d }) => (
-          <AuthorCard key={a.id} a={a} d={d} lang={lang} />
+          <Link
+            key={a.id}
+            to={`/autori/${a.id}?lang=${lang}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              background: "#fff",
+              border: "1px solid var(--line)",
+              borderRadius: 18,
+              boxShadow: "0 6px 16px rgba(0,0,0,.06)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* cadru bej + imagine */}
+            <div style={{ background: FRAME_BG, padding: 12 }}>
+              <div
+                style={{
+                  width: "100%",
+                  aspectRatio: "4 / 5",
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  background: "#eee",
+                }}
+              >
+                <img
+                  src={a.photo || "/assets/placeholder-cover.png"}
+                  alt={d.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            </div>
+
+            {/* text centrat sub poză */}
+            <div style={{ padding: 14, textAlign: "center" }}>
+              <div style={{ fontSize: 26, lineHeight: 1 }}>✒️</div>
+              <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
+                {d.name}
+              </h3>
+              <p style={{ margin: 0, color: "var(--secondary)" }}>
+                {d.role}{d.tagline ? ` — ${d.tagline}` : ""}
+              </p>
+              <div style={{ marginTop: 10, fontSize: 13, color: "var(--accent)" }}>
+                {lang === "en" ? "Details →" : "Detalii →"}
+              </div>
+            </div>
+          </Link>
         ))}
 
+        {/* Placeholdere compatibile, dar cu același cadru bej */}
         {Array.from({ length: placeholders }).map((_, i) => (
-          <PlaceholderCard
+          <div
             key={`ph-${i}`}
-            lang={lang}
-            index={i}
-            image={phImages[i]}
-          />
+            style={{
+              background: "#fff",
+              border: "1px solid var(--line)",
+              borderRadius: 18,
+              boxShadow: "0 6px 16px rgba(0,0,0,.04)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div style={{ background: FRAME_BG, padding: 12 }}>
+              <div
+                style={{
+                  width: "100%",
+                  aspectRatio: "4 / 5",
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  background:
+                    "repeating-linear-gradient(45deg, rgba(255,255,255,.5), rgba(255,255,255,.5) 10px, rgba(255,255,255,.35) 10px, rgba(255,255,255,.35) 20px)",
+                }}
+              />
+            </div>
+            <div style={{ padding: 14, textAlign: "center" }}>
+              <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
+                {lang === "en" ? "Your name here" : "Aici va fi numele tău 😊"}
+              </h3>
+              <p style={{ margin: 0, opacity: 0.9 }}>
+                {lang === "en" ? "Midaway author — soon" : "Autor Midaway — în curând"}
+              </p>
+              <Link
+                to={`/contact?subject=${encodeURIComponent(
+                  lang === "en" ? "New author collaboration" : "Colaborare autor nou"
+                )}`}
+                className="btn"
+                style={{ textDecoration: "none", marginTop: 10 }}
+              >
+                {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
+              </Link>
+            </div>
+          </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function AuthorCard({ a, d, lang }) {
-  return (
-    <Link
-      to={`/autori/${a.id}?lang=${lang}`}
-      className="proj-card"
-      style={{
-        textDecoration: "none",
-        color: "inherit",
-        background: "#fcfaee",
-        border: "1px solid var(--line)",
-        borderRadius: 18,
-        boxShadow: "0 6px 16px rgba(0,0,0,.06)",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          height: 220,
-          backgroundImage: `url(${a.photo || "/assets/placeholder-cover.png"})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
-          backgroundColor: "#fcfaee",
-        }}
-      />
-      <div style={{ padding: 14, textAlign: "center" }}>
-        <div style={{ fontSize: 22, lineHeight: 1, opacity: .85 }}>✒️</div>
-        <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
-          {d.name}
-        </h3>
-        <p style={{ margin: 0, color: "var(--secondary)" }}>
-          {d.role}
-          {d.tagline ? ` — ${d.tagline}` : ""}
-        </p>
-        <p className="proj-details" style={{ marginTop: 8 }}>
-          {lang === "en" ? "Details →" : "Detalii →"}
-        </p>
-      </div>
-    </Link>
-  );
-}
-
-function PlaceholderCard({ lang, image }) {
-  return (
-    <div
-      className="proj-card"
-      style={{
-        background: "#fcfaee",
-        border: "1px solid var(--line)",
-        borderRadius: 18,
-        boxShadow: "0 6px 16px rgba(0,0,0,.06)",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          height: 220,
-          backgroundImage: image ? `url(${image})` : "none",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "contain",
-          backgroundColor: "#fcfaee", // bej cald ca la Mida
-        }}
-      />
-      <div style={{ padding: 14, textAlign: "center" }}>
-        <h3
-          className="font-cormorant"
-          style={{ margin: "6px 0 6px", fontSize: 22, color: "#1a1a1a" }}
-        >
-          {lang === "en" ? "Your name here 😊" : "Aici va fi numele TĂU 😊"}
-        </h3>
-        <p style={{ margin: 0, color: "var(--secondary)" }}>
-          {lang === "en" ? "Midaway author — soon" : "Autor Midaway – în curând"}
-        </p>
-
-        <Link
-          to={`/contact?subject=${encodeURIComponent(
-            lang === "en" ? "New author collaboration" : "Colaborare autor nou"
-          )}`}
-          className="btn"
-          style={{
-            textDecoration: "none",
-            marginTop: 12,
-            padding: "8px 12px",
-            borderRadius: 999,
-            background: "var(--card3)",       // cald, luminos, nu strident
-            color: "#2b2b2b",
-            border: "1px solid rgba(0,0,0,.08)",
-            boxShadow: "0 2px 8px rgba(0,0,0,.05)",
-            display: "inline-block",
-          }}
-        >
-          {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
-        </Link>
       </div>
     </div>
   );
