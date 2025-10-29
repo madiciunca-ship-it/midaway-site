@@ -53,16 +53,25 @@ const authors = [
    TEMPLATE — Adaugă rapid un autor nou (copie + editează, apoi
    scoate comentariul). Păstrează-l aici ca “șablon invizibil”.
    Pași:
-   1) Pune fotografia la: /public/assets/books/authors/<slug>.webp
-      Ex.: /public/assets/books/authors/john-doe.webp
+   1) Pune fotografiile la: /public/assets/books/authors/<slug>-*.webp
+      Ex.:
+        /public/assets/books/authors/john-doe.webp        (cover)
+        /public/assets/books/authors/john-doe-2.webp      (gallery)
+        /public/assets/books/authors/john-doe-3.webp      (gallery)
    2) Copiază blocul, înlocuiește câmpurile, ȘI DECOMENTEAZĂ.
    3) Pentru a apărea primul în listă, pune autorul NOU la
       începutul array-ului `authors`.
    ──────────────────────────────────────────────────────────────
 
 {
-  id: "john-doe", // URL: /autori/john-doe  (scris cu liniuțe)
+  id: "john-doe", // URL: /autori/john-doe
   photo: "/assets/books/authors/john-doe.webp",
+
+  // opțional — max 2–3 imagini; dacă le pui, pagina de autor le poate arăta în colaj
+  gallery: [
+    "/assets/books/authors/john-doe-2.webp",
+    "/assets/books/authors/john-doe-3.webp",
+  ],
 
   socials: {
     instagram: "",
@@ -72,13 +81,11 @@ const authors = [
     website: "",
   },
 
-  // opțional – dacă vrei un buton spre o carte anume
   featuredBook: {
     title: "",        // ex.: "Zile și nopți de Vietnam"
-    href: "/carti",   // sau /carti/<slug-carte> dacă ai pagină dedicată
+    href: "/carti",
   },
 
-  // opțional – listă simplă de “slugs” pentru cărți (apare ca listă în detaliu)
   books: [
     // "zile-si-nopti-de-vietnam"
   ],
@@ -105,7 +112,6 @@ const authors = [
     ],
   },
 },
-
 */
 
 export default authors;

@@ -106,8 +106,8 @@ export default function Authors() {
         <h1 style={{ margin: 0, fontSize: 44 }}>Autorii Midaway</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8, fontSize: 18 }}>
           {lang === "en"
-            ? "Independent voices we publish — people first, then books."
-            : "Vocile independente pe care le publicăm — întâi oamenii, apoi cărțile."}
+            ? "Independent voices we publish – people first, then books."
+            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
         </p>
 
         <p

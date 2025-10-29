@@ -2,6 +2,14 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import authors from "../data/authors";
 
+// Responsive tuning pt. poza mare din detaliu autor
+const isMobile =
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 640px)").matches;
+
+const HERO_H = isMobile ? 520 : 620;            // înălțime mai mică pe mobil
+const HERO_FOCUS = isMobile ? "center 8%" : "center 12%"; // focus puțin mai sus pe mobil
+
 function getLocaleData(author, lang) {
   return (
     (lang === "en" ? author.en : author.ro) ||
@@ -62,6 +70,14 @@ export default function AuthorDetail() {
     bio.splice(3, 0, extra);
   }
 
+  // Poze laterale (din gallery, dacă există) – fallback la imaginile tale
+  const leftImg =
+    (Array.isArray(a.gallery) && a.gallery[0]) ||
+    "/assets/books/authors/mida-malena-2.webp";
+  const rightImg =
+    (Array.isArray(a.gallery) && a.gallery[1]) ||
+    "/assets/books/authors/mida-malena-3.webp";
+
   return (
     <>
       {/* HERO – colaj panoramic */}
@@ -76,53 +92,56 @@ export default function AuthorDetail() {
           padding: "32px 0",
           minHeight: "clamp(340px, 45vw, 540px)",
           overflow: "hidden",
+          gap: 24,
         }}
       >
-        {/* Imagine stânga */}
-        <img
-          src="/assets/books/authors/mida-malena-2.webp"
-          alt=""
-          style={{
-            height: "100%",
-            width: "auto",
-            borderRadius: "12px",
-            objectFit: "cover",
-            opacity: 0.9,
-            transform: "translateX(-10%)",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-          }}
-          className="hide-mobile"
-        />
+        {/* Imagine stânga – ascunsă pe mobil */}
+        {!isMobile && (
+          <img
+            src={leftImg}
+            alt=""
+            style={{
+              height: "100%",
+              width: "auto",
+              borderRadius: 12,
+              objectFit: "cover",
+              opacity: 0.9,
+              transform: "translateX(-10%)",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+            }}
+          />
+        )}
 
-        {/* Imagine centrală */}
+        {/* Imagine centrală (autor) – cu focus/inaltime responsive */}
         <img
           src={a.photo || "/assets/placeholder-cover.png"}
           alt={d.name}
           style={{
-            maxHeight: "480px",
+            height: HERO_H,
             width: "auto",
-            borderRadius: "16px",
-            objectFit: "contain",
-            margin: "0 24px",
+            borderRadius: 16,
+            objectFit: "cover",
+            objectPosition: HERO_FOCUS,
             boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
           }}
         />
 
-        {/* Imagine dreapta */}
-        <img
-          src="/assets/books/authors/mida-malena-3.webp"
-          alt=""
-          style={{
-            height: "100%",
-            width: "auto",
-            borderRadius: "12px",
-            objectFit: "cover",
-            opacity: 0.9,
-            transform: "translateX(10%)",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-          }}
-          className="hide-mobile"
-        />
+        {/* Imagine dreapta – ascunsă pe mobil */}
+        {!isMobile && (
+          <img
+            src={rightImg}
+            alt=""
+            style={{
+              height: "100%",
+              width: "auto",
+              borderRadius: 12,
+              objectFit: "cover",
+              opacity: 0.9,
+              transform: "translateX(10%)",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+            }}
+          />
+        )}
       </div>
 
       {/* switch RO/EN – centrat sub colaj */}
@@ -224,14 +243,14 @@ export default function AuthorDetail() {
           )}
         </div>
 
-       {/* CTA către toate cărțile autorului / editurii */}
-<div style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}>
-  <Link to="/carti" className="btn" style={{ textDecoration: "none" }}>
-    {lang === "en" ? "See books" : "Vezi cărțile"}
-  </Link>
-</div>
-
-        {/* (Am scos blocul duplicat cu numele + tagline) */}
+        {/* CTA către toate cărțile */}
+        <div
+          style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}
+        >
+          <Link to="/carti" className="btn" style={{ textDecoration: "none" }}>
+            {lang === "en" ? "See books" : "Vezi cărțile"}
+          </Link>
+        </div>
 
         {/* Bio */}
         {bio.map((para, i) => (
@@ -240,7 +259,7 @@ export default function AuthorDetail() {
           </p>
         ))}
 
-        {/* Cărți publicate */}
+        {/* Cărți publicate (fallback listă) */}
         {Array.isArray(a.books) && a.books.length > 0 && (
           <>
             <h2 className="font-cormorant" style={{ marginTop: 26 }}>
@@ -249,7 +268,10 @@ export default function AuthorDetail() {
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
+                  <Link
+                    to={`/carti`}
+                    style={{ textDecoration: "none", color: "var(--accent)" }}
+                  >
                     {slug}
                   </Link>
                 </li>
@@ -258,9 +280,13 @@ export default function AuthorDetail() {
           </>
         )}
 
-        {/* CTA */}
+        {/* CTA secundar */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
-          <Link to={`/autori?lang=${lang}`} className="btn-outline" style={{ textDecoration: "none" }}>
+          <Link
+            to={`/autori?lang=${lang}`}
+            className="btn-outline"
+            style={{ textDecoration: "none" }}
+          >
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
@@ -304,7 +330,7 @@ function pill(bg) {
   };
 }
 
-/* ------- SVG brand icons (inline, fără librării externe) ------- */
+/* ------- SVG brand icons (inline) ------- */
 function IconGlobe({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -344,7 +370,10 @@ function IconYouTube({ size = 18 }) {
 function IconTikTok({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z" fill="#111" />
+      <path
+        d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z"
+        fill="#111"
+      />
     </svg>
   );
 }
