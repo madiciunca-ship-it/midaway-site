@@ -94,11 +94,20 @@ export default function Authors() {
     );
   }, [q, lang]);
 
+  // 🔒 păstrăm Mida mereu prima, restul coboară (ultimul adăugat primul)
+const PIN_ID = "mida-malena";
+const pinned = filtered.find((x) => x.a.id === PIN_ID);
+const others = filtered.filter((x) => x.a.id !== PIN_ID);
+
+// dacă vrei ca ultimul adăugat în data să fie primul în grilă:
+const gridData = pinned ? [pinned, ...others] : others;
+
+
   // completează până la 3 carduri cu placeholder (și poze reale)
   const placeholders = Math.max(0, 3 - filtered.length);
 
   return (
-    <div className="container" style={{ padding: "32px 0 48px" }}>
+    <div className="container" style={{ padding: "32px 0 48px", overflowX: "hidden" }}>
       {/* Header centrat — albastru mic sus + descriere negru, ca la Călători */}
       <header
         className="font-cormorant"
@@ -122,7 +131,7 @@ export default function Authors() {
         >
           {lang === "en"
             ? "We believe in authenticity and in voices that grow from real experience. Whether you're just starting or already published, Midaway offers space for editing, validation, and mindful promotion – a place where your voice matters."
-            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă — un loc în care vocea ta contează."}
+            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
         </p>
 
         <div
@@ -187,15 +196,19 @@ export default function Authors() {
 
       {/* Grid carduri */}
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: 18,
-        }}
-      >
-        {filtered.map(({ a, d }) => (
-          <AuthorCard key={a.id} a={a} d={d} lang={lang} />
-        ))}
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+    gap: 18,
+    maxWidth: 1200,           // limitează lățimea grilei să nu împingă pagina
+    margin: "0 auto",         // centrează grila
+    alignItems: "start",
+    boxSizing: "border-box",
+  }}
+>
+        {gridData.map(({ a, d }) => (
+  <AuthorCard key={a.id} a={a} d={d} lang={lang} />
+))}
 
         {Array.from({ length: placeholders }).map((_, i) => (
           <PlaceholderCard key={`ph-${i}`} lang={lang} index={i} />
