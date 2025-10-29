@@ -143,7 +143,7 @@ export default function Authors() {
             style={{
               textDecoration: "none",
               color: "inherit",
-              background: "#fff",
+              background: FRAME_BG,
               border: "1px solid var(--line)",
               borderRadius: 18,
               boxShadow: "0 6px 16px rgba(0,0,0,.06)",
@@ -192,7 +192,7 @@ export default function Authors() {
           <div
             key={`ph-${i}`}
             style={{
-              background: "#fff",
+              background: FRAME_BG,
               border: "1px solid var(--line)",
               borderRadius: 18,
               boxShadow: "0 6px 16px rgba(0,0,0,.04)",
@@ -224,8 +224,18 @@ export default function Authors() {
                 to={`/contact?subject=${encodeURIComponent(
                   lang === "en" ? "New author collaboration" : "Colaborare autor nou"
                 )}`}
-                className="btn"
-                style={{ textDecoration: "none", marginTop: 10 }}
+                style={{
+                textDecoration: "none",
+                marginTop: 12,
+                padding: "10px 14px",
+                borderRadius: 999,
+                background: "#e9d6bf",      // nuanță caldă
+                color: "#3b2a1e",
+                border: "1px solid rgba(0,0,0,.08)",
+                display: "inline-block",
+                fontSize: 15,
+                boxShadow: "0 2px 8px rgba(0,0,0,.06)",
+              }}
               >
                 {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
               </Link>
