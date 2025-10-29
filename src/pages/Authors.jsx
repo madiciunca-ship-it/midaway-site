@@ -231,8 +231,9 @@ function AuthorCard({ a, d, lang }) {
             alt={d.name}
             style={{
               width: "100%",
-              height: 360,
+              height: 420,
               objectFit: "cover",
+              objectPosition: "center top",
               display: "block",
             }}
           />
