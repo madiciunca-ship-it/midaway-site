@@ -30,6 +30,14 @@ const softBtn = {
   fontSize: 14,
 };
 
+// ⬇️ responsive helpers (la nivel de fișier, vizibile în toate componentele)
+const isMobile =
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 640px)").matches;
+
+const IMG_H = isMobile ? 360 : 420;               // înălțime imagine card
+const FOCUS = isMobile ? "center 12%" : "center top"; // focus pe mobil puțin mai jos
+
 // segment button (RO/EN)
 function segBtn(active) {
   return {
@@ -213,11 +221,7 @@ function AuthorCard({ a, d, lang }) {
       }}
     >
       {/* imagine mare — ca la cardurile de cărți */}
-      <div
-        style={{
-          padding: 14,
-        }}
-      >
+      <div style={{ padding: 14 }}>
         <div
           style={{
             borderRadius: 16,
@@ -227,14 +231,15 @@ function AuthorCard({ a, d, lang }) {
           }}
         >
           <img
-            src={a.photo || "/assets/placeholder-cover.png"}
+            src={a.photo}
             alt={d.name}
             style={{
               width: "100%",
-              height: 420,
+              height: IMG_H,
               objectFit: "cover",
-              objectPosition: "center top",
+              objectPosition: FOCUS,
               display: "block",
+              borderRadius: 16,
             }}
           />
         </div>
@@ -288,14 +293,14 @@ function PlaceholderCard({ lang, index }) {
             boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
           }}
         >
-          {/* ⬇️ afișăm poza placeholder */}
+          {/* ⬇️ afișăm poza placeholder (acum tot responsive) */}
           <div
             style={{
               width: "100%",
-              height: 420,
+              height: IMG_H,
               backgroundImage: `url(${photo})`,
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "center top",
+              backgroundPosition: FOCUS,
               backgroundSize: "cover",
             }}
           />
