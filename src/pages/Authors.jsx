@@ -30,13 +30,14 @@ const softBtn = {
   fontSize: 14,
 };
 
-// ⬇️ responsive helpers (la nivel de fișier, vizibile în toate componentele)
+// ⬇️ responsive helpers
 const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
 
-const IMG_H = isMobile ? 360 : 420;               // înălțime imagine card
-const FOCUS = isMobile ? "center 12%" : "center top"; // focus pe mobil puțin mai jos
+// le păstrăm, chiar dacă nu mai folosim înălțime fixă
+const IMG_H = isMobile ? 360 : 420;
+const FOCUS = isMobile ? "center 12%" : "center top";
 
 // segment button (RO/EN)
 function segBtn(active) {
@@ -121,7 +122,7 @@ export default function Authors() {
         >
           {lang === "en"
             ? "We believe in authenticity and in voices that grow from real experience. Whether you're just starting or already published, Midaway offers space for editing, validation, and mindful promotion – a place where your voice matters."
-            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
+            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă — un loc în care vocea ta contează."}
         </p>
 
         <div
@@ -230,16 +231,16 @@ function AuthorCard({ a, d, lang }) {
             boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
           }}
         >
+          {/* ✅ Fără crop: aspectRatio + contain */}
           <img
             src={a.photo}
             alt={d.name}
             style={{
               width: "100%",
-              height: IMG_H,
-              objectFit: "cover",
-              objectPosition: FOCUS,
               display: "block",
-              borderRadius: 16,
+              aspectRatio: "4 / 5",
+              objectFit: "contain",
+              objectPosition: isMobile ? "center 12%" : "center",
             }}
           />
         </div>
@@ -293,15 +294,16 @@ function PlaceholderCard({ lang, index }) {
             boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
           }}
         >
-          {/* ⬇️ afișăm poza placeholder (acum tot responsive) */}
-          <div
+          {/* ✅ și placeholderul fără crop */}
+          <img
+            src={photo}
+            alt={title}
             style={{
               width: "100%",
-              height: IMG_H,
-              backgroundImage: `url(${photo})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: FOCUS,
-              backgroundSize: "cover",
+              display: "block",
+              aspectRatio: "4 / 5",
+              objectFit: "contain",
+              objectPosition: isMobile ? "center 12%" : "center",
             }}
           />
         </div>
