@@ -95,13 +95,12 @@ export default function Authors() {
   }, [q, lang]);
 
   // 🔒 păstrăm Mida mereu prima, restul coboară (ultimul adăugat primul)
-const PIN_ID = "mida-malena";
-const pinned = filtered.find((x) => x.a.id === PIN_ID);
-const others = filtered.filter((x) => x.a.id !== PIN_ID);
+  const PIN_ID = "mida-malena";
+  const pinned = filtered.find((x) => x.a.id === PIN_ID);
+  const others = filtered.filter((x) => x.a.id !== PIN_ID);
 
-// dacă vrei ca ultimul adăugat în data să fie primul în grilă:
-const gridData = pinned ? [pinned, ...others.reverse()] : others.reverse();
-
+  // dacă vrei ca ultimul adăugat în data să fie primul în grilă:
+  const gridData = pinned ? [pinned, ...others.reverse()] : others.reverse();
 
   // completează până la 3 carduri cu placeholder (și poze reale)
   const placeholders = Math.max(0, 3 - filtered.length);
@@ -196,19 +195,17 @@ const gridData = pinned ? [pinned, ...others.reverse()] : others.reverse();
 
       {/* Grid carduri */}
       <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: 18,
-    alignItems: "start",
-    maxWidth: "100%",
-  }}
->
-
-
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: 18,
+          alignItems: "start",
+          maxWidth: "100%",
+        }}
+      >
         {gridData.map(({ a, d }) => (
-  <AuthorCard key={a.id} a={a} d={d} lang={lang} />
-))}
+          <AuthorCard key={a.id} a={a} d={d} lang={lang} />
+        ))}
 
         {Array.from({ length: placeholders }).map((_, i) => (
           <PlaceholderCard key={`ph-${i}`} lang={lang} index={i} />
@@ -251,13 +248,26 @@ function AuthorCard({ a, d, lang }) {
           <img
             src={a.photo}
             alt={d.name}
-            style={{
-              width: "100%",
-              display: "block",
-              aspectRatio: "4 / 5",
-              objectFit: "contain",
-              objectPosition: isMobile ? "center 12%" : "center",
-            }}
+            style={
+              isMobile
+                ? {
+                    width: "100%",
+                    display: "block",
+                    aspectRatio: "4 / 5", // pe mobil nu mai tăiem
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    background: "#fff", // benzi albe discrete
+                    borderRadius: 16,
+                  }
+                : {
+                    width: "100%",
+                    height: IMG_H,
+                    objectFit: "cover",
+                    objectPosition: FOCUS,
+                    display: "block",
+                    borderRadius: 16,
+                  }
+            }
           />
         </div>
       </div>
@@ -311,17 +321,32 @@ function PlaceholderCard({ lang, index }) {
           }}
         >
           {/* ✅ și placeholderul fără crop */}
-          <img
-            src={photo}
-            alt={title}
-            style={{
-              width: "100%",
-              display: "block",
-              aspectRatio: "4 / 5",
-              objectFit: "contain",
-              objectPosition: isMobile ? "center 12%" : "center",
-            }}
-          />
+          {isMobile ? (
+            <img
+              src={photo}
+              alt=""
+              style={{
+                width: "100%",
+                display: "block",
+                aspectRatio: "4 / 5",
+                objectFit: "contain",
+                objectPosition: "center",
+                background: "#fff",
+                borderRadius: 16,
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: IMG_H,
+                backgroundImage: `url(${photo})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: FOCUS,
+                backgroundSize: "cover",
+              }}
+            />
+          )}
         </div>
       </div>
 
