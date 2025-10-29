@@ -248,26 +248,15 @@ function AuthorCard({ a, d, lang }) {
           <img
             src={a.photo}
             alt={d.name}
-            style={
-              isMobile
-                ? {
-                    width: "100%",
-                    display: "block",
-                    aspectRatio: "4 / 5", // pe mobil nu mai tăiem
-                    objectFit: "contain",
-                    objectPosition: "center",
-                    background: "#fff", // benzi albe discrete
-                    borderRadius: 16,
-                  }
-                : {
-                    width: "100%",
-                    height: IMG_H,
-                    objectFit: "cover",
-                    objectPosition: FOCUS,
-                    display: "block",
-                    borderRadius: 16,
-                  }
-            }
+            style={{
+              width: "100%",
+              display: "block",
+              aspectRatio: "4 / 5",   // raport fix, grilă frumoasă
+              objectFit: "contain",   // fără crop
+              objectPosition: "center",
+              background: "#fff",     // benzi albe elegante, ca la Călători
+              borderRadius: 16,
+            }}
           />
         </div>
       </div>
@@ -320,33 +309,20 @@ function PlaceholderCard({ lang, index }) {
             boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
           }}
         >
-          {/* ✅ și placeholderul fără crop */}
-          {isMobile ? (
-            <img
-              src={photo}
-              alt=""
-              style={{
-                width: "100%",
-                display: "block",
-                aspectRatio: "4 / 5",
-                objectFit: "contain",
-                objectPosition: "center",
-                background: "#fff",
-                borderRadius: 16,
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                width: "100%",
-                height: IMG_H,
-                backgroundImage: `url(${photo})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: FOCUS,
-                backgroundSize: "cover",
-              }}
-            />
-          )}
+          {/* imagine placeholder — fără crop, pe toate viewport-urile */}
+          <img
+            src={photo}
+            alt={title}
+            style={{
+              width: "100%",
+              display: "block",
+              aspectRatio: "4 / 5",
+              objectFit: "contain",
+              objectPosition: "center",
+              background: "#fff",
+              borderRadius: 16,
+            }}
+          />
         </div>
       </div>
 
