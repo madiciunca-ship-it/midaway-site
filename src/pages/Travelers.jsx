@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
 
-/* stil ca la Autori */
+/* ——— stil card ca la Autori ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
 
 // responsive helpers (identic cu Autori)
@@ -13,6 +13,54 @@ const isMobile =
 
 const IMG_H = isMobile ? 360 : 420;                 // înălțime imagine card
 const FOCUS = isMobile ? "center 12%" : "center top";
+
+/* ——— header text RO/EN ——— */
+const INTRO_RO = (
+  <>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      Eu sunt <b>Mida Malena</b> și, în ultimii trei ani, am călătorit prin lumi și prin mine.
+      Am adunat amintiri, oameni, povești și trăiri care mi-au schimbat felul
+      de a privi viața.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut – prieten.
+      Fiecare interviu e o fereastră deschisă spre o altă lume, spusă cu vocea celui care a trăit-o.
+      Unii mi-au fost ghizi, alții prieteni, alții doar trecători frumoși în poveștile mele.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      Am adunat infinit mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând.
+      Pentru că fiecare om pe care l-am întâlnit și-a lăsat o amprentă în mine,
+      și, cumva, în fiecare carte a mea există câte puțin din fiecare dintre ei.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      Citește aceste povești cu inima deschisă. S-ar putea să-ți dea curajul să-ți faci și tu bagajele –
+      sau, măcar, să începi călătoria ta, oriunde te-ai afla.
+    </p>
+  </>
+);
+
+const INTRO_EN = (
+  <>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      I’m <b>Mida Malena</b>, and for the past three years I’ve been traveling – through the world and through myself.
+      I’ve gathered memories, faces, stories, and moments that have forever changed the way I see life.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      In “Travelers”, I bring together the voices of those who have made the road their home and the unknown their friend.
+      Each interview is a window into another world – told in the voice of the one who lived it.
+      Some became my guides, others my friends, some just beautiful passersby in my own stories.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      I’ve collected far more stories than I can share here – but they’ll come, one by one.
+      Because every person I’ve met has left a trace in me,
+      and somehow, in each of my books, there’s a little piece of them.
+    </p>
+    <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
+      Read these stories with an open heart. They might just give you the courage to pack your bags –
+      or simply to begin your own journey, wherever you are.
+    </p>
+  </>
+);
 
 function segBtn(active) {
   return {
@@ -52,29 +100,59 @@ export default function Travelers() {
     localStorage.setItem("travelers.lang", l);
   };
 
-  // filtrare după nume/subtitlu (în limba curentă)
+  // filtrare + titlu/subtitlu corect + ordonare „cel mai nou primul”
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
 
-    const list = travelers.map((t) => {
+    const base = travelers.map((t) => {
       const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
-      const title = d.listTitle || t.name || "";
+      const title = d.listTitle || d.name || t.name || "";
       const subtitle = d.subtitle || t.tagline || "";
-      const cover = t.cover || (Array.isArray(t.gallery) ? t.gallery[0] : "") || "/assets/placeholder-cover.png";
-      return { t, d, title, subtitle, cover };
+      const cover =
+        t.cover || (Array.isArray(t.gallery) ? t.gallery[0] : "") || "/assets/placeholder-cover.png";
+      return { t, title, subtitle, cover };
     });
 
-    if (!term) return list;
-    return list.filter(({ title, subtitle }) =>
-      `${title} ${subtitle}`.toLowerCase().includes(term)
-    );
+    const out = term
+      ? base.filter(({ title, subtitle }) =>
+          `${title} ${subtitle}`.toLowerCase().includes(term)
+        )
+      : base;
+
+    // 🔄 ultimul adăugat apare primul
+    return [...out].reverse();
   }, [q, lang]);
 
   return (
     <div className="container" style={{ padding: "24px 0 48px" }}>
-      {/* header existent rămâne neschimbat – dacă ai deja intro de sus, îl păstrăm */}
+      {/* ——— Header mare, ca înainte ——— */}
+      <header className="font-cormorant" style={{ textAlign: "center", margin: "8px 0 12px" }}>
+        <h1 style={{ margin: 0, fontSize: 48 }}>
+          <span role="img" aria-label="bag"></span>{" "}
+          {lang === "en" ? "Travelers & Journeys" : "Călători & Călătorii"}
+        </h1>
+        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+          {lang === "en"
+            ? "Independent voices we publish – people first, then books."
+            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
+        </p>
 
-      {/* căutare + limba */}
+        {/* textul lung */}
+        <div style={{ color: "#222", fontSize: 18 }}>
+          {lang === "en" ? INTRO_EN : INTRO_RO}
+        </div>
+
+        <div
+          style={{
+            height: 2,
+            background: "#d5b56f",
+            opacity: 0.6,
+            marginTop: 18,
+          }}
+        />
+      </header>
+
+      {/* ——— Search + Lang ——— */}
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
         <input
           value={q}
@@ -112,7 +190,7 @@ export default function Travelers() {
         </div>
       </div>
 
-      {/* GRID – carduri ca la Autori */}
+      {/* ——— GRID – carduri ca la Autori ——— */}
       <div
         style={{
           display: "grid",
@@ -135,7 +213,7 @@ export default function Travelers() {
               flexDirection: "column",
             }}
           >
-            {/* imagine mare cu ramă fină interioară */}
+            {/* imagine mare cu ramă interioară fină */}
             <div style={{ padding: 14 }}>
               <div
                 style={{
@@ -160,9 +238,13 @@ export default function Travelers() {
               </div>
             </div>
 
-            {/* text centrat direct pe card, fără banda albă separată */}
+            {/* text centrat direct pe card */}
             <div style={{ padding: "0 14px 16px", textAlign: "center" }}>
-              {t.emoji && <div style={{ fontSize: 26, lineHeight: 1, marginTop: 2 }}>{t.emoji}</div>}
+              {t.emoji && (
+                <div style={{ fontSize: 26, lineHeight: 1, marginTop: 2 }}>
+                  {t.emoji}
+                </div>
+              )}
               <h3 className="font-cormorant" style={{ margin: "8px 0 6px", fontSize: 24 }}>
                 {title}
               </h3>
