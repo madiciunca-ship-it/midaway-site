@@ -71,3 +71,7 @@ button:focus-visible {
     display: none;
   }
 }
+/* === anti-scroll orizontal pe toate paginile === */
+html, body, #root {
+  overflow-x: hidden;
+}
