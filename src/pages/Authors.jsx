@@ -292,10 +292,10 @@ function PlaceholderCard({ lang, index }) {
           <div
             style={{
               width: "100%",
-              height: 360,
+              height: 420,
               backgroundImage: `url(${photo})`,
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
+              backgroundPosition: "center top",
               backgroundSize: "cover",
             }}
           />
