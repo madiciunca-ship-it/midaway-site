@@ -14,7 +14,7 @@ const travelers = [
       id: "nomad-bali",
       emoji: "🏝️",
       name: "Nomadul din Bali",
-      tagline: "Ocean, cod și mango",
+      tagline: "Laptop, motocicletă și filme",
       cover: "/assets/travelers/nomad-bali/cover.webp",
       gallery: [
         "/assets/travelers/nomad-bali/1.webp",
