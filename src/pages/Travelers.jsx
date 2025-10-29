@@ -4,7 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 // 🔸 același set de carduri ca înainte (le poți edita/ordona aici)
 //  pune mereu noul traveler la FINAL – lista se inversează la randare (newest first)
 const ITEMS = [
-  { id: "nomad-bali",        icon: "🏝️", title: "Nomadul din Bali",        subtitle: "Laptop, motocicletă și filme" },
+  { id: "nomad-bali",        icon: "🏝️", title: "Adi — Nomadul din Bali",        subtitle: "Laptop, motocicletă și filme" },
   { id: "scriitoare-saigon", icon: "✍️", title: "Scriitoarea din Saigon",  subtitle: "Cafele, pagini, ploaie" },
   { id: "calatoare-barca",   icon: "🚤", title: "Călătoarea cu barca",      subtitle: "Insule, vânt, povești" },
   { id: "nomad-tokyo",       icon: "🗼", title: "Nomadul din Tokyo",        subtitle: "Luminile orașului, liniștea trenurilor" },
