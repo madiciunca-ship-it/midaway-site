@@ -112,7 +112,7 @@ export default function AuthorDetail() {
           />
         )}
 
-/* Imagine centrală (autor) – fără crop, ca înainte */
+
 <img
   src={a.photo || "/assets/placeholder-cover.png"}
   alt={d.name}
