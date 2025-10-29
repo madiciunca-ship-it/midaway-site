@@ -13,6 +13,7 @@ const travelers = [
     {
       id: "nomad-bali",
       emoji: "🏝️",
+   
       name: "Adrian Ștefan Ileș – Nomadul din Bali",
       tagline: "Laptop, motocicletă și filme",
       cover: "/assets/travelers/nomad-bali/cover.webp",

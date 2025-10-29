@@ -3,13 +3,18 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
 
+
 /* ——— stil card ca la Autori ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
 
-// responsive helpers (identic cu Autori)
+// ——— Mobile tuning pentru pozele din card (doar pe telefoane)
 const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
+
+const CARD_IMG_H = isMobile ? 360 : 420;       // puțin mai scund pe mobil
+const CARD_FOCUS = isMobile ? "center 18%" : "center top"; // mutăm focusul mai jos pe mobil
+
 
 const IMG_H = isMobile ? 360 : 420;                 // înălțime imagine card
 const FOCUS = isMobile ? "center 12%" : "center top";
