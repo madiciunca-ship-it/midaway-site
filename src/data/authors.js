@@ -47,6 +47,157 @@ const authors = [
       ],
     },
   },
+
+
+{
+  id: "john-doe", // URL: /autori/john-doe
+  photo: "/assets/books/authors/autor-no-name-unu.webp",
+
+  // opțional — max 2–3 imagini; dacă le pui, pagina de autor le poate arăta în colaj
+  gallery: [
+    "/assets/books/authors/john-doe-2.webp",
+    "/assets/books/authors/john-doe-3.webp",
+  ],
+
+  socials: {
+    instagram: "",
+    facebook: "",
+    youtube: "",
+    tiktok: "",
+    website: "",
+  },
+
+  featuredBook: {
+    title: "",        // ex.: "Zile și nopți de Vietnam"
+    href: "/carti",
+  },
+
+  books: [
+    // "zile-si-nopti-de-vietnam"
+  ],
+
+  ro: {
+    name: "Aici va fi numele tău 😊",
+    role: "Autor Midaway",
+    tagline: "în curând",
+    bio: [
+      "Aici va fi povestea ta. 😊",
+      "În curând. 😊",
+      "",
+    ],
+  },
+
+  en: {
+    name: "Your name here 😊",
+    role: "Midaway author",
+    tagline: "soon",
+    bio: [
+      "Your story here. 😊",
+      "Soon. 😊",
+      "",
+    ],
+  },
+},
+
+{
+  id: "john-doe", // URL: /autori/john-doe
+  photo: "/assets/books/authors/autor-no-name-doi.webp",
+
+  // opțional — max 2–3 imagini; dacă le pui, pagina de autor le poate arăta în colaj
+  gallery: [
+    "/assets/books/authors/john-doe-2.webp",
+    "/assets/books/authors/john-doe-3.webp",
+  ],
+
+  socials: {
+    instagram: "",
+    facebook: "",
+    youtube: "",
+    tiktok: "",
+    website: "",
+  },
+
+  featuredBook: {
+    title: "",        // ex.: "Zile și nopți de Vietnam"
+    href: "/carti",
+  },
+
+  books: [
+    // "zile-si-nopti-de-vietnam"
+  ],
+
+  ro: {
+    name: "Aici va fi numele tău 😊",
+    role: "Autor Midaway",
+    tagline: "în curând",
+    bio: [
+      "Aici va fi povestea ta. 😊",
+      "În curând. 😊",
+      "",
+    ],
+  },
+
+  en: {
+    name: "Your name here 😊",
+    role: "Midaway author",
+    tagline: "soon",
+    bio: [
+      "Your story here. 😊",
+      "Soon. 😊",
+      "",
+    ],
+  },
+},
+
+{
+  id: "john-doe", // URL: /autori/john-doe
+  photo: "/assets/books/authors/autor-no-name-trei.webp",
+
+  // opțional — max 2–3 imagini; dacă le pui, pagina de autor le poate arăta în colaj
+  gallery: [
+    "/assets/books/authors/john-doe-2.webp",
+    "/assets/books/authors/john-doe-3.webp",
+  ],
+
+  socials: {
+    instagram: "",
+    facebook: "",
+    youtube: "",
+    tiktok: "",
+    website: "",
+  },
+
+  featuredBook: {
+    title: "",        // ex.: "Zile și nopți de Vietnam"
+    href: "/carti",
+  },
+
+  books: [
+    // "zile-si-nopti-de-vietnam"
+  ],
+
+  ro: {
+    name: "Aici va fi numele tău 😊",
+    role: "Autor Midaway",
+    tagline: "în curând",
+    bio: [
+      "Aici va fi povestea ta. 😊",
+      "În curând. 😊",
+      "",
+    ],
+  },
+
+  en: {
+    name: "Your name here 😊",
+    role: "Midaway author",
+    tagline: "soon",
+    bio: [
+      "Your story here 😊",
+      "Soon",
+      "",
+    ],
+  },
+},
 ];
 
 /* ──────────────────────────────────────────────────────────────
