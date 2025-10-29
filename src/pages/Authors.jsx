@@ -5,9 +5,9 @@ import authors from "../data/authors";
 
 // ⬇️ POZE placeholder (din public/assets/authors/*.webp)
 const PLACEHOLDER_PHOTOS = [
-  "/assets/authors/autor-no-name-unu.webp",
-  "/assets/authors/autor-no-name-doi.webp",
-  "/assets/authors/autor-no-name-trei.webp",
+  "/assets/books/authors/autor-no-name-unu.webp",
+  "/assets/books/authors/autor-no-name-doi.webp",
+  "/assets/books/authors/autor-no-name-trei.webp",
 ];
 
 // fond cald ca la cardurile de cărți
