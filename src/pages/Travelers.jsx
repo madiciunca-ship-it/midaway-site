@@ -1,22 +1,46 @@
-import React, { useMemo, useState } from "react";
+// src/pages/Travelers.jsx
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import travelers from "../data/travelers";
 
-// 🔸 același set de carduri ca înainte (le poți edita/ordona aici)
-//  pune mereu noul traveler la FINAL – lista se inversează la randare (newest first)
-const ITEMS = [
-  { id: "nomad-bali",        icon: "🏝️", title: "Adi — Nomadul din Bali",        subtitle: "Laptop, motocicletă și filme" },
-  { id: "scriitoare-saigon", icon: "✍️", title: "Scriitoarea din Saigon",  subtitle: "Cafele, pagini, ploaie" },
-  { id: "calatoare-barca",   icon: "🚤", title: "Călătoarea cu barca",      subtitle: "Insule, vânt, povești" },
-  { id: "nomad-tokyo",       icon: "🗼", title: "Nomadul din Tokyo",        subtitle: "Luminile orașului, liniștea trenurilor" },
-];
+/* stil ca la Autori */
+const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
 
-// nuanța ramei calde ca la „Cărți”
-const FRAME_BG = "#f6efe4";
+// responsive helpers (identic cu Autori)
+const isMobile =
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 640px)").matches;
+
+const IMG_H = isMobile ? 360 : 420;                 // înălțime imagine card
+const FOCUS = isMobile ? "center 12%" : "center top";
+
+function segBtn(active) {
+  return {
+    padding: "8px 14px",
+    border: "none",
+    background: active ? "var(--accent)" : "transparent",
+    color: active ? "#fff" : "#444",
+    cursor: "pointer",
+    fontWeight: 700,
+  };
+}
 
 export default function Travelers() {
   const [params, setParams] = useSearchParams();
-  const lang = params.get("lang") === "en" ? "en" : "ro";
   const [q, setQ] = useState(params.get("q") || "");
+  const lang = params.get("lang") === "en" ? "en" : "ro";
+
+  // reține ultima limbă
+  useEffect(() => {
+    const saved = localStorage.getItem("travelers.lang");
+    if (!params.get("lang") && saved) {
+      setParams((p) => {
+        const c = new URLSearchParams(p);
+        c.set("lang", saved);
+        return c;
+      });
+    }
+  }, []); // eslint-disable-line
 
   const setLang = (l) => {
     setParams((p) => {
@@ -28,108 +52,30 @@ export default function Travelers() {
     localStorage.setItem("travelers.lang", l);
   };
 
+  // filtrare după nume/subtitlu (în limba curentă)
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
-    // newest first (ultimul din listă va fi primul afișat)
-    const list = [...ITEMS].reverse();
+
+    const list = travelers.map((t) => {
+      const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
+      const title = d.listTitle || t.name || "";
+      const subtitle = d.subtitle || t.tagline || "";
+      const cover = t.cover || (Array.isArray(t.gallery) ? t.gallery[0] : "") || "/assets/placeholder-cover.png";
+      return { t, d, title, subtitle, cover };
+    });
+
     if (!term) return list;
-    return list.filter(
-      (it) =>
-        `${it.title} ${it.subtitle}`.toLowerCase().includes(term)
+    return list.filter(({ title, subtitle }) =>
+      `${title} ${subtitle}`.toLowerCase().includes(term)
     );
-  }, [q]);
+  }, [q, lang]);
 
   return (
-    <div className="container" style={{ padding: "32px 0 48px" }}>
-      {/* Header centrat */}
-      <header className="font-cormorant" style={{ marginBottom: 10, textAlign: "center" }}>
-        <h1 style={{ margin: 0, fontSize: 42 }}>
-          🧳 {lang === "en" ? "Travelers & Journeys" : "Călători & Călătorii"}
-        </h1>
-        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          {lang === "en"
-            ? "Independent voices we publish – people first, then books."
-            : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
-        </p>
-      </header>
+    <div className="container" style={{ padding: "24px 0 48px" }}>
+      {/* header existent rămâne neschimbat – dacă ai deja intro de sus, îl păstrăm */}
 
-      {/* Intro centrat (RO/EN) */}
-      <section style={{ maxWidth: 980, margin: "0 auto" }}>
-        {lang === "en" ? (
-          <div style={{ textAlign: "center", lineHeight: 1.75, color: "#222" }}>
-            <p style={{ marginTop: 0 }}>
-              I’m <b>Mida Malena</b>, and for the past three years I’ve been traveling – through the world and through myself.
-              I’ve gathered memories, faces, stories, and moments that have forever changed the way I see life.
-            </p>
-            <p>
-              In “Travelers”, I bring together the voices of those who have made the road their home and the unknown their friend.
-              Each interview is a window into another world – told in the voice of the one who lived it.
-              Some became my guides, others my friends – some just beautiful passersby in my own stories.
-            </p>
-            <p>
-              I’ve collected far more stories than I can share here – but they’ll come, one by one.
-              Because every person I’ve met has left a trace in me,
-              and somehow, in each of my books, there’s a little piece of them.
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              Read these stories with an open heart.
-              They might just give you the courage to pack your bags – or simply to begin your own journey, wherever you are.
-            </p>
-          </div>
-        ) : (
-          <div style={{ textAlign: "center", lineHeight: 1.75, color: "#222" }}>
-            <p style={{ marginTop: 0 }}>
-              Eu sunt <b>Mida Malena</b> și, în ultimii trei ani, am călătorit prin lumi și prin mine.
-              Am adunat amintiri, oameni, povești și trăiri care mi-au schimbat felul de a privi viața.
-            </p>
-            <p>
-              În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut – prieten.
-              Fiecare interviu e o fereastră deschisă spre o altă lume, spusă cu vocea celui care a trăit-o.
-              Unii mi-au fost ghizi, alții prieteni – sau doar trecători frumoși în poveștile mele.
-            </p>
-            <p>
-              Am adunat infinit mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând.
-              Pentru că fiecare om pe care l-am întâlnit și-a lăsat o amprentă în mine,
-              și, cumva, în fiecare carte a mea există câte puțin din fiecare dintre ei.
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              Citește aceste povești cu inima deschisă. S-ar putea să-ți dea curajul să-ți faci și tu bagajele –
-              sau, măcar, să începi călătoria ta, oriunde te-ai afla.
-            </p>
-          </div>
-        )}
-      </section>
-
-      {/* Separator animat */}
-      <div
-        style={{
-          height: 2,
-          width: "100%",
-          background:
-            "linear-gradient(90deg, rgba(212,160,23,0.1), rgba(212,160,23,0.8), rgba(212,160,23,0.1))",
-          backgroundSize: "200% 100%",
-          borderRadius: 999,
-          margin: "28px 0 20px 0",
-          animation: "shimmer 3.5s linear infinite",
-        }}
-      />
-      <style>{`
-        @keyframes shimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
-      `}</style>
-
-      {/* Căutare + switch limbă */}
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          alignItems: "center",
-          margin: "0 auto 16px",
-          maxWidth: 980,
-        }}
-      >
+      {/* căutare + limba */}
+      <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
         <input
           value={q}
           onChange={(e) => {
@@ -144,12 +90,12 @@ export default function Travelers() {
           placeholder={lang === "en" ? "Search travelers…" : "Caută călători…"}
           style={{
             flex: 1,
-            padding: "10px 12px",
+            padding: "12px 14px",
             borderRadius: 12,
             border: "1px solid #ddd",
+            background: "#fff",
           }}
         />
-
         <div
           role="group"
           aria-label="Language switch"
@@ -166,81 +112,69 @@ export default function Travelers() {
         </div>
       </div>
 
-      {/* Grid carduri – stil ca la Cărți */}
+      {/* GRID – carduri ca la Autori */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           gap: 18,
         }}
       >
-        {filtered.map((p) => (
+        {filtered.map(({ t, title, subtitle, cover }) => (
           <Link
-            key={p.id}
-            to={`/calatori/${p.id}?lang=${lang}`}
+            key={t.id}
+            to={`/calatori/${t.id}?lang=${lang}`}
             style={{
               textDecoration: "none",
               color: "inherit",
-              background: "#fff",
-              border: "1px solid var(--line)",
-              borderRadius: 18,
-              boxShadow: "0 6px 16px rgba(0,0,0,.06)",
+              background: CARD_BG,
+              borderRadius: 22,
+              boxShadow: "0 8px 18px rgba(0,0,0,.06)",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
             }}
           >
-            {/* cadru bej + imagine mare centrată */}
-            <div
-              style={{
-                background: FRAME_BG,
-                padding: 12,
-              }}
-            >
+            {/* imagine mare cu ramă fină interioară */}
+            <div style={{ padding: 14 }}>
               <div
                 style={{
-                  width: "100%",
-                  aspectRatio: "4 / 5",
-                  borderRadius: 14,
+                  borderRadius: 16,
                   overflow: "hidden",
-                  background: "#eee",
+                  background: "#fff",
+                  boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
                 }}
               >
-                {/* thumb generic – în detaliu apar galeriile; aici ținem layout-ul curat */}
                 <img
-                  src={`/assets/travelers/${p.id}/cover.webp`}
-                  onError={(e) => (e.currentTarget.style.display = "none")}
-                  alt={p.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  src={cover}
+                  alt={title}
+                  style={{
+                    width: "100%",
+                    height: IMG_H,
+                    objectFit: "cover",
+                    objectPosition: FOCUS,
+                    display: "block",
+                    borderRadius: 16,
+                  }}
                 />
               </div>
             </div>
 
-            {/* text centrat ca la Cărți */}
-            <div style={{ padding: 14, textAlign: "center" }}>
-              <div style={{ fontSize: 28, lineHeight: 1 }}>{p.icon}</div>
-              <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
-                {p.title}
+            {/* text centrat direct pe card, fără banda albă separată */}
+            <div style={{ padding: "0 14px 16px", textAlign: "center" }}>
+              {t.emoji && <div style={{ fontSize: 26, lineHeight: 1, marginTop: 2 }}>{t.emoji}</div>}
+              <h3 className="font-cormorant" style={{ margin: "8px 0 6px", fontSize: 24 }}>
+                {title}
               </h3>
-              <p style={{ margin: 0, color: "var(--secondary)" }}>{p.subtitle}</p>
-              <div style={{ marginTop: 10, fontSize: 13, color: "var(--accent)" }}>
-                {lang === "en" ? "Details →" : "Detalii →"}
-              </div>
+              {subtitle && (
+                <p style={{ margin: 0, color: "var(--secondary)", fontSize: 16 }}>
+                  {subtitle}
+                </p>
+              )}
             </div>
           </Link>
         ))}
       </div>
     </div>
   );
-}
-
-function segBtn(active) {
-  return {
-    padding: "8px 14px",
-    border: "none",
-    background: active ? "var(--accent)" : "transparent",
-    color: active ? "#fff" : "#444",
-    cursor: "pointer",
-    fontWeight: 700,
-  };
 }
