@@ -62,23 +62,31 @@ export default function Authors() {
         <h1 style={{ margin: 0, fontSize: 42 }}>
           {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
         </h1>
-        <p
-  style={{
-    color: "#1e1e1e",        // negru, ca la Călători
-    lineHeight: 1.8,
-    textAlign: "center",
-    maxWidth: 1100,
-    margin: "14px auto 0",
-    fontSize: 18,
-  }}
->
+         {/* 🔹 Strapline (teal/albastru, mic, centrat) */}
+  <p
+    style={{
+      color: "var(--secondary)",
+      textAlign: "center",
+      margin: "6px auto 0",
+      fontSize: 16,
+    }}
+  >
           {lang === "en"
             ? "Independent voices we publish – people first, then books."
             : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
         </p>
 
-        {/* descriere centrală cu negru (ca la Călători) */}
-        <p style={{ color: "#222", lineHeight: 1.75, margin: "8px auto 0", maxWidth: 980 }}>
+        {/* 🔹 Descriere (negru, identic cu Călători) */}
+  <p
+    style={{
+      color: "#222",
+      lineHeight: 1.75,
+      textAlign: "center",
+      maxWidth: 1100,
+      margin: "14px auto 0",
+      fontSize: 18,
+    }}
+  >
           {lang === "en"
             ? "We believe in authenticity and voices that grow from real experiences. Whether you’re just starting out or already published, Midaway offers a space for attentive editing, fair validation and integrated promotion – a place where your voice truly matters."
             : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
