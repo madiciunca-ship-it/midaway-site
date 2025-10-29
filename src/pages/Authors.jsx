@@ -2,8 +2,14 @@ import { useMemo, useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import authors from "../data/authors";
 
-// nuanța ramei calde ca la „Cărți”
-const FRAME_BG = "#f6efe4";
+// 🔶 rame + poze placeholder (sunt în public/assets/books/authors/)
+const FRAME_BG = "linear-gradient(180deg,#f9f3e9 0%,#f7efe3 100%)";
+
+const PLACEHOLDER_PHOTOS = [
+  "/assets/books/authors/autor-no-name-unu.webp",
+  "/assets/books/authors/autor-no-name-doi.webp",
+  "/assets/books/authors/autor-no-name-trei.webp",
+];
 
 export default function Authors() {
   const [params, setParams] = useSearchParams();
@@ -56,7 +62,16 @@ export default function Authors() {
         <h1 style={{ margin: 0, fontSize: 42 }}>
           {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
         </h1>
-        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+        <p
+  style={{
+    color: "#1e1e1e",        // negru, ca la Călători
+    lineHeight: 1.8,
+    textAlign: "center",
+    maxWidth: 1100,
+    margin: "14px auto 0",
+    fontSize: 18,
+  }}
+>
           {lang === "en"
             ? "Independent voices we publish – people first, then books."
             : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
@@ -174,7 +189,7 @@ export default function Authors() {
             {/* text centrat sub poză */}
             <div style={{ padding: 14, textAlign: "center" }}>
               <div style={{ fontSize: 26, lineHeight: 1 }}>✒️</div>
-              <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
+              <h3 className="font-cormorant" style={{ margin: "10px 0 6px", fontSize: 24, color: "#1e1e1e", textAlign: "center" }}>
                 {d.name}
               </h3>
               <p style={{ margin: 0, color: "var(--secondary)" }}>
@@ -217,7 +232,7 @@ export default function Authors() {
               <h3 className="font-cormorant" style={{ margin: "6px 0 6px", fontSize: 22 }}>
                 {lang === "en" ? "Your name here" : "Aici va fi numele tău 😊"}
               </h3>
-              <p style={{ margin: 0, opacity: 0.9 }}>
+              <p style={{ margin: 0, color: "var(--secondary)", textAlign: "center" }}>
                 {lang === "en" ? "Midaway author — soon" : "Autor Midaway — în curând"}
               </p>
               <Link
