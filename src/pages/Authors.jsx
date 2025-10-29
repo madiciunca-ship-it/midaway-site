@@ -198,14 +198,14 @@ const gridData = pinned ? [pinned, ...others.reverse()] : others.reverse();
       <div
   style={{
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: 18,
-    maxWidth: 1200,           // limitează lățimea grilei să nu împingă pagina
-    margin: "0 auto",         // centrează grila
     alignItems: "start",
-    boxSizing: "border-box",
+    maxWidth: "100%",
   }}
 >
+
+
         {gridData.map(({ a, d }) => (
   <AuthorCard key={a.id} a={a} d={d} lang={lang} />
 ))}
@@ -232,6 +232,9 @@ function AuthorCard({ a, d, lang }) {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        minWidth: 0,
+        maxWidth: "100%",
+        boxSizing: "border-box",
       }}
     >
       {/* imagine mare — ca la cardurile de cărți */}
