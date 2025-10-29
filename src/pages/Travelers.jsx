@@ -1,8 +1,7 @@
-// src/pages/Travelers.jsx
+// src/pages/Travelers.jsx 
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
-
 
 /* ——— stil card ca la Autori ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
@@ -12,11 +11,10 @@ const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
 
-const CARD_IMG_H = isMobile ? 360 : 420;       // puțin mai scund pe mobil
-const CARD_FOCUS = isMobile ? "center 18%" : "center top"; // mutăm focusul mai jos pe mobil
+const CARD_IMG_H = isMobile ? 360 : 420; // (lăsat aici dacă vrei să revii pe height fix)
+const CARD_FOCUS = isMobile ? "center 18%" : "center top";
 
-
-const IMG_H = isMobile ? 360 : 420;                 // înălțime imagine card
+const IMG_H = isMobile ? 360 : 420;
 const FOCUS = isMobile ? "center 12%" : "center top";
 
 /* ——— header text RO/EN ——— */
@@ -228,16 +226,16 @@ export default function Travelers() {
                   boxShadow: "inset 0 0 0 6px rgba(255,255,255,.5)",
                 }}
               >
+                {/* ✅ Poza din card – NU mai taie pe mobil/desktop */}
                 <img
                   src={cover}
                   alt={title}
                   style={{
                     width: "100%",
-                    height: IMG_H,
-                    objectFit: "cover",
-                    objectPosition: FOCUS,
                     display: "block",
-                    borderRadius: 16,
+                    aspectRatio: "4 / 5",         // păstrează grila
+                    objectFit: "contain",         // NU mai cropează capul
+                    objectPosition: isMobile ? "center 18%" : "center",
                   }}
                 />
               </div>
