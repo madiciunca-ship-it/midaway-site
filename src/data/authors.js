@@ -49,4 +49,63 @@ const authors = [
   },
 ];
 
+/* ──────────────────────────────────────────────────────────────
+   TEMPLATE — Adaugă rapid un autor nou (copie + editează, apoi
+   scoate comentariul). Păstrează-l aici ca “șablon invizibil”.
+   Pași:
+   1) Pune fotografia la: /public/assets/books/authors/<slug>.webp
+      Ex.: /public/assets/books/authors/john-doe.webp
+   2) Copiază blocul, înlocuiește câmpurile, ȘI DECOMENTEAZĂ.
+   3) Pentru a apărea primul în listă, pune autorul NOU la
+      începutul array-ului `authors`.
+   ──────────────────────────────────────────────────────────────
+
+{
+  id: "john-doe", // URL: /autori/john-doe  (scris cu liniuțe)
+  photo: "/assets/books/authors/john-doe.webp",
+
+  socials: {
+    instagram: "",
+    facebook: "",
+    youtube: "",
+    tiktok: "",
+    website: "",
+  },
+
+  // opțional – dacă vrei un buton spre o carte anume
+  featuredBook: {
+    title: "",        // ex.: "Zile și nopți de Vietnam"
+    href: "/carti",   // sau /carti/<slug-carte> dacă ai pagină dedicată
+  },
+
+  // opțional – listă simplă de “slugs” pentru cărți (apare ca listă în detaliu)
+  books: [
+    // "zile-si-nopti-de-vietnam"
+  ],
+
+  ro: {
+    name: "Nume Prenume",
+    role: "Scriitor/Scriitoare",
+    tagline: "Povestitor, călător, etc.",
+    bio: [
+      "Paragraf 1 (RO)",
+      "Paragraf 2 (RO)",
+      "Paragraf 3 (RO)",
+    ],
+  },
+
+  en: {
+    name: "Name Surname",
+    role: "Writer",
+    tagline: "Storyteller, traveler, etc.",
+    bio: [
+      "Paragraph 1 (EN)",
+      "Paragraph 2 (EN)",
+      "Paragraph 3 (EN)",
+    ],
+  },
+},
+
+*/
+
 export default authors;
