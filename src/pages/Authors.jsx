@@ -100,7 +100,7 @@ const pinned = filtered.find((x) => x.a.id === PIN_ID);
 const others = filtered.filter((x) => x.a.id !== PIN_ID);
 
 // dacă vrei ca ultimul adăugat în data să fie primul în grilă:
-const gridData = pinned ? [pinned, ...others] : others;
+const gridData = pinned ? [pinned, ...others.reverse()] : others.reverse();
 
 
   // completează până la 3 carduri cu placeholder (și poze reale)
