@@ -59,19 +59,19 @@ Totul a pornit de la un mesaj simplu:
       en: {
         intro: `I first met Adi years ago, back when we were both taking dance classes. Back then, I had no idea what role he would one day play in my story.
         
-A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts — he was actually there. We had never really talked before, but I wrote to him on Facebook: “Hey, how’s Bali?”
+A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was actually there. We had never really talked before, but I wrote to him on Facebook: “Hey, how’s Bali?”
         
-That’s how it all began. We started chatting, I asked him countless questions about traveling solo — safety, courage, what it really feels like. He told me something I’ll never forget:
+That’s how it all began. We started chatting, I asked him countless questions about traveling solo – safety, courage, what it really feels like. He told me something I’ll never forget:
 “Don’t worry. I’ll be there to help you with anything I can.”
 And he was.
 
-Two months later, I left — not to Bali, but to Palawan, in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too — from afar — helping, guiding, encouraging.
+Two months later, I left – not to Bali, but to Palawan, in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, encouraging.
 
-Years later, when I no longer needed a travel guide, he still helped me — this time with my laptop, which constantly broke down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
+Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which constantly broke down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
 
 And to think it all started with one message:
 “Hey, do you think it’s safe for me to travel alone in Asia?”
-Turns out, it was safer — and more beautiful — than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
+Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "" },
           { q: "2. What made you start traveling?", a: "" },
