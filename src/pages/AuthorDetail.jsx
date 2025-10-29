@@ -112,19 +112,21 @@ export default function AuthorDetail() {
           />
         )}
 
-        {/* Imagine centrală (autor) – cu focus/inaltime responsive */}
-        <img
-          src={a.photo || "/assets/placeholder-cover.png"}
-          alt={d.name}
-          style={{
-            height: HERO_H,
-            width: "auto",
-            borderRadius: 16,
-            objectFit: "cover",
-            objectPosition: HERO_FOCUS,
-            boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
-          }}
-        />
+/* Imagine centrală (autor) – fără crop, ca înainte */
+<img
+  src={a.photo || "/assets/placeholder-cover.png"}
+  alt={d.name}
+  style={{
+    maxHeight: isMobile ? 520 : 480, // mobil puțin mai înalt, desktop ca înainte
+    width: "auto",
+    height: "auto",
+    objectFit: "contain",            // << NU mai tăiem poza
+    objectPosition: "center",        // poziție neutră
+    borderRadius: 16,
+    boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+  }}
+/>
+
 
         {/* Imagine dreapta – ascunsă pe mobil */}
         {!isMobile && (
