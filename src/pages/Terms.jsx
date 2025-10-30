@@ -21,7 +21,7 @@ export default function Terms() {
           contact@midaway.ro
         </a>
         <br />
-        Banca Transilvania – IBAN: <strong>RO34BTRLRONCRT0DB2481901</strong>,{" "}
+        Banca Transilvania – IBAN: <strong>RO34BTRLEURCRT0DB2481901</strong>,{" "}
         <strong>RO87BTRLRONCRT0DB2481901</strong>
       </p>
 
