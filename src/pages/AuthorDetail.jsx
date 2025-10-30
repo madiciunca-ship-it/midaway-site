@@ -80,48 +80,52 @@ export default function AuthorDetail() {
     <>
       {/* HERO – galerie ca la Călători (3 coloane, cover, fără benzi albe) */}
       <div
-        className="proj-hero"
-        style={{
-          position: "relative",
-          background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
-          padding: "24px 0 16px",
-        }}
-      >
-        <div className="container" style={{ maxWidth: 1000 }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 12,
-              alignItems: "stretch",
-            }}
-          >
-            {(gallery.length ? gallery : [a.photo]).map((src, i) => (
-              <div
-                key={i}
-                style={{
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  background: "linear-gradient(180deg,#f7eee0,#fff)",
-                  border: "1px solid #eee",
-                  minHeight: TILE_MIN_H, // ⬅️ esențial: înălțime minimă, restul face cover
-                }}
-              >
-                <img
-                  src={src}
-                  alt={`${d.name} ${i + 1}`}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+  className="proj-hero"
+  style={{
+    position: "relative",
+    background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
+    padding: "40px 0 24px", // ⬅️ mai mult spațiu sus, ca la Călători
+  }}
+>
+  <div className="container" style={{ maxWidth: 1000 }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 12,
+        alignItems: "stretch",
+      }}
+    >
+      {(gallery.length ? gallery : [a.photo]).map((src, i) => (
+  <div
+    key={i}
+    style={{
+      borderRadius: 22,
+      overflow: "hidden",
+      background: "linear-gradient(180deg,#f7eee0,#fff)",
+      border: "1px solid #eee",
+      aspectRatio: "3 / 4",                 // ⬅️ raport portret fix (ca la Călători)
+      boxShadow: "0 6px 14px rgba(0,0,0,.06)",
+    }}
+  >
+    <img
+      src={src}
+      alt={`${d.name} ${i + 1}`}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",                  // umple fără benzi
+        objectPosition: (isMobile ? "center 18%" : "center 22%"), // focus ușor mai sus
+        display: "block",
+      }}
+    />
+  </div>
+))}
+
+    </div>
+  </div>
+</div>
+
 
       {/* switch RO/EN – centrat sub galerie */}
       <div
