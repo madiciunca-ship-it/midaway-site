@@ -7,8 +7,9 @@ const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
 
-const HERO_H = isMobile ? 520 : 620;            // înălțime mai mică pe mobil
-const HERO_FOCUS = isMobile ? "center 8%" : "center 12%"; // focus puțin mai sus pe mobil
+  const THUMB_H = 220; // identic cu TravelerDetail (înălțime fixă)
+const HERO_H = isMobile ? 520 : 620;           // înălțime mai mică pe mobil
+const HERO_FOCUS = isMobile ? "center 8%" : "center 12%"; // ridicăm focusul pe mobil
 
 function getLocaleData(author, lang) {
   return (
@@ -70,83 +71,61 @@ export default function AuthorDetail() {
     bio.splice(3, 0, extra);
   }
 
-  // Poze laterale (din gallery, dacă există) – fallback la imaginile tale
-  const leftImg =
-    (Array.isArray(a.gallery) && a.gallery[0]) ||
-    "/assets/books/authors/mida-malena-2.webp";
-  const rightImg =
-    (Array.isArray(a.gallery) && a.gallery[1]) ||
-    "/assets/books/authors/mida-malena-3.webp";
+  // ⬇️ GALERIE pentru HERO (max 3 imagini). Dacă nu există, folosim poza de profil.
+  const gallery = Array.isArray(a.gallery) && a.gallery.length
+    ? a.gallery.slice(0, 3)
+    : [a.photo || "/assets/placeholder-cover.png"];
 
   return (
     <>
-      {/* HERO – colaj panoramic */}
-      <div
-        className="proj-hero"
+      {/* HERO – galerie identică cu Călători (3 coloane, cover, fără benzi albe) */}
+<div
+  className="proj-hero"
+  style={{
+    position: "relative",
+    background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
+    padding: "24px 0 16px",
+  }}
+>
+  <div className="container" style={{ maxWidth: 1000 }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 12,
+        alignItems: "stretch",
+      }}
+    >
+      {(gallery.length ? gallery : [a.photo]).map((src, i) => (
+        <div
+        key={i}
         style={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
-          padding: "32px 0",
-          minHeight: "clamp(340px, 45vw, 540px)",
+          borderRadius: 16,
           overflow: "hidden",
-          gap: 24,
+          background: "linear-gradient(180deg,#f7eee0,#fff)",
+          border: "1px solid #eee",
+          height: THUMB_H,              // ⬅️ înălțime fixă
         }}
       >
-        {/* Imagine stânga – ascunsă pe mobil */}
-        {!isMobile && (
-          <img
-            src={leftImg}
-            alt=""
-            style={{
-              height: "100%",
-              width: "auto",
-              borderRadius: 12,
-              objectFit: "cover",
-              opacity: 0.9,
-              transform: "translateX(-10%)",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-            }}
-          />
-        )}
+        <img
+          src={src}
+          alt={`${d.name} ${i + 1}`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",         // ⬅️ ca la Călători (fără benzi albe)
+            display: "block",
+          }}
+        />
+      </div>      
+      ))}
+    </div>
+  </div>
+</div>
 
 
-<img
-  src={a.photo || "/assets/placeholder-cover.png"}
-  alt={d.name}
-  style={{
-    maxHeight: isMobile ? 520 : 480, // mobil puțin mai înalt, desktop ca înainte
-    width: "auto",
-    height: "auto",
-    objectFit: "contain",            // << NU mai tăiem poza
-    objectPosition: "center",        // poziție neutră
-    borderRadius: 16,
-    boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
-  }}
-/>
 
-
-        {/* Imagine dreapta – ascunsă pe mobil */}
-        {!isMobile && (
-          <img
-            src={rightImg}
-            alt=""
-            style={{
-              height: "100%",
-              width: "auto",
-              borderRadius: 12,
-              objectFit: "cover",
-              opacity: 0.9,
-              transform: "translateX(10%)",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-            }}
-          />
-        )}
-      </div>
-
-      {/* switch RO/EN – centrat sub colaj */}
+      {/* switch RO/EN – centrat sub galerie */}
       <div
         className="container"
         style={{
@@ -245,10 +224,8 @@ export default function AuthorDetail() {
           )}
         </div>
 
-        {/* CTA către toate cărțile */}
-        <div
-          style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}
-        >
+        {/* CTA către toate cărțile autorului / editurii */}
+        <div style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}>
           <Link to="/carti" className="btn" style={{ textDecoration: "none" }}>
             {lang === "en" ? "See books" : "Vezi cărțile"}
           </Link>
@@ -261,7 +238,7 @@ export default function AuthorDetail() {
           </p>
         ))}
 
-        {/* Cărți publicate (fallback listă) */}
+        {/* Cărți publicate */}
         {Array.isArray(a.books) && a.books.length > 0 && (
           <>
             <h2 className="font-cormorant" style={{ marginTop: 26 }}>
@@ -270,10 +247,7 @@ export default function AuthorDetail() {
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  <Link
-                    to={`/carti`}
-                    style={{ textDecoration: "none", color: "var(--accent)" }}
-                  >
+                  <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
                     {slug}
                   </Link>
                 </li>
@@ -282,13 +256,9 @@ export default function AuthorDetail() {
           </>
         )}
 
-        {/* CTA secundar */}
+        {/* CTA */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
-          <Link
-            to={`/autori?lang=${lang}`}
-            className="btn-outline"
-            style={{ textDecoration: "none" }}
-          >
+          <Link to={`/autori?lang=${lang}`} className="btn-outline" style={{ textDecoration: "none" }}>
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
@@ -332,7 +302,7 @@ function pill(bg) {
   };
 }
 
-/* ------- SVG brand icons (inline) ------- */
+/* ------- SVG brand icons (inline, fără librării externe) ------- */
 function IconGlobe({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -372,10 +342,7 @@ function IconYouTube({ size = 18 }) {
 function IconTikTok({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path
-        d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z"
-        fill="#111"
-      />
+      <path d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z" fill="#111" />
     </svg>
   );
 }

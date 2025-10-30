@@ -2,6 +2,12 @@ const authors = [
   {
     id: "mida-malena",                           // URL: /autori/mida-malena
     photo: "/assets/books/authors/autor-name-mida-malena.webp", // ← poza nouă
+    gallery: [
+      "/assets/books/authors/mida-malena-2.webp",
+      "/assets/books/authors/mida-malena.webp",
+      "/assets/books/authors/mida-malena-3.webp",
+      // dacă mai adaugi una, o ia automat doar pe primele 3
+    ],
     socials: {
       instagram: "https://www.instagram.com/mida_malena/",
       facebook: "https://www.facebook.com/madi.ciunca",
