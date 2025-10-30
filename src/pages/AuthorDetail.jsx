@@ -8,8 +8,8 @@ const isMobile =
   window.matchMedia("(max-width: 640px)").matches;
 
   // raport portret stabil (ca la cărți) + focus ușor mai sus pe mobil
-const TILE_RATIO = "4 / 5";
-const TILE_FOCUS = isMobile ? "center 18%" : "center 20%";
+  const TILE_FOCUS = isMobile ? "center 18%" : "center 20%";
+
 
 
 function getLocaleData(author, lang) {
@@ -97,7 +97,7 @@ export default function AuthorDetail() {
         alignItems: "stretch",
       }}
     >
-      {(gallery.length ? gallery : [a.photo]).map((src, i) => (
+       {(gallery.length ? gallery : [a.photo]).map((src, i) => (
   <div
     key={i}
     style={{
@@ -105,7 +105,7 @@ export default function AuthorDetail() {
       overflow: "hidden",
       background: "linear-gradient(180deg,#f7eee0,#fff)",
       border: "1px solid #eee",
-      aspectRatio: TILE_RATIO,      // ⬅️ raport fix 4/5, fără height fix
+      minHeight: isMobile ? 220 : 340,   // ⬅️ doar minim, NU height fix
     }}
   >
     <img
@@ -114,8 +114,8 @@ export default function AuthorDetail() {
       style={{
         width: "100%",
         height: "100%",
-        objectFit: "cover",          // fără benzi albe
-        objectPosition: TILE_FOCUS,  // focus ușor mai sus pe mobil
+        objectFit: "cover",              // umple cardul ca la Călători
+        objectPosition: TILE_FOCUS,      // focus ușor mai sus pe mobil
         display: "block",
       }}
     />
