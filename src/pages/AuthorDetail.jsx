@@ -7,15 +7,14 @@ const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
 
-// înălțime „tile” ca la Călători, dar mai înaltă pe desktop (ca în screenshot-urile tale)
-const TILE_MIN_H = isMobile ? 300 : 520;
+// înălțime minimă pentru tile (prevenim „jumătate de poză” pe desktop)
+const TILE_MIN_H = isMobile ? 280 : 420;
 
 function getLocaleData(author, lang) {
   return (
     (lang === "en" ? author.en : author.ro) ||
     author.ro ||
-    author.en ||
-    { name: author.id, role: "", tagline: "", bio: [] }
+    author.en || { name: author.id, role: "", tagline: "", bio: [] }
   );
 }
 
@@ -78,54 +77,53 @@ export default function AuthorDetail() {
 
   return (
     <>
-      {/* HERO – galerie ca la Călători (3 coloane, cover, fără benzi albe) */}
-      <div
-  className="proj-hero"
-  style={{
-    position: "relative",
-    background: "linear-gradient(to right, #faf6ef, #f7f3ea)",
-    padding: "40px 0 24px", // ⬅️ mai mult spațiu sus, ca la Călători
-  }}
+      {/* HERO – galerie preluată și adaptată din TravelerDetail */}
+<div
+  className="container"
+  style={{ padding: "24px 0 48px", maxWidth: 1000 }}
 >
-  <div className="container" style={{ maxWidth: 1000 }}>
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 12,
-        alignItems: "stretch",
-      }}
+  <p style={{ marginTop: 0 }}>
+    <Link
+      to={`/autori?lang=${lang}`}
+      style={{ textDecoration: "none", color: "var(--secondary)" }}
     >
-      {(gallery.length ? gallery : [a.photo]).map((src, i) => (
+      ← {lang === "en" ? "Back to Authors" : "Înapoi la Autori"}
+    </Link>
+  </p>
+
   <div
-    key={i}
     style={{
-      borderRadius: 22,
-      overflow: "hidden",
-      background: "linear-gradient(180deg,#f7eee0,#fff)",
-      border: "1px solid #eee",
-      aspectRatio: "3 / 4",                 // ⬅️ raport portret fix (ca la Călători)
-      boxShadow: "0 6px 14px rgba(0,0,0,.06)",
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 12,
+      alignItems: "stretch",
     }}
   >
-    <img
-      src={src}
-      alt={`${d.name} ${i + 1}`}
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",                  // umple fără benzi
-        objectPosition: (isMobile ? "center 18%" : "center 22%"), // focus ușor mai sus
-        display: "block",
-      }}
-    />
-  </div>
-))}
-
-    </div>
+    {(gallery.length ? gallery : [a.photo]).map((src, i) => (
+      <div
+        key={i}
+        style={{
+          borderRadius: 16,
+          overflow: "hidden",
+          background: "linear-gradient(180deg,#f7eee0,#fff)",
+          border: "1px solid #eee",
+          minHeight: 220,
+        }}
+      >
+        <img
+          src={src}
+          alt={`${d.name} ${i + 1}`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </div>
+    ))}
   </div>
 </div>
-
 
       {/* switch RO/EN – centrat sub galerie */}
       <div
@@ -249,7 +247,10 @@ export default function AuthorDetail() {
             <ul style={{ lineHeight: 1.8 }}>
               {a.books.map((slug) => (
                 <li key={slug}>
-                  <Link to={`/carti`} style={{ textDecoration: "none", color: "var(--accent)" }}>
+                  <Link
+                    to={`/carti`}
+                    style={{ textDecoration: "none", color: "var(--accent)" }}
+                  >
                     {slug}
                   </Link>
                 </li>
@@ -260,7 +261,11 @@ export default function AuthorDetail() {
 
         {/* CTA */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
-          <Link to={`/autori?lang=${lang}`} className="btn-outline" style={{ textDecoration: "none" }}>
+          <Link
+            to={`/autori?lang=${lang}`}
+            className="btn-outline"
+            style={{ textDecoration: "none" }}
+          >
             {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
           </Link>
           <Link
@@ -304,12 +309,16 @@ function pill(bg) {
   };
 }
 
-/* ------- SVG brand icons (inline, fără librării externe) ------- */
+/* ------- SVG brand icons ------- */
 function IconGlobe({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="10" stroke="#2b2a28" strokeWidth="1.6" />
-      <path d="M2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20" stroke="#2b2a28" strokeWidth="1.6" />
+      <path
+        d="M2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"
+        stroke="#2b2a28"
+        strokeWidth="1.6"
+      />
     </svg>
   );
 }
@@ -327,7 +336,10 @@ function IconInstagram({ size = 18 }) {
 function IconFacebook({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M13.5 21v-7h2.3l.4-2.9h-2.7V8.6c0-.8.2-1.3 1.3-1.3H16V4.6c-.2 0-1-.1-1.9-.1-1.9 0-3.1 1.1-3.1 3.2v2h-2v2.9H11V21h2.5z" fill="#385898" />
+      <path
+        d="M13.5 21v-7h2.3l.4-2.9h-2.7V8.6c0-.8.2-1.3 1.3-1.3H16V4.6c-.2 0-1-.1-1.9-.1-1.9 0-3.1 1.1-3.1 3.2v2h-2v2.9H11V21h2.5z"
+        fill="#385898"
+      />
     </svg>
   );
 }
@@ -344,7 +356,10 @@ function IconYouTube({ size = 18 }) {
 function IconTikTok({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z" fill="#111" />
+      <path
+        d="M16 7.5c1.2 1.1 2.5 1.7 4 1.8v3.1c-1.6-.1-3-.7-4-1.6v5.5c0 3-2.5 5.4-5.6 5-2.4-.3-4.3-2.3-4.4-4.7-.1-2.9 2.2-5.3 5.1-5.3.3 0 .7 0 1 .1v3c-1.8-.6-3.7.5-3.8 2.3 0 1.2 1 2.3 2.2 2.3 1.2 0 2.1-1 2.1-2.2V3h3.4V7.5z"
+        fill="#111"
+      />
     </svg>
   );
 }
