@@ -74,7 +74,7 @@ export default function Terms() {
         <br />
         Pentru titlurile în limba engleză, comanda și expedierea sunt gestionate de parteneri
         externi (ex. Amazon). Politicile de livrare, retur și taxe vamale ale acestor platforme se
-        aplică integral. Midaway nu controlează stocurile sau termenele partenerilor.
+        aplică integral. <strong> Midaway Publishing House S.R.L.</strong> nu controlează stocurile sau termenele partenerilor.
       </p>
       <p>
   <strong>4.4. Cărți tipărite în limba română (livrare prin curier)</strong>
@@ -157,6 +157,15 @@ export default function Terms() {
         gestionate de terți (ex. Amazon, Stripe, platforme de distribuție), răspunderea privind
         livrarea și returul aparține acestora.
       </p>
+      <p>
+  Conținutul publicat pe paginile de social media (Instagram, Facebook, YouTube, TikTok etc.)
+  ale editurii sau ale colaboratorilor (autori, călători, parteneri) este administrat de aceștia. 
+   
+   <strong> Midaway Publishing House S.R.L.</strong> nu își asumă răspunderea pentru opiniile,
+  comentariile sau materialele publicate în mediile externe și nici pentru eventualele
+  modificări, ștergeri sau distribuiri realizate de terți.
+</p>
+
 
       <h2 className="font-cormorant">11. Protecția datelor</h2>
       <p>
@@ -196,7 +205,13 @@ export default function Terms() {
         <Link to="/contact" style={{ color: "var(--accent)", textDecoration: "none" }}>
           Contactează-ne
         </Link>
-        .
+        <p style={{ marginTop: 8 }}>
+  Pentru sesizări privind conținutul terților, postări de pe rețele sociale sau materiale
+  distribuite de colaboratori, ne poți contacta la{" "}
+  <a href="mailto:contact@midaway.ro" style={{ color: "var(--accent)" }}>
+    contact@midaway.ro
+  </a>. Vom analiza situația și, dacă este cazul, vom lua măsurile necesare în cel mai scurt timp.
+</p>
       </p>
     </div>
   );
