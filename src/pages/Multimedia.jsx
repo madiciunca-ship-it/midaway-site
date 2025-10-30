@@ -21,11 +21,6 @@ function youTubeThumb(url) {
   const id = youTubeId(url);
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
 }
-/* Instagram EMBED */
-function instagramEmbed(url) {
-  const m = url.match(/instagram\.com\/p\/([^\/?#]+)/i);
-  return m ? `https://www.instagram.com/p/${m[1]}/embed` : url;
-}
 function labelForType(t) {
   switch (t) {
     case "photo": return "Foto";
@@ -188,7 +183,7 @@ export default function Multimedia() {
           ))}
         </div>
 
-        {/* Back jos (ca să nu urci la începutul paginii) */}
+        {/* Back jos */}
         <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
           <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
             ← Înapoi la Viziune
@@ -214,12 +209,14 @@ function Card({ item, open, onToggle, getThumb }) {
     boxShadow: "0 8px 24px rgba(0,0,0,.06)",
   };
 
+  // Toate cardurile au același raport (16:9) – aspect unitar
   const mediaBox = {
     position: "relative",
-    paddingTop: isAudio ? 0 : "56.25%", // 16:9 doar pt video/ig/foto/album
-    height: isAudio ? 152 : undefined,  // audio compact
+    paddingTop: "56.25%", // 16:9 pentru toate, inclusiv audio
     background: "linear-gradient(180deg,#f7eee0,#fff)",
   };
+
+  const captionStyle = { padding: "10px 12px" };
 
   return (
     <div style={cardStyle}>
@@ -264,18 +261,34 @@ function Card({ item, open, onToggle, getThumb }) {
           </>
         )}
 
-        {/* INSTAGRAM EMBED */}
+        {/* INSTAGRAM – revenim la varianta LINK + THUMB (nu embed) */}
         {isInstagram && (
-          <iframe
-            title={item.title}
-            src={instagramEmbed(item.url)}
-            loading="lazy"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, background: "#fff" }}
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${getThumb()})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "block",
+            }}
+            aria-label={`Deschide pe Instagram: ${item.title}`}
+          >
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05))",
+              }}
+            />
+            <PlayIcon />
+          </a>
         )}
 
-        {/* AUDIO */}
+        {/* AUDIO – 16:9 ca restul (unitar vizual) */}
         {isAudio && (
           <iframe
             title={item.title}
@@ -285,7 +298,7 @@ function Card({ item, open, onToggle, getThumb }) {
           />
         )}
 
-        {/* ALBUM – mozaic 3 imagini + badge număr; click = expand */}
+        {/* ALBUM – mozaic 3 imagini + badge; click = expand */}
         {isAlbum && (
           <button
             onClick={onToggle}
@@ -327,8 +340,8 @@ function Card({ item, open, onToggle, getThumb }) {
         )}
       </div>
 
-      {/* Caption */}
-      <div style={{ padding: "10px 12px" }}>
+      {/* Caption – identic pentru toate cardurile */}
+      <div style={captionStyle}>
         <div style={{ fontWeight: 700, color: "#2b2a28" }}>{item.title}</div>
         <div style={{ marginTop: 6, fontSize: 13, fontWeight: 600, color: "#2f6d6a" }}>
           {labelForType(item.type)}

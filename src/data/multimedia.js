@@ -27,7 +27,7 @@ export const MEDIA = [
     id: "trailer",
     type: "video",
     title: "Midaway — trailer",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    url: "https://www.youtube.com/shorts/HCYQA3cuoMM",
     // thumb: "/assets/media/trailer.jpg",
     tags: ["video", "teaser"],
   },
@@ -59,7 +59,7 @@ export const MEDIA = [
   {
     id: "ig-trailer",
     type: "instagram",
-    title: "Midaway — trailer (Instagram)",
+    title: "Midaway — mini trailer (Instagram)",
     url: "https://www.instagram.com/p/DN5nm6_jKNo/",
     thumb: "/assets/media/mida-ig-trailer-1.jpg", // opțional, avem și fallback
     tags: ["instagram", "teaser"],
@@ -69,7 +69,7 @@ export const MEDIA = [
   {
     id: "pod-1",
     type: "audio",
-    title: "Podcast — Episod 1",
+    title: "Podcast — Episod 1 (în curând)",
     embed: "https://open.spotify.com/embed/episode/4rOoJ6Egrf8K2IrywzwOMk?utm_source=generator",
     tags: ["podcast", "audio"],
   },
@@ -78,7 +78,7 @@ export const MEDIA = [
   {
     id: "album-apus",
     type: "album",
-    title: "Călătorie — apus (album)",
+    title: "Asia — prin lentila mea (mini album)",
     images: [
       "/assets/media/photo-sample-1.jpg",
       "/assets/media/photo-sample-2.jpg",
