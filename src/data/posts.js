@@ -9,8 +9,7 @@ const posts = [
       "Povestea startului: primele zile, primele decizii, primul pas în necunoscut.",
     date: "2025-10-15",
     tags: ["călătorii", "jurnal"],
-    cover:
-      "assets/blog/blog-1.jpg",
+    cover: "assets/blog/blog-1.jpg",
     minutes: 5,
     content: [
       `Uneori, călătoriile nu încep cu un pas, ci cu o întrebare care nu te mai lasă să dormi. În cazul meu, întrebarea era: „Ce se întâmplă cu visul când ajungi să-l trăiești?”`,
@@ -36,8 +35,7 @@ const posts = [
       "Despre felul în care un personaj poate deveni oglindă pentru cine ești tu.",
     date: "2025-10-22",
     tags: ["proiecte", "scris"],
-    cover:
-      "assets/blog/blog-2.jpg",
+    cover: "assets/blog/blog-2.jpg",
     minutes: 6,
     content: [
       `„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat „Zile și nopți de Vietnam”. E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?`,
@@ -58,8 +56,7 @@ const posts = [
       "Nu alegem drumuri neștiute pentru că sunt comode. Le alegem tocmai pentru că nu știm…",
     date: "2025-10-29",
     tags: ["proiecte", "scris"],
-    cover:
-      "assets/blog/blog-3.jpg",
+    cover: "assets/blog/blog-3.jpg",
     minutes: 6,
     content: [
       `Nu alegem drumuri neștiute pentru că sunt comode. Nici pentru că știm unde duc. Le alegem tocmai pentru că nu știm. Pentru că, dincolo de teama de necunoscut, există o altă frică – mai subtilă, dar mai profundă: frica de a rămâne pe loc în propria viață.`,
@@ -71,7 +68,27 @@ const posts = [
       `Alegem drumuri neștiute pentru că vrem să ne reamintim că suntem vii. Că suntem mai mult decât funcții, roluri și așteptări.`,
       `Dacă simți că acest text ți-a atins o coardă sensibilă, „Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad” e prima carte de nomad pe care am scris-o din acea călătorie. Și poate e exact ce aveai nevoie să citești acum. Scrie-mi. Hai să vorbim. Călătoria ta s-ar putea să înceapă chiar acum.`
     ]
-  }
+  },
+
+  // 🔒 MODEL INVIZIBIL – COPY/PASTE când adaugi articol nou.
+  // Setează draft: false sau șterge proprietatea ca să devină vizibil.
+  /*
+  {
+    draft: true,
+    slug: "slug-ul-tau-aici",
+    title: "Titlul articolului",
+    excerpt: "Un scurt rezumat atrăgător (1–2 fraze).",
+    date: "2025-11-05", // ISO: YYYY-MM-DD
+    tags: ["categorie1", "categorie2"],
+    cover: "assets/blog/IMAGINE.jpg", // 1200x630 recomandat
+    minutes: 4, // opțional – dacă lipsește, se estimează automat
+    content: [
+      "Paragraful 1…",
+      "Paragraful 2…",
+      "Paragraful 3…"
+    ]
+  },
+  */
 ];
 
 export default posts;

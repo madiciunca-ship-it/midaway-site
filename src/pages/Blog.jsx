@@ -28,10 +28,18 @@ export default function Blog() {
   }, []);
 
   const filtered = useMemo(() => {
-    let list = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+    // 1) ascundem draft-urile
+    let list = posts.filter((p) => !p.draft);
+
+    // 2) sortare descrescătoare după dată (ultimul = primul)
+    list = list.sort((a, b) => b.date.localeCompare(a.date));
+
+    // 3) filtrare pe tag
     if (activeTag !== "toate") {
       list = list.filter((p) => p.tags.includes(activeTag));
     }
+
+    // 4) căutare text
     if (query.trim()) {
       const q = query.toLowerCase();
       list = list.filter(
@@ -102,7 +110,7 @@ export default function Blog() {
                 <div className="blog-meta">
                   <span>{formatDate(p.date)}</span>
                   <span>•</span>
-                  <span>{estimateMinutes(p)} min</span>
+                  <span>{p.minutes || estimateMinutes(p)} min</span>
                 </div>
                 <h3 className="font-cormorant">{p.title}</h3>
                 <p className="excerpt">{p.excerpt}</p>
