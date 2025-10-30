@@ -2,11 +2,8 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { MEDIA, SOCIALS, FALLBACK_THUMB } from "../data/multimedia";
 
-/** BACK LINK
- *  Setează una din variantele de mai jos în funcție de ruta reală:
- *  "/viziunea" | "/viziune" | "/proiecte" | "/projects"
- */
-const VISION_PATH = "/viziunea";
+// back to "Viziunea" (în meniu e ruta /proiecte)
+const VISION_PATH = "/proiecte";
 
 /** Helpers YouTube */
 function youTubeId(url) {
