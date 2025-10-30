@@ -42,7 +42,7 @@ export default function Privacy() {
       <ul style={{ lineHeight: 1.7 }}>
         <li>
           <strong>Date furnizate direct</strong>: nume, adresă email, mesaj,
-          informații din formulare (ex. contact, voluntariat, colaborări).
+          informații din formulare (ex. contact, comenzi, colaborări).
         </li>
         <li>
           <strong>Date tranzacționale</strong>: adresă de livrare/facturare,
