@@ -56,18 +56,9 @@ export default function AuthorDetail() {
     localStorage.setItem("authors.lang", newLang);
   };
 
-  // ----- BIO: patch pentru RO (intro + paragraf nou) -----
+  // ----- BIO: patch pentru RO 
   let bio = Array.isArray(d.bio) ? [...d.bio] : [];
-  if (lang === "ro") {
-    const intro =
-      "Bună, sunt Mida Malena – scriitoare, povestitoare, aventurieră și căutătoare eternă.";
-    if (bio.length) bio[0] = intro;
-    else bio.unshift(intro);
-
-    const extra =
-      "Următoarele mele povești, primele două volume din seria „Pași prin Indonezia”, sunt despre transformare, curaj și magia de a te lăsa purtat(ă) de viață atunci când renunți la hartă: Bali – o insulă – oglindă ce arde lent și vindecă profund – și Java, un teritoriu haotic și viu, unde rătăcirea devine formă de regăsire.";
-    bio.splice(3, 0, extra);
-  }
+  
 
   // GALERIE (max 3). Dacă nu există, folosim poza de profil.
   const gallery =
