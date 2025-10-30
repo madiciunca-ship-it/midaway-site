@@ -148,72 +148,9 @@ export default function AuthorDetail() {
 
       {/* BODY */}
       <div className="container" style={{ padding: "0 0 60px", maxWidth: 900 }}>
-        {/* Socials – centrate + icoane brand */}
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            marginBottom: 14,
-            justifyContent: "center",
-          }}
-        >
-          {a.socials?.website && (
-            <a
-              href={a.socials.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pill("#f1e6cf")}
-              aria-label="Website"
-            >
-              <IconGlobe /> Website
-            </a>
-          )}
-          {a.socials?.instagram && (
-            <a
-              href={a.socials.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pill("var(--card2)")}
-              aria-label="Instagram"
-            >
-              <IconInstagram /> Instagram
-            </a>
-          )}
-          {a.socials?.facebook && (
-            <a
-              href={a.socials.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pill("#eadac7")}
-              aria-label="Facebook"
-            >
-              <IconFacebook /> Facebook
-            </a>
-          )}
-          {a.socials?.youtube && (
-            <a
-              href={a.socials.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pill("#f8dabb")}
-              aria-label="YouTube"
-            >
-              <IconYouTube /> YouTube
-            </a>
-          )}
-          {a.socials?.tiktok && (
-            <a
-              href={a.socials.tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={pill("#e9e3d9")}
-              aria-label="TikTok"
-            >
-              <IconTikTok /> TikTok
-            </a>
-          )}
-        </div>
+      <
+        SocialRow socials={a.socials || {}} />
+
 
         {/* CTA către toate cărțile autorului / editurii */}
         <div style={{ margin: "8px 0 16px", display: "flex", justifyContent: "center" }}>
@@ -273,6 +210,64 @@ export default function AuthorDetail() {
     </>
   );
 }
+
+function SocialRow({ socials = {} }) {
+  const items = [
+    { key: "website", label: "Website", icon: "🌐" },
+    { key: "instagram", label: "Instagram", icon: "📸" },
+    { key: "facebook", label: "Facebook", icon: "👍" },
+    { key: "youtube", label: "YouTube", icon: "▶️" },
+    { key: "tiktok", label: "TikTok", icon: "🎵" },
+    { key: "blog", label: "Blog", icon: "✍️" },
+  ];
+
+  return (
+    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
+      {items.map((it) => {
+        const href = socials[it.key];
+        const commonStyle = {
+          padding: "10px 12px",
+          borderRadius: 10,
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          border: "1px solid #ddd",
+        };
+
+        if (!href) {
+          return (
+            <span
+              key={it.key}
+              style={{
+                ...commonStyle,
+                background: "#f7f7f7",
+                color: "#999",
+                cursor: "not-allowed",
+              }}
+              title="necompletat încă"
+            >
+              {it.icon} {it.label}
+            </span>
+          );
+        }
+
+        return (
+          <a
+            key={it.key}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ ...commonStyle, background: "#fff", color: "#111" }}
+          >
+            {it.icon} {it.label}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
 
 function segBtnHero(active) {
   return {
