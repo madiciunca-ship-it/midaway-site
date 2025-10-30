@@ -1,17 +1,21 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-/**
- * Multimedia – galerie unitară cu filtre (butonașe cu snap pe mobil).
- * Tipuri: "photo" | "video" | "audio" | "interview"
- *
- * NOTE:
- * - Imaginile/thumbnail-urile pune-le în /public/assets/media/... și referă-le ca "/assets/media/.."
- * - Pentru YouTube poți da link normal (watch?v=...) sau direct 11-char id; extragem noi embed + thumbnail.
- */
+/** CONFIG RUTE / SOCIALS */
+const VISION_PATH = "/viziunea"; // <- dacă la tine e /viziune, schimbă aici
+const SOCIALS = {
+  instagram: "https://www.instagram.com/midaway.official/",
+  facebook: "https://www.facebook.com/profile.php?id=61579784437417#",
+  tiktok: "https://www.tiktok.com/tag/midaway",
+  youtube: "https://www.youtube.com/channel/UCKos5McBc44j6dViovnKiZw/videos", // de schimbat când apare canalul Midaway
+};
 
+/**
+ * Tipuri: "photo" | "video" | "audio" | "interview" | "instagram"
+ * Notă: imaginile/thumbnail-urile pune-le în /public/assets/media/... și referă-le ca "/assets/media/.."
+ */
 const MEDIA = [
-  // ——— exemple de conținut ———
+  // demo video
   {
     id: "trailer",
     type: "video",
@@ -20,7 +24,7 @@ const MEDIA = [
     thumb: "/assets/media/trailer.jpg", // opțional
   },
 
-  // ——— link-urile tale (le-am încadrat ca „interview”) ———
+  // interviuri (YouTube) – linkurile tale
   {
     id: "int-lansare",
     type: "interview",
@@ -40,7 +44,16 @@ const MEDIA = [
     url: "https://www.youtube.com/watch?v=3lRh_G3gfTM",
   },
 
-  // ——— exemplu audio (Spotify embed) ———
+  // instagram – deschide postarea în tab nou (stabil pe toate browserele)
+  {
+    id: "ig-trailer",
+    type: "instagram",
+    title: "Midaway — trailer (Instagram)",
+    url: "https://www.instagram.com/p/DN5nm6_jKNo/",
+    // dacă pui un thumbnail local, îl afișăm: thumb: "/assets/media/ig-trailer.jpg"
+  },
+
+  // audio (embed Spotify)
   {
     id: "pod-1",
     type: "audio",
@@ -49,7 +62,7 @@ const MEDIA = [
       "https://open.spotify.com/embed/episode/4rOoJ6Egrf8K2IrywzwOMk?utm_source=generator",
   },
 
-  // ——— exemplu foto ———
+  // foto demo
   {
     id: "photo-1",
     type: "photo",
@@ -64,9 +77,10 @@ const FILTERS = [
   { key: "video", label: "Video" },
   { key: "audio", label: "Audio" },
   { key: "interview", label: "Interviuri" },
+  { key: "instagram", label: "Instagram" },
 ];
 
-// ——— helpers YouTube ———
+/* ——— helpers YouTube ——— */
 function youTubeId(url) {
   if (!url) return null;
   const m =
@@ -92,6 +106,8 @@ function labelForType(t) {
       return "Audio / Podcast";
     case "interview":
       return "Interviu";
+    case "instagram":
+      return "Instagram";
     default:
       return "";
   }
@@ -99,11 +115,12 @@ function labelForType(t) {
 
 export default function Multimedia() {
   const [active, setActive] = useState("all");
-  const [openIds, setOpenIds] = useState(() => new Set()); // carduri care afișează iframe
+  const [openIds, setOpenIds] = useState(() => new Set()); // carduri cu iframe deschis
 
-  const list = useMemo(() => {
-    return active === "all" ? MEDIA : MEDIA.filter((m) => m.type === active);
-  }, [active]);
+  const list = useMemo(
+    () => (active === "all" ? MEDIA : MEDIA.filter((m) => m.type === active)),
+    [active]
+  );
 
   const toggleOpen = (id) =>
     setOpenIds((prev) => {
@@ -119,9 +136,17 @@ export default function Multimedia() {
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
           <h1 className="font-cormorant" style={{ margin: 0 }}>🎧 Multimedia</h1>
           <div style={{ flex: 1 }} />
-          <Link to="/viziunea" className="btn-outline" style={{ textDecoration: "none" }}>
+          <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
             ← Înapoi la Viziune
           </Link>
+        </div>
+
+        {/* Socials Midaway */}
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", margin: "4px 0 10px" }}>
+          {SOCIALS.instagram && <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Instagram</a>}
+          {SOCIALS.facebook && <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Facebook</a>}
+          {SOCIALS.tiktok && <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>TikTok</a>}
+          {SOCIALS.youtube && <a href={SOCIALS.youtube} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>YouTube</a>}
         </div>
 
         {/* filtre – butonașe cu snap pe mobil */}
@@ -184,6 +209,7 @@ function Card({ item, open, onToggle }) {
   const isVideo = item.type === "video" || item.type === "interview";
   const isAudio = item.type === "audio";
   const isPhoto = item.type === "photo";
+  const isInstagram = item.type === "instagram";
 
   const cardStyle = {
     borderRadius: 16,
@@ -202,7 +228,7 @@ function Card({ item, open, onToggle }) {
   return (
     <div style={cardStyle}>
       <div style={mediaBox}>
-        {/* VIDEO / INTERVIEW */}
+        {/* VIDEO / INTERVIEW (YouTube) */}
         {isVideo && (
           <>
             {open ? (
@@ -211,13 +237,7 @@ function Card({ item, open, onToggle }) {
                 src={youTubeEmbed(item.url)}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: 0,
-                }}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
               />
             ) : (
               <button
@@ -239,29 +259,10 @@ function Card({ item, open, onToggle }) {
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background:
-                      "linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05))",
+                    background: "linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05))",
                   }}
                 />
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: 64,
-                    height: 64,
-                    borderRadius: "50%",
-                    background: "rgba(255,255,255,.9)",
-                    display: "grid",
-                    placeItems: "center",
-                    boxShadow: "0 6px 20px rgba(0,0,0,.2)",
-                  }}
-                >
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5v14l11-7-11-7z" fill="#d04b49" />
-                  </svg>
-                </span>
+                <PlayIcon />
               </button>
             )}
           </>
@@ -273,14 +274,35 @@ function Card({ item, open, onToggle }) {
             title={item.title}
             src={item.embed}
             loading="lazy"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }}
+          />
+        )}
+
+        {/* INSTAGRAM – deschide în tab nou (stabil) */}
+        {isInstagram && (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noreferrer"
             style={{
               position: "absolute",
               inset: 0,
-              width: "100%",
-              height: "100%",
-              border: 0,
+              backgroundImage: `url(${item.thumb || "/assets/placeholder-cover.png"})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "block",
             }}
-          />
+            aria-label={`Deschide pe Instagram: ${item.title}`}
+          >
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05))",
+              }}
+            />
+            <PlayIcon />
+          </a>
         )}
 
         {/* FOTO */}
@@ -288,31 +310,43 @@ function Card({ item, open, onToggle }) {
           <img
             src={item.url}
             alt={item.title}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-            }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
         )}
       </div>
 
+      {/* caption */}
       <div style={{ padding: "10px 12px" }}>
         <div style={{ fontWeight: 700, color: "#2b2a28" }}>{item.title}</div>
-        <div
-          style={{
-            marginTop: 6,
-            fontSize: 12,
-            color: "#6b6b6b",
-            textTransform: "capitalize",
-          }}
-        >
+        <div style={{ marginTop: 6, fontSize: 13, fontWeight: 600, color: "#2f6d6a" }}>
           {labelForType(item.type)}
         </div>
       </div>
     </div>
+  );
+}
+
+/* UI: Play icon */
+function PlayIcon() {
+  return (
+    <span
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 64,
+        height: 64,
+        borderRadius: "50%",
+        background: "rgba(255,255,255,.92)",
+        display: "grid",
+        placeItems: "center",
+        boxShadow: "0 6px 20px rgba(0,0,0,.2)",
+      }}
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <path d="M8 5v14l11-7-11-7z" fill="#d04b49" />
+      </svg>
+    </span>
   );
 }
