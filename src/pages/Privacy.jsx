@@ -15,7 +15,8 @@ export default function Privacy() {
         Această Politică explică modul în care{" "}
         <strong>Midaway Publishing House S.R.L.</strong> („Midaway”, „noi”)
         colectează, utilizează și protejează datele tale personale atunci când
-        folosești site-ul <strong>midaway.ro</strong> („Site-ul”).
+        folosești site-ul <strong>midaway.ro</strong> /
+        <strong> midaway.vercel.app</strong> („Site-ul”).
         <br />
         Respectăm legislația aplicabilă privind protecția datelor cu caracter
         personal (Regulamentul UE 2016/679 – GDPR).
