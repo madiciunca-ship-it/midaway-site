@@ -10,7 +10,7 @@ const posts = [
     date: "2025-01-15",
     tags: ["călătorii", "jurnal"],
     cover:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop",
+      "assets/blog/blog-1.jpg",
     minutes: 5,
     content: [
       `Uneori, călătoriile nu încep cu un pas, ci cu o întrebare care nu te mai lasă să dormi. În cazul meu, întrebarea era: „Ce se întâmplă cu visul când ajungi să-l trăiești?”`,
@@ -37,7 +37,7 @@ const posts = [
     date: "2025-02-10",
     tags: ["proiecte", "scris"],
     cover:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+      "assets/blog/blog-2.jpg",
     minutes: 6,
     content: [
       `„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat „Zile și nopți de Vietnam”. E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?`,
@@ -59,7 +59,7 @@ const posts = [
     date: "2025-03-02",
     tags: ["proiecte", "scris"],
     cover:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop",
+      "assets/blog/blog-3.jpg",
     minutes: 6,
     content: [
       `Nu alegem drumuri neștiute pentru că sunt comode. Nici pentru că știm unde duc. Le alegem tocmai pentru că nu știm. Pentru că, dincolo de teama de necunoscut, există o altă frică – mai subtilă, dar mai profundă: frica de a rămâne pe loc în propria viață.`,
