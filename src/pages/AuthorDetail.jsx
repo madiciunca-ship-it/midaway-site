@@ -7,9 +7,10 @@ const isMobile =
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 640px)").matches;
 
-  const THUMB_H = 220; // identic cu TravelerDetail (înălțime fixă)
-const HERO_H = isMobile ? 520 : 620;           // înălțime mai mică pe mobil
-const HERO_FOCUS = isMobile ? "center 8%" : "center 12%"; // ridicăm focusul pe mobil
+  // raport portret stabil (ca la cărți) + focus ușor mai sus pe mobil
+const TILE_RATIO = "4 / 5";
+const TILE_FOCUS = isMobile ? "center 18%" : "center 20%";
+
 
 function getLocaleData(author, lang) {
   return (
@@ -97,27 +98,29 @@ export default function AuthorDetail() {
       }}
     >
       {(gallery.length ? gallery : [a.photo]).map((src, i) => (
-        <div
-        key={i}
-        style={{
-          borderRadius: 16,
-          overflow: "hidden",
-          background: "linear-gradient(180deg,#f7eee0,#fff)",
-          border: "1px solid #eee",
-          height: THUMB_H,              // ⬅️ înălțime fixă
-        }}
-      >
-        <img
-          src={src}
-          alt={`${d.name} ${i + 1}`}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",         // ⬅️ ca la Călători (fără benzi albe)
-            display: "block",
-          }}
-        />
-      </div>      
+  <div
+    key={i}
+    style={{
+      borderRadius: 16,
+      overflow: "hidden",
+      background: "linear-gradient(180deg,#f7eee0,#fff)",
+      border: "1px solid #eee",
+      aspectRatio: TILE_RATIO,      // ⬅️ raport fix 4/5, fără height fix
+    }}
+  >
+    <img
+      src={src}
+      alt={`${d.name} ${i + 1}`}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",          // fără benzi albe
+        objectPosition: TILE_FOCUS,  // focus ușor mai sus pe mobil
+        display: "block",
+      }}
+    />
+  </div>
+      
       ))}
     </div>
   </div>
