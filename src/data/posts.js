@@ -7,7 +7,7 @@ const posts = [
     title: "Cum a început călătoria mea",
     excerpt:
       "Povestea startului: primele zile, primele decizii, primul pas în necunoscut.",
-    date: "2025-01-15",
+    date: "2025-10-15",
     tags: ["călătorii", "jurnal"],
     cover:
       "assets/blog/blog-1.jpg",
@@ -34,7 +34,7 @@ const posts = [
     title: "Yda – între ficțiune și realitate?",
     excerpt:
       "Despre felul în care un personaj poate deveni oglindă pentru cine ești tu.",
-    date: "2025-02-10",
+    date: "2025-10-22",
     tags: ["proiecte", "scris"],
     cover:
       "assets/blog/blog-2.jpg",
@@ -56,7 +56,7 @@ const posts = [
     title: "De ce alegem drumuri neștiute?",
     excerpt:
       "Nu alegem drumuri neștiute pentru că sunt comode. Le alegem tocmai pentru că nu știm…",
-    date: "2025-03-02",
+    date: "2025-10-29",
     tags: ["proiecte", "scris"],
     cover:
       "assets/blog/blog-3.jpg",

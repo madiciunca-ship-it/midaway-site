@@ -48,7 +48,7 @@ export default function Blog() {
       <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 24 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>Blog Midaway</h1>
         <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Texte literare & reflecții. Click pe titlu pentru a citi articolul.
+          Texte literare & reflecții personale.
         </p>
       </header>
 
