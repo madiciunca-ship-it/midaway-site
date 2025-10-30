@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { MEDIA, SOCIALS, FALLBACK_THUMB } from "../data/multimedia";
 
-// back to "Viziunea" (în meniu e ruta /proiecte)
+// Back către „Viziunea” – în header este ruta /proiecte
 const VISION_PATH = "/proiecte";
 
-/** Helpers YouTube */
+/* Helpers YouTube */
 function youTubeId(url) {
   if (!url) return null;
   const m =
@@ -21,26 +21,26 @@ function youTubeThumb(url) {
   const id = youTubeId(url);
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
 }
+/* Instagram EMBED */
+function instagramEmbed(url) {
+  const m = url.match(/instagram\.com\/p\/([^\/?#]+)/i);
+  return m ? `https://www.instagram.com/p/${m[1]}/embed` : url;
+}
 function labelForType(t) {
   switch (t) {
-    case "photo":
-      return "Foto";
-    case "video":
-      return "Video";
-    case "audio":
-      return "Audio / Podcast";
-    case "interview":
-      return "Interviu";
-    case "instagram":
-      return "Instagram";
-    default:
-      return "";
+    case "photo": return "Foto";
+    case "video": return "Video";
+    case "audio": return "Audio / Podcast";
+    case "interview": return "Interviu";
+    case "instagram": return "Instagram";
+    case "album": return "Album foto";
+    default: return "";
   }
 }
 
 const FILTERS = [
   { key: "all", label: "Toate" },
-  { key: "photo", label: "Foto" },
+  { key: "photo", label: "Foto" },       // include și „album”
   { key: "video", label: "Video" },
   { key: "audio", label: "Audio" },
   { key: "interview", label: "Interviuri" },
@@ -53,7 +53,12 @@ export default function Multimedia() {
   const [q, setQ] = useState("");
 
   const list = useMemo(() => {
-    let arr = active === "all" ? MEDIA : MEDIA.filter((m) => m.type === active);
+    let arr = MEDIA;
+    if (active !== "all") {
+      arr = MEDIA.filter((m) =>
+        active === "photo" ? (m.type === "photo" || m.type === "album") : m.type === active
+      );
+    }
     if (q.trim()) {
       const s = q.trim().toLowerCase();
       arr = arr.filter((m) => {
@@ -74,7 +79,7 @@ export default function Multimedia() {
   return (
     <div style={{ padding: "24px 0 48px" }}>
       <div className="container" style={{ maxWidth: 1100, padding: "0 16px" }}>
-        {/* Header + back */}
+        {/* Header + back (sus) */}
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
           <h1 className="font-cormorant" style={{ margin: 0 }}>🎧 Multimedia</h1>
           <div style={{ flex: 1 }} />
@@ -85,26 +90,10 @@ export default function Multimedia() {
 
         {/* Socials */}
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", margin: "4px 0 10px" }}>
-          {SOCIALS.instagram && (
-            <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
-              Instagram
-            </a>
-          )}
-          {SOCIALS.facebook && (
-            <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
-              Facebook
-            </a>
-          )}
-          {SOCIALS.tiktok && (
-            <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
-              TikTok
-            </a>
-          )}
-          {SOCIALS.youtube && (
-            <a href={SOCIALS.youtube} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
-              YouTube
-            </a>
-          )}
+          {SOCIALS.instagram && <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Instagram</a>}
+          {SOCIALS.facebook && <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Facebook</a>}
+          {SOCIALS.tiktok && <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>TikTok</a>}
+          {SOCIALS.youtube && <a href={SOCIALS.youtube} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>YouTube</a>}
         </div>
 
         {/* Search + filtre (butonașe cu snap) */}
@@ -191,10 +180,19 @@ export default function Multimedia() {
               open={openIds.has(item.id)}
               onToggle={() => toggleOpen(item.id)}
               getThumb={() =>
-                item.thumb || (["video", "interview"].includes(item.type) ? youTubeThumb(item.url) : null) || FALLBACK_THUMB
+                item.thumb ||
+                (["video", "interview"].includes(item.type) ? youTubeThumb(item.url) : null) ||
+                FALLBACK_THUMB
               }
             />
           ))}
+        </div>
+
+        {/* Back jos (ca să nu urci la începutul paginii) */}
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+          <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
+            ← Înapoi la Viziune
+          </Link>
         </div>
       </div>
     </div>
@@ -206,6 +204,7 @@ function Card({ item, open, onToggle, getThumb }) {
   const isAudio = item.type === "audio";
   const isPhoto = item.type === "photo";
   const isInstagram = item.type === "instagram";
+  const isAlbum = item.type === "album";
 
   const cardStyle = {
     borderRadius: 16,
@@ -217,14 +216,15 @@ function Card({ item, open, onToggle, getThumb }) {
 
   const mediaBox = {
     position: "relative",
-    paddingTop: "56.25%", // 16:9
+    paddingTop: isAudio ? 0 : "56.25%", // 16:9 doar pt video/ig/foto/album
+    height: isAudio ? 152 : undefined,  // audio compact
     background: "linear-gradient(180deg,#f7eee0,#fff)",
   };
 
   return (
     <div style={cardStyle}>
       <div style={mediaBox}>
-        {/* VIDEO / INTERVIU */}
+        {/* VIDEO / INTERVIU (YouTube) */}
         {isVideo && (
           <>
             {open ? (
@@ -264,6 +264,17 @@ function Card({ item, open, onToggle, getThumb }) {
           </>
         )}
 
+        {/* INSTAGRAM EMBED */}
+        {isInstagram && (
+          <iframe
+            title={item.title}
+            src={instagramEmbed(item.url)}
+            loading="lazy"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, background: "#fff" }}
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        )}
+
         {/* AUDIO */}
         {isAudio && (
           <iframe
@@ -274,34 +285,39 @@ function Card({ item, open, onToggle, getThumb }) {
           />
         )}
 
-        {/* INSTAGRAM – deschide în tab nou */}
-        {isInstagram && (
-          <a
-            href={item.url}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${getThumb()})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              display: "block",
-            }}
-            aria-label={`Deschide pe Instagram: ${item.title}`}
+        {/* ALBUM – mozaic 3 imagini + badge număr; click = expand */}
+        {isAlbum && (
+          <button
+            onClick={onToggle}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, cursor: "pointer" }}
+            aria-label={`Deschide albumul: ${item.title}`}
           >
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: "2fr 1fr", gap: 2 }}>
+              <div style={{ position: "relative" }}>
+                <img src={item.images[0]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: 2 }}>
+                <div style={{ position: "relative" }}>
+                  <img src={item.images[1] || item.images[0]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+                <div style={{ position: "relative" }}>
+                  <img src={item.images[2] || item.images[0]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              </div>
+            </div>
             <span
               style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,.05))",
+                position: "absolute", right: 10, bottom: 10,
+                background: "rgba(0,0,0,.55)", color: "#fff",
+                padding: "4px 8px", borderRadius: 999, fontWeight: 700, fontSize: 12
               }}
-            />
-            <PlayIcon />
-          </a>
+            >
+              {item.images.length} foto
+            </span>
+          </button>
         )}
 
-        {/* FOTO */}
+        {/* FOTO simplă */}
         {isPhoto && (
           <img
             src={item.url}
@@ -318,6 +334,23 @@ function Card({ item, open, onToggle, getThumb }) {
           {labelForType(item.type)}
         </div>
       </div>
+
+      {/* Expand albume – grid cu toate pozele */}
+      {isAlbum && open && (
+        <div style={{ padding: "0 12px 12px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 8 }}>
+            {item.images.map((src, i) => (
+              <a key={i} href={src} target="_blank" rel="noreferrer" style={{ display: "block", position: "relative", paddingTop: "66%" }}>
+                <img
+                  src={src}
+                  alt={`${item.title} — ${i + 1}`}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: 8 }}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
