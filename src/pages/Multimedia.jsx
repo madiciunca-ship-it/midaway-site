@@ -1,86 +1,14 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { MEDIA, SOCIALS, FALLBACK_THUMB } from "../data/multimedia";
 
-/** CONFIG RUTE / SOCIALS */
-const VISION_PATH = "/viziunea"; // <- dacă la tine e /viziune, schimbă aici
-const SOCIALS = {
-  instagram: "https://www.instagram.com/midaway.official/",
-  facebook: "https://www.facebook.com/profile.php?id=61579784437417#",
-  tiktok: "https://www.tiktok.com/tag/midaway",
-  youtube: "https://www.youtube.com/channel/UCKos5McBc44j6dViovnKiZw/videos", // de schimbat când apare canalul Midaway
-};
-
-/**
- * Tipuri: "photo" | "video" | "audio" | "interview" | "instagram"
- * Notă: imaginile/thumbnail-urile pune-le în /public/assets/media/... și referă-le ca "/assets/media/.."
+/** BACK LINK
+ *  Setează una din variantele de mai jos în funcție de ruta reală:
+ *  "/viziunea" | "/viziune" | "/proiecte" | "/projects"
  */
-const MEDIA = [
-  // demo video
-  {
-    id: "trailer",
-    type: "video",
-    title: "Midaway — trailer",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    thumb: "/assets/media/trailer.jpg", // opțional
-  },
+const VISION_PATH = "/viziunea";
 
-  // interviuri (YouTube) – linkurile tale
-  {
-    id: "int-lansare",
-    type: "interview",
-    title: "Interviu lansare cărți — Mida Malena",
-    url: "https://www.youtube.com/watch?v=5ylLtf8H2Lk&t=2258s",
-  },
-  {
-    id: "int-biblioteca",
-    type: "interview",
-    title: "Mida Malena — oaspetele Bibliotecii Petre Dulfu",
-    url: "https://www.youtube.com/watch?v=jDMBnyYm3EI&t=800s",
-  },
-  {
-    id: "int-provocari",
-    type: "interview",
-    title: "Întrebări și provocări — Bucăți dintr-un suflet nomad",
-    url: "https://www.youtube.com/watch?v=3lRh_G3gfTM",
-  },
-
-  // instagram – deschide postarea în tab nou (stabil pe toate browserele)
-  {
-    id: "ig-trailer",
-    type: "instagram",
-    title: "Midaway — trailer (Instagram)",
-    url: "https://www.instagram.com/p/DN5nm6_jKNo/",
-    // dacă pui un thumbnail local, îl afișăm: thumb: "/assets/media/ig-trailer.jpg"
-  },
-
-  // audio (embed Spotify)
-  {
-    id: "pod-1",
-    type: "audio",
-    title: "Podcast — Episod 1",
-    embed:
-      "https://open.spotify.com/embed/episode/4rOoJ6Egrf8K2IrywzwOMk?utm_source=generator",
-  },
-
-  // foto demo
-  {
-    id: "photo-1",
-    type: "photo",
-    title: "Călătorie — apus",
-    url: "/assets/media/photo-sample-1.jpg",
-  },
-];
-
-const FILTERS = [
-  { key: "all", label: "Toate" },
-  { key: "photo", label: "Foto" },
-  { key: "video", label: "Video" },
-  { key: "audio", label: "Audio" },
-  { key: "interview", label: "Interviuri" },
-  { key: "instagram", label: "Instagram" },
-];
-
-/* ——— helpers YouTube ——— */
+/** Helpers YouTube */
 function youTubeId(url) {
   if (!url) return null;
   const m =
@@ -113,14 +41,31 @@ function labelForType(t) {
   }
 }
 
+const FILTERS = [
+  { key: "all", label: "Toate" },
+  { key: "photo", label: "Foto" },
+  { key: "video", label: "Video" },
+  { key: "audio", label: "Audio" },
+  { key: "interview", label: "Interviuri" },
+  { key: "instagram", label: "Instagram" },
+];
+
 export default function Multimedia() {
   const [active, setActive] = useState("all");
-  const [openIds, setOpenIds] = useState(() => new Set()); // carduri cu iframe deschis
+  const [openIds, setOpenIds] = useState(() => new Set());
+  const [q, setQ] = useState("");
 
-  const list = useMemo(
-    () => (active === "all" ? MEDIA : MEDIA.filter((m) => m.type === active)),
-    [active]
-  );
+  const list = useMemo(() => {
+    let arr = active === "all" ? MEDIA : MEDIA.filter((m) => m.type === active);
+    if (q.trim()) {
+      const s = q.trim().toLowerCase();
+      arr = arr.filter((m) => {
+        const hay = `${m.title || ""} ${(m.tags || []).join(" ")}`.toLowerCase();
+        return hay.includes(s);
+      });
+    }
+    return arr;
+  }, [active, q]);
 
   const toggleOpen = (id) =>
     setOpenIds((prev) => {
@@ -132,8 +77,8 @@ export default function Multimedia() {
   return (
     <div style={{ padding: "24px 0 48px" }}>
       <div className="container" style={{ maxWidth: 1100, padding: "0 16px" }}>
-        {/* header + back */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
+        {/* Header + back */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
           <h1 className="font-cormorant" style={{ margin: 0 }}>🎧 Multimedia</h1>
           <div style={{ flex: 1 }} />
           <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
@@ -141,49 +86,100 @@ export default function Multimedia() {
           </Link>
         </div>
 
-        {/* Socials Midaway */}
+        {/* Socials */}
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", margin: "4px 0 10px" }}>
-          {SOCIALS.instagram && <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Instagram</a>}
-          {SOCIALS.facebook && <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Facebook</a>}
-          {SOCIALS.tiktok && <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>TikTok</a>}
-          {SOCIALS.youtube && <a href={SOCIALS.youtube} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>YouTube</a>}
+          {SOCIALS.instagram && (
+            <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
+              Instagram
+            </a>
+          )}
+          {SOCIALS.facebook && (
+            <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
+              Facebook
+            </a>
+          )}
+          {SOCIALS.tiktok && (
+            <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
+              TikTok
+            </a>
+          )}
+          {SOCIALS.youtube && (
+            <a href={SOCIALS.youtube} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
+              YouTube
+            </a>
+          )}
         </div>
 
-        {/* filtre – butonașe cu snap pe mobil */}
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            padding: "6px 2px 12px",
-            marginBottom: 12,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-          }}
-        >
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setActive(f.key)}
+        {/* Search + filtre (butonașe cu snap) */}
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 12 }}>
+          <div style={{ position: "relative", flex: "1 1 280px", minWidth: 220 }}>
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Caută în multimedia…"
               style={{
-                scrollSnapAlign: "start",
-                whiteSpace: "nowrap",
-                padding: "8px 14px",
+                width: "100%",
+                padding: "10px 12px",
                 borderRadius: 999,
                 border: "1px solid #d9d4c8",
-                background: active === f.key ? "var(--accent)" : "#fff",
-                color: active === f.key ? "#fff" : "#333",
-                fontWeight: 600,
-                cursor: "pointer",
-                boxShadow: "0 2px 8px rgba(0,0,0,.05)",
+                outline: "none",
               }}
-            >
-              {f.label}
-            </button>
-          ))}
+            />
+            {q && (
+              <button
+                onClick={() => setQ("")}
+                aria-label="Șterge căutarea"
+                style={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  border: 0,
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontWeight: 700,
+                  color: "#777",
+                }}
+              >
+                ×
+              </button>
+            )}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              padding: "6px 2px 6px",
+              overflowX: "auto",
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              flex: "1 1 auto",
+            }}
+          >
+            {FILTERS.map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setActive(f.key)}
+                style={{
+                  scrollSnapAlign: "start",
+                  whiteSpace: "nowrap",
+                  padding: "8px 14px",
+                  borderRadius: 999,
+                  border: "1px solid #d9d4c8",
+                  background: active === f.key ? "var(--accent)" : "#fff",
+                  color: active === f.key ? "#fff" : "#333",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  boxShadow: "0 2px 8px rgba(0,0,0,.05)",
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* grid */}
+        {/* Grid */}
         <div
           style={{
             display: "grid",
@@ -197,6 +193,9 @@ export default function Multimedia() {
               item={item}
               open={openIds.has(item.id)}
               onToggle={() => toggleOpen(item.id)}
+              getThumb={() =>
+                item.thumb || (["video", "interview"].includes(item.type) ? youTubeThumb(item.url) : null) || FALLBACK_THUMB
+              }
             />
           ))}
         </div>
@@ -205,7 +204,7 @@ export default function Multimedia() {
   );
 }
 
-function Card({ item, open, onToggle }) {
+function Card({ item, open, onToggle, getThumb }) {
   const isVideo = item.type === "video" || item.type === "interview";
   const isAudio = item.type === "audio";
   const isPhoto = item.type === "photo";
@@ -228,7 +227,7 @@ function Card({ item, open, onToggle }) {
   return (
     <div style={cardStyle}>
       <div style={mediaBox}>
-        {/* VIDEO / INTERVIEW (YouTube) */}
+        {/* VIDEO / INTERVIU */}
         {isVideo && (
           <>
             {open ? (
@@ -249,7 +248,7 @@ function Card({ item, open, onToggle }) {
                   height: "100%",
                   border: 0,
                   cursor: "pointer",
-                  backgroundImage: `url(${item.thumb || youTubeThumb(item.url) || "/assets/placeholder-cover.png"})`,
+                  backgroundImage: `url(${getThumb()})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -278,7 +277,7 @@ function Card({ item, open, onToggle }) {
           />
         )}
 
-        {/* INSTAGRAM – deschide în tab nou (stabil) */}
+        {/* INSTAGRAM – deschide în tab nou */}
         {isInstagram && (
           <a
             href={item.url}
@@ -287,7 +286,7 @@ function Card({ item, open, onToggle }) {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundImage: `url(${item.thumb || "/assets/placeholder-cover.png"})`,
+              backgroundImage: `url(${getThumb()})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               display: "block",
@@ -315,7 +314,7 @@ function Card({ item, open, onToggle }) {
         )}
       </div>
 
-      {/* caption */}
+      {/* Caption */}
       <div style={{ padding: "10px 12px" }}>
         <div style={{ fontWeight: 700, color: "#2b2a28" }}>{item.title}</div>
         <div style={{ marginTop: 6, fontSize: 13, fontWeight: 600, color: "#2f6d6a" }}>
@@ -326,7 +325,6 @@ function Card({ item, open, onToggle }) {
   );
 }
 
-/* UI: Play icon */
 function PlayIcon() {
   return (
     <span
