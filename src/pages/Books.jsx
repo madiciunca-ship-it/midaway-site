@@ -159,9 +159,13 @@ export default function Books() {
         }}
       >
         {[...filtered]
-          .sort((a, b) =>
-            String(b.year || "").localeCompare(String(a.year || ""))
-          ) // cele mai noi primele
+          .sort((a, b) => {
+            const ad = new Date(b.addedAt || 0) - new Date(a.addedAt || 0);
+            if (ad) return ad; // dacă există datele de adăugare, ordonează după ele
+            const yd = (Number(b.year) || 0) - (Number(a.year) || 0);
+            if (yd) return yd;
+            return String(b.title || "").localeCompare(String(a.title || ""));
+          }) // cele mai noi primele
           .map((book, i) => {
             const isNew = i < 2; // badge „NOU” pe primele 2 rezultate
             return (
@@ -218,6 +222,7 @@ export default function Books() {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+            
                         display: "block",
                       }}
                     />

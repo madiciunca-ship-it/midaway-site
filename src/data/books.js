@@ -12,6 +12,7 @@ export const BOOKS = [
   // ————————————————————————————————————————————————
   {
     id: "o-zi-ro",
+    addedAt: "2025-10-27T10:00:00Z",
     lang: "RO",
     currency: "RON",
 
@@ -60,6 +61,7 @@ export const BOOKS = [
   // ————————————————————————————————————————————————
   {
     id: "o-zi-en",
+    addedAt: "2025-10-28T10:00:00Z",
     lang: "EN",
     currency: "EUR",
 
@@ -104,6 +106,7 @@ export const BOOKS = [
   // ————————————————————————————————————————————————
   {
     id: "vietnam-ro",
+    addedAt: "2025-10-29T10:00:00Z",
     lang: "RO",
     currency: "RON",
 
@@ -151,6 +154,7 @@ export const BOOKS = [
   // ————————————————————————————————————————————————
   {
     id: "vietnam-en",
+    addedAt: "2025-10-30T10:00:00Z",
     lang: "EN",
     currency: "EUR",
 
@@ -199,6 +203,7 @@ export const BOOKS = [
 
 {
   id: "indonezia-1-ro",
+  addedAt: "2025-10-31T10:00:00Z",
   lang: "RO",
   currency: "RON",
   hidden: false,
