@@ -240,6 +240,12 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
   extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg", // opțional
   // images: [ ... ] // opțional (galerie)
 
+  files: {
+    PDF:  "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul.pdf",
+    EPUB: "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul.epub",
+  },
+
+
   // sample (butonul “Citește un fragment”)
   sampleUrl: "https://docs.google.com/document/d/1sYqLqp1oUIxJWG8iALg-Dgc-AMcfodDyafTFclkhc6M/edit?usp=sharing",
 
