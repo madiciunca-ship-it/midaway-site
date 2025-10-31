@@ -5,7 +5,6 @@ import BookDetail from "./BookDetail";
 import BookPurchasePanel from "../components/BookPurchasePanel";
 import { BOOKS } from "../data/books";
 
-// ——— aliasuri existente
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
   const direct = BOOKS.find((b) => b.id === bookId);
@@ -27,7 +26,9 @@ export default function BookDetailWithPurchase() {
   const book = useMemo(() => findBookByIdOrAlias(id), [id]);
 
   useEffect(() => {
-    // 1) ascunde vechiul UI de cumpărare (păstrăm exact cum aveam)
+    if (!book) return;
+
+    // 1) Ascunde UI-ul vechi de cumpărare
     const hideBlocks = (startsWith) => {
       Array.from(document.querySelectorAll("button, a, span")).forEach((el) => {
         const t = (el.textContent || "").trim();
@@ -44,7 +45,25 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
-    // 2) mută panelul nou sub „Citește un fragment”
+    // 2) Marcare grilă principală + coloana cu coperți pentru a o ascunde
+    try {
+      const grid = Array.from(document.querySelectorAll("div")).find((el) => {
+        const s = el.getAttribute("style") || "";
+        // e chiar grid-ul din BookDetail.jsx
+        return s.includes("display: \"grid\"") || (getComputedStyle(el).display === "grid" && s.includes("minmax(220px"));
+      }) || Array.from(document.querySelectorAll("div")).find((el) => {
+        const cs = getComputedStyle(el);
+        return cs.display === "grid" && (cs.gridTemplateColumns || "").includes("minmax(220px");
+      });
+
+      if (grid) {
+        grid.classList.add("bd-grid");
+        const coversCol = grid.firstElementChild;
+        if (coversCol) coversCol.classList.add("bd-covers-col");
+      }
+    } catch (_) {}
+
+    // 3) Mută panelul nostru sub „Citește un fragment”
     try {
       const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find((el) =>
         (el.textContent || "").trim().startsWith("📖 Citește un fragment")
@@ -54,171 +73,78 @@ export default function BookDetailWithPurchase() {
         fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
       }
     } catch (_) {}
-
-    // 3) fallback copertă (nu atinge layout-ul)
-    const bestCover =
-      book?.cover ||
-      book?.coverUrl ||
-      book?.image ||
-      book?.extraImage ||
-      (Array.isArray(book?.images) ? book.images[0] : null) ||
-      null;
-
-    if (bestCover && book?.title) {
-      try {
-        const titleLc = String(book.title).toLowerCase();
-        const imgs = Array.from(document.querySelectorAll("img"));
-        imgs.forEach((img) => {
-          const altLc = String(img.getAttribute("alt") || "").toLowerCase();
-          const isPlaceholder =
-            img.src.endsWith("/placeholder-cover.png") || /placeholder/i.test(img.src);
-          if (isPlaceholder || altLc.includes(titleLc)) {
-            img.src = bestCover;
-            img.decoding = "async";
-            img.referrerPolicy = "no-referrer";
-            img.onerror = () => {
-              if (img.src !== "/placeholder-cover.png") {
-                img.src = "/placeholder-cover.png";
-              }
-            };
-          }
-        });
-      } catch (_) {}
-    }
-
-    // 4) marchează corect coloana ORIGINALĂ de coperți + grila mare
-    //    ca să o putem ascunde DOAR pe mobil din CSS
-    try {
-      const titleLc = String(book?.title || "").toLowerCase();
-      const imgs = Array.from(document.querySelectorAll("img"));
-      const coverImg =
-        imgs.find((i) => (i.alt || "").trim().toLowerCase() === titleLc) ||
-        imgs.find((i) => (i.src || "").includes(book?.coverUrl || ""));
-
-      if (coverImg) {
-        // coloana (div-ul părinte) care conține coperta din BookDetail.jsx
-        let column = coverImg.closest("div");
-        if (column) {
-          // urcă până la coloana reală (cea care conține și spatele)
-          while (column.parentElement && column.parentElement.children.length === 1) {
-            column = column.parentElement;
-          }
-          column.classList.add("original-covers");
-          // marchează containerul grilei (2 coloane pe desktop)
-          const grid = column.parentElement;
-          if (grid) grid.classList.add("book-grid-2");
-        }
-      }
-
-      // related → reformatăm cardurile (fără margini groase, text centrat)
-      const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
-        (el.textContent || "").trim().toLowerCase().includes("poate te mai interesează")
-      );
-      if (h3) {
-        const grid = h3.nextElementSibling;
-        if (grid && grid.tagName === "DIV") {
-          grid.classList.add("related-grid");
-          Array.from(grid.querySelectorAll("a")).forEach((card) => {
-            card.classList.add("related-card");
-            const coverDiv = card.querySelector("div");
-            if (coverDiv && coverDiv.style) {
-              coverDiv.style.height = "140px";
-              coverDiv.style.padding = "10px";
-              coverDiv.style.backgroundSize = "contain";
-              coverDiv.style.backgroundPosition = "center";
-              coverDiv.style.backgroundRepeat = "no-repeat";
-              coverDiv.style.backgroundColor = "#f8f3ea";
-            }
-          });
-        }
-      }
-    } catch (_) {}
   }, [book]);
 
   return (
-    <div>
-      {/* ——— CSS local: desktop păstrează coloana originală; pe mobil o ascundem și afișăm doar blocul nostru de sus ——— */}
+    <div style={{ paddingBottom: 60 }}>
+      {/* CSS necesar */}
       <style>{`
-        /* grila mare (din BookDetail.jsx) devine coloană pe mobil */
-        @media (max-width: 640px) {
-          .book-grid-2 { display: block !important; }
+        /* coperțile SUS (față+spate) – centrate, responsive */
+        .book-covers-top{
+          display:flex; justify-content:center; align-items:flex-start;
+          gap:20px; margin:20px auto 28px; flex-wrap:wrap;
+        }
+        .book-covers-top .coverBox{
+          flex:0 1 340px; max-width:46%;
+          border:1px solid #eee; border-radius:12px; overflow:hidden;
+          background:#fafafa; box-shadow:0 6px 18px rgba(0,0,0,.08);
+        }
+        .book-covers-top img{ width:100%; height:auto; display:block; }
+        @media (max-width:768px){
+          .book-covers-top{ gap:12px; margin:12px auto 20px; }
+          .book-covers-top .coverBox{ max-width:92%; }
         }
 
-        /* ascunde pe mobil coloana ORIGINALĂ cu coperți din BookDetail.jsx */
-        @media (max-width: 640px) {
-          .original-covers { display: none !important; }
-        }
+        /* — Fix grila din BookDetail.jsx —
+           transformăm în 1 coloană și ascundem coloana cu coperți */
+        .bd-grid{ display:block !important; }
+        .bd-grid > .bd-covers-col{ display:none !important; }
 
-        /* blocul nostru pentru mobil - vizibil doar pe mobil */
-        .mobile-covers { display: none; }
-        @media (max-width: 640px) {
-          .mobile-covers {
-            display: flex;
-            gap: 8px;
-            margin: 12px 0 8px 0;
-            justify-content: center;
-            padding: 0 12px;
-          }
-          .mobile-covers .coverBox {
-            flex: 1 1 0;
-            max-width: 50%;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #f9f9f9;
-          }
-          .mobile-covers img {
-            width: 100%;
-            height: auto;
-            display: block;
-          }
-        }
-
-        /* related – mai compacte și centrate */
+        /* related compact, plăcut */
         .related-grid{
-          display:grid;
-          grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
+          display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
           gap:16px;
-          justify-content:center;
         }
         .related-card{
-          text-decoration:none;
-          color:inherit;
-          border:0;
-          border-radius:12px;
-          overflow:hidden;
-          background:#fff;
+          text-decoration:none; color:inherit;
+          border-radius:12px; overflow:hidden; background:#fff;
           box-shadow:0 4px 12px rgba(0,0,0,.08);
-          max-width:220px;
-          margin:0 auto;
         }
         .related-card > div:last-child{ padding:12px; text-align:center; }
       `}</style>
 
-      {/* ——— pe mobil vrem coperțile SUS, apoi titlul din BookDetail.jsx ——— */}
+      {/* 1️⃣ Coperțile sus, centrate (față + spate) */}
       {book && (
-        <div className="mobile-covers" aria-hidden={typeof window !== "undefined" && window.innerWidth > 640 ? "true" : "false"}>
+        <div className="book-covers-top">
           <div className="coverBox">
-            <img src={book.coverUrl || book.cover || ""} alt={book.title || "Copertă"} loading="lazy" />
+            <img
+              src={book.coverUrl || book.cover || ""}
+              alt={book.title || "Coperta față"}
+              loading="lazy"
+            />
           </div>
           {book.extraImage && (
             <div className="coverBox">
-              <img src={book.extraImage} alt="Coperta spate" loading="lazy" />
+              <img
+                src={book.extraImage}
+                alt="Coperta spate"
+                loading="lazy"
+              />
             </div>
           )}
         </div>
       )}
 
-      {/* componenta originală – NEATINSĂ (desktop va vedea coloana originală) */}
+      {/* 2️⃣ Conținutul original (titlu, descriere, detalii, etc.) */}
       <BookDetail />
 
-      {/* panelul de cumpărare – mutat din useEffect imediat sub „Citește un fragment” */}
+      {/* 3️⃣ Panoul nostru (mutat sub „Citește un fragment”) */}
       <div ref={panelRef}>
         <BookPurchasePanel bookId={id} />
       </div>
 
-      {/* model invizibil pentru viitoare cărți (placeholder în DOM) */}
-      <div className="book-model" style={{ display: "none" }} data-model="true" aria-hidden="true">
+      {/* 4️⃣ Model invizibil pentru viitoare cărți (util în editor/teste) */}
+      <div className="book-model" style={{ display: "none" }} data-model="true">
         <div className="coverBox">
           <img src="/placeholder-cover.png" alt="Model Cover" />
         </div>
