@@ -45,16 +45,24 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
-    // 2) Marcare grilă principală + coloana cu coperți pentru a o ascunde
+    // 2) Marcare grilă principală + coloana cu coperți (o ascundem)
     try {
-      const grid = Array.from(document.querySelectorAll("div")).find((el) => {
-        const s = el.getAttribute("style") || "";
-        // e chiar grid-ul din BookDetail.jsx
-        return s.includes("display: \"grid\"") || (getComputedStyle(el).display === "grid" && s.includes("minmax(220px"));
-      }) || Array.from(document.querySelectorAll("div")).find((el) => {
-        const cs = getComputedStyle(el);
-        return cs.display === "grid" && (cs.gridTemplateColumns || "").includes("minmax(220px");
-      });
+      const grid =
+        Array.from(document.querySelectorAll("div")).find((el) => {
+          const s = el.getAttribute("style") || "";
+          return (
+            s.includes('display: "grid"') ||
+            (getComputedStyle(el).display === "grid" &&
+              s.includes("minmax(220px"))
+          );
+        }) ||
+        Array.from(document.querySelectorAll("div")).find((el) => {
+          const cs = getComputedStyle(el);
+          return (
+            cs.display === "grid" &&
+            (cs.gridTemplateColumns || "").includes("minmax(220px")
+          );
+        });
 
       if (grid) {
         grid.classList.add("bd-grid");
@@ -63,14 +71,48 @@ export default function BookDetailWithPurchase() {
       }
     } catch (_) {}
 
-    // 3) Mută panelul nostru sub „Citește un fragment”
+    // 3) Mutăm panelul nostru sub „📖 Citește un fragment”
     try {
-      const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find((el) =>
+      const fragmentBtn = Array.from(
+        document.querySelectorAll("a, button")
+      ).find((el) =>
         (el.textContent || "").trim().startsWith("📖 Citește un fragment")
       );
       const panelEl = panelRef.current;
       if (fragmentBtn && panelEl && panelEl.parentElement) {
         fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
+      }
+    } catch (_) {}
+
+    // 4) Aranjează secțiunea „Poate te mai interesează”
+    try {
+      const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
+        (el.textContent || "")
+          .trim()
+          .toLowerCase()
+          .includes("poate te mai interesează")
+      );
+      if (h3) {
+        const grid = h3.nextElementSibling;
+        if (grid && grid.tagName === "DIV") {
+          grid.classList.add("related-grid");
+
+          Array.from(grid.querySelectorAll("a")).forEach((card) => {
+            card.classList.add("related-card");
+
+            // primul <div> din card e cel cu backgroundImage
+            const coverDiv = card.querySelector("div");
+            if (coverDiv && coverDiv.style && coverDiv.style.backgroundImage) {
+              coverDiv.classList.add("related-coverWrap");
+              coverDiv.style.height = "160px";
+              coverDiv.style.padding = "12px";
+              coverDiv.style.backgroundSize = "contain";
+              coverDiv.style.backgroundPosition = "center";
+              coverDiv.style.backgroundRepeat = "no-repeat";
+              coverDiv.style.backgroundColor = "#f8f3ea";
+            }
+          });
+        }
       }
     } catch (_) {}
   }, [book]);
@@ -95,22 +137,36 @@ export default function BookDetailWithPurchase() {
           .book-covers-top .coverBox{ max-width:92%; }
         }
 
-        /* — Fix grila din BookDetail.jsx —
-           transformăm în 1 coloană și ascundem coloana cu coperți */
+        /* Fix grila din BookDetail.jsx: o facem 1 coloană și ascundem coloana de coperți */
         .bd-grid{ display:block !important; }
         .bd-grid > .bd-covers-col{ display:none !important; }
 
-        /* related compact, plăcut */
+        /* related: carduri compacte, pe centru */
         .related-grid{
-          display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+          display:grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
           gap:16px;
+          justify-content:center;
         }
         .related-card{
-          text-decoration:none; color:inherit;
-          border-radius:12px; overflow:hidden; background:#fff;
+          text-decoration:none;
+          color:inherit;
+          border:0 !important;
+          border-radius:12px;
+          overflow:hidden;
+          background:#fff;
           box-shadow:0 4px 12px rgba(0,0,0,.08);
+          max-width:220px;
+          margin:0 auto;
         }
         .related-card > div:last-child{ padding:12px; text-align:center; }
+        .related-coverWrap{
+          background:#f8f3ea;
+          display:grid;
+          place-items:center;
+          height:160px;
+          padding:12px;
+        }
       `}</style>
 
       {/* 1️⃣ Coperțile sus, centrate (față + spate) */}
@@ -125,11 +181,7 @@ export default function BookDetailWithPurchase() {
           </div>
           {book.extraImage && (
             <div className="coverBox">
-              <img
-                src={book.extraImage}
-                alt="Coperta spate"
-                loading="lazy"
-              />
+              <img src={book.extraImage} alt="Coperta spate" loading="lazy" />
             </div>
           )}
         </div>
