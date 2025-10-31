@@ -113,7 +113,7 @@ export default function Home() {
 
           <div style={{ marginTop: 24 }}>
             <Link className="btn" to="/proiecte">
-              Viziunea Midaway
+              VIZIUNEA MIDAWAY
             </Link>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function Home() {
               Cărți
             </h3>
             <p style={{ margin: 0 }}>
-            Literatură de călătorie, jurnale și eseuri poetice.
+            Inspirație, provocare, visuri îndrăznețe.
             </p>
           </Link>
 
