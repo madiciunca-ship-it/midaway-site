@@ -96,7 +96,7 @@ export default function Home() {
             „Cărți care pornesc la drum”
           </p>
           <p style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}>
-  Editură independentă • print & digital • ro / en • atenție la editare & design
+  print & digital  • ro / en •  editare & design
 </p>
 
           <p
