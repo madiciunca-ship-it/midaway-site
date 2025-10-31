@@ -27,7 +27,7 @@ export default function BookDetailWithPurchase() {
   const book = useMemo(() => findBookByIdOrAlias(id), [id]);
 
   useEffect(() => {
-    // 1) Ascundem vechiul UI de cumpărare (fără a atinge codul)
+    // 1️⃣ Ascundem vechiul UI de cumpărare
     const hideBlocks = (startsWith) => {
       Array.from(document.querySelectorAll("button, a, span")).forEach((el) => {
         const t = (el.textContent || "").trim();
@@ -44,7 +44,7 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
-    // 2) Mutăm panelul nou IMEDIAT după butonul „Citește un fragment”
+    // 2️⃣ Mutăm panelul nou sub „Citește un fragment”
     const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find(
       (el) => (el.textContent || "").trim().startsWith("📖 Citește un fragment")
     );
@@ -53,7 +53,7 @@ export default function BookDetailWithPurchase() {
       fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
     }
 
-    // 3) Fix imagine copertă în detaliu (fără a edita componenta mare)
+    // 3️⃣ Fix imagine copertă (fallback)
     const bestCover =
       book?.cover ||
       book?.coverUrl ||
@@ -72,7 +72,6 @@ export default function BookDetailWithPurchase() {
           img.src.endsWith("/placeholder-cover.png") ||
           /placeholder/i.test(img.src);
 
-        // dacă imaginea pare asociată cu cartea curentă sau e placeholder → pune coperta corectă
         if (isPlaceholder || altLc.includes(titleLc)) {
           img.src = bestCover;
           img.decoding = "async";
@@ -85,12 +84,97 @@ export default function BookDetailWithPurchase() {
         }
       });
     }
+
+    // 4️⃣ Adaugă clasele lipsă pentru layout responsive și related
+    try {
+      const coverImg = Array.from(document.querySelectorAll("img")).find(
+        (i) => (i.alt || "").trim().toLowerCase() === (book?.title || "").toLowerCase()
+      );
+      if (coverImg) {
+        const coversColumn = coverImg.closest("div");
+        const gridContainer = coversColumn?.parentElement?.parentElement;
+        if (gridContainer) gridContainer.classList.add("book-grid-2");
+
+        const column = coversColumn?.parentElement;
+        if (column) column.classList.add("covers");
+        coversColumn?.classList.add("coverBox");
+
+        const backImg = Array.from(column?.querySelectorAll("img") || []).find(
+          (i) => (i.alt || "").toLowerCase().includes("coperta spate")
+        );
+        if (backImg) backImg.closest("div")?.classList.add("coverBox");
+      }
+
+      // related
+      const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
+        (el.textContent || "").trim().toLowerCase().includes("poate te mai interesează")
+      );
+      if (h3) {
+        const grid = h3.nextElementSibling;
+        if (grid && grid.tagName === "DIV") {
+          grid.classList.add("related-grid");
+          Array.from(grid.querySelectorAll("a")).forEach((card) => {
+            card.classList.add("related-card");
+            const coverDiv = card.querySelector("div");
+            if (coverDiv && coverDiv.style && coverDiv.style.backgroundImage) {
+              coverDiv.style.height = "140px";
+              coverDiv.style.padding = "10px";
+              coverDiv.style.backgroundSize = "contain";
+              coverDiv.style.backgroundPosition = "center";
+              coverDiv.style.backgroundRepeat = "no-repeat";
+              coverDiv.style.backgroundColor = "#f8f3ea";
+            }
+          });
+        }
+      }
+    } catch (_) {}
   }, [book]);
 
   return (
     <div>
+      {/* CSS injectat — responsive + related */}
+      <style>{`
+        @media (max-width: 640px) {
+          .book-grid-2 {
+            display: block !important;
+          }
+        }
+
+        .covers {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        @media (max-width: 640px) {
+          .covers { flex-direction: row; gap: 8px; justify-content: center; }
+          .covers .coverBox { flex: 1 1 0; max-width: 50%; }
+        }
+        .coverBox .imgFit {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .related-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 16px;
+        }
+        .related-card {
+          text-decoration: none;
+          color: inherit;
+          border: 1px solid #eee;
+          border-radius: 12px;
+          overflow: hidden;
+          background: #fff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+      `}</style>
+
       <BookDetail />
-      {/* panelul e randat la final, apoi mutat în DOM sub „Citește un fragment” */}
+
+      {/* panelul e randat la final, apoi mutat sub „Citește un fragment” */}
       <div ref={panelRef}>
         <BookPurchasePanel bookId={id} />
       </div>
