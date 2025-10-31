@@ -102,6 +102,15 @@ export default function Books() {
             </select>
           </div>
 
+          <style>{`
+  /* asigurăm grila să nu se comaseze prea mult pe mobil */
+  @media (max-width: 640px){
+    .booksGrid{
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    }
+  }
+`}</style>
+
           <button
             onClick={() => {
               setQ("");
@@ -120,11 +129,7 @@ export default function Books() {
           </button>
         </div>
 
-        <style>{`
-  @media (max-width: 640px){
-    .coverH{ height: 360px; }    /* mai mică pe mobil */
-  }
-`}</style>
+        
 
 
         <div style={{ display: "flex", gap: 8 }}>
@@ -218,11 +223,13 @@ export default function Books() {
   <div
     className="coverH"
     style={{
-      height: 420,              // înălțime fixă => layout constant și curat
-      background: CARD_BG,      // același fundal ca al cardului => rama devine invizibilă
-      borderRadius: 16,         // păstrăm rotunjirea DOAR pe containerul cardului
+      width: "100%",
+      aspectRatio: "2 / 3",     // raport constant pentru toate
+      background: "#fffef9",     // același cu cardul → „rama” dispare optic
+      borderRadius: 16,          // păstrează rotunjirea containerului (nu a imaginii)
       display: "grid",
       placeItems: "center",
+      overflow: "hidden",        // siguranță
     }}
   >
     <img
@@ -235,12 +242,13 @@ export default function Books() {
         width: "auto",
         height: "auto",
         display: "block",
-        borderRadius: 0,        // coperta dreptunghiulară, fără colțuri rotunjite
-        background: CARD_BG,
+        borderRadius: 0,         // coperta rămâne dreptunghiulară
+        background: "#fffef9",
       }}
     />
   </div>
 </Link>
+
 
 
                 {/* Gen + locație */}
