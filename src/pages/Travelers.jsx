@@ -28,7 +28,7 @@ const INTRO_RO = (
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
       În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut – prieten.
       Fiecare interviu e o fereastră deschisă spre o altă lume, spusă cu vocea celui care a trăit-o.
-      Unii mi-au fost ghizi, alții prieteni, alții doar trecători frumoși în poveștile mele.
+      Unii mi-au fost ghizi, alții prieteni – sau doar trecători frumoși în poveștile mele.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
       Am adunat infinit mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând.
@@ -51,7 +51,7 @@ const INTRO_EN = (
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
       In “Travelers”, I bring together the voices of those who have made the road their home and the unknown their friend.
       Each interview is a window into another world – told in the voice of the one who lived it.
-      Some became my guides, others my friends, some just beautiful passersby in my own stories.
+      Some became my guides, others my friends – some just beautiful passersby in my own stories.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
       I’ve collected far more stories than I can share here – but they’ll come, one by one.
