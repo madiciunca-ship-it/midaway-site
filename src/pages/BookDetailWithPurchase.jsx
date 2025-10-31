@@ -139,7 +139,8 @@ export default function BookDetailWithPurchase() {
             display: block !important;
           }
         }
-
+        
+        /* containerul coperților */
         .covers {
           display: flex;
           flex-direction: column;
@@ -149,13 +150,25 @@ export default function BookDetailWithPurchase() {
           .covers { flex-direction: row; gap: 8px; justify-content: center; }
           .covers .coverBox { flex: 1 1 0; max-width: 50%; }
         }
+        
+        /* ambele boxuri de copertă au același raport și overflow ascuns */
+        .covers .coverBox {
+          aspect-ratio: 2 / 3;       /* ← asigură înălțime și pentru coperta spate */
+          min-width: 0;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        
+        /* ambele imagini se întind corect în box */
+        .covers img,
         .coverBox .imgFit {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
         }
-
+        
+        /* related: carduri mai mici, fără bordură, imagine întreagă, text centrat */
         .related-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -164,12 +177,24 @@ export default function BookDetailWithPurchase() {
         .related-card {
           text-decoration: none;
           color: inherit;
-          border: 1px solid #eee;
+          border: 0;                               /* fără chenarul “tăios” */
           border-radius: 12px;
           overflow: hidden;
           background: #fff;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
         }
+        .related-card > div:last-child {           /* containerul de text */
+          padding: 12px;
+          text-align: center;                      /* titlu/subtitlu pe centru */
+        }
+        .related-coverWrap {
+          background: #f8f3ea;
+          display: grid;
+          place-items: center;
+          height: 160px;
+          padding: 12px;
+        }
+        
       `}</style>
 
       <BookDetail />
