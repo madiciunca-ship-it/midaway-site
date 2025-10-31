@@ -192,7 +192,60 @@ export const BOOKS = [
     description: `This journey is not only about me — it's about you and the people whose paths cross ours, shaping who we are and who we become...`,
     hidden: false,
   },
+
+  // ————————————————————————————————————————————————
+  // Pași prin Indonezia (RO)
+  // ————————————————————————————————————————————————
+
+{
+  id: "indonezia-1-ro",
+  lang: "RO",
+  currency: "RON",
+  hidden: false,
+
+  // afișare
+  title: "Pași prin Indonezia – Vol. I",
+  subtitle: "Când Bali îți atinge sufletul",
+  author: "Mida Malena",
+
+  // text multi-linie: folosește backticks
+  description: `Bali nu e doar o destinație. E o oglindă. Un test. O ardere lentă. O carte despre feminitate, libertate și povești care ard intens, chiar dacă nu durează.
+„Pași prin Indonezia: Când Bali îți atinge sufletul” nu e o simplă poveste de călătorie. Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu e o vacanță – ci o imersiune profundă în sine.
+Acest prim volum al seriei „Pași prin Indonezia” e o confesiune poetică, o căutare sinceră printre plaje, cascade și conversații care schimbă destine.
+De la Seminyak la Lovina, printre temple sacre și ape amețitoare, Yda scrie cu o sinceritate crudă și luminoasă despre frici care se cer confruntate sub apă, despre femeia care învață să spună „nu”, despre prietenii care apar și dispar cu sens, și despre bărbați care vin și se destramă în cuvinte.
+Bali o învață despre frumusețe, despre rătăcire, despre curajul de a rămâne în adevăr și de a-și scrie propria poveste. Ea descoperă că nu locurile ne schimbă, ci felul în care alegem să le trăim.
+Într-o lume în care toți aleargă să bifeze destinații, Yda călătorește înăuntru. În Bali, totul pare o poveste – dar adevărata magie e cea care se întâmplă în tine.
+Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la tine, cartea asta e pentru tine.`,
+
+  // meta (pentru filtre și related)
+  genre: "Memoir",
+  location: "Indonezia",
+  tags: ["memoir", "travel", "authentic"],
+
+  year: 2025,
+  publisher: "Midaway Publishing House",
+  pages: 364,
+  isbn: "978-...-....-...",
+  dimensions: "13 x 20 cm",
+  weight: "400 gr",
+
+  // imagini
+  coverUrl: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-cover.jpg",  // OBLIGATORIU
+  extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg", // opțional
+  // images: [ ... ] // opțional (galerie)
+
+  // sample (butonul “Citește un fragment”)
+  sampleUrl: "https://docs.google.com/document/d/1sYqLqp1oUIxJWG8iALg-Dgc-AMcfodDyafTFclkhc6M/edit?usp=sharing",
+
+  // panoul de cumpărare — cheile sunt UPPERCASE
+  prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
+  availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
+
+  // link de plată global (opțional, dacă îl ai)
+  payLink: null
+}
 ];
 
 // Export opțional: listă standard pentru UI
-export const FORMATS = ["PDF", "EPUB", "Paperback", "Audiobook"];
+export const FORMATS = ["PDF", "EPUB", "PAPERBACK", "AUDIOBOOK"];
+
