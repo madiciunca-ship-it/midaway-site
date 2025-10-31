@@ -123,7 +123,7 @@ export const BOOKS = [
 
     sampleUrl: "#",
 
-    tags: ["memorii", "călătorii", "cultură", "autentic"],
+    tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
     format: "eBook",
 
     prices: { PDF: 45, EPUB: 45, Paperback: 65, Audiobook: 0 },
@@ -212,6 +212,7 @@ export const BOOKS = [
   title: "Pași prin Indonezia – Vol. I",
   subtitle: "Când Bali îți atinge sufletul",
   author: "Mida Malena",
+
 
   // text multi-linie: folosește backticks
   description: `Bali nu e doar o destinație. E o oglindă. Un test. O ardere lentă. O carte despre feminitate, libertate și povești care ard intens, chiar dacă nu durează.
