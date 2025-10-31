@@ -44,6 +44,37 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
+    // 4) injectăm clase pe structura existentă ca să putem stiliza pe mobil,
+// fără să atingem BookDetail.jsx
+try {
+  // găsim o imagine de copertă din pagină
+  const coverImg = Array.from(document.images).find(
+    (im) => (im.getAttribute("alt") || "").toLowerCase() === String(book?.title || "").toLowerCase()
+  );
+  if (coverImg) {
+    // urcăm până la containerul flex care ține coperta față + spate
+    let covers = coverImg.parentElement;
+    while (covers && getComputedStyle(covers).display !== "flex") {
+      covers = covers.parentElement;
+    }
+    if (covers) {
+      covers.classList.add("covers");
+      // punem .coverBox pe div-urile copil (față/spate)
+      Array.from(covers.children).forEach((c) => {
+        if (c.tagName === "DIV") c.classList.add("coverBox");
+      });
+    }
+
+    // găsim containerul mare care e grid (2 coloane) și îi punem .book-grid-2
+    let grid = covers ? covers.parentElement : coverImg.parentElement;
+    while (grid && getComputedStyle(grid).display !== "grid") {
+      grid = grid.parentElement;
+    }
+    if (grid) grid.classList.add("book-grid-2");
+  }
+} catch {}
+
+
     // 2️⃣ Mutăm panelul nou sub „Citește un fragment”
     const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find(
       (el) => (el.textContent || "").trim().startsWith("📖 Citește un fragment")
@@ -134,13 +165,12 @@ export default function BookDetailWithPurchase() {
     <div>
       {/* CSS injectat — responsive + related */}
       <style>{`
+        /* marcăm containerul de grid al paginii de carte (îi punem clasa prin JS mai jos) */
         @media (max-width: 640px) {
-          .book-grid-2 {
-            display: block !important;
-          }
+          .book-grid-2 { display: block !important; }
         }
         
-        /* containerul coperților */
+        /* marchează coloana cu coperți (clasă injectată din JS) */
         .covers {
           display: flex;
           flex-direction: column;
@@ -151,49 +181,49 @@ export default function BookDetailWithPurchase() {
           .covers .coverBox { flex: 1 1 0; max-width: 50%; }
         }
         
-        /* ambele boxuri de copertă au același raport și overflow ascuns */
+        /* ambele boxuri: raport 2:3 și overflow ascuns */
         .covers .coverBox {
-          aspect-ratio: 2 / 3;       /* ← asigură înălțime și pentru coperta spate */
+          aspect-ratio: 2 / 3;
           min-width: 0;
           border-radius: 12px;
           overflow: hidden;
         }
         
-        /* ambele imagini se întind corect în box */
-        .covers img,
-        .coverBox .imgFit {
+        /* ambele imagini din boxuri: fill corect */
+        .covers .coverBox img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
         }
         
-        /* related: carduri mai mici, fără bordură, imagine întreagă, text centrat */
-        .related-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          gap: 16px;
+        /* related: carduri mai înguste, fără chenar, text centrat */
+        .related-grid{
+          display:grid;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
+          gap:16px;
+          justify-content:center;
         }
-        .related-card {
-          text-decoration: none;
-          color: inherit;
-          border: 0;                               /* fără chenarul “tăios” */
-          border-radius: 12px;
-          overflow: hidden;
-          background: #fff;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        .related-card{
+          text-decoration:none;
+          color:inherit;
+          border:0;
+          border-radius:12px;
+          overflow:hidden;
+          background:#fff;
+          box-shadow:0 4px 12px rgba(0,0,0,.08);
+          max-width:220px;            /* ← mai înguste pe rând */
+          margin:0 auto;              /* centrate */
         }
-        .related-card > div:last-child {           /* containerul de text */
-          padding: 12px;
-          text-align: center;                      /* titlu/subtitlu pe centru */
+        .related-card > div:last-child{ padding:12px; text-align:center; }
+        .related-coverWrap{
+          background:#f8f3ea;
+          display:grid;
+          place-items:center;
+          height:160px;
+          padding:12px;
         }
-        .related-coverWrap {
-          background: #f8f3ea;
-          display: grid;
-          place-items: center;
-          height: 160px;
-          padding: 12px;
-        }
+        
         
       `}</style>
 
