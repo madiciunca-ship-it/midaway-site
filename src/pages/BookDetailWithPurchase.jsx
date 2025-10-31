@@ -44,86 +44,135 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
- // 4) asigurăm coperțile pe mobil (retry + observer + fallback injectat)
-function applyCovers() {
-  const titleLc = String(book?.title || "").toLowerCase();
-  // 4.a găsim o imagine de copertă din pagină (după alt sau src)
-  const imgs = Array.from(document.images);
-  let coverImg =
-    imgs.find((im) => (im.getAttribute("alt") || "").toLowerCase() === titleLc) ||
-    imgs.find((im) => (im.src || "").includes(book?.coverUrl || ""));
-
-  if (!coverImg) return false;
-
-  // urcăm până la containerul flex (cel cu coperta față/spate)
-  let covers = coverImg.parentElement;
-  while (covers && getComputedStyle(covers).display !== "flex") {
-    covers = covers.parentElement;
-  }
-  // grila 2 coloane
-  let grid = covers ? covers.parentElement : coverImg.parentElement;
-  while (grid && getComputedStyle(grid).display !== "grid") {
-    grid = grid.parentElement;
-  }
-
-  if (covers) {
-    covers.classList.add("covers");
-    Array.from(covers.children).forEach((c) => {
-      if (c.tagName === "DIV") c.classList.add("coverBox");
-    });
-  }
-  if (grid) grid.classList.add("book-grid-2");
-
-  // 4.b fallback: pe mobil, dacă NU avem containerul covers,
-  // injectăm un bloc cu cele 2 imagini (față/spate) la începutul grilei
-  if (window.innerWidth <= 640 && grid && !document.querySelector(".injected-covers")) {
-    if (!covers) {
-      const wrap = document.createElement("div");
-      wrap.className = "covers injected-covers";
-      // box 1 – față
-      const box1 = document.createElement("div");
-      box1.className = "coverBox";
-      const img1 = document.createElement("img");
-      img1.src = book?.coverUrl || book?.cover || "";
-      img1.alt = book?.title || "Cover";
-      img1.loading = "lazy";
-      box1.appendChild(img1);
-      wrap.appendChild(box1);
-      // box 2 – spate (dacă există)
-      if (book?.extraImage) {
-        const box2 = document.createElement("div");
-        box2.className = "coverBox";
-        const img2 = document.createElement("img");
-        img2.src = book.extraImage;
-        img2.alt = "Coperta spate";
-        img2.loading = "lazy";
-        box2.appendChild(img2);
-        wrap.appendChild(box2);
+    // 4) asigurăm coperțile pe mobil (retry + observer + fallback injectat)
+    function applyCovers() {
+      // dacă deja am blocul randat de noi pe mobil, considerăm că e ok
+      if (window.innerWidth <= 640 && document.querySelector(".mobile-covers")) {
+        return true;
       }
-      grid.insertAdjacentElement("afterbegin", wrap);
+
+      const titleLc = String(book?.title || "").toLowerCase();
+      // 4.a găsim o imagine de copertă din pagină (după alt sau src)
+      const imgs = Array.from(document.images);
+      let coverImg =
+        imgs.find((im) => (im.getAttribute("alt") || "").toLowerCase() === titleLc) ||
+        imgs.find((im) => (im.src || "").includes(book?.coverUrl || ""));
+
+      if (!coverImg) return false;
+
+      // urcăm până la containerul flex (cel cu coperta față/spate)
+      let covers = coverImg.parentElement;
+      while (covers && getComputedStyle(covers).display !== "flex") {
+        covers = covers.parentElement;
+      }
+      // grila 2 coloane
+      let grid = covers ? covers.parentElement : coverImg.parentElement;
+      while (grid && getComputedStyle(grid).display !== "grid") {
+        grid = grid.parentElement;
+      }
+
+      if (covers) {
+        covers.classList.add("covers");
+        Array.from(covers.children).forEach((c) => {
+          if (c.tagName === "DIV") c.classList.add("coverBox");
+        });
+      }
+      if (grid) grid.classList.add("book-grid-2");
+
+      // 4.b fallback: pe mobil injectăm coperțile dacă lipsesc
+      if (window.innerWidth <= 640 && grid && !document.querySelector(".injected-covers")) {
+        if (!covers) {
+          const wrap = document.createElement("div");
+          wrap.className = "covers injected-covers";
+          // box 1 – față
+          const box1 = document.createElement("div");
+          box1.className = "coverBox";
+          const img1 = document.createElement("img");
+          img1.src = book?.coverUrl || book?.cover || "";
+          img1.alt = book?.title || "Cover";
+          img1.loading = "lazy";
+          box1.appendChild(img1);
+          wrap.appendChild(box1);
+          // box 2 – spate (dacă există)
+          if (book?.extraImage) {
+            const box2 = document.createElement("div");
+            box2.className = "coverBox";
+            const img2 = document.createElement("img");
+            img2.src = book.extraImage;
+            img2.alt = "Coperta spate";
+            img2.loading = "lazy";
+            box2.appendChild(img2);
+            wrap.appendChild(box2);
+          }
+          grid.insertAdjacentElement("afterbegin", wrap);
+        }
+      }
+
+      return true;
     }
-  }
 
-  return true;
-}
+    // încercăm acum…
+    let ok = applyCovers();
 
-// încercăm acum…
-let ok = applyCovers();
+    // dacă nu am prins încă DOM-ul, mai încercăm de câteva ori
+    let tries = 0;
+    const iv = setInterval(() => {
+      if (ok || tries > 6) return clearInterval(iv);
+      ok = applyCovers();
+      tries++;
+    }, 150);
 
-// dacă nu am prins încă DOM-ul, mai încercăm de câteva ori
-let tries = 0;
-const iv = setInterval(() => {
-  if (ok || tries > 6) return clearInterval(iv);
-  ok = applyCovers();
-  tries++;
-}, 150);
+    // observer – dacă se mai montează noduri târziu
+    const mo = new MutationObserver(() => {
+      if (applyCovers()) mo.disconnect();
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
 
-// observer – dacă se mai montează noduri târziu
-const mo = new MutationObserver(() => {
-  if (applyCovers()) mo.disconnect();
-});
-mo.observe(document.body, { childList: true, subtree: true });
+    // ——— Fallback garantat pe mobil (varianta 2): dacă încă NU avem coperți,
+    // injectăm chiar sub <h1> (vizibil mereu)
+    if (window.innerWidth <= 640) {
+      const already = document.querySelector(".injected-covers");
+      const hasOriginalCovers = document.querySelector(".covers, .coverBox");
 
+      if (!already && !hasOriginalCovers && (book?.coverUrl || book?.cover)) {
+        const h1 = Array.from(document.querySelectorAll("h1")).find((el) =>
+          (el.textContent || "")
+            .trim()
+            .toLowerCase()
+            .includes(String(book?.title || "").toLowerCase().slice(0, 8))
+        );
+
+        const anchor = h1 ? h1.nextElementSibling : null;
+        if (anchor && anchor.parentElement) {
+          const wrap = document.createElement("div");
+          wrap.className = "injected-covers";
+
+          // față
+          const box1 = document.createElement("div");
+          box1.className = "coverBox";
+          const img1 = document.createElement("img");
+          img1.src = book?.coverUrl || book?.cover || "";
+          img1.alt = book?.title || "Cover";
+          img1.loading = "lazy";
+          box1.appendChild(img1);
+          wrap.appendChild(box1);
+
+          // spate (opțional)
+          if (book?.extraImage) {
+            const box2 = document.createElement("div");
+            box2.className = "coverBox";
+            const img2 = document.createElement("img");
+            img2.src = book.extraImage;
+            img2.alt = "Coperta spate";
+            img2.loading = "lazy";
+            box2.appendChild(img2);
+            wrap.appendChild(box2);
+          }
+
+          anchor.parentElement.insertBefore(wrap, anchor);
+        }
+      }
+    }
 
     // 2️⃣ Mutăm panelul nou sub „Citește un fragment”
     const fragmentBtn = Array.from(document.querySelectorAll("a, button")).find(
@@ -180,8 +229,8 @@ mo.observe(document.body, { childList: true, subtree: true });
         if (column) column.classList.add("covers");
         coversColumn?.classList.add("coverBox");
 
-        const backImg = Array.from(column?.querySelectorAll("img") || []).find(
-          (i) => (i.alt || "").toLowerCase().includes("coperta spate")
+        const backImg = Array.from(column?.querySelectorAll("img") || []).find((i) =>
+          (i.alt || "").toLowerCase().includes("coperta spate")
         );
         if (backImg) backImg.closest("div")?.classList.add("coverBox");
       }
@@ -262,8 +311,8 @@ mo.observe(document.body, { childList: true, subtree: true });
           overflow:hidden;
           background:#fff;
           box-shadow:0 4px 12px rgba(0,0,0,.08);
-          max-width:220px;            /* ← mai înguste pe rând */
-          margin:0 auto;              /* centrate */
+          max-width:220px;
+          margin:0 auto;
         }
         .related-card > div:last-child{ padding:12px; text-align:center; }
         .related-coverWrap{
@@ -273,10 +322,58 @@ mo.observe(document.body, { childList: true, subtree: true });
           height:160px;
           padding:12px;
         }
-        
-        
       `}</style>
 
+      {/* stil + bloc coperți randate direct de noi – DOAR pe mobil */}
+      <style>{`
+        @media (min-width: 641px) {
+          .mobile-covers { display: none; }
+        }
+        @media (max-width: 640px) {
+          .mobile-covers {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0 8px 0;
+            justify-content: center;
+          }
+          .mobile-covers .coverBox {
+            flex: 1 1 0;
+            max-width: 50%;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f9f9f9;
+          }
+          .mobile-covers img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+        }
+      `}</style>
+
+      {book && (
+        <div className="mobile-covers" aria-hidden={typeof window !== "undefined" && window.innerWidth > 640 ? "true" : "false"}>
+          <div className="coverBox">
+            <img
+              src={book.coverUrl || book.cover || ""}
+              alt={book.title || "Copertă"}
+              loading="lazy"
+            />
+          </div>
+          {book.extraImage && (
+            <div className="coverBox">
+              <img
+                src={book.extraImage}
+                alt="Coperta spate"
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* componenta originală – rămâne neatinsă */}
       <BookDetail />
 
       {/* panelul e randat la final, apoi mutat sub „Citește un fragment” */}
