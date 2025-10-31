@@ -44,35 +44,85 @@ export default function BookDetailWithPurchase() {
     hideBlocks("🛒 Cumpără Paperback");
     hideBlocks("🎧 Audiobook");
 
-    // 4) injectăm clase pe structura existentă ca să putem stiliza pe mobil,
-// fără să atingem BookDetail.jsx
-try {
-  // găsim o imagine de copertă din pagină
-  const coverImg = Array.from(document.images).find(
-    (im) => (im.getAttribute("alt") || "").toLowerCase() === String(book?.title || "").toLowerCase()
-  );
-  if (coverImg) {
-    // urcăm până la containerul flex care ține coperta față + spate
-    let covers = coverImg.parentElement;
-    while (covers && getComputedStyle(covers).display !== "flex") {
-      covers = covers.parentElement;
-    }
-    if (covers) {
-      covers.classList.add("covers");
-      // punem .coverBox pe div-urile copil (față/spate)
-      Array.from(covers.children).forEach((c) => {
-        if (c.tagName === "DIV") c.classList.add("coverBox");
-      });
-    }
+ // 4) asigurăm coperțile pe mobil (retry + observer + fallback injectat)
+function applyCovers() {
+  const titleLc = String(book?.title || "").toLowerCase();
+  // 4.a găsim o imagine de copertă din pagină (după alt sau src)
+  const imgs = Array.from(document.images);
+  let coverImg =
+    imgs.find((im) => (im.getAttribute("alt") || "").toLowerCase() === titleLc) ||
+    imgs.find((im) => (im.src || "").includes(book?.coverUrl || ""));
 
-    // găsim containerul mare care e grid (2 coloane) și îi punem .book-grid-2
-    let grid = covers ? covers.parentElement : coverImg.parentElement;
-    while (grid && getComputedStyle(grid).display !== "grid") {
-      grid = grid.parentElement;
-    }
-    if (grid) grid.classList.add("book-grid-2");
+  if (!coverImg) return false;
+
+  // urcăm până la containerul flex (cel cu coperta față/spate)
+  let covers = coverImg.parentElement;
+  while (covers && getComputedStyle(covers).display !== "flex") {
+    covers = covers.parentElement;
   }
-} catch {}
+  // grila 2 coloane
+  let grid = covers ? covers.parentElement : coverImg.parentElement;
+  while (grid && getComputedStyle(grid).display !== "grid") {
+    grid = grid.parentElement;
+  }
+
+  if (covers) {
+    covers.classList.add("covers");
+    Array.from(covers.children).forEach((c) => {
+      if (c.tagName === "DIV") c.classList.add("coverBox");
+    });
+  }
+  if (grid) grid.classList.add("book-grid-2");
+
+  // 4.b fallback: pe mobil, dacă NU avem containerul covers,
+  // injectăm un bloc cu cele 2 imagini (față/spate) la începutul grilei
+  if (window.innerWidth <= 640 && grid && !document.querySelector(".injected-covers")) {
+    if (!covers) {
+      const wrap = document.createElement("div");
+      wrap.className = "covers injected-covers";
+      // box 1 – față
+      const box1 = document.createElement("div");
+      box1.className = "coverBox";
+      const img1 = document.createElement("img");
+      img1.src = book?.coverUrl || book?.cover || "";
+      img1.alt = book?.title || "Cover";
+      img1.loading = "lazy";
+      box1.appendChild(img1);
+      wrap.appendChild(box1);
+      // box 2 – spate (dacă există)
+      if (book?.extraImage) {
+        const box2 = document.createElement("div");
+        box2.className = "coverBox";
+        const img2 = document.createElement("img");
+        img2.src = book.extraImage;
+        img2.alt = "Coperta spate";
+        img2.loading = "lazy";
+        box2.appendChild(img2);
+        wrap.appendChild(box2);
+      }
+      grid.insertAdjacentElement("afterbegin", wrap);
+    }
+  }
+
+  return true;
+}
+
+// încercăm acum…
+let ok = applyCovers();
+
+// dacă nu am prins încă DOM-ul, mai încercăm de câteva ori
+let tries = 0;
+const iv = setInterval(() => {
+  if (ok || tries > 6) return clearInterval(iv);
+  ok = applyCovers();
+  tries++;
+}, 150);
+
+// observer – dacă se mai montează noduri târziu
+const mo = new MutationObserver(() => {
+  if (applyCovers()) mo.disconnect();
+});
+mo.observe(document.body, { childList: true, subtree: true });
 
 
     // 2️⃣ Mutăm panelul nou sub „Citește un fragment”
