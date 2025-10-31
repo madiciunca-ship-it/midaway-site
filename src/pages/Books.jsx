@@ -3,6 +3,9 @@ import React, { useMemo, useState } from "react";
 import { BOOKS } from "../data/books";
 import { Link } from "react-router-dom";
 
+const CARD_BG = "#fffef9"; // aceeași culoare ca background-ul cardului
+
+
 const Tag = ({ children }) => (
   <span
     style={{
@@ -117,6 +120,13 @@ export default function Books() {
           </button>
         </div>
 
+        <style>{`
+  @media (max-width: 640px){
+    .coverH{ height: 360px; }    /* mai mică pe mobil */
+  }
+`}</style>
+
+
         <div style={{ display: "flex", gap: 8 }}>
           <input
             value={q}
@@ -205,29 +215,33 @@ export default function Books() {
 
                 {/* Imagine */}
                 <Link to={`/carti/${book.id}`} style={{ display: "block" }}>
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "3/4",
-                      overflow: "hidden",
-                      borderRadius: 12,
-                      background: "#f3f3f3",
-                    }}
-                  >
-                    <img
-                      src={book.coverUrl}
-                      alt={book.title}
-                      loading="lazy"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-            
-                        display: "block",
-                      }}
-                    />
-                  </div>
-                </Link>
+  <div
+    className="coverH"
+    style={{
+      height: 420,              // înălțime fixă => layout constant și curat
+      background: CARD_BG,      // același fundal ca al cardului => rama devine invizibilă
+      borderRadius: 16,         // păstrăm rotunjirea DOAR pe containerul cardului
+      display: "grid",
+      placeItems: "center",
+    }}
+  >
+    <img
+      src={book.coverUrl}
+      alt={book.title}
+      loading="lazy"
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        width: "auto",
+        height: "auto",
+        display: "block",
+        borderRadius: 0,        // coperta dreptunghiulară, fără colțuri rotunjite
+        background: CARD_BG,
+      }}
+    />
+  </div>
+</Link>
+
 
                 {/* Gen + locație */}
                 <div
