@@ -148,7 +148,7 @@ export default function Books() {
         </div>
       </div>
 
-      {/* Grid cărți */}
+                  {/* Grid cărți */}
       <div
         style={{
           marginTop: 12,
@@ -158,127 +158,177 @@ export default function Books() {
           alignItems: "start",
         }}
       >
-        {filtered.map((book, i) => (
-          <div
-            key={book.id}
-            style={{
-              padding: 16,
-              border: "1px solid #ddd",
-              borderRadius: 16,
-              background: "#fffef9",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-              transition: "transform 0.2s",
-            }}
-          >
-            {/* Imagine */}
-            <Link to={`/carti/${book.id}`} style={{ display: "block" }}>
+        {[...filtered]
+          .sort((a, b) =>
+            String(b.year || "").localeCompare(String(a.year || ""))
+          ) // cele mai noi primele
+          .map((book, i) => {
+            const isNew = i < 2; // badge „NOU” pe primele 2 rezultate
+            return (
               <div
+                key={book.id}
                 style={{
-                  width: "100%",
-                  aspectRatio: "3/4",
-                  overflow: "hidden",
-                  borderRadius: 12,
-                  background: "#f3f3f3",
+                  position: "relative",
+                  padding: 16,
+                  border: "1px solid #ddd",
+                  borderRadius: 16,
+                  background: "#fffef9",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                  transition: "transform 0.2s",
                 }}
               >
-                <img
-                  src={book.coverUrl}
-                  alt={book.title}
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
-              </div>
-            </Link>
+                {isNew && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: 10,
+                      right: 10,
+                      background: "#d04b49",
+                      color: "#fff",
+                      fontWeight: 700,
+                      padding: "3px 10px",
+                      borderRadius: 999,
+                      fontSize: 12,
+                      boxShadow: "0 4px 14px rgba(0,0,0,.12)",
+                    }}
+                  >
+                    NOU
+                  </span>
+                )}
 
-            {/* Gen + locație */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              {book.genre && <Tag>{book.genre}</Tag>}
-              {book.location && <Tag>📍 {book.location}</Tag>}
-            </div>
-
-            {/* Titlu + Autor */}
-            <div>
-              <h2 style={{ margin: "4px 0 0 0", fontSize: 18 }}>
-                <Link to={`/carti/${book.id}`} style={{ color: "inherit", textDecoration: "none" }}>
-                  {book.title}
+                {/* Imagine */}
+                <Link to={`/carti/${book.id}`} style={{ display: "block" }}>
+                  <div
+                    style={{
+                      width: "100%",
+                      aspectRatio: "3/4",
+                      overflow: "hidden",
+                      borderRadius: 12,
+                      background: "#f3f3f3",
+                    }}
+                  >
+                    <img
+                      src={book.coverUrl}
+                      alt={book.title}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  </div>
                 </Link>
-              </h2>
-              {book.author && (
-                <p style={{ margin: 0, fontSize: 14, color: "#444" }}>{book.author}</p>
-              )}
-              {book.year && (
-                <p style={{ margin: "4px 0", fontSize: 13, color: "#888" }}>
-                  {book.year} • {book.publisher}
-                </p>
-              )}
-            </div>
 
-            {/* Subtitlu */}
-            {book.subtitle && (
-              <p style={{ margin: 0, color: "#666", fontSize: 14 }}>{book.subtitle}</p>
-            )}
-
-            {/* Butoane */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 10 }}>
-              {book.sampleUrl && (
-                <a
-                  href={book.sampleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* Gen + locație */}
+                <div
                   style={{
-                    textAlign: "center",
-                    padding: "10px 12px",
-                    borderRadius: 10,
-                    background: "#d4a017",
-                    color: "#fff",
-                    textDecoration: "none",
-                    fontSize: 14,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    flexWrap: "wrap",
                   }}
                 >
-                  📖 Citește un fragment
-                </a>
-              )}
+                  {book.genre && <Tag>{book.genre}</Tag>}
+                  {book.location && <Tag>📍 {book.location}</Tag>}
+                </div>
 
-              <Link
-                to={`/carti/${book.id}`}
-                style={{
-                  textAlign: "center",
-                  padding: "10px 12px",
-                  borderRadius: 10,
-                  background: "#2a9d8f",
-                  color: "#fff",
-                  textDecoration: "none",
-                  fontSize: 14,
-                }}
-              >
-                🛒 Cumpără
-              </Link>
+                {/* Titlu + Autor */}
+                <div>
+                  <h2 style={{ margin: "4px 0 0 0", fontSize: 18 }}>
+                    <Link
+                      to={`/carti/${book.id}`}
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      {book.title}
+                    </Link>
+                  </h2>
+                  {book.author && (
+                    <p style={{ margin: 0, fontSize: 14, color: "#444" }}>
+                      {book.author}
+                    </p>
+                  )}
+                  {book.year && (
+                    <p style={{ margin: "4px 0", fontSize: 13, color: "#888" }}>
+                      {book.year} • {book.publisher}
+                    </p>
+                  )}
+                </div>
 
-              <span
-                style={{
-                  textAlign: "center",
-                  padding: "10px 12px",
-                  borderRadius: 10,
-                  border: "1px dashed #ccc",
-                  background: "#f9f9f9",
-                  color: "#aaa",
-                  fontSize: 14,
-                }}
-              >
-                🎧 Audiobook – în curând
-              </span>
-            </div>
-          </div>
-        ))}
+                {/* Subtitlu */}
+                {book.subtitle && (
+                  <p style={{ margin: 0, color: "#666", fontSize: 14 }}>
+                    {book.subtitle}
+                  </p>
+                )}
+
+                {/* Butoane */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 8,
+                    marginTop: 10,
+                  }}
+                >
+                  {book.sampleUrl && (
+                    <a
+                      href={book.sampleUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        textAlign: "center",
+                        padding: "10px 12px",
+                        borderRadius: 10,
+                        background: "#d4a017",
+                        color: "#fff",
+                        textDecoration: "none",
+                        fontSize: 14,
+                      }}
+                    >
+                      📖 Citește un fragment
+                    </a>
+                  )}
+
+                  <Link
+                    to={`/carti/${book.id}`}
+                    style={{
+                      textAlign: "center",
+                      padding: "10px 12px",
+                      borderRadius: 10,
+                      background: "#2a9d8f",
+                      color: "#fff",
+                      textDecoration: "none",
+                      fontSize: 14,
+                    }}
+                  >
+                    🛒 Cumpără
+                  </Link>
+
+                  <span
+                    style={{
+                      textAlign: "center",
+                      padding: "10px 12px",
+                      borderRadius: 10,
+                      border: "1px dashed #ccc",
+                      background: "#f9f9f9",
+                      color: "#aaa",
+                      fontSize: 14,
+                    }}
+                  >
+                    🎧 Audiobook – în curând
+                  </span>
+                </div>
+                </div>
+            );
+          })}
       </div>
     </div>
   );
 }
+
+             
