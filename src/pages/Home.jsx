@@ -95,17 +95,20 @@ export default function Home() {
           >
             „Cărți care pornesc la drum”
           </p>
+          <p style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}>
+  Editură independentă • print & digital • ro / en • atenție la editare & design
+</p>
+
           <p
             style={{
               maxWidth: 720,
               margin: "24px auto 0",
-              fontSize: 20,
+              fontSize: 22,
               lineHeight: 1.6,
             }}
           >
             Midaway este o editură independentă. Publicăm literatură de
-            călătorie, jurnale și eseuri care inspiră și aduc oamenii
-            împreună.
+            călătorie, jurnale și eseuri care inspiră, dau curaj, pun întrebări și creează legături.
           </p>
 
           <div style={{ marginTop: 24 }}>
@@ -134,44 +137,48 @@ export default function Home() {
               Cărți
             </h3>
             <p style={{ margin: 0 }}>
-              Literatură vie — jurnale, eseuri, povești adevărate.
+            Literatură de călătorie, jurnale și eseuri poetice.
             </p>
           </Link>
 
-          {/* BLOG */}
-          <Link
-            to="/blog"
-            className="card"
-            style={{
-              background: "var(--card2)",
-              color: "#fff",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-              Blog
-            </h3>
-            <p style={{ margin: 0 }}>Gânduri, texte, fragmente de drum.</p>
-          </Link>
+          {/* AUTORI (din Viziune) */}
+<Link
+  to="/proiecte/autori"
+  className="card"
+  style={{
+    background: "var(--card2)",
+    color: "#fff",
+    textDecoration: "none",
+    cursor: "pointer",
+  }}
+>
+  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+    Autori
+  </h3>
+  <p style={{ margin: 0 }}>
+    Vocile independente care scriu lumea.
+  </p>
+</Link>
 
-          {/* IMPLICĂ-TE (în loc de Voluntariat) */}
-          <Link
-            to="/proiecte"
-            className="card"
-            style={{
-              background: "var(--card3)",
-              color: "inherit",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-              Implică-te
-            </h3>
-            <p style={{ margin: 0 }}>Colaborări, parteneriate, comunitate.</p>
-          </Link>
-        </div>
+{/* CĂLĂTORI */}
+<Link
+  to="/calatori"
+  className="card"
+  style={{
+    background: "var(--card3)",
+    color: "inherit",
+    textDecoration: "none",
+    cursor: "pointer",
+  }}
+>
+  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+    Călători
+  </h3>
+  <p style={{ margin: 0 }}>
+    Povești reale, interviuri, galerie de drum.
+  </p>
+</Link>
+</div>
       </div>
 
       {/* BANNER ROTATIV */}
