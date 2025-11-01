@@ -266,6 +266,108 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
 
     payLink: null,
   },
+  // ————————————————————————————————————————————————
+// TEMPLATE (invizibil) — RO
+// ————————————————————————————————————————————————
+{
+  id: "model-ro-slug",                 // ← schimbă-l (folosește doar litere/cifre/cratime)
+  addedAt: "2025-11-01T00:00:00Z",     // ISO string (opțional)
+  lang: "RO",
+  currency: "RON",
+
+  title: "Titlu carte (RO)",
+  subtitle: "Subtitlu",
+  author: "Mida-Malena",
+  genre: "Travel",                     // un singur gen; pune extra în `tags`
+  location: "Locație",
+  year: 2025,
+  publisher: "Midaway Publishing House",
+
+  formatDetails: {
+    ebook:     { pages: null, isbn: "" },
+    paperback: { pages: null, isbn: "", dimensions: "", weight: "" },
+    // audiobook: { minutes: null, narrator: "" }
+  },
+
+  coverUrl: "/assets/books/cover-nou.png",
+  extraImage: "/assets/books/back-nou.png",
+
+  sampleUrl: "#",
+
+  tags: ["memoir", "travel", "authentic"],
+  format: "eBook",
+
+  // chei UPPERCASE (UI + server)
+  prices: { PDF: 0, EPUB: 0, PAPERBACK: 0, AUDIOBOOK: 0 },
+  availability: { PDF: false, EPUB: false, PAPERBACK: false, AUDIOBOOK: false },
+
+  // doar pentru digitale
+  files: {
+    PDF:  "",
+    EPUB: ""
+  },
+
+  description: `Descriere RO…`,
+  hidden: true
+},
+// ————————————————————————————————————————————————
+// TEMPLATE (invizibil) — EN (cu Amazon)
+// ————————————————————————————————————————————————
+{
+  id: "model-en-slug",                 // ← schimbă-l (litere/cifre/cratime)
+  addedAt: "2025-11-01T00:00:00Z",
+  lang: "EN",
+  currency: "EUR",
+
+  title: "Book Title (EN)",
+  subtitle: "Subtitle",
+  author: "Mida-Malena",
+  genre: "Travel",
+  location: "Location",
+  year: 2025,
+  publisher: "Independent Publisher Mida Malena",
+
+  formatDetails: {
+    ebook:     { pages: null, isbn: "" },
+    paperback: { pages: null, isbn: "", dimensions: "", weight: "" },
+    // audiobook: { minutes: null, narrator: "" }
+  },
+
+  coverUrl: "/assets/books/new-cover.png",
+  extraImage: "/assets/books/new-back.png",
+
+  sampleUrl: "#",
+
+  tags: ["memoir", "travel", "authentic"],
+  format: "eBook",
+
+  prices: { PDF: 0, EPUB: 0, PAPERBACK: 0, AUDIOBOOK: 0 },
+  availability: { PDF: false, EPUB: false, PAPERBACK: false, AUDIOBOOK: false },
+
+  files: {
+    PDF:  "",
+    EPUB: ""
+  },
+
+  // vânzare externă – apare butonul „Buy on Amazon”
+  vendors: {
+    amazon: {
+      url: "",                    // ← pune linkul Amazon când e gata
+      label: "Amazon",
+      visible: true,
+      priceLabel: "Price on Amazon" // (opțional) textul care apare la preț
+    },
+    // partener opțional (ascuns până îl pornești)
+    partnerX: {
+      url: "",
+      label: "Distributor",
+      visible: false
+    }
+  },
+
+  description: `EN description…`,
+  hidden: true
+},
 ];
 
 // Export opțional: listă standard pentru UI
