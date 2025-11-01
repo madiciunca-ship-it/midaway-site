@@ -76,3 +76,7 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+.font-cormorant {
+  font-family: "Cormorant Garamond", Cormorant, serif;
+}
+
