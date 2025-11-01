@@ -2,6 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+const SERVICE_IMAGE = "/assets/services/default-service.png"; // schimbă dacă ai alt path
+
 
 // 👇 definim aici serviciile (poți modifica liber)
 const SERVICES = [
@@ -81,6 +83,7 @@ export default function Servicii() {
       currency: svc.currency || "RON",
       qty: 1,
       fulfillment: "service", // 👈 important pt. mesajul legal din Checkout
+      image: SERVICE_IMAGE,       // 👈 ca să nu mai „clipocescă” coșul
     });
   };
 
@@ -110,10 +113,10 @@ export default function Servicii() {
             fontSize: 18,
           }}
         >
-          Lucrăm 1:1, cu ritm și claritate. Te ajutăm să-ți definești direcția,
+          Lucrăm fiecare proiect individual, cu ritm și claritate. Te ajutăm să-ți definești direcția,
           să-ți rafinezi mesajul și să ajungi la o versiune finală demnă de
           publicare (eBook și/sau paperback). Dacă nu ești sigur(ă) de unde
-          să începi, alege <strong>consultanța editorială</strong> — e cel
+          să începi, alege <strong>consultanța editorială</strong> – e cel
           mai bun prim pas.
         </p>
 
