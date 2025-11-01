@@ -4,20 +4,44 @@ import { Link } from "react-router-dom";
 
 export default function PoliticaDescarcare() {
   return (
-    <div style={{ padding: 24, maxWidth: 860, margin: "0 auto" }}>
-      <h1>Politica de descărcare eBook</h1>
+    <div className="legal doc">
+      {/* stiluri identice cu celelalte pagini legale */}
+      <style>{`
+        .doc{
+          padding:24px;
+          max-width:860px;
+          margin:0 auto;
+          line-height:1.75;
+          color:#222;
+          font-family: Georgia, "Times New Roman", serif;
+          font-size:18px;
+        }
+        .doc h1{
+          font-size:42px;
+          line-height:1.2;
+          margin:0 0 8px 0;
+        }
+        .doc h2, .doc h3{
+          font-size:28px;
+          margin:28px 0 8px 0;
+        }
+        .doc p{ margin:12px 0; }
+        .doc a{ color:#7a1b1b; text-decoration:none; }
+        .doc a:hover{ text-decoration:underline; }
+        .doc .muted{ font-size:14px; color:#555; margin:0 0 12px 0; }
+        .doc strong{ font-weight:700; }
+        .doc ul{ padding-left:20px; }
+      `}</style>
 
-      <p style={{ fontSize: 14, color: "#555" }}>
-        Ultima actualizare: 01.11.2025
-      </p>
+      <h1>Politica de descărcare eBook</h1>
+      <p className="muted">Ultima actualizare: 01.11.2025</p>
 
       <p>
         Prezenta Politică descrie modul în care{" "}
         <strong>Midaway Publishing House S.R.L.</strong> („noi”) gestionează
         livrarea produselor digitale (eBook-uri, audiobook-uri și alte
         materiale electronice) prin intermediul site-ului{" "}
-        <strong>midaway.ro</strong> /{" "}
-        <strong>midaway.vercel.app</strong> („Site-ul”).
+        <strong>midaway.ro</strong> / <strong>midaway.vercel.app</strong> („Site-ul”).
       </p>
 
       <h3>1. Livrarea produselor digitale</h3>
@@ -61,8 +85,7 @@ export default function PoliticaDescarcare() {
           Cocorăștii-Colț, Calea București, Nr. 31, Județ Prahova
         </strong>
         <br />
-        E-mail:{" "}
-        <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>
+        E-mail: <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>
         <br />
         Banca Transilvania – IBAN:{" "}
         <strong>
