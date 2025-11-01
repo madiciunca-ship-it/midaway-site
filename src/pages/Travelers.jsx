@@ -134,14 +134,14 @@ export default function Travelers() {
           <span role="img" aria-label="bag"></span>{" "}
           {lang === "en" ? "Travelers & Journeys" : "Călători & Călătorii"}
         </h1>
-        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+        <p style={{ color: "var(--secondary)", marginTop: 8, fontSize: 18 }}>
           {lang === "en"
             ? "Independent voices we publish – people first, then books."
             : "Vocile independente pe care le publicăm – întâi oamenii, apoi cărțile."}
         </p>
 
         {/* textul lung */}
-        <div style={{ color: "#222", fontSize: 18 }}>
+        <div style={{ color: "#222", lineHeight: 1.8, fontSize: 18 }}>
           {lang === "en" ? INTRO_EN : INTRO_RO}
         </div>
 
