@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 // 👇 cart context + drawer
 import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer.jsx";
+import { Link } from "react-router-dom";
+
 
 // 👇 flags
 import { SITE_FLAGS } from "../config";
@@ -20,6 +22,7 @@ const navItems = [
   { label: "Multimedia", to: "/multimedia" },
   { label: "Donații", to: "/donatii" },
   { label: "Sponsorizări", to: "/sponsorizari" },
+  { label: "Servicii", to: "/servicii" },
   { label: "Despre", to: "/despre" },
   { label: "Contact", to: "/contact" },
 ];
