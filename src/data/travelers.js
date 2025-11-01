@@ -112,18 +112,18 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
     
       ro: {
         intro: `Am cunoscut-o pe Yulia întâmplător. Eram pe Coasta Amalfi, în Italia – am aflat mai târziu că Italia e locul ei preferat din lume. Nu aveam de gând să stau mult prin zonă, așa că, pe moment, am decis să merg către un loc mai liniștit, mai puțin vizitat de turiști: Ravello.
-    A fost o decizie de o secundă. Dacă n-aș fi luat-o, nu aș fi întâlnit-o niciodată pe Yulia.
+A fost o decizie de o secundă. Dacă n-aș fi luat-o, nu aș fi întâlnit-o niciodată pe Yulia.
     
-    Era cu cineva, dar povestea lor era… să spunem, puțin ciudată. Mi-a cerut un sfat, i l-am oferit, și am rămas de vorbă aproape o oră. Ne-am plimbat puțin prin Ravello, iar la întoarcere ei au coborât la o altă stație. Am crezut că nu o voi mai revedea vreodată.
+Era cu cineva, dar povestea lor era… să spunem, puțin ciudată. Mi-a cerut un sfat, i l-am oferit, și am rămas de vorbă aproape o oră. Ne-am plimbat puțin prin Ravello, iar la întoarcere ei au coborât la o altă stație. Am crezut că nu o voi mai revedea vreodată.
     
-    Dar Universul a avut alte planuri. Ne-am reîntâlnit, complet neașteptat, în Florența.
-    Am petrecut o dimineață împreună – am vizitat Basilica din centru și am mâncat croissante cu fistic pe un trotuar, așteptând să se deschidă porțile. Apoi ea a plecat, la amiază.
+Dar Universul a avut alte planuri. Ne-am reîntâlnit, complet neașteptat, în Florența.
+Am petrecut o dimineață împreună – am vizitat Basilica din centru și am mâncat croissante cu fistic pe un trotuar, așteptând să se deschidă porțile. Apoi ea a plecat, la amiază.
     
-    Ocazional, ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
+Ocazional, ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
     
-    “Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!”
+“Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!”
     
-    Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: da, este.`,
+Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: da, este.`,
         qna: [
           { q: "1. Cine ești în câteva fraze?", a: "Eram o persoană obișnuită – mergeam la birou cinci zile pe săptămână, într-o companie internațională, mă vedeam cu prietenii, petreceri vinerea... viață normală. După despărțirea de soț, am început să călătoresc ca să mă vindec și să trec peste tot ce a fost greu. Nu pot spune că am uitat totul, dar am înțeles ce iubesc cel mai mult: să merg undeva nou, să descopăr locuri, oameni și tradițiile lor." },
           { q: "2. Ce te-a împins să pleci la drum?", a: "Nu altcineva m-a împins să plec, ci eu însămi. Prima dată a fost din cauza unei despărțiri dureroase – și călătoria a devenit modul meu de a mă vindeca." },
@@ -153,21 +153,22 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
       },
     
       en: {
-        intro: `I met Yulia by chance. I was on the Amalfi Coast in Italy – later I found out that Italy is actually her favorite place in the world. I wasn’t planning to stay long in the area, so, on a whim, I decided to go somewhere quieter, less touristy: Ravello.
-    It was a split-second decision. If I hadn’t made it, I would have never met Yulia.
+        intro: 
+         `I met Yulia by chance. I was on the Amalfi Coast in Italy – later I found out that Italy is actually her favorite place in the world. I wasn’t planning to stay long in the area, so, on a whim, I decided to go somewhere quieter, less touristy: Ravello.
+It was a split-second decision. If I hadn’t made it, I would have never met Yulia.
     
-    She was with someone, though their story was… let’s say, a little complicated. She asked me for advice, I gave it, and we ended up talking for about an hour, walking through the streets of Ravello. On the way back, they got off at another stop. I thought I’d never see her again.
+She was with someone, though their story was… let’s say, a little complicated. She asked me for advice, I gave it, and we ended up talking for about an hour, walking through the streets of Ravello. On the way back, they got off at another stop. I thought I’d never see her again.
     
-    But the universe had other plans.
-    We met again, unexpectedly, in Florence.
-    We spent a morning together – visited the central Basilica and ate pistachio croissants on the sidewalk, waiting for it to open. Then she left, around noon.
+But the universe had other plans.
+We met again, unexpectedly, in Florence.
+We spent a morning together – visited the central Basilica and ate pistachio croissants on the sidewalk, waiting for it to open. Then she left, around noon.
     
-    From time to time, we still write to each other.
-    Just a few days ago, she sent me a message that made me smile:
+From time to time, we still write to each other.
+Just a few days ago, she sent me a message that made me smile:
     
-    Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
+Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
     
-    I had never really thought of Yulia as a traveler – but her message told me everything I needed to know: she is one.`,
+I had never really thought of Yulia as a traveler – but her message told me everything I needed to know: she is one.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "I used to be an ordinary person – working five days a week in a big international company, meeting friends, Friday parties, all that routine. After I separated from my husband, I started traveling to heal and move through the pain. I can’t say I’ve forgotten everything, but I realized what I truly love most: going somewhere new, discovering places, meeting people, learning their traditions." },
           { q: "2. What made you start traveling?", a: "It was me – not someone else – who made me go. The first time, it was because of a breakup. It hurt a lot, so traveling became my way to heal, to feel better." },
