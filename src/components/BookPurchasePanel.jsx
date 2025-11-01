@@ -111,7 +111,18 @@ export default function BookPurchasePanel({ book, bookId }) {
     const avail = Boolean(availability?.[KEY]);
     const price = Number(prices?.[KEY]) || 0;
     const labelSoon = langLabel === "EN" ? "soon" : "în curând";
-
+    const isExternal =
+    KEY === "PAPERBACK" && (hasAmazon || otherVendors.length > 0);
+  
+  // „în curând” se afișează doar dacă NU e vânzare externă
+  const showSoon = !avail && !isExternal;
+  
+  // text preț: pentru vânzare externă arătăm „preț pe Amazon”
+  const priceText = isExternal
+    ? (vendors?.amazon?.priceLabel ||
+        (langLabel === "EN" ? "price on Amazon" : "preț pe Amazon"))
+    : (avail ? money(price, currencyLabel) : money(0, currencyLabel));
+  
     return (
       <div
         key={KEY}
@@ -144,7 +155,7 @@ export default function BookPurchasePanel({ book, bookId }) {
           >
             <span>{icon}</span> {KEY}
           </strong>
-          {!avail && (
+          {showSoon && (
             <span
               style={{
                 background: "#e7e7e7",
@@ -171,7 +182,7 @@ export default function BookPurchasePanel({ book, bookId }) {
             minHeight: 18,
           }}
         >
-          {avail ? money(price, currencyLabel) : money(0, currencyLabel)}
+          {priceText}
         </div>
 
         {/* acțiuni */}

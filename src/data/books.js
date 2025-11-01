@@ -195,6 +195,8 @@ export const BOOKS = [
       url: "https://www.amazon.com/Days-Nights-Vietnam-Puzzle-Soul/dp/B0DSJQNKL5/ref=tmm_pap_swatch_0#detailBullets_feature_div",
       label: "Amazon",
       visible: true,
+      // opțional:
+    priceLabel: "Price on Amazon"
     },
     // partener opțional (ascuns până îl activezi):
     partnerX: {
