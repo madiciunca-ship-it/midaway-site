@@ -10,6 +10,19 @@ export default function Checkout() {
   const { items, total, clear } = useCart();
   const [error, setError] = useState(null);
 
+    // ✅ consimțământ legal
+    const [agreeTerms, setAgreeTerms] = useState(false);
+    const [agreeDigital, setAgreeDigital] = useState(false);
+  
+    // ✅ avem produse digitale în coș?
+    const hasDigital = (items || []).some(
+      (it) => String(it.fulfillment || it.type || "").toLowerCase() === "digital"
+    );
+  
+    // ✅ buton Plătește activ doar când sunt bifate
+    const canPay = agreeTerms && (!hasDigital || agreeDigital);
+  
+
   // 🟢 determină moneda din item sau, dacă lipsește, din books.js
   const currencyOf = (i) => {
     const direct = (i?.currency || "").toUpperCase();
@@ -36,6 +49,12 @@ export default function Checkout() {
   // ⚡ funcția Stripe
   const payWithCard = async () => {
     if (!items.length) return alert("Coșul este gol!");
+    if (!canPay) {
+      // UI-ul e dezactivat deja, dar verificăm și în JS ca fallback
+      alert("Te rugăm să bifezi consimțământul legal înainte de plată.");
+      return;
+    }
+
     try {
       setError(null); // resetăm erorile anterioare
 
@@ -114,10 +133,43 @@ export default function Checkout() {
             </div>
           )}
 
+          {/* ✅ consimțământ legal */}
+          <div style={{marginTop: 16, padding: 12, border:"1px solid #eee", borderRadius:12, background:"#fff"}}>
+            <label style={{display:"flex", alignItems:"flex-start", gap:8}}>
+              <input
+                type="checkbox"
+                checked={agreeTerms}
+                onChange={(e)=>setAgreeTerms(e.target.checked)}
+              />
+              <span style={{fontSize:13, lineHeight:1.4}}>
+                Sunt de acord cu <a href="/termeni" target="_blank" rel="noopener noreferrer">Termenii și condițiile</a>,
+                <a href="/politica-cookies" target="_blank" rel="noopener noreferrer"> Politica de cookies</a> și
+                <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer"> Politica de confidențialitate</a>.
+              </span>
+            </label>
+
+            {hasDigital && (
+              <label style={{display:"flex", alignItems:"flex-start", gap:8, marginTop:10}}>
+                <input
+                  type="checkbox"
+                  checked={agreeDigital}
+                  onChange={(e)=>setAgreeDigital(e.target.checked)}
+                />
+                <span style={{fontSize:13, lineHeight:1.4}}>
+                  Sunt de acord cu începerea livrării digitale înainte de expirarea
+                  termenului legal de retragere și înțeleg că îmi pierd dreptul de
+                  retragere după descărcare.
+                  (<a href="/politica-descarcare" target="_blank" rel="noopener noreferrer">Detalii</a>)
+                </span>
+              </label>
+            )}
+          </div>
+
           {/* 🟢 Buton Stripe */}
           <button
             type="button"
             onClick={payWithCard}
+            disabled={!canPay}   
             style={{
               padding: "12px",
               borderRadius: 10,
@@ -127,6 +179,7 @@ export default function Checkout() {
               fontWeight: 700,
               cursor: "pointer",
               marginBottom: 10,
+              opacity: canPay ? 1 : 0.6,      // feedback vizual
             }}
           >
             💳 Plătește acum cu cardul (Stripe)
@@ -145,6 +198,8 @@ export default function Checkout() {
               name="_redirect"
               value="https://midaway.vercel.app/#/thanks"
             />
+<input type="hidden" name="agree_terms" value={agreeTerms ? "yes" : "no"} />
+<input type="hidden" name="agree_digital_waiver" value={agreeDigital ? "yes" : "no"} />
 
             <input name="name" required placeholder="Nume complet" style={field} />
             <input name="email" type="email" required placeholder="Email" style={field} />
