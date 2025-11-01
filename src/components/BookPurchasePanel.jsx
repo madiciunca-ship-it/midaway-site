@@ -13,7 +13,7 @@ function money(amount, currency) {
   return `${n} ${cur}`.trim();
 }
 
-// căutare carte după id/alias (cum aveai deja)
+// căutare carte după id/alias
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
   const direct = BOOKS.find((b) => b.id === bookId);
@@ -39,7 +39,7 @@ export default function BookPurchasePanel({ book, bookId }) {
 
   if (!resolvedBook) return null;
 
-  // coperta sigură pt. coș (acum include coverUrl/extraImage)
+  // coperta sigură pt. coș
   const cover =
     resolvedBook?.cover ||
     resolvedBook?.coverUrl ||
@@ -65,6 +65,13 @@ export default function BookPurchasePanel({ book, bookId }) {
   const id = resolvedBook?.id;
   const langLabel = (resolvedBook?.lang || "RO").toUpperCase();
 
+  // ---- vendori externi (Amazon, alți parteneri) ----
+  const vendors = resolvedBook?.vendors || {};
+  const hasAmazon = vendors?.amazon?.url && vendors.amazon.visible !== false;
+  const otherVendors = Object.entries(vendors || {}).filter(
+    ([k, v]) => k !== "amazon" && v?.url && v?.visible !== false
+  );
+
   // adaugă în coș
   const onAdd = (format) => {
     const fmt = String(format || "").toUpperCase();
@@ -77,19 +84,16 @@ export default function BookPurchasePanel({ book, bookId }) {
       lang: langLabel,
       price,
       currency: currencyLabel,
-      image: cover, // 👈 important
+      image: cover,
       payLink: resolvedBook?.payLink || null,
-      
-    // ⬇️ nou: tipul de îndeplinire – pentru consimțământul digital
-  fulfillment:
-  fmt === "PDF" || fmt === "EPUB"
-    ? "digital"
-    : fmt === "PAPERBACK"
-    ? "paperback"
-    : fmt === "AUDIOBOOK"
-    ? "digital"
-    : "other",
-});
+      // tipul de îndeplinire – pentru consimțământul digital
+      fulfillment:
+        fmt === "PDF" || fmt === "EPUB" || fmt === "AUDIOBOOK"
+          ? "digital"
+          : fmt === "PAPERBACK"
+          ? "paperback"
+          : "other",
+    });
 
     console.log("[BUY] add ->", {
       id,
@@ -170,27 +174,107 @@ export default function BookPurchasePanel({ book, bookId }) {
           {avail ? money(price, currencyLabel) : money(0, currencyLabel)}
         </div>
 
-        {/* buton */}
-        <button
-          disabled={!avail}
-          onClick={() => onAdd(KEY)}
-          style={{
-            width: "100%",
-            padding: "8px 10px",
-            borderRadius: 10,
-            border: "1px solid #ddd",
-            background: avail ? "#2a9d8f" : "#e5e5e5",
-            color: avail ? "#fff" : "#666",
-            cursor: avail ? "pointer" : "not-allowed",
-            fontWeight: 600,
-            fontSize: 13,
-          }}
-        >
-          {avail ? "Adaugă în coș" : labelSoon}
-        </button>
+        {/* acțiuni */}
+        {KEY === "PAPERBACK" && (hasAmazon || otherVendors.length) ? (
+          <>
+            {hasAmazon && (
+              <a
+                href={vendors.amazon.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "center",
+                  padding: "8px 10px",
+                  borderRadius: 10,
+                  background: "#111827",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontWeight: 700,
+                }}
+              >
+                Cumpără pe Amazon
+              </a>
+            )}
+
+            {otherVendors.map(([key, v]) => (
+              <a
+                key={key}
+                href={v.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: v.visible === false ? "none" : "block",
+                  width: "100%",
+                  textAlign: "center",
+                  padding: "8px 10px",
+                  borderRadius: 10,
+                  background: "#374151",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  marginTop: 8,
+                }}
+              >
+                Cumpără de la {v.label || key}
+              </a>
+            ))}
+
+            <div
+              style={{
+                fontSize: 11,
+                color: "#666",
+                textAlign: "center",
+                marginTop: 6,
+              }}
+            >
+              livrare & retur conform politicilor Amazon
+            </div>
+
+            {/* Opțional: păstrezi și varianta internă */}
+            {avail && price > 0 && (
+              <button
+                onClick={() => onAdd(KEY)}
+                style={{
+                  width: "100%",
+                  padding: "8px 10px",
+                  borderRadius: 10,
+                  border: "1px solid #ddd",
+                  background: "#2a9d8f",
+                  color: "#fff",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  marginTop: 8,
+                }}
+              >
+                Adaugă în coș
+              </button>
+            )}
+          </>
+        ) : (
+          <button
+            disabled={!avail}
+            onClick={() => onAdd(KEY)}
+            style={{
+              width: "100%",
+              padding: "8px 10px",
+              borderRadius: 10,
+              border: "1px solid #ddd",
+              background: avail ? "#2a9d8f" : "#e5e5e5",
+              color: avail ? "#fff" : "#666",
+              cursor: avail ? "pointer" : "not-allowed",
+              fontWeight: 600,
+              fontSize: 13,
+            }}
+          >
+            {avail ? "Adaugă în coș" :  labelSoon }
+          </button>
+        )}
       </div>
     );
-  };
+  }; // <-- închiderea funcției card()
 
   return (
     <section
@@ -233,7 +317,14 @@ export default function BookPurchasePanel({ book, bookId }) {
         {card("AUDIOBOOK", "🎧")}
       </div>
 
-      <p style={{ marginTop: 12, color: "#666", fontSize: 12, textAlign: "center" }}>
+      <p
+        style={{
+          marginTop: 12,
+          color: "#666",
+          fontSize: 12,
+          textAlign: "center",
+        }}
+      >
         După plată vei primi pe email linkurile de descărcare (valabile 48h).
       </p>
     </section>

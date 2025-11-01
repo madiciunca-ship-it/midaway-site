@@ -149,53 +149,70 @@ export const BOOKS = [
     hidden: false,
   },
 
-  // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam (EN)
-  // ————————————————————————————————————————————————
-  {
-    id: "vietnam-en",
-    addedAt: "2025-10-30T10:00:00Z",
-    lang: "EN",
-    currency: "EUR",
+// ————————————————————————————————————————————————
+// Zile și nopți de Vietnam (EN)
+// ————————————————————————————————————————————————
+{
+  id: "vietnam-en",
+  addedAt: "2025-10-30T10:00:00Z",
+  lang: "EN",
+  currency: "EUR",
 
-    title: "Days and Nights of Vietnam",
-    subtitle: "The Puzzle of My Soul",
-    author: "Mida-Malena",
-    genre: "Travel",
-    location: "Vietnam",
-    year: 2025,
-    publisher: "Independent Publisher Mida Malena",
+  title: "Days and Nights of Vietnam",
+  subtitle: "The Puzzle of My Soul",
+  author: "Mida-Malena",
+  genre: "Travel",
+  location: "Vietnam",
+  year: 2025,
+  publisher: "Independent Publisher Mida Malena",
 
-    coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
-    extraImage: "/assets/books/days-and-nights-of-vietnam-back.png",
+  coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
+  extraImage: "/assets/books/days-and-nights-of-vietnam-back.png",
 
-    sampleUrl: "#",
+  sampleUrl: "#",
 
-    tags: ["memoir", "travel", "culture", "authentic"],
-    format: "eBook",
+  tags: ["memoir", "travel", "culture", "authentic"],
+  format: "ebook",
 
-    prices: { PDF: 10, EPUB: 10, Paperback: 20, Audiobook: 0 },
+  // recomandat: cheile UPPERCASE (dar oricum le normalizăm)
+  prices: { PDF: 12, EPUB: 12, PAPERBACK: 20, AUDIOBOOK: 0 },
 
-    availability: {
-      PDF: true,
-      EPUB: true,
-      Paperback: false,
-      Audiobook: false,
-    },
-
-    files: {
-      PDF:  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-      EPUB: "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
-    },
-
-    pages: 314,
-    isbn: "-",
-    dimensions: "13 x 20 cm",
-    weight: "—",
-
-    description: `This journey is not only about me — it's about you and the people whose paths cross ours, shaping who we are and who we become...`,
-    hidden: false,
+  availability: {
+    PDF: true,
+    EPUB: true,
+    PAPERBACK: false,
+    AUDIOBOOK: false,
   },
+
+  files: {
+    PDF:  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
+    EPUB: "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
+  },
+
+  // ⬇️ AICI, în interiorul obiectului:
+  vendors: {
+    amazon: {
+      url: "https://www.amazon.com/Days-Nights-Vietnam-Puzzle-Soul/dp/B0DSJQNKL5/ref=tmm_pap_swatch_0#detailBullets_feature_div",
+      label: "Amazon",
+      visible: true,
+    },
+    // partener opțional (ascuns până îl activezi):
+    partnerX: {
+      url: "https://exemplu.shop/produs",
+      label: "Distribuitor X",
+      visible: false,
+    },
+  },
+
+  pages: 300,
+  isbn: "979-8303117099",
+  dimensions: "6 x 0.68 x 9 inches",
+  lang: "English",
+  weight: "1.14 pounds",
+
+  description: `This journey isn’t just about me – it’s about you, and about the people who cross our paths, shaping who we are and who we’re becoming. Discover. Feel. Evolve. Step into the extraordinary. Leave behind the predictable. Days and Nights of Vietnam is a deeply personal travel memoir that invites you to step out of your comfort zone, even if just for a few moments, and rediscover the authentic pieces of yourself that lie waiting in the unfamiliar. Through the breathtaking landscapes of Vietnam – from bustling cities to serene mountain villages – and deeply introspective moments, this heartfelt journey weaves vivid descriptions of exotic locales with raw, honest reflections. Each experience – whether extraordinary or seemingly mundane – becomes a piece of a larger puzzle, revealing profound truths about self-discovery, courage, and the joy of living fully. This is not just a story about Vietnam; it’s a journey into the heart of what makes us human. It challenges you to embrace life in all its complexities, to welcome serendipitous encounters and fleeting moments of connection that can reshape your perspective. Let yourself be inspired to pause, reflect, and reconnect with who you truly are. Lose yourself in the vibrant chaos and serene beauty of Vietnam and find the strength to live boldly, authentically, and unapologetically. If you’ve ever dreamed of stepping into the unknown, of seeing life through a different lens, and of reclaiming the parts of yourself that were always meant to shine, Days and Nights of Vietnam is your invitation to embark on a journey of adventure, reflection, and transformation.`,
+  hidden: false,
+},
 
   // ————————————————————————————————————————————————
   // Pași prin Indonezia (RO)
