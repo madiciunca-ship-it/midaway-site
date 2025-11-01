@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 import AdminOrders from "./pages/AdminOrders";
 import Authors from "./pages/Authors.jsx";
 import AuthorDetail from "./pages/AuthorDetail.jsx";
+import Servicii from "./pages/Servicii";
+import PoliticaAnulare from "./pages/PoliticaAnulare";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -67,6 +69,9 @@ export default function App() {
           <Route path="/proiecte" element={<Projects />} />
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
 
+          <Route path="/servicii" element={<Servicii />} />
+          <Route path="/politica-anulare" element={<PoliticaAnulare />} />
+         
           {/* Pagini controlate prin flags */}
           <Route
             path="/donatii"

@@ -9,11 +9,17 @@ const FORMSPREE_ENDPOINT =
 export default function Checkout() {
   const { items, total, clear } = useCart();
   const [error, setError] = useState(null);
+   // 1) sus, lângă celelalte constante:
+const hasService = (items || []).some(
+  (it) => String(it.fulfillment || it.type || "").toLowerCase() === "service"
+);
+
 
     // ✅ consimțământ legal
     const [agreeTerms, setAgreeTerms] = useState(false);
     const [agreeDigital, setAgreeDigital] = useState(false);
   
+   
     // ✅ avem produse digitale în coș?
     const hasDigital = (items || []).some(
       (it) => String(it.fulfillment || it.type || "").toLowerCase() === "digital"
@@ -115,6 +121,33 @@ export default function Checkout() {
               Total: {total} {primaryCurrency}
             </strong>
           </p>
+
+          // 2) în return, după total și (opțional) după bannerul de eroare:
+{hasService && (
+  <div
+    style={{
+      marginTop: 12,
+      padding: 12,
+      border: "1px dashed #e6c200",
+      background: "#fffbea",
+      borderRadius: 10,
+      color: "#5c4b00",
+      fontSize: 13,
+    }}
+  >
+    <strong>Servicii:</strong> programare & prestare în baza termenilor agreați.
+    Politica de anulare:{" "}
+    <a
+      href="/politica-anulare"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#7a5b00" }}
+    >
+      vezi aici
+    </a>.
+  </div>
+)}
+
 
           {/* 🟢 banner eroare, dacă e cazul */}
           {error && (

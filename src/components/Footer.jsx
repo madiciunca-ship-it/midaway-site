@@ -18,6 +18,8 @@ export default function Footer() {
           <Link to="/politica-cookies">Politica cookies</Link>
           <span>•</span>
           <Link to="/politica-descarcare">Politica de descărcare eBook</Link>
+          <span>•</span>
+          <Link to="/politica-anulare">Politica de anulare</Link>
         </div>
 
         <div className="footer-links">
