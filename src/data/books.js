@@ -155,7 +155,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam (EN)
+  // Days and Nights Of Vietnam (EN)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-en",
@@ -266,6 +266,66 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
 
     payLink: null,
   },
+
+  // ————————————————————————————————————————————————
+// Steps Through Indonezia — EN (cu Amazon)
+// ————————————————————————————————————————————————
+{
+  id: "indonezia-1-en",                 // ← schimbă-l (litere/cifre/cratime)
+  addedAt: "2025-11-01T00:00:00Z",
+  lang: "EN",
+  currency: "EUR",
+
+  title: "Steps Through Indonezia",
+  subtitle: "When Bali Touches Your Soul",
+  author: "Mida-Malena",
+  genre: "Travel",
+  location: "Indonesia",
+  year: 2025,
+  publisher: "Midaway Publishing House",
+
+  formatDetails: {
+    ebook:     { pages: 270, isbn: "" },
+    paperback: { pages: 270, isbn: "", dimensions: "", weight: "" },
+    // audiobook: { minutes: null, narrator: "" }
+  },
+
+  coverUrl: "/assets/books/bali-eng-cover.png",
+  extraImage: "/assets/books/bali-eng-back.png",
+
+  sampleUrl: "#",
+
+  tags: ["memoir", "travel", "authentic"],
+  format: "eBook",
+
+  prices: { PDF: 12, EPUB: 12, PAPERBACK: 0, AUDIOBOOK: 0 },
+  availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
+
+  files: {
+    PDF:  "",
+    EPUB: ""
+  },
+
+  // vânzare externă – apare butonul „Buy on Amazon”
+  vendors: {
+    amazon: {
+      url: "",                    // ← pune linkul Amazon când e gata
+      label: "Amazon",
+      visible: true,
+      priceLabel: "Price on Amazon" // (opțional) textul care apare la preț
+    },
+    // partener opțional (ascuns până îl pornești)
+    partnerX: {
+      url: "",
+      label: "Distributor",
+      visible: false
+    }
+  },
+
+  description: `EN description…`,
+  hidden: true
+},
+
   // ————————————————————————————————————————————————
 // TEMPLATE (invizibil) — RO
 // ————————————————————————————————————————————————
