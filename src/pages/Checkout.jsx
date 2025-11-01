@@ -25,23 +25,23 @@ export default function Checkout() {
   const hasDigital = (items || []).some(isDigitalItem);
 
   // --- verificăm fișiere doar pentru PRODUSE DIGITALE care există în BOOKS ---
-const hasMissingFiles = (items || []).some((it) => {
-  const isDigital =
-    String(it?.fulfillment || it?.format || "").toLowerCase() === "digital";
-  if (!isDigital) return false;
+  const hasMissingFiles = (items || []).some((it) => {
+    const isDigital =
+      String(it?.fulfillment || it?.format || "").toLowerCase() === "digital";
+    if (!isDigital) return false;
 
-  const book = BOOKS.find((b) => b.id === it.id);
-  if (!book) return false; // ⬅️ servicii (svc-*) sau item necunoscut: nu afișăm banner
+    const book = BOOKS.find((b) => b.id === it.id);
+    if (!book) return false; // servicii (svc-*) sau item necunoscut: nu afișăm banner
 
-  const fmt = String(it.format || "").toUpperCase();
-  if (fmt === "PDF") return !book?.files?.PDF;
-  if (fmt === "EPUB") return !book?.files?.EPUB;
-  if (fmt === "AUDIOBOOK") return !book?.files?.AUDIOBOOK;
-  return false;
-});
+    const fmt = String(it.format || "").toUpperCase();
+    if (fmt === "PDF") return !book?.files?.PDF;
+    if (fmt === "EPUB") return !book?.files?.EPUB;
+    if (fmt === "AUDIOBOOK") return !book?.files?.AUDIOBOOK;
+    return false;
+  });
 
-// Banner doar dacă există cel puțin un digital cu fișiere lipsă
-const showFilesWarning = hasMissingFiles;
+  // Banner doar dacă există cel puțin un digital cu fișiere lipsă
+  const showFilesWarning = hasMissingFiles;
 
   // consimțământ legal
   const [agreeTerms, setAgreeTerms] = useState(false);
