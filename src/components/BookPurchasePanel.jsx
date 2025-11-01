@@ -13,6 +13,71 @@ function money(amount, currency) {
   return `${n} ${cur}`.trim();
 }
 
+// ——— SPECIFICAȚII PE FORMAT (component reutilizabil, randează sub „Detalii tehnice”) ———
+export function FormatSpecs({ book }) {
+  const fdet = book?.formatDetails || null;
+  if (!fdet) return null;
+
+  const items = [];
+
+  if (fdet.ebook) {
+    const e = fdet.ebook, p = [];
+    if (e.pages) p.push(`${e.pages} pagini`);
+    if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
+    if (e.dimensions && e.dimensions !== "—") p.push(e.dimensions);
+    if (e.weight && e.weight !== "—") p.push(e.weight);
+    if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
+    items.push(
+      <li key="ebook">
+        <strong>eBook:</strong> {p.length ? p.join(" • ") : "—"}
+      </li>
+    );
+  }
+
+  if (fdet.paperback) {
+    const pb = fdet.paperback, p = [];
+    if (pb.pages) p.push(`${pb.pages} pagini`);
+    if (pb.isbn && pb.isbn !== "—") p.push(`ISBN: ${pb.isbn}`);
+    if (pb.dimensions && pb.dimensions !== "—") p.push(pb.dimensions);
+    if (pb.weight && pb.weight !== "—") p.push(pb.weight);
+    if (pb.language && pb.language !== "—") p.push(`Limba: ${pb.language}`);
+    items.push(
+      <li key="paperback">
+        <strong>Paperback:</strong> {p.length ? p.join(" • ") : "—"}
+      </li>
+    );
+  }
+
+  if (fdet.audiobook) {
+    const a = fdet.audiobook, p = [];
+    if (a.minutes) p.push(`${a.minutes} minute`);
+    if (a.narrator) p.push(`Narator: ${a.narrator}`);
+    items.push(
+      <li key="audiobook">
+        <strong>Audiobook:</strong> {p.length ? p.join(" • ") : "—"}
+      </li>
+    );
+  }
+
+  if (!items.length) return null;
+
+  return (
+    <div
+      className="format-details"
+      style={{
+        marginTop: 12,
+        padding: 12,
+        border: "1px dashed #e5e5e5",
+        borderRadius: 12,
+        background: "#fffef9",
+      }}
+    >
+      <h3 style={{ margin: "0 0 8px 0", fontSize: 16 }}>Specificații pe format</h3>
+      <ul style={{ margin: 0, paddingLeft: 18 }}>{items}</ul>
+    </div>
+  );
+}
+
 // căutare carte după id/alias
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
@@ -111,18 +176,22 @@ export default function BookPurchasePanel({ book, bookId }) {
     const avail = Boolean(availability?.[KEY]);
     const price = Number(prices?.[KEY]) || 0;
     const labelSoon = langLabel === "EN" ? "soon" : "în curând";
+
+    // vânzare externă pt. paperback
     const isExternal =
-    KEY === "PAPERBACK" && (hasAmazon || otherVendors.length > 0);
-  
-  // „în curând” se afișează doar dacă NU e vânzare externă
-  const showSoon = !avail && !isExternal;
-  
-  // text preț: pentru vânzare externă arătăm „preț pe Amazon”
-  const priceText = isExternal
-    ? (vendors?.amazon?.priceLabel ||
-        (langLabel === "EN" ? "price on Amazon" : "preț pe Amazon"))
-    : (avail ? money(price, currencyLabel) : money(0, currencyLabel));
-  
+      KEY === "PAPERBACK" && (hasAmazon || otherVendors.length > 0);
+
+    // „în curând” doar dacă NU e vânzare externă
+    const showSoon = !avail && !isExternal;
+
+    // text preț
+    const priceText = isExternal
+      ? vendors?.amazon?.priceLabel ||
+        (langLabel === "EN" ? "price on Amazon" : "preț pe Amazon")
+      : avail
+      ? money(price, currencyLabel)
+      : money(0, currencyLabel);
+
     return (
       <div
         key={KEY}
@@ -205,7 +274,7 @@ export default function BookPurchasePanel({ book, bookId }) {
                   fontWeight: 700,
                 }}
               >
-                Cumpără pe Amazon
+                Buy on Amazon
               </a>
             )}
 
@@ -240,7 +309,7 @@ export default function BookPurchasePanel({ book, bookId }) {
                 marginTop: 6,
               }}
             >
-              livrare & retur conform politicilor Amazon
+              delivery & returns as per Amazon terms
             </div>
 
             {/* Opțional: păstrezi și varianta internă */}
@@ -280,7 +349,7 @@ export default function BookPurchasePanel({ book, bookId }) {
               fontSize: 13,
             }}
           >
-            {avail ? "Adaugă în coș" :  labelSoon }
+            {avail ? "Adaugă în coș" : labelSoon}
           </button>
         )}
       </div>
@@ -337,7 +406,10 @@ export default function BookPurchasePanel({ book, bookId }) {
         }}
       >
         După plată vei primi pe email linkurile de descărcare (valabile 48h).
+        — After payment, you will recieve the download links by email (valid for 48h).
       </p>
+      {/* 🔔 Intenționat NU mai randez aici „Specificații pe format”.
+          Ele se randează sub „Detalii tehnice”, prin <FormatSpecs book={book} /> */}
     </section>
   );
 }

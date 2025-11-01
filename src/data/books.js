@@ -23,6 +23,11 @@ export const BOOKS = [
     location: "Filipine",
     year: 2023,
     publisher: "Dreams Publishing House",
+    formatDetails: {
+      ebook:     { pages: 272, isbn: "978-606-94962-8-2" },
+      paperback: { pages: 272, isbn: "978-606-95545-7-9", dimensions: "13 x 20 cm", weight: "380 gr." },
+      // audiobook: { minutes: 420, narrator: "..." }
+    },
 
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
@@ -46,11 +51,7 @@ export const BOOKS = [
       PDF: "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
       EPUB: "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
     },
-
-    pages: 272,
-    isbn: "978-606-95545-7-9",
-    dimensions: "13 x 20 cm",
-    weight: "380 gr.",
+    
 
     description: `Yda pornește singură în călătoria vieții ei, împinsă de o forță pe care nu și-o putea explica. Nu știe cu adevărat ce caută, dar speră să găsească răspunsuri la multitudinea de frământări și necunoscute din mintea ei. Pașii o poartă pe una dintre cele mai minunate insule ale lumii, nu numai pentru a o admira în splendoarea și desăvârșirea ei, dar și pentru că doar aici, în acest cadru și în tot acest context, reușește să își exploreze interiorul, să își depășească multe dintre barierele mentale auto-impuse, tipare adânc înrădăcinate. Oamenii, locurile, întâmplările, toate au însoțit-o pe traseu, Yda fiind prezentă acolo cu toată ființa ei. Palawan este copleșitor pentru ea, o transformă și o desăvârșește la un nivel pe care nici măcar ea nu și l-ar fi imaginat. Plină de inspirație, cartea a fost o reală provocare. Cu fiecare pagină parcursă, vei descoperi o lume nouă, vei simți ce a trăit Yda.`,
     hidden: false,
@@ -124,7 +125,7 @@ export const BOOKS = [
     sampleUrl: "#",
 
     tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
-    format: "eBook",
+    format: "eBook", 
 
     prices: { PDF: 45, EPUB: 45, Paperback: 65, Audiobook: 0 },
 
@@ -172,7 +173,7 @@ export const BOOKS = [
   sampleUrl: "#",
 
   tags: ["memoir", "travel", "culture", "authentic"],
-  format: "ebook",
+  format: "ebook", 
 
   // recomandat: cheile UPPERCASE (dar oricum le normalizăm)
   prices: { PDF: 12, EPUB: 12, PAPERBACK: 20, AUDIOBOOK: 0 },

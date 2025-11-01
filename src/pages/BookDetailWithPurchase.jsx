@@ -2,8 +2,9 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import BookDetail from "./BookDetail";
-import BookPurchasePanel from "../components/BookPurchasePanel";
+
 import { BOOKS } from "../data/books";
+import BookPurchasePanel, { FormatSpecs } from "../components/BookPurchasePanel";
 
 function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
@@ -23,6 +24,7 @@ function findBookByIdOrAlias(bookId) {
 export default function BookDetailWithPurchase() {
   const { id } = useParams();
   const panelRef = useRef(null);
+  const specsRef = useRef(null); // 👈 NOU – containerul pentru specificațiile pe format
   const book = useMemo(() => findBookByIdOrAlias(id), [id]);
 
   useEffect(() => {
@@ -81,6 +83,29 @@ export default function BookDetailWithPurchase() {
       const panelEl = panelRef.current;
       if (fragmentBtn && panelEl && panelEl.parentElement) {
         fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
+      }
+    } catch (_) {}
+
+    // 3.5) Inserăm „Specificații pe format” imediat sub „Detalii tehnice”
+    try {
+      // găsește heading-ul „Detalii tehnice”
+      const h2 = Array.from(document.querySelectorAll("h2, h3")).find((el) =>
+        (el.textContent || "").trim().toLowerCase().includes("detalii tehnice")
+      );
+      if (h2) {
+        // cel mai des, lista <ul> e imediat după heading
+        const ul =
+          h2.nextElementSibling && h2.nextElementSibling.tagName === "UL"
+            ? h2.nextElementSibling
+            : null;
+
+        const host = specsRef.current;
+        if (ul && host) {
+          ul.insertAdjacentElement("afterend", host);
+        } else if (host) {
+          // fallback: dacă nu e UL imediat, punem după heading
+          h2.insertAdjacentElement("afterend", host);
+        }
       }
     } catch (_) {}
 
@@ -189,6 +214,11 @@ export default function BookDetailWithPurchase() {
 
       {/* 2️⃣ Conținutul original (titlu, descriere, detalii, etc.) */}
       <BookDetail />
+
+      {/* 2.5️⃣ Container invizibil – îl inserăm sub „Detalii tehnice” via useEffect */}
+      <div ref={specsRef} style={{ display: "block" }}>
+        {book && <FormatSpecs book={book} />}
+      </div>
 
       {/* 3️⃣ Panoul nostru (mutat sub „Citește un fragment”) */}
       <div ref={panelRef}>
