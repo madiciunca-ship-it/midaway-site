@@ -89,62 +89,112 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
       video: null,
     },
   
-    // ────────────────────────────────────────────────────────────
-    // 2) Scriitoarea din Saigon
-    // ────────────────────────────────────────────────────────────
     {
-      id: "scriitoare-saigon",
+      // 2) Yulia — O coincidență frumoasă
+      id: "yulia-amalfi",
       emoji: "✍️",
-      name: "Scriitoarea din Saigon",
-      tagline: "Cafele, pagini, ploaie",
-      cover: "/assets/travelers/scriitoare-saigon/cover.webp",
+      name: "Yulia — O coincidență frumoasă",
+      tagline: "Luminoasă. Sinceră. De neuitat.",
+      cover: "/assets/travelers/yulia-amalfi/yulia-amalfi-cover.webp",
       gallery: [
-        "/assets/travelers/scriitoare-saigon/1.webp",
-        "/assets/travelers/scriitoare-saigon/2.webp",
-        "/assets/travelers/scriitoare-saigon/3.webp",
+        "/assets/travelers/yulia-amalfi/yulia-amalfi-1.webp",
+        "/assets/travelers/yulia-amalfi/yulia-amalfi-2.webp",
+        "/assets/travelers/yulia-amalfi/yulia-amalfi-3.webp",
       ],
       socials: {
         instagram: "",
         facebook: "",
         tiktok: "",
-        youtube: "",
+        youtube: "https://www.youtube.com/@Yutravelwithme/shorts",
         website: "",
         blog: "",
       },
+    
       ro: {
-        intro: `Cafele negre, ploi calde, pagini scrise printre zgomote de oraș. 
-  Despre cum găsești liniștea într-o metropolă mereu trează.`,
+        intro: `Am cunoscut-o pe Yulia întâmplător. Eram pe Coasta Amalfi, în Italia – am aflat mai târziu că Italia e locul ei preferat din lume. Nu aveam de gând să stau mult prin zonă, așa că, pe moment, am decis să merg către un loc mai liniștit, mai puțin vizitat de turiști: Ravello.
+    A fost o decizie de o secundă. Dacă n-aș fi luat-o, nu aș fi întâlnit-o niciodată pe Yulia.
+    
+    Era cu cineva, dar povestea lor era… să spunem, puțin ciudată. Mi-a cerut un sfat, i l-am oferit, și am rămas de vorbă aproape o oră. Ne-am plimbat puțin prin Ravello, iar la întoarcere ei au coborât la o altă stație. Am crezut că nu o voi mai revedea vreodată.
+    
+    Dar Universul a avut alte planuri. Ne-am reîntâlnit, complet neașteptat, în Florența.
+    Am petrecut o dimineață împreună – am vizitat Basilica din centru și am mâncat croissante cu fistic pe un trotuar, așteptând să se deschidă porțile. Apoi ea a plecat, la amiază.
+    
+    Ocazional, ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
+    
+    “Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!”
+    
+    Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: da, este.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "" },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
-          { q: "3. Când ai știut că merită?", a: "" },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+          { q: "1. Cine ești în câteva fraze?", a: "Eram o persoană obișnuită – mergeam la birou cinci zile pe săptămână, într-o companie internațională, mă vedeam cu prietenii, petreceri vinerea... viață normală. După despărțirea de soț, am început să călătoresc ca să mă vindec și să trec peste tot ce a fost greu. Nu pot spune că am uitat totul, dar am înțeles ce iubesc cel mai mult: să merg undeva nou, să descopăr locuri, oameni și tradițiile lor." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Nu altcineva m-a împins să plec, ci eu însămi. Prima dată a fost din cauza unei despărțiri dureroase – și călătoria a devenit modul meu de a mă vindeca." },
+          { q: "3. Când ai știut că merită?", a: "De fiecare dată când mă întreb ce țară vreau să vizitez în continuare – atunci știu că merită." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Italia – pentru frumusețea ei, peste tot." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au schimbat complet. Acum, singurul lucru la care mă gândesc este să descopăr țări noi, oameni noi, tradiții noi – nu lucruri materiale ca mașini, haine sau bijuterii." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "A fost greu cu sancțiunile – când cardurile rusești au fost blocate peste tot în lume. A fost un stres mare, un șoc." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Fără ezitare. Alege un loc și du-te." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Am un canal de YouTube." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Eram cu cineva cu care nu-mi doream să fiu aproape. Pe drum, Mida i-a oferit acelui om locul ei, dar eu am ales să stau lângă Mida. Și n-am pierdut nimic – s-a dovedit a fi o prietenă caldă, sinceră și o povestitoare fascinantă. ❤️" },
         ],
-        story: [],
+        story: [
+          `Un moment în plus, de păstrat în amintire:
+    
+    Zilele dinainte să îi scriu Midei erau plictisitoare – nici măcar apusul, pe care îl vedeam în fiecare zi, nu mă mai impresiona.
+    Apoi, într-o zi, am mers la sală, am deschis cartea ei și am început să citesc.
+    
+    Totul s-a schimbat pe loc. I-am scris ei – și unui alt călător pe care îl întâlnisem cândva în Cambodgia.
+    După ce am vorbit cu Mida, m-am simțit inspirată să merg în Indonezia, după ce termin munca.
+    Același călător mi-a trimis poze din Australia, unde locuiește acum, și chiar m-a invitat într-o excursie prin Sydney.
+    
+    Așa că acum mă tot gândesc… poate că n-ar trebui să mă întorc acasă, ci să continui să călătoresc? 😴💋
+    
+    Și am observat ceva amuzant – când vorbesc cu Mida, scriu foarte mult! 😂
+    E o profesoară tare bună. 🥰`
+        ],
       },
+    
       en: {
-        intro: `Black coffee, warm rains, pages written amid city noise...`,
+        intro: `I met Yulia by chance. I was on the Amalfi Coast in Italy – later I found out that Italy is actually her favorite place in the world. I wasn’t planning to stay long in the area, so, on a whim, I decided to go somewhere quieter, less touristy: Ravello.
+    It was a split-second decision. If I hadn’t made it, I would have never met Yulia.
+    
+    She was with someone, though their story was… let’s say, a little complicated. She asked me for advice, I gave it, and we ended up talking for about an hour, walking through the streets of Ravello. On the way back, they got off at another stop. I thought I’d never see her again.
+    
+    But the universe had other plans.
+    We met again, unexpectedly, in Florence.
+    We spent a morning together – visited the central Basilica and ate pistachio croissants on the sidewalk, waiting for it to open. Then she left, around noon.
+    
+    From time to time, we still write to each other.
+    Just a few days ago, she sent me a message that made me smile:
+    
+    Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
+    
+    I had never really thought of Yulia as a traveler – but her message told me everything I needed to know: she is one.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "" },
-          { q: "2. What made you start traveling?", a: "" },
-          { q: "3. When did you know it was worth it?", a: "" },
-          { q: "4. A place that changed the way you see the world?", a: "" },
-          { q: "5. How did traveling change you as a person?", a: "" },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: How did we meet?", a: "" },
+          { q: "1. Who are you in a few sentences?", a: "I used to be an ordinary person – working five days a week in a big international company, meeting friends, Friday parties, all that routine. After I separated from my husband, I started traveling to heal and move through the pain. I can’t say I’ve forgotten everything, but I realized what I truly love most: going somewhere new, discovering places, meeting people, learning their traditions." },
+          { q: "2. What made you start traveling?", a: "It was me – not someone else – who made me go. The first time, it was because of a breakup. It hurt a lot, so traveling became my way to heal, to feel better." },
+          { q: "3. When did you know it was worth it?", a: "Whenever I ask myself which country I want to visit next – that’s when I know it’s worth it." },
+          { q: "4. A place that changed the way you see the world?", a: "Italy – for its beauty, everywhere." },
+          { q: "5. How did traveling change you as a person?", a: "Traveling changed me completely. Now, the only thing I think about is discovering new countries, meeting new people, learning new traditions – not material things like cars, clothes, or jewelry." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest thing was the sanctions – Russian bank cards being blocked around the world. It was a big stress, a shock." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Don’t hesitate. Just choose a place – and go." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "I have a YouTube channel." },
+          { q: "9. Bonus: How did we meet?", a: "I was with someone I didn’t really want to be near. On the road, Mida offered her seat to that person, but I chose to sit next to Mida instead. And I didn’t lose – she turned out to be a kind, genuine friend and a fascinating storyteller. ❤️" },
         ],
-        story: [],
+        story: [
+          `A little extra moment to remember:
+    The days before I met Mida were dull –s even the sunset didn’t move me anymore. Then one day, I went to the gym, opened her book, and started reading.
+    Everything changed instantly. I wrote to her – and to another traveler I once met in Cambodia.
+    After we talked, I felt inspired to go to Indonesia after finishing my job.
+    That same traveler sent me photos from Australia, where he lives now, and even invited me on an excursion in Sydney.
+    
+    So now I’m wondering… maybe I shouldn’t go home after all, but keep traveling? 😴💋
+    Also, I noticed something funny – when I talk to Mida, I write a lot! 😂
+    She’s a really good teacher. 🥰`
+        ],
       },
+    
       video: null,
     },
-  
+      
     // ────────────────────────────────────────────────────────────
     // 3) Călătoarea cu barca
     // ────────────────────────────────────────────────────────────
