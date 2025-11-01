@@ -1,6 +1,7 @@
+// src/pages/Checkout.jsx
 import React, { useMemo, useState } from "react";
 import { useCart } from "../context/CartContext";
-import { BOOKS } from "../data/books"; // 🟢 nou
+import { BOOKS } from "../data/books";
 
 // endpoint Formspree
 const FORMSPREE_ENDPOINT =
@@ -9,27 +10,43 @@ const FORMSPREE_ENDPOINT =
 export default function Checkout() {
   const { items, total, clear } = useCart();
   const [error, setError] = useState(null);
-   // 1) sus, lângă celelalte constante:
-const hasService = (items || []).some(
-  (it) => String(it.fulfillment || it.type || "").toLowerCase() === "service"
-);
 
+  // --- helperi pentru tipuri ---
+  const isServiceItem = (it) =>
+    String(it?.fulfillment || it?.format || "").toLowerCase() === "service";
 
-    // ✅ consimțământ legal
-    const [agreeTerms, setAgreeTerms] = useState(false);
-    const [agreeDigital, setAgreeDigital] = useState(false);
-  
-   
-    // ✅ avem produse digitale în coș?
-    const hasDigital = (items || []).some(
-      (it) => String(it.fulfillment || it.type || "").toLowerCase() === "digital"
-    );
-  
-    // ✅ buton Plătește activ doar când sunt bifate
-    const canPay = agreeTerms && (!hasDigital || agreeDigital);
-  
+  const isDigitalItem = (it) => {
+    const f = String(it?.fulfillment || it?.format || "").toLowerCase();
+    return f === "digital";
+  };
 
-  // 🟢 determină moneda din item sau, dacă lipsește, din books.js
+  // --- flaguri coș ---
+  const hasService = (items || []).some(isServiceItem);
+  const hasDigital = (items || []).some(isDigitalItem);
+
+  // verificăm fișiere doar pentru digitale (PDF/EPUB/AUDIOBOOK)
+  const hasMissingFiles = (items || []).some((it) => {
+    if (!isDigitalItem(it)) return false;
+    const book = BOOKS.find((b) => b.id === it.id);
+    const fmt = String(it.format || "").toUpperCase();
+    if (!book) return true; // nu găsim cartea → tratăm ca lipsă
+
+    if (fmt === "PDF") return !book?.files?.PDF;
+    if (fmt === "EPUB") return !book?.files?.EPUB;
+    if (fmt === "AUDIOBOOK") return !book?.files?.AUDIOBOOK;
+    return false;
+  });
+
+  const showFilesWarning = hasDigital && hasMissingFiles;
+
+  // consimțământ legal
+  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreeDigital, setAgreeDigital] = useState(false);
+
+  // buton Plătește activ doar când sunt bifate
+  const canPay = agreeTerms && (!hasDigital || agreeDigital);
+
+  // determină moneda din item sau (fallback) din books.js
   const currencyOf = (i) => {
     const direct = (i?.currency || "").toUpperCase();
     if (direct === "RON" || direct === "EUR") return direct;
@@ -39,30 +56,28 @@ const hasService = (items || []).some(
 
   const primaryCurrency = items.length ? currencyOf(items[0]) : "RON";
 
-
   const orderText = useMemo(() => {
     if (items.length === 0) return "Coș gol.";
     return items
       .map((i) => {
         const cur = currencyOf(i);
-        return `${i.title} – ${i.format}${
-          i.lang ? ` ${i.lang}` : ""
-        } × ${i.qty} = ${i.price * i.qty} ${cur}`;
+        return `${i.title} – ${i.format}${i.lang ? ` ${i.lang}` : ""} × ${
+          i.qty
+        } = ${i.price * i.qty} ${cur}`;
       })
       .join("\n");
   }, [items]);
 
-  // ⚡ funcția Stripe
+  // Stripe
   const payWithCard = async () => {
     if (!items.length) return alert("Coșul este gol!");
     if (!canPay) {
-      // UI-ul e dezactivat deja, dar verificăm și în JS ca fallback
       alert("Te rugăm să bifezi consimțământul legal înainte de plată.");
       return;
     }
 
     try {
-      setError(null); // resetăm erorile anterioare
+      setError(null);
 
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
@@ -70,7 +85,6 @@ const hasService = (items || []).some(
         body: JSON.stringify({ items }),
       });
 
-      // 🟠 coș mixt RON/EUR → mesaj clar
       if (res.status === 409) {
         const data = await res.json().catch(() => ({}));
         setError(
@@ -88,7 +102,7 @@ const hasService = (items || []).some(
 
       const { url } = await res.json();
       if (url) {
-        window.location.href = url; // redirect către Stripe
+        window.location.href = url;
       } else {
         setError("Nu am primit URL-ul de plată de la Stripe.");
       }
@@ -122,34 +136,51 @@ const hasService = (items || []).some(
             </strong>
           </p>
 
-          // 2) în return, după total și (opțional) după bannerul de eroare:
-{hasService && (
-  <div
-    style={{
-      marginTop: 12,
-      padding: 12,
-      border: "1px dashed #e6c200",
-      background: "#fffbea",
-      borderRadius: 10,
-      color: "#5c4b00",
-      fontSize: 13,
-    }}
-  >
-    <strong>Servicii:</strong> programare & prestare în baza termenilor agreați.
-    Politica de anulare:{" "}
-    <a
-      href="/politica-anulare"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ color: "#7a5b00" }}
-    >
-      vezi aici
-    </a>.
-  </div>
-)}
+          {/* mesaj informativ doar dacă există servicii în coș */}
+          {hasService && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 12,
+                border: "1px dashed #e6c200",
+                background: "#fffbea",
+                borderRadius: 10,
+                color: "#5c4b00",
+                fontSize: 13,
+              }}
+            >
+              <strong>Servicii:</strong> programare & prestare în baza termenilor
+              agreați. Politica de anulare:{" "}
+              <a
+                href="/politica-anulare"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#7a5b00" }}
+              >
+                vezi aici
+              </a>
+              .
+            </div>
+          )}
 
+          {/* banner fișiere lipsă – doar pentru produse digitale */}
+          {showFilesWarning && (
+            <div
+              style={{
+                margin: "12px 0",
+                padding: "10px 12px",
+                borderRadius: 10,
+                border: "1px solid #f0b7b7",
+                background: "#ffecec",
+                color: "#a52828",
+                fontSize: 14,
+              }}
+            >
+              Momentan nu sunt disponibile fișiere pentru produsele selectate.
+            </div>
+          )}
 
-          {/* 🟢 banner eroare, dacă e cazul */}
+          {/* banner eroare Stripe, dacă e cazul */}
           {error && (
             <div
               style={{
@@ -166,43 +197,89 @@ const hasService = (items || []).some(
             </div>
           )}
 
-          {/* ✅ consimțământ legal */}
-          <div style={{marginTop: 16, padding: 12, border:"1px solid #eee", borderRadius:12, background:"#fff"}}>
-            <label style={{display:"flex", alignItems:"flex-start", gap:8}}>
+          {/* consimțământ legal */}
+          <div
+            style={{
+              marginTop: 16,
+              padding: 12,
+              border: "1px solid #eee",
+              borderRadius: 12,
+              background: "#fff",
+            }}
+          >
+            <label style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
               <input
                 type="checkbox"
                 checked={agreeTerms}
-                onChange={(e)=>setAgreeTerms(e.target.checked)}
+                onChange={(e) => setAgreeTerms(e.target.checked)}
               />
-              <span style={{fontSize:13, lineHeight:1.4}}>
-                Sunt de acord cu <a href="#/termeni" target="_blank" rel="noopener noreferrer">Termenii și condițiile</a>,
-                <a href="#/politica-cookies" target="_blank" rel="noopener noreferrer"> Politica de cookies</a> și
-                <a href="#/politica-confidentialitate" target="_blank" rel="noopener noreferrer"> Politica de confidențialitate</a>.
+              <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                Sunt de acord cu{" "}
+                <a
+                  href="#/termeni"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Termenii și condițiile
+                </a>
+                ,
+                <a
+                  href="#/politica-cookies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  Politica de cookies
+                </a>{" "}
+                și
+                <a
+                  href="#/politica-confidentialitate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  Politica de confidențialitate
+                </a>
+                .
               </span>
             </label>
 
             {hasDigital && (
-              <label style={{display:"flex", alignItems:"flex-start", gap:8, marginTop:10}}>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 8,
+                  marginTop: 10,
+                }}
+              >
                 <input
                   type="checkbox"
                   checked={agreeDigital}
-                  onChange={(e)=>setAgreeDigital(e.target.checked)}
+                  onChange={(e) => setAgreeDigital(e.target.checked)}
                 />
-                <span style={{fontSize:13, lineHeight:1.4}}>
-                  Sunt de acord cu începerea livrării digitale înainte de expirarea
-                  termenului legal de retragere și înțeleg că îmi pierd dreptul de
-                  retragere după descărcare.
-                  (<a href="#/politica-descarcare" target="_blank" rel="noopener noreferrer">Detalii</a>)
+                <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                  Sunt de acord cu începerea livrării digitale înainte de
+                  expirarea termenului legal de retragere și înțeleg că îmi pierd
+                  dreptul de retragere după descărcare. (
+                  <a
+                    href="#/politica-descarcare"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Detalii
+                  </a>
+                  )
                 </span>
               </label>
             )}
           </div>
 
-          {/* 🟢 Buton Stripe */}
+          {/* Buton Stripe */}
           <button
             type="button"
             onClick={payWithCard}
-            disabled={!canPay}   
+            disabled={!canPay}
             style={{
               padding: "12px",
               borderRadius: 10,
@@ -212,30 +289,44 @@ const hasService = (items || []).some(
               fontWeight: 700,
               cursor: "pointer",
               marginBottom: 10,
-              opacity: canPay ? 1 : 0.6,      // feedback vizual
+              opacity: canPay ? 1 : 0.6,
             }}
           >
             💳 Plătește acum cu cardul (Stripe)
           </button>
 
+          {/* Formular fallback (Formspree) */}
           <form
             action={FORMSPREE_ENDPOINT}
             method="POST"
             style={{ display: "grid", gap: 10, marginTop: 16 }}
             onSubmit={() => setTimeout(clear, 1000)}
           >
-            {/* anti-spam + redirect după submit */}
             <input type="text" name="_gotcha" style={{ display: "none" }} />
             <input
               type="hidden"
               name="_redirect"
               value="https://midaway.vercel.app/#/thanks"
             />
-<input type="hidden" name="agree_terms" value={agreeTerms ? "yes" : "no"} />
-<input type="hidden" name="agree_digital_waiver" value={agreeDigital ? "yes" : "no"} />
+            <input
+              type="hidden"
+              name="agree_terms"
+              value={agreeTerms ? "yes" : "no"}
+            />
+            <input
+              type="hidden"
+              name="agree_digital_waiver"
+              value={agreeDigital ? "yes" : "no"}
+            />
 
             <input name="name" required placeholder="Nume complet" style={field} />
-            <input name="email" type="email" required placeholder="Email" style={field} />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="Email"
+              style={field}
+            />
             <input name="phone" placeholder="Telefon (opțional)" style={field} />
             <textarea
               name="address"
