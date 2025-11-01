@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
+// 👇 fallback-ul folosit dacă un serviciu nu are imagine proprie
+const DEFAULT_IMAGE = "/assets/services/default-service.jpg";
+
 /**
  * Tipuri de tarifare:
  *  - fixed     → preț fix (ex. consultanță 60 min)
@@ -228,7 +231,7 @@ export default function Servicii() {
       price,
       currency: svc.currency || "RON",
       qty,
-      image: svc.image || "/assets/services/service-card.png",
+      image: svc.image || DEFAULT_IMAGE,
       fulfillment: "service",
       meta,
     });
@@ -305,7 +308,7 @@ export default function Servicii() {
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                <h3
+               <h3
                   className="font-cormorant"
                   style={{ margin: 0, fontSize: 22, lineHeight: 1.2 }}
                 >
@@ -328,7 +331,7 @@ export default function Servicii() {
                   </span>
                 )}
               </div>
-
+              
               <p style={{ margin: "6px 0 10px 0", color: "#444" }}>{svc.subtitle}</p>
 
               <div style={{ color: "#0f5132", fontWeight: 700, marginBottom: 8 }}>
