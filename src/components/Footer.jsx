@@ -11,11 +11,13 @@ export default function Footer() {
         <div className="footer-links">
           <a href="/feed.xml" rel="alternate">RSS</a>
           <span>•</span>
-          <Link to="/privacy">Politica de confidențialitate</Link>
-          <span>•</span>
           <Link to="/termeni">Termeni & condiții</Link>
           <span>•</span>
-          <Link to="/cookies">Politica cookies</Link>
+          <Link to="/politica-confidentialitate">Politica de confidențialitate</Link>
+          <span>•</span>
+          <Link to="/politica-cookies">Politica cookies</Link>
+          <span>•</span>
+          <Link to="/politica-descarcare">Politica de descărcare eBook</Link>
         </div>
 
         <div className="footer-links">

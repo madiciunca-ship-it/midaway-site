@@ -142,9 +142,9 @@ export default function Checkout() {
                 onChange={(e)=>setAgreeTerms(e.target.checked)}
               />
               <span style={{fontSize:13, lineHeight:1.4}}>
-                Sunt de acord cu <a href="/termeni" target="_blank" rel="noopener noreferrer">Termenii și condițiile</a>,
-                <a href="/politica-cookies" target="_blank" rel="noopener noreferrer"> Politica de cookies</a> și
-                <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer"> Politica de confidențialitate</a>.
+                Sunt de acord cu <a href="#/termeni" target="_blank" rel="noopener noreferrer">Termenii și condițiile</a>,
+                <a href="#/politica-cookies" target="_blank" rel="noopener noreferrer"> Politica de cookies</a> și
+                <a href="#/politica-confidentialitate" target="_blank" rel="noopener noreferrer"> Politica de confidențialitate</a>.
               </span>
             </label>
 
@@ -159,7 +159,7 @@ export default function Checkout() {
                   Sunt de acord cu începerea livrării digitale înainte de expirarea
                   termenului legal de retragere și înțeleg că îmi pierd dreptul de
                   retragere după descărcare.
-                  (<a href="/politica-descarcare" target="_blank" rel="noopener noreferrer">Detalii</a>)
+                  (<a href="#/politica-descarcare" target="_blank" rel="noopener noreferrer">Detalii</a>)
                 </span>
               </label>
             )}

@@ -29,6 +29,7 @@ import ThanksNewsletter from "./pages/ThanksNewsletter";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
+import PoliticaDescarcare from "./pages/PoliticaDescarcare";
 
 // ✅ doar ClearCartOnThanks, FĂRĂ CartProvider aici
 import { ClearCartOnThanks } from "./context/CartContext";
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/carti/:id" element={<BookDetailWithPurchase />} />
           <Route path="/carti/o-zi-de-care-sa-ti-amintesti-ebook" element={<BookDetailWithPurchase />} />
           <Route path="/admin/orders" element={<AdminOrders />} />
+
           {/* Blog */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
@@ -101,14 +103,22 @@ export default function App() {
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
           <Route path="/autori" element={<Authors />} />
           <Route path="/autori/:slug" element={<AuthorDetail />} />
+
           {/* Checkout */}
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/thanks" element={<ThanksOrder />} />
 
           {/* Legale */}
-          <Route path="/privacy" element={<Privacy />} />
           <Route path="/termeni" element={<Terms />} />
+          {/* alias vechi, păstrat */}
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/cookies" element={<Cookies />} />
+          {/* rutele noi pe română pentru link-urile din footer/checkout */}
+          <Route path="/politica-confidentialitate" element={<Privacy />} />
+          <Route path="/politica-cookies" element={<Cookies />} />
+          <Route path="/politica-descarcare" element={<PoliticaDescarcare />} />
+
+          {/* alias suplimentar deja existent */}
           <Route path="/multumesc-newsletter" element={<ThanksNewsletter />} />
 
           {/* Static */}
