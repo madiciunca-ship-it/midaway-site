@@ -4,6 +4,9 @@ import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
 
+const DEFAULT_SERVICE_IMAGE = "/assets/services/default-service.jpg";
+
+
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
 
@@ -38,14 +41,27 @@ export default function CartDrawer({ open, onClose }) {
 
   // Fallback pentru thumb: folosește cover/coverUrl/image/extraImage/images[0] sau placeholder.
   const resolveThumb = (it) => {
+    const isService =
+      String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
+  
+    if (isService) {
+      // serviciu → ia poza din item sau fallback-ul nostru
+      return it?.image || DEFAULT_SERVICE_IMAGE;
+    }
+  
+    // carte → întâi imaginea din item, altfel căutăm în BOOKS
     if (it?.image) return it.image;
-    const book = BOOKS.find((b) => b.id === it?.id);
+  
+    const book =
+      BOOKS.find((b) => b.id === it?.id || b.id === it?.bookId) || null;
+  
     const fromBook =
       book?.cover ||
       book?.coverUrl ||
       book?.image ||
       book?.extraImage ||
       (Array.isArray(book?.images) ? book.images[0] : null);
+  
     return fromBook || "/placeholder-cover.png";
   };
 
@@ -158,19 +174,25 @@ export default function CartDrawer({ open, onClose }) {
                     {/* thumbnail */}
                     {thumb ? (
                       <img
-                        src={thumb}
-                        alt={it.title}
-                        width={48}
-                        height={64}
-                        style={{ objectFit: "cover", borderRadius: 6, flexShrink: 0 }}
-                        decoding="async"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          if (e?.currentTarget?.src !== "/placeholder-cover.png") {
-                            e.currentTarget.src = "/placeholder-cover.png";
-                          }
-                        }}
-                      />
+                      src={thumb}
+                      alt={it.title}
+                      width={48}
+                      height={64}
+                      style={{ objectFit: "cover", borderRadius: 6, flexShrink: 0 }}
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const isService =
+                          String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
+                        const fallback = isService
+                          ? "/assets/services/default-service.jpg"
+                          : "/placeholder-cover.png";
+                        if (e?.currentTarget?.src !== fallback) {
+                          e.currentTarget.src = fallback;
+                        }
+                      }}
+                    />
+                    
                     ) : (
                       <div
                         style={{

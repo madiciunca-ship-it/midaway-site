@@ -231,7 +231,7 @@ export default function Servicii() {
       price,
       currency: svc.currency || "RON",
       qty,
-      image: svc.image || DEFAULT_IMAGE,
+      image: svc.image || DEFAULT_SERVICE_IMAGE,
       fulfillment: "service",
       meta,
     });
