@@ -79,7 +79,17 @@ export default function BookPurchasePanel({ book, bookId }) {
       currency: currencyLabel,
       image: cover, // 👈 important
       payLink: resolvedBook?.payLink || null,
-    });
+      
+    // ⬇️ nou: tipul de îndeplinire – pentru consimțământul digital
+  fulfillment:
+  fmt === "PDF" || fmt === "EPUB"
+    ? "digital"
+    : fmt === "PAPERBACK"
+    ? "paperback"
+    : fmt === "AUDIOBOOK"
+    ? "digital"
+    : "other",
+});
 
     console.log("[BUY] add ->", {
       id,
