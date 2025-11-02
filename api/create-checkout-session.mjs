@@ -6,36 +6,13 @@ const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
 const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 const stripe = new Stripe(STRIPE_KEY);
 
-// ——— helper: normalizează/taie câmpurile de firmă pt. Stripe metadata ———
-function buildCustomerMeta(input) {
-  const safe = (v) =>
-    typeof v === "string" ? v.slice(0, 240) : v ? String(v).slice(0, 240) : "";
-
-  const m = input && typeof input === "object" ? input : {};
-  const c = m.company || {};
-
-  return {
-    invoice_requested: m.wantCompanyInvoice ? "yes" : "no",
-    company_name: safe(c.name),
-    company_cui: safe(c.cui),
-    company_regcom: safe(c.regCom),
-    company_vat_payer: c.vatPayer ? "yes" : "no",
-    company_address: safe(c.address),
-    company_city: safe(c.city),
-    company_county: safe(c.county),
-    company_country: safe(c.country || "RO"),
-  };
-}
-
-
 // taxe curier configurabile per monedă (fallback-uri sensibile)
 const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 20);
 const COURIER_FEE_EUR = Number(process.env.COURIER_FEE_EUR ?? 10);
 
-// Construim ALLOWED_KEYS din books.js (ex: "o-zi-ro:PDF")
-const ALLOWED_KEYS = new Set();
+// map rapid pentru cărți + whitelist fișiere disponibile
 const BOOK_MAP = new Map();
-
+const ALLOWED_KEYS = new Set();
 for (const book of BOOKS) {
   BOOK_MAP.set(book.id, book);
   if (book.files) {
@@ -63,11 +40,6 @@ function readBody(req) {
   });
 }
 
-const isService = (it) =>
-  String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
-
-const isPaperbackFmt = (fmt) => String(fmt || "").toUpperCase() === "PAPERBACK";
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 405;
@@ -83,64 +55,69 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Missing STRIPE_SECRET_KEY" }));
     }
 
-    const { items = [], customerMeta } = await readBody(req);
-    const sessionMeta = buildCustomerMeta(customerMeta); // 👈 pregătim metadata pt. Stripe
-    
+    const { items = [], customerMeta = null } = await readBody(req);
+
     if (!Array.isArray(items) || items.length === 0) {
       res.statusCode = 400;
       res.setHeader("Content-Type", "application/json");
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // Curățăm coșul:
-    //  - Servicii → acceptate direct (nu există în BOOKS).
-    //  - Cărți:
-    //      - PAPERBACK → permis mereu.
-    //      - PDF/EPUB/AUDIOBOOK → doar dacă avem fișiere => ALLOWED_KEYS.
+    // Construim o listă „curățată”: cărți valide + servicii
     const cleaned = [];
     const rejected = [];
 
     for (const it of items) {
       const rawId = String(it.id || "");
       const fmt = String(it.format || "").toUpperCase();
+      const fulf = String(it.fulfillment || it.type || "").toLowerCase();
 
-      // 1) Servicii (SERVICE) – includem direct
-      if (isService(it)) {
+      // 1) Servicii → acceptăm direct
+      if (fmt === "SERVICE" || fulf === "service" || rawId.startsWith("svc-")) {
         cleaned.push({
-          ...it,
-          _kind: "service",
-          _currency: String(it.currency || "RON").toUpperCase(),
+          kind: "service",
+          title: it.title || "Serviciu editorial",
+          currency: String(it.currency || "RON").toLowerCase(),
+          unit_amount: Math.round(Number(it.price) * 100),
+          quantity: Number(it.qty) || 1,
         });
         continue;
       }
 
-      // 2) Produse carte (există în BOOKS)
+      // 2) Cărți → verificăm fișiere pentru PDF/EPUB (PAPERBACK trece mereu)
       const book = BOOK_MAP.get(rawId);
       if (!book) {
         rejected.push(`${rawId}:${fmt}`);
         continue;
       }
 
-      if (isPaperbackFmt(fmt)) {
+      if (fmt === "PAPERBACK") {
         cleaned.push({
-          ...it,
-          _kind: "book",
-          _book: book,
-          _fileKey: `${rawId}:${fmt}`,
+          kind: "book",
+          book,
+          format: fmt,
+          currency: String(book.currency || "RON").toLowerCase(),
+          unit_amount: Math.round(Number(it.price) * 100),
+          quantity: Number(it.qty) || 1,
         });
         continue;
       }
 
-      if (ALLOWED_KEYS.has(`${rawId}:${fmt}`)) {
-        cleaned.push({
-          ...it,
-          _kind: "book",
-          _book: book,
-          _fileKey: `${rawId}:${fmt}`,
-        });
-      } else {
-        rejected.push(`${rawId}:${fmt}`);
+      const fileKey = `${rawId}:${fmt}`;
+      if (!ALLOWED_KEYS.has(fileKey)) {
+        rejected.push(fileKey);
+        continue;
       }
+
+      cleaned.push({
+        kind: "book",
+        book,
+        format: fmt,
+        fileKey,
+        currency: String(book.currency || "RON").toLowerCase(),
+        unit_amount: Math.round(Number(it.price) * 100),
+        quantity: Number(it.qty) || 1,
+      });
     }
 
     if (cleaned.length === 0) {
@@ -155,87 +132,64 @@ export default async function handler(req, res) {
       );
     }
 
-    // ✅ Monedă unică în tot coșul:
-    //  - pentru cărți folosim book.currency
-    //  - pentru servicii folosim item.currency
-    const currencies = [
-      ...new Set(
-        cleaned.map((it) =>
-          it._kind === "service"
-            ? String(it._currency || "RON").toUpperCase()
-            : String(it._book?.currency || "RON").toUpperCase()
-        )
-      ),
-    ];
-
+    // Monetă unică în tot coșul
+    // – pentru cărți: din BOOKS
+    // – pentru servicii: din item.currency (fallback RON)
+    const currencies = [...new Set(cleaned.map((x) => x.currency))];
     if (currencies.length > 1) {
       res.statusCode = 409;
       res.setHeader("Content-Type", "application/json");
       return res.end(
         JSON.stringify({
           error: "Finalizează separat comenzile pentru RON (RO) și EUR (EN).",
+          currencies,
         })
       );
     }
+    const currency = currencies[0];
 
-    const currency = (currencies[0] || "RON").toLowerCase();
-
-    // ✅ Construim line_items Stripe (cărți + servicii)
-    const line_items = cleaned.map((it) => {
-      const qty = Math.max(1, Number(it.qty) || 1);
-      const unitAmount = Math.round(Number(it.price || 0) * 100);
-
-      if (it._kind === "service") {
-        // SERVICIU
+    // Stripe line_items
+    const line_items = cleaned.map((x) => {
+      if (x.kind === "service") {
         return {
           price_data: {
             currency,
-            unit_amount: unitAmount,
+            unit_amount: x.unit_amount,
             product_data: {
-              name: it.title || "Serviciu",
-              metadata: {
-                type: "service",
-                id: it.id || "",
-              },
+              name: x.title,
+              metadata: { type: "service" },
             },
           },
-          quantity: qty,
+          quantity: x.quantity,
         };
       }
-
-      // CARTE
-      const fmt = String(it.format || "").toUpperCase();
-      const book = it._book;
-
+      // book
       return {
         price_data: {
           currency,
-          unit_amount: unitAmount,
+          unit_amount: x.unit_amount,
           product_data: {
-            name: `${book.title} — ${fmt}`,
+            name: `${x.book.title} — ${x.format}`,
             metadata: {
-              type: "book",
-              id: book.id,
-              format: fmt,
-              fileKey: `${book.id}:${fmt}`, // pentru webhook/download
+              id: x.book.id,
+              format: x.format,
+              ...(x.fileKey ? { fileKey: x.fileKey } : {}),
             },
           },
         },
-        quantity: qty,
+        quantity: x.quantity,
       };
     });
 
-    // 🧾 Taxă curier — O SINGURĂ LINIE dacă există PAPERBACK
+    // Taxă curier — dacă există PAPERBACK
     const hasPaperback = cleaned.some(
-      (it) => it._kind === "book" && isPaperbackFmt(it.format)
+      (x) => x.kind === "book" && x.format === "PAPERBACK"
     );
-
     if (hasPaperback) {
       const fee =
         currency === "ron"
           ? Math.round(COURIER_FEE_RON * 100)
           : Math.round(COURIER_FEE_EUR * 100);
-
       line_items.push({
         price_data: {
           currency,
@@ -249,27 +203,25 @@ export default async function handler(req, res) {
       });
     }
 
+    // Construim metadata pt. sesiune (utile în webhook)
+    const sessionMetadata = {};
+    if (customerMeta && customerMeta.type === "company") {
+      sessionMetadata.company = JSON.stringify({
+        name: customerMeta.name,
+        taxId: customerMeta.taxId,
+        reg: customerMeta.reg || "",
+        address: customerMeta.address || "",
+        city: customerMeta.city || "",
+        state: customerMeta.state || "",
+        country: customerMeta.country || "RO",
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
 
-      // 👇👇👇 METADATA către Stripe (vizibilă în Dashboard / Webhook)
-  metadata: sessionMeta,
-
-  // HashRouter URL-urile tale:
-  success_url: `${SITE}/#/thanks`,
-  cancel_url: `${SITE}/#/checkout`,
-
-  customer_creation: "always",
-  billing_address_collection: "required",
-  allow_promotion_codes: true,
-
-  shipping_address_collection: hasPaperback
-    ? { allowed_countries: ["RO","DE","FR","IT","ES","NL","GB","AT","BE","IE"] }
-    : undefined,
-});
-
-      // HashRouter – păstrăm rutele ca la tine
+      // HashRouter
       success_url: `${SITE}/#/thanks`,
       cancel_url: `${SITE}/#/checkout`,
 
@@ -293,17 +245,23 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
-    });
 
-    console.log("✅ create-checkout-session OK:", session.id);
+      metadata: sessionMetadata,
+    });
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ id: session.id, url: session.url }));
   } catch (err) {
-    console.error("Stripe error:", err);
+    console.error("create-checkout-session error:", err);
     res.statusCode = 500;
     res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify({ error: "Stripe init failed" }));
+    res.end(
+      JSON.stringify({
+        error:
+          err?.message ||
+          "A apărut o eroare la inițierea plății (server-side).",
+      })
+    );
   }
 }
