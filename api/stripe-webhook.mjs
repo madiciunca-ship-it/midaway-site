@@ -4,6 +4,90 @@ import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { appendOrder } from "./_orders-store.mjs";
 
+// ───────────────── EMAIL BUILDER RO+EN ─────────────────
+function buildEmailHTML({
+  orderId,
+  name,
+  total,
+  currency,
+  downloadsUrl,
+  items,
+}) {
+  const hasPaperback = items.some(i => i.type === "book" && i.format === "PAPERBACK");
+  const hasService   = items.some(i => i.type === "service");
+
+  const servicesList = items
+    .filter(i => i.type === "service")
+    .map(i => `• ${i.name}`)
+    .join("<br/>");
+
+  const helloRO = name ? `Mulțumim, <strong>${name}</strong>!` : "Mulțumim!";
+  const helloEN = name ? `Thank you, <strong>${name}</strong>!` : "Thank you!";
+
+  const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+
+  const notePaperRO = hasPaperback
+    ? `<div style="margin-top:12px;padding:12px;border:1px solid #e6f0e6;border-radius:10px;background:#f7fffa;color:#184a2c">
+         Comanda ta include și produse fizice (Paperback). Te contactăm în 24–48h cu detalii de livrare.
+       </div>`
+    : "";
+
+  const notePaperEN = hasPaperback
+    ? `<div style="margin-top:12px;padding:12px;border:1px solid #e6f0e6;border-radius:10px;background:#f7fffa;color:#184a2c">
+         Your order includes physical items (Paperback). We will contact you in 24–48h with delivery details.
+       </div>`
+    : "";
+
+  const noteSvcRO = hasService
+    ? `<div style="margin-top:12px;padding:12px;border:1px solid #fff0cc;border-radius:10px;background:#fffbea;color:#5c4b00">
+         Ai comandat servicii editoriale. Programarea & prestarea se fac în baza termenilor agreați.
+         Politica de anulare: <a href="${SITE}/#/politica-anulare" style="color:#7a5b00" target="_blank" rel="noopener">vezi aici</a>.
+         ${servicesList ? `<div style="margin-top:8px">${servicesList}</div>` : ""}
+       </div>`
+    : "";
+
+  const noteSvcEN = hasService
+    ? `<div style="margin-top:12px;padding:12px;border:1px solid #fff0cc;border-radius:10px;background:#fffbea;color:#5c4b00">
+         You have ordered editorial services. Scheduling & delivery are done under agreed terms.
+         Cancellation policy: <a href="${SITE}/#/politica-anulare" style="color:#7a5b00" target="_blank" rel="noopener">see here</a>.
+         ${servicesList ? `<div style="margin-top:8px">${servicesList}</div>` : ""}
+       </div>`
+    : "";
+
+  return `
+  <div style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial; color:#0f172a">
+    <h1 style="color:#199473;margin:0 0 8px 0">Comanda ta Midaway #${orderId} este confirmată ✅</h1>
+    <div style="margin-bottom:10px">Total: <strong>${total} ${currency}</strong></div>
+    <p style="margin:12px 0">${helloRO} Plata a fost procesată cu succes. Linkul tău de descărcare este valabil 48 de ore.</p>
+
+    <a href="${downloadsUrl}"
+       style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">
+       📥 Descarcă eBook-urile
+    </a>
+
+    ${notePaperRO}
+    ${noteSvcRO}
+
+    <hr style="border:none;height:1px;background:#eee;margin:24px 0"/>
+
+    <h2 style="color:#199473;margin:0 0 8px 0">Your Midaway order #${orderId} is confirmed ✅</h2>
+    <div style="margin-bottom:10px">Total: <strong>${total} ${currency}</strong></div>
+    <p style="margin:12px 0">${helloEN} Your payment was processed successfully. Your download link is valid for 48 hours.</p>
+
+    <a href="${downloadsUrl}"
+       style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">
+       📥 Download your eBooks
+    </a>
+
+    ${notePaperEN}
+    ${noteSvcEN}
+
+    <p style="margin-top:18px;color:#334155;font-size:14px">
+      Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>.
+    </p>
+  </div>`;
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // citește raw body (necesar pentru verificarea semnăturii Stripe)
@@ -75,11 +159,11 @@ export default async function handler(req, res) {
         expand: ["data.price.product"],
       });
 
-      // items pentru log + detecție courier fee
+      // items pentru log + metadate (fileKey/format/type)
       const items =
         (li?.data || []).map((it) => {
           const meta = it?.price?.product?.metadata || {};
-          const type = meta?.type || null; // ex: "courier_fee"
+          const type = meta?.type || null; // ex: "courier_fee" / "service"
           return {
             description: it.description,
             quantity: it.quantity,
@@ -90,7 +174,8 @@ export default async function handler(req, res) {
               "RON",
             fileKey: meta?.fileKey || null,
             format: meta?.format ? String(meta.format).toUpperCase() : null,
-            type,
+            type, // courier_fee / service / null (book)
+            name: it?.price?.product?.name || it.description || "Produs",
           };
         }) || [];
 
@@ -156,70 +241,32 @@ export default async function handler(req, res) {
         token
       )}`;
 
-      // ✉️ Email
+      // ✉️ Email (bilingv + servicii + paperback)
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
       });
 
-      const hasDownloadsBlock = keys.length > 0;
+      // pregătim item-urile pentru builder (book/service/courier_fee)
+      const itemsForEmail = items.map((it) => {
+        let t = "book";
+        if (it.type === "service") t = "service";
+        if (it.type === "courier_fee") t = "courier_fee";
+        return {
+          type: t,
+          name: it.name || it.description || "Produs",
+          format: it.format || null,
+        };
+      });
 
-      const downloadBlock = hasDownloadsBlock
-        ? `
-          <div style="margin:22px 0">
-            <a href="${downloadPage}" style="display:inline-block;background:#2a9d8f;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">
-              📥 Descarcă eBook-urile
-            </a>
-          </div>`
-        : "";
-
-      const paperbackNote = hasPaperback
-        ? `
-          <div style="margin:12px 0 0 0;padding:12px 14px;border-radius:10px;background:#f6f8f9;border:1px solid #e8ecef;color:#444;">
-            Comanda ta include și produse fizice (Paperback). Te contactăm în 24–48h cu detalii de livrare.
-          </div>`
-        : "";
-
-      const html = `
-        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8f9;padding:24px 0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;">
-          <tr><td align="center">
-            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)">
-              <tr>
-                <td align="center" style="padding:22px;background:#e8f4f2;">
-                  <img src="${SITE}/logo-midaway.png" width="64" height="64" alt="Midaway" style="display:block;border-radius:12px;border:1px solid #dfe9e7" />
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:28px">
-                  <h1 style="margin:0 0 8px 0;color:#2a9d8f;font-size:24px;line-height:1.3">
-                    Comanda ta <strong>Midaway</strong> #${orderNo} este confirmată ✅
-                  </h1>
-                  <p style="margin:0 0 8px 0;font-size:14px;color:#666;">
-                    Total: <strong>${total_amount} ${currency}</strong>
-                  </p>
-                  <p style="margin:0 0 16px 0;font-size:16px;color:#333;">
-                    Plata a fost procesată cu succes.
-                    ${
-                      hasDownloadsBlock
-                        ? "Linkul tău de descărcare este valabil 48 de ore."
-                        : "Am înregistrat comanda ta pentru produsele fizice."
-                    }
-                  </p>
-                  ${downloadBlock}
-                  ${paperbackNote}
-                  <p style="margin:12px 0 0 0;color:#6a6a6a;font-size:12px">
-                    Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro" style="color:#2a9d8f;text-decoration:none">contact@midaway.ro</a>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td align="center" style="padding:16px 28px;background:#fafafa;color:#888;font-size:12px">
-                  © 2025 MIDAWAY • <a href="${SITE}" style="color:#2a9d8f;text-decoration:none">midaway.vercel.app</a>
-                </td>
-              </tr>
-            </table>
-          </td></tr>
-        </table>`;
+      const html = buildEmailHTML({
+        orderId: orderNo,
+        name,
+        total: total_amount,
+        currency,
+        downloadsUrl: downloadPage,
+        items: itemsForEmail,
+      });
 
       await transporter.sendMail({
         from: `"Midaway" <${process.env.EMAIL_USER}>`,
