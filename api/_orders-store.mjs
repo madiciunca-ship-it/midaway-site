@@ -1,5 +1,7 @@
 // /api/_orders-store.mjs
 import { put } from "@vercel/blob";
+import fs from "fs";
+import path from "path";
 
 const FILE = "orders.json";
 
@@ -104,4 +106,29 @@ export async function appendOrder(order) {
   console.log("ℹ️  SUGESTIE: setează BLOB_PUBLIC_BASE =", origin, "dacă nu este setat.");
 
   console.log("🗂️ Order logged:", normalized.orderNo || normalized.id);
+}
+
+/**
+ * Șterge toate comenzile din Blob Storage (rescrie [] în fișierul public).
+ */
+export async function clearOrders() {
+  try {
+    const emptyList = [];
+    const body = JSON.stringify(emptyList, null, 2);
+    const { url } = await put(FILE, body, {
+      access: "public",
+      contentType: "application/json",
+      addRandomSuffix: false,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+
+    const origin = new URL(url).origin;
+    console.log("🗑️  Toate comenzile au fost șterse din Blob Storage.");
+    console.log("🟢 Blob reset url:", url);
+    console.log("ℹ️  Dacă nu e setat, setează BLOB_PUBLIC_BASE =", origin);
+    return true;
+  } catch (e) {
+    console.error("Eroare la clearOrders:", e);
+    return false;
+  }
 }
