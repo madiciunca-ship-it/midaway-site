@@ -12,14 +12,16 @@ function buildEmailHTML({
   currency,
   downloadsUrl,
   items,
-  hasDownloads, // 👈 nou
+  hasDownloads, // controlează textul + butoanele de download
 }) {
-  const hasPaperback = items.some(i => i.type === "book" && i.format === "PAPERBACK");
-  const hasService   = items.some(i => i.type === "service");
+  const hasPaperback = items.some(
+    (i) => i.type === "book" && i.format === "PAPERBACK"
+  );
+  const hasService = items.some((i) => i.type === "service");
 
   const servicesList = items
-    .filter(i => i.type === "service")
-    .map(i => `• ${i.name}`)
+    .filter((i) => i.type === "service")
+    .map((i) => `• ${i.name}`)
     .join("<br/>");
 
   const helloRO = name ? `Mulțumim, <strong>${name}</strong>!` : "Mulțumim!";
@@ -57,19 +59,12 @@ function buildEmailHTML({
        </div>`
     : "";
 
-  // liste produse – RO & EN (folosim aceleași denumiri)
+  // liste produse – RO & EN
   const listRO = items
-    .map(i => {
-      const suffix = i.format ? ` (${i.format})` : "";
-      return `<li>${i.name}${suffix}</li>`;
-    })
+    .map((i) => `<li>${i.name}${i.format ? ` (${i.format})` : ""}</li>`)
     .join("");
-
   const listEN = items
-    .map(i => {
-      const suffix = i.format ? ` (${i.format})` : "";
-      return `<li>${i.name}${suffix}</li>`;
-    })
+    .map((i) => `<li>${i.name}${i.format ? ` (${i.format})` : ""}</li>`)
     .join("");
 
   const textRO = hasDownloads
@@ -130,12 +125,14 @@ function buildEmailHTML({
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// citește raw body (necesar pentru verificarea semnăturii Stripe)
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
+// semnăm tokenul de download (valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -145,6 +142,7 @@ function signToken(payloadObj) {
   return `${body}.${sig}`;
 }
 
+// număr comandă simplu și lizibil: MID-YYYYMMDD-XXXXXX
 function genOrderNo(sessionId) {
   const d = new Date();
   const y = d.getFullYear();
@@ -153,6 +151,12 @@ function genOrderNo(sessionId) {
   const tail = String(sessionId || "").slice(-6).toUpperCase();
   return `MID-${y}${m}${day}-${tail}`;
 }
+
+// helper local: considerăm digitale doar aceste formate
+const isDigitalFormat = (fmt) => {
+  const F = String(fmt || "").toUpperCase();
+  return F === "PDF" || F === "EPUB" || F === "AUDIOBOOK";
+};
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -174,6 +178,9 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
+  // ———————————————————————————————————————————
+  // 1) COMANDĂ FINALIZATĂ
+  // ———————————————————————————————————————————
   if (event.type === "checkout.session.completed") {
     try {
       const session = await stripe.checkout.sessions.retrieve(
@@ -188,14 +195,32 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
+      // citim line items o singură dată
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
 
+      // normalizăm item-ele pentru log + email
       const items =
         (li?.data || []).map((it) => {
           const meta = it?.price?.product?.metadata || {};
-          const type = meta?.type || null; // "courier_fee" / "service" / null
+          const rawFormat = meta?.format ? String(meta.format).toUpperCase() : null;
+          const name = it?.price?.product?.name || it.description || "Produs";
+
+          // tip meta (ex: 'courier_fee' sau 'service'), altfel null
+          const metaType = meta?.type || null;
+
+          // Forțăm NON-digitalele să NU aibă fileKey
+          let fileKey = meta?.fileKey || null;
+          if (metaType === "courier_fee" || metaType === "service" || rawFormat === "PAPERBACK" || !isDigitalFormat(rawFormat)) {
+            fileKey = null;
+          }
+
+          // tip semantic pentru email/dashboard
+          let type = "book";
+          if (metaType === "courier_fee") type = "courier_fee";
+          else if (metaType === "service") type = "service";
+
           return {
             description: it.description,
             quantity: it.quantity,
@@ -204,27 +229,30 @@ export default async function handler(req, res) {
               it.currency?.toUpperCase() ||
               session.currency?.toUpperCase() ||
               "RON",
-            fileKey: meta?.fileKey || null,
-            format: meta?.format ? String(meta.format).toUpperCase() : null,
+            fileKey,
+            format: rawFormat,
             type,
-            name: it?.price?.product?.name || it.description || "Produs",
+            name,
           };
         }) || [];
 
       const hasPaperback = items.some((it) => it.format === "PAPERBACK");
-      const hasDownloads = items.some((it) => !!it.fileKey);
 
+      // chei de descărcare doar pentru item-ele digitale
+      let keys = items.map((it) => it.fileKey).filter(Boolean);
+      keys = [...new Set(keys)].sort();
+      const hasDownloads = keys.length > 0;
+
+      // sumăm separat taxa de curier (dacă există)
       const courierFee = items
         .filter((it) => it.type === "courier_fee")
         .reduce((s, it) => s + Number(it.amount_total || 0), 0);
-
-      let keys = items.map((it) => it.fileKey).filter(Boolean);
-      keys = [...new Set(keys)].sort();
 
       const total_amount = (session.amount_total || 0) / 100;
       const currency =
         (session.currency || items[0]?.currency || "RON").toUpperCase();
 
+      // listă unică de formate (fără null)
       const formatsList = Array.from(
         new Set(items.map((it) => it.format).filter(Boolean))
       );
@@ -235,6 +263,7 @@ export default async function handler(req, res) {
 
       const orderNo = genOrderNo(session.id);
 
+      // LOG în mini-dashboard
       try {
         const order = {
           id: session.id,
@@ -258,6 +287,7 @@ export default async function handler(req, res) {
         console.error("❌ Failed to append order:", e);
       }
 
+      // Token descărcare (doar dacă este ceva de descărcat)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -266,21 +296,17 @@ export default async function handler(req, res) {
         token
       )}`;
 
+      // trimitem e-mailul
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
       });
 
-      const itemsForEmail = items.map((it) => {
-        let t = "book";
-        if (it.type === "service") t = "service";
-        if (it.type === "courier_fee") t = "courier_fee";
-        return {
-          type: t,
-          name: it.name || it.description || "Produs",
-          format: it.format || null,
-        };
-      });
+      const itemsForEmail = items.map((it) => ({
+        type: it.type, // "book" | "service" | "courier_fee"
+        name: it.name || it.description || "Produs",
+        format: it.format || null,
+      }));
 
       const html = buildEmailHTML({
         orderId: orderNo,
@@ -289,7 +315,7 @@ export default async function handler(req, res) {
         currency,
         downloadsUrl: downloadPage,
         items: itemsForEmail,
-        hasDownloads, // 👈 nou
+        hasDownloads, // controlați butonul + fraza de 48h
       });
 
       await transporter.sendMail({
@@ -304,6 +330,8 @@ export default async function handler(req, res) {
         email,
         "| orderNo:",
         orderNo,
+        "| hasDownloads:",
+        hasDownloads,
         "| hasPaperback:",
         hasPaperback
       );
@@ -312,6 +340,9 @@ export default async function handler(req, res) {
     }
   }
 
+  // ———————————————————————————————————————————
+  // 2) CARD RESPINS
+  // ———————————————————————————————————————————
   if (event.type === "payment_intent.payment_failed") {
     try {
       const pi = event.data.object;
@@ -348,6 +379,9 @@ export default async function handler(req, res) {
     }
   }
 
+  // ———————————————————————————————————————————
+  // 3) SESIUNE EXPIRATĂ / ABANDONATĂ
+  // ———————————————————————————————————————————
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
@@ -374,5 +408,6 @@ export default async function handler(req, res) {
     }
   }
 
+  // răspuns standard pentru Stripe
   res.json({ received: true });
 }
