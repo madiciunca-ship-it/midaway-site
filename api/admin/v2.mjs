@@ -84,6 +84,7 @@ export default async function handler(req, res) {
   .typeChip{ display:inline-block; padding:2px 6px; border-radius:999px; background:#eefaf8; color:#11725f; font-size:12px; font-weight:700; }
   .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
   .id{ max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; vertical-align:bottom; }
+  .nowrap{ white-space:nowrap; }
 
   .totals{ color:#666; margin:8px 0 14px; }
   .summary{ margin:12px 0 16px; padding:12px; border:1px solid #eee; border-radius:12px; background:#fafafa; }
@@ -105,16 +106,17 @@ export default async function handler(req, res) {
       <option value="EPUB">EPUB</option>
       <option value="PAPERBACK">Paperback</option>
       <option value="AUDIOBOOK">Audiobook</option>
-      <option value="Consultanta editoriala">CONSULTANTA</option>
-      <option value="Design coperta">DESIGN</option>
-      <option value="Publicare & distributie KDP">PUBLICARE</option>
-      <option value="Editare completa RO">EDITARE</option>
-      <option value="Corectura RO">CORECTURA</option>
-      <option value="Traducere literara RO-EN">TRADUCERE</option>
-      <option value="Listare & vanzare pe Midaway.ro">LISTARE</option>
-      <option value="Pachet: De la manuscris la Amazon">AMAZON</option>
-      <option value="Mentorat autor debutant">MENTORAT</option>
+      <option value="CONSULTANTA">Consultanță editorială</option>
+      <option value="DESIGN">Design copertă</option>
+      <option value="PUBLICARE">Publicare & distribuție KDP</option>
+      <option value="EDITARE">Editare completă RO</option>
+      <option value="CORECTURA">Corectură RO</option>
+      <option value="TRADUCERE">Traducere literară RO-EN</option>
+      <option value="LISTARE">Listare & vânzare pe Midaway.ro</option>
+      <option value="AMAZON">Pachet: De la manuscris la Amazon</option>
+      <option value="MENTORAT">Mentorat autor debutant</option>
     </select>
+
     <div style="display:flex; gap:8px;">
       <button class="ghost" onclick="reload()">Reîncarcă</button>
       <button class="ghost" onclick="downloadCSV()">Export CSV</button>
@@ -131,6 +133,7 @@ const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
 const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
 const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
 
+// Formate listate + SERVICE dacă există servicii în items
 const sumFormats = (items)=>{
   const base = new Set((items||[])
     .map(i=>(i.format||'').toUpperCase())
@@ -138,6 +141,7 @@ const sumFormats = (items)=>{
   if ((items||[]).some(i => i.type === "service")) base.add("SERVICE");
   return Array.from(base).join(", ") || "-";
 };
+
 const typeFromItems = (items)=>{
   const hasE = (items||[]).some(i => (i.format||"").toUpperCase()!=="PAPERBACK");
   const hasP = (items||[]).some(i => (i.format||"").toUpperCase()==="PAPERBACK");
@@ -145,7 +149,8 @@ const typeFromItems = (items)=>{
   if (hasP) return {label:"fizic", cls:""};
   return {label:"eBooks", cls:""};
 };
-// map de cuvinte-cheie pentru filtrarea serviciilor după nume
+
+// chei pentru filtrarea serviciilor
 const SERVICE_KEYS = {
   CONSULTANTA: ["CONSULT", "CONSULTANȚ", "CONSULTANTA"],
   DESIGN: ["DESIGN", "COPERT"],
@@ -157,7 +162,7 @@ const SERVICE_KEYS = {
   AMAZON: ["MANUSCRIS", "AMAZON", "PACHET"],
   MENTORAT: ["MENTOR"],
 };
-const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"]; // formate reale
+const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"];
 
 let ORDERS = [];
 
@@ -232,12 +237,12 @@ function render(){
   const flt = applyFilters();
   document.getElementById('count').textContent = '• Total: '+flt.length;
 
-  // Totals per currency
+  // Totaluri per monedă
   const m = new Map(); for(const o of flt){ const cur=(o.currency||'RON').toUpperCase(); m.set(cur,(m.get(cur)||0)+Number(o.amount||0)); }
   document.getElementById('totals').innerHTML =
     'Totaluri: '+(Array.from(m.entries()).map(([cur,sum])=>\`<strong>\${sum}</strong> \${cur}\`).join(' • ')||'-');
 
-  // Monthly summary
+  // Sumar lunar
   const ym = (ts)=>{ const d=new Date(Number(ts||0)); if(isNaN(d)) return '—'; return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');};
   const map = new Map();
   for(const o of flt){ const key=ym(o.createdAt); if(!map.has(key)) map.set(key,new Map()); const cur=(o.currency||'RON').toUpperCase(); const prev=map.get(key).get(cur)||{sum:0,count:0}; map.get(key).set(cur,{sum:prev.sum+Number(o.amount||0),count:prev.count+1}); }
@@ -247,16 +252,15 @@ function render(){
   }).join('');
   document.getElementById('monthly').innerHTML = '<div style="font-weight:700;margin-bottom:8px">Sumar lunar</div>'+(ms||'<span class="muted">-</span>');
 
-  // Table
+  // Tabel — rânduri
   const rows = flt.map(o=>{
     const when = dfmt(o.createdAt);
-    const email = o.email||''; const name=o.name||''; const id=o.id||''; const orderNo=o.orderNo||'';
+    const email = o.email||''; const name=o.name||''; const orderNo=o.orderNo||'';
     const total = fmt(o.amount||0, o.currency||'');
     const status = (o.status||'paid').toLowerCase();
     const fmts = sumFormats(o.items);
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
-    const courier = (typeof o.courierFee==='number');
 
     // ascundem linia specială din items (type === "courier_fee")
     const displayItems = (o.items||[]).filter(it => it.type !== "courier_fee");
@@ -269,36 +273,40 @@ function render(){
       ? \`<br/>Taxă curier — \${o.courierFee} \${(o.currency||'').toUpperCase()}\`
       : '';
 
+    // noua ordine a celulelor (Data, Client, Țară, Produse, Formate, Total, Status/#)
     return \`
       <tr>
-        <td>
-          <div class="chip status \${status}">\${status}</div>
-          <div class="id"><code>\${id}</code></div>
-          \${orderNo ? \`<div class="muted" style="font-size:12px">#\${orderNo}</div>\` : '' }
-        </td>
         <td class="nowrap">\${when}</td>
         <td>
           <div><strong>\${name || email}</strong></div>
-          <div><a href="mailto:\${email}">\${email}</a> <button class="pill grey" style="margin-left:6px" onclick="copyEmail('\${email.replace(/'/g,"\\'")}')">copiază</button></div>
+          <div><a href="mailto:\${email}">\${email}</a>
+            <button class="pill grey" style="margin-left:6px"
+              onclick="copyEmail('\${email.replace(/'/g,"\\'")}')">copiază</button>
+          </div>
         </td>
         <td>\${country || '-'}<br/><span class="muted" style="font-size:12px">\${country ? countryName(country) : ''}</span></td>
         <td>\${items}\${courierLine}</td>
         <td class="formats">\${fmts}</td>
         <td class="right"><strong>\${total}</strong><br/><span class="typeChip \${type.cls}">\${type.label}</span></td>
+        <td>
+          <div class="chip status \${status}">\${status}</div>
+          \${orderNo ? \`<div class="muted" style="font-size:12px">#\${orderNo}</div>\` : '' }
+        </td>
       </tr>\`;
   }).join('');
 
+  // header reordonat
   document.getElementById('root').innerHTML = \`
     <table>
       <thead>
         <tr>
-          <th>ID / Status</th>
           <th>Data</th>
           <th>Client</th>
           <th>Țară</th>
           <th style="min-width:320px">Produse</th>
           <th>Format(e)</th>
           <th class="right">Total</th>
+          <th>Status / #Comandă</th>
         </tr>
       </thead>
       <tbody>\${rows}</tbody>
