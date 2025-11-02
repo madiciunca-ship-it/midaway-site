@@ -56,8 +56,8 @@ export default async function handler(req, res) {
   body{font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0; padding:20px; background:var(--bg); color:#222;}
   h1{ margin:0 0 14px 0; font-weight:800; letter-spacing:.3px; display:flex; gap:12px; align-items:baseline;}
   .muted{ color:var(--muted) }
-  .bar{ display:grid; grid-template-columns: 1fr 160px 160px 160px 160px 160px auto; gap:8px; align-items:center; margin: 12px 0; }
-  @media (max-width:1100px){ .bar{ grid-template-columns: 1fr 1fr; } }
+  .bar{ display:grid; grid-template-columns: 1fr 160px 160px 160px 160px 160px 160px auto; gap:8px; align-items:center; margin: 12px 0; }
+  @media (max-width:1200px){ .bar{ grid-template-columns: 1fr 1fr; } }
   input,select,button{ padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; font:inherit;}
   input{ min-width:160px; }
   button{ cursor:pointer; background:#2a9d8f; color:#fff; border:1px solid #228474; font-weight:700;}
@@ -85,10 +85,6 @@ export default async function handler(req, res) {
   .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
   .id{ max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; vertical-align:bottom; }
   .nowrap{ white-space:nowrap; }
-
-  .totals{ color:#666; margin:8px 0 14px; }
-  .summary{ margin:12px 0 16px; padding:12px; border:1px solid #eee; border-radius:12px; background:#fafafa; }
-  .row-flex{display:flex; justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -100,6 +96,7 @@ export default async function handler(req, res) {
     <select id="status"><option value="">Status (toate)</option></select>
     <select id="currency"><option value="">Monedă (toate)</option></select>
     <select id="country"><option value="">Țară (toate)</option></select>
+    <select id="month"><option value="">Lună (toate)</option></select>
     <select id="format">
       <option value="">Format (toate)</option>
       <option value="PDF">PDF</option>
@@ -132,6 +129,7 @@ export default async function handler(req, res) {
 const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
 const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
 const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
+const ym = (ts)=>{ const d=new Date(Number(ts||0)); if(isNaN(d)) return '—'; return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); };
 
 // Formate listate + SERVICE dacă există servicii în items
 const sumFormats = (items)=>{
@@ -166,10 +164,13 @@ const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"];
 
 let ORDERS = [];
 
-async function load(){
+// force = true => cache-buster param
+async function load(force=false){
   const t = document.getElementById('token').value.trim();
   if(!t){ document.getElementById('root').innerHTML='<p style="color:#b42318">Introdu token.</p>'; return; }
-  const url = new URL('${BASE}/api/admin/orders'); url.searchParams.set('token', t);
+  const url = new URL('${BASE}/api/admin/orders');
+  url.searchParams.set('token', t);
+  if (force) url.searchParams.set('_', Date.now()); // cache buster
   document.getElementById('src').textContent = url.toString();
 
   const res = await fetch(url, { headers: {'cache-control':'no-store'} });
@@ -196,6 +197,11 @@ function populateFilters(list){
   const kSel = document.getElementById('country'); kSel.innerHTML = '<option value="">Țară (toate)</option>';
   const co = Array.from(new Set(list.map(o=>(o.country||'').toUpperCase()).filter(Boolean))).sort();
   co.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent = v+' — '+countryName(v); kSel.appendChild(o); });
+
+  // months (YYYY-MM)
+  const mSel = document.getElementById('month'); mSel.innerHTML = '<option value="">Lună (toate)</option>';
+  const months = Array.from(new Set(list.map(o=>ym(o.createdAt)).filter(v=>v && v!=='—'))).sort().reverse();
+  months.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; mSel.appendChild(o); });
 }
 
 function applyFilters(){
@@ -203,12 +209,14 @@ function applyFilters(){
   const s = document.getElementById('status').value.trim().toLowerCase();
   const c = document.getElementById('currency').value.trim().toUpperCase();
   const k = document.getElementById('country').value.trim().toUpperCase();
+  const mo = document.getElementById('month').value.trim();
   const f = document.getElementById('format').value.trim().toUpperCase();
 
   return ORDERS.filter(o=>{
     if(s && String(o.status||'').toLowerCase()!==s) return false;
     if(c && (o.currency||'').toUpperCase()!==c) return false;
     if(k && (o.country||'').toUpperCase()!==k) return false;
+    if(mo && ym(o.createdAt)!==mo) return false;
 
     if (f) {
       if (FORMAT_VALUES.includes(f)) {
@@ -243,17 +251,17 @@ function render(){
     'Totaluri: '+(Array.from(m.entries()).map(([cur,sum])=>\`<strong>\${sum}</strong> \${cur}\`).join(' • ')||'-');
 
   // Sumar lunar
-  const ym = (ts)=>{ const d=new Date(Number(ts||0)); if(isNaN(d)) return '—'; return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');};
   const map = new Map();
   for(const o of flt){ const key=ym(o.createdAt); if(!map.has(key)) map.set(key,new Map()); const cur=(o.currency||'RON').toUpperCase(); const prev=map.get(key).get(cur)||{sum:0,count:0}; map.get(key).set(cur,{sum:prev.sum+Number(o.amount||0),count:prev.count+1}); }
-  const ms = Array.from(map.entries()).sort(([a],[b])=>a<b?1:-1).map(([ym,curMap])=>{
+  const ms = Array.from(map.entries()).sort(([a],[b])=>a<b?1:-1).map(([ymKey,curMap])=>{
     const cells = Array.from(curMap.entries()).map(([cur,v])=>\`<span style="margin-right:12px"><strong>\${v.sum}</strong> \${cur} <span style="color:#888">(\${v.count} com.)</span></span>\`).join('');
-    return \`<div class="row-flex"><div style="color:#555">\${ym}</div><div>\${cells}</div></div>\`;
+    return \`<div style="display:flex;justify-content:space-between"><div style="color:#555">\${ymKey}</div><div>\${cells}</div></div>\`;
   }).join('');
   document.getElementById('monthly').innerHTML = '<div style="font-weight:700;margin-bottom:8px">Sumar lunar</div>'+(ms||'<span class="muted">-</span>');
 
-  // Tabel — rânduri
-  const rows = flt.map(o=>{
+  // Tabel — rânduri (cu număr de ordine)
+  const rows = flt.map((o, idx)=>{
+    const no = idx + 1;
     const when = dfmt(o.createdAt);
     const email = o.email||''; const name=o.name||''; const orderNo=o.orderNo||'';
     const total = fmt(o.amount||0, o.currency||'');
@@ -262,20 +270,18 @@ function render(){
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
 
-    // ascundem linia specială din items (type === "courier_fee")
     const displayItems = (o.items||[]).filter(it => it.type !== "courier_fee");
     const items = displayItems
       .map(it => \`\${it.description} — <span class="muted">x\${it.quantity}</span> — \${it.amount_total} \${(it.currency||'').toUpperCase()}\`)
       .join('<br/>');
 
-    // adăugăm o singură dată taxa de curier, doar dacă > 0
     const courierLine = Number(o.courierFee) > 0
       ? \`<br/>Taxă curier — \${o.courierFee} \${(o.currency||'').toUpperCase()}\`
       : '';
 
-    // noua ordine a celulelor (Data, Client, Țară, Produse, Formate, Total, Status/#)
     return \`
       <tr>
+        <td class="nowrap">\${no}</td>
         <td class="nowrap">\${when}</td>
         <td>
           <div><strong>\${name || email}</strong></div>
@@ -295,11 +301,12 @@ function render(){
       </tr>\`;
   }).join('');
 
-  // header reordonat
+  // header reordonat + col. nr
   document.getElementById('root').innerHTML = \`
     <table>
       <thead>
         <tr>
+          <th>#</th>
           <th>Data</th>
           <th>Client</th>
           <th>Țară</th>
@@ -313,27 +320,30 @@ function render(){
     </table>\`;
 }
 
-function reload(){ load(); }
+function reload(){ load(true); }
 function copyEmail(email){ try{ navigator.clipboard.writeText(email||""); }catch{} }
 
 function downloadCSV(){
   const flt = applyFilters();
   const head = ["nr","orderNo","id","createdAtIso","email","name","country","currency","amount","courierFee","status","formats","items"];
-  const rows = flt.map((o,idx)=>[
-    flt.length-idx,
-    o.orderNo||"",
-    o.id||"",
-    new Date(Number(o.createdAt||0)).toISOString(),
-    o.email||"",
-    o.name||"",
-    (o.country||"").toUpperCase(),
-    (o.currency||"").toUpperCase(),
-    o.amount ?? "",
-    typeof o.courierFee==="number" ? o.courierFee : "",
-    o.status || "",
-    Array.from(new Set((o.items||[]).map(i => String(i.format||"").toUpperCase()))).join("|"),
-    (o.items||[]).map(i=>\`\${i.description} x\${i.quantity} = \${i.amount_total} \${(i.currency||"").toUpperCase()}\`).join(" | ")
-  ]);
+  const rows = flt.map((o,idx)=>{
+    const formatsCsv = (()=>{ const s = ${"sumFormats"}(o.items); return s.replace(/,\\s*/g,"|"); })();
+    return [
+      idx+1,
+      o.orderNo||"",
+      o.id||"",
+      new Date(Number(o.createdAt||0)).toISOString(),
+      o.email||"",
+      o.name||"",
+      (o.country||"").toUpperCase(),
+      (o.currency||"").toUpperCase(),
+      o.amount ?? "",
+      typeof o.courierFee==="number" ? o.courierFee : "",
+      o.status || "",
+      formatsCsv,
+      (o.items||[]).filter(i=>i.type!=="courier_fee").map(i=>\`\${i.description} x\${i.quantity} = \${i.amount_total} \${(i.currency||"").toUpperCase()}\`).join(" | ")
+    ];
+  });
   const csv = [head.join(","), ...rows.map(r => r.map(c => \`"\${String(c).replace(/"/g,'""')}"\`).join(","))].join("\\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
@@ -345,6 +355,7 @@ document.getElementById('q').addEventListener('input', render);
 document.getElementById('status').addEventListener('change', render);
 document.getElementById('currency').addEventListener('change', render);
 document.getElementById('country').addEventListener('change', render);
+document.getElementById('month').addEventListener('change', render);
 document.getElementById('format').addEventListener('change', render);
 
 load();
