@@ -3,8 +3,6 @@ import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { appendOrder } from "./_orders-store.mjs";
-import { createSmartBillInvoice } from "./invoice-smartbill.mjs";
-
 
 // ───────────────── EMAIL BUILDER RO+EN ─────────────────
 function buildEmailHTML({
@@ -14,7 +12,7 @@ function buildEmailHTML({
   currency,
   downloadsUrl,
   items,
-  hasDownloads, // controlează textul + butoanele de download
+  hasDownloads,
 }) {
   const hasPaperback = items.some(
     (i) => i.type === "book" && i.format === "PAPERBACK"
@@ -61,13 +59,10 @@ function buildEmailHTML({
        </div>`
     : "";
 
-  // liste produse – RO & EN
   const listRO = items
     .map((i) => `<li>${i.name}${i.format ? ` (${i.format})` : ""}</li>`)
     .join("");
-  const listEN = items
-    .map((i) => `<li>${i.name}${i.format ? ` (${i.format})` : ""}</li>`)
-    .join("");
+  const listEN = listRO;
 
   const textRO = hasDownloads
     ? `${helloRO} Plata a fost procesată cu succes. Linkul tău de descărcare este valabil 48 de ore.`
@@ -78,17 +73,11 @@ function buildEmailHTML({
     : `${helloEN} Your payment was processed successfully.`;
 
   const dlBtnRO = hasDownloads
-    ? `<a href="${downloadsUrl}"
-         style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">
-         📥 Descarcă eBook-urile
-       </a>`
+    ? `<a href="${downloadsUrl}" style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">📥 Descarcă eBook-urile</a>`
     : "";
 
   const dlBtnEN = hasDownloads
-    ? `<a href="${downloadsUrl}"
-         style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">
-         📥 Download your eBooks
-       </a>`
+    ? `<a href="${downloadsUrl}" style="display:inline-block;background:#199473;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;margin:8px 0">📥 Download your eBooks</a>`
     : "";
 
   return `
@@ -96,45 +85,29 @@ function buildEmailHTML({
     <h1 style="color:#199473;margin:0 0 8px 0">Comanda ta Midaway #${orderId} este confirmată ✅</h1>
     <div style="margin-bottom:10px">Total: <strong>${total} ${currency}</strong></div>
     <p style="margin:12px 0">${textRO}</p>
-
     ${dlBtnRO}
-
     <div style="margin:12px 0 4px 0; font-weight:700">Sumar produse</div>
     <ul style="margin:6px 0 10px 18px; padding:0">${listRO}</ul>
-
-    ${notePaperRO}
-    ${noteSvcRO}
-
+    ${notePaperRO}${noteSvcRO}
     <hr style="border:none;height:1px;background:#eee;margin:24px 0"/>
-
     <h2 style="color:#199473;margin:0 0 8px 0">Your Midaway order #${orderId} is confirmed ✅</h2>
     <div style="margin-bottom:10px">Total: <strong>${total} ${currency}</strong></div>
     <p style="margin:12px 0">${textEN}</p>
-
     ${dlBtnEN}
-
     <div style="margin:12px 0 4px 0; font-weight:700">Order summary</div>
     <ul style="margin:6px 0 10px 18px; padding:0">${listEN}</ul>
-
-    ${notePaperEN}
-    ${noteSvcEN}
-
-    <p style="margin-top:18px;color:#334155;font-size:14px">
-      Dacă nu ai inițiat această comandă, scrie-ne: <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>.
-    </p>
+    ${notePaperEN}${noteSvcEN}
   </div>`;
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// citește raw body (necesar pentru verificarea semnăturii Stripe)
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   return Buffer.concat(chunks);
 }
 
-// semnăm tokenul de download (valabil 48h)
 function signToken(payloadObj) {
   const body = Buffer.from(JSON.stringify(payloadObj)).toString("base64url");
   const sig = crypto
@@ -144,7 +117,6 @@ function signToken(payloadObj) {
   return `${body}.${sig}`;
 }
 
-// număr comandă simplu și lizibil: MID-YYYYMMDD-XXXXXX
 function genOrderNo(sessionId) {
   const d = new Date();
   const y = d.getFullYear();
@@ -154,7 +126,6 @@ function genOrderNo(sessionId) {
   return `MID-${y}${m}${day}-${tail}`;
 }
 
-// helper local: considerăm digitale doar aceste formate
 const isDigitalFormat = (fmt) => {
   const F = String(fmt || "").toUpperCase();
   return F === "PDF" || F === "EPUB" || F === "AUDIOBOOK";
@@ -165,6 +136,8 @@ export default async function handler(req, res) {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
   }
+
+  console.log("➡️ stripe-webhook HIT", new Date().toISOString());
 
   let event;
   try {
@@ -180,9 +153,8 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // ———————————————————————————————————————————
-  // 1) COMANDĂ FINALIZATĂ
-  // ———————————————————————————————————————————
+  console.log("📬 Event:", event.type);
+
   if (event.type === "checkout.session.completed") {
     try {
       const session = await stripe.checkout.sessions.retrieve(
@@ -197,28 +169,27 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
-      // citim line items o singură dată
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
 
-      // normalizăm item-ele pentru log + email
       const items =
         (li?.data || []).map((it) => {
           const meta = it?.price?.product?.metadata || {};
           const rawFormat = meta?.format ? String(meta.format).toUpperCase() : null;
-          const name = it?.price?.product?.name || it.description || "Produs";
-
-          // tip meta (ex: 'courier_fee' sau 'service'), altfel null
+          const pname = it?.price?.product?.name || it.description || "Produs";
           const metaType = meta?.type || null;
 
-          // Forțăm NON-digitalele să NU aibă fileKey
           let fileKey = meta?.fileKey || null;
-          if (metaType === "courier_fee" || metaType === "service" || rawFormat === "PAPERBACK" || !isDigitalFormat(rawFormat)) {
+          if (
+            metaType === "courier_fee" ||
+            metaType === "service" ||
+            rawFormat === "PAPERBACK" ||
+            !isDigitalFormat(rawFormat)
+          ) {
             fileKey = null;
           }
 
-          // tip semantic pentru email/dashboard
           let type = "book";
           if (metaType === "courier_fee") type = "courier_fee";
           else if (metaType === "service") type = "service";
@@ -234,18 +205,14 @@ export default async function handler(req, res) {
             fileKey,
             format: rawFormat,
             type,
-            name,
+            name: pname,
           };
         }) || [];
 
       const hasPaperback = items.some((it) => it.format === "PAPERBACK");
-
-      // chei de descărcare doar pentru item-ele digitale
-      let keys = items.map((it) => it.fileKey).filter(Boolean);
-      keys = [...new Set(keys)].sort();
+      let keys = Array.from(new Set(items.map((it) => it.fileKey).filter(Boolean)));
       const hasDownloads = keys.length > 0;
 
-      // sumăm separat taxa de curier (dacă există)
       const courierFee = items
         .filter((it) => it.type === "courier_fee")
         .reduce((s, it) => s + Number(it.amount_total || 0), 0);
@@ -254,7 +221,6 @@ export default async function handler(req, res) {
       const currency =
         (session.currency || items[0]?.currency || "RON").toUpperCase();
 
-      // listă unică de formate (fără null)
       const formatsList = Array.from(
         new Set(items.map((it) => it.format).filter(Boolean))
       );
@@ -265,22 +231,22 @@ export default async function handler(req, res) {
 
       const orderNo = genOrderNo(session.id);
 
-      // ✅ extragem metadata companiei din sesiunea Stripe
-const md = session.metadata || {};
-const companyMeta = {
-  requested: md.invoice_requested === "yes",
-  name: md.company_name || "",
-  cui: md.company_cui || "",
-  regCom: md.company_regcom || "",
-  vatPayer: md.company_vat_payer === "yes",
-  address: md.company_address || "",
-  city: md.company_city || "",
-  county: md.company_county || "",
-  country: md.company_country || "RO",
-};
+      // metadata companie din sesiune (din create-checkout-session)
+      const md = session.metadata || {};
+      const companyMeta = {
+        requested: md.invoice_requested === "yes",
+        name: md.company_name || "",
+        cui: md.company_cui || "",
+        regCom: md.company_regcom || "",
+        vatPayer: md.company_vat_payer === "yes",
+        address: md.company_address || "",
+        city: md.company_city || "",
+        county: md.company_county || "",
+        country: md.company_country || "RO",
+      };
 
-
-      // LOG în mini-dashboard
+      // log în „dashboard”
+      let orderForLog = null;
       try {
         const order = {
           id: session.id,
@@ -299,32 +265,38 @@ const companyMeta = {
           formats: formatsList,
           company: companyMeta,
         };
+        orderForLog = order;
         await appendOrder(order);
-        console.log("🏢 Company metadata:", companyMeta);
-
         console.log("🗂️ Order logged:", order.orderNo, order.id);
       } catch (e) {
         console.error("❌ Failed to append order:", e);
       }
 
-      // 🧾 SmartBill: creați factura doar dacă s-a cerut factură pe firmă
-try {
-  if (companyMeta.requested) {
-    const inv = await createSmartBillInvoice({
-      order,
-      email,
-      company: companyMeta,
-    });
-    console.log("🧾 SmartBill result:", inv ? inv.number || inv : "skipped");
-  } else {
-    console.log("🧾 Invoice not requested. Skipping SmartBill.");
-  }
-} catch (e) {
-  console.error("🧾 SmartBill call failed (non-blocking):", e);
-}
+      // ——— SmartBill opțional (import dinamic numai dacă există fișierul) ———
+      try {
+        if (companyMeta.requested) {
+          let createSmartBillInvoice = null;
+          try {
+            const mod = await import("./invoice-smartbill.mjs"); // dacă nu există, prindem în catch
+            createSmartBillInvoice = mod?.createSmartBillInvoice;
+          } catch (e) {
+            console.warn("ℹ️ SmartBill module not found. Skipping invoice.");
+          }
 
+          if (createSmartBillInvoice && orderForLog) {
+            const inv = await createSmartBillInvoice({
+              order: orderForLog,
+              email,
+              company: companyMeta,
+            });
+            console.log("🧾 SmartBill result:", inv ? inv.number || inv : "ok");
+          }
+        }
+      } catch (e) {
+        console.error("🧾 SmartBill call failed (non-blocking):", e);
+      }
 
-      // Token descărcare (doar dacă este ceva de descărcat)
+      // token descărcare (doar dacă există fișiere)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
@@ -333,53 +305,54 @@ try {
         token
       )}`;
 
-      // trimitem e-mailul
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-      });
+      // e-mail
+      try {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+        });
 
-      const itemsForEmail = items.map((it) => ({
-        type: it.type, // "book" | "service" | "courier_fee"
-        name: it.name || it.description || "Produs",
-        format: it.format || null,
-      }));
+        const itemsForEmail = items.map((it) => ({
+          type: it.type,
+          name: it.name || it.description || "Produs",
+          format: it.format || null,
+        }));
 
-      const html = buildEmailHTML({
-        orderId: orderNo,
-        name,
-        total: total_amount,
-        currency,
-        downloadsUrl: downloadPage,
-        items: itemsForEmail,
-        hasDownloads, // controlați butonul + fraza de 48h
-      });
+        const html = buildEmailHTML({
+          orderId: orderNo,
+          name,
+          total: total_amount,
+          currency,
+          downloadsUrl: downloadPage,
+          items: itemsForEmail,
+          hasDownloads,
+        });
 
-      await transporter.sendMail({
-        from: `"Midaway" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: `Midaway • Confirmare comanda #${orderNo}`,
-        html,
-      });
+        await transporter.sendMail({
+          from: `"Midaway" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: `Midaway • Confirmare comanda #${orderNo}`,
+          html,
+        });
 
-      console.log(
-        "✅ Email trimis către:",
-        email,
-        "| orderNo:",
-        orderNo,
-        "| hasDownloads:",
-        hasDownloads,
-        "| hasPaperback:",
-        hasPaperback
-      );
+        console.log(
+          "✅ Email trimis către:",
+          email,
+          "| orderNo:",
+          orderNo,
+          "| hasDownloads:",
+          hasDownloads,
+          "| hasPaperback:",
+          hasPaperback
+        );
+      } catch (e) {
+        console.error("❌ sendMail failed:", e);
+      }
     } catch (err) {
       console.error("Eroare procesare checkout.session.completed:", err);
     }
   }
 
-  // ———————————————————————————————————————————
-  // 2) CARD RESPINS
-  // ———————————————————————————————————————————
   if (event.type === "payment_intent.payment_failed") {
     try {
       const pi = event.data.object;
@@ -416,9 +389,6 @@ try {
     }
   }
 
-  // ———————————————————————————————————————————
-  // 3) SESIUNE EXPIRATĂ / ABANDONATĂ
-  // ———————————————————————————————————————————
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
@@ -445,6 +415,5 @@ try {
     }
   }
 
-  // răspuns standard pentru Stripe
   res.json({ received: true });
 }
