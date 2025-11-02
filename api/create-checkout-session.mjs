@@ -41,6 +41,11 @@ function readBody(req) {
   });
 }
 
+const isService = (it) =>
+  String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
+
+const isPaperbackFmt = (fmt) => String(fmt || "").toUpperCase() === "PAPERBACK";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 405;
@@ -63,31 +68,54 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // 🔎 Filtrăm coșul: permit PDF/EPUB numai dacă avem fișier;
-    // pentru PAPERBACK permitem mereu (produs fizic → fără fișier).
+    // Curățăm coșul:
+    //  - Servicii → acceptate direct (nu există în BOOKS).
+    //  - Cărți:
+    //      - PAPERBACK → permis mereu.
+    //      - PDF/EPUB/AUDIOBOOK → doar dacă avem fișiere => ALLOWED_KEYS.
     const cleaned = [];
     const rejected = [];
 
     for (const it of items) {
       const rawId = String(it.id || "");
       const fmt = String(it.format || "").toUpperCase();
-      const fileKey = `${rawId}:${fmt}`;
+
+      // 1) Servicii (SERVICE) – includem direct
+      if (isService(it)) {
+        cleaned.push({
+          ...it,
+          _kind: "service",
+          _currency: String(it.currency || "RON").toUpperCase(),
+        });
+        continue;
+      }
+
+      // 2) Produse carte (există în BOOKS)
       const book = BOOK_MAP.get(rawId);
-
       if (!book) {
-        rejected.push(fileKey);
+        rejected.push(`${rawId}:${fmt}`);
         continue;
       }
 
-      if (fmt === "PAPERBACK") {
-        cleaned.push({ ...it, _book: book, _fileKey: fileKey });
+      if (isPaperbackFmt(fmt)) {
+        cleaned.push({
+          ...it,
+          _kind: "book",
+          _book: book,
+          _fileKey: `${rawId}:${fmt}`,
+        });
         continue;
       }
 
-      if (ALLOWED_KEYS.has(fileKey)) {
-        cleaned.push({ ...it, _book: book, _fileKey: fileKey });
+      if (ALLOWED_KEYS.has(`${rawId}:${fmt}`)) {
+        cleaned.push({
+          ...it,
+          _kind: "book",
+          _book: book,
+          _fileKey: `${rawId}:${fmt}`,
+        });
       } else {
-        rejected.push(fileKey);
+        rejected.push(`${rawId}:${fmt}`);
       }
     }
 
@@ -103,8 +131,19 @@ export default async function handler(req, res) {
       );
     }
 
-    // ✅ Monedă unică în tot coșul (din carte)
-    const currencies = [...new Set(cleaned.map((it) => it._book.currency))];
+    // ✅ Monedă unică în tot coșul:
+    //  - pentru cărți folosim book.currency
+    //  - pentru servicii folosim item.currency
+    const currencies = [
+      ...new Set(
+        cleaned.map((it) =>
+          it._kind === "service"
+            ? String(it._currency || "RON").toUpperCase()
+            : String(it._book?.currency || "RON").toUpperCase()
+        )
+      ),
+    ];
+
     if (currencies.length > 1) {
       res.statusCode = 409;
       res.setHeader("Content-Type", "application/json");
@@ -114,21 +153,44 @@ export default async function handler(req, res) {
         })
       );
     }
-    const currency = (currencies[0] || "EUR").toLowerCase();
 
-    // ✅ Line items Stripe (produse din coș)
+    const currency = (currencies[0] || "RON").toLowerCase();
+
+    // ✅ Construim line_items Stripe (cărți + servicii)
     const line_items = cleaned.map((it) => {
+      const qty = Math.max(1, Number(it.qty) || 1);
+      const unitAmount = Math.round(Number(it.price || 0) * 100);
+
+      if (it._kind === "service") {
+        // SERVICIU
+        return {
+          price_data: {
+            currency,
+            unit_amount: unitAmount,
+            product_data: {
+              name: it.title || "Serviciu",
+              metadata: {
+                type: "service",
+                id: it.id || "",
+              },
+            },
+          },
+          quantity: qty,
+        };
+      }
+
+      // CARTE
       const fmt = String(it.format || "").toUpperCase();
-      const qty = Number(it.qty) || 1;
       const book = it._book;
 
       return {
         price_data: {
           currency,
-          unit_amount: Math.round(Number(it.price) * 100),
+          unit_amount: unitAmount,
           product_data: {
             name: `${book.title} — ${fmt}`,
             metadata: {
+              type: "book",
               id: book.id,
               format: fmt,
               fileKey: `${book.id}:${fmt}`, // pentru webhook/download
@@ -139,9 +201,9 @@ export default async function handler(req, res) {
       };
     });
 
-    // 🧾 Taxă curier — adăugăm O SINGURĂ LINIE dacă există PAPERBACK
+    // 🧾 Taxă curier — O SINGURĂ LINIE dacă există PAPERBACK
     const hasPaperback = cleaned.some(
-      (it) => String(it.format || "").toUpperCase() === "PAPERBACK"
+      (it) => it._kind === "book" && isPaperbackFmt(it.format)
     );
 
     if (hasPaperback) {
@@ -156,9 +218,7 @@ export default async function handler(req, res) {
           unit_amount: fee,
           product_data: {
             name: "Taxă curier",
-            metadata: {
-              type: "courier_fee",
-            },
+            metadata: { type: "courier_fee" },
           },
         },
         quantity: 1,
@@ -169,15 +229,14 @@ export default async function handler(req, res) {
       mode: "payment",
       line_items,
 
-      // HashRouter: păstrăm #/thanks și #/checkout exact ca la tine
+      // HashRouter – păstrăm rutele ca la tine
       success_url: `${SITE}/#/thanks`,
       cancel_url: `${SITE}/#/checkout`,
 
-      customer_creation: "always",               // sau "if_required"
+      customer_creation: "always",
       billing_address_collection: "required",
-      allow_promotion_codes: true,               // păstrăm activ (poți seta false)
+      allow_promotion_codes: true,
 
-      // colectăm adresă de livrare doar dacă e produs fizic
       shipping_address_collection: hasPaperback
         ? {
             allowed_countries: [

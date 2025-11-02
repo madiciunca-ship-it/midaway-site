@@ -47,10 +47,13 @@ export default function Checkout() {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreeDigital, setAgreeDigital] = useState(false);
 
-  // buton Plătește activ doar când sunt bifate
-  const canPay = agreeTerms && (!hasDigital || agreeDigital);
-
-  // determină moneda din item sau (fallback) din books.js
+  // 🔒 Butonul Stripe e activ DOAR dacă:
+//  - ai bifat termeni
+//  - dacă există digitale, ai bifat și consimțământul digital
+//  - și NU lipsesc fișiere digitale
+const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
+  
+// determină moneda din item sau (fallback) din books.js
   const currencyOf = (i) => {
     const direct = (i?.currency || "").toUpperCase();
     if (direct === "RON" || direct === "EUR") return direct;
@@ -75,6 +78,13 @@ export default function Checkout() {
   // Stripe
   const payWithCard = async () => {
     if (!items.length) return alert("Coșul este gol!");
+
+    // ❗ blocăm explicit dacă lipsesc fișiere digitale
+  if (hasMissingFiles) {
+    setError("Pentru unele produse digitale lipsesc fișierele. Te rugăm revino când sunt încărcate.");
+    return;
+  }
+  
     if (!canPay) {
       alert("Te rugăm să bifezi consimțământul legal înainte de plată.");
       return;
