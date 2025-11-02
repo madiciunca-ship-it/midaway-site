@@ -23,6 +23,8 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Volunteers from "./pages/Volunteers";
 import Travelers from "./pages/Travelers";
 import TravelerDetail from "./pages/TravelerDetail";
+import Guides from "./pages/Guides.jsx";
+import GuideDetail from "./pages/GuideDetail.jsx";
 import Multimedia from "./pages/Multimedia";
 import Donate from "./pages/Donate";
 import Sponsorizari from "./pages/Sponsorizari";
@@ -104,6 +106,8 @@ export default function App() {
           {/* Alte secțiuni */}
           <Route path="/calatori" element={<Travelers />} />
           <Route path="/calatori/:id" element={<TravelerDetail />} />
+          <Route path="/ghizi" element={<Guides />} />
+          <Route path="/ghizi/:id" element={<GuideDetail />} />
           <Route path="/multimedia" element={<Multimedia />} />
           <Route path="/multumim-newsletter" element={<ThanksNewsletter />} />
           <Route path="/autori" element={<Authors />} />
