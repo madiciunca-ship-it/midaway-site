@@ -19,6 +19,7 @@ const navItems = [
   { label: "Viziunea", to: "/proiecte" },      // 👈 Proiecte → Viziunea (ruta rămâne)
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
+  { label: "Ghizi", to: "/ghizi" },
   { label: "Multimedia", to: "/multimedia" },
   { label: "Donații", to: "/donatii" },
   { label: "Sponsorizări", to: "/sponsorizari" },
