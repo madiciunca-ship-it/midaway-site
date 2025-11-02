@@ -130,7 +130,14 @@ export default async function handler(req, res) {
 const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
 const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
 const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
-const sumFormats = (items)=> Array.from(new Set((items||[]).map(i=>(i.format||'').toUpperCase()).filter(Boolean))).join(", ") || "-";
+
+const sumFormats = (items)=>{
+  const base = new Set((items||[])
+    .map(i=>(i.format||'').toUpperCase())
+    .filter(Boolean));
+  if ((items||[]).some(i => i.type === "service")) base.add("SERVICE");
+  return Array.from(base).join(", ") || "-";
+};
 const typeFromItems = (items)=>{
   const hasE = (items||[]).some(i => (i.format||"").toUpperCase()!=="PAPERBACK");
   const hasP = (items||[]).some(i => (i.format||"").toUpperCase()==="PAPERBACK");
@@ -138,6 +145,20 @@ const typeFromItems = (items)=>{
   if (hasP) return {label:"fizic", cls:""};
   return {label:"eBooks", cls:""};
 };
+// map de cuvinte-cheie pentru filtrarea serviciilor după nume
+const SERVICE_KEYS = {
+  CONSULTANTA: ["CONSULT", "CONSULTANȚ", "CONSULTANTA"],
+  DESIGN: ["DESIGN", "COPERT"],
+  PUBLICARE: ["PUBLICARE", "KDP", "DISTRIBU"],
+  EDITARE: ["EDITARE"],
+  CORECTURA: ["CORECTUR"],
+  TRADUCERE: ["TRADUCERE"],
+  LISTARE: ["LISTARE", "VÂNZARE", "VANZARE", "MIDAWAY"],
+  AMAZON: ["MANUSCRIS", "AMAZON", "PACHET"],
+  MENTORAT: ["MENTOR"],
+};
+const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"]; // formate reale
+
 
 let ORDERS = [];
 
@@ -185,9 +206,23 @@ function applyFilters(){
     if(c && (o.currency||'').toUpperCase()!==c) return false;
     if(k && (o.country||'').toUpperCase()!==k) return false;
     if(f){
-      const hasFmt = (o.items||[]).some(it => String(it.format||'').toUpperCase()===f);
-      if(!hasFmt) return false;
-    }
+      if (f) {
+        if (FORMAT_VALUES.includes(f)) {
+          // PDF/EPUB/PAPERBACK/AUDIOBOOK
+          const hasFmt = (o.items||[]).some(it => String(it.format||'').toUpperCase() === f);
+          if (!hasFmt) return false;
+        } else {
+          // e unul din serviciile din dropdown -> verific după type + cuvinte cheie în name/description
+          const keys = SERVICE_KEYS[f] || [f];
+          const hasService = (o.items||[]).some(it => {
+            if (it.type !== "service") return false;
+            const hay = (it.name || it.description || "").toUpperCase();
+            return keys.some(k => hay.includes(k));
+          });
+          if (!hasService) return false;
+        }
+      }
+      
     if(q){
       const hay = \`\${o.orderNo||''} \${o.merchantOrderId||''} \${o.id||''} \${o.email||''} \${o.name||''}\`.toLowerCase();
       if(!hay.includes(q)) return false;
@@ -225,8 +260,16 @@ function render(){
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
     const courier = (typeof o.courierFee==='number');
-    const items = (o.items||[]).map(it=>\`\${it.description} — <span class="muted">x\${it.quantity}</span> — \${it.amount_total} \${(it.currency||'').toUpperCase()}\`).join('<br/>');
-    const courierLine = courier ? \`<br/>Taxă curier — \${o.courierFee} \${(o.currency||'').toUpperCase()}\` : '';
+    // ascundem linia specială din items (type === "courier_fee")
+const displayItems = (o.items||[]).filter(it => it.type !== "courier_fee");
+const items = displayItems
+  .map(it => `${it.description} — <span class="muted">x${it.quantity}</span> — ${it.amount_total} ${(it.currency||'').toUpperCase()}`)
+  .join('<br/>');
+
+// adăugăm o singură dată taxa de curier, doar dacă > 0
+const courierLine = Number(o.courierFee) > 0
+  ? `<br/>Taxă curier — ${o.courierFee} ${(o.currency||'').toUpperCase()}`
+  : '';
 
     return \`
       <tr>
