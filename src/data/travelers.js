@@ -14,7 +14,7 @@ const travelers = [
       id: "nomad-bali",
       emoji: "🏝️",
    
-      name: "Adrian Ștefan Ileș – Nomadul din Bali",
+      name: "Adi – Nomadul din Bali",
       tagline: "Laptop, motocicletă și filme",
       cover: "/assets/travelers/nomad-bali/cover.webp",
       gallery: [
@@ -31,7 +31,7 @@ const travelers = [
         blog: "",
       },
       ro: {
-        intro: `Pe Adi l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: „Cum e în Bali?”
+        intro: `Pe Adi (Adrian Ștefan Illeș) l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: „Cum e în Bali?”
   
 De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj, începuturi. Mi-a spus atunci ceva ce nu am uitat: „Nu-ți face griji. O să-ți fiu alături cu tot ce pot.” Și așa a fost.
   
@@ -197,21 +197,21 @@ I had never really thought of Yulia as a traveler – but her message told me ev
     },
       
     // ────────────────────────────────────────────────────────────
-    // 3) Călătoarea cu barca
+    // 3) Hamza — O întâlnire care lasă urme
     // ────────────────────────────────────────────────────────────
     {
-      id: "calatoare-barca",
-      emoji: "🚤",
-      name: "Călătoarea cu barca",
-      tagline: "Insule, vânt, povești",
-      cover: "/assets/travelers/calatoare-barca/cover.webp",
+      id: "medic-maroc",
+      emoji: "🐪",
+      name: "Hamza — O întâlnire care lasă urme",
+      tagline: "Couchsurfing. Șarpe. Ifrane.",
+      cover: "/assets/travelers/medic-maroc/medic-maroc-cover.webp",
       gallery: [
-        "/assets/travelers/calatoare-barca/1.webp",
-        "/assets/travelers/calatoare-barca/2.webp",
-        "/assets/travelers/calatoare-barca/3.webp",
+        "/assets/travelers/medic-maroc/medic-maroc-1.webp",
+        "/assets/travelers/medic-maroc/medic-maroc-2.webp",
+        "/assets/travelers/medic-maroc/medic-maroc-3.webp",
       ],
       socials: {
-        instagram: "",
+        instagram: "lahlou_.hamza",
         facebook: "",
         tiktok: "",
         youtube: "",
@@ -219,33 +219,61 @@ I had never really thought of Yulia as a traveler – but her message told me ev
         blog: "",
       },
       ro: {
-        intro: `Insule mici, vânt prieten bun, nopți pe ponton.
-  O hartă lichidă a curajului de a porni la drum fără acoperiș.`,
+        intro: `Pe Hamza l-am întâlnit prin Couchsurfing, în timpul vizitei mele în Fes, Maroc. 
+Eram acolo de două zile, pierdută printre străduțele labirintice ale Medinei, și în pagina lui mi-a atras atenția ceva. 
+Avea acolo o mică poveste despre oamenii pe care i-a întâlnit în călătoriile lui și despre țările vizitate. Nicio urmă de „România”. Asta m-a intrigat. 
+I-am scris: 
+„Hey, vrei să ai și o româncă în lista ta? Am văzut că îți lipsește.” 
+
+Probabil a zâmbit. Dar a doua zi, spre surprinderea mea, a venit după mine cu mașina și m-a dus să vizitez un mic orășel din apropiere – Ifrane, renumitul „oraș austriac al Marocului”. 
+
+A fost o după-amiază superbă, plină de povești, râsete și o liniște de drum care doar între necunoscuți devine atât de firească.
+        
+Un om de milioane.
+Câteva luni mai târziu, mi-a scris că urmează examenul de rezidențiat și mi-a trimis o poză cu prima pagină a lucrării lui – acolo unde avea o dedicație pentru cei mai importanți oameni care i-au marcat existența (să nu uităm, are doar 26 de ani!). Printre acele 9 sau 10 nume era și Mida.
+        
+Mi-a spus că am fost una dintre persoanele care, în doar câteva ore și câteva cuvinte, au reușit să miște ceva profund în interiorul lui. Să-i schimbe puțin felul de a vedea viața.
+Așa că azi, aici, îi mulțumesc pentru că a ales să-mi împărtășească un moment atât de personal și frumos.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "" },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
-          { q: "3. Când ai știut că merită?", a: "" },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt Hamza, medic de 26 de ani din Maroc. Am o perspectivă deschisă asupra lumii și o curiozitate profundă față de oameni și culturi diferite. Îmi place să explorez experiențe globale și să învăț din modul unic în care fiecare persoană înțelege lumea. Consider că ființa umană este remarcabil de complexă și cred că spiritul uman nu poate fi definit printr-un set limitat de cuvinte." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Motivația mea pentru a explora lumea vine din dorința de a înțelege perspectivele diferite – mai ales felul în care gândirea variază între oameni și culturi." },
+          { q: "3. Când ai știut că merită?", a: "Momentele în care am întâlnit și am înțeles punctele de vedere diferite ale oamenilor despre lume au fost cu adevărat uimitoare și pline de inspirație." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Fiecare loc mi-a lăsat o amprentă unică, dar dacă ar fi să aleg o țară, aș spune Turcia. Asta pentru că am explorat-o în profunzime, nu doar câteva orașe. Fiecare loc mi-a oferit ocazia să mă cufund în atmosfera sa, iar acolo am întâlnit oameni din toate colțurile lumii – europeni, americani, asiatici, africani. Această experiență a fost profund pozitivă și îmbogățitoare." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Înainte să călătoresc, eram mai retras și timid, îmi era teamă să mă exprim, să nu fiu judecat sau ridiculizat. După călătorii, am devenit o persoană mai deschisă, comunicativă și liberă. Acum pot vorbi și împărtăși ideile mele fără teamă." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Provocările neprevăzute apar mereu – dificultăți financiare, întâlniri mai puțin plăcute – dar fiecare experiență te face mai puternic și mai echilibrat." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Îmbrățișează viitorul. Fă primul pas. Îți va schimba viața profund." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Pagina mea de Instagram este @Lahlou_.hamza." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Ne-am întâlnit prin Couchsurfing, în timpul vizitei ei în Fes. Ziua petrecută împreună a fost specială încă de la început. Mida are o poveste de viață impresionantă și o energie caldă, senină. Călătoriile ei, din România până în Vietnam, nu sunt doar despre locuri, ci despre sens – despre felul în care fiecare drum poate deveni o lecție. Cartea ei mi s-a părut plină de inspirație, iar felul în care vorbește despre oameni și experiențe te face să privești lumea altfel." },
         ],
         story: [],
       },
       en: {
-        intro: `Small islands, friendly winds, nights on a pontoon.`,
+        intro: `I met Hamza through Couchsurfing, during my visit to Fes, Morocco.
+I had been there for two days, wandering through the labyrinthine streets of the Medina, when something on his profile caught my attention.
+He had written a short story about the people he’d met on his travels and the countries he had visited – but there was no mention of “Romania.” That intrigued me.
+        
+So I wrote to him: 
+“Hey, would you like to have a Romanian on your list? I noticed you’re missing one.”
+        
+He probably smiled. But the next day, to my surprise, he came to pick me up by car and took me to visit a small nearby town – Ifrane, known as “the Austrian town of Morocco.”
+
+It was a beautiful afternoon, full of stories, laughter, and that quiet ease that only exists between strangers who somehow feel like old friends.
+
+A truly remarkable person.
+A few months later, he wrote to tell me he was preparing for his residency exam and sent me a photo of the first page of his thesis – where he had written a dedication to the most important people who had marked his life (let’s remember, he’s only 26!). Among those nine or ten names was Mida.
+
+He told me that, in just a few hours and a few words, I had managed to stir something deep within him – to make him see life a little differently.
+So today, here, I thank him for sharing such a personal and beautiful moment with me.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "" },
-          { q: "2. What made you start traveling?", a: "" },
-          { q: "3. When did you know it was worth it?", a: "" },
-          { q: "4. A place that changed the way you see the world?", a: "" },
-          { q: "5. How did traveling change you as a person?", a: "" },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: How did we meet?", a: "" },
+          { q: "1. Who are you in a few sentences?", a: "I am Hamza, a 26-year-old physician from Morocco. I have an open-minded outlook and a deep curiosity toward diverse people and cultures. I’m eager to explore global experiences and to learn from the unique ways each person understands the world. I find human beings remarkably complex, and I believe the human spirit cannot be defined by a limited set of descriptors." },
+          { q: "2. What made you start traveling?", a: "My motivation for global engagement stems from curiosity – the desire to understand different perspectives, especially the ways of thinking that vary among individuals and cultures." },
+          { q: "3. When did you know it was worth it?", a: "The moments when I encountered and truly comprehended the diverse perspectives of others regarding the world were astonishing and deeply inspiring." },
+          { q: "4. A place that changed the way you see the world?", a: "Each location left a distinct impression on me, but if I were to choose one country, it would be Turkey. I traveled extensively within it, not limiting myself to just a few cities. Each one allowed me to immerse myself in its unique atmosphere and meet people from all over the world – Europeans, Americans, Asians, and Africans. It was a profoundly positive and enriching experience." },
+          { q: "5. How did traveling change you as a person?", a: "Before I started traveling, I was more reserved and shy – afraid to express myself or to be misunderstood. After my travels, I became more open-minded and communicative. I can now share my thoughts and ideas without fear of being judged." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "Unforeseen challenges may arise – financial troubles, uncomfortable encounters – but each one contributes to personal growth and resilience." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Embrace the future. Take the first step. It will profoundly transform your life." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "My Instagram is @Lahlou_.hamza." },
+          { q: "9. Bonus: How did we meet?", a: "We met through Couchsurfing during her visit to Fes. The day we spent together was special from the very beginning. Mida has an inspiring life story and a calm, warm energy. Her travels – from Romania to Vietnam – aren’t just about places, but about meaning: about how every journey can become a lesson. Her book felt deeply inspiring to me, and the way she speaks about people and experiences makes you see the world differently." },
         ],
         story: [],
       },
