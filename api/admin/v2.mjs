@@ -159,7 +159,6 @@ const SERVICE_KEYS = {
 };
 const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"]; // formate reale
 
-
 let ORDERS = [];
 
 async function load(){
@@ -205,24 +204,22 @@ function applyFilters(){
     if(s && String(o.status||'').toLowerCase()!==s) return false;
     if(c && (o.currency||'').toUpperCase()!==c) return false;
     if(k && (o.country||'').toUpperCase()!==k) return false;
-    if(f){
-      if (f) {
-        if (FORMAT_VALUES.includes(f)) {
-          // PDF/EPUB/PAPERBACK/AUDIOBOOK
-          const hasFmt = (o.items||[]).some(it => String(it.format||'').toUpperCase() === f);
-          if (!hasFmt) return false;
-        } else {
-          // e unul din serviciile din dropdown -> verific după type + cuvinte cheie în name/description
-          const keys = SERVICE_KEYS[f] || [f];
-          const hasService = (o.items||[]).some(it => {
-            if (it.type !== "service") return false;
-            const hay = (it.name || it.description || "").toUpperCase();
-            return keys.some(k => hay.includes(k));
-          });
-          if (!hasService) return false;
-        }
+
+    if (f) {
+      if (FORMAT_VALUES.includes(f)) {
+        const hasFmt = (o.items||[]).some(it => String(it.format||'').toUpperCase() === f);
+        if (!hasFmt) return false;
+      } else {
+        const keys = SERVICE_KEYS[f] || [f];
+        const hasService = (o.items||[]).some(it => {
+          if (it.type !== "service") return false;
+          const hay = (it.name || it.description || "").toUpperCase();
+          return keys.some(k => hay.includes(k));
+        });
+        if (!hasService) return false;
       }
-      
+    }
+
     if(q){
       const hay = \`\${o.orderNo||''} \${o.merchantOrderId||''} \${o.id||''} \${o.email||''} \${o.name||''}\`.toLowerCase();
       if(!hay.includes(q)) return false;
@@ -260,16 +257,17 @@ function render(){
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
     const courier = (typeof o.courierFee==='number');
-    // ascundem linia specială din items (type === "courier_fee")
-const displayItems = (o.items||[]).filter(it => it.type !== "courier_fee");
-const items = displayItems
-  .map(it => `${it.description} — <span class="muted">x${it.quantity}</span> — ${it.amount_total} ${(it.currency||'').toUpperCase()}`)
-  .join('<br/>');
 
-// adăugăm o singură dată taxa de curier, doar dacă > 0
-const courierLine = Number(o.courierFee) > 0
-  ? `<br/>Taxă curier — ${o.courierFee} ${(o.currency||'').toUpperCase()}`
-  : '';
+    // ascundem linia specială din items (type === "courier_fee")
+    const displayItems = (o.items||[]).filter(it => it.type !== "courier_fee");
+    const items = displayItems
+      .map(it => \`\${it.description} — <span class="muted">x\${it.quantity}</span> — \${it.amount_total} \${(it.currency||'').toUpperCase()}\`)
+      .join('<br/>');
+
+    // adăugăm o singură dată taxa de curier, doar dacă > 0
+    const courierLine = Number(o.courierFee) > 0
+      ? \`<br/>Taxă curier — \${o.courierFee} \${(o.currency||'').toUpperCase()}\`
+      : '';
 
     return \`
       <tr>
