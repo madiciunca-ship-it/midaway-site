@@ -307,6 +307,23 @@ const companyMeta = {
         console.error("❌ Failed to append order:", e);
       }
 
+      // 🧾 SmartBill: creați factura doar dacă s-a cerut factură pe firmă
+try {
+  if (companyMeta.requested) {
+    const inv = await createSmartBillInvoice({
+      order,
+      email,
+      company: companyMeta,
+    });
+    console.log("🧾 SmartBill result:", inv ? inv.number || inv : "skipped");
+  } else {
+    console.log("🧾 Invoice not requested. Skipping SmartBill.");
+  }
+} catch (e) {
+  console.error("🧾 SmartBill call failed (non-blocking):", e);
+}
+
+
       // Token descărcare (doar dacă este ceva de descărcat)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
