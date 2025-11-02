@@ -261,7 +261,7 @@ function render(){
 
   // Tabel — rânduri (cu număr de ordine)
   const rows = flt.map((o, idx)=>{
-    const no = idx + 1;
+    const no = = flt.length - idx; // numerotare crescătoare (1 jos, N sus)
     const when = dfmt(o.createdAt);
     const email = o.email||''; const name=o.name||''; const orderNo=o.orderNo||'';
     const total = fmt(o.amount||0, o.currency||'');
