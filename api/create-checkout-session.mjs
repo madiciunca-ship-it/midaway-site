@@ -6,6 +6,28 @@ const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
 const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 const stripe = new Stripe(STRIPE_KEY);
 
+// ——— helper: normalizează/taie câmpurile de firmă pt. Stripe metadata ———
+function buildCustomerMeta(input) {
+  const safe = (v) =>
+    typeof v === "string" ? v.slice(0, 240) : v ? String(v).slice(0, 240) : "";
+
+  const m = input && typeof input === "object" ? input : {};
+  const c = m.company || {};
+
+  return {
+    invoice_requested: m.wantCompanyInvoice ? "yes" : "no",
+    company_name: safe(c.name),
+    company_cui: safe(c.cui),
+    company_regcom: safe(c.regCom),
+    company_vat_payer: c.vatPayer ? "yes" : "no",
+    company_address: safe(c.address),
+    company_city: safe(c.city),
+    company_county: safe(c.county),
+    company_country: safe(c.country || "RO"),
+  };
+}
+
+
 // taxe curier configurabile per monedă (fallback-uri sensibile)
 const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 20);
 const COURIER_FEE_EUR = Number(process.env.COURIER_FEE_EUR ?? 10);
@@ -61,7 +83,9 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Missing STRIPE_SECRET_KEY" }));
     }
 
-    const { items = [] } = await readBody(req);
+    const { items = [], customerMeta } = await readBody(req);
+    const sessionMeta = buildCustomerMeta(customerMeta); // 👈 pregătim metadata pt. Stripe
+    
     if (!Array.isArray(items) || items.length === 0) {
       res.statusCode = 400;
       res.setHeader("Content-Type", "application/json");
@@ -228,6 +252,22 @@ export default async function handler(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+
+      // 👇👇👇 METADATA către Stripe (vizibilă în Dashboard / Webhook)
+  metadata: sessionMeta,
+
+  // HashRouter URL-urile tale:
+  success_url: `${SITE}/#/thanks`,
+  cancel_url: `${SITE}/#/checkout`,
+
+  customer_creation: "always",
+  billing_address_collection: "required",
+  allow_promotion_codes: true,
+
+  shipping_address_collection: hasPaperback
+    ? { allowed_countries: ["RO","DE","FR","IT","ES","NL","GB","AT","BE","IE"] }
+    : undefined,
+});
 
       // HashRouter – păstrăm rutele ca la tine
       success_url: `${SITE}/#/thanks`,
