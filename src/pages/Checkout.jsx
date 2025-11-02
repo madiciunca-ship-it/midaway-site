@@ -47,26 +47,40 @@ export default function Checkout() {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreeDigital, setAgreeDigital] = useState(false);
 
-  // ✅ FACTURĂ PE FIRMĂ
-const [wantCompanyInvoice, setWantCompanyInvoice] = useState(false);
-const [company, setCompany] = useState({
-  name: "",
-  cui: "",
-  regCom: "",
-  vatPayer: false,
-  address: "",
-  city: "",
-  county: "",
-  country: "RO",
-});
+  // ------ FACTURĂ PE FIRMĂ (opțional) ------
+  const [invoiceCompany, setInvoiceCompany] = useState(false);
+  const [company, setCompany] = useState({
+    name: "",
+    taxId: "",
+    reg: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "RO",
+  });
+
+  // trimitem meta doar dacă checkbox-ul e bifat + avem câmpuri minime
+  const customerMeta =
+    invoiceCompany && company.name && company.taxId
+      ? {
+          type: "company",
+          name: company.name,
+          taxId: company.taxId,
+          reg: company.reg || "",
+          address: company.address || "",
+          city: company.city || "",
+          state: company.state || "",
+          country: company.country || "RO",
+        }
+      : null;
 
   // 🔒 Butonul Stripe e activ DOAR dacă:
-//  - ai bifat termeni
-//  - dacă există digitale, ai bifat și consimțământul digital
-//  - și NU lipsesc fișiere digitale
-const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
-  
-// determină moneda din item sau (fallback) din books.js
+  //  - ai bifat termeni
+  //  - dacă există digitale, ai bifat și consimțământul digital
+  //  - și NU lipsesc fișiere digitale
+  const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
+
+  // determină moneda din item sau (fallback) din books.js
   const currencyOf = (i) => {
     const direct = (i?.currency || "").toUpperCase();
     if (direct === "RON" || direct === "EUR") return direct;
@@ -92,12 +106,13 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
   const payWithCard = async () => {
     if (!items.length) return alert("Coșul este gol!");
 
-    // ❗ blocăm explicit dacă lipsesc fișiere digitale
-  if (hasMissingFiles) {
-    setError("Pentru unele produse digitale lipsesc fișierele. Te rugăm revino când sunt încărcate.");
-    return;
-  }
-
+    // blocăm explicit dacă lipsesc fișiere digitale
+    if (hasMissingFiles) {
+      setError(
+        "Pentru unele produse digitale lipsesc fișierele. Te rugăm revino când sunt încărcate."
+      );
+      return;
+    }
     if (!canPay) {
       alert("Te rugăm să bifezi consimțământul legal înainte de plată.");
       return;
@@ -111,10 +126,7 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items,
-          customerMeta: {
-            wantCompanyInvoice,
-            company,
-          },
+          customerMeta, // <— trimitem doar dacă există (altfel e null)
         }),
       });
 
@@ -134,11 +146,8 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
       }
 
       const { url } = await res.json();
-      if (url) {
-        window.location.href = url;
-      } else {
-        setError("Nu am primit URL-ul de plată de la Stripe.");
-      }
+      if (url) window.location.href = url;
+      else setError("Nu am primit URL-ul de plată de la Stripe.");
     } catch (e) {
       console.error(e);
       setError("A apărut o eroare de rețea.");
@@ -248,11 +257,7 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
               />
               <span style={{ fontSize: 13, lineHeight: 1.4 }}>
                 Sunt de acord cu{" "}
-                <a
-                  href="#/termeni"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="#/termeni" target="_blank" rel="noopener noreferrer">
                   Termenii și condițiile
                 </a>
                 ,
@@ -308,12 +313,120 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
             )}
           </div>
 
-          {/* Buton Stripe */}
+          {/* ——— Facturez pe firmă (opțional) ——— */}
+          <div
+            style={{
+              marginTop: 12,
+              padding: 12,
+              border: "1px solid #e6f0f0",
+              borderRadius: 12,
+              background: "#f9fbfb",
+            }}
+          >
+            <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input
+                type="checkbox"
+                checked={invoiceCompany}
+                onChange={(e) => setInvoiceCompany(e.target.checked)}
+              />
+              <span style={{ fontWeight: 600 }}>Doresc factură pe firmă</span>
+              <span style={{ fontSize: 12, color: "#666", marginLeft: 6 }}>
+                (opțional)
+              </span>
+            </label>
+
+            {invoiceCompany && (
+              <div
+                style={{
+                  marginTop: 10,
+                  padding: 12,
+                  borderRadius: 10,
+                  background: "#14746f14",
+                }}
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gap: 10,
+                    gridTemplateColumns: "1fr 1fr",
+                  }}
+                >
+                  <input
+                    placeholder="Denumire firmă"
+                    value={company.name}
+                    onChange={(e) =>
+                      setCompany({ ...company, name: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="CUI (ex. RO12345678)"
+                    value={company.taxId}
+                    onChange={(e) =>
+                      setCompany({ ...company, taxId: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="Reg. Com. (opțional)"
+                    value={company.reg}
+                    onChange={(e) =>
+                      setCompany({ ...company, reg: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="Adresă"
+                    value={company.address}
+                    onChange={(e) =>
+                      setCompany({ ...company, address: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="Oraș"
+                    value={company.city}
+                    onChange={(e) =>
+                      setCompany({ ...company, city: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="Județ / Stat"
+                    value={company.state}
+                    onChange={(e) =>
+                      setCompany({ ...company, state: e.target.value })
+                    }
+                    style={field}
+                  />
+                  <input
+                    placeholder="Țară (ex. RO)"
+                    value={company.country}
+                    onChange={(e) =>
+                      setCompany({
+                        ...company,
+                        country: e.target.value.toUpperCase(),
+                      })
+                    }
+                    style={field}
+                  />
+                </div>
+
+                <div style={{ fontSize: 12, color: "#666", marginTop: 8 }}>
+                  *Câmpurile minime pentru factură pe firmă:{" "}
+                  <strong>Denumire</strong> și <strong>CUI</strong>.
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ——— Buton Stripe ——— */}
           <button
             type="button"
             onClick={payWithCard}
             disabled={!canPay}
             style={{
+              marginTop: 12,
               padding: "12px",
               borderRadius: 10,
               background: "#2a9d8f",
@@ -321,79 +434,9 @@ const canPay = agreeTerms && (!hasDigital || agreeDigital) && !hasMissingFiles;
               border: "none",
               fontWeight: 700,
               cursor: "pointer",
-              marginBottom: 10,
               opacity: canPay ? 1 : 0.6,
             }}
-            >
-
-            {/* ✅ FACTURĂ PE FIRMĂ (opțional) */}
-<div style={{marginTop: 16, padding: 12, border:"1px solid #eee", borderRadius:12, background:"#fff"}}>
-<label style={{display:"flex", alignItems:"center", gap:8}}>
-  <input
-    type="checkbox"
-    checked={wantCompanyInvoice}
-    onChange={(e)=>setWantCompanyInvoice(e.target.checked)}
-  />
-  <span style={{fontSize:13}}>Doresc factură pe firmă</span>
-</label>
-
-{wantCompanyInvoice && (
-  <div style={{display:"grid", gap:8, gridTemplateColumns:"1fr 1fr", marginTop:10}}>
-    <input
-      placeholder="Denumire firmă"
-      value={company.name}
-      onChange={(e)=>setCompany({...company, name: e.target.value})}
-      style={field}
-    />
-    <input
-      placeholder="CUI (ex. RO12345678)"
-      value={company.cui}
-      onChange={(e)=>setCompany({...company, cui: e.target.value})}
-      style={field}
-    />
-    <input
-      placeholder="Reg. Com. (opțional)"
-      value={company.regCom}
-      onChange={(e)=>setCompany({...company, regCom: e.target.value})}
-      style={field}
-    />
-    <label style={{display:"flex", alignItems:"center", gap:6}}>
-      <input
-        type="checkbox"
-        checked={company.vatPayer}
-        onChange={(e)=>setCompany({...company, vatPayer: e.target.checked})}
-      />
-      Plătitoare de TVA
-    </label>
-    <input
-      placeholder="Adresă"
-      value={company.address}
-      onChange={(e)=>setCompany({...company, address: e.target.value})}
-      style={field}
-    />
-    <input
-      placeholder="Oraș"
-      value={company.city}
-      onChange={(e)=>setCompany({...company, city: e.target.value})}
-      style={field}
-    />
-    <input
-      placeholder="Județ / Stat"
-      value={company.county}
-      onChange={(e)=>setCompany({...company, county: e.target.value})}
-      style={field}
-    />
-    <input
-      placeholder="Țara (ex. RO)"
-      value={company.country}
-      onChange={(e)=>setCompany({...company, country: e.target.value})}
-      style={field}
-    />
-  </div>
-)}
-</div>
-
-         
+          >
             💳 Plătește acum cu cardul (Stripe)
           </button>
 
