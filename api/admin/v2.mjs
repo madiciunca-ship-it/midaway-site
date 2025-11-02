@@ -105,6 +105,15 @@ export default async function handler(req, res) {
       <option value="EPUB">EPUB</option>
       <option value="PAPERBACK">Paperback</option>
       <option value="AUDIOBOOK">Audiobook</option>
+      <option value="CONSULTANTA">Consultanta editoriala</option>
+      <option value="DESIGN">Design coperta</option>
+      <option value="PUBLICARE">Publicare & distributie KDP</option>
+      <option value="EDITARE">Editare completa RO</option>
+      <option value="CORECTURA">Corectura RO</option>
+      <option value="TRADUCERE">Traducere literara RO-EN</option>
+      <option value="LISTARE">Listare & vanzare pe Midaway.ro</option>
+      <option value="AMAZON">Pachet: De la manuscris la Amazon</option>
+      <option value="MENTORAT">Mentorat autor debutant</option>
     </select>
     <div style="display:flex; gap:8px;">
       <button class="ghost" onclick="reload()">Reîncarcă</button>
