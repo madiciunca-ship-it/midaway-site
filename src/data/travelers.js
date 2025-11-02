@@ -229,17 +229,17 @@ Probabil a zâmbit. Dar a doua zi, spre surprinderea mea, a venit după mine cu 
 
 A fost o după-amiază superbă, plină de povești, râsete și o liniște de drum care doar între necunoscuți devine atât de firească.
         
-Un om de milioane.
+Un om de milioane!
+
 Câteva luni mai târziu, mi-a scris că urmează examenul de rezidențiat și mi-a trimis o poză cu prima pagină a lucrării lui – acolo unde avea o dedicație pentru cei mai importanți oameni care i-au marcat existența (să nu uităm, are doar 26 de ani!). Printre acele 9 sau 10 nume era și Mida.
         
 Mi-a spus că am fost una dintre persoanele care, în doar câteva ore și câteva cuvinte, au reușit să miște ceva profund în interiorul lui. Să-i schimbe puțin felul de a vedea viața.
 Așa că azi, aici, îi mulțumesc pentru că a ales să-mi împărtășească un moment atât de personal și frumos.
 
 Extra-story: 
-
-Când ne întorceam din Ifrane, am decis spontan să oprim la un loc luxos – renumitul Michlifen Resort & Golf, ca doi turiști cu mulți bani. La poartă, Hamza le-a spus portarilor că mergem să luăm masa acolo. 😄
+Când ne întorceam din Ifrane, am decis spontan să oprim la un loc luxos – renumitul Michlifen Resort & Golf, ca doi turiști cu mulți bani. La poartă, Hamza le-a spus portarilor că mergem să luăm masa acolo.
 Desigur, nu am mâncat. Dar am vizitat celebra locație, am făcut poze și ne-am bucurat de aerul acela elegant, de vacanță de vis.
-Pe treptele care duceau spre grădină, ne-am întâlnit și cu un mic șarpe – un moment de neuitat, amuzant și puțin… exotic. 🐍
+Pe treptele care duceau spre grădină, ne-am întâlnit și cu un mic șarpe – un moment de neuitat, amuzant și puțin… exotic.
 Unul dintre acele momente care rămân în poveste, nu pentru că au fost perfecte, ci pentru că au fost vii.`,
         qna: [
           { q: "1. Cine ești în câteva fraze?", a: "Sunt Hamza, medic de 26 de ani din Maroc. Am o perspectivă deschisă asupra lumii și o curiozitate profundă față de oameni și culturi diferite. Îmi place să explorez experiențe globale și să învăț din modul unic în care fiecare persoană înțelege lumea. Consider că ființa umană este remarcabil de complexă și cred că spiritul uman nu poate fi definit printr-un set limitat de cuvinte." },
@@ -273,11 +273,10 @@ He told me that, in just a few hours and a few words, I had managed to stir some
 So today, here, I thank him for sharing such a personal and beautiful moment with me.
 
 Extra-story: 
-
 On our way back from Ifrane, we decided, quite spontaneously, to stop at a fancy place – the famous Michlifen Resort & Golf – like two rich tourists on vacation.
-At the gate, Hamza told the guards we were going there for lunch. 😄
+At the gate, Hamza told the guards we were going there for lunch.
 Of course, we didn’t eat. But we did visit the beautiful location, took photos, and soaked in that dreamy, luxurious atmosphere.
-On the steps leading to the garden, we even met a little snake – an unforgettable, funny, and slightly exotic moment. 🐍
+On the steps leading to the garden, we even met a little snake – an unforgettable, funny, and slightly exotic moment.
 One of those memories that stay with you not because they were perfect, but because they were alive.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "I am Hamza, a 26-year-old physician from Morocco. I have an open-minded outlook and a deep curiosity toward diverse people and cultures. I’m eager to explore global experiences and to learn from the unique ways each person understands the world. I find human beings remarkably complex, and I believe the human spirit cannot be defined by a limited set of descriptors." },
