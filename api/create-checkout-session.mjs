@@ -6,25 +6,28 @@ const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
 const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
 const stripe = new Stripe(STRIPE_KEY);
 
-// taxe curier configurabile per monedă (fallback-uri sensibile)
+// ─────────────────────────────────────────────────────────────────────────────
+//  Config
+// ─────────────────────────────────────────────────────────────────────────────
 const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 20);
 const COURIER_FEE_EUR = Number(process.env.COURIER_FEE_EUR ?? 10);
 
-// map rapid pentru cărți + whitelist fișiere disponibile
+// Harta cărți + whitelist fișiere disponibile (ex: "carte-id:PDF")
 const BOOK_MAP = new Map();
 const ALLOWED_KEYS = new Set();
-for (const book of BOOKS) {
-  BOOK_MAP.set(book.id, book);
-  if (book.files) {
-    for (const fmt of Object.keys(book.files)) {
-      const up = String(fmt).toUpperCase();
-      if (book.availability?.[up]) {
-        ALLOWED_KEYS.add(`${book.id}:${up}`);
-      }
+for (const b of BOOKS) {
+  BOOK_MAP.set(b.id, b);
+  if (b.files) {
+    for (const k of Object.keys(b.files)) {
+      const up = k.toUpperCase();
+      if (b.availability?.[up]) ALLOWED_KEYS.add(`${b.id}:${up}`);
     }
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+//  Helpers
+// ─────────────────────────────────────────────────────────────────────────────
 function readBody(req) {
   return new Promise((resolve, reject) => {
     let data = "";
@@ -40,6 +43,49 @@ function readBody(req) {
   });
 }
 
+const isServiceItem = (it) =>
+  String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE" ||
+  String(it?.id || "").startsWith("svc-");
+
+const isPaperbackFmt = (fmt) => String(fmt || "").toUpperCase() === "PAPERBACK";
+
+// Acceptă ambele forme de meta din front-end și normalizează pt. Stripe metadata
+function buildSessionMeta(rawMeta) {
+  if (!rawMeta || typeof rawMeta !== "object") return {};
+  // Noua formă: { type:"company", name, taxId, ... }
+  if (rawMeta.type === "company") {
+    const safe = (v) =>
+      typeof v === "string" ? v.slice(0, 240) : v ? String(v).slice(0, 240) : "";
+    return {
+      invoice_requested: "yes",
+      company_name: safe(rawMeta.name),
+      company_cui: safe(rawMeta.taxId),
+      company_regcom: safe(rawMeta.reg || ""),
+      company_address: safe(rawMeta.address || ""),
+      company_city: safe(rawMeta.city || ""),
+      company_state: safe(rawMeta.state || ""),
+      company_country: safe(rawMeta.country || "RO"),
+    };
+  }
+  // Vechi: { wantCompanyInvoice, company:{ name, cui, regCom, ... } }
+  const c = rawMeta.company || {};
+  const safe = (v) =>
+    typeof v === "string" ? v.slice(0, 240) : v ? String(v).slice(0, 240) : "";
+  return {
+    invoice_requested: rawMeta.wantCompanyInvoice ? "yes" : "no",
+    company_name: safe(c.name),
+    company_cui: safe(c.cui),
+    company_regcom: safe(c.regCom),
+    company_address: safe(c.address),
+    company_city: safe(c.city),
+    company_state: safe(c.county),
+    company_country: safe(c.country || "RO"),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Handler
+// ─────────────────────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 405;
@@ -56,6 +102,7 @@ export default async function handler(req, res) {
     }
 
     const { items = [], customerMeta = null } = await readBody(req);
+    const sessionMeta = buildSessionMeta(customerMeta);
 
     if (!Array.isArray(items) || items.length === 0) {
       res.statusCode = 400;
@@ -63,49 +110,47 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // Construim o listă „curățată”: cărți valide + servicii
+    // Curățăm coșul: servicii trec direct; cărțile trec cu reguli
     const cleaned = [];
     const rejected = [];
 
     for (const it of items) {
-      const rawId = String(it.id || "");
+      const id = String(it.id || "");
       const fmt = String(it.format || "").toUpperCase();
-      const fulf = String(it.fulfillment || it.type || "").toLowerCase();
 
-      // 1) Servicii → acceptăm direct
-      if (fmt === "SERVICE" || fulf === "service" || rawId.startsWith("svc-")) {
+      if (isServiceItem(it)) {
         cleaned.push({
           kind: "service",
-          title: it.title || "Serviciu editorial",
+          title: it.title || "Serviciu",
+          unit_amount: Math.round(Number(it.price || 0) * 100),
+          quantity: Math.max(1, Number(it.qty) || 1),
           currency: String(it.currency || "RON").toLowerCase(),
-          unit_amount: Math.round(Number(it.price) * 100),
-          quantity: Number(it.qty) || 1,
         });
         continue;
       }
 
-      // 2) Cărți → verificăm fișiere pentru PDF/EPUB (PAPERBACK trece mereu)
-      const book = BOOK_MAP.get(rawId);
+      const book = BOOK_MAP.get(id);
       if (!book) {
-        rejected.push(`${rawId}:${fmt}`);
+        rejected.push(`${id}:${fmt}`);
         continue;
       }
 
-      if (fmt === "PAPERBACK") {
+      if (isPaperbackFmt(fmt)) {
         cleaned.push({
           kind: "book",
           book,
           format: fmt,
+          unit_amount: Math.round(Number(it.price || 0) * 100),
+          quantity: Math.max(1, Number(it.qty) || 1),
           currency: String(book.currency || "RON").toLowerCase(),
-          unit_amount: Math.round(Number(it.price) * 100),
-          quantity: Number(it.qty) || 1,
+          fileKey: null, // paperback nu are fișier
         });
         continue;
       }
 
-      const fileKey = `${rawId}:${fmt}`;
-      if (!ALLOWED_KEYS.has(fileKey)) {
-        rejected.push(fileKey);
+      const key = `${id}:${fmt}`;
+      if (!ALLOWED_KEYS.has(key)) {
+        rejected.push(key);
         continue;
       }
 
@@ -113,10 +158,10 @@ export default async function handler(req, res) {
         kind: "book",
         book,
         format: fmt,
-        fileKey,
+        unit_amount: Math.round(Number(it.price || 0) * 100),
+        quantity: Math.max(1, Number(it.qty) || 1),
         currency: String(book.currency || "RON").toLowerCase(),
-        unit_amount: Math.round(Number(it.price) * 100),
-        quantity: Number(it.qty) || 1,
+        fileKey: key,
       });
     }
 
@@ -132,10 +177,8 @@ export default async function handler(req, res) {
       );
     }
 
-    // Monetă unică în tot coșul
-    // – pentru cărți: din BOOKS
-    // – pentru servicii: din item.currency (fallback RON)
-    const currencies = [...new Set(cleaned.map((x) => x.currency))];
+    // Monedă unică în tot coșul
+    const currencies = [...new Set(cleaned.map((x) => x.currency.toUpperCase()))];
     if (currencies.length > 1) {
       res.statusCode = 409;
       res.setHeader("Content-Type", "application/json");
@@ -146,9 +189,9 @@ export default async function handler(req, res) {
         })
       );
     }
-    const currency = currencies[0];
+    const currency = currencies[0].toLowerCase();
 
-    // Stripe line_items
+    // Line items Stripe
     const line_items = cleaned.map((x) => {
       if (x.kind === "service") {
         return {
@@ -171,6 +214,7 @@ export default async function handler(req, res) {
           product_data: {
             name: `${x.book.title} — ${x.format}`,
             metadata: {
+              type: "book",
               id: x.book.id,
               format: x.format,
               ...(x.fileKey ? { fileKey: x.fileKey } : {}),
@@ -181,7 +225,7 @@ export default async function handler(req, res) {
       };
     });
 
-    // Taxă curier — dacă există PAPERBACK
+    // Taxă curier dacă există paperback
     const hasPaperback = cleaned.some(
       (x) => x.kind === "book" && x.format === "PAPERBACK"
     );
@@ -203,23 +247,11 @@ export default async function handler(req, res) {
       });
     }
 
-    // Construim metadata pt. sesiune (utile în webhook)
-    const sessionMetadata = {};
-    if (customerMeta && customerMeta.type === "company") {
-      sessionMetadata.company = JSON.stringify({
-        name: customerMeta.name,
-        taxId: customerMeta.taxId,
-        reg: customerMeta.reg || "",
-        address: customerMeta.address || "",
-        city: customerMeta.city || "",
-        state: customerMeta.state || "",
-        country: customerMeta.country || "RO",
-      });
-    }
-
+    // Sesiune Stripe (UN SINGUR apel!)
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+      metadata: sessionMeta,
 
       // HashRouter
       success_url: `${SITE}/#/thanks`,
@@ -245,10 +277,9 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
-
-      metadata: sessionMetadata,
     });
 
+    console.log("✅ create-checkout-session OK:", session.id);
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ id: session.id, url: session.url }));
