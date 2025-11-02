@@ -3,6 +3,8 @@ import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { appendOrder } from "./_orders-store.mjs";
+import { createSmartBillInvoice } from "./invoice-smartbill.mjs";
+
 
 // ───────────────── EMAIL BUILDER RO+EN ─────────────────
 function buildEmailHTML({
@@ -263,6 +265,21 @@ export default async function handler(req, res) {
 
       const orderNo = genOrderNo(session.id);
 
+      // ✅ extragem metadata companiei din sesiunea Stripe
+const md = session.metadata || {};
+const companyMeta = {
+  requested: md.invoice_requested === "yes",
+  name: md.company_name || "",
+  cui: md.company_cui || "",
+  regCom: md.company_regcom || "",
+  vatPayer: md.company_vat_payer === "yes",
+  address: md.company_address || "",
+  city: md.company_city || "",
+  county: md.company_county || "",
+  country: md.company_country || "RO",
+};
+
+
       // LOG în mini-dashboard
       try {
         const order = {
@@ -280,8 +297,11 @@ export default async function handler(req, res) {
           status: "paid",
           country,
           formats: formatsList,
+          company: companyMeta,
         };
         await appendOrder(order);
+        console.log("🏢 Company metadata:", companyMeta);
+
         console.log("🗂️ Order logged:", order.orderNo, order.id);
       } catch (e) {
         console.error("❌ Failed to append order:", e);
