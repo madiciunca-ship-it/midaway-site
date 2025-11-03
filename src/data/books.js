@@ -40,7 +40,7 @@ export const BOOKS = [
     format: "eBook",
 
     // chei UPPERCASE
-    prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
+    prices: { PDF: 5, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
 
     availability: {
       PDF: true,
