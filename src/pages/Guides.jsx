@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import guides from "../data/guides";
 
+
 /* ——— stil card ca la Autori/Călători ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
 
@@ -103,8 +104,19 @@ export default function Guides() {
 
     const base = (guides || []).map((g) => {
       const d = (lang === "en" ? g.en : g.ro) || g.ro || g.en || {};
-      const title = d.listTitle || d.name || g.name || "";
-      const subtitle = d.subtitle || g.tagline || "";
+      // titlu bilingv, cu fallback
+    const title =
+    (g.name && typeof g.name === "object" ? g.name[lang] : g.name) ||
+    d.listTitle ||
+    d.name ||
+    (g.name && typeof g.name === "object" ? (g.name.ro || g.name.en) : "") ||
+    "";
+      // subtitlu bilingv, cu fallback
+    const subtitle =
+    (g.tagline && typeof g.tagline === "object" ? g.tagline[lang] : g.tagline) ||
+    d.subtitle ||
+    (g.tagline && typeof g.tagline === "object" ? (g.tagline.ro || g.tagline.en) : "") ||
+    "";
       const cover =
         g.cover ||
         (Array.isArray(g.gallery) ? g.gallery[0] : "") ||

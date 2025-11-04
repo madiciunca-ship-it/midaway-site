@@ -1,6 +1,12 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import guides from "../data/guides";
 
+const pickLang = (val, lang) => {
+  if (!val) return "";
+  if (typeof val === "object") return val[lang] ?? val.ro ?? val.en ?? "";
+  return String(val);
+};
+
 export default function GuideDetail() {
   const { id } = useParams();
   const [params, setParams] = useSearchParams();
@@ -23,6 +29,8 @@ export default function GuideDetail() {
   const lc = g[lang] || g.ro || g.en;
   const gallery = Array.isArray(g.gallery) ? g.gallery.slice(0, 3) : [];
   const cover = g.cover || gallery[0] || "/assets/placeholder-cover.png";
+  const title = pickLang(g.name, lang) || "";
+  const subtitle = pickLang(g.tagline, lang) || "";
 
   const setLang = (newLang) => {
     setParams((p) => {
@@ -63,7 +71,7 @@ export default function GuideDetail() {
           >
             <img
               src={src}
-              alt={`${g.name} ${i + 1}`}
+              alt={`${title} ${i + 1}`}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
@@ -90,11 +98,11 @@ export default function GuideDetail() {
 
       {/* titlu + tagline */}
       <header className="font-cormorant" style={{ marginTop: 18 }}>
-        <h1 style={{ margin: 0 }}>{g.emoji} {g.name}</h1>
-        {g.tagline && (
-          <p style={{ color: "var(--secondary)", marginTop: 6 }}>{g.tagline}</p>
-        )}
-      </header>
+  <h1 style={{ margin: 0 }}>{g.emoji} {title}</h1>
+  {subtitle && (
+    <p style={{ color: "var(--secondary)", marginTop: 6 }}>{subtitle}</p>
+  )}
+</header>
 
       <SocialRow socials={g.socials} />
 
@@ -136,7 +144,7 @@ export default function GuideDetail() {
           >
             <iframe
               src={g.video}
-              title={`${g.name} video`}
+              title={`${title} video`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

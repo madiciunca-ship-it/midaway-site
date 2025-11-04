@@ -13,8 +13,8 @@ const guides = [
     {
       id: "ghid-saigon",
       emoji: "🛵",
-      name: "Nguyen — Ghid în Saigon",
-      tagline: "Arome. Scutere. Străzi vii.",
+      name: { ro: "Nguyen — Ghid în Saigon", en: "Nguyen — Guide in Saigon" },
+      tagline: { ro: "Arome. Scutere. Străzi vii.", en: "Flavours. Scooters. Living streets." },
       cover: "/assets/guides/ghid-saigon/cover.webp",
       gallery: [
         "/assets/guides/ghid-saigon/1.webp",
@@ -74,8 +74,8 @@ const guides = [
     {
       id: "ghid-ubud",
       emoji: "🌿",
-      name: "I Made — Ghidul din Ubud",
-      tagline: "Temple. Orezării. Liniște.",
+      name: { ro: "I Made — Ghidul din Ubud", en: "I Made — Ubud Guide" },
+      tagline: { ro: "Temple. Orezării. Liniște.", en: "Temples. Rice fields. Silence." },
       cover: "/assets/guides/ghid-ubud/cover.webp",
       gallery: [
         "/assets/guides/ghid-ubud/1.webp",
@@ -135,8 +135,8 @@ const guides = [
     {
       id: "ghid-merzouga",
       emoji: "🏜️",
-      name: "Ahmed — Berber din Merzouga",
-      tagline: "Dune. Stele. Ceai de mentă.",
+      name: { ro: "Ahmed — Berber din Merzouga", en: "Ahmed — Berber from Merzouga" },
+      tagline: { ro: "Dune. Stele. Ceai de mentă.", en: "Dunes. Stars. Mint tea." },
       cover: "/assets/guides/ghid-merzouga/cover.webp",
       gallery: [
         "/assets/guides/ghid-merzouga/1.webp",
@@ -196,8 +196,8 @@ const guides = [
     {
       id: "ghid-apuseni",
       emoji: "⛰️",
-      name: "Elena — Povestitoare din Apuseni",
-      tagline: "Păduri. Sate. Pâine caldă.",
+      name: { ro: "Elena — Povestitoare din Apuseni", en: "Elena — Storyteller from Apuseni" },
+      tagline: { ro: "Păduri. Sate. Pâine caldă.", en: "Forests. Villages. Warm bread." },
       cover: "/assets/guides/ghid-apuseni/cover.webp",
       gallery: [
         "/assets/guides/ghid-apuseni/1.webp",
