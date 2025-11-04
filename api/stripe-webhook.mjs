@@ -305,38 +305,83 @@ export default async function handler(req, res) {
         token
       )}`;
 
-      // e-mail
-      try {
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-        });
+// e-mail
+try {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  });
 
-        const itemsForEmail = items.map((it) => ({
-          type: it.type,
-          name: it.name || it.description || "Produs",
-          format: it.format || null,
-        }));
+  const itemsForEmail = items.map((it) => ({
+    type: it.type,
+    name: it.name || it.description || "Produs",
+    format: it.format || null,
+  }));
 
-        const html = buildEmailHTML({
-          orderId: orderNo,
-          name,
-          total: total_amount,
-          currency,
-          downloadsUrl: downloadPage,
-          items: itemsForEmail,
-          hasDownloads,
-        });
+  const html = buildEmailHTML({
+    orderId: orderNo,
+    name,
+    total: total_amount,
+    currency,
+    downloadsUrl: downloadPage,
+    items: itemsForEmail,
+    hasDownloads,
+  });
 
-        await transporter.sendMail({
-          from: `"Midaway" <${process.env.EMAIL_USER}>`,
-          to: email,
-          bcc: process.env.ADMIN_EMAIL,             // ⇐ copia la tine
-          replyTo: process.env.ADMIN_EMAIL,         // (opțional, ca răspunsurile clientului să vină la tine)
-          subject: `Midaway • Confirmare comanda #${orderNo}`,
-          html,
-        });
+  // ✉️ mail către client
+  await transporter.sendMail({
+    from: `"Midaway" <${process.env.EMAIL_USER}>`,
+    to: email, // clientul
+    replyTo: process.env.ADMIN_EMAIL,
+    subject: `Midaway • Confirmare comanda #${orderNo}`,
+    html,
+  });
 
+  console.log(
+    "✅ Email trimis către:",
+    email,
+    "| orderNo:",
+    orderNo,
+    "| hasDownloads:",
+    hasDownloads,
+    "| hasPaperback:",
+    hasPaperback
+  );
+
+  // ✉️ mail separat către admin (sumar scurt)
+  try {
+    const itemsSummary = items
+      .map(
+        (it) =>
+          `• ${it.name}${it.format ? ` (${it.format})` : ""} ×${
+            it.quantity || 1
+          }`
+      )
+      .join("\n");
+
+    await transporter.sendMail({
+      from: `"Midaway" <${process.env.EMAIL_USER}>`,
+      to: process.env.ADMIN_EMAIL, // doar către tine
+      subject: `🧾 Comandă nouă #${orderNo} • ${total_amount} ${currency}`,
+      text: [
+        `Order: ${orderNo}`,
+        `Client: ${name} <${email}>`,
+        `Total: ${total_amount} ${currency}`,
+        `Țară: ${country || "-"}`,
+        `Formate: ${formatsList?.join(", ") || "-"}`,
+        `Paperback: ${hasPaperback ? "DA" : "nu"}`,
+        `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
+        `Taxă curier: ${courierFee || 0} ${currency}`,
+        "",
+        "Produse:",
+        itemsSummary || "-",
+      ].join("\n"),
+    });
+
+  console.log("📬 Admin email sent:", process.env.ADMIN_EMAIL, "| orderNo:", orderNo);
+} catch (e) {
+  console.error("❌ admin sendMail failed:", e);
+}
         console.log(
           "✅ Email trimis către:",
           email,
