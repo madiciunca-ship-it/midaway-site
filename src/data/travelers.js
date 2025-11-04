@@ -14,8 +14,14 @@ const travelers = [
       id: "nomad-bali",
       emoji: "🏝️",
    
-      name: "Adi – Nomadul din Bali",
-      tagline: "Laptop. Motocicletă. Filme",
+      name: {
+        ro: "Adi – Cel care mi-a dat curajul să plec",
+        en: "Adi – The one who gave me the courage to leave",
+      },
+      tagline: {
+        ro: "Curios. Aventuros. Adaptabil.",
+        en: "Curious. Adventurous. Adaptable.",
+      },
       cover: "/assets/travelers/nomad-bali/cover.webp",
       gallery: [
         "/assets/travelers/nomad-bali/1.webp",
@@ -31,7 +37,7 @@ const travelers = [
         blog: "",
       },
       ro: {
-        intro: `Pe Adi (Adrian Ștefan Illeș) l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: „Cum e în Bali?”
+        intro: `Pe Adi l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: „Cum e în Bali?”
   
 De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj, începuturi. Mi-a spus atunci ceva ce nu am uitat: „Nu-ți face griji. O să-ți fiu alături cu tot ce pot.” Și așa a fost.
   
@@ -43,18 +49,18 @@ Totul a pornit de la un mesaj simplu:
 „Hey, crezi că e safe să plec singură în Asia?”
 Și da, a fost mai safe decât mi-aș fi imaginat vreodată – pentru că, uneori, oamenii potriviți apar exact când ai nevoie de ei.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "" },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
-          { q: "3. Când ai știut că merită?", a: "" },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt Adrian, am 33 de ani și, deși sunt IT-ist de profesie, sufletul meu aparține aventurii și descoperirii. Sunt un visător care crede că fiecare loc, om și moment are o poveste de spus. Dansul latino e felul meu de a simți viața, iar călătoriile – modul în care o trăiesc cu adevărat. Am explorat până acum 34 de țări de pe 4 continente, mereu cu aparatul foto în rucsac și o curiozitate care nu se oprește niciodată. Îmi place să citesc, să ascult muzică, să merg la sală și să mă pierd în locuri noi, unde pot învăța ceva despre lume și despre mine." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Totul a pornit dintr-un vis din copilărie – dorința aceea pură de a descoperi lumea, de a vedea cum trăiesc alți oameni, ce gust are mâncarea lor, cum sună limba lor și ce tradiții îi definesc. Nu a fost un moment anume, ci mai degrabă o chemare care a crescut în mine în timp. Într-o zi mi-am dat seama că dacă nu plec acum, o să rămân mereu cu întrebarea „cum ar fi fost dacă?”. Așa că mi-am luat rucsacul, aparatul foto și curajul, și am început să transform visul de copil într-un mod de viață." },
+          { q: "3. Când ai știut că merită?", a: "Am știut că merită din primele momente în care am simțit acea bucurie pură pe drum – senzația că trăiesc cu adevărat. Fiecare loc nou îmi aducea o doză de entuziasm greu de descris, dar au fost momente care mi-au rămas adânc întipărite: când am pășit pentru prima dată pe străzile din New York, când am văzut luminile din Las Vegas sau când am admirat Parisul noaptea. Atunci mi-am dat seama că visul meu din copilărie devenise realitate – că eram acolo, în locuri pe care le văzusem doar în filme, trăind emoțiile pe care altădată doar le visam." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Nu pot spune că un anumit loc m-a schimbat complet. Mai degrabă simt că fiecare loc pe care l-am vizitat a adăugat ceva la mine, ca o piesă într-un puzzle. Fiecare experiență, fiecare cultură, fiecare om întâlnit m-a completat puțin câte puțin. Pentru mine, călătoriile nu au fost despre transformare bruscă, ci despre construcție – despre a mă descoperi pas cu pas prin tot ce trăiesc și învăț de la lume." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au învățat recunoștința. Cu fiecare țară vizitată am început să văd mai clar cât de multe lucruri avem și cât de puțin le apreciem uneori. Mi-am dat seama că, deși în România ne plângem des de neajunsuri, adevărul e că trăim într-un loc cu multe lucruri frumoase – oameni, natură, libertate. În alte părți am văzut cât de greu le este unora și cât de mult și-ar dori să aibă ceea ce noi considerăm „normal”. Călătoria m-a făcut să fiu mai recunoscător, mai conștient și mai prezent." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Cele mai grele momente sunt mereu ultimele zile dintr-o călătorie – clipa în care trebuie să plec și să las totul în urmă. În rest, chiar și situațiile dificile m-au ajutat să cresc. Am învățat să rămân calm, indiferent cât de stresantă pare o situație, și să mă adaptez rapid. De fiecare dată când ceva nu mergea cum planificasem, mă întrebam: „O să mai conteze asta peste cinci ani?” Dacă răspunsul era „nu”, atunci respiram adânc, zâmbeam și mergeam mai departe." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Sfatul meu e simplu: nu ezita. Niciodată nu va fi momentul „perfect” să pleci, dar fiecare zi în care amâni e o zi pierdută dintr-o poveste care ar putea fi a ta. Îmi place mult o zicală de la Mark Twain care spune: „Peste douăzeci de ani vei fi mai dezamăgit de lucrurile pe care nu le-ai făcut decât de cele pe care le-ai făcut. Așa că ridică ancora, pleacă din portul sigur, prinde vântul în pânze. Explorează. Visează. Descoperă.” Și exact asta le-aș spune celor care stau pe gânduri – pornește acum, pentru că lumea nu așteaptă." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. Acolo împărtășesc momente din călătoriile mele, povești, experiențe și fragmente din modul în care văd lumea." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Prima oară ne-am întâlnit acum 5-6 ani, la o petrecere de latino în Baia Mare. Ne-am văzut pe ringul de dans, am legat o conversație spontană și am schimbat contactele pe Facebook. La început am rămas doar cunoscuți, iar tu mi-ai urmărit aventurile și călătoriile din când în când. Cu timpul, discuțiile noastre despre lume și călătorii au devenit tot mai dese. Am început să împărtășim povești, impresii și recomandări, iar conexiunea noastră s-a transformat firesc dintr-o simplă cunoaștere într-o prietenie frumoasă – construită în jurul pasiunii pentru descoperirea lumii." },
         ],
         story: [
-          "La final, lasăm loc pentru povestea comună — sau un gând către cititori.",
+          "",
         ],
       },
       en: {
@@ -74,17 +80,17 @@ And to think it all started with one message:
 “Hey, do you think it’s safe for me to travel alone in Asia?”
 Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "" },
-          { q: "2. What made you start traveling?", a: "" },
-          { q: "3. When did you know it was worth it?", a: "" },
-          { q: "4. A place that changed the way you see the world?", a: "" },
-          { q: "5. How did traveling change you as a person?", a: "" },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: How did we meet?", a: "" },
+          { q: "1. Who are you in a few sentences?", a: "I’m Adrian, 33 years old, and although I’m an IT professional, my heart belongs to adventure and discovery. I’m a dreamer who believes that every place, person, and moment has a story to tell. Latin dance is how I feel life; traveling is how I truly live it. So far, I’ve explored 34 countries across 4 continents, always with my camera in my backpack and a curiosity that never rests. I love reading, listening to music, working out, and getting lost in new places where I can learn something about the world – and about myself." },
+          { q: "2. What made you start traveling?", a: "It all started with a childhood dream – that pure desire to discover the world, to see how other people live, what their food tastes like, how their language sounds, and what traditions define them. It wasn’t a single moment, but rather a calling that grew inside me over time. One day I realized that if I didn’t leave then, I’d always live with the question, “What if?” So I packed my backpack, my camera, and my courage – and began turning a childhood dream into a way of life." },
+          { q: "3. When did you know it was worth it?", a: "I knew it was worth it from the very first moments when I felt that pure joy of being on the road – the feeling that I was truly living. Every new place brought an indescribable thrill, but some moments stayed deep within me: the first time I walked the streets of New York, saw the lights of Las Vegas, or admired Paris at night. That’s when I realized my childhood dream had become real – I was there, in places I’d only seen in movies, living emotions I once only dreamed of." },
+          { q: "4. A place that changed the way you see the world?", a: "I can’t say that one specific place completely changed me. I feel like every destination I’ve visited has added something to me – like a piece in a puzzle. Each experience, each culture, each person I’ve met has completed me little by little. For me, travel was never about sudden transformation, but about growth – discovering myself step by step through everything I experience and learn from the world." },
+          { q: "5. How did traveling change you as a person?", a: "Travel has taught me gratitude. With every country I’ve visited, I’ve seen more clearly how much we have – and how little we sometimes appreciate it. I realized that, although in Romania we often complain about what’s missing, the truth is that we live in a place full of beauty – in its people, nature, and freedom. In other parts of the world, I’ve seen how hard life can be, and how much some people wish for what we take for granted. Travel made me more grateful, more aware, and more present." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest moments for me are always the last days of a journey – that instant when you have to leave and say goodbye. Everything else, even the tough parts, has helped me grow. I’ve learned to stay calm no matter how stressful things seem, and to adapt quickly. Whenever something didn’t go as planned, I asked myself, “Will this still matter in five years?” If the answer was “no,” I took a deep breath, smiled, and moved on." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "My advice is simple: don’t hesitate. There will never be a “perfect” time to go, and every day you wait is a day lost from a story that could be yours. I love a quote by Mark Twain that says: “Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.” And that’s exactly what I’d tell anyone who’s hesitating – start now, because the world won’t wait." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. That’s where I share moments from my travels, stories, experiences, and glimpses of how I see the world." },
+          { q: "9. Bonus: How did we meet?", a: "We first met about 5–6 years ago at a Latin dance party in Baia Mare. We met on the dance floor, had a spontaneous chat, and exchanged Facebook contacts. At first, we were just acquaintances, and you occasionally followed my travels and adventures. Over time, our conversations about the world and travel became more frequent. We started sharing stories, impressions, and tips – and our connection naturally grew from a simple acquaintance into a beautiful friendship built around our shared passion for discovering the world." },
         ],
-        story: ["Shared story / final thought."],
+        story: [""],
       },
       video: null,
     },
