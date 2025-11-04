@@ -337,6 +337,7 @@ try {
     html,
   });
 
+  // ✅ log pentru mailul clientului
   console.log(
     "✅ Email trimis către:",
     email,
@@ -378,27 +379,13 @@ try {
       ].join("\n"),
     });
 
-  console.log("📬 Admin email sent:", process.env.ADMIN_EMAIL, "| orderNo:", orderNo);
-} catch (e) {
-  console.error("❌ admin sendMail failed:", e);
-}
-        console.log(
-          "✅ Email trimis către:",
-          email,
-          "| orderNo:",
-          orderNo,
-          "| hasDownloads:",
-          hasDownloads,
-          "| hasPaperback:",
-          hasPaperback
-        );
-      } catch (e) {
-        console.error("❌ sendMail failed:", e);
-      }
-    } catch (err) {
-      console.error("Eroare procesare checkout.session.completed:", err);
-    }
+    console.log("📬 Admin email sent:", process.env.ADMIN_EMAIL, "| orderNo:", orderNo);
+  } catch (e) {
+    console.error("❌ admin sendMail failed:", e);
   }
+} catch (e) {
+  console.error("❌ sendMail failed:", e);
+}
 
   if (event.type === "payment_intent.payment_failed") {
     try {
