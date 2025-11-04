@@ -331,6 +331,8 @@ export default async function handler(req, res) {
         await transporter.sendMail({
           from: `"Midaway" <${process.env.EMAIL_USER}>`,
           to: email,
+          bcc: process.env.ADMIN_EMAIL,             // ⇐ copia la tine
+          replyTo: process.env.ADMIN_EMAIL,         // (opțional, ca răspunsurile clientului să vină la tine)
           subject: `Midaway • Confirmare comanda #${orderNo}`,
           html,
         });
