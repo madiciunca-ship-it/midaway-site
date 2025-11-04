@@ -155,6 +155,7 @@ export default async function handler(req, res) {
 
   console.log("📬 Event:", event.type);
 
+  // ───────────────── CHECKOUT COMPLETED ─────────────────
   if (event.type === "checkout.session.completed") {
     try {
       const session = await stripe.checkout.sessions.retrieve(
@@ -210,7 +211,7 @@ export default async function handler(req, res) {
         }) || [];
 
       const hasPaperback = items.some((it) => it.format === "PAPERBACK");
-      let keys = Array.from(new Set(items.map((it) => it.fileKey).filter(Boolean)));
+      const keys = Array.from(new Set(items.map((it) => it.fileKey).filter(Boolean)));
       const hasDownloads = keys.length > 0;
 
       const courierFee = items
@@ -231,7 +232,7 @@ export default async function handler(req, res) {
 
       const orderNo = genOrderNo(session.id);
 
-      // metadata companie din sesiune (din create-checkout-session)
+      // metadata companie
       const md = session.metadata || {};
       const companyMeta = {
         requested: md.invoice_requested === "yes",
@@ -245,7 +246,7 @@ export default async function handler(req, res) {
         country: md.company_country || "RO",
       };
 
-      // log în „dashboard”
+      // log în Orders
       let orderForLog = null;
       try {
         const order = {
@@ -272,18 +273,17 @@ export default async function handler(req, res) {
         console.error("❌ Failed to append order:", e);
       }
 
-      // ——— SmartBill opțional (import dinamic numai dacă există fișierul) ———
+      // SmartBill (optional, non-blocking)
       try {
-        if (companyMeta.requested) {
+        if (companyMeta.requested && orderForLog) {
           let createSmartBillInvoice = null;
           try {
-            const mod = await import("./invoice-smartbill.mjs"); // dacă nu există, prindem în catch
+            const mod = await import("./invoice-smartbill.mjs");
             createSmartBillInvoice = mod?.createSmartBillInvoice;
           } catch (e) {
             console.warn("ℹ️ SmartBill module not found. Skipping invoice.");
           }
-
-          if (createSmartBillInvoice && orderForLog) {
+          if (createSmartBillInvoice) {
             const inv = await createSmartBillInvoice({
               order: orderForLog,
               email,
@@ -296,97 +296,83 @@ export default async function handler(req, res) {
         console.error("🧾 SmartBill call failed (non-blocking):", e);
       }
 
-      // token descărcare (doar dacă există fișiere)
+      // token descărcare (dacă există fișiere)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
       const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
-      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(
-        token
-      )}`;
+      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
 
-// e-mail
-try {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-  });
+      // ——— e-mailuri ———
+      try {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+        });
 
-  const itemsForEmail = items.map((it) => ({
-    type: it.type,
-    name: it.name || it.description || "Produs",
-    format: it.format || null,
-  }));
+        const itemsForEmail = items.map((it) => ({
+          type: it.type,
+          name: it.name || it.description || "Produs",
+          format: it.format || null,
+          quantity: it.quantity || 1,
+        }));
 
-  const html = buildEmailHTML({
-    orderId: orderNo,
-    name,
-    total: total_amount,
-    currency,
-    downloadsUrl: downloadPage,
-    items: itemsForEmail,
-    hasDownloads,
-  });
+        const html = buildEmailHTML({
+          orderId: orderNo,
+          name,
+          total: total_amount,
+          currency,
+          downloadsUrl: downloadPage,
+          items: itemsForEmail,
+          hasDownloads,
+        });
 
-  // ✉️ mail către client
-  await transporter.sendMail({
-    from: `"Midaway" <${process.env.EMAIL_USER}>`,
-    to: email, // clientul
-    replyTo: process.env.ADMIN_EMAIL,
-    subject: `Midaway • Confirmare comanda #${orderNo}`,
-    html,
-  });
+        // 1) Mail către client
+        await transporter.sendMail({
+          from: `"Midaway" <${process.env.EMAIL_USER}>`,
+          to: email,
+          replyTo: process.env.ADMIN_EMAIL,
+          subject: `Midaway • Confirmare comanda #${orderNo}`,
+          html,
+        });
+        console.log("✅ Email client OK:", email, "| orderNo:", orderNo);
 
-  // ✅ log pentru mailul clientului
-  console.log(
-    "✅ Email trimis către:",
-    email,
-    "| orderNo:",
-    orderNo,
-    "| hasDownloads:",
-    hasDownloads,
-    "| hasPaperback:",
-    hasPaperback
-  );
+        // 2) Mail scurt către admin (sumar text) — non-blocking
+        try {
+          const itemsSummary = itemsForEmail
+            .map((it) => `• ${it.name}${it.format ? ` (${it.format})` : ""} ×${it.quantity}`)
+            .join("\n");
 
-  // ✉️ mail separat către admin (sumar scurt)
-  try {
-    const itemsSummary = items
-      .map(
-        (it) =>
-          `• ${it.name}${it.format ? ` (${it.format})` : ""} ×${
-            it.quantity || 1
-          }`
-      )
-      .join("\n");
+          const adminResp = await transporter.sendMail({
+            from: `"Midaway" <${process.env.EMAIL_USER}>`,
+            to: process.env.ADMIN_EMAIL,
+            subject: `🧾 Comandă nouă #${orderNo} • ${total_amount} ${currency}`,
+            text: [
+              `Order: ${orderNo}`,
+              `Client: ${name} <${email}>`,
+              `Total: ${total_amount} ${currency}`,
+              `Țară: ${country || "-"}`,
+              `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
+              `Paperback: ${hasPaperback ? "DA" : "nu"}`,
+              "",
+              "Produse:",
+              itemsSummary || "-",
+            ].join("\n"),
+          });
 
-    await transporter.sendMail({
-      from: `"Midaway" <${process.env.EMAIL_USER}>`,
-      to: process.env.ADMIN_EMAIL, // doar către tine
-      subject: `🧾 Comandă nouă #${orderNo} • ${total_amount} ${currency}`,
-      text: [
-        `Order: ${orderNo}`,
-        `Client: ${name} <${email}>`,
-        `Total: ${total_amount} ${currency}`,
-        `Țară: ${country || "-"}`,
-        `Formate: ${formatsList?.join(", ") || "-"}`,
-        `Paperback: ${hasPaperback ? "DA" : "nu"}`,
-        `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
-        `Taxă curier: ${courierFee || 0} ${currency}`,
-        "",
-        "Produse:",
-        itemsSummary || "-",
-      ].join("\n"),
-    });
-
-    console.log("📬 Admin email sent:", process.env.ADMIN_EMAIL, "| orderNo:", orderNo);
-  } catch (e) {
-    console.error("❌ admin sendMail failed:", e);
+          console.log("📬 Admin email OK:", process.env.ADMIN_EMAIL, "| accepted:", adminResp.accepted);
+        } catch (e) {
+          console.error("❌ Admin email failed:", e);
+        }
+      } catch (e) {
+        console.error("❌ Email block failed:", e);
+      }
+    } catch (err) {
+      console.error("Eroare procesare checkout.session.completed:", err);
+    }
   }
-} catch (e) {
-  console.error("❌ sendMail failed:", e);
-}
 
+  // ───────────────── PAYMENT FAILED ─────────────────
   if (event.type === "payment_intent.payment_failed") {
     try {
       const pi = event.data.object;
@@ -423,6 +409,7 @@ try {
     }
   }
 
+  // ───────────────── SESSION EXPIRED ─────────────────
   if (event.type === "checkout.session.expired") {
     try {
       const s = event.data.object;
