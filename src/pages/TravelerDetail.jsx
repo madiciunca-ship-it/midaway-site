@@ -2,6 +2,15 @@
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
 
+// alege textul corect pentru limba curentă (acceptă string sau {ro,en})
+const pickLang = (val, lang) => {
+  if (!val) return "";
+  if (typeof val === "object") {
+    return val[lang] ?? val.ro ?? val.en ?? "";
+  }
+  return String(val);
+};
+
 export default function TravelerDetail() {
   const { id } = useParams();
   const [params, setParams] = useSearchParams();
@@ -24,6 +33,8 @@ export default function TravelerDetail() {
   const lc = (t[lang] || t.ro || t.en);
   const gallery = Array.isArray(t.gallery) ? t.gallery.slice(0, 3) : [];
   const cover = t.cover || gallery[0] || "/assets/placeholder-cover.png";
+  const title = pickLang(t.name, lang) || "";               // numele bilingv
+  const subtitle = pickLang(t.tagline, lang) || "";         // tagline bilingv
 
   const setLang = (newLang) => {
     setParams((p) => {
@@ -63,7 +74,7 @@ export default function TravelerDetail() {
           >
             <img
               src={src}
-              alt={`${t.name} ${i + 1}`}
+              alt={`${title} ${i + 1}`}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
@@ -88,11 +99,13 @@ export default function TravelerDetail() {
       </div>
 
       <header className="font-cormorant" style={{ marginTop: 18 }}>
-        <h1 style={{ margin: 0 }}>{t.emoji} {t.name}</h1>
-        {t.tagline && (
-          <p style={{ color: "var(--secondary)", marginTop: 6 }}>{t.tagline}</p>
-        )}
-      </header>
+  <h1 style={{ margin: 0 }}>
+    {t.emoji} {title}
+  </h1>
+  {subtitle && (
+    <p style={{ color: "var(--secondary)", marginTop: 6 }}>{subtitle}</p>
+  )}
+</header>
 
       <SocialRow socials={t.socials} />
 
@@ -131,7 +144,7 @@ export default function TravelerDetail() {
           >
             <iframe
               src={t.video}
-              title={`${t.name} video`}
+              title={`${title} video`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

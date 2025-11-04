@@ -99,8 +99,15 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
       // 2) Yulia — O coincidență frumoasă
       id: "yulia-amalfi",
       emoji: "✍️",
-      name: "Yulia — O coincidență frumoasă",
-      tagline: "Luminoasă. Sinceră. De neuitat.",
+      name: {
+        ro: "Yulia — O coincidență frumoasă",
+        en: "Yulia — A beautiful coincidence",
+      },
+      tagline: {
+        ro: "Luminoasă. Sinceră. De neuitat.",
+        en: "Bright. Honest. Unforgettable.",
+      },
+      
       cover: "/assets/travelers/yulia-amalfi/yulia-amalfi-cover.webp",
       gallery: [
         "/assets/travelers/yulia-amalfi/yulia-amalfi-1.webp",
@@ -208,8 +215,15 @@ I had never really thought of Yulia as a traveler – but her message told me ev
     {
       id: "medic-maroc",
       emoji: "🐪",
-      name: "Hamza — O întâlnire care lasă urme",
-      tagline: "Couchsurfing. Șarpe. Ifrane.",
+      name: {
+        ro: "Hamza — O întâlnire care lasă urme",
+        en: "Hamza — A meeting that leaves traces",
+      },
+      tagline: {
+        ro: "Aventuros. Prietenos. Sincer.",
+        en: "Adventurous. Friendly. Honest.",
+      },
+      
       cover: "/assets/travelers/medic-maroc/medic-maroc-cover.webp",
       gallery: [
         "/assets/travelers/medic-maroc/medic-maroc-1.webp",
@@ -306,8 +320,16 @@ One of those memories that stay with you not because they were perfect, but beca
     {
       id: "nomad-tokyo",
       emoji: "🗼",
-      name: "Nomadul din Tokyo",
-      tagline: "Luminile orașului, liniștea trenurilor",
+   
+      name: {
+        ro: "Nomadul din Tokyo",
+        en: "The Tokyo Nomad",
+      },
+      tagline: {
+        ro: "Luminile orașului, liniștea trenurilor",
+        en: "The city lights, the silence of the trains",
+      },
+    
       cover: "/assets/travelers/nomad-tokyo/cover.webp",
       gallery: [
         "/assets/travelers/nomad-tokyo/1.webp",
@@ -358,20 +380,21 @@ One of those memories that stay with you not because they were perfect, but beca
     },
   ];
 
-  // ✅ TEMPLATE pentru adăugare rapidă de călător nou
-/*
+/* TEMPLATE — nou călător (bilingv). Lasă blocul comentat.
 
 {
-  id: "exemplu-id",                   // folosit în URL: /calatori/exemplu-id
-  emoji: "🌍",                        // mică iconiță personalizată
-  name: "Numele Călătorului",
-  tagline: "O propoziție scurtă care îl descrie",
-  cover: "/assets/travelers/exemplu-id/cover.webp",  // imagine principală
+  id: "exemplu-id",
+  emoji: "🌍",
+  name: { ro: "Numele (RO)", en: "Name (EN)" },
+  tagline: { ro: "Tagline (RO)", en: "Tagline (EN)" },
+
+  cover: "/assets/travelers/exemplu-id/cover.webp",
   gallery: [
     "/assets/travelers/exemplu-id/1.webp",
     "/assets/travelers/exemplu-id/2.webp",
     "/assets/travelers/exemplu-id/3.webp",
   ],
+
   socials: {
     instagram: "",
     facebook: "",
@@ -380,9 +403,9 @@ One of those memories that stay with you not because they were perfect, but beca
     website: "",
     blog: "",
   },
+
   ro: {
-    intro: `Scrie aici povestea introductivă — în limba română.
-Poate fi oricât de lungă, suportă paragrafe și newline (\n).`,
+    intro: `Povestea în română...`,
     qna: [
       { q: "1. Cine ești în câteva fraze?", a: "" },
       { q: "2. Ce te-a împins să pleci la drum?", a: "" },
@@ -394,12 +417,11 @@ Poate fi oricât de lungă, suportă paragrafe și newline (\n).`,
       { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
       { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
     ],
-    story: [
-      "Aici poți adăuga gândul final sau povestea comună.",
-    ],
+    story: ["Gând final / poveste comună (RO)"],
   },
+
   en: {
-    intro: `Write here the English version of the intro story.`,
+    intro: `English intro...`,
     qna: [
       { q: "1. Who are you in a few sentences?", a: "" },
       { q: "2. What made you start traveling?", a: "" },
@@ -411,13 +433,13 @@ Poate fi oricât de lungă, suportă paragrafe și newline (\n).`,
       { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
       { q: "9. Bonus: How did we meet?", a: "" },
     ],
-    story: [
-      "Add here the final thought / shared story (English).",
-    ],
+    story: ["Final thought / shared story (EN)"],
   },
-  video: null, // dacă vrei, poți pune link YouTube: "https://www.youtube.com/embed/..."
+
+  video: null // sau "https://www.youtube.com/embed/..."
 },
 
 */
+
   export default travelers;
   

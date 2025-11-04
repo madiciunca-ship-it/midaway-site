@@ -104,23 +104,40 @@ export default function Travelers() {
   };
 
   // filtrare + titlu/subtitlu corect + ordonare „cel mai nou primul”
-  const filtered = useMemo(() => {
-    const term = q.trim().toLowerCase();
+const filtered = useMemo(() => {
+  const term = q.trim().toLowerCase();
 
-    const base = travelers.map((t) => {
-      const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
-      const title = d.listTitle || d.name || t.name || "";
-      const subtitle = d.subtitle || t.tagline || "";
-      const cover =
-        t.cover || (Array.isArray(t.gallery) ? t.gallery[0] : "") || "/assets/placeholder-cover.png";
-      return { t, title, subtitle, cover };
-    });
+  const base = travelers.map((t) => {
+    const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
 
-    const out = term
-      ? base.filter(({ title, subtitle }) =>
-          `${title} ${subtitle}`.toLowerCase().includes(term)
-        )
-      : base;
+    // 🔹 titlu bilingv, cu fallback la vechea structură
+    const title =
+      (t.name && typeof t.name === "object" ? t.name[lang] : t.name) ||
+      d.listTitle || // dacă ai un titlu separat pt listă
+      d.name ||      // fallback vechi, dacă era în t.ro/t.en
+      (t.name && typeof t.name === "object" ? (t.name.ro || t.name.en) : "") ||
+      "";
+
+    // 🔹 subtitlu (tagline) bilingv, cu fallback
+    const subtitle =
+      (t.tagline && typeof t.tagline === "object" ? t.tagline[lang] : t.tagline) ||
+      d.subtitle ||
+      (t.tagline && typeof t.tagline === "object" ? (t.tagline.ro || t.tagline.en) : "") ||
+      "";
+
+    const cover =
+      t.cover ||
+      (Array.isArray(t.gallery) ? t.gallery[0] : "") ||
+      "/assets/placeholder-cover.png";
+
+    return { t, title, subtitle, cover };
+  });
+
+  const out = term
+    ? base.filter(({ title, subtitle }) =>
+        `${title} ${subtitle}`.toLowerCase().includes(term)
+      )
+    : base;
 
     // 🔄 ultimul adăugat apare primul
     return [...out].reverse();
