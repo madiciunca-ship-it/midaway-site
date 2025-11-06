@@ -1,13 +1,19 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/files/(.*)",  "destination": "/files/$1" },
+    { "source": "/files/(.*)", "destination": "/files/$1" },
     { "source": "/favicon.ico", "destination": "/favicon.ico" },
-    { "source": "/robots.txt",  "destination": "/robots.txt" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/feed.xml",    "destination": "/feed.xml" },
+    { "source": "/feed.xml", "destination": "/feed.xml" },
     { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
+
+    // IMPORTANT – fallback pentru toate rutele React (SPA)
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
