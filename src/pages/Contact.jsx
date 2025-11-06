@@ -1,10 +1,55 @@
 // src/pages/Contact.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
   const subjectPreset = searchParams.get("subject") || "";
+
+  const [status, setStatus] = useState("");
+  const [statusColor, setStatusColor] = useState("#666");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("Se trimite…");
+    setStatusColor("#666");
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Mapăm câmpurile pe ce așteaptă API-ul /api/contact
+    const payload = {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      subject: fd.get("subject"),
+      message: fd.get("message"),
+      // honeypot anti-bot (ascuns)
+      botfield: fd.get("botfield") || ""
+    };
+
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const out = await r.json();
+
+      if (r.ok && out.ok) {
+        setStatus("Mulțumim! Mesajul a fost trimis ✔︎");
+        setStatusColor("green");
+        form.reset();
+      } else {
+        throw new Error(out.error || "Eroare la trimitere");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus(
+        "Ups, nu am putut trimite mesajul. Încearcă din nou sau scrie direct la contact@midaway.ro."
+      );
+      setStatusColor("crimson");
+    }
+  }
 
   return (
     <div className="container" style={{ padding: "32px 0 48px", maxWidth: 900 }}>
@@ -51,26 +96,9 @@ export default function Contact() {
         </a>
       </div>
 
-      {/* Formular de contact (Formspree) */}
+      {/* Formular de contact – trimite la /api/contact (fără Formspree) */}
       <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          const form = e.currentTarget;
-          const data = new FormData(form);
-
-          const res = await fetch("https://formspree.io/f/mrbaajzn", {
-            method: "POST",
-            headers: { Accept: "application/json" },
-            body: data,
-          });
-
-          if (res.ok) {
-            alert("Mulțumim! Mesajul a fost trimis ✅");
-            form.reset();
-          } else {
-            alert("Ups, nu am putut trimite mesajul. Mai încearcă sau scrie la contact@midaway.ro");
-          }
-        }}
+        onSubmit={handleSubmit}
         style={{
           marginTop: 16,
           background: "#fff",
@@ -81,33 +109,41 @@ export default function Contact() {
           gap: 12,
         }}
       >
-        <input type="text" name="nume" placeholder="Nume" required style={inputStyle} />
+        {/* Nume, Email, Subiect, Mesaj: numele câmpurilor sunt ce așteaptă API-ul */}
+        <input type="text" name="name" placeholder="Nume" required style={inputStyle} />
         <input type="email" name="email" placeholder="Email" required style={inputStyle} />
 
-        {/* Subiect precompletat din ?subject=... */}
         <input
           type="text"
-          name="subiect"
-          placeholder="Subiect"
+          name="subject"
+          placeholder="Subiect (opțional)"
           defaultValue={subjectPreset}
           style={inputStyle}
         />
 
-        <textarea name="mesaj" placeholder="Mesajul tău" rows={6} required style={inputStyle} />
-
-        {/* Subject pentru emailul primit în Formspree (include preset dacă există) */}
-        <input
-          type="hidden"
-          name="_subject"
-          value={`Mesaj nou de pe midaway.ro` + (subjectPreset ? ` – ${subjectPreset}` : "")}
+        <textarea
+          name="message"
+          placeholder="Mesajul tău"
+          rows={6}
+          required
+          style={inputStyle}
         />
 
-        {/* Antispam simplu */}
-        <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+        {/* Honeypot anti-bot (ascuns în CSS) */}
+        <input
+          type="text"
+          name="botfield"
+          style={{ display: "none" }}
+          tabIndex={-1}
+          autoComplete="off"
+        />
 
         <button type="submit" className="btn" style={{ justifySelf: "start" }}>
           Trimite mesajul
         </button>
+
+        {/* Status UX */}
+        <p style={{ margin: 0, color: statusColor }}>{status}</p>
       </form>
     </div>
   );
