@@ -12,8 +12,6 @@
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/feed.xml", "destination": "/feed.xml" },
     { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
-
-    // IMPORTANT – fallback pentru toate rutele React (SPA)
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
