@@ -27,7 +27,7 @@ function buildEmailHTML({
   const helloRO = name ? `Mulțumim, <strong>${name}</strong>!` : "Mulțumim!";
   const helloEN = name ? `Thank you, <strong>${name}</strong>!` : "Thank you!";
 
-  const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+  const SITE = process.env.SITE_URL || "https://midaway.ro";
 
   const notePaperRO = hasPaperback
     ? `<div style="margin-top:12px;padding:12px;border:1px solid #e6f0e6;border-radius:10px;background:#f7fffa;color:#184a2c">
@@ -300,7 +300,7 @@ export default async function handler(req, res) {
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
       const token = signToken({ sid: session.id, email, keys, exp });
 
-      const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+      const SITE = process.env.SITE_URL || "https://midaway.ro";
       const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
 
       // ——— e-mailuri ———
