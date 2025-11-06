@@ -1,17 +1,19 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
-  ],
   "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/files/(.*)", "destination": "/files/$1" },
-    { "source": "/favicon.ico", "destination": "/favicon.ico" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/feed.xml", "destination": "/feed.xml" },
-    { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/robots.txt",               "destination": "/robots.txt" },
+    { "source": "/sitemap.xml",              "destination": "/sitemap.xml" },
+    { "source": "/feed.xml",                 "destination": "/feed.xml" },
+    { "source": "/favicon.ico",              "destination": "/favicon.ico" },
+    { "source": "/placeholder-cover.png",    "destination": "/placeholder-cover.png" },
+    { "source": "/assets/(.*)",              "destination": "/assets/$1" },
+    { "source": "/files/(.*)",               "destination": "/files/$1" },
+
+    /* lasă API-urile neatinse */
+    { "source": "/api/(.*)",                 "destination": "/api/$1" },
+
+    /* CATCH-ALL pentru SPA fallback */
+    { "source": "/(.*)",                     "destination": "/index.html" }
   ]
 }
