@@ -8,8 +8,6 @@
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/feed.xml",    "destination": "/feed.xml" },
     { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
-
-    /* fallback — IMPORTANT */
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
