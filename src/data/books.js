@@ -136,7 +136,7 @@ export const BOOKS = [
     tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
     format: "eBook",
 
-    prices: { PDF: 45, EPUB: 45, PAPERBACK: 5, AUDIOBOOK: 0 },
+    prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
 
     availability: {
       PDF: true,

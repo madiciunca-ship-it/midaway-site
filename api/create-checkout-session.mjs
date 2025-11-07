@@ -253,9 +253,11 @@ export default async function handler(req, res) {
       line_items,
       metadata: sessionMeta,
 
-      // HashRouter
-      success_url: `${SITE}/#/thanks`,
-      cancel_url: `${SITE}/#/checkout`,
+      const SITE = process.env.SITE_URL || "https://midaway.ro";
+
+success_url: `${SITE}/thanks?session_id={CHECKOUT_SESSION_ID}`,
+cancel_url: `${SITE}/cart`,
+
 
       customer_creation: "always",
       billing_address_collection: "required",
