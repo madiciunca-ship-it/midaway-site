@@ -85,7 +85,7 @@ export const BOOKS = [
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
 
-    sampleUrl: "/files/sample-o-zi-de-care-sa-ti-amintesti-ro",
+    sampleUrl: "/files/sample-o-zi-de-care-sa-ti-amintesti-ro.pdf",
 
     tags: ["eBook", "PDF", "EPUB", "travel"],
     format: "eBook",
@@ -131,7 +131,7 @@ export const BOOKS = [
     coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
     extraImage: "/assets/books/zile-si-nopti-de-vietnam-spate.png",
 
-    sampleUrl: "/files/sample-zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro",
+    sampleUrl: "/files/sample-zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
 
     tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
     format: "eBook",
