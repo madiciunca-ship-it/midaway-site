@@ -34,7 +34,7 @@ export const BOOKS = [
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
 
     sampleUrl:
-      "https://docs.google.com/document/d/1YRC7JYKQp1Yprju11EEhGtfkBCgqzbpxbkwcz1AEppM/preview",
+      "/files/sample-o-zi-de-care-sa-ti-amintesti.pdf",
 
     tags: ["eBook", "PDF", "EPUB", "călătorii"],
     format: "eBook",
