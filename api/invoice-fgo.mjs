@@ -67,10 +67,10 @@ function buildFgoPayload({ order, email, company }) {
     };
   });
 
-// Transport: îl includem DOAR dacă vine ca linie din coș/Stripe
-// (type === "courier_fee"). Nu inventăm o linie dacă nu a fost plătită.
-  
-return {
+  // Transport: îl includem DOAR dacă vine ca linie din coș/Stripe
+  // (type === "courier_fee"). Nu inventăm o linie dacă nu a fost plătită.
+
+  return {
     Site: FGO_SITE,
     Client: client,
     Articole: lines,
@@ -82,7 +82,7 @@ return {
   };
 }
 
-// POST helper (încearcă toate headerele comune de auth FGO)
+// POST helper (încearcă toate headerele comune de auth FGO) + LOG
 async function tryPost(url, body) {
   const res = await fetch(url, {
     method: "POST",
@@ -98,7 +98,8 @@ async function tryPost(url, body) {
   const text = await res.text();
   let json;
   try { json = JSON.parse(text); } catch { json = { raw: text }; }
-  return { status: res.status, ok: res.ok, json };
+  console.log("FGO try:", url, "→", res.status); // <— util în logs
+  return { status: res.status, ok: res.ok, json, url };
 }
 
 export async function createFgoInvoice({ order, email, company }) {
@@ -106,13 +107,25 @@ export async function createFgoInvoice({ order, email, company }) {
 
   const payload = buildFgoPayload({ order, email, company });
 
-  // Câteva rute uzuale FGO (difera în funcție de cont/versiune)
-  const endpoints = [
+  // Câteva rute uzuale FGO (diferă în funcție de cont/versiune)
+  const baseEndpoints = [
     `${API_URL}/invoice/create`,
     `${API_URL}/invoices/create`,
     `${API_URL}/invoices`,
     `${API_URL}/ecommerce/invoice`,
+    // variante întâlnite la unele conturi
+    `${API_URL}/ecommerce/invoice/create`,
+    `${API_URL}/ecommerce/create-invoice`,
+    `${API_URL}/factura/create`,
+    `${API_URL}/facturi/create`,
   ];
+
+  // Încercăm fiecare și cu ?site= în query (unele instanțe FGO îl cer explicit)
+  const endpoints = [];
+  for (const ep of baseEndpoints) {
+    endpoints.push(ep);
+    endpoints.push(`${ep}?site=${encodeURIComponent(FGO_SITE)}`);
+  }
 
   let last;
   for (const ep of endpoints) {
