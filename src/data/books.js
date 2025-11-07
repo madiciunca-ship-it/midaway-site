@@ -33,8 +33,8 @@ export const BOOKS = [
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
 
-    sampleUrl:
-      "/files/sample-o-zi-de-care-sa-ti-amintesti.pdf",
+
+    sampleUrl: "/files/sample-o-zi-de-care-sa-ti-amintesti-ro.pdf",
 
     tags: ["eBook", "PDF", "EPUB", "călătorii"],
     format: "eBook",
