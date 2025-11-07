@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { BOOKS } from "../src/data/books.js";
 
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
-const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
+const SITE = process.env.SITE_URL || "https://midaway.ro";
 const stripe = new Stripe(STRIPE_KEY);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -110,7 +110,7 @@ export default async function handler(req, res) {
       return res.end(JSON.stringify({ error: "Empty cart" }));
     }
 
-    // Curățăm coșul: servicii trec direct; cărțile trec cu reguli
+    // Curățăm coșul
     const cleaned = [];
     const rejected = [];
 
@@ -143,7 +143,7 @@ export default async function handler(req, res) {
           unit_amount: Math.round(Number(it.price || 0) * 100),
           quantity: Math.max(1, Number(it.qty) || 1),
           currency: String(book.currency || "RON").toLowerCase(),
-          fileKey: null, // paperback nu are fișier
+          fileKey: null,
         });
         continue;
       }
@@ -206,7 +206,6 @@ export default async function handler(req, res) {
           quantity: x.quantity,
         };
       }
-      // book
       return {
         price_data: {
           currency,
@@ -247,35 +246,25 @@ export default async function handler(req, res) {
       });
     }
 
-    // Sesiune Stripe (UN SINGUR apel!)
+    // URL-uri corecte (BrowserRouter, fără #)
+    const success_url = `${SITE}/thanks?session_id={CHECKOUT_SESSION_ID}`;
+    const cancel_url = `${SITE}/cart`;
+    console.log("CHK urls:", { SITE, success_url, cancel_url });
+
+    // Sesiune Stripe
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
       metadata: sessionMeta,
-
-      const SITE = process.env.SITE_URL || "https://midaway.ro";
-
-success_url: `${SITE}/thanks?session_id={CHECKOUT_SESSION_ID}`,
-cancel_url: `${SITE}/cart`,
-
-
+      success_url,
+      cancel_url,
       customer_creation: "always",
       billing_address_collection: "required",
       allow_promotion_codes: true,
-
       shipping_address_collection: hasPaperback
         ? {
             allowed_countries: [
-              "RO",
-              "DE",
-              "FR",
-              "IT",
-              "ES",
-              "NL",
-              "GB",
-              "AT",
-              "BE",
-              "IE",
+              "RO", "DE", "FR", "IT", "ES", "NL", "GB", "AT", "BE", "IE",
             ],
           }
         : undefined,
