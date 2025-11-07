@@ -42,6 +42,17 @@ export async function readOrders() {
   }
   return Array.isArray(res.json) ? res.json : [];
 }
+// ⬇️ lipește asta DUPĂ readOrders() și ÎNAINTE de appendOrder()
+export async function orderExists(id) {
+  try {
+    if (!id) return false;
+    const list = await readOrders();      // folosim deja helperul tău
+    if (!Array.isArray(list)) return false;
+    return list.some(o => o && o.id === id);
+  } catch {
+    return false;
+  }
+}
 
 /**
  * Adaugă / actualizează o comandă și rescrie fișierul JSON.

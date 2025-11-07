@@ -2,7 +2,7 @@
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
-import { appendOrder } from "./_orders-store.mjs";
+import { appendOrder, orderExists } from "./_orders-store.mjs";
 
 // ───────────────── EMAIL BUILDER RO+EN ─────────────────
 function buildEmailHTML({
@@ -157,6 +157,17 @@ export default async function handler(req, res) {
 
   // ───────────────── CHECKOUT COMPLETED ─────────────────
   if (event.type === "checkout.session.completed") {
+    // Idempotency guard – oprește dublurile Stripe
+    try {
+      const sessionId = event.data.object.id;
+      if (await orderExists(sessionId)) {
+        console.log("🔁 duplicate checkout.session.completed — already processed:", sessionId);
+        return res.json({ received: true });
+      }
+    } catch (e) {
+      console.warn("idempotency check failed, continuing defensively:", e?.message || e);
+    }
+
     try {
       const session = await stripe.checkout.sessions.retrieve(
         event.data.object.id,
@@ -273,74 +284,73 @@ export default async function handler(req, res) {
         console.error("❌ Failed to append order:", e);
       }
 
-   
       /* FGO INVOICE (non-blocking, după ce orderForLog a fost setat) */
-try {
-  let createFgoInvoice = null;
-  try {
-    const mod = await import("./invoice-fgo.mjs");
-    createFgoInvoice = mod?.createFgoInvoice;
-  } catch (e) {
-    console.warn("ℹ️ FGO module not found. Skipping FGO invoice.");
-  }
+      try {
+        let createFgoInvoice = null;
+        try {
+          const mod = await import("./invoice-fgo.mjs");
+          createFgoInvoice = mod?.createFgoInvoice;
+        } catch (e) {
+          console.warn("ℹ️ FGO module not found. Skipping FGO invoice.");
+        }
 
-  if (createFgoInvoice && orderForLog) {
-    const fgo = await createFgoInvoice({
-      order: orderForLog,
-      email,
-      company: companyMeta,
-    });
+        if (createFgoInvoice && orderForLog) {
+          const fgo = await createFgoInvoice({
+            order: orderForLog,
+            email,
+            company: companyMeta,
+          });
 
-    console.log("🧾 FGO result:", fgo);
+          console.log("🧾 FGO result:", fgo);
 
-    // email scurt cu detalii factură → client + admin
-    try {
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-      });
+          // email scurt cu detalii factură → client + admin
+          try {
+            const transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+            });
 
-      const toClient = {
-        from: `"Midaway" <${process.env.EMAIL_USER}>`,
-        to: email,
-        replyTo: process.env.ADMIN_EMAIL,
-        subject: `Factura fiscala – Comanda #${orderNo}`,
-        html: [
-          `<p>Bună, ${name || ""}. Factura fiscală pentru comanda <strong>#${orderNo}</strong> a fost emisă.</p>`,
-          fgo?.number
-            ? `<p><strong>Număr:</strong> ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}</p>`
-            : "",
-          fgo?.pdfUrl
-            ? `<p>Poți descărca factura în format PDF de <a href="${fgo.pdfUrl}" target="_blank">aici</a>.</p>`
-            : `<p>Factura a fost trimisă automat de sistemul FGO pe emailul tău.</p>`,
-        ].join(""),
-      };
+            const toClient = {
+              from: `"Midaway" <${process.env.EMAIL_USER}>`,
+              to: email,
+              replyTo: process.env.ADMIN_EMAIL,
+              subject: `Factura fiscala – Comanda #${orderNo}`,
+              html: [
+                `<p>Bună, ${name || ""}. Factura fiscală pentru comanda <strong>#${orderNo}</strong> a fost emisă.</p>`,
+                fgo?.number
+                  ? `<p><strong>Număr:</strong> ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}</p>`
+                  : "",
+                fgo?.pdfUrl
+                  ? `<p>Poți descărca factura în format PDF de <a href="${fgo.pdfUrl}" target="_blank">aici</a>.</p>`
+                  : `<p>Factura a fost trimisă automat de sistemul FGO pe emailul tău.</p>`,
+              ].join(""),
+            };
 
-      const toAdmin = {
-        from: `"Midaway" <${process.env.EMAIL_USER}>`,
-        to: process.env.ADMIN_EMAIL,
-        subject: `📄 FGO • Factură emisă #${orderNo}${fgo?.number ? ` • ${fgo.number}` : ""}`,
-        text: [
-          `Order: ${orderNo}`,
-          `Client: ${name} <${email}>`,
-          fgo?.number ? `Nr factură: ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}` : "",
-          fgo?.pdfUrl ? `PDF: ${fgo.pdfUrl}` : "PDF: -",
-        ].join("\n"),
-      };
+            const toAdmin = {
+              from: `"Midaway" <${process.env.EMAIL_USER}>`,
+              to: process.env.ADMIN_EMAIL,
+              subject: `📄 FGO • Factură emisă #${orderNo}${fgo?.number ? ` • ${fgo.number}` : ""}`,
+              text: [
+                `Order: ${orderNo}`,
+                `Client: ${name} <${email}>`,
+                fgo?.number ? `Nr factură: ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}` : "",
+                fgo?.pdfUrl ? `PDF: ${fgo.pdfUrl}` : "PDF: -",
+              ].join("\n"),
+            };
 
-      await Promise.all([
-        transporter.sendMail(toClient),
-        transporter.sendMail(toAdmin),
-      ]);
+            await Promise.all([
+              transporter.sendMail(toClient),
+              transporter.sendMail(toAdmin),
+            ]);
 
-      console.log("✉️ FGO invoice emails sent to client & admin.");
-    } catch (e) {
-      console.error("❌ Email after FGO invoice failed:", e);
-    }
-  }
-} catch (e) {
-  console.error("🧾 FGO call failed (non-blocking):", e?.message || e);
-}
+            console.log("✉️ FGO invoice emails sent to client & admin.");
+          } catch (e) {
+            console.error("❌ Email after FGO invoice failed:", e);
+          }
+        }
+      } catch (e) {
+        console.error("🧾 FGO call failed (non-blocking):", e?.message || e);
+      }
 
       // token descărcare (dacă există fișiere)
       const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
@@ -418,7 +428,6 @@ try {
     }
   }
 
-  
   // ───────────────── PAYMENT FAILED ─────────────────
   if (event.type === "payment_intent.payment_failed") {
     try {
