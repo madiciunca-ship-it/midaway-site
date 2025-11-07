@@ -40,7 +40,7 @@ export default function Footer() {
           <a href="mailto:contact@midaway.ro">contact@midaway.ro</a>
         </div>
 
-        <div className="footer-copy">© 2025 MIDAWAY</div>
+        <div className="footer-copy">© 2025 MIDAWAY — Toate drepturile rezervate.</div>
       </div>
     </footer>
   );
