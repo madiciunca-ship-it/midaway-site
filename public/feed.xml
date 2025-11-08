@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
+  <atom:link href="https://midaway.ro/feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />
     <title>Midaway — Blog</title>
     <link>https://midaway.ro/blog</link>
     <description>Gânduri, povești și fragmente de drum.</description>
