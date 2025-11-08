@@ -235,11 +235,11 @@ export const BOOKS = [
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
     year: 2025,
-    publisher: "Midaway Publishing House",
+    publisher: "Independent Publisher Mida Malena",
 
     formatDetails: {
-      ebook:     { pages: 364, isbn: "" },
-      paperback: { pages: 364, isbn: "", dimensions: "13 x 20 cm", weight: "400 gr." },
+      ebook:     { pages: 346, isbn: "978-973-0-41387-8" },
+      paperback: { pages: 366, isbn: "978-97304-1386-1", dimensions: "13 x 20 cm", weight: "400 gr." },
       // audiobook: { minutes: 420, narrator: "..." }
     },
 
@@ -255,8 +255,8 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
     extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",
 
     files: {
-      PDF:  "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul.pdf",
-      EPUB: "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul.epub",
+      PDF:  "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
+      EPUB: "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.epub",
     },
 
     sampleUrl: "/files/sample-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
