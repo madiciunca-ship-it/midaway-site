@@ -123,7 +123,7 @@ export const BOOKS = [
     publisher: "Independent Publisher Mida Malena",
 
     formatDetails: {
-      ebook:     { pages: 301, isbn: "978-973-0-41387-8" },
+      ebook:     { pages: 302, isbn: "978-973-0-41387-8" },
       paperback: { pages: 314, isbn: "978-9-7304-1386-1", dimensions: "13 x 20 cm", weight: "380 gr." },
       // audiobook: { minutes: 420, narrator: "..." }
     },
