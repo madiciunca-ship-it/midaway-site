@@ -1,10 +1,6 @@
-// src/data/books.js – model per carte, RO/EN separate
+// src/data/books.js
 // -----------------------------------------------------
-// - currency: RON (RO), EUR (EN)
-// - prices per format (chei UPPERCASE).
-// - availability per format (boolean, chei UPPERCASE).
-// - files doar pentru formatele digitale (PDF/EPUB).
-// - "hidden" poate ascunde o carte din listă până e gata.
+// Chei UPPERCASE pentru prices/availability (PDF/EPUB/PAPERBACK/AUDIOBOOK)
 
 export const BOOKS = [
   // ————————————————————————————————————————————————
@@ -27,30 +23,21 @@ export const BOOKS = [
     formatDetails: {
       ebook:     { pages: 272, isbn: "978-606-94962-8-2" },
       paperback: { pages: 272, isbn: "978-606-95545-7-9", dimensions: "13 x 20 cm", weight: "380 gr." },
-      // audiobook: { minutes: 420, narrator: "..." }
     },
 
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
     extraImage: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-back.JPEG",
-
 
     sampleUrl: "/files/sample-o-zi-de-care-sa-ti-amintesti-ro.pdf",
 
     tags: ["eBook", "PDF", "EPUB", "călătorii"],
     format: "eBook",
 
-    // chei UPPERCASE
     prices: { PDF: 5, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
-
-    availability: {
-      PDF: true,
-      EPUB: true,
-      PAPERBACK: true,
-      AUDIOBOOK: false,
-    },
+    availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF: "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
+      PDF:  "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
       EPUB: "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
     },
 
@@ -73,13 +60,11 @@ export const BOOKS = [
     genre: "Travel",
     location: "Philippines",
     year: 2023,
-    publisher: "Dreams Publishing House",
+    publisher: "Independent Publisher Mida MAlena",
 
     formatDetails: {
-      // când nu ai valori, lasă proprietatea lipsă sau pune null/"" – componenta știe să ignore
       ebook:     { pages: null, isbn: "" },
       paperback: { pages: null, isbn: "", dimensions: "", weight: "" },
-      // audiobook: { minutes: 420, narrator: "..." }
     },
 
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
@@ -91,13 +76,7 @@ export const BOOKS = [
     format: "eBook",
 
     prices: { PDF: 0, EPUB: 0, PAPERBACK: 0, AUDIOBOOK: 0 },
-
-    availability: {
-      PDF: false,
-      EPUB: false,
-      PAPERBACK: false,
-      AUDIOBOOK: false,
-    },
+    availability: { PDF: false, EPUB: false, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {},
 
@@ -125,7 +104,6 @@ export const BOOKS = [
     formatDetails: {
       ebook:     { pages: 302, isbn: "978-973-0-41387-8" },
       paperback: { pages: 314, isbn: "978-9-7304-1386-1", dimensions: "13 x 20 cm", weight: "380 gr." },
-      // audiobook: { minutes: 420, narrator: "..." }
     },
 
     coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
@@ -137,13 +115,7 @@ export const BOOKS = [
     format: "eBook",
 
     prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
-
-    availability: {
-      PDF: true,
-      EPUB: true,
-      PAPERBACK: true,
-      AUDIOBOOK: false,
-    },
+    availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
       PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
@@ -174,7 +146,6 @@ export const BOOKS = [
     formatDetails: {
       ebook:     { pages: 349, isbn: "B0DSBS9J8T" },
       paperback: { pages: 300, isbn: "979-8303117099", dimensions: "6 x 0.68 x 9 inches", weight: "1.14 pounds" },
-      // audiobook: { minutes: 420, narrator: "..." }
     },
 
     coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
@@ -186,13 +157,7 @@ export const BOOKS = [
     format: "ebook",
 
     prices: { PDF: 12, EPUB: 12, PAPERBACK: 20, AUDIOBOOK: 0 },
-
-    availability: {
-      PDF: true,
-      EPUB: true,
-      PAPERBACK: false, // vânzare externă pe Amazon
-      AUDIOBOOK: false,
-    },
+    availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
       PDF:  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
@@ -205,11 +170,6 @@ export const BOOKS = [
         label: "Amazon",
         visible: true,
         priceLabel: "Price on Amazon",
-      },
-      partnerX: {
-        url: "https://exemplu.shop/produs",
-        label: "Distribuitor X",
-        visible: false,
       },
     },
 
@@ -230,7 +190,6 @@ export const BOOKS = [
     title: "Pași prin Indonezia – Vol. I",
     subtitle: "Când Bali îți atinge sufletul",
     author: "Mida-Malena",
-
     genre: "Travel",
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
@@ -240,18 +199,17 @@ export const BOOKS = [
     formatDetails: {
       ebook:     { pages: 346, isbn: "978-973-0-41387-8" },
       paperback: { pages: 366, isbn: "978-97304-1386-1", dimensions: "13 x 20 cm", weight: "400 gr." },
-      // audiobook: { minutes: 420, narrator: "..." }
     },
 
     description: `Bali nu e doar o destinație. E o oglindă. Un test. O ardere lentă. O carte despre feminitate, libertate și povești care ard intens, chiar dacă nu durează.
-„Pași prin Indonezia: Când Bali îți atinge sufletul” nu e o simplă poveste de călătorie. Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu e o vacanță – ci o imersiune profundă în sine.
-Acest prim volum al seriei „Pași prin Indonezia” e o confesiune poetică, o căutare sinceră printre plaje, cascade și conversații care schimbă destine.
-De la Seminyak la Lovina, printre temple sacre și ape amețitoare, Yda scrie cu o sinceritate crudă și luminoasă despre frici care se cer confruntate sub apă, despre femeia care învață să spună „nu”, despre prietenii care apar și dispar cu sens, și despre bărbați care vin și se destramă în cuvinte.
-Bali o învață despre frumusețe, despre rătăcire, despre curajul de a rămâne în adevăr și de a-și scrie propria poveste. Ea descoperă că nu locurile ne schimbă, ci felul în care alegem să le trăim.
-Într-o lume în care toți aleargă să bifeze destinații, Yda călătorește înăuntru. În Bali, totul pare o poveste – dar adevărata magie e cea care se întâmplă în tine.
-Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la tine, cartea asta e pentru tine.`,
+    „Pași prin Indonezia: Când Bali îți atinge sufletul” nu e o simplă poveste de călătorie. Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu e o vacanță – ci o imersiune profundă în sine.
+    Acest prim volum al seriei „Pași prin Indonezia” e o confesiune poetică, o căutare sinceră printre plaje, cascade și conversații care schimbă destine.
+    De la Seminyak la Lovina, printre temple sacre și ape amețitoare, Yda scrie cu o sinceritate crudă și luminoasă despre frici care se cer confruntate sub apă, despre femeia care învață să spună „nu”, despre prietenii care apar și dispar cu sens, și despre bărbați care vin și se destramă în cuvinte.
+    Bali o învață despre frumusețe, despre rătăcire, despre curajul de a rămâne în adevăr și de a-și scrie propria poveste. Ea descoperă că nu locurile ne schimbă, ci felul în care alegem să le trăim.
+    Într-o lume în care toți aleargă să bifeze destinații, Yda călătorește înăuntru. În Bali, totul pare o poveste – dar adevărata magie e cea care se întâmplă în tine.
+    Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la tine, cartea asta e pentru tine.`,
 
-    coverUrl: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-cover.jpg",
+    coverUrl: "/assets/books/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-cover.jpg",
     extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",
 
     files: {
@@ -268,117 +226,71 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
   },
 
   // ————————————————————————————————————————————————
-// Steps Through Indonezia — EN (cu Amazon)
-// ————————————————————————————————————————————————
-{
-  id: "indonezia-1-en",                 // ← schimbă-l (litere/cifre/cratime)
-  addedAt: "2025-11-01T00:00:00Z",
-  lang: "EN",
-  currency: "EUR",
-
-  title: "Steps Through Indonezia",
-  subtitle: "When Bali Touches Your Soul",
-  author: "Mida-Malena",
-  genre: "Travel",
-  location: "Indonesia",
-  year: 2025,
-  publisher: "Midaway Publishing House",
-
-  formatDetails: {
-    ebook:     { pages: 270, isbn: "" },
-    paperback: { pages: 270, isbn: "", dimensions: "", weight: "" },
-    // audiobook: { minutes: null, narrator: "" }
-  },
-
-  coverUrl: "/assets/books/bali-eng-cover.png",
-  extraImage: "/assets/books/bali-eng-back.png",
-
-  sampleUrl: "#",
-
-  tags: ["memoir", "travel", "authentic"],
-  format: "eBook",
-
-  prices: { PDF: 12, EPUB: 12, PAPERBACK: 0, AUDIOBOOK: 0 },
-  availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
-
-  files: {
-    PDF:  "",
-    EPUB: ""
-  },
-
-  // vânzare externă – apare butonul „Buy on Amazon”
-  vendors: {
-    amazon: {
-      url: "",                    // ← pune linkul Amazon când e gata
-      label: "Amazon",
-      visible: true,
-      priceLabel: "Price on Amazon" // (opțional) textul care apare la preț
-    },
-    // partener opțional (ascuns până îl pornești)
-    partnerX: {
-      url: "",
-      label: "Distributor",
-      visible: false
-    }
-  },
-
-  description: `EN description…`,
-  hidden: true
-},
-
+  // Steps Through Indonezia (EN)
   // ————————————————————————————————————————————————
-// TEMPLATE (invizibil) — RO
-// ————————————————————————————————————————————————
-{
-  id: "model-ro-slug",                 // ← schimbă-l (folosește doar litere/cifre/cratime)
-  addedAt: "2025-11-01T00:00:00Z",     // ISO string (opțional)
-  lang: "RO",
-  currency: "RON",
+  {
+    id: "indonezia-1-en",
+    addedAt: "2025-11-08T00:00:00Z",
+    lang: "EN",
+    currency: "EUR",
+    hidden: false,
 
-  title: "Titlu carte (RO)",
-  subtitle: "Subtitlu",
-  author: "Mida-Malena",
-  genre: "Travel",                     // un singur gen; pune extra în `tags`
-  location: "Locație",
-  year: 2025,
-  publisher: "Midaway Publishing House",
+    title: "Steps Through Indonezia",
+    subtitle: "When Bali Touches Your Soul",
+    author: "Mida-Malena",
+    genre: "Travel",
+    location: "Indonesia",
+    year: 2025,
+    publisher: "Independent Publisher Mida Malena",
 
-  formatDetails: {
-    ebook:     { pages: null, isbn: "" },
-    paperback: { pages: null, isbn: "", dimensions: "", weight: "" },
-    // audiobook: { minutes: null, narrator: "" }
+    formatDetails: {
+      ebook:     { pages: 302, isbn: "9798273659506" },
+      paperback: { pages: 314, isbn: "9798273659506", dimensions: "", weight: "" },
+    },
+
+    coverUrl: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-cover.png",
+    extraImage: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-back.png",
+
+    sampleUrl: "#",
+
+    tags: ["memoir", "travel", "authentic"],
+    format: "eBook",
+
+    prices: { PDF: 12, EPUB: 12, PAPERBACK: 0, AUDIOBOOK: 0 },
+    availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
+
+    files: {
+      PDF:  "",
+      EPUB: ""
+    },
+
+    vendors: {
+      amazon: {
+        url: "",
+        label: "Amazon",
+        visible: true,
+        priceLabel: "Price on Amazon",
+      },
+    },
+
+    description: `Bali is not just a destination. It is a mirror. A test. A slow burn. A book about femininity, freedom, and stories that burn brightly, even if they don't last. “Steps Through Indonesia: When Bali Touches Your Soul” is not just a travel story. Yda arrives on the island of the gods with the hope of a new beginning. But what awaits her is not a vacation – it is a deep immersion into herself. This first volume of the series “Steps Through Indonesia” is a poetic confession, a sincere search among beaches, waterfalls, and conversations that change destinies. From Seminyak to Lovina, among sacred temples and dizzying waters, Yda writes with raw and luminous sincerity about fears that must be confronted underwater, about the woman who learns to say “no,” about friends who appear and disappear with meaning, and about men who come and fall apart in words. Bali teaches her about beauty, about wandering, about the courage to stay true and write her own story. She discovers that it is not places that change us, but the way we choose to experience them. In a world where everyone is rushing to check off destinations, Yda travels inward. In Bali, everything seems like a story – but the real magic is what happens inside you. If you've ever felt like you had to leave... so you could return to yourself, this book is for you.`,
   },
+];
 
-  coverUrl: "/assets/books/cover-nou.png",
-  extraImage: "/assets/books/back-nou.png",
+// Export opțional: listă standard pentru UI
+export const FORMATS = ["PDF", "EPUB", "PAPERBACK", "AUDIOBOOK"];
 
-  sampleUrl: "#",
+/*
+────────────────────────────────────────────────────────
+TEMPLATE-URI (INVIZIBILE) — păstrate doar ca REFERINȚĂ.
+NU sunt executate pentru că sunt în comentariu.
+────────────────────────────────────────────────────────
 
-  tags: ["memoir", "travel", "authentic"],
-  format: "eBook",
-
-  // chei UPPERCASE (UI + server)
-  prices: { PDF: 0, EPUB: 0, PAPERBACK: 0, AUDIOBOOK: 0 },
-  availability: { PDF: false, EPUB: false, PAPERBACK: false, AUDIOBOOK: false },
-
-  // doar pentru digitale
-  files: {
-    PDF:  "",
-    EPUB: ""
-  },
-
-  description: `Descriere RO…`,
-  hidden: true
-},
-// ————————————————————————————————————————————————
-// TEMPLATE (invizibil) — EN (cu Amazon)
-// ————————————————————————————————————————————————
-{
-  id: "model-en-slug",                 // ← schimbă-l (litere/cifre/cratime)
-  addedAt: "2025-11-01T00:00:00Z",
+{  // TEMPLATE EN + Amazon
+  id: "model-en-slug",
+  addedAt: "2025-11-08T00:00:00Z",
   lang: "EN",
   currency: "EUR",
-
   title: "Book Title (EN)",
   subtitle: "Subtitle",
   author: "Mida-Malena",
@@ -386,49 +298,42 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
   location: "Location",
   year: 2025,
   publisher: "Independent Publisher Mida Malena",
-
-  formatDetails: {
-    ebook:     { pages: null, isbn: "" },
-    paperback: { pages: null, isbn: "", dimensions: "", weight: "" },
-    // audiobook: { minutes: null, narrator: "" }
-  },
-
+  formatDetails: { ebook:{pages:null,isbn:""}, paperback:{pages:null,isbn:"",dimensions:"",weight:""} },
   coverUrl: "/assets/books/new-cover.png",
   extraImage: "/assets/books/new-back.png",
-
   sampleUrl: "#",
-
-  tags: ["memoir", "travel", "authentic"],
+  tags: ["memoir","travel","authentic"],
   format: "eBook",
-
-  prices: { PDF: 0, EPUB: 0, PAPERBACK: 0, AUDIOBOOK: 0 },
-  availability: { PDF: false, EPUB: false, PAPERBACK: false, AUDIOBOOK: false },
-
-  files: {
-    PDF:  "",
-    EPUB: ""
-  },
-
-  // vânzare externă – apare butonul „Buy on Amazon”
-  vendors: {
-    amazon: {
-      url: "",                    // ← pune linkul Amazon când e gata
-      label: "Amazon",
-      visible: true,
-      priceLabel: "Price on Amazon" // (opțional) textul care apare la preț
-    },
-    // partener opțional (ascuns până îl pornești)
-    partnerX: {
-      url: "",
-      label: "Distributor",
-      visible: false
-    }
-  },
-
-  description: `EN description…`,
+  prices: { PDF:0, EPUB:0, PAPERBACK:0, AUDIOBOOK:0 },
+  availability: { PDF:false, EPUB:false, PAPERBACK:false, AUDIOBOOK:false },
+  files: { PDF:"", EPUB:"" },
+  vendors: { amazon:{ url:"", label:"Amazon", visible:true, priceLabel:"Price on Amazon" } },
+  description: "EN description…",
   hidden: true
-},
-];
+}
 
-// Export opțional: listă standard pentru UI
-export const FORMATS = ["PDF", "EPUB", "PAPERBACK", "AUDIOBOOK"];
+{  // TEMPLATE RO
+  id: "model-ro-slug",
+  addedAt: "2025-11-01T00:00:00Z",
+  lang: "RO",
+  currency: "RON",
+  title: "Titlu carte (RO)",
+  subtitle: "Subtitlu",
+  author: "Mida-Malena",
+  genre: "Travel",
+  location: "Locație",
+  year: 2025,
+  publisher: "Midaway Publishing House",
+  formatDetails: { ebook:{pages:null,isbn:""}, paperback:{pages:null,isbn:"",dimensions:"",weight:""} },
+  coverUrl: "/assets/books/cover-nou.png",
+  extraImage: "/assets/books/back-nou.png",
+  sampleUrl: "#",
+  tags: ["memoir","travel","authentic"],
+  format: "eBook",
+  prices: { PDF:0, EPUB:0, PAPERBACK:0, AUDIOBOOK:0 },
+  availability: { PDF:false, EPUB:false, PAPERBACK:false, AUDIOBOOK:false },
+  files: { PDF:"", EPUB:"" },
+  description: "Descriere RO…",
+  hidden: true
+}
+*/
