@@ -180,7 +180,7 @@ export const BOOKS = [
     coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
     extraImage: "/assets/books/days-and-nights-of-vietnam-back.png",
 
-    sampleUrl: "#",
+    sampleUrl: "/files/sample-days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
 
     tags: ["memoir", "travel", "culture", "authentic"],
     format: "ebook",
@@ -259,7 +259,7 @@ Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la
       EPUB: "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul.epub",
     },
 
-    sampleUrl: "https://docs.google.com/document/d/1sYqLqp1oUIxJWG8iALg-Dgc-AMcfodDyafTFclkhc6M/edit?usp=sharing",
+    sampleUrl: "/files/sample-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
 
     prices: { PDF: 45, EPUB: 45, PAPERBACK: 70, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
