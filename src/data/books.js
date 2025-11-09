@@ -248,7 +248,7 @@ export const BOOKS = [
       paperback: { pages: 314, isbn: "9798273659506", dimensions: "", weight: "" },
     },
 
-    coverUrl: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-cover.png",
+    coverUrl: "/assets/books/steps-through-indonesia-when-bali-touches-your-soul-cover.png",
     extraImage: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-back.png",
 
     sampleUrl: "/files/sample-steps-through-indonezia-when-bali-touches-your-soul-en.pdf",
