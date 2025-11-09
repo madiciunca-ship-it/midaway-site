@@ -330,7 +330,7 @@ One of those memories that stay with you not because they were perfect, but beca
         en: "Brave. Open. Grateful.",
       },
     
-      cover: "/assets/travelers/nomad-tokyo/cover.webp",
+      cover: "/assets/travelers/rachid-maroc/cover.webp",
       gallery: [
         "/assets/travelers/rachid-maroc/1.webp",
         "/assets/travelers/rachid-maroc/2.webp",
