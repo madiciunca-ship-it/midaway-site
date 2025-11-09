@@ -15,6 +15,19 @@ function formatDate(iso) {
 const stripDiacritics = (s) =>
   s.normalize("NFD").replace(/\p{Diacritic}/gu, "");
 
+  // normalizează orice sursă de imagine (acceptă cover, image, hero etc.)
+function resolveSrc(src) {
+  if (!src) return "";
+  const s = String(src).trim();
+  // deja absolut sau data-uri
+  if (s.startsWith("http://") || s.startsWith("https://") || s.startsWith("data:") || s.startsWith("/")) {
+    return s;
+  }
+  // transformă "assets/..." sau "./assets/..." în "/assets/..."
+  return "/" + s.replace(/^\.?\/*/, "");
+}
+
+
 export default function BlogDetail() {
   const { id: rawId } = useParams();
   const id = decodeURIComponent(rawId || "");
@@ -63,23 +76,32 @@ export default function BlogDetail() {
 
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
-      {/* cover */}
-      {post.cover && (
-        <div
-          style={{
-            borderRadius: 16,
-            overflow: "hidden",
-            boxShadow: "0 10px 24px rgba(0,0,0,.08)",
-            marginBottom: 16,
-          }}
-        >
-          <img
-            src={post.cover}
-            alt={post.title}
-            style={{ width: "100%", display: "block", height: "auto" }}
-          />
-        </div>
-      )}
+      {/* cover (robust: cover | image | hero + normalizare cale) */}
+{(() => {
+  const cover = resolveSrc(post.cover || post.image || post.hero);
+  return cover ? (
+    <div
+      style={{
+        borderRadius: 16,
+        overflow: "hidden",
+        boxShadow: "0 10px 24px rgba(0,0,0,.08)",
+        marginBottom: 16,
+      }}
+    >
+      <img
+        src={cover}
+        alt={post.title}
+        style={{ width: "100%", display: "block", height: "auto" }}
+        loading="lazy"
+        onError={(e) => {
+          // dacă tot nu se încarcă, ascundem figura (evităm iconița ruptă)
+          e.currentTarget.parentElement.style.display = "none";
+        }}
+      />
+    </div>
+  ) : null;
+})()}
+
 
       {/* meta + titlu */}
       <div style={{ color: "var(--secondary)", marginBottom: 8 }}>
@@ -128,7 +150,7 @@ export default function BlogDetail() {
               >
                 <div
                   className="blog-card-cover"
-                  style={{ backgroundImage: `url(${r.cover})` }}
+                  style={{ backgroundImage: `url(${resolveSrc(r.cover || r.image || r.hero)})` }}
                 />
                 <div className="blog-card-body">
                   <div className="blog-meta">
