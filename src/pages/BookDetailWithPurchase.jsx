@@ -21,6 +21,10 @@ function findBookByIdOrAlias(bookId) {
   return null;
 }
 
+const BASE_PATH =
+  (typeof window !== "undefined" && window.location.pathname.startsWith("/carti"))
+    ? "/carti"
+    : "/books";
 export default function BookDetailWithPurchase() {
   const { id } = useParams();
   const panelRef = useRef(null);
@@ -116,35 +120,71 @@ export default function BookDetailWithPurchase() {
         }
       }
     } catch {}
+// 4) Populează + stilizează secțiunea „Poate te mai interesează”
+try {
+  const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
+    (el.textContent || "").trim().toLowerCase().includes("poate te mai interesează")
+  );
+  if (h3) {
+    const grid = h3.nextElementSibling;
+    if (grid && grid.tagName === "DIV") {
+      // baza de rută /carti sau /books
+      const basePath =
+        (typeof window !== "undefined" && window.location.pathname.startsWith("/carti"))
+          ? "/carti"
+          : "/books";
 
-    // 4) Re-stilizează secțiunea VECHE „Poate te mai interesează”
-    try {
-      const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
-        (el.textContent || "").trim().toLowerCase().includes("poate te mai interesează")
-      );
-      if (h3) {
-        const grid = h3.nextElementSibling;
-        if (grid && grid.tagName === "DIV") {
-          grid.classList.add("related-grid");
+      // recomandările (din BOOKS)
+      const rel = (recommendBooks(book, 3) || []);
 
-          Array.from(grid.querySelectorAll("a")).forEach((card) => {
-            card.classList.add("related-card");
+      // 4.a) Construieste link ABSOLUT (cu domeniul curent); NO ESCAPES RELATIVE
+      const origin = (typeof window !== "undefined" ? window.location.origin : "");
+      const esc = (s) => String(s || "")
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
-            // primul <div> din card e cel cu backgroundImage (coperta)
-            const coverDiv = card.querySelector("div");
-            if (coverDiv && coverDiv.style && coverDiv.style.backgroundImage) {
-              coverDiv.classList.add("related-coverWrap");
-              coverDiv.style.height = "160px";
-              coverDiv.style.padding = "12px";
-              coverDiv.style.backgroundSize = "contain";
-              coverDiv.style.backgroundPosition = "center";
-              coverDiv.style.backgroundRepeat = "no-repeat";
-              coverDiv.style.backgroundColor = "#f8f3ea";
-            }
-          });
-        }
+      if (rel.length) {
+        grid.innerHTML = rel.map((b) => {
+          const id     = esc(b.id || "");
+          const title  = esc(b.title || "");
+          const sub    = esc(b.subtitle || "");
+          const cover  = esc(b.coverUrl || "");
+          // URL ABSOLUT – ex: https://midaway.ro/carti/vietnam-ro
+          const hrefAbs = `${origin}${basePath}/${id}`;
+
+          return `
+            <a href="${hrefAbs}" class="related-card">
+              <div class="related-coverWrap"
+                   style="background-image:url('${cover}');
+                          background-size:contain;
+                          background-position:center;
+                          background-repeat:no-repeat;">
+              </div>
+              <div>
+                <div class="font-semibold">${title}</div>
+                ${sub ? `<div class="text-slate-600 text-sm mt-1">${sub}</div>` : ""}
+              </div>
+            </a>
+          `;
+        }).join("");
       }
-    } catch {}
+
+      // 4.b) Aplică clasele/stilurile compacte (cele care îți plac acum)
+      grid.classList.add("related-grid");
+
+      Array.from(grid.querySelectorAll("a")).forEach((card) => {
+        card.classList.add("related-card");
+      });
+
+      Array.from(grid.querySelectorAll(".related-coverWrap")).forEach((cvr) => {
+        cvr.style.height = "160px";
+        cvr.style.padding = "12px";
+        cvr.style.backgroundColor = "#f8f3ea";
+      });
+    }
+  }
+} catch {}
+
   }, [book]);
 
   return (
