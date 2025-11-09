@@ -260,8 +260,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
-      PDF:  "",
-      EPUB: ""
+      PDF:  "/files/steps-through-indonesia-when-bali-touches-your-soul-en.pdf",
+      EPUB: "/files/steps-through-indonesia-when-bali-touches-your-soul-en.epub"
     },
 
     vendors: {
