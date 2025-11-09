@@ -158,10 +158,10 @@ Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei 
     După ce am vorbit cu Mida, m-am simțit inspirată să merg în Indonezia, după ce termin munca.
     Același călător mi-a trimis poze din Australia, unde locuiește acum, și chiar m-a invitat într-o excursie prin Sydney.
     
-    Așa că acum mă tot gândesc… poate că n-ar trebui să mă întorc acasă, ci să continui să călătoresc? 😴💋
+    Așa că acum mă tot gândesc… poate că n-ar trebui să mă întorc acasă, ci să continui să călătoresc?
     
-    Și am observat ceva amuzant – când vorbesc cu Mida, scriu foarte mult! 😂
-    E o profesoară tare bună. 🥰`
+    Și am observat ceva amuzant – când vorbesc cu Mida, scriu foarte mult!
+    E o profesoară tare bună.`
         ],
       },
     
@@ -200,9 +200,9 @@ I had never really thought of Yulia as a traveler – but her message told me ev
     After we talked, I felt inspired to go to Indonesia after finishing my job.
     That same traveler sent me photos from Australia, where he lives now, and even invited me on an excursion in Sydney.
     
-    So now I’m wondering… maybe I shouldn’t go home after all, but keep traveling? 😴💋
-    Also, I noticed something funny – when I talk to Mida, I write a lot! 😂
-    She’s a really good teacher. 🥰`
+    So now I’m wondering… maybe I shouldn’t go home after all, but keep traveling?
+    Also, I noticed something funny – when I talk to Mida, I write a lot!
+    She’s a really good teacher.`
         ],
       },
     
@@ -214,7 +214,7 @@ I had never really thought of Yulia as a traveler – but her message told me ev
     // ────────────────────────────────────────────────────────────
     {
       id: "medic-maroc",
-      emoji: "🐪",
+      emoji: "🌙",
       name: {
         ro: "Hamza — O întâlnire care lasă urme",
         en: "Hamza — A meeting that leaves traces",
@@ -315,64 +315,90 @@ One of those memories that stay with you not because they were perfect, but beca
     },
   
     // ────────────────────────────────────────────────────────────
-    // 4) Nomadul din Tokyo
+    // 4) Rachid — Un gest mic, o amintire mare
     // ────────────────────────────────────────────────────────────
     {
-      id: "nomad-tokyo",
-      emoji: "🗼",
+      id: "rachid-maroc",
+      emoji: "🕌",
    
       name: {
-        ro: "Nomadul din Tokyo",
-        en: "The Tokyo Nomad",
+        ro: "Rachid — Un gest mic, o amintire mare",
+        en: "Rachid — A small gesture, a lasting memory",
       },
       tagline: {
-        ro: "Luminile orașului, liniștea trenurilor",
-        en: "The city lights, the silence of the trains",
+        ro: "Curajos. Deschis. Recunoscător.",
+        en: "Brave. Open. Grateful.",
       },
     
       cover: "/assets/travelers/nomad-tokyo/cover.webp",
       gallery: [
-        "/assets/travelers/nomad-tokyo/1.webp",
-        "/assets/travelers/nomad-tokyo/2.webp",
-        "/assets/travelers/nomad-tokyo/3.webp",
+        "/assets/travelers/rachid-maroc/1.webp",
+        "/assets/travelers/rachid-maroc/2.webp",
+        "/assets/travelers/rachid-maroc/3.webp",
       ],
       socials: {
-        instagram: "",
-        facebook: "",
+        instagram: "https://www.instagram.com/el_richaud/",
+        facebook: "https://www.facebook.com/rachid.elkourraa?rdid=UzvaMol7eBZY1Y2z&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CSevS13vF%2F#",
         tiktok: "",
         youtube: "",
         website: "",
         blog: "",
       },
       ro: {
-        intro: `Tokyo nu e doar o metropolă — e un haos ordonat unde te poți pierde fără frică. Între lumini de neon și grădini zen, am descoperit că ritmul vieții poate fi simultan frenetic și meditativ.
-  
-  Trenurile sosesc la secundă, dar poveștile oamenilor se scriu în tăceri lungi. Tokyo e despre contrast — și exact acolo se naște frumusețea.`,
+        intro: `L-am cunoscut pe Rachid datorită lui Kamal. Era ziua lui, iar invitația de a participa la petrecere a venit la momentul potrivit.
+Erau ultimele mele trei zile în Maroc, așa că am zis „da”. Ce nu știam atunci era că, prin acea invitație, Kamal avea să-mi scoată în cale un om cu totul necunoscut – dar de neuitat.
+        
+Totul s-a întâmplat prin Couchsurfing. Inițial urma să stau două zile, apoi să-mi caut cazare pentru a treia, până la zborul spre Catania.
+Dar Rachid mi-a spus cu un zâmbet că pot rămâne la el până plec – și s-a asigurat că am tot ce-mi trebuie.
+Inclusiv mi-a dus rochia la călcat. 
+Era o rochie lungă, colorată, pe care plănuiam s-o port la ziua lui Kamal – dar era complet șifonată, după atâtea zile de rucsac.
+Gestul acela simplu m-a impresionat enorm.
+        
+Am ieșit împreună în club, am râs mult, și mi-a povestit câteva secrete bine păzite ale Marocului.
+Un om deosebit, generos, cald, care cu siguranță va rămâne în sufletul meu pentru mult timp.
+        
+Ah, da – și în ultima zi, când am plecat, am uitat să încui ușa. 
+Dar, cum se închidea automat, Rachid n-a avut de ce să-și facă griji. Totul a rămas în ordine – așa cum trebuie să rămână amintirile frumoase: simple și liniștite.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "" },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
-          { q: "3. Când ai știut că merită?", a: "" },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt un suflet curios, cu o dragoste profundă pentru descoperirea oamenilor, a locurilor și a perspectivelor. Sunt condus de frumusețea necunoscutului și de bucuria simplă a conexiunii. Rucsacul meu e ușor, dar inima e mereu plină de povești." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Nu a fost un moment anume – mai degrabă o voce tăcută care devenea tot mai puternică. Voiam să scap de rutină și să mă simt din nou viu. Într-o zi am realizat că, dacă aștept momentul „perfect”, e posibil ca el să nu vină niciodată. Așa că mi-am făcut bagajul și am plecat." },
+          { q: "3. Când ai știut că merită?", a: "Mi-am dat seama într-o dimineață, privind răsăritul după o noapte lungă petrecută în autobuz. Toată lumea dormea, iar eu stăteam acolo – obosit, dar complet împăcat. A fost momentul în care am știut că am făcut alegerea potrivită." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Thailanda. Energia acelei țări mi-a deschis ochii către un alt ritm al vieții – calm, spiritual și profund uman. De la bunătatea oamenilor până la simplitatea momentelor de zi cu zi, Thailanda m-a învățat că fericirea nu înseamnă să ai mai mult, ci să trăiești cu recunoștință și prezență." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "M-a învățat să am încredere în fluxul vieții. Obișnuiam să planific totul, acum îmbrățișez incertitudinea. Am descoperit că sunt mai puternic, mai adaptabil și mai deschis la inimă decât am crezut vreodată. Lumea nu mi se mai pare uriașă, ci ca un singur mare acasă." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Într-o zi, în Thailanda, am mers spre Railay Beach fără nicio rezervare, după o problemă cu cardul meu bancar. Când am ajuns, toate hotelurile erau pline, și mi-a fost greu să găsesc un loc unde să dorm. Târziu în noapte, am dat peste un mic hostel care avea o limită de vârstă. Administratorul, impresionat de povestea mea și de atitudinea mea, a decis să facă o excepție și mi-a oferit un pat pentru noapte, păstrându-mi pașaportul ca garanție. Acel mic gest de compasiune mi-a reamintit cât de generoși și umani pot fi oamenii, chiar și atunci când nu te aștepți." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Nu aștepta să fii pregătit – nu vei fi niciodată complet. Frica nu dispare, dar după primul pas se transformă în entuziasm. Viața îi răsplătește pe cei curajoși, nu pe cei perfecți." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Facebook: Rachid Casablanca, and Instagram: @el_richaud" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Am întâlnit-o pe Mida în timpul călătoriei ei în Casablanca, când am avut plăcerea de a o găzdui. Atunci am descoperit omul minunat care este – cald, sincer și plin de lumină. A fost o perioadă memorabilă, plină de momente frumoase și amintiri de neuitat." },
         ],
         story: [],
       },
       en: {
-        intro: `Tokyo is not just a metropolis — a tidy chaos where you can lose yourself without fear.`,
+        intro: `I met Rachid thanks to Kamal. It was his birthday, and the invitation to join the party came at just the right time.
+It was my last three days in Morocco, so I said “yes.”
+What I didn’t know then was that Kamal’s invitation would bring into my life a stranger – who would soon become unforgettable.
+        
+It all happened through Couchsurfing.
+I was supposed to stay for two days and then find another place for my last night before flying to Catania.
+But Rachid smiled and told me I could stay at his place until my flight – and he made sure I had everything I needed.
+He even took my dress to be ironed. 
+It was a long, colorful dress I wanted to wear to Kamal’s birthday, completely wrinkled after spending days in my backpack.
+That simple gesture really touched me.
+        
+We went out to a club together, laughed a lot, and he shared a few of Morocco’s best-kept secrets with me.
+A wonderful, kind-hearted person who will surely stay in my heart for a long time.
+        
+Oh, and on my last day, I left the house without locking the door.
+But since it closed automatically, Rachid didn’t have to worry – everything was in perfect order, just like the best memories: simple and peaceful.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "" },
-          { q: "2. What made you start traveling?", a: "" },
-          { q: "3. When did you know it was worth it?", a: "" },
-          { q: "4. A place that changed the way you see the world?", a: "" },
-          { q: "5. How did traveling change you as a person?", a: "" },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
-          { q: "9. Bonus: How did we meet?", a: "" },
+          { q: "1. Who are you in a few sentences?", a: "I’m a curious soul with a deep love for discovering people, places, and perspectives. I’m driven by the beauty of the unknown and by the simple joy of connection. My backpack is light, but my heart is always full of stories." },
+          { q: "2. What made you start traveling?", a: "It wasn’t one moment – more like a quiet voice that kept getting louder. I wanted to break free from routine and feel alive again. One day I realized that waiting for the “perfect time” might mean it would never come. So I packed my bag and left." },
+          { q: "3. When did you know it was worth it?", a: "It hit me one morning, watching the sunrise after a long night bus ride. Everyone was still asleep, and I was standing there – tired, but completely at peace. That was the moment I knew I’d made the right choice." },
+          { q: "4. A place that changed the way you see the world?", a: "Thailand. The energy of that country opened my eyes to a new rhythm of life – calm, spiritual, and deeply human. From the kindness of the people to the simplicity of everyday moments, Thailand taught me that happiness isn’t about having more, but about living with gratitude and presence." },
+          { q: "5. How did traveling change you as a person?", a: "It taught me to trust the flow of life. I used to plan everything – now I embrace uncertainty. I discovered that I’m stronger, more adaptable, and more open-hearted than I ever imagined. The world feels less like a big place, and more like one big home." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "One day in Thailand, I went to Railay Beach without any hotel reservation after an incident with my bank card. When I arrived, I found that every hotel was fully booked, and I struggled to find a place to stay. Late at night, I came across a small hostel that had an age policy. The manager, touched by my story and my kindness, decided to make an exception and offered me a bed for the night, keeping my passport for security reasons. That small act of compassion reminded me how generous and human people can be, even when you least expect it." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Don’t wait to be ready – you never really will be. The fear doesn’t disappear, but once you take the first step, it turns into excitement. Life rewards courage, not perfection." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "Facebook: Rachid Casablanca, and Instagram: @el_richaud" },
+          { q: "9. Bonus: How did we meet?", a: "I met Mida during her trip to Casablanca, when I had the pleasure of hosting her at my place. That’s when I discovered the wonderful person she is – warm, genuine, and full of light. It was a memorable time, filled with beautiful moments and unforgettable memories." },
         ],
         story: [],
       },
