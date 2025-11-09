@@ -244,8 +244,8 @@ export const BOOKS = [
     publisher: "Independent Publisher Mida Malena",
 
     formatDetails: {
-      ebook:     { pages: 302, isbn: "9798273659506" },
-      paperback: { pages: 314, isbn: "9798273659506", dimensions: "", weight: "" },
+      ebook:     { pages: 343, isbn: "978-973-0-41387-8" },
+      paperback: { pages: 356, isbn: "979-8273659506", dimensions: "", weight: "" },
     },
 
     coverUrl: "/assets/books/steps-through-indonesia-when-bali-touches-your-soul-cover.png",
