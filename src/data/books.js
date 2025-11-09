@@ -251,7 +251,7 @@ export const BOOKS = [
     coverUrl: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-cover.png",
     extraImage: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-back.png",
 
-    sampleUrl: "#",
+    sampleUrl: "/files/sample-steps-through-indonezia-when-bali-touches-your-soul-en.pdf",
 
     tags: ["memoir", "travel", "authentic"],
     format: "eBook",
