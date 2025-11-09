@@ -354,7 +354,7 @@ Inclusiv mi-a dus rochia la călcat.
 Era o rochie lungă, colorată, pe care plănuiam s-o port la ziua lui Kamal – dar era complet șifonată, după atâtea zile de rucsac.
 Gestul acela simplu m-a impresionat enorm.
         
-Am ieșit împreună în club, am râs mult, și mi-a povestit câteva secrete bine păzite ale Marocului.
+Am ieșit împreună în club, am râs mult și mi-a povestit câteva secrete bine păzite ale Marocului.
 Un om deosebit, generos, cald, care cu siguranță va rămâne în sufletul meu pentru mult timp.
         
 Ah, da – și în ultima zi, când am plecat, am uitat să încui ușa. 
@@ -367,7 +367,7 @@ Dar, cum se închidea automat, Rachid n-a avut de ce să-și facă griji. Totul 
           { q: "5. Cum te-a schimbat călătoria ca om?", a: "M-a învățat să am încredere în fluxul vieții. Obișnuiam să planific totul, acum îmbrățișez incertitudinea. Am descoperit că sunt mai puternic, mai adaptabil și mai deschis la inimă decât am crezut vreodată. Lumea nu mi se mai pare uriașă, ci ca un singur mare acasă." },
           { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Într-o zi, în Thailanda, am mers spre Railay Beach fără nicio rezervare, după o problemă cu cardul meu bancar. Când am ajuns, toate hotelurile erau pline, și mi-a fost greu să găsesc un loc unde să dorm. Târziu în noapte, am dat peste un mic hostel care avea o limită de vârstă. Administratorul, impresionat de povestea mea și de atitudinea mea, a decis să facă o excepție și mi-a oferit un pat pentru noapte, păstrându-mi pașaportul ca garanție. Acel mic gest de compasiune mi-a reamintit cât de generoși și umani pot fi oamenii, chiar și atunci când nu te aștepți." },
           { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Nu aștepta să fii pregătit – nu vei fi niciodată complet. Frica nu dispare, dar după primul pas se transformă în entuziasm. Viața îi răsplătește pe cei curajoși, nu pe cei perfecți." },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Facebook: Rachid Casablanca, and Instagram: @el_richaud" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Facebook: Rachid Casablanca; Instagram: @el_richaud" },
           { q: "9. Bonus: Cum ne-am cunoscut?", a: "Am întâlnit-o pe Mida în timpul călătoriei ei în Casablanca, când am avut plăcerea de a o găzdui. Atunci am descoperit omul minunat care este – cald, sincer și plin de lumină. A fost o perioadă memorabilă, plină de momente frumoase și amintiri de neuitat." },
         ],
         story: [],
