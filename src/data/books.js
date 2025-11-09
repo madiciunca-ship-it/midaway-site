@@ -266,7 +266,7 @@ export const BOOKS = [
 
     vendors: {
       amazon: {
-        url: "",
+        url: "https://www.amazon.com/dp/B0G1JS6ZVZ",
         label: "Amazon",
         visible: true,
         priceLabel: "Price on Amazon",
