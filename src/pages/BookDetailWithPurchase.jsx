@@ -2,6 +2,9 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import BookDetail from "./BookDetail";
+import { Link } from "react-router-dom";
+import { recommendBooks } from "../utils/recommendations";
+import { Link, useLocation } from "react-router-dom";
 
 import { BOOKS } from "../data/books";
 import BookPurchasePanel, { FormatSpecs } from "../components/BookPurchasePanel";
@@ -26,7 +29,10 @@ export default function BookDetailWithPurchase() {
   const panelRef = useRef(null);
   const specsRef = useRef(null); // 👈 NOU – containerul pentru specificațiile pe format
   const book = useMemo(() => findBookByIdOrAlias(id), [id]);
-
+  const related = recommendBooks(book, 3);
+  const location = useLocation();
+  const base = location.pathname.startsWith("/carti") ? "/carti" : "/books";
+  
   useEffect(() => {
     if (!book) return;
 
@@ -105,38 +111,6 @@ export default function BookDetailWithPurchase() {
         } else if (host) {
           // fallback: dacă nu e UL imediat, punem după heading
           h2.insertAdjacentElement("afterend", host);
-        }
-      }
-    } catch (_) {}
-
-    // 4) Aranjează secțiunea „Poate te mai interesează”
-    try {
-      const h3 = Array.from(document.querySelectorAll("h3")).find((el) =>
-        (el.textContent || "")
-          .trim()
-          .toLowerCase()
-          .includes("poate te mai interesează")
-      );
-      if (h3) {
-        const grid = h3.nextElementSibling;
-        if (grid && grid.tagName === "DIV") {
-          grid.classList.add("related-grid");
-
-          Array.from(grid.querySelectorAll("a")).forEach((card) => {
-            card.classList.add("related-card");
-
-            // primul <div> din card e cel cu backgroundImage
-            const coverDiv = card.querySelector("div");
-            if (coverDiv && coverDiv.style && coverDiv.style.backgroundImage) {
-              coverDiv.classList.add("related-coverWrap");
-              coverDiv.style.height = "160px";
-              coverDiv.style.padding = "12px";
-              coverDiv.style.backgroundSize = "contain";
-              coverDiv.style.backgroundPosition = "center";
-              coverDiv.style.backgroundRepeat = "no-repeat";
-              coverDiv.style.backgroundColor = "#f8f3ea";
-            }
-          });
         }
       }
     } catch (_) {}
@@ -224,6 +198,39 @@ export default function BookDetailWithPurchase() {
       <div ref={panelRef}>
         <BookPurchasePanel bookId={id} />
       </div>
+
+      {/* 4️⃣ Recomandări dinamice */}
+      {related.length > 0 && (
+  <section className="mt-12">
+    <h3 className="text-xl font-semibold mb-4">Poate te mai interesează</h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {related.map((b) => (
+        <Link
+          key={b.id}
+          to={`${base}/${b.id}`}   // 👈 aici e cheia
+          className="block rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition"
+        >
+          <div className="w-full aspect-[3/4] bg-[#f8f3ea] flex items-center justify-center">
+            <img
+              src={b.coverUrl}
+              alt={b.title}
+              className="max-h-full max-w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div className="p-4 text-center">
+            <div className="font-semibold">{b.title}</div>
+            {b.subtitle && (
+              <div className="text-slate-600 text-sm mt-1">{b.subtitle}</div>
+            )}
+          </div>
+        </Link>
+      ))}
+    </div>
+  </section>
+)}
+
+
 
       {/* 4️⃣ Model invizibil pentru viitoare cărți (util în editor/teste) */}
       <div className="book-model" style={{ display: "none" }} data-model="true">
