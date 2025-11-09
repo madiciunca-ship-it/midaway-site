@@ -12,7 +12,7 @@ const guides = [
     // ────────────────────────────────────────────────────────────
     {
       id: "farid-maroc",
-      emoji: "🛵",
+      emoji: "🍳",
       name: { ro: "Farid — Bucătarul care transformă un mic dejun într-o amintire", en: "Farid – the chef who turns breakfast into a memory" },
       tagline: { ro: "Autentic. Primitor. Pasionat.", en: "Authentic. Welcoming. Passionate." },
       cover: "/assets/guides/farid-maroc/cover1.webp",
