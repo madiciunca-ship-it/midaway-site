@@ -1,10 +1,9 @@
 // src/pages/BookDetailWithPurchase.jsx
 import React, { useEffect, useRef, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import BookDetail from "./BookDetail";
-import { Link } from "react-router-dom";
 import { recommendBooks } from "../utils/recommendations";
-import { Link, useLocation } from "react-router-dom";
+
 
 import { BOOKS } from "../data/books";
 import BookPurchasePanel, { FormatSpecs } from "../components/BookPurchasePanel";
@@ -32,7 +31,8 @@ export default function BookDetailWithPurchase() {
   const related = recommendBooks(book, 3);
   const location = useLocation();
   const base = location.pathname.startsWith("/carti") ? "/carti" : "/books";
-  
+
+
   useEffect(() => {
     if (!book) return;
 
