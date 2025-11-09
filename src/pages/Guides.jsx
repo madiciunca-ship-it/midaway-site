@@ -18,10 +18,7 @@ const INTRO_RO = (
       <b>Ghizi, localnici, prieteni ai locului</b> – sunt rari, calzi și plini de povești.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Eu sunt <b>Mida Malena</b>, și în ultimii ani am ajuns în locuri care mi-au tăiat respirația.
-      Dar ceea ce mi-a rămas cu adevărat în inimă au fost oamenii. Cei care m-au primit ca pe una
-      de-a lor, m-au ghidat cu răbdare printre peisaje, obiceiuri și cuvinte necunoscute. Cei care
-      mi-au arătat lumea nu doar cu ochii, ci cu sufletul. Oamenii care mi-au fost lumină pe drum.
+      Eu sunt <b>Mida Malena</b>. Am ajuns în locuri care mi-au tăiat respirația, dar ceea ce mi-a rămas în inimă au fost oamenii care m-au primit ca pe una de-a lor, care m-au ghidat cu răbdare prin peisaje, obiceiuri și cuvinte necunoscute. Oameni care mi-au arătat lumea nu doar cu ochii, ci și cu sufletul.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
       În această rubrică adun vocile ghizilor locali – oameni care trăiesc cu adevărat locul pe care
