@@ -161,7 +161,10 @@ export default async function handler(req, res) {
     try {
       const sessionId = event.data.object.id;
       if (await orderExists(sessionId)) {
-        console.log("🔁 duplicate checkout.session.completed — already processed:", sessionId);
+        console.log(
+          "🔁 duplicate checkout.session.completed — already processed:",
+          sessionId
+        );
         return res.json({ received: true });
       }
     } catch (e) {
@@ -181,11 +184,11 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
+      // — adresa Stripe — o singură sursă
       const addr = session.customer_details?.address || {};
-const country =
-  (addr.country || session.customer_details?.address?.country || "")
-    .toUpperCase() || null;
+      const countryCode = (addr.country || "").toUpperCase() || null;
 
+      // Line items
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
@@ -242,10 +245,6 @@ const country =
         new Set(items.map((it) => it.format).filter(Boolean))
       );
 
-      const country =
-        (session.customer_details?.address?.country || "")
-          .toUpperCase() || null;
-
       const orderNo = genOrderNo(session.id);
 
       // metadata companie
@@ -259,70 +258,53 @@ const country =
         address: md.company_address || "",
         city: md.company_city || "",
         county: md.company_county || "",
-        country: md.company_country || "RO",
+        country: (md.company_country || countryCode || "RO").toUpperCase(),
       };
 
-      // log în Orders
-let orderForLog = null;
-try {
-  const addr = session.customer_details?.address || {};
+      // ───────────────── LOG IN ORDERS (o singură structură coerentă) ─────────────────
+      let orderForLog = null;
+      try {
+        const order = {
+          id: session.id,
+          orderNo,
+          createdAt: Date.now(),
+          email,
+          name,
 
-  const order = {
-    id: session.id,
-    orderNo,
-    createdAt: Date.now(),
-    email,
-    name,
-  
-    amount: total_amount,
-    currency,
-  
-    items,
-    hasDownloads,
-    hasPaperback,
-    courierFee,
-  
-    status: "paid",
-  
-    // ✅ adresa completă pentru FGO
-    country, // ex. "RO"
-    address: {
-      line1: addr.line1 || null,
-      line2: addr.line2 || null,
-      city: addr.city || null,
-      state: addr.state || null,          // ← judet/region (asta intră la FGO „Judet”)
-      postal_code: addr.postal_code || null,
-      country: addr.country || null,
-    },
-  
-    // dacă vrei „county” separat, îl derivăm din state:
-    county: addr.state || null,
-  
-    formats: formatsList,
-    company: companyMeta,
-  };
-  
+          amount: total_amount,
+          currency,
 
-    // 👇 ADĂUGATE: adresă completă + aliasuri folosite de FGO
-    address: {
-      line1: addr.line1 || "",
-      line2: addr.line2 || "",
-      city: addr.city || "",
-      state: addr.state || "",          // Stripe pune des aici „județ”
-      postal_code: addr.postal_code || "",
-      country: (addr.country || country || "RO").toUpperCase(),
-    },
-    city: addr.city || null,
-    county: addr.state || null,         // folosit ca fallback pentru „Judet” în FGO
-  };
+          items,
+          hasDownloads,
+          hasPaperback,
+          courierFee,
 
-  orderForLog = order;
-  await appendOrder(order);
-  console.log("🗂️ Order logged:", order.orderNo, order.id);
-} catch (e) {
-  console.error("❌ Failed to append order:", e);
-}
+          status: "paid",
 
+          // adresă completă pentru FGO + emailuri
+          country: countryCode, // ex. "RO"
+          address: {
+            line1: addr.line1 || null,
+            line2: addr.line2 || null,
+            city: addr.city || null,
+            state: addr.state || null,          // judet/region (FGO: Client[Judet])
+            postal_code: addr.postal_code || null,
+            country: countryCode || null,
+          },
+
+          // alias util
+          county: addr.state || null,
+
+          formats: formatsList,
+          company: companyMeta,
+        };
+
+        orderForLog = order;
+        await appendOrder(order);
+        console.log("🗂️ Order logged:", order.orderNo, order.id);
+      } catch (e) {
+        console.error("❌ Failed to append order:", e);
+      }
 
       /* FGO INVOICE (non-blocking, după ce orderForLog a fost setat) */
       try {
@@ -447,7 +429,7 @@ try {
               `Order: ${orderNo}`,
               `Client: ${name} <${email}>`,
               `Total: ${total_amount} ${currency}`,
-              `Țară: ${country || "-"}`,
+              `Țară: ${countryCode || "-"}`,
               `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
               `Paperback: ${hasPaperback ? "DA" : "nu"}`,
               "",
@@ -478,7 +460,7 @@ try {
       const currency = (pi?.currency || "").toUpperCase();
       const amount = (pi?.amount || 0) / 100;
       const reason = pi?.last_payment_error?.message || "Payment failed";
-      const country =
+      const countryCode =
         (last?.billing_details?.address?.country || "").toUpperCase() || null;
 
       await appendOrder({
@@ -494,7 +476,7 @@ try {
         hasPaperback: false,
         status: "failed",
         failureReason: reason,
-        country,
+        country: countryCode,
         formats: [],
         courierFee: 0,
       });
