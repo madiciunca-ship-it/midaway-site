@@ -55,7 +55,9 @@ function buildFgoPayload({ order, email, company }) {
         Adresa:     company.address || [addr.line1, addr.line2].filter(Boolean).join(", ") || undefined,
       }
     : {
-        Tip: "PF",
+        Tip:        "PF",
+        // ✅ FGO cere mereu Client[Denumire]; pentru PF îl completăm cu numele persoanei
+        Denumire:   order?.name || "Client",
         Nume:       order?.name || "Client",
         Email:      email,
         Tara:       country,
@@ -77,10 +79,10 @@ function buildFgoPayload({ order, email, company }) {
         : (it.name || it.description || "Produs");
 
     return {
-      Denumire:  name,
-      UM:        "buc",
-      NrProduse: qty,
-      CotaTVA:   pickVatRate(),  // 0
+      Denumire:   name,
+      UM:         "buc",
+      NrProduse:  qty,
+      CotaTVA:    pickVatRate(),  // 0
       PretUnitar: Number(unit),
     };
   });
