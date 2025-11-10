@@ -116,60 +116,125 @@ I’m grateful that a simple question led me beyond the kitchen, to discover a t
     },
   
     // ────────────────────────────────────────────────────────────
-    // 2) I Made — Ghidul din Ubud (Bali)
+    // 2) Tono — ghidul care te duce pentru o cafea și te lasă cu o amintire
     // ────────────────────────────────────────────────────────────
     {
-      id: "ghid-ubud",
-      emoji: "🌿",
-      name: { ro: "I Made — Ghidul din Ubud", en: "I Made — Ubud Guide" },
-      tagline: { ro: "Temple. Orezării. Liniște.", en: "Temples. Rice fields. Silence." },
-      cover: "/assets/guides/ghid-ubud/cover.webp",
+      id: "tono-lombok",
+      emoji: "🛵",
+      name: { ro: "Tono — ghidul care te duce pentru o cafea și te lasă cu o amintire", en: "Tono — the guide who brings you coffee and leaves you with a memory" },
+      tagline: { ro: "Grijuliu. Generos. Autentic.", en: "Caring. Generous. Genuine." },
+      cover: "/assets/guides/tono-lombok/2.webp",
       gallery: [
-        "/assets/guides/ghid-ubud/1.webp",
-        "/assets/guides/ghid-ubud/2.webp",
-        "/assets/guides/ghid-ubud/3.webp",
+        "/assets/guides/tono-lombok/cover.webp",
+        "/assets/guides/tono-lombok/2.webp",
+        "/assets/guides/tono-lombok/3.webp",
       ],
       socials: {
-        instagram: "",
-        facebook: "",
+        instagram: "https://www.instagram.com/mawan.astono/",
+        facebook: "https://www.facebook.com/mawanastono.mawanastono/",
         tiktok: "",
         youtube: "",
         website: "",
         blog: "",
       },
       ro: {
-        intro: `Ubud e o respirație lungă. Cu I Made, fiecare potecă printre terasele de orez devine o poveste. Îți arată templele ca pe case vii și oamenii ca pe prieteni vechi. Nu vinde „tururi” — ci întâlniri.`,
+        intro: `L-am cunoscut pe Tono într-o împrejurare neașteptată.
+Căutam un ghid care să mă ducă la nisipurile roz (celebra Pink Beach) și am postat un anunț într-un grup local din Lombok, unde turiștii și ghizii interacționează. Printre cei care mi-au răspuns a fost și Tono.
+        
+Nu am mai ajuns la acele nisipuri, pentru că, la doar două zile după acel anunț, am avut un accident pe munte.
+Totul s-a dat peste cap.
+Viața mea era, literalmente, întoarsă pe dos.
+        
+După șapte zile de repaus, în care aproape că nu puteam merge, am reușit să ajung în Kuta Mandalika.
+Tono îmi spusese că, dacă ajung prin zona lui, mă va ajuta să o explorez. Așa că i-am scris.
+        
+Și nu doar că mi-a arătat locul…
+Când i-am povestit despre accident și i-am zis, aproape în glumă, că aș da orice pentru o cafea dar nu găsesc una aproape, a venit cu scuterul direct de la serviciu – doar ca să mă ducă să beau o cafea din oraș.
+Era vorba de aproximativ doi kilometri. Eu, în starea în care eram, cu siguranță nu i-aș fi putut parcurge pe jos.
+        
+Mai târziu, în aceeași seară, a venit din nou la cazarea mea, după ce și-a terminat lucrul. M-a dus să văd pista de Formula 1 – celebra Mandalika Circuit. Era deja târziu și nu am mai reușit să intrăm, dar ne-am făcut poze la intrare și a fost o seară liniștită, frumoasă.
+        
+Mi-a spus că povestea accidentului l-a impresionat și a fost de o grijă și o delicatețe cum rar mai întâlnești.
+Iar ceva ce nu m-aș fi așteptat: nu a acceptat nicio plată pentru timpul petrecut împreună.
+Mi-a spus simplu:
+        
+— Acum ești prietena mea. N-am făcut asta pentru bani.
+        
+Și sincer, m-a atins profund.
+Într-o lume tot mai materialistă, sunt oameni care îți dau din timpul și energia lor doar pentru că vor să ai o experiență frumoasă.
+Pentru mine, acel gest a îndulcit puțin durerea accidentului și mi-a lăsat o amintire frumoasă legată de Lombok.
+        
+Tono este unul dintre acei oameni care înțeleg că natura umană e construită pentru bunătate, nu pentru interes.
+Și îi mulțumesc, cu ocazia asta, pentru toată generozitatea pe care mi-a arătat-o – mie, o străină, pe care nu știa dacă o va mai revedea vreodată.
+        
+Ah, și să nu uit: Tono are și o mică afacere locală – închiriază scutere turiștilor.
+Așa că, dacă ajungi prin Lombok, nu ezita să îl contactezi.
+Cu siguranță vei înțelege și tu ce fel de om e.`,
         qna: [
-          { q: "1) Cine ești în câteva cuvinte?", a: "" },
-          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "" },
-          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "" },
-          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "" },
-          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "" },
-          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "" },
-          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "" },
-          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "" },
-          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "" },
-          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "" },
-          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "" },
+          { q: "1) Cine ești în câteva cuvinte?", a: "I am Tono. Sunt ghid turistic în Kuta Mandalika, Lombok, pasionat să le arăt vizitatorilor frumusețea naturală a zonei și cultura locală." },
+          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Locuiesc în Lombok și iubesc plajele spectaculoase și ospitalitatea caldă a comunității locale din Kuta Mandalika." },
+          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "Am devenit ghid din pasiune pentru a împărtăși experiențe și pentru a le arăta vizitatorilor frumusețea din Kuta Mandalika, asigurându-mă că au parte de amintiri de neuitat." },
+          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "Momentele în care vizitatorii privesc răsăritul de soare pe plaja din Kuta Mandalika sau descoperă frumusețea subacvatică la snorkeling sunt cu adevărat speciale pentru mine." },
+          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "Aș alege să le arăt apusul de soare pe plaja din Kuta Mandalika – este incredibil de frumos și aduce o stare de liniște." },
+          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "Un ghid bun oferă informații corecte, are grijă de siguranța și confortul vizitatorilor și prezintă frumusețea locului cu pasiune." },
+          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "Aș vrea ca vizitatorii să se simtă inspirați să exploreze mai mult din Kuta Mandalika și să păstreze amintiri frumoase din călătoria lor." },
+          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "Faptul că sunt ghid m-a învățat să fiu mai răbdător, mai comunicativ și să apreciez diversitatea culturală." },
+          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "În situații de urgență, am învățat să rămân calm și profesionist, găsind soluții pentru a asigura siguranța vizitatorilor." },
+          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "Îmi doresc să promovez turismul sustenabil în Kuta Mandalika și să cresc gradul de conștientizare asupra frumuseților naturale și culturale ale zonei." },
+          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "Pot fi găsit prin rețelele sociale sau pe site-urile locale de turism. Instagram: @mawan.astono și Facebook: @Mawanastono" },
+          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "Ne-am cunoscut prin această platformă, dar simt că întâlnirea noastră n-a fost deloc întâmplătoare. Mă bucur că am avut ocazia să împărtășesc cu Mida din ceea ce iubesc cel mai mult: Kuta Mandalika, locul meu de suflet." },
         ],
         story: [],
       },
       en: {
-        intro: `Ubud is a long, gentle breath. With I Made, every footpath across the rice terraces becomes a story. He shows temples as living homes and locals as old friends. He doesn’t sell “tours” — he offers encounters.`,
+        intro: `I met Tono under unexpected circumstances.
+I was looking for a guide to take me to the pink sands and posted a message in a local Lombok group – a space where tourists and guides connect. Among the replies was Tono.
+        
+But I never made it to the pink sands.
+Two days after posting that message, I had an accident in the mountains. 
+Suddenly, everything changed.
+My whole life was turned upside down.
+        
+After seven days of rest, during which I could barely walk, I finally made it to Kuta Mandalika.
+Tono had told me that if I ever made it to his area, he’d help me explore. So I messaged him.
+        
+And he didn’t just show me around…
+When I told him about my injury and casually mentioned that I’d love a coffee but couldn’t find one nearby, he came on his scooter, straight from work – just to take me into town for a cup of coffee.
+It was about a two kilometers walk, and in the condition I was in, there was no way I could’ve made it.
+        
+Later that evening, after he finished work, he came to my guesthouse again.
+He took me to see the Mandalika Circuit, the famous Formula 1 track.
+It was already late, and we couldn’t go inside, but we took some photos at the entrance and shared a quiet, special evening.
+        
+He was so kind and thoughtful – clearly touched by my story and what I had been through.
+And something I didn’t expect at all: he refused to let me pay for the time he spent with me.
+He simply said:
+        
+— You’re my friend now. I didn’t do this for money.
+        
+And honestly, it moved me deeply.
+In a world that often feels driven by money, there are still people who give you their time and energy simply because they want you to have a beautiful experience.
+        
+In a strange way, his kindness helped soften the pain of what had happened to me in Lombok.
+Tono is one of those rare people who truly understands that human nature is built for kindness – not transaction.
+And for that, I’m deeply grateful.
+        
+Oh, and one more thing: Tono also has a small local business renting scooters to tourists.
+So if you ever find yourself in Lombok, don’t hesitate to reach out to him.
+Anyone who meets him will understand the kind of person he truly is.`,
         qna: [
-          { q: "1) Who are you in a few words?", a: "" },
-          { q: "2) Where do you live and what do you love most about your place?", a: "" },
-          { q: "3) How did you become a guide / start showing your place to others?", a: "" },
-          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "" },
-          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "" },
-          { q: "6) What does being a “good guide” mean to you?", a: "" },
-          { q: "7) What do you want people to feel after touring with you?", a: "" },
-          { q: "8) How has being a guide changed you as a person?", a: "" },
-          { q: "9) A difficult moment during a tour that taught you something important?", a: "" },
-          { q: "10) Your dream for yourself or for your place from now on?", a: "" },
-          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Tell us how we met.", a: "" },
+          { q: "1) Who are you in a few words?", a: "I am Tono. I'm a tour guide in Kuta Mandalika, Lombok, passionate about showcasing the area's natural beauty and local culture to visitors." },
+          { q: "2) Where do you live and what do you love most about your place?", a: "I live in Lombok and love the stunning beaches and warm hospitality of the local community in Kuta Mandalika." },
+          { q: "3) How did you become a guide / start showing your place to others?", a: "I became a guide because of my passion for sharing experiences and showcasing Kuta Mandalika's beauty to visitors, ensuring they have unforgettable memories." },
+          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "The moment visitors see the sunrise over Kuta Mandalika's beach or enjoy the underwater beauty while snorkeling is truly precious to me." },
+          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "I'd show them the sunset at Kuta Mandalika's beach, as it's breathtakingly beautiful and brings a sense of peace." },
+          { q: "6) What does being a “good guide” mean to you?", a: "Being a good guide means providing accurate information, ensuring visitors' safety and comfort, and showcasing local beauty with passion." },
+          { q: "7) What do you want people to feel after touring with you?", a: "I want visitors to feel inspired to explore more of Kuta Mandalika and have fond memories of their trip." },
+          { q: "8) How has being a guide changed you as a person?", a: "Being a guide has taught me to be more patient, communicative, and appreciative of cultural diversity." },
+          { q: "9) A difficult moment during a tour that taught you something important?", a: "During emergencies, I've learned to stay calm and professional, finding solutions to ensure visitors' safety." },
+          { q: "10) Your dream for yourself or for your place from now on?", a: "I aim to promote sustainable tourism in Kuta Mandalika and raise awareness about the area's natural and cultural beauty." },
+          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "People can find me through social media or local tourism websites. Instagram: @mawan.astono, and Facebook: @Mawanastono" },
+          { q: "Bonus: Tell us how we met.", a: "We met through this platform, but I believe it wasn’t just a coincidence. I’m truly glad I had the chance to share with Mida what I love most – my home, Kuta Mandalika." },
         ],
         story: [],
       },
