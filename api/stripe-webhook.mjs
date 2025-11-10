@@ -181,6 +181,11 @@ export default async function handler(req, res) {
         return res.json({ received: true });
       }
 
+      const addr = session.customer_details?.address || {};
+const country =
+  (addr.country || session.customer_details?.address?.country || "")
+    .toUpperCase() || null;
+
       const li = await stripe.checkout.sessions.listLineItems(session.id, {
         expand: ["data.price.product"],
       });
@@ -268,16 +273,35 @@ try {
     createdAt: Date.now(),
     email,
     name,
+  
     amount: total_amount,
     currency,
+  
     items,
     hasDownloads,
     hasPaperback,
     courierFee,
+  
     status: "paid",
-    country,                 // ex: "RO"
+  
+    // ✅ adresa completă pentru FGO
+    country, // ex. "RO"
+    address: {
+      line1: addr.line1 || null,
+      line2: addr.line2 || null,
+      city: addr.city || null,
+      state: addr.state || null,          // ← judet/region (asta intră la FGO „Judet”)
+      postal_code: addr.postal_code || null,
+      country: addr.country || null,
+    },
+  
+    // dacă vrei „county” separat, îl derivăm din state:
+    county: addr.state || null,
+  
     formats: formatsList,
     company: companyMeta,
+  };
+  
 
     // 👇 ADĂUGATE: adresă completă + aliasuri folosite de FGO
     address: {
