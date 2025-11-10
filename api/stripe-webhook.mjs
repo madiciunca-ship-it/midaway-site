@@ -258,31 +258,47 @@ export default async function handler(req, res) {
       };
 
       // log în Orders
-      let orderForLog = null;
-      try {
-        const order = {
-          id: session.id,
-          orderNo,
-          createdAt: Date.now(),
-          email,
-          name,
-          amount: total_amount,
-          currency,
-          items,
-          hasDownloads,
-          hasPaperback,
-          courierFee,
-          status: "paid",
-          country,
-          formats: formatsList,
-          company: companyMeta,
-        };
-        orderForLog = order;
-        await appendOrder(order);
-        console.log("🗂️ Order logged:", order.orderNo, order.id);
-      } catch (e) {
-        console.error("❌ Failed to append order:", e);
-      }
+let orderForLog = null;
+try {
+  const addr = session.customer_details?.address || {};
+
+  const order = {
+    id: session.id,
+    orderNo,
+    createdAt: Date.now(),
+    email,
+    name,
+    amount: total_amount,
+    currency,
+    items,
+    hasDownloads,
+    hasPaperback,
+    courierFee,
+    status: "paid",
+    country,                 // ex: "RO"
+    formats: formatsList,
+    company: companyMeta,
+
+    // 👇 ADĂUGATE: adresă completă + aliasuri folosite de FGO
+    address: {
+      line1: addr.line1 || "",
+      line2: addr.line2 || "",
+      city: addr.city || "",
+      state: addr.state || "",          // Stripe pune des aici „județ”
+      postal_code: addr.postal_code || "",
+      country: (addr.country || country || "RO").toUpperCase(),
+    },
+    city: addr.city || null,
+    county: addr.state || null,         // folosit ca fallback pentru „Judet” în FGO
+  };
+
+  orderForLog = order;
+  await appendOrder(order);
+  console.log("🗂️ Order logged:", order.orderNo, order.id);
+} catch (e) {
+  console.error("❌ Failed to append order:", e);
+}
+
 
       /* FGO INVOICE (non-blocking, după ce orderForLog a fost setat) */
       try {

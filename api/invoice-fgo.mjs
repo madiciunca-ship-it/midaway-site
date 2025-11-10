@@ -1,162 +1,145 @@
 // ===============================
 // File: /api/invoice-fgo.mjs
-// Purpose: Creează factură în FGO după plata Stripe.
-// Env: FGO_API_KEY, FGO_API_URL, FGO_SITE, IS_VAT_PAYER (optional)
+// Purpose: Emite factură în FGO (API v1) după plata Stripe.
+// Doc: POST https://api.fgo.ro/v1/factura/emitere
+// Hash = SHA-1( CodUnicFurnizor + CheiePrivata + DenumireClient ) UPPERCASE
+// Env necesare: FGO_API_URL, FGO_ISSUER_CUI, FGO_PRIVATE_KEY, FGO_SERIE, SITE_URL
 // ===============================
 
-const API_KEY = process.env.FGO_API_KEY;
-const RAW_API_URL = process.env.FGO_API_URL || "https://api.fgo.ro/api/v1";
-const FGO_SITE = process.env.FGO_SITE || "midaway.ro";
+import crypto from "crypto";
 
-// Normalizează baza (fără trailing slash)
-function trimSlash(s) { return String(s || "").replace(/\/+$/, ""); }
-const API_URL = trimSlash(RAW_API_URL);
+const API_BASE     = (process.env.FGO_API_URL || "https://api.fgo.ro/v1").replace(/\/+$/, "");
+const ISSUER_CUI   = process.env.FGO_ISSUER_CUI;     // ex: 42435400
+const PRIVATE_KEY  = process.env.FGO_PRIVATE_KEY;    // FGO → Setări → eCommerce → Setări API
+const SERIE        = process.env.FGO_SERIE || "MID";
+const SITE_URL     = process.env.SITE_URL || "https://midaway.ro";
 
-// ——— TVA ———
-function pickVatRate(item) {
-  if (String(process.env.IS_VAT_PAYER || "").toLowerCase() === "true") {
-    const type = String(item?.type || "").toLowerCase();
-    const fmt = String(item?.format || "").toUpperCase();
-    if (type === "book" || fmt === "PDF" || fmt === "EPUB" || fmt === "PAPERBACK") return 11;
-    return 21;
-  }
+// ——— Helpers ———
+function sha1Upper(s) {
+  return crypto.createHash("sha1").update(String(s), "utf8").digest("hex").toUpperCase();
+}
+
+// Firmă neplătitoare TVA → mereu 0
+function pickVatRate() {
   return 0;
 }
 
-// ——— Payload ———
+// FGO cere „Judet” când Țara = RO. Fallback dacă lipsește.
+function normalizeCounty(j, city) {
+  if (j) return j;
+  const c = String(city || "").toLowerCase();
+  if (c.includes("bucure")) return "Bucuresti";
+  return "Bucuresti";
+}
+
+// ——— Mapare comandă → payload FGO v1 ———
 function buildFgoPayload({ order, email, company }) {
-  const isCompany = !!(company && (company.name || company.cui) && company.requested);
+  const country = (order?.country || company?.country || "RO").toUpperCase();
+  const isCompany = !!(company && company.requested && (company.name || company.cui));
+
+  // adrese/aliasuri venite din webhook (vezi stripe-webhook)
+  const addr   = order?.address || {};
+  const judet  = normalizeCounty(order?.county || addr.state, addr.city);
 
   const client = isCompany
     ? {
         Tip: "PJ",
-        Denumire: company.name || "Client PJ",
-        CodUnic: company.cui || undefined,
-        RegCom: company.regCom || undefined,
+        Denumire:   company.name || "Client PJ",
+        CodUnic:    company.cui || undefined,
+        NrRegCom:   company.regCom || undefined,
         PlatitorTVA: !!company.vatPayer,
-        Email: email,
-        Tara: (company.country || "RO").toUpperCase(),
-        Judet: company.county || undefined,
-        Localitate: company.city || undefined,
-        Adresa: company.address || undefined,
+        Email:      email,
+        Tara:       (company.country || "RO").toUpperCase(),
+        Judet:      company.county || judet,
+        Localitate: company.city || addr.city || undefined,
+        Adresa:     company.address || [addr.line1, addr.line2].filter(Boolean).join(", ") || undefined,
       }
     : {
         Tip: "PF",
-        Nume: order?.name || "Client",
-        Email: email,
-        Tara: (order?.country || "RO").toUpperCase(),
+        Nume:       order?.name || "Client",
+        Email:      email,
+        Tara:       country,
+        Judet:      judet,
+        Localitate: addr.city || undefined,
+        Adresa:     [addr.line1, addr.line2].filter(Boolean).join(", ") || undefined,
       };
 
-  const srcItems = Array.isArray(order?.items) ? order.items : [];
+  // Linii conform doc v1: Continut[i]{Denumire, UM, NrProduse, CotaTVA, (PretUnitar|PretTotal)}
+  const items = Array.isArray(order?.items) ? order.items : [];
+  const continut = items.map((it) => {
+    const qty   = Math.max(1, Number(it.quantity || 1));
+    const total = Number(it.amount_total || it.price || 0); // Stripe dă centi → tu deja ai transformat în RON/EUR în webhook
+    const unit  = total / qty;
 
-  const lines = srcItems.map((it) => {
-    const qty = Math.max(1, Number(it.quantity || 1));
-    const total = Number(it.amount_total || 0);
-    const unit = total / qty;
-    const label =
+    const name =
       String(it.type).toLowerCase() === "courier_fee"
         ? (it.name || "Taxă transport")
         : (it.name || it.description || "Produs");
+
     return {
-      Denumire: label,
-      CodArticol: it.fileKey || it.format || undefined,
-      UM: "buc",
-      Cantitate: qty,
-      Pret: unit,
-      TVA: pickVatRate(it),
+      Denumire:  name,
+      UM:        "buc",
+      NrProduse: qty,
+      CotaTVA:   pickVatRate(),  // 0
+      PretUnitar: Number(unit),
     };
   });
 
-  // Transport: îl includem DOAR dacă vine ca linie din coș/Stripe.
-  return {
-    Site: FGO_SITE,
-    Client: client,
-    Articole: lines,
-    Moneda: (order?.currency || "RON").toUpperCase(),
-    Data: new Date().toISOString().slice(0, 10),
-    NrComanda: order?.orderNo || order?.id,
-    TrimiteEmailClient: true,
-    Observatii: "Factura generata automat din Midaway (Stripe) — neplatitor TVA",
+  // Pentru hash la PF folosim Nume, la PJ Denumire
+  const clientNameForHash = client.Denumire || client.Nume || order?.name || "Client";
+
+  // Payload minim v1
+  const payload = {
+    CodUnic:   ISSUER_CUI,                         // CUI furnizor (firma ta)
+    Hash:      sha1Upper(`${ISSUER_CUI}${PRIVATE_KEY}${clientNameForHash}`),
+    Valuta:    (order?.currency || "RON").toUpperCase(),
+    TipFactura: "Factura",
+    Serie:     SERIE,
+
+    IdExtern:  order?.id || order?.orderNo,       // id comanda → verificare duplicat
+    VerificareDuplicat: true,
+
+    Client:    client,
+    Continut:  continut,
+    PlatformaUrl: SITE_URL,                       // recomandat de doc
   };
+
+  return payload;
 }
 
-// ——— POST helper + LOG ———
-async function tryPost(url, body) {
+// ——— Apel efectiv către FGO ———
+export async function createFgoInvoice({ order, email, company }) {
+  if (!ISSUER_CUI || !PRIVATE_KEY) {
+    throw new Error("FGO missing env: FGO_ISSUER_CUI or FGO_PRIVATE_KEY");
+  }
+
+  const url = `${API_BASE}/factura/emitere`;
+  const body = buildFgoPayload({ order, email, company });
+
   const res = await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${API_KEY}`,
-      "X-API-KEY": API_KEY,
-      "X-Auth-Token": API_KEY,
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+
   const text = await res.text();
-  let json; try { json = JSON.parse(text); } catch { json = { raw: text }; }
-  console.log("FGO try:", url, "→", res.status);
-  return { status: res.status, ok: res.ok, json, url };
-}
+  let data; try { data = JSON.parse(text); } catch { data = { raw: text }; }
 
-export async function createFgoInvoice({ order, email, company }) {
-  if (!API_KEY) throw new Error("Missing FGO_API_KEY");
-
-  const payload = buildFgoPayload({ order, email, company });
-
-  // Construim o matrice de baze (v1, v2, fără v, v4) × căi posibile
-  const bases = [
-    trimSlash(API_URL),                                                // ce ai în ENV (ex: /api/v1)
-    trimSlash(API_URL).replace(/\/api\/v\d+$/i, "/api"),               // /api
-    trimSlash(API_URL).replace(/\/api\/v\d+$/i, ""),                   // fără /api/v
-    trimSlash(API_URL).replace(/\/api\/v\d+$/i, "/api/v2"),            // /api/v2
-    trimSlash(API_URL).replace(/\/api\/v\d+$/i, "/api/v4"),            // /api/v4 (unii o expun așa)
-  ];
-
-  const paths = [
-    "/invoice/create",
-    "/invoices/create",
-    "/invoices",
-    "/ecommerce/invoice",
-    "/ecommerce/invoice/create",
-    "/ecommerce/create-invoice",
-    "/factura/create",
-    "/facturi/create",
-  ];
-
-  const endpoints = [];
-  for (const b of bases) {
-    for (const p of paths) {
-      const u = trimSlash(b) + p;
-      endpoints.push(u);
-      endpoints.push(`${u}?site=${encodeURIComponent(FGO_SITE)}`);
-    }
+  if (!res.ok || data?.Success === false) {
+    const msg = data?.Message || res.statusText || "FGO error";
+    const err = new Error(`FGO emitere eșuată: ${msg}`);
+    err.details = data;
+    throw err;
   }
 
-  let last;
-  for (const ep of endpoints) {
-    try {
-      last = await tryPost(ep, payload);
-      if (last.ok) {
-        const j = last.json || {};
-        return {
-          ok: true,
-          id: j?.id || j?.Id || j?.InvoiceId,
-          number: j?.NumarFactura || j?.number || j?.Numar || j?.InvoiceNumber,
-          series: j?.SerieFactura || j?.series,
-          pdfUrl: j?.pdf || j?.PdfUrl || j?.url || undefined,
-          raw: j,
-        };
-      }
-    } catch (e) {
-      last = { error: String(e) };
-    }
-  }
-
-  const err = new Error(`FGO create invoice failed: ${last?.status || "no-response"}`);
-  err.details = last?.json || last;
-  throw err;
+  const f = data?.Factura || {};
+  return {
+    ok: true,
+    number:  f.Numar || null,
+    series:  f.Serie || null,
+    link:    f.Link || null,
+    payLink: f.LinkPlata || null,
+    raw:     data,
+  };
 }
-
-// ===============================
-// End of /api/invoice-fgo.mjs
 // ===============================
