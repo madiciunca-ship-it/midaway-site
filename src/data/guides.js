@@ -249,11 +249,11 @@ Anyone who meets him will understand the kind of person he truly is.`,
       emoji: "🏜️",
       name: { ro: "Kaci — Ghidul care cunoaște deșertul ca pe propria poveste.", en: "Kaci — The guide who knows the desert like his own story." },
       tagline: { ro: "Blând. Deschis. Conectat", en: "Kind. Open. Grounded." },
-      cover: "/assets/guides/kaci-maroc/cover.webp",
+      cover: "/assets/guides/kaci-maroc/cover1.webp",
       gallery: [
-        "/assets/guides/kaci-maroc/1.webp",
+        "/assets/guides/kaci-maroc/cover.webp",
         "/assets/guides/kaci-maroc/2.webp",
-        "/assets/guides/kaci-maroc/3.webp",
+        "/assets/guides/kaci-maroc/1.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/kaci_merzouga?igsh=cjFkM3N2c2E0Y2Jy",
@@ -361,18 +361,18 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
     },
   
     // ────────────────────────────────────────────────────────────
-    // 4) Elena — Povestitoare din Apuseni (România)
+    // 4) Irina — Povestitoaregit add src/pages/Travelers.jsx
     // ────────────────────────────────────────────────────────────
     {
-      id: "ghid-apuseni",
+      id: "irina-bali",
       emoji: "⛰️",
-      name: { ro: "Elena — Povestitoare din Apuseni", en: "Elena — Storyteller from Apuseni" },
+      name: { ro: "Irina — Povestitoare", en: "Irina — Storyteller" },
       tagline: { ro: "Păduri. Sate. Pâine caldă.", en: "Forests. Villages. Warm bread." },
-      cover: "/assets/guides/ghid-apuseni/cover.webp",
+      cover: "/assets/guides/irina-bali/cover.webp",
       gallery: [
-        "/assets/guides/ghid-apuseni/1.webp",
-        "/assets/guides/ghid-apuseni/2.webp",
-        "/assets/guides/ghid-apuseni/3.webp",
+        "/assets/guides/irina-bali/1.webp",
+        "/assets/guides/irina-bali/2.webp",
+        "/assets/guides/irina-bali/3.webp",
       ],
       socials: {
         instagram: "",
