@@ -1,4 +1,4 @@
-// src/pages/Travelers.jsx 
+// src/pages/Travelers.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
@@ -77,67 +77,71 @@ function segBtn(active) {
 }
 
 export default function Travelers() {
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
+
+  // păstrăm doar ?q în URL (căutarea)
   const [q, setQ] = useState(params.get("q") || "");
-  const lang = params.get("lang") === "en" ? "en" : "ro";
 
-  // reține ultima limbă
+  // limba: 1) citim o dată din query dacă vine, 2) altfel din localStorage, 3) altfel ro
+  const initialLang =
+    params.get("lang") === "en"
+      ? "en"
+      : (localStorage.getItem("travelers.lang") || "ro");
+  const [lang, setLang] = useState(initialLang);
+
+  // persistăm limba și curățăm ?lang din bară (păstrăm ?q dacă există)
   useEffect(() => {
-    const saved = localStorage.getItem("travelers.lang");
-    if (!params.get("lang") && saved) {
-      setParams((p) => {
-        const c = new URLSearchParams(p);
-        c.set("lang", saved);
-        return c;
-      });
+    localStorage.setItem("travelers.lang", lang);
+    if (typeof window !== "undefined" && window.location.search.includes("lang=")) {
+      const qs = q ? `?q=${encodeURIComponent(q)}` : "";
+      window.history.replaceState({}, "", window.location.pathname + qs);
     }
-  }, []); // eslint-disable-line
+  }, [lang, q]);
 
-  const setLang = (l) => {
-    setParams((p) => {
-      const c = new URLSearchParams(p);
-      c.set("lang", l);
-      if (q) c.set("q", q);
-      return c;
-    });
-    localStorage.setItem("travelers.lang", l);
+  // când tastezi în căutare, actualizăm doar ?q (nu și lang)
+  const onSearchChange = (v) => {
+    setQ(v);
+    const qs = v ? `?q=${encodeURIComponent(v)}` : "";
+    if (typeof window !== "undefined") {
+      window.history.replaceState({}, "", window.location.pathname + qs);
+    }
   };
 
   // filtrare + titlu/subtitlu corect + ordonare „cel mai nou primul”
-const filtered = useMemo(() => {
-  const term = q.trim().toLowerCase();
+  const filtered = useMemo(() => {
+    const term = q.trim().toLowerCase();
 
-  const base = travelers.map((t) => {
-    const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
+    const base = travelers.map((t) => {
+      const d = (lang === "en" ? t.en : t.ro) || t.ro || t.en || {};
 
-    // 🔹 titlu bilingv, cu fallback la vechea structură
-    const title =
-      (t.name && typeof t.name === "object" ? t.name[lang] : t.name) ||
-      d.listTitle || // dacă ai un titlu separat pt listă
-      d.name ||      // fallback vechi, dacă era în t.ro/t.en
-      (t.name && typeof t.name === "object" ? (t.name.ro || t.name.en) : "") ||
-      "";
+      // 🔹 titlu bilingv, cu fallback la vechea structură
+      const title =
+        (t.name && typeof t.name === "object" ? t.name[lang] : t.name) ||
+        d.listTitle ||
+        d.name ||
+        (t.name && typeof t.name === "object" ? (t.name.ro || t.name.en) : "") ||
+        "";
 
-    // 🔹 subtitlu (tagline) bilingv, cu fallback
-    const subtitle =
-      (t.tagline && typeof t.tagline === "object" ? t.tagline[lang] : t.tagline) ||
-      d.subtitle ||
-      (t.tagline && typeof t.tagline === "object" ? (t.tagline.ro || t.tagline.en) : "") ||
-      "";
+      // 🔹 subtitlu (tagline) bilingv, cu fallback
+      const subtitle =
+        (t.tagline && typeof t.tagline === "object" ? t.tagline[lang] : t.tagline) ||
+        d.subtitle ||
+        (t.tagline && typeof t.tagline === "object" ? (t.tagline.ro || t.tagline.en) : "") ||
+        "";
 
-    const cover =
-      t.cover ||
-      (Array.isArray(t.gallery) ? t.gallery[0] : "") ||
-      "/assets/placeholder-cover.png";
+      const cover =
+        t.cover ||
+        (Array.isArray(t.gallery) ? t.gallery[0] : "") ||
+        "/assets/placeholder-cover.png";
 
-    return { t, title, subtitle, cover };
-  });
+      return { t, title, subtitle, cover };
+    });
 
-  const out = term
-    ? base.filter(({ title, subtitle }) =>
-        `${title} ${subtitle}`.toLowerCase().includes(term)
-      )
-    : base;
+    const out = term
+      ? base.filter(({ title, subtitle }) =>
+          `${title} ${subtitle}`.toLowerCase().includes(term)
+        )
+      : base;
 
     // 🔄 ultimul adăugat apare primul
     return [...out].reverse();
@@ -176,15 +180,7 @@ const filtered = useMemo(() => {
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
         <input
           value={q}
-          onChange={(e) => {
-            setQ(e.target.value);
-            setParams((p) => {
-              const c = new URLSearchParams(p);
-              if (e.target.value) c.set("q", e.target.value);
-              else c.delete("q");
-              return c;
-            });
-          }}
+          onChange={(e) => onSearchChange(e.target.value)}
           placeholder={lang === "en" ? "Search travelers…" : "Caută călători…"}
           style={{
             flex: 1,
@@ -221,7 +217,7 @@ const filtered = useMemo(() => {
         {filtered.map(({ t, title, subtitle, cover }) => (
           <Link
             key={t.id}
-            to={`/calatori/${t.id}?lang=${lang}`}
+            to={`/calatori/${t.id}`}
             style={{
               textDecoration: "none",
               color: "inherit",
@@ -250,8 +246,8 @@ const filtered = useMemo(() => {
                   style={{
                     width: "100%",
                     display: "block",
-                    aspectRatio: "4 / 5",         // păstrează grila
-                    objectFit: "contain",         // NU mai cropează capul
+                    aspectRatio: "4 / 5",
+                    objectFit: "contain",
                     objectPosition: isMobile ? "center 18%" : "center",
                   }}
                 />
