@@ -97,7 +97,7 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
   
     {
       // 2) Yulia — O coincidență frumoasă
-      id: "yulia-amalfi",
+      id: "yulia-rusia",
       emoji: "✍️",
       name: {
         ro: "Yulia — O coincidență frumoasă",
@@ -108,11 +108,11 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
         en: "Bright. Honest. Unforgettable.",
       },
       
-      cover: "/assets/travelers/yulia-amalfi/yulia-amalfi-cover.webp",
+      cover: "/assets/travelers/yulia-rusia/yulia-rusia-cover.webp",
       gallery: [
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-1.webp",
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-2.webp",
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-3.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-1.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-2.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-3.webp",
       ],
       socials: {
         instagram: "",
@@ -213,7 +213,7 @@ I had never really thought of Yulia as a traveler – but her message told me ev
     // 3) Hamza — O întâlnire care lasă urme
     // ────────────────────────────────────────────────────────────
     {
-      id: "medic-maroc",
+      id: "hamza-maroc",
       emoji: "🌙",
       name: {
         ro: "Hamza — O întâlnire care lasă urme",
@@ -224,11 +224,11 @@ I had never really thought of Yulia as a traveler – but her message told me ev
         en: "Adventurous. Friendly. Honest.",
       },
       
-      cover: "/assets/travelers/medic-maroc/medic-maroc-cover.webp",
+      cover: "/assets/travelers/hamza-maroc/hamza-maroc-cover.webp",
       gallery: [
-        "/assets/travelers/medic-maroc/medic-maroc-1.webp",
-        "/assets/travelers/medic-maroc/medic-maroc-2.webp",
-        "/assets/travelers/medic-maroc/medic-maroc-3.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-1.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-2.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-3.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/lahlou_.hamza?igsh=cTVnYnJxYWh1cGw0",
