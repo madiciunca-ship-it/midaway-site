@@ -132,7 +132,7 @@ export default function Home() {
   const t = i18nHome[lang];
 
   // Carousel – pozele tale din /public/hero/
-  const slides = [
+  const slidesRO = [
     {
       src: "/hero/side1.webp",
       alt: "Apus de soare peste ocean",
@@ -149,6 +149,25 @@ export default function Home() {
       caption: "Drumul continuă — cu fiecare pagină, cu fiecare val.",
     },
   ];
+  
+  const slidesEN = [
+    {
+      src: "/hero/side1.webp",
+      alt: "Sunset over the ocean",
+      caption: "The stillness at the end of the world — the beginning of a new story.",
+    },
+    {
+      src: "/hero/side2.webp",
+      alt: "Tropical island in the ocean",
+      caption: "Sometimes, the whole world fits on a quiet island.",
+    },
+    {
+      src: "/hero/side3.webp",
+      alt: "Boat on a beach under coastal leaves",
+      caption: "The road goes on — with every page, with every wave.",
+    },
+  ];
+  
 
   return (
     <>
@@ -295,7 +314,7 @@ export default function Home() {
       </div>
 
       {/* BANNER ROTATIV */}
-      <Carousel slides={slides} />
+      <Carousel slides={lang === "en" ? slidesEN : slidesRO} />
     </>
   );
 }
