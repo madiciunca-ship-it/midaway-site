@@ -11,7 +11,7 @@ const travelers = [
     // 1) Adi — Nomadul din Bali
     // ────────────────────────────────────────────────────────────
     {
-      id: "nomad-bali",
+      id: "adi-satumare",
       emoji: "🏝️",
    
       name: {
@@ -22,11 +22,11 @@ const travelers = [
         ro: "Curios. Aventuros. Adaptabil.",
         en: "Curious. Adventurous. Adaptable.",
       },
-      cover: "/assets/travelers/nomad-bali/cover.webp",
+      cover: "/assets/travelers/adi-satumare/cover.webp",
       gallery: [
-        "/assets/travelers/nomad-bali/1.webp",
-        "/assets/travelers/nomad-bali/2.webp",
-        "/assets/travelers/nomad-bali/3.webp",
+        "/assets/travelers/adi-satumare/1.webp",
+        "/assets/travelers/adi-satumare/2.webp",
+        "/assets/travelers/adi-satumare/3.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/adrianstefanilles/",
@@ -97,7 +97,7 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
   
     {
       // 2) Yulia — O coincidență frumoasă
-      id: "yulia-amalfi",
+      id: "yulia-rusia",
       emoji: "✍️",
       name: {
         ro: "Yulia — O coincidență frumoasă",
@@ -108,11 +108,11 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
         en: "Bright. Honest. Unforgettable.",
       },
       
-      cover: "/assets/travelers/yulia-amalfi/yulia-amalfi-cover.webp",
+      cover: "/assets/travelers/yulia-rusia/yulia-rusia-cover.webp",
       gallery: [
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-1.webp",
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-2.webp",
-        "/assets/travelers/yulia-amalfi/yulia-amalfi-3.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-1.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-2.webp",
+        "/assets/travelers/yulia-rusia/yulia-rusia-3.webp",
       ],
       socials: {
         instagram: "",
