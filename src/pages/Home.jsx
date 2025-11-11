@@ -178,8 +178,30 @@ export default function Home() {
     Povești reale, interviuri, galerie de drum.
   </p>
 </Link>
+
+{/* GHIZI (nou) */}
+<Link
+  to="/ghizi"
+  className="card"
+  
+    style={{
+      background: "#CDB7E3",   // direct hex, test rapid
+      color: "#2C2430",
+      textDecoration: "none",
+      cursor: "pointer",
+    }}
+>
+  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+    Ghizi
+  </h3>
+  <p style={{ margin: 0 }}>
+    Oameni care trăiesc locul pe care îl arată – recomandări din inimă.
+  </p>
+</Link>
+
 </div>
       </div>
+
 
       {/* BANNER ROTATIV */}
       <Carousel slides={slides} />
