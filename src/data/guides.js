@@ -171,7 +171,7 @@ Ah, și să nu uit: Tono are și o mică afacere locală – închiriază scuter
 Așa că, dacă ajungi prin Lombok, nu ezita să îl contactezi.
 Cu siguranță vei înțelege și tu ce fel de om e.`,
         qna: [
-          { q: "1) Cine ești în câteva cuvinte?", a: "I am Tono. Sunt ghid turistic în Kuta Mandalika, Lombok, pasionat să le arăt vizitatorilor frumusețea naturală a zonei și cultura locală." },
+          { q: "1) Cine ești în câteva cuvinte?", a: "Numele meu este Tono. Sunt ghid turistic în Kuta Mandalika, Lombok, pasionat să le arăt vizitatorilor frumusețea naturală a zonei și cultura locală." },
           { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Locuiesc în Lombok și iubesc plajele spectaculoase și ospitalitatea caldă a comunității locale din Kuta Mandalika." },
           { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "Am devenit ghid din pasiune pentru a împărtăși experiențe și pentru a le arăta vizitatorilor frumusețea din Kuta Mandalika, asigurându-mă că au parte de amintiri de neuitat." },
           { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "Momentele în care vizitatorii privesc răsăritul de soare pe plaja din Kuta Mandalika sau descoperă frumusețea subacvatică la snorkeling sunt cu adevărat speciale pentru mine." },
