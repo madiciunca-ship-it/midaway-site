@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-/* ——— Butoane segmentate RO/EN (ca la Ghizi) ——— */
+/* ——— Butoane segmentate RO/EN ——— */
 function segBtn(active) {
   return {
     padding: "8px 14px",
@@ -58,19 +58,14 @@ function Carousel({ slides }) {
     if (!slides?.length) return;
     const id = setInterval(() => setI((v) => (v + 1) % slides.length), 5000);
     return () => clearInterval(id);
-  }, [slides.length]);
+  }, [slides?.length]);
   if (!slides?.length) return null;
 
   return (
     <div className="container">
       <div className="carousel">
         {slides.map((s, idx) => (
-          <img
-            key={idx}
-            src={s.src}
-            alt={s.alt}
-            style={{ opacity: i === idx ? 1 : 0 }}
-          />
+          <img key={idx} src={s.src} alt={s.alt} style={{ opacity: i === idx ? 1 : 0 }} />
         ))}
         <div className="caption-overlay" />
         <div className="caption font-cormorant" style={{ fontSize: 18 }}>
@@ -107,43 +102,34 @@ function Carousel({ slides }) {
 
 /* === Reviews Section (bilingv, avatar + carte opționale) === */
 function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
-  // ascundem draft-urile și ordonăm "ultimul primul"
   const list = [...(items || [])]
     .filter((r) => r && r.published !== false)
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  // inițiale (fără optional chaining)
   const getInitials = (name = "") => {
     const parts = String(name).trim().split(/\s+/);
     const first = parts[0] ? parts[0][0] : "";
-    const last = parts.length > 1 && parts[parts.length - 1]
-      ? parts[parts.length - 1][0]
-      : "";
+    const last =
+      parts.length > 1 && parts[parts.length - 1] ? parts[parts.length - 1][0] : "";
     return (first + last).toUpperCase();
   };
 
   return (
     <section className="container" style={{ marginTop: 24, marginBottom: 32 }}>
-      <h2
-        className="font-cormorant"
-        style={{ textAlign: "center", fontSize: 28, margin: "0 0 16px" }}
-      >
+      <h2 className="font-cormorant" style={{ textAlign: "center", fontSize: 28, margin: "0 0 16px" }}>
         {title}
       </h2>
 
       <div className="reviews-stack" style={{ maxWidth: 780, margin: "0 auto" }}>
         {list.map((r, idx) => {
-          const text =
-            lang === "en" && r.text_en ? r.text_en : r.text_ro || r.text_en || "";
-          const stars =
-            "★".repeat(r.rating || 0) + "☆".repeat(5 - (r.rating || 0));
-
+          const text = lang === "en" && r.text_en ? r.text_en : r.text_ro || r.text_en || "";
+          const stars = "★".repeat(r.rating || 0) + "☆".repeat(5 - (r.rating || 0));
           const hasBook = r.book && r.book.title;
 
           const BookPill = hasBook ? (
             r.book.id ? (
               <Link
-                to={`/carti/${r.book.id}?lang=${lang}`}
+                to={`/carti/${r.book.id}`}
                 style={{
                   marginLeft: "auto",
                   display: "inline-flex",
@@ -151,7 +137,7 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                   gap: 8,
                   borderRadius: 999,
                   padding: "6px 10px",
-                  background: "#F4E8E4", // tentă soft
+                  background: "#F4E8E4",
                   color: "#3b2f2f",
                   fontSize: 12,
                   textDecoration: "none",
@@ -180,9 +166,7 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                     onError={(e) => (e.currentTarget.style.display = "none")}
                   />
                 )}
-                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {r.book.title}
-                </span>
+                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{r.book.title}</span>
               </Link>
             ) : (
               <div
@@ -221,9 +205,7 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                     onError={(e) => (e.currentTarget.style.display = "none")}
                   />
                 )}
-                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                  {r.book.title}
-                </span>
+                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{r.book.title}</span>
               </div>
             )
           ) : null;
@@ -241,7 +223,6 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                   margin: 0,
                 }}
               >
-                {/* header: stânga (avatar+nume+stele) / dreapta (pastilă carte) */}
                 <div
                   style={{
                     display: "flex",
@@ -251,7 +232,6 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                     flexWrap: "wrap",
                   }}
                 >
-                  {/* stânga */}
                   <div
                     style={{
                       display: "flex",
@@ -261,7 +241,6 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                       flex: 1,
                     }}
                   >
-                    {/* avatar: poză sau inițiale */}
                     {r.avatar ? (
                       <img
                         src={r.avatar}
@@ -278,9 +257,7 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                         }}
                         onError={(e) => (e.currentTarget.style.display = "none")}
                       />
-                    ) : null}
-
-                    {!r.avatar && (
+                    ) : (
                       <div
                         aria-hidden="true"
                         style={{
@@ -320,11 +297,9 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                     </div>
                   </div>
 
-                  {/* dreapta */}
                   {BookPill}
                 </div>
 
-                {/* citatul */}
                 <blockquote
                   style={{
                     margin: 0,
@@ -332,14 +307,13 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
                     fontSize: 18,
                     lineHeight: 1.7,
                     paddingLeft: 14,
-                    borderLeft: "3px solid rgba(136, 98, 70, 0.24)", // o tușă din accent
+                    borderLeft: "3px solid rgba(136, 98, 70, 0.24)",
                   }}
                 >
                   “{text}”
                 </blockquote>
               </figure>
 
-              {/* separator „cool” între review-uri */}
               {idx < list.length - 1 && (
                 <div style={{ padding: "10px 8px 16px" }}>
                   <div
@@ -360,194 +334,105 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
   );
 }
 
-
-
-
 /* === Pagina HOME === */
 export default function Home() {
-  // RO/EN din query + memorie locală (ca la Ghizi)
-  const [params, setParams] = useSearchParams();
-  const lang = params.get("lang") === "en" ? "en" : "ro";
+  // 1) citim o singură dată ?lang din URL (dacă există), altfel din localStorage, altfel "ro"
+  const initialFromQuery =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("lang")
+      : null;
+  const initialLang =
+    initialFromQuery === "en"
+      ? "en"
+      : (typeof window !== "undefined" && localStorage.getItem("home.lang")) || "ro";
 
+  const [lang, setLang] = useState(initialLang);
+
+  // 2) persistă alegerea + curăță URL-ul de ?lang pe homepage
   useEffect(() => {
-    const saved = localStorage.getItem("home.lang");
-    if (!params.get("lang") && saved) {
-      setParams((p) => {
-        const c = new URLSearchParams(p);
-        c.set("lang", saved);
-        return c;
-      });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("home.lang", lang);
+      if (window.location.search.includes("lang=")) {
+        window.history.replaceState({}, "", window.location.pathname);
+      }
     }
-  }, []); // eslint-disable-line
-
-  const setLang = (l) => {
-    setParams((p) => {
-      const c = new URLSearchParams(p);
-      c.set("lang", l);
-      return c;
-    });
-    localStorage.setItem("home.lang", l);
-  };
+  }, [lang]);
 
   const t = i18nHome[lang];
 
   // Carousel – pozele tale din /public/hero/
   const slidesRO = [
-    {
-      src: "/hero/side1.webp",
-      alt: "Apus de soare peste ocean",
-      caption: "Liniștea de la capătul lumii — începutul unei noi povești.",
-    },
-    {
-      src: "/hero/side2.webp",
-      alt: "Insulă tropicală în mijlocul oceanului",
-      caption: "Uneori, lumea întreagă încape într-o insulă de liniște.",
-    },
-    {
-      src: "/hero/side3.webp",
-      alt: "Barcă pe plajă, printre frunze de coastă",
-      caption: "Drumul continuă — cu fiecare pagină, cu fiecare val.",
-    },
+    { src: "/hero/side1.webp", alt: "Apus de soare peste ocean",
+      caption: "Liniștea de la capătul lumii — începutul unei noi povești." },
+    { src: "/hero/side2.webp", alt: "Insulă tropicală în mijlocul oceanului",
+      caption: "Uneori, lumea întreagă încape într-o insulă de liniște." },
+    { src: "/hero/side3.webp", alt: "Barcă pe plajă, printre frunze de coastă",
+      caption: "Drumul continuă — cu fiecare pagină, cu fiecare val." },
   ];
-
   const slidesEN = [
-    {
-      src: "/hero/side1.webp",
-      alt: "Sunset over the ocean",
-      caption: "The stillness at the end of the world — the beginning of a new story.",
-    },
-    {
-      src: "/hero/side2.webp",
-      alt: "Tropical island in the ocean",
-      caption: "Sometimes, the whole world fits on a quiet island.",
-    },
-    {
-      src: "/hero/side3.webp",
-      alt: "Boat on a beach under coastal leaves",
-      caption: "The road goes on — with every page, with every wave.",
-    },
+    { src: "/hero/side1.webp", alt: "Sunset over the ocean",
+      caption: "The stillness at the end of the world — the beginning of a new story." },
+    { src: "/hero/side2.webp", alt: "Tropical island in the ocean",
+      caption: "Sometimes, the whole world fits on a quiet island." },
+    { src: "/hero/side3.webp", alt: "Boat on a beach under coastal leaves",
+      caption: "The road goes on — with every page, with every wave." },
   ];
 
-  // Reviews demo (poți înlocui ulterior cu ale tale; ordinea e sortată desc după createdAt)
+  // Reviews demo
   const REVIEWS = [
-    // LIVE
-    {
-      id: "r3",
-      name: "Ana M.",
-      rating: 5,
+    { id: "r3", name: "Ana M.", rating: 5,
       text_ro: "O inițiativă care m-a făcut să cred din nou în cărțile de drum.",
       text_en: "An initiative that made me believe in travel books again.",
       createdAt: "2025-02-03T12:00:00Z",
       avatar: "/avatars/ana.jpg",
-      book: {
-        id: "insula-viata",
-        title: "Insula care îți schimbă viața",
-        cover: "/covers/insula-viata-thumb.webp",
-      },
-      published: true,
-    },
-    {
-      id: "r2",
-      name: "Dan C.",
-      rating: 5,
+      book: { id: "insula-viata", title: "Insula care îți schimbă viața", cover: "/covers/insula-viata-thumb.webp" },
+      published: true },
+    { id: "r2", name: "Dan C.", rating: 5,
       text_ro: "Ton cald, curajos, autentic. M-am regăsit în fiecare pagină.",
       text_en: "Warm, brave, authentic tone. I found myself in every page.",
       createdAt: "2025-01-28T10:00:00Z",
-      // dacă vrei pastilă, adaugă:
-      // book: { id: "coasta-noptii", title: "Coasta Nopții" },
-      published: true,
-    },
-    {
-      id: "r1",
-      name: "Iulia P.",
-      rating: 4,
+      published: true },
+    { id: "r1", name: "Iulia P.", rating: 4,
       text_ro: "Mi-a plăcut să călătoresc prin ochii autorilor Midaway.",
       text_en: "I loved traveling through Midaway authors’ eyes.",
       createdAt: "2025-01-20T09:00:00Z",
       avatar: "/avatars/iulia.webp",
-      book: {
-        id: "coasta-noptii",
-        title: "Coasta Nopții",
-        // cover: "/covers/coasta-noptii-thumb.webp",
-      },
-      published: true,
-    },
-  
-    // DRAFTS (nu apar până nu pui published: true)
-    {
-      id: "draft-1",
-      name: "Andrei V.",
-      rating: 5,
+      book: { id: "coasta-noptii", title: "Coasta Nopții" },
+      published: true },
+    // drafts (nu apar până nu pui published: true)
+    { id: "draft-1", name: "Andrei V.", rating: 5,
       text_ro: "O carte care te prinde de la prima pagină.",
       text_en: "A book that grabs you from the very first page.",
       createdAt: "2025-02-12T12:00:00Z",
-      // avatar: "/avatars/andrei.webp",
-      // book: { id: "titlu-slug", title: "Titlul cărții", cover: "/covers/titlu-thumb.webp" },
-      published: false,
-    },
-    {
-      id: "draft-2",
-      name: "Mara T.",
-      rating: 4,
+      published: false },
+    { id: "draft-2", name: "Mara T.", rating: 4,
       text_ro: "Scriitură curată, sinceră. Mi-a rămas în minte.",
       text_en: "Clean, honest writing. It stayed with me.",
       createdAt: "2025-02-11T12:00:00Z",
-      // avatar: "/avatars/mara.webp",
-      // book: { title: "Carte fără link" }, // fără id → fără link, doar text
-      published: false,
-    },
-    {
-      id: "draft-3",
-      name: "Radu P.",
-      rating: 5,
+      published: false },
+    { id: "draft-3", name: "Radu P.", rating: 5,
       text_ro: "Mi-a dat curaj să-mi planific propria călătorie.",
       text_en: "It gave me courage to plan my own journey.",
       createdAt: "2025-02-10T12:00:00Z",
-      // avatar: "/avatars/radu.webp",
-      // book: { id: "insula-viata", title: "Insula care îți schimbă viața" },
-      published: false,
-    },
+      published: false },
   ];
-  
 
   return (
     <>
       {/* HERO */}
       <section className="hero hero--compact">
         <div className="font-cormorant" style={{ textAlign: "center" }}>
-          <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>
-            {t.hero_title}
-          </h1>
-
-          <p
-            style={{
-              color: "var(--secondary)",
-              fontStyle: "italic",
-              marginTop: 8,
-            }}
-          >
+          <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>{t.hero_title}</h1>
+          <p style={{ color: "var(--secondary)", fontStyle: "italic", marginTop: 8 }}>
             {`„${t.hero_tagline}”`}
           </p>
-
-          <p
-            style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}
-          >
-            {t.hero_meta}
-          </p>
-
-          <p
-            style={{
-              maxWidth: 720,
-              margin: "24px auto 0",
-              fontSize: 22,
-              lineHeight: 1.6,
-            }}
-          >
+          <p style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}>{t.hero_meta}</p>
+          <p style={{ maxWidth: 720, margin: "24px auto 0", fontSize: 22, lineHeight: 1.6 }}>
             {t.hero_sub}
           </p>
 
           <div style={{ marginTop: 24 }}>
-            <Link className="btn" to={`/proiecte?lang=${lang}`}>
+            <Link className="btn" to="/proiecte">
               {t.viziune_btn}
             </Link>
           </div>
@@ -565,12 +450,8 @@ export default function Home() {
               background: "#fff",
             }}
           >
-            <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>
-              RO
-            </button>
-            <button onClick={() => setLang("en")} style={segBtn(lang === "en")}>
-              EN
-            </button>
+            <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>RO</button>
+            <button onClick={() => setLang("en")} style={segBtn(lang === "en")}>EN</button>
           </div>
         </div>
       </section>
@@ -578,68 +459,32 @@ export default function Home() {
       {/* SECȚIUNI RAPIDE */}
       <div id="sectiuni" className="container">
         <div className="cards">
-          {/* CĂRȚI */}
-          <Link
-            to={`/carti?lang=${lang}`}
-            className="card"
-            style={{
-              background: "var(--card1)",
-              color: "inherit",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
+          <Link to="/carti" className="card"
+            style={{ background: "var(--card1)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
               {i18nHome[lang].card_carti_t}
             </h3>
             <p style={{ margin: 0 }}>{i18nHome[lang].card_carti_s}</p>
           </Link>
 
-          {/* AUTORI */}
-          <Link
-            to={`/proiecte/autori?lang=${lang}`}
-            className="card"
-            style={{
-              background: "var(--card2)",
-              color: "#fff",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
+          <Link to="/proiecte/autori" className="card"
+            style={{ background: "var(--card2)", color: "#fff", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
               {i18nHome[lang].card_autori_t}
             </h3>
             <p style={{ margin: 0 }}>{i18nHome[lang].card_autori_s}</p>
           </Link>
 
-          {/* CĂLĂTORI */}
-          <Link
-            to={`/calatori?lang=${lang}`}
-            className="card"
-            style={{
-              background: "var(--card3)",
-              color: "inherit",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
+          <Link to="/calatori" className="card"
+            style={{ background: "var(--card3)", color: "inherit", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
               {i18nHome[lang].card_calatori_t}
             </h3>
             <p style={{ margin: 0 }}>{i18nHome[lang].card_calatori_s}</p>
           </Link>
 
-          {/* GHIZI */}
-          <Link
-            to={`/ghizi?lang=${lang}`}
-            className="card"
-            style={{
-              background: "var(--card5)",
-              color: "#2C2430",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
+          <Link to="/ghizi" className="card"
+            style={{ background: "var(--card5)", color: "#2C2430", textDecoration: "none", cursor: "pointer" }}>
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
               {i18nHome[lang].card_ghizi_t}
             </h3>
