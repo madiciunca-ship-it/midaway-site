@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import guides from "../data/guides";
 
-
 /* ——— stil card ca la Autori/Călători ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
 
@@ -69,30 +68,32 @@ function segBtn(active) {
 }
 
 export default function Guides() {
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const [q, setQ] = useState(params.get("q") || "");
-  const lang = params.get("lang") === "en" ? "en" : "ro";
 
-  // reține ultima limbă
+  // limbă: din query o singură dată dacă vine, altfel din localStorage, altfel ro
+  const initialLang =
+    params.get("lang") === "en"
+      ? "en"
+      : (localStorage.getItem("guides.lang") || "ro");
+  const [lang, setLang] = useState(initialLang);
+
+  // persistă limba și curăță ?lang din bară (păstrăm ?q dacă există)
   useEffect(() => {
-    const saved = localStorage.getItem("guides.lang");
-    if (!params.get("lang") && saved) {
-      setParams((p) => {
-        const c = new URLSearchParams(p);
-        c.set("lang", saved);
-        return c;
-      });
+    localStorage.setItem("guides.lang", lang);
+    if (typeof window !== "undefined" && window.location.search.includes("lang=")) {
+      const qs = q ? `?q=${encodeURIComponent(q)}` : "";
+      window.history.replaceState({}, "", window.location.pathname + qs);
     }
-  }, []); // eslint-disable-line
+  }, [lang, q]);
 
-  const setLang = (l) => {
-    setParams((p) => {
-      const c = new URLSearchParams(p);
-      c.set("lang", l);
-      if (q) c.set("q", q);
-      return c;
-    });
-    localStorage.setItem("guides.lang", l);
+  // când cauți, actualizezi doar ?q (nu și lang)
+  const onSearchChange = (v) => {
+    setQ(v);
+    const qs = v ? `?q=${encodeURIComponent(v)}` : "";
+    if (typeof window !== "undefined") {
+      window.history.replaceState({}, "", window.location.pathname + qs);
+    }
   };
 
   // filtrare + titlu/subtitlu corect + ordonare „cel mai nou primul”
@@ -102,18 +103,18 @@ export default function Guides() {
     const base = (guides || []).map((g) => {
       const d = (lang === "en" ? g.en : g.ro) || g.ro || g.en || {};
       // titlu bilingv, cu fallback
-    const title =
-    (g.name && typeof g.name === "object" ? g.name[lang] : g.name) ||
-    d.listTitle ||
-    d.name ||
-    (g.name && typeof g.name === "object" ? (g.name.ro || g.name.en) : "") ||
-    "";
+      const title =
+        (g.name && typeof g.name === "object" ? g.name[lang] : g.name) ||
+        d.listTitle ||
+        d.name ||
+        (g.name && typeof g.name === "object" ? (g.name.ro || g.name.en) : "") ||
+        "";
       // subtitlu bilingv, cu fallback
-    const subtitle =
-    (g.tagline && typeof g.tagline === "object" ? g.tagline[lang] : g.tagline) ||
-    d.subtitle ||
-    (g.tagline && typeof g.tagline === "object" ? (g.tagline.ro || g.tagline.en) : "") ||
-    "";
+      const subtitle =
+        (g.tagline && typeof g.tagline === "object" ? g.tagline[lang] : g.tagline) ||
+        d.subtitle ||
+        (g.tagline && typeof g.tagline === "object" ? (g.tagline.ro || g.tagline.en) : "") ||
+        "";
       const cover =
         g.cover ||
         (Array.isArray(g.gallery) ? g.gallery[0] : "") ||
@@ -161,15 +162,7 @@ export default function Guides() {
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
         <input
           value={q}
-          onChange={(e) => {
-            setQ(e.target.value);
-            setParams((p) => {
-              const c = new URLSearchParams(p);
-              if (e.target.value) c.set("q", e.target.value);
-              else c.delete("q");
-              return c;
-            });
-          }}
+          onChange={(e) => onSearchChange(e.target.value)}
           placeholder={lang === "en" ? "Search guides…" : "Caută ghizi…"}
           style={{
             flex: 1,
@@ -206,7 +199,7 @@ export default function Guides() {
         {filtered.map(({ g, title, subtitle, cover }) => (
           <Link
             key={g.id}
-            to={`/ghizi/${g.id}?lang=${lang}`}
+            to={`/ghizi/${g.id}`}
             style={{
               textDecoration: "none",
               color: "inherit",
