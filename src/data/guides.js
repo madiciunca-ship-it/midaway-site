@@ -268,7 +268,7 @@ Anyone who meets him will understand the kind of person he truly is.`,
 
 Plecând din Ouarzazate, drumul a durat mai mult decât planificasem. Când am ajuns în Merzouga era 21:30. Noapte. Pustiu. Gara – undeva pe un câmp.
         
-Auzi tot felul de povești: „Nu merge în deșert fără ghid.” „E periculos.” „E plin de băieți dubioși.” Dar mi-am strâns rucsacul pe spate și mi-am zis: Te descurci. Ca întotdeauna. Și m-am descurcat.
+Auzi tot felul de povești: „Nu merge în deșert fără ghid.” „E periculos.” „E plin de băieți dubioși.” Dar mi-am strâns rucsacul pe spate și mi-am zis: „Te descurci. Ca întotdeauna.” Și m-am descurcat.
         
 Am luat-o pe jos spre ce părea a fi un local. Eram flămândă și voiam doar un loc unde să dorm. Studiasem toate opțiunile de pe Booking, dar nimic nu mă convinsese. Speram să găsesc ceva doar pentru o noapte, apoi să mă mut între dune.
         
