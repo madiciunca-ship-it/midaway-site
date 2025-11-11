@@ -185,7 +185,7 @@ export default function Home() {
   className="card"
   
     style={{
-      background: "#CDB7E3",   // direct hex, test rapid
+      background: "var(--card5)",
       color: "#2C2430",
       textDecoration: "none",
       cursor: "pointer",
@@ -195,7 +195,7 @@ export default function Home() {
     Ghizi
   </h3>
   <p style={{ margin: 0 }}>
-    Oameni care trăiesc locul pe care îl arată – recomandări din inimă.
+    Oameni care trăiesc locul pe care îl arată.
   </p>
 </Link>
 

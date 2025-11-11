@@ -11,6 +11,8 @@
   --card2:#4D8C91;   /* teal – Media (text alb) */
   --card3:#E8D7C7;   /* bej-roz – Erasmus / Editura */
   --card4:#E9C8B5;   /* nou: piersică/terracotta light – Susținere */
+  --card5: #CDB7E3; /* nou, doar pentru Ghizi */
+
 }
 
 
@@ -363,3 +365,38 @@ body{margin:0;background:var(--bg);color:var(--text)}
 .post-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 8px; }
 .post-nav-link { color: var(--secondary); text-decoration: none; }
 .post-nav-link:hover { color: var(--accent); }
+
+
+/* === Layout pentru secțiunea de carduri de pe homepage === */
+.cards {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;           /* mobil: 1 pe rând = 1×4 */
+}
+
+/* tabletă / laptop: 2×2 */
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop mare: 4 pe rând (opțional). 
+   Dacă preferi 2×2 și pe desktop, șterge acest bloc. */
+@media (min-width: 1280px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* opțional, pentru consistență vizuală a cardurilor */
+.card {
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.10);
+}
+
