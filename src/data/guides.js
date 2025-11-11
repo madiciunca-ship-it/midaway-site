@@ -13,7 +13,7 @@ const guides = [
     {
       id: "farid-maroc",
       emoji: "🍳",
-      name: { ro: "Farid — Bucătarul care transformă un mic dejun într-o amintire", en: "Farid – the chef who turns breakfast into a memory" },
+      name: { ro: "Farid — Bucătarul care transformă un mic dejun într-o amintire", en: "Farid – The chef who turns breakfast into a memory" },
       tagline: { ro: "Autentic. Primitor. Pasionat.", en: "Authentic. Welcoming. Passionate." },
       cover: "/assets/guides/farid-maroc/cover1.webp",
       gallery: [
@@ -121,7 +121,7 @@ I’m grateful that a simple question led me beyond the kitchen, to discover a t
     {
       id: "tono-lombok",
       emoji: "🛵",
-      name: { ro: "Tono — ghidul care te duce pentru o cafea și te lasă cu o amintire", en: "Tono — the guide who brings you coffee and leaves you with a memory" },
+      name: { ro: "Tono — Ghidul care te duce pentru o cafea și te lasă cu o amintire", en: "Tono — The guide who brings you coffee and leaves you with a memory" },
       tagline: { ro: "Grijuliu. Generos. Autentic.", en: "Caring. Generous. Genuine." },
       cover: "/assets/guides/tono-lombok/2.webp",
       gallery: [
@@ -242,21 +242,21 @@ Anyone who meets him will understand the kind of person he truly is.`,
     },
   
     // ────────────────────────────────────────────────────────────
-    // 3) Ahmed — Berber din Merzouga (Maroc)
+    // 3) Kaci — Ghidul care cunoaște deșertul ca pe propria poveste.
     // ────────────────────────────────────────────────────────────
     {
-      id: "ghid-merzouga",
+      id: "kaci-maroc",
       emoji: "🏜️",
-      name: { ro: "Ahmed — Berber din Merzouga", en: "Ahmed — Berber from Merzouga" },
-      tagline: { ro: "Dune. Stele. Ceai de mentă.", en: "Dunes. Stars. Mint tea." },
-      cover: "/assets/guides/ghid-merzouga/cover.webp",
+      name: { ro: "Kaci — Ghidul care cunoaște deșertul ca pe propria poveste.", en: "Kaci — The guide who knows the desert like his own story." },
+      tagline: { ro: "Blând. Deschis. Conectat", en: "Kind. Open. Grounded." },
+      cover: "/assets/guides/kaci-maroc/cover.webp",
       gallery: [
-        "/assets/guides/ghid-merzouga/1.webp",
-        "/assets/guides/ghid-merzouga/2.webp",
-        "/assets/guides/ghid-merzouga/3.webp",
+        "/assets/guides/kaci-maroc/1.webp",
+        "/assets/guides/kaci-maroc/2.webp",
+        "/assets/guides/kaci-maroc/3.webp",
       ],
       socials: {
-        instagram: "",
+        instagram: "https://www.instagram.com/kaci_merzouga?igsh=cjFkM3N2c2E0Y2Jy",
         facebook: "",
         tiktok: "",
         youtube: "",
@@ -264,38 +264,96 @@ Anyone who meets him will understand the kind of person he truly is.`,
         blog: "",
       },
       ro: {
-        intro: `În deșert, timpul curge altfel. Ahmed te învață să-l asculți: nisipul, vântul, cămilele, focul de seară și cerul care cade peste tine. Nu promite „spectacol” — ci liniște.`,
+        intro: `Eram de aproape o lună în Maroc și îmi doream cu disperare să ajung în deșert. Nu conta că drumul era lung, că nu aveam cazare sau că urma să ajung târziu. Am zis că ora 20:00 e rezonabilă și sigur găsesc ceva. Nu era prima dată.
+
+Plecând din Ouarzazate, drumul a durat mai mult decât planificasem. Când am ajuns în Merzouga era 21:30. Noapte. Pustiu. Gara – undeva pe un câmp.
+        
+Auzi tot felul de povești: „Nu merge în deșert fără ghid.” „E periculos.” „E plin de băieți dubioși.” Dar mi-am strâns rucsacul pe spate și mi-am zis: Te descurci. Ca întotdeauna. Și m-am descurcat.
+        
+Am luat-o pe jos spre ce părea a fi un local. Eram flămândă și voiam doar un loc unde să dorm. Studiasem toate opțiunile de pe Booking, dar nimic nu mă convinsese. Speram să găsesc ceva doar pentru o noapte, apoi să mă mut între dune.
+        
+Dar cum socoteala de acasă nu se potrivește cu cea din deșert, Universul mi l-a scos în cale pe Kaci. Nu direct, nu încă.
+        
+Am ajuns într-un bar plin doar de bărbați. Toți s-au uitat la mine ca la o apariție. Chelnerul mi-a zis că nu servesc mâncare și m-a îndrumat spre oraș. Așa că am pornit din nou pe jos.
+        
+Erau cam doi kilometri. Pe drum, mulți bărbați. Unul mă urmărea și tot spunea ceva. Simțeam că vreau doar să scap. Când, dintr-o dată, văd o firmă luminoasă: hotel.
+        
+Fără să mai stau pe gânduri, am traversat strada și am intrat. Miros de praf peste tot. A apărut un băiat tânăr – am aflat apoi că avea 17 ani. Nu vorbea engleză, doar câteva cuvinte. Mi-a arătat o cameră cu trei paturi. I-am zis: „Ceva mai mic, buget redus…”
+A zâmbit și mi-a făcut semn spre un divan în hol: „Așteaptă.”
+        
+Și atunci a apărut el: Kaci.
+Fratele mai mare. Și de acolo… a început povestea.
+        
+Am stat o noapte, apoi încă una în deșert. Și m-am întors la ei pentru încă două.
+Kaci mi-a arătat împrejurimile, un lac cu pelicani (deși am ajuns cam târziu ca să-i văd bine), am băut lapte de cămilă pentru prima dată în viață și… m-a dus la o pizzerie pentru că i-am spus că mi-e poftă de una.
+        
+Am descoperit și cât de impecabil conduce motocicleta. La un moment dat, am derapat pe drum și am ajuns prin câmpuri. Fără nicio zgârietură. Fără panică. Nici nu ne-am oprit.
+        
+Dacă ajungi vreodată în Merzouga, caută-l.
+Nu vei regreta. 
+Kaci nu e doar un om bun, e și un ghid pe măsură. Cunoaște fiecare colț din Merzouga și din jurul ei.
+Știe locurile ascunse, momentele potrivite și micile secrete care fac diferența între o simplă excursie și o amintire de suflet.`,
         qna: [
-          { q: "1) Cine ești în câteva cuvinte?", a: "" },
-          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "" },
-          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "" },
-          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "" },
-          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "" },
-          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "" },
-          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "" },
-          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "" },
-          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "" },
-          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "" },
-          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "" },
+          { q: "1) Cine ești în câteva cuvinte?", a: "Sunt un om simplu, născut și crescut în deșert, într-o familie mare dar într-o casă mică. Am început să lucrez ca ghid turistic în satul meu, Merzouga, arătând vizitatorilor frumusețea Saharei." },
+          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Trăiesc în Merzouga, în sudul Marocului – partea deșertică a țării. Iubesc răsăriturile și apusurile spectaculoase și faptul că e un loc liniștit, calm, mai ales când ajungi în mijlocul dunelor din Erg Chebbi." },
+          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "Dacă te naști într-un sat ca Merzouga, care e foarte turistic, ajungi ghid aproape natural – mai ales dacă nu ai continuat școala sau nu ai un loc de muncă la stat. Pentru mine, a fost o alegere din pasiune. Îmi place să întâlnesc oameni din diferite țări. E ca și cum aș călători fără avion – doar vorbind și schimbând povești și culturi." },
+          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "Am trăit multe momente frumoase cu turiști, dar cel mai special a fost cu un cuplu care s-a logodit în satul meu și s-a căsătorit chiar în deșert. Am fost parte din acel moment și am împărțit cu ei toată fericirea." },
+          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "Răsăritul din mijlocul deșertului – e cel mai liniștit loc de pe Pământ." },
+          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "Un ghid bun e cel care înțelege ce caută fiecare om și îl duce exact acolo unde vrea să ajungă." },
+          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "Aș vrea ca, după ce mă cunosc, oamenii să își amintească de mine și să îndrăgească Marocul. Și să se întoarcă, datorită mie." },
+          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "Faptul că sunt ghid m-a învățat multe și m-a ajutat să înțeleg mai bine culturile altor țări." },
+          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "Să fii ghid nu e mereu ușor. Uneori întâlnești oameni dificili, cu atitudini grele, și trebuie să știi cum să te descurci. Asta m-a învățat să lucrez sub presiune." },
+          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "Nu am un vis „mare”. Vreau doar să fiu fericit și să fac ceea ce îmi place: să fiu ghid. Pentru că noi, oamenii, facem locurile speciale – nu invers." },
+          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "Mă puteți contacta pe Instagram: @kacimerzouga" },
+          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "Cum ne-am cunoscut… a fost ceva complet neplanificat. Dar tu știi deja toată povestea, nu-i așa?" },
         ],
         story: [],
       },
       en: {
-        intro: `In the desert, time flows differently. Ahmed teaches you to listen: sand, wind, camels, evening fire, and the sky pouring over you. No “show” promised — just quiet.`,
+        intro: `I had been in Morocco for almost a month and was desperate to finally reach the desert. I didn’t care that the road was long, that I had no place to sleep, or that I’d arrive late. I figured 8 p.m. was still decent, and surely I’d find something. It wasn’t my first time traveling like this.
+
+I left Ouarzazate, and the journey took longer than expected. By the time I reached Merzouga, it was 9:30 p.m. Night. Silence. The station was in the middle of nowhere.
+        
+I had heard the warnings: “Don’t go into the desert without a guide.” “It’s dangerous.” But I strapped on my backpack and told myself: Today, like always, you’ll figure it out. And I did.
+        
+I walked toward what looked like a small local place. I was starving and just wanted somewhere to sleep. I had checked all the Booking options, but none really called to me. I was hoping to find something for one night, then move into the dunes.
+        
+But the desert has its own way of arranging things. The Universe sent me Kaci.
+        
+Not immediately.
+        
+First, I walked into a bar filled with only men – all eyes on me like I was some kind of mirage. The waiter told me they didn’t serve food and pointed me toward town. I kept walking.
+        
+Maybe two kilometers. But the streets were full of men. One of them followed me, talking non-stop. I just wanted to escape. Then I saw a lit sign: HOTEL.
+        
+I forgot about food and town and crossed the street straight into the building. The smell of dust everywhere. A young boy, maybe 17, appeared. Hardly spoke any English. He showed me a room with three beds.
+        
+I tried to explain: “Small room, low budget…” He smiled and pointed to a couch in the lobby: “Wait.”
+        
+And that’s when he came in – Kaci. The boy’s older brother. Both sons of the owner. And just like that, my story with Kaci began.
+        
+I stayed one night. Then another in the desert. Then came back for two more.
+        
+Kaci showed me around: a quiet lake with pelicans (though we arrived a bit late to see them well), my first camel milk experience, and – because I said I was craving it – he took me to a pizzeria in town.
+        
+I also discovered he’s an amazing motorcycle rider. At one point, we skidded off-road and ended up in the sand – no scratches, no panic, no stopping.
+        
+If you ever find yourself in Merzouga, find him. You won’t regret it.
+        
+Kaci isn’t just kind. He’s the kind of guide who knows every corner, every moment, and all the little secrets that turn a simple trip into something unforgettable.`,
         qna: [
-          { q: "1) Who are you in a few words?", a: "" },
-          { q: "2) Where do you live and what do you love most about your place?", a: "" },
-          { q: "3) How did you become a guide / start showing your place to others?", a: "" },
-          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "" },
-          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "" },
-          { q: "6) What does being a “good guide” mean to you?", a: "" },
-          { q: "7) What do you want people to feel after touring with you?", a: "" },
-          { q: "8) How has being a guide changed you as a person?", a: "" },
-          { q: "9) A difficult moment during a tour that taught you something important?", a: "" },
-          { q: "10) Your dream for yourself or for your place from now on?", a: "" },
-          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Tell us how we met.", a: "" },
+          { q: "1) Who are you in a few words?", a: "I’m a simple person, born and raised in the desert – in a big family, but a small house. I started working as a tour guide in my village, Merzouga, showing tourists the beauty of the Sahara." },
+          { q: "2) Where do you live and what do you love most about your place?", a: "I live in Merzouga, in the south of Morocco – the desert part. I love the beautiful sunrises and sunsets, and how peaceful and calm my village is, especially in the middle of the dunes of Erg Chebbi." },
+          { q: "3) How did you become a guide / start showing your place to others?", a: "When you’re born in a tourist village like Merzouga, you almost naturally become a guide – especially if you didn’t finish school or get a government job. But for me, it was passion. I love meeting people from different countries – it’s like traveling to their lands without flying, just by talking and sharing culture. It’s a rich exchange of ideas, emotions, and understanding." },
+          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "I’ve shared many beautiful moments with tourists, but the most special was with a couple who got engaged in my village – and later married in the Sahara. I was part of it and shared all that happiness with them." },
+          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "The sunrise in the middle of the desert – it’s the most peaceful place on the planet." },
+          { q: "6) What does being a “good guide” mean to you?", a: "A good guide is someone who understands what each person is looking for and helps guide them exactly where they want to be." },
+          { q: "7) What do you want people to feel after touring with you?", a: "I hope that after meeting me, people remember me and fall in love with Morocco – and maybe come back because of me." },
+          { q: "8) How has being a guide changed you as a person?", a: "Being a guide taught me a lot –s and helped me understand many different cultures from all over the world." },
+          { q: "9) A difficult moment during a tour that taught you something important?", a: "Being a guide isn’t always easy. Sometimes you meet difficult people with bad attitudes – and you have to learn how to handle that. It taught me how to work under pressure." },
+          { q: "10) Your dream for yourself or for your place from now on?", a: "I don’t have a big dream. I just want to be happy and do what I love – being a guide. Because it’s us who make a place special, not the place that makes us special." },
+          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "You can contact me on Instagram: @kacimerzouga" },
+          { q: "Bonus) Tell us how we met.", a: "How we met... it was something totally unplanned. But you already know the whole story, don’t you?" },
         ],
         story: [],
       },
