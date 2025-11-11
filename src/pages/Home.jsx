@@ -1,16 +1,62 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
-/* === Carousel local (în același fișier pentru simplitate) === */
+/* ——— Butoane segmentate RO/EN (ca la Ghizi) ——— */
+function segBtn(active) {
+  return {
+    padding: "8px 14px",
+    border: "none",
+    background: active ? "var(--accent)" : "transparent",
+    color: active ? "#fff" : "#444",
+    cursor: "pointer",
+    fontWeight: 700,
+  };
+}
+
+/* ——— Texte homepage bilingve ——— */
+const i18nHome = {
+  ro: {
+    hero_title: "MIDAWAY",
+    hero_tagline: "Cărți care pornesc la drum",
+    hero_meta: "print & digital  • ro / en •  editare & design",
+    hero_sub:
+      "Midaway este o editură independentă. Publicăm literatură de călătorie, jurnale și eseuri care inspiră, dau curaj, pun întrebări și creează legături.",
+    viziune_btn: "VIZIUNEA MIDAWAY",
+    card_carti_t: "Cărți",
+    card_carti_s: "Inspirație, provocare, visuri îndrăznețe.",
+    card_autori_t: "Autori",
+    card_autori_s: "Vocile independente care scriu lumea.",
+    card_calatori_t: "Călători",
+    card_calatori_s: "Povești reale, interviuri, galerie de drum.",
+    card_ghizi_t: "Ghizi",
+    card_ghizi_s: "Oameni care trăiesc locul pe care îl arată.",
+  },
+  en: {
+    hero_title: "MIDAWAY",
+    hero_tagline: "Books that set out on a journey",
+    hero_meta: "print & digital  • ro / en •  editing & design",
+    hero_sub:
+      "Midaway is an independent publishing house. We publish travel literature, journals and essays that inspire, embolden, ask questions, and create connections.",
+    viziune_btn: "MIDAWAY VISION",
+    card_carti_t: "Books",
+    card_carti_s: "Inspiration, challenge, bold dreams.",
+    card_autori_t: "Authors",
+    card_autori_s: "Independent voices writing the world.",
+    card_calatori_t: "Travelers",
+    card_calatori_s: "True stories, interviews, road gallery.",
+    card_ghizi_t: "Guides",
+    card_ghizi_s: "People who truly live the place they show.",
+  },
+};
+
+/* === Carousel local === */
 function Carousel({ slides }) {
   const [i, setI] = useState(0);
-
   useEffect(() => {
     if (!slides?.length) return;
     const id = setInterval(() => setI((v) => (v + 1) % slides.length), 5000);
     return () => clearInterval(id);
   }, [slides.length]);
-
   if (!slides?.length) return null;
 
   return (
@@ -59,6 +105,32 @@ function Carousel({ slides }) {
 
 /* === Pagina HOME === */
 export default function Home() {
+  // RO/EN din query + memorie locală (ca la Ghizi)
+  const [params, setParams] = useSearchParams();
+  const lang = params.get("lang") === "en" ? "en" : "ro";
+
+  useEffect(() => {
+    const saved = localStorage.getItem("home.lang");
+    if (!params.get("lang") && saved) {
+      setParams((p) => {
+        const c = new URLSearchParams(p);
+        c.set("lang", saved);
+        return c;
+      });
+    }
+  }, []); // eslint-disable-line
+
+  const setLang = (l) => {
+    setParams((p) => {
+      const c = new URLSearchParams(p);
+      c.set("lang", l);
+      return c;
+    });
+    localStorage.setItem("home.lang", l);
+  };
+
+  const t = i18nHome[lang];
+
   // Carousel – pozele tale din /public/hero/
   const slides = [
     {
@@ -82,10 +154,11 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="hero hero--compact">
-        <div className="font-cormorant">
+        <div className="font-cormorant" style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>
-            MIDAWAY
+            {t.hero_title}
           </h1>
+
           <p
             style={{
               color: "var(--secondary)",
@@ -93,11 +166,14 @@ export default function Home() {
               marginTop: 8,
             }}
           >
-            „Cărți care pornesc la drum”
+            {`„${t.hero_tagline}”`}
           </p>
-          <p style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}>
-  print & digital  • ro / en •  editare & design
-</p>
+
+          <p
+            style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}
+          >
+            {t.hero_meta}
+          </p>
 
           <p
             style={{
@@ -107,14 +183,40 @@ export default function Home() {
               lineHeight: 1.6,
             }}
           >
-            Midaway este o editură independentă. Publicăm literatură de
-            călătorie, jurnale și eseuri care inspiră, dau curaj, pun întrebări și creează legături.
+            {t.hero_sub}
           </p>
 
           <div style={{ marginTop: 24 }}>
-            <Link className="btn" to="/proiecte">
-              VIZIUNEA MIDAWAY
+            <Link className="btn" to={`/proiecte?lang=${lang}`}>
+              {t.viziune_btn}
             </Link>
+          </div>
+
+          {/* Switch RO/EN */}
+          <div
+            role="group"
+            aria-label="Language switch"
+            style={{
+              marginTop: 16,
+              display: "inline-flex",
+              border: "1px solid #ddd",
+              borderRadius: 999,
+              overflow: "hidden",
+              background: "#fff",
+            }}
+          >
+            <button
+              onClick={() => setLang("ro")}
+              style={segBtn(lang === "ro")}
+            >
+              RO
+            </button>
+            <button
+              onClick={() => setLang("en")}
+              style={segBtn(lang === "en")}
+            >
+              EN
+            </button>
           </div>
         </div>
       </section>
@@ -124,7 +226,7 @@ export default function Home() {
         <div className="cards">
           {/* CĂRȚI */}
           <Link
-            to="/carti"
+            to={`/carti?lang=${lang}`}
             className="card"
             style={{
               background: "var(--card1)",
@@ -134,74 +236,63 @@ export default function Home() {
             }}
           >
             <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-              Cărți
+              {t.card_carti_t}
             </h3>
-            <p style={{ margin: 0 }}>
-            Inspirație, provocare, visuri îndrăznețe.
-            </p>
+            <p style={{ margin: 0 }}>{t.card_carti_s}</p>
           </Link>
 
-          {/* AUTORI (din Viziune) */}
-<Link
-  to="/proiecte/autori"
-  className="card"
-  style={{
-    background: "var(--card2)",
-    color: "#fff",
-    textDecoration: "none",
-    cursor: "pointer",
-  }}
->
-  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-    Autori
-  </h3>
-  <p style={{ margin: 0 }}>
-    Vocile independente care scriu lumea.
-  </p>
-</Link>
+          {/* AUTORI */}
+          <Link
+            to={`/proiecte/autori?lang=${lang}`}
+            className="card"
+            style={{
+              background: "var(--card2)",
+              color: "#fff",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              {t.card_autori_t}
+            </h3>
+            <p style={{ margin: 0 }}>{t.card_autori_s}</p>
+          </Link>
 
-{/* CĂLĂTORI */}
-<Link
-  to="/calatori"
-  className="card"
-  style={{
-    background: "var(--card3)",
-    color: "inherit",
-    textDecoration: "none",
-    cursor: "pointer",
-  }}
->
-  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-    Călători
-  </h3>
-  <p style={{ margin: 0 }}>
-    Povești reale, interviuri, galerie de drum.
-  </p>
-</Link>
+          {/* CĂLĂTORI */}
+          <Link
+            to={`/calatori?lang=${lang}`}
+            className="card"
+            style={{
+              background: "var(--card3)",
+              color: "inherit",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              {t.card_calatori_t}
+            </h3>
+            <p style={{ margin: 0 }}>{t.card_calatori_s}</p>
+          </Link>
 
-{/* GHIZI (nou) */}
-<Link
-  to="/ghizi"
-  className="card"
-  
-    style={{
-      background: "var(--card5)",
-      color: "#2C2430",
-      textDecoration: "none",
-      cursor: "pointer",
-    }}
->
-  <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
-    Ghizi
-  </h3>
-  <p style={{ margin: 0 }}>
-    Oameni care trăiesc locul pe care îl arată.
-  </p>
-</Link>
-
-</div>
+          {/* GHIZI */}
+          <Link
+            to={`/ghizi?lang=${lang}`}
+            className="card"
+            style={{
+              background: "var(--card5)",
+              color: "#2C2430",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            <h3 className="font-cormorant" style={{ marginTop: 0, fontSize: 22 }}>
+              {t.card_ghizi_t}
+            </h3>
+            <p style={{ margin: 0 }}>{t.card_ghizi_s}</p>
+          </Link>
+        </div>
       </div>
-
 
       {/* BANNER ROTATIV */}
       <Carousel slides={slides} />
