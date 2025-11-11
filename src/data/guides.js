@@ -126,7 +126,7 @@ I’m grateful that a simple question led me beyond the kitchen, to discover a t
       cover: "/assets/guides/tono-lombok/2.webp",
       gallery: [
         "/assets/guides/tono-lombok/cover.webp",
-        "/assets/guides/tono-lombok/2.webp",
+        "/assets/guides/tono-lombok/1.webp",
         "/assets/guides/tono-lombok/3.webp",
       ],
       socials: {
