@@ -11,7 +11,7 @@ const travelers = [
     // 1) Adi — Nomadul din Bali
     // ────────────────────────────────────────────────────────────
     {
-      id: "nomad-bali",
+      id: "adi-satumare",
       emoji: "🏝️",
    
       name: {
@@ -22,11 +22,11 @@ const travelers = [
         ro: "Curios. Aventuros. Adaptabil.",
         en: "Curious. Adventurous. Adaptable.",
       },
-      cover: "/assets/travelers/nomad-bali/cover.webp",
+      cover: "/assets/travelers/adi-satumare/cover.webp",
       gallery: [
-        "/assets/travelers/nomad-bali/1.webp",
-        "/assets/travelers/nomad-bali/2.webp",
-        "/assets/travelers/nomad-bali/3.webp",
+        "/assets/travelers/adi-satumare/1.webp",
+        "/assets/travelers/adi-satumare/2.webp",
+        "/assets/travelers/adi-satumare/3.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/adrianstefanilles/",
