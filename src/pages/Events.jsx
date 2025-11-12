@@ -5,13 +5,13 @@ export default function Events() {
   // poți completa array-ul ăsta oricând
   const upcoming = [
     // Exemplu:
-    // { id: "retreat-primavara", date: "10–12 mai 2025", title: "Retreat de scris – Apuseni", status: "Inscrieri deschise" },
+    // { id: "retreat-primavara", date: "10–12 mai 2026", title: "Retreat de scris – Bali", status: "Inscrieri deschise" },
   ];
 
   return (
     <div className="container" style={{ padding: "40px 16px", maxWidth: 900 }}>
       <h1 className="font-cormorant" style={{ margin: 0 }}>Calendar evenimente</h1>
-      <p style={{ opacity: .85, marginTop: 6 }}>
+      <p style={{ opacity: .99, marginTop: 6 }}>
         Spații pentru scris, respirație și întâlniri vii.
       </p>
 
