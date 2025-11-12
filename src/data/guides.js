@@ -370,7 +370,7 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
       tagline: { ro: "Luminoasă. Răbdătoare. Ancorată.”,", en: "Luminous. Patient. Grounded." },
       cover: "/assets/guides/irina-bali/cover2.webp",
       gallery: [
-        "/assets/guides/irina-bali/1.webp",
+        "/assets/guides/irina-bali/cover.webp",
         "/assets/guides/irina-bali/2.webp",
         "/assets/guides/irina-bali/3.webp",
       ],
