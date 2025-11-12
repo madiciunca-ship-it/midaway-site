@@ -110,6 +110,8 @@ export default function About() {
             <li>📚 <strong>Biblioteca Midaway</strong> – fragmente, lecturi și o arhivă vie pentru comunitate</li>
             <li>🎙️ <strong>Conținut media</strong> – podcasturi, interviuri și minidocumentare</li>
             <li>🌄 <strong>Evenimente & Retreaturi</strong> – spații pentru scris, respirație și întâlniri vii (în curând)</li>
+            <li>🌍 <strong>Călători Midaway</strong> – oameni care descoperă lumea cu ochii și inima, împărtășind povești de drum</li>
+            <li>🧭 <strong>Ghizi & Localnici</strong> – prieteni ai locului, cei care trăiesc și arată lumea cu autenticitate</li>
             <li>🤝 <strong>Implică-te</strong> – colaborări și parteneriate culturale care dau sens</li>
           </ul>
 
@@ -185,6 +187,8 @@ export default function About() {
             <li>📚 <strong>Midaway Library</strong> – fragments, readings, and a living archive for the community</li>
             <li>🎙️ <strong>Media content</strong> – podcasts, interviews, and mini-documentaries</li>
             <li>🌄 <strong>Events & Retreats</strong> – spaces for writing, breathing, and real encounters (soon)</li>
+            <li>🌍 <strong>Midaway Travelers</strong> – people who discover the world with open eyes and hearts, sharing stories from the road</li>
+            <li>🧭 <strong>Guides & Locals</strong> – friends of the place, those who live and reveal the world with authenticity</li>
             <li>🤝 <strong>Get involved</strong> – cultural collaborations and partnerships that bring meaning</li>
           </ul>
 
