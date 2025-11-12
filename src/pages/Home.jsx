@@ -380,12 +380,12 @@ export default function Home() {
 
   // Reviews demo
   const REVIEWS = [
-    { id: "r3", name: "Ana M.", rating: 5,
-      text_ro: "O inițiativă care m-a făcut să cred din nou în cărțile de drum.",
-      text_en: "An initiative that made me believe in travel books again.",
-      createdAt: "2025-02-03T12:00:00Z",
-      avatar: "/avatars/ana.jpg",
-      book: { id: "insula-viata", title: "Insula care îți schimbă viața", cover: "/covers/insula-viata-thumb.webp" },
+    { id: "carmen-maghiari", name: "Carmen Maghiari", rating: 5,
+      text_ro: "Curajul tău are o doză de nebunie în el... dar cred că deja știi asta. 😄 Sper să-ți citească toate fetele cartea. Merită din plin! Mai am vreo 40 de pagini și trebuie să-ți spun ceva: motociclistul acela... eu eram convinsă că ți-a pus gând rău! Numai tu puteai să te gândești că te păzește. Ești incredibil de pozitivă – și trebuie să fur asta de la tine! Se spune că, dacă gândești pozitiv, atragi pozitiv. De ceva vreme încerc și eu... și chiar începe să funcționeze. Dar tu ești deja la extrem! 🌞",
+      text_en: "Your kind of courage definitely has a dose of madness in it... but I think you already know that. 😄 I hope every girl gets to read your book – it’s totally worth it! I still have about 40 pages left, but I have to say this: that biker... I was sure he had bad intentions! Only you could think he was actually protecting you. You’re unbelievably positive – and I need to steal that from you! They say that if you think positively, you attract positive things. I’ve been trying it myself lately... and it’s actually working. But you, you’ve taken it to the next level! 🌞",
+      createdAt: "2025-11-12T12:00:00Z",
+      avatar: "/avatars/carmen.webp",
+      book: { id: "o-zi-ro", title: "O zi de care să-ți amintești", cover: "" },
       published: true },
     { id: "ioana-margineanu", name: "Ioana Mărgineanu", rating: 5,
       text_ro: "Poți să spui la prezentare că, cel puțin pe mine, m-ai convins că merită să călătorești. Dacă nu începeam să-ți citesc cartea, probabil nu plecam nicăieri. Mi-ai dat curaj. Și cred că, dacă reușești în viață să schimbi în bine viața unui singur om, înseamnă că nu ai fost degeaba pe pământ. Nimic nu e întâmplător. Port cartea ta cu mine în rucsac – la propriu și la figurat. Când o să fiu mare, vreau să fiu și eu ca tine. ❤️",
