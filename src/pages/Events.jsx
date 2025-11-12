@@ -19,7 +19,7 @@ export default function Events() {
         <div style={{ marginTop: 18, lineHeight: 1.8 }}>
           <p>Momentan nu avem date anunțate public. Lucrăm la următoarea ediție.</p>
           <p>
-  Dacă vrei să fii anunțat la următoarea deschidere de înscrieri, scrie-ne prin{" "}
+  Dacă vrei să fii anunțat/ă la următoarea deschidere de înscrieri, scrie-ne prin{" "}
   <Link to="/contact" style={{ color: "var(--accent)", textDecoration: "none" }}>
     pagina de contact
   </Link>{" "}
