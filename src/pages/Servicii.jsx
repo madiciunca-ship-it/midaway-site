@@ -38,7 +38,7 @@ const SERVICES = [
     id: "design-coperta",
     title: "Design copertă",
     subtitle: "Concept + machetă finală pentru eBook & Paperback.",
-    bullets: ["2 concepte inițiale", "2 runde revizii", "fișiere finale pentru eBook & print"],
+    bullets: ["4 concepte inițiale", "2 runde revizii", "fișiere finale pentru eBook & print"],
     pricing: "fixed",
     price: 900,
     currency: "RON",
@@ -77,7 +77,7 @@ const SERVICES = [
       "revizie finală înainte de publicare",
     ],
     pricing: "perPage",
-    unitPrice: 8, // RON / pagină
+    unitPrice: 10, // RON / pagină
     currency: "RON",
     minPages: 40,
     delivery: "livrare 14–21 zile (în funcție de volum)",
@@ -110,12 +110,12 @@ const SERVICES = [
       "pregătire pentru publicare internațională",
     ],
     pricing: "perPage",
-    unitPrice: 35, // RON / pagină (poți ajusta ulterior)
+    unitPrice: 0, // RON / pagină (poți ajusta ulterior)
     currency: "RON",
     minPages: 40,
     delivery: "livrare 21–30 zile",
     cancelWindow: "72h",
-    available: true,
+    available: false,
     image: "/assets/services/traducere.png",
   },
 
@@ -127,9 +127,10 @@ const SERVICES = [
       "Îți găzduim eBook-urile/cărțile, vânzare directă, pagină Autor, promo & suport.",
     bullets: [
       "pagină Autor pe site + carduri produse",
-      "configurare link de plată / descărcare eBook",
+      "configurare pdf, epub / descărcare pdf, epub",
       "asistență obținere ISBN / metadate*",
-      "promovare în secțiunea Blog/Proiecte (după caz)",
+      "promovare în secțiunea Blog/Socia media/Proiecte (după caz)",
+      "abonament lunar mentenață/operațional – conform contract"
     ],
     note: "*ISBN se obține legal prin Biblioteca Națională; îți oferim suportul procedural.",
     pricing: "fixed",
