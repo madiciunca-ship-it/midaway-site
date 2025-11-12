@@ -404,6 +404,124 @@ But since it closed automatically, Rachid didn’t have to worry – everything 
       },
       video: null,
     },
+
+       // ────────────────────────────────────────────────────────────
+    // 4) Akwaa — Un gest mic, o amintire mare
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "akwaa-yemen",
+      emoji: "🕌",
+   
+      name: {
+        ro: "Akwaa — O întâlnire pe mare",
+        en: "Akwaa — A meeting at sea",
+      },
+      tagline: {
+        ro: "Pasionat. Explorato. Povestitor.",
+        en: "Passionate. Explorer. Storyteller.",
+      },
+    
+      cover: "/assets/travelers/akwaa-yemen/cover 2.webp",
+      gallery: [
+        "/assets/travelers/akwaa-yemen/1.webp",
+        "/assets/travelers/akwaa-yemen/2.webp",
+        "/assets/travelers/akwaa-yemen/3.webp",
+      ],
+      socials: {
+        instagram: "https://www.instagram.com/abdullah_akwaa_?igsh=MTB0NWlvOTUyczBhMw%3D%3D",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: `12 noiembrie 2023.
+Plecam din Bali către Papua. De fapt, trebuia să plec cu o zi înainte – dar așa s-a întâmplat, n-am mai putut. Am mai stat o noapte în Bali și m-am urcat a doua zi pe feribotul care mergea spre Lombok.
+        
+Povestea noastră e chiar haioasă. Eram cuminte, așezată pe primele rânduri ale feribotului, privind la televizor. Telefonul meu era la încărcat, așa că nu aveam altceva de făcut decât să privesc marea și oamenii din jur.
+        
+Atunci i-am văzut.
+Doi tipi înalți, bruneți, care vorbeau în arabă. Mai târziu, au început să vorbească și cu mine.
+Erau prieteni – se cunoscuseră de doar câteva zile în Bali și deciseseră să călătorească împreună.
+        
+Unul dintre ei era Akwaa, din Yemen, un tânăr de doar 23 de ani, cu un zâmbet cald și o curiozitate de copil care vede lumea pentru prima dată.
+Călătorește cu o inimă deschisă și o liniște rară – genul de prezență care îți amintește că frumusețea lumii e mai aproape decât crezi, dacă știi să o vezi. Împreună, nici nu am simțit cum au trecut cele patru ore pe feribot.
+Am povestit, am râs, am făcut poze cu cartea mea (prima mea carte), și am dat ochii peste cap la tot felul de mici întâmplări din jurul nostru.
+Călătoria s-a transformat într-un fel de mic film de vară, cu glume, oameni noi și o energie ușoară.
+        
+Am ajuns seara în portul Lembar, din Lombok. Eu, ca de obicei – fără cazare.
+Ei, mai organizați, aveau deja ceva închiriat în Mataram. Nu aveam de gând să merg până acolo, dar… ca să fie ziua completă, am zis: „De ce nu?”
+        
+Așa că am mers împreună.
+Am împărțit un taxi, am lăsat bagajele lor la hotel și am căutat un loc unde să mâncăm. Ne era foame, după atâtea ore pe drum.
+Apoi m-au condus pe mine la hotelul pe care îl găsisem între timp – unul modest, dar cu un pat curat și liniște, exact cât aveam nevoie.
+        
+Akwaa mi-a dus rucsacul până la intrare.
+Ne-am luat rămas bun acolo, în fața hotelului, cu zâmbete și cu sentimentul acela simplu, frumos, al unui moment trăit pe deplin.
+        
+Seara aceea a fost memorabilă.
+De atunci nu ne-am mai reîntâlnit, dar ținem legătura – ca și cum feribotul acela ar fi lăsat o punte între două lumi, și ea încă rezistă.`,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt Akwaa, un aventurier prin fire – un om care își găsește liniștea în natură și entuziasmul în descoperirea noilor culturi. Pentru mine, călătoriile nu înseamnă doar a vedea locuri noi, ci a mă simți viu, a învăța și a mă conecta cu lumea la un nivel mai profund." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Totul a început cu o dorință puternică de schimbare. Voiam să scap de rutină și să trăiesc viața dincolo de ce-mi era familiar. A fost un moment în care am realizat că lumea e prea mare ca să rămân într-un singur loc – și acela a fost impulsul meu să plec." },
+          { q: "3. Când ai știut că merită?", a: "Prima dată când am ajuns în vârful unui munte, după o drumeție lungă și obositoare, și am privit apusul în liniște completă – atunci am știut că a meritat. Fiecare pas, fiecare provocare a dus la acel sentiment de libertate pură." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Un mic sat ascuns în munți mi-a schimbat odată perspectiva. Oamenii de acolo trăiau simplu, dar păreau cu adevărat fericiți. M-au învățat că fericirea nu vine din a avea mai mult, ci din a aprecia ceea ce ai deja." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoria m-a făcut mai răbdător, mai deschis și mai recunoscător. M-a învățat să accept diferențele și să văd frumusețea în cele mai mici detalii. Am înțeles că fiecare om pe care îl întâlnesc și fiecare loc pe care îl vizitez poartă o poveste care merită ascultată." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Odată, am rămas blocat în munți, pe ploaie torențială, fără semnal și fără o cale clară de întoarcere. M-am bazat doar pe instinct, pe curaj și pe calmul meu – și am învățat că, uneori, cea mai sigură busolă e în tine." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Nu aștepta momentul perfect – nu există. Fă primul pas, chiar dacă pare nesigur. Drumul te va învăța tot ce ai nevoie să știi." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Mă poți găsi pe Instagram, unde împărtășesc momente din călătorii, aventuri în natură și povești despre oamenii pe care îi întâlnesc pe drum." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Drumurile noastre s-au intersectat undeva, pe parcursul unei călătorii – poate din întâmplare, poate din destin. Dar cred că cele mai frumoase conexiuni se întâmplă exact atunci când nu le cauți." },
+        ],
+        story: [],
+      },
+      en: {
+        intro: `November 12, 2023.
+I was leaving Bali for Papua.
+Actually, I was supposed to leave a day earlier – but as it often happens, things didn’t go as planned. So I stayed one more night in Bali and took the next day’s ferry to Lombok.
+        
+Our story is quite funny.
+I was quietly sitting in the front rows of the ferry, watching TV. My phone was charging, so I just sat still – calm, watching the sea and the people around me.
+        
+That’s when I noticed them.
+Two tall, dark-haired guys speaking Arabic. Later, they started talking to me.
+They were friends – they had met just a few days earlier in Bali and decided to travel together.
+        
+One of them was Akwaa, from Yemen, only 23 years old, with a warm smile and the kind of curiosity that makes the world feel new again.
+He travels with an open heart and a calm presence – the kind that reminds you that the beauty of the world is always close, if you know how to look. Together, we didn’t even feel how the four hours on the ferry went by.
+We talked, laughed, took photos with my book (my very first one), and rolled our eyes at all kinds of little happenings around us.
+The journey turned into a kind of summer short film – full of jokes, new faces, and lighthearted energy.
+        
+We arrived in Lembar, Lombok, in the evening.
+I had no accommodation, as usual.
+They already had something booked in Mataram. I wasn’t planning to go that far, but – to make the day complete – I said, “Why not?”
+        
+So we went together.
+We shared a taxi, dropped their bags off at their hotel, and looked for a place to eat – we were starving after all those hours on the road.
+Then they walked me to my hotel – a small, budget one I’d found along the way, simple but peaceful, just what I needed.
+        
+Akwaa carried my backpack for me.
+We said goodbye in front of the hotel, with smiles and that quiet, beautiful feeling of a day well lived.
+        
+That evening was truly memorable.
+We haven’t seen each other again since, but we still keep in touch – as if that ferry left a bridge between two worlds, and somehow, it’s still standing. `,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "I’m Akwaa, an adventurer at heart – someone who finds peace in nature and excitement in discovering new cultures. Traveling isn’t just about seeing places for me; it’s about feeling alive, learning, and connecting with the world on a deeper level." },
+          { q: "2. What made you start traveling?", a: "It started with a strong desire for change. I wanted to break free from routine and experience life beyond the familiar. There was a moment when I realized the world is too big to stay in one place – and that was my push to go." },
+          { q: "3. When did you know it was worth it?", a: "The first time I reached the top of a mountain after a long, exhausting hike and watched the sun set in complete silence – that’s when I knew it was all worth it. Every step, every challenge led to that feeling of pure freedom." },
+          { q: "4. A place that changed the way you see the world?", a: "A small village hidden in the mountains once changed my perspective. The people there lived simply, yet they seemed genuinely happy. It taught me that happiness doesn’t come from having more – it comes from appreciating what you already have." },
+          { q: "5. How did traveling change you as a person?", a: "Travel has made me more patient, open-minded, and grateful. It taught me to embrace differences and to see beauty in the smallest details. I’ve learned that every person I meet and every place I visit holds a story worth listening to." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "Once, I got stuck in the mountains during heavy rain with no signal and no clear path out. I relied on my instincts, courage, and calm – and I learned that sometimes the safest compass is the one within you." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Don’t wait for the perfect time – it doesn’t exist. Take the first step, even if it feels uncertain. The road will teach you everything you need to know." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "You can find me on Instagram, where I share moments from my travels, nature adventures, and the people I meet along the way." },
+          { q: "9. Bonus: How did we meet?", a: "We crossed paths somewhere along the journey – maybe by chance, maybe by fate. But I believe the best connections always happen when you least expect them." },
+        ],
+        story: [],
+      },
+      video: null,
+    },
+
+
   ];
 
 /* TEMPLATE — nou călător (bilingv). Lasă blocul comentat.
