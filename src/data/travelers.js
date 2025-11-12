@@ -410,7 +410,7 @@ But since it closed automatically, Rachid didn’t have to worry – everything 
     // ────────────────────────────────────────────────────────────
     {
       id: "akwaa-yemen",
-      emoji: "🕌",
+      emoji: "🚢",
    
       name: {
         ro: "Akwaa — O întâlnire pe mare",
