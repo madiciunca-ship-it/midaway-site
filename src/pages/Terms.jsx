@@ -407,7 +407,7 @@ export default function Terms() {
           <p>
             <strong>5.2. Editorial services</strong>
             <br />
-            You may withdraw before services start — a full refund applies. If work has already
+            You may withdraw before services start – a full refund applies. If work has already
             started, refunds are proportional to the work performed up to the notification date.
           </p>
           <p>
