@@ -247,7 +247,7 @@ Anyone who meets him will understand the kind of person he truly is.`,
     {
       id: "kaci-maroc",
       emoji: "🏜️",
-      name: { ro: "Kaci — Ghidul care cunoaște deșertul ca pe propria poveste.", en: "Kaci — The guide who knows the desert like his own story." },
+      name: { ro: "Kaci — Ghidul care cunoaște deșertul ca pe propria poveste", en: "Kaci — The guide who knows the desert like his own story" },
       tagline: { ro: "Blând. Deschis. Conectat", en: "Kind. Open. Grounded." },
       cover: "/assets/guides/kaci-maroc/cover1.webp",
       gallery: [
@@ -361,60 +361,109 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
     },
   
     // ────────────────────────────────────────────────────────────
-    // 4) Irina — Povestitoaregit add src/pages/Travelers.jsx
+    // 4) Irina — Povestitoare
     // ────────────────────────────────────────────────────────────
     {
       id: "irina-bali",
-      emoji: "⛰️",
-      name: { ro: "Irina — Povestitoare", en: "Irina — Storyteller" },
-      tagline: { ro: "Păduri. Sate. Pâine caldă.", en: "Forests. Villages. Warm bread." },
-      cover: "/assets/guides/irina-bali/cover.webp",
+      emoji: "🌸",
+      name: { ro: "Irina — Ghidul care îți amintește că lumea nu e doar de văzut, ci de simțit", en: "Irina — The guide who reminds you the world isn’t just to be seen, but to be felt" },
+      tagline: { ro: "Luminoasă. Răbdătoare. Ancorată.”,", en: "Luminous. Patient. Grounded." },
+      cover: "/assets/guides/irina-bali/cover2.webp",
       gallery: [
         "/assets/guides/irina-bali/1.webp",
         "/assets/guides/irina-bali/2.webp",
         "/assets/guides/irina-bali/3.webp",
       ],
       socials: {
-        instagram: "",
+        instagram: "Instagram: @ana_irina777",
         facebook: "",
         tiktok: "",
         youtube: "",
-        website: "",
+        website: "www.mereuinvacanta.com",
         blog: "",
       },
       ro: {
-        intro: `Elena știe potecile pe nume. Îți arată că Apusenii nu sunt doar munți — sunt oameni care coc pâine în cuptoare vechi, râuri care povestesc și sărbători care încă se țin în curți.`,
+        intro: `Irina, pentru mine, a fost acel cântec de sirenă despre care au scris marii poeți ai lumii. Era omul care trăia deja visul pe care eu abia începeam să-l ating.
+
+De la primul mesaj, până la întâlnirea noastră, pe o plajă din celebra Bali, au fost multe etape de trecut. Dar când momentul a venit, totul a fost pur și simplu… magic.
+        
+Povestea completă – care se întinde pe câteva capitole și zeci de pagini — o puteți citi în cartea mea:
+„Pași prin Indonezia: Când Bali îți atinge sufletul.”
+        
+Un an mai târziu, ne-am revăzut. De data asta, în Ubud. Închiriasem o căsuță în mijlocul junglei tropicale, ca să pot termina un curs online. Acolo, între frangipani, ofrande și liniște, am cunoscut-o cu adevărat pe Irina.
+        
+Aveam propriul nostru ritual: în fiecare duminică, ieșeam împreună. Mâncam, beam cappuccino și povesteam. Cinci ore păreau cinci minute. Vespa era locul nostru de întâlnire. Alteori, venea la mine la căsuță. Găteam clătite. Ne bălăceam în piscină. Râdeam mult.
+        
+— Să nu pleci fără să mai faci o dată clătite! mi-a spus, când a aflat că urma să plec din Ubud după trei luni.
+        
+Și, cu o zi înainte de plecare, am făcut clătite. La final, i-am dăruit câteva lucruri pe care nu le mai puteam căra în rucsacul meu de 10 kilograme. Printre ele, o răzătoare. A râs și mi-a spus:
+        
+— Te rog să scrii în cartea ta că mi-ai dăruit o răzătoare. Probabil nimeni n-a mai primit un asemenea cadou.
+        
+Un suflet cald și o femeie incredibilă. Orice ai nevoie să știi despre Bali, Irina e persoana potrivită. Trăiește acolo de aproape 5 ani –în inima liniștii și a misticismului insulei.
+        
+De la sfaturi simple, la retreaturi personalizate, o poți întreba orice.
+O recomand din suflet.`,
         qna: [
-          { q: "1) Cine ești în câteva cuvinte?", a: "" },
-          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "" },
-          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "" },
-          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "" },
-          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "" },
-          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "" },
-          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "" },
-          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "" },
-          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "" },
-          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "" },
-          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "" },
+          { q: "1) Cine ești în câteva cuvinte?", a: "Sunt Ana Irina, o călătoare care a ales să transforme pasiunea pentru explorare și transformare interioară într-un mod de viață. Îmi place să creez experiențe care aduc oamenii mai aproape de esența lor, fie printr-o călătorie în Bali, fie printr-un retreat care deschide inima." },
+          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Locuiesc în Ubud, Bali – un loc unde natura, spiritualitatea și comunitatea se împletesc armonios. Fiecare dimineață începe cu ofrande și parfumul frangipaniului, iar oamenii trăiesc în ritmul blând al recunoștinței. Ce iubesc cel mai mult? Faptul că Bali te învață să trăiești conștient: prezent, conectat și plin de sens." },
+          { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "Totul a pornit dintr-o nevoie de reconectare. Am venit în Bali într-un moment de tranziție personală, când am decis să-mi trăiesc viața altfel. Aici am descoperit nu doar un loc, ci o energie care te transformă. Așa s-a născut dorința de a-i ajuta și pe alții să trăiască această transformare – nu ca turiști, ci ca exploratori ai propriei ființe." },
+          { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "Îmi amintesc o seară, într-un retreat de reconectare, când un participant mi-a spus: „Nu m-am mai simțit bine cu mine de ani de zile, până azi.” Astfel de momente dau sens a tot ceea ce fac. Când vezi cum o simplă experiență devine o poartă spre vindecare." },
+          { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "L-aș duce dimineața pe un vârf de munte, aproape de câmpurile de orez, înainte de răsărit, când ceața încă plutește peste verdele viu. Acolo timpul se oprește. În liniștea aceea, simți că pământul respiră împreună cu tine. Aceea este esența insulei Bali." },
+          { q: "6) Ce înseamnă pentru tine să fii un „ghid bun”?", a: "Un ghid bun este un însoțitor al călătoriei conștiente. Nu cineva care conduce, ci care creează spațiu pentru descoperire. E despre prezență, respect și capacitatea de a asculta – locul, oamenii, viața." },
+          { q: "7) Ce ai vrea ca oamenii să simtă după ce te cunosc / după ce vizitează zona cu tine?", a: "Pace și claritate. Aș vrea să plece din Bali nu doar cu fotografii frumoase, ci cu o inimă mai deschisă și o nouă perspectivă asupra propriei vieți." },
+          { q: "8) Cum te-a schimbat faptul că ești ghid, ca om?", a: "M-a învățat să trăiesc mai autentic. Fiecare persoană pe care o întâlnesc devine o oglindă. Chiar și când organizezi pentru alții, te afli într-un proces propriu de transformare." },
+          { q: "9) A existat vreun moment dificil într-un tur, care te-a învățat ceva important?", a: "Da. Odată, o persoană dintr-un grup și-a pierdut bagajul pe drum spre retreat. Am simțit presiunea de a „rezolva totul”, dar am înțeles că uneori ceea ce pare un obstacol devine o lecție de încredere și răbdare." },
+          { q: "10) Ce vis ai pentru tine sau pentru locul tău, de acum înainte?", a: "Să continui să creez spații dedicate transformării – în mijlocul naturii, al liniștii, al propriei esențe. Bali e doar începutul." },
+          { q: "11) Unde te pot găsi cei care vor să te contacteze? (IG/FB/YouTube/TikTok/site/blog)", a: "Instagram: @ana_irina777; www.mereuinvacanta.com;  Email: mereuinvacanta@gmail.com " },
+          { q: "Bonus) Povestește-ne cum ne-am cunoscut.", a: "Ne-am cunoscut printr-o dorință comună: aceea de a trăi viața dincolo de regulile societății. De a o simți, nu doar de a o bifa. Încă de la început, am știut că împărtășim aceeași viziune: că lumea nu e doar de vizitat, ci de trăit cu sens, cu prezență și cu bucurie." },
         ],
         story: [],
       },
       en: {
-        intro: `Elena knows the trails by name. She shows you that the Apuseni are not just mountains — they’re people baking bread in old ovens, rivers that tell stories, and village feasts still held in courtyards.`,
+        intro: `Irina, to me, was like that siren song the great poets write about. She was the one already living the dream I was just beginning to reach for.
+
+From our first message to finally meeting on a beach in iconic Bali, many steps had to unfold. But when the moment came, it was nothing short of magical.
+        
+The full story – which spans several chapters and many pages – can be found in my book:
+“Steps through Indonesia: When Bali Touches Your Soul.”
+        
+A year later, we saw each other again. This time in Ubud.
+I had rented a little house in the jungle to finish an online course. And there, surrounded by frangipani, offerings, and silence, I truly got to know Irina.
+        
+We had our own little ritual: every Sunday, we’d go out together.
+We’d eat, sip cappuccinos, and talk. Five hours often felt like five minutes. Vespa was our meeting point.
+Other times, she’d come to my little house. We’d make pancakes. Swim in the pool. Laugh a lot.
+        
+When she found out I was leaving Ubud after three months, she smiled and said:
+— Just promise you won’t go without making pancakes one more time.
+        
+And so, the day before I left, we made pancakes.
+        
+Before saying goodbye, I gave her a few things I could no longer carry in my 10 kg backpack. Among them – a grater. She laughed and said:
+        
+— Please don’t forget to write in your book that you gave me a grater. I bet no one’s ever received something like that as a gift.
+        
+A kind soul and an incredible woman.
+If you ever need to know anything about Bali, Irina is the one.
+She’s been living on the island for almost 5 years now – in the heart of its calm and mysticism.
+        
+From simple travel tips to fully personalized retreats, she’s someone you can trust.
+        
+I recommend her with all my heart.`,
         qna: [
-          { q: "1) Who are you in a few words?", a: "" },
-          { q: "2) Where do you live and what do you love most about your place?", a: "" },
-          { q: "3) How did you become a guide / start showing your place to others?", a: "" },
-          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "" },
-          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "" },
-          { q: "6) What does being a “good guide” mean to you?", a: "" },
-          { q: "7) What do you want people to feel after touring with you?", a: "" },
-          { q: "8) How has being a guide changed you as a person?", a: "" },
-          { q: "9) A difficult moment during a tour that taught you something important?", a: "" },
-          { q: "10) Your dream for yourself or for your place from now on?", a: "" },
-          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "" },
-          { q: "Bonus) Tell us how we met.", a: "" },
+          { q: "1) Who are you in a few words?", a: "I’m Ana Irina, a traveler who chose to turn her passion for exploration and inner transformation into a way of life. I love creating experiences that bring people closer to their essence – whether through a journey to Bali or a retreat that opens the heart." },
+          { q: "2) Where do you live and what do you love most about your place?", a: "I live in Ubud, Bali – a place where nature, spirituality, and community blend in harmony. Each morning begins with offerings and the scent of frangipani, and people live in a gentle rhythm of gratitude. What I love most is how Bali teaches you to live consciously – present, connected, and full of meaning." },
+          { q: "3) How did you become a guide / start showing your place to others?", a: "It all began with a personal need for reconnection. I came to Bali during a time of transition, when I decided to live differently. What I found wasn’t just a place, but an energy that transforms you. That’s how the desire was born – to help others experience this transformation too, not as tourists, but as explorers of their own being." },
+          { q: "4) The most beautiful moment you’ve lived with a visitor?", a: "I remember an evening during a reconnection retreat, when one participant told me: “I haven’t felt good with myself for years – until today.” Moments like that give meaning to everything I do. When you witness how a simple experience becomes a doorway to healing." },
+          { q: "5) If you could show a stranger just one place or moment, what would it be and why?", a: "I would take them to the top of a mountain near the rice fields, early in the morning before sunrise, when the mist still floats over the vivid green. Time stands still there. In that silence, you can feel the Earth breathing with you. That is the essence of Bali." },
+          { q: "6) What does being a “good guide” mean to you?", a: "A good guide is a companion on the conscious journey – not someone who leads, but someone who creates space for discovery. It’s about presence, respect, and the ability to truly listen – to the place, to the people, to life." },
+          { q: "7) What do you want people to feel after touring with you?", a: "Peace and clarity. I hope they leave Bali not just with beautiful photos, but with a more open heart and a fresh perspective on their own life." },
+          { q: "8) How has being a guide changed you as a person?", a: "It’s taught me to live more authentically. Every person I meet becomes a mirror. Even when you’re organizing for others, you yourself go through a form of inner transformation." },
+          { q: "9) A difficult moment during a tour that taught you something important?", a: "Yes. Once, someone in the group lost their luggage on the way to the retreat. I felt the pressure to 'fix everything,' but I learned that sometimes, what looks like a problem becomes a lesson in trust and patience." },
+          { q: "10) Your dream for yourself or for your place from now on?", a: "To continue creating spaces dedicated to transformation – in nature, in silence, in the core of who we are. Bali is just the beginning." },
+          { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "Instagram: @ana_irina777; www.mereuinvacanta.com;  Email: mereuinvacanta@gmail.com " },
+          { q: "Bonus) Tell us how we met.", a: "We met through a shared desire to experience life beyond society’s rules – to truly feel it, not just tick it off. From the very beginning, I felt we shared the same vision: that the world isn’t just something to visit, but something to live – with meaning, presence, and joy." },
         ],
         story: [],
       },
