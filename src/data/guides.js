@@ -440,7 +440,7 @@ When she found out I was leaving Ubud after three months, she smiled and said:
         
 And so, the day before I left, we made pancakes.
         
-Before saying goodbye, I gave her a few things I could no longer carry in my 10 kg backpack. Among them – a grater. She laughed and said:
+Before saying goodbye, I gave her a few things I could no longer carry in my 10 kilograms backpack. Among them – a grater. She laughed and said:
         
 — Please don’t forget to write in your book that you gave me a grater. I bet no one’s ever received something like that as a gift.
         
@@ -460,7 +460,7 @@ I recommend her with all my heart.`,
           { q: "6) What does being a “good guide” mean to you?", a: "A good guide is a companion on the conscious journey – not someone who leads, but someone who creates space for discovery. It’s about presence, respect, and the ability to truly listen – to the place, to the people, to life." },
           { q: "7) What do you want people to feel after touring with you?", a: "Peace and clarity. I hope they leave Bali not just with beautiful photos, but with a more open heart and a fresh perspective on their own life." },
           { q: "8) How has being a guide changed you as a person?", a: "It’s taught me to live more authentically. Every person I meet becomes a mirror. Even when you’re organizing for others, you yourself go through a form of inner transformation." },
-          { q: "9) A difficult moment during a tour that taught you something important?", a: "Yes. Once, someone in the group lost their luggage on the way to the retreat. I felt the pressure to 'fix everything,' but I learned that sometimes, what looks like a problem becomes a lesson in trust and patience." },
+          { q: "9) A difficult moment during a tour that taught you something important?", a: "Yes. Once, someone in the group lost their luggage on the way to the retreat. I felt the pressure to ”fix everything,” but I learned that sometimes, what looks like a problem becomes a lesson in trust and patience." },
           { q: "10) Your dream for yourself or for your place from now on?", a: "To continue creating spaces dedicated to transformation – in nature, in silence, in the core of who we are. Bali is just the beginning." },
           { q: "11) Where can people find/contact you? (IG/FB/YouTube/TikTok/site/blog)", a: "Instagram: @ana_irina777; www.mereuinvacanta.com;  Email: mereuinvacanta@gmail.com " },
           { q: "Bonus) Tell us how we met.", a: "We met through a shared desire to experience life beyond society’s rules – to truly feel it, not just tick it off. From the very beginning, I felt we shared the same vision: that the world isn’t just something to visit, but something to live – with meaning, presence, and joy." },
