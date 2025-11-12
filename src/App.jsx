@@ -29,7 +29,7 @@ import Multimedia from "./pages/Multimedia";
 import Donate from "./pages/Donate";
 import Sponsorizari from "./pages/Sponsorizari";
 import ThanksNewsletter from "./pages/ThanksNewsletter";
-
+import Events from "./pages/Events.jsx";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
@@ -70,7 +70,7 @@ export default function App() {
           {/* Proiecte */}
           <Route path="/proiecte" element={<Projects />} />
           <Route path="/proiecte/:id" element={<ProjectDetail />} />
-
+          <Route path="/evenimente" element={<Events />} />
           <Route path="/servicii" element={<Servicii />} />
           <Route path="/politica-anulare" element={<PoliticaAnulare />} />
          
