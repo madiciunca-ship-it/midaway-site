@@ -439,8 +439,8 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Switch RO/EN */}
-          <div
+           {/* Switch RO/EN */}
+           <div
             role="group"
             aria-label="Language switch"
             style={{

@@ -7,7 +7,6 @@ import { useCart } from "../context/CartContext";
 import CartDrawer from "./CartDrawer.jsx";
 import { Link } from "react-router-dom";
 
-
 // 👇 flags
 import { SITE_FLAGS } from "../config";
 
