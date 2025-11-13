@@ -400,7 +400,7 @@ Aveam propriul nostru ritual: în fiecare duminică, ieșeam împreună. Mâncam
         
 — Te rog să scrii în cartea ta că mi-ai dăruit o răzătoare. Probabil nimeni n-a mai primit un asemenea cadou.
         
-Un suflet cald și o femeie incredibilă. Orice ai nevoie să știi despre Bali, Irina e persoana potrivită. Trăiește acolo de aproape 5 ani –în inima liniștii și a misticismului insulei.
+Un suflet cald și o femeie incredibilă! Orice ai nevoie să știi despre Bali, Irina e persoana potrivită. Trăiește acolo de aproape 5 ani –în inima liniștii și a misticismului insulei.
         
 De la sfaturi simple, la retreaturi personalizate, o poți întreba orice.
 O recomand din suflet.`,
