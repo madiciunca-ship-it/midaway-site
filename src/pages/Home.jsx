@@ -380,7 +380,7 @@ export default function Home() {
 
   // Reviews demo
   const REVIEWS = [
-    { id: "carmen-maghiari", name: "Carmen Maghiari", rating: 5,
+      { id: "carmen-maghiari", name: "Carmen Maghiari", rating: 5,
       text_ro: "Curajul tău are o doză de nebunie în el... dar cred că deja știi asta. 😄 Sper să-ți citească toate fetele cartea. Merită din plin! Mai am vreo 40 de pagini și trebuie să-ți spun ceva: motociclistul acela... eu eram convinsă că ți-a pus gând rău! Numai tu puteai să te gândești că te păzește. Ești incredibil de pozitivă – și trebuie să fur asta de la tine! Se spune că, dacă gândești pozitiv, atragi pozitiv. De ceva vreme încerc și eu... și chiar începe să funcționeze. Dar tu ești deja la extrem! 🌞",
       text_en: "Your kind of courage definitely has a dose of madness in it... but I think you already know that. 😄 I hope every girl gets to read your book – it’s totally worth it! I still have about 40 pages left, but I have to say this: that biker... I was sure he had bad intentions! Only you could think he was actually protecting you. You’re unbelievably positive – and I need to steal that from you! They say that if you think positively, you attract positive things. I’ve been trying it myself lately... and it’s actually working. But you, you’ve taken it to the next level! 🌞",
       createdAt: "2025-11-12T12:00:00Z",
@@ -392,14 +392,14 @@ export default function Home() {
       text_en: "You can say at your book launch that you’ve convinced at least one person that it’s worth traveling. If I hadn’t started reading your book, I probably wouldn’t have gone anywhere. You gave me courage. I truly believe that if you manage to change even one person’s life for the better, it means you haven’t lived in vain. Nothing happens by chance. I carry your book with me in my backpack – both literally and in my heart. When I grow up, I want to be like you. ❤️",
       createdAt: "2025-11-12T10:00:00Z",
       avatar: "/avatars/ioana.webp",
-      book: { id: "vietnam-ro", title: "Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad" },
+      book: { id: "vietnam-ro", title: "Zile și nopți de Vietnam" },
       published: true },
     { id: "mihaela-virlici", name: "Mihaela Virlici", rating: 5,
       text_ro: "Am terminat de citit cartea și sunt absolut încântată! 🎉 A fost o experiență minunată – am trăit fiecare moment alături de tine, cu emoție și curiozitate. Mi-a plăcut atât de mult încât uneori evitam să mai citesc, doar ca să nu se termine prea repede. Povestea ta a rămas cu mine și o port în suflet. Abia aștept să-ți citesc următoarele cărți. Mulțumesc pentru această călătorie literară de neuitat! ♥️🙏",
       text_en: "I’ve just finished reading your book – and it was absolutely wonderful! I felt like I was right there with you through every moment. I loved it so much that I sometimes avoided reading, just to make it last a little longer. 🫣 Your story will stay with me for a long time, and I can’t wait to read your next books. Thank you for this beautiful experience! ♥️🙏",
       createdAt: "2025-11-12T09:00:00Z",
       avatar: "/avatars/mihaela.webp",
-      book: { id: "vietnam-ro", title: "Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad" },
+      book: { id: "vietnam-ro", title: "Zile și nopți de Vietnam" },
       published: true },
     // drafts (nu apar până nu pui published: true)
     { id: "draft-1", name: "Andrei V.", rating: 5,
