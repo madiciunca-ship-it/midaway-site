@@ -257,10 +257,10 @@ Anyone who meets him will understand the kind of person he truly is.`,
       ],
       socials: {
         instagram: "https://www.instagram.com/kaci_merzouga?igsh=cjFkM3N2c2E0Y2Jy",
-        facebook: "",
+        facebook: "https://www.facebook.com/kaci.merzouga",
         tiktok: "",
         youtube: "",
-        website: "",
+        website: "https://moroccotravelhotelchezbelkacem.com/moments-partages-avec-nos-voyageurs-souvenirs-inoubliables/",
         blog: "",
       },
       ro: {
@@ -376,11 +376,11 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
       ],
       socials: {
         instagram: "Instagram: @ana_irina777",
-        facebook: "",
+        facebook: "https://www.facebook.com/ana777.irina?mibextid=wwXIfr&rdid=8qAvqmM2FwUMya3F&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BfUrTprmT%2F%3Fmibextid%3DwwXIfr#",
         tiktok: "",
         youtube: "",
         website: "www.mereuinvacanta.com",
-        blog: "",
+        blog: "https://www.facebook.com/share/17U3AoAwVK/",
       },
       ro: {
         intro: `Irina, pentru mine, a fost acel cântec de sirenă despre care au scris marii poeți ai lumii. Era omul care trăia deja visul pe care eu abia începeam să-l ating.
