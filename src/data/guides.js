@@ -375,7 +375,7 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
         "/assets/guides/irina-bali/3.webp",
       ],
       socials: {
-        instagram: "Instagram: @ana_irina777",
+        instagram: "https://www.instagram.com/ana_irina777/",
         facebook: "https://www.facebook.com/ana777.irina?mibextid=wwXIfr&rdid=8qAvqmM2FwUMya3F&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BfUrTprmT%2F%3Fmibextid%3DwwXIfr#",
         tiktok: "",
         youtube: "",
