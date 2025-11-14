@@ -436,7 +436,7 @@ But since it closed automatically, Rachid didn’t have to worry – everything 
         blog: "",
       },
       ro: {
-        intro: `12 noiembrie 2023.
+        intro: `Marți, 12 noiembrie 2024.
 Plecam din Bali către Papua. De fapt, trebuia să plec cu o zi înainte – dar așa s-a întâmplat, n-am mai putut. Am mai stat o noapte în Bali și m-am urcat a doua zi pe feribotul care mergea spre Lombok.
         
 Povestea noastră e chiar haioasă. Eram cuminte, așezată pe primele rânduri ale feribotului, privind la televizor. Telefonul meu era la încărcat, așa că nu aveam altceva de făcut decât să privesc marea și oamenii din jur.

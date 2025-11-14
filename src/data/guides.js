@@ -368,7 +368,7 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
       emoji: "🌸",
       name: { ro: "Irina — Ghidul care îți amintește că lumea nu e doar de văzut, ci de simțit", en: "Irina — The guide who reminds you the world isn’t just to be seen, but to be felt" },
       tagline: { ro: "Luminoasă. Răbdătoare. Ancorată.", en: "Luminous. Patient. Grounded." },
-      cover: "/assets/guides/irina-bali/cover2.webp",
+      cover: "/assets/guides/irina-bali/cover10.webp",
       gallery: [
         "/assets/guides/irina-bali/cover.webp",
         "/assets/guides/irina-bali/2.webp",
