@@ -248,7 +248,7 @@ Anyone who meets him will understand the kind of person he truly is.`,
       id: "kaci-maroc",
       emoji: "🏜️",
       name: { ro: "Kaci — Ghidul care cunoaște deșertul ca pe propria poveste", en: "Kaci — The guide who knows the desert like his own story" },
-      tagline: { ro: "Blând. Deschis. Conectat", en: "Kind. Open. Grounded." },
+      tagline: { ro: "Blând. Deschis. Conectat.", en: "Kind. Open. Grounded." },
       cover: "/assets/guides/kaci-maroc/cover1.webp",
       gallery: [
         "/assets/guides/kaci-maroc/cover.webp",
@@ -368,7 +368,7 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
       emoji: "🌸",
       name: { ro: "Irina — Ghidul care îți amintește că lumea nu e doar de văzut, ci de simțit", en: "Irina — The guide who reminds you the world isn’t just to be seen, but to be felt" },
       tagline: { ro: "Luminoasă. Răbdătoare. Ancorată.", en: "Luminous. Patient. Grounded." },
-      cover: "/assets/guides/irina-bali/cover10.webp",
+      cover: "/assets/guides/irina-bali/cover I2.webp",
       gallery: [
         "/assets/guides/irina-bali/cover.webp",
         "/assets/guides/irina-bali/2.webp",
