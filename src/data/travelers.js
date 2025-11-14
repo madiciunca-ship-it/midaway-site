@@ -476,7 +476,7 @@ De atunci nu ne-am mai reîntâlnit, dar ținem legătura – ca și cum feribot
         story: [],
       },
       en: {
-        intro: `November 12, 2023.
+        intro: `Tuesday, November 12, 2024.
 I was leaving Bali for Papua.
 Actually, I was supposed to leave a day earlier – but as it often happens, things didn’t go as planned. So I stayed one more night in Bali and took the next day’s ferry to Lombok.
         
