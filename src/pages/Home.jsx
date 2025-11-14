@@ -421,18 +421,32 @@ export default function Home() {
 
   return (
     <>
-            {/* HERO */}
-            <section className="hero hero--compact">
-        <div style={{ position: "relative" }}>
-          {/* Switch RO/EN – colț dreapta sus în interiorul HERO */}
-          <div
+           {/* HERO */} 
+{/* HERO */} 
+<section className="hero hero--compact">
+  <div className="font-cormorant" style={{ textAlign: "center" }}>
+    <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>{t.hero_title}</h1>
+    <p style={{ color: "var(--secondary)", fontStyle: "italic", marginTop: 8 }}>
+      {`„${t.hero_tagline}”`}
+    </p>
+    <p style={{ color: "var(--secondary)", marginTop: 6, fontSize: 16 }}>
+      {t.hero_meta}
+    </p>
+    <p style={{ maxWidth: 720, margin: "24px auto 0", fontSize: 22, lineHeight: 1.6 }}>
+      {t.hero_sub}
+    </p>
+
+    <div style={{ marginTop: 24 }}>
+      <Link className="btn" to="/proiecte">
+        {t.viziune_btn}
+      </Link>
+    </div>
+     {/* SWITCH RO/EN SUB VIZIUNE – EXACT CA ÎNAINTE */}
+     <div
             role="group"
             aria-label="Language switch"
             style={{
-              position: "absolute",
-              top: 4,
-              right: 4,
-              zIndex: 5,
+              marginTop: 16,
               display: "inline-flex",
               border: "1px solid #ddd",
               borderRadius: 999,
@@ -440,61 +454,16 @@ export default function Home() {
               background: "#fff",
             }}
           >
-            <button
-              onClick={() => setLang("ro")}
-              style={{ ...segBtn(lang === "ro"), padding: "6px 10px", fontSize: 12 }}
-            >
+            <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>
               RO
             </button>
-            <button
-              onClick={() => setLang("en")}
-              style={{ ...segBtn(lang === "en"), padding: "6px 10px", fontSize: 12 }}
-            >
+            <button onClick={() => setLang("en")} style={segBtn(lang === "en")}>
               EN
             </button>
           </div>
+  </div>
+</section>
 
-          <div className="font-cormorant" style={{ textAlign: "center" }}>
-            <h1 style={{ fontSize: 64, letterSpacing: ".02em", margin: 0 }}>
-              {t.hero_title}
-            </h1>
-            <p
-              style={{
-                color: "var(--secondary)",
-                fontStyle: "italic",
-                marginTop: 8,
-              }}
-            >
-              {`„${t.hero_tagline}”`}
-            </p>
-            <p
-              style={{
-                color: "var(--secondary)",
-                marginTop: 6,
-                fontSize: 16,
-              }}
-            >
-              {t.hero_meta}
-            </p>
-            <p
-              style={{
-                maxWidth: 720,
-                margin: "24px auto 0",
-                fontSize: 22,
-                lineHeight: 1.6,
-              }}
-            >
-              {t.hero_sub}
-            </p>
-
-            <div style={{ marginTop: 24 }}>
-              <Link className="btn" to="/proiecte">
-                {t.viziune_btn}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* SECȚIUNI RAPIDE */}
       <div id="sectiuni" className="container">
