@@ -553,7 +553,7 @@ We haven’t seen each other again since, but we still keep in touch – as if t
         blog: "",
       },
       ro: {
-        intro: `Era o zi superbă de vară, într-un hotel din Catania. Eram singură în cameră, cu aerul condiționat pornit și 33 de grade care fierbeau orașul de afară.
+        intro: `Era o zi superbă de vară, într-un hostel din Catania. Eram singură în cameră, cu aerul condiționat pornit și 33 de grade care fierbeau orașul de afară.
 Am mers până la baie… și când m-am întors, nu mai eram singură.
         
 Apăruse o tipă – exact în momentul în care mă pregăteam să închid laptopul și să ies să mănânc.
@@ -590,7 +590,7 @@ Cine știe ce ne este menit?`,
         story: [],
       },
       en: {
-        intro: `It was a beautiful summer day, in a small hotel in Catania.
+        intro: `It was a beautiful summer day, in a small hostel in Catania.
 I was alone in the room, the air conditioning humming softly, while the heat outside – over 33 degrees – melted the city.
 I went to the bathroom… and when I came back, I was no longer alone.
         
