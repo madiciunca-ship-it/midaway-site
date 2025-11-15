@@ -522,6 +522,69 @@ We haven’t seen each other again since, but we still keep in touch – as if t
     },
 
 
+       // ────────────────────────────────────────────────────────────
+    // 4) Heidi — Un gest mic, o amintire mare
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "heidi-scotia",
+      emoji: "🎨",
+   
+      name: {
+        ro: "Heidi — O viață trăită ca o operă de artă",
+        en: "Heidi — A life lived as a work of art",
+      },
+      tagline: {
+        ro: ".",
+        en: "",
+      },
+    
+      cover: "/assets/travelers/heidi-scotia/Heidicover.webp",
+      gallery: [
+        "/assets/travelers/heidi-scotia/1H.webp",
+        "/assets/travelers/heidi-scotia/2 H.webp",
+        "/assets/travelers/heidi-scotia/3H.webp",
+      ],
+      socials: {
+        instagram: "h",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: ``,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "" },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+          { q: "3. Când ai știut că merită?", a: "" },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+        ],
+        story: [],
+      },
+      en: {
+        intro: ``,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "" },
+          { q: "2. What made you start traveling?", a: "" },
+          { q: "3. When did you know it was worth it?", a: "" },
+          { q: "4. A place that changed the way you see the world?", a: "" },
+          { q: "5. How did traveling change you as a person?", a: "" },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: How did we meet?", a: "" },
+        ],
+        story: [],
+      },
+      video: null,
+    },
+
   ];
 
 /* TEMPLATE — nou călător (bilingv). Lasă blocul comentat.
