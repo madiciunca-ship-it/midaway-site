@@ -57,11 +57,11 @@ const SERVICES = [
       "încărcare în KDP + verificări",
     ],
     pricing: "fixed",
-    price: 0,
+    price: 1800,
     currency: "RON",
     delivery: "livrare 7–14 zile",
     cancelWindow: "48h",
-    available: false, // în curând
+    available: true, // în curând
     image: "/assets/services/kdp.png",
   },
 
