@@ -8,7 +8,7 @@
 
 const travelers = [
     // ────────────────────────────────────────────────────────────
-    // 1) Adi — Nomadul din Bali
+    // 1) Adi — Cel care mi-a dat curajul să plec
     // ────────────────────────────────────────────────────────────
     {
       id: "adi-satumare",
@@ -406,7 +406,7 @@ But since it closed automatically, Rachid didn’t have to worry – everything 
     },
 
        // ────────────────────────────────────────────────────────────
-    // 4) Akwaa — Un gest mic, o amintire mare
+    // 5) Akwaa — Un gest mic, o amintire mare
     // ────────────────────────────────────────────────────────────
     {
       id: "akwaa-yemen",
@@ -523,7 +523,7 @@ We haven’t seen each other again since, but we still keep in touch – as if t
 
 
        // ────────────────────────────────────────────────────────────
-    // 4) Heidi — Un gest mic, o amintire mare
+    // 6) Heidi — Un gest mic, o amintire mare
     // ────────────────────────────────────────────────────────────
     {
       id: "heidi-scotia",
@@ -633,6 +633,69 @@ Who knows what destiny has planned for us?`,
           { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Just do it. Don’t plan too much, be spontaneous, try things you would never normally do. Travel light! Make your life simple! You don’t need much in life – just the necessities! Bring a small rucksack, a big smile, and an open heart… but keep your eyes open!" },
           { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @eatlovetravelwithheidi (I don’t use social media much, but I share my travel moments and stories on my YouTube channel.)" },
           { q: "9. Bonus: How did we meet?", a: "I had just arrived at the hostel in Catania, Sicily, after a long bus journey from Palermo. Mida walked into the dorm wearing a lovely bohemian dress, and we instantly started chatting. We hit it off right away. She told me briefly about her journey, and I found it very interesting. Now we stay in touch from time to time." },
+        ],
+        story: [],
+      },
+      video: null,
+    },
+
+    // ────────────────────────────────────────────────────────────
+    // 7) Yassir — Un marocan la capătul pământului
+    // ────────────────────────────────────────────────────────────
+    {
+      id: "yassir-maroc",
+      emoji: "🌊",
+   
+      name: {
+        ro: "Yassir — Un marocan la capătul pământului",
+        en: "Yassir — A Moroccan at the edge of the world",
+      },
+      tagline: {
+        ro: "",
+        en: "",
+      },
+    
+      cover: "/assets/travelers/yassir-maroc/cover.webp",
+      gallery: [
+        "/assets/travelers/yassir-maroc/1.webp",
+        "/assets/travelers/yassir-maroc/2.webp",
+        "/assets/travelers/yassir-maroc/3.webp",
+      ],
+      socials: {
+        instagram: "",
+        facebook: "",
+        tiktok: "",
+        youtube: "",
+        website: "",
+        blog: "",
+      },
+      ro: {
+        intro: ``,
+        qna: [
+          { q: "1. Cine ești în câteva fraze?", a: "" },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "" },
+          { q: "3. Când ai știut că merită?", a: "" },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "" },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "" },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "" },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "" },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "" },
+        ],
+        story: [],
+      },
+      en: {
+        intro: ``,
+        qna: [
+          { q: "1. Who are you in a few sentences?", a: "" },
+          { q: "2. What made you start traveling?", a: "" },
+          { q: "3. When did you know it was worth it?", a: "" },
+          { q: "4. A place that changed the way you see the world?", a: "" },
+          { q: "5. How did traveling change you as a person?", a: "" },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "" },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "" },
+          { q: "9. Bonus: How did we meet?", a: "" },
         ],
         story: [],
       },
