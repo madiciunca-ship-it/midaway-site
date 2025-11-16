@@ -248,7 +248,7 @@ export default async function handler(req, res) {
 
     // URL-uri corecte (BrowserRouter, fără #)
     const success_url = `${SITE}/thanks?session_id={CHECKOUT_SESSION_ID}`;
-    const cancel_url = `${SITE}/cart`;
+    const cancel_url = `${SITE}/carti`;
     console.log("CHK urls:", { SITE, success_url, cancel_url });
 
     // Sesiune Stripe
