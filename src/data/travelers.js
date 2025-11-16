@@ -22,11 +22,11 @@ const travelers = [
         ro: "Curios. Aventuros. Adaptabil.",
         en: "Curious. Adventurous. Adaptable.",
       },
-      cover: "/assets/travelers/adi-satumare/cover.webp",
+      cover: "/assets/travelers/adi-satumare/adicover1.webp",
       gallery: [
         "/assets/travelers/adi-satumare/1.webp",
         "/assets/travelers/adi-satumare/2.webp",
-        "/assets/travelers/adi-satumare/3.webp",
+        "/assets/travelers/adi-satumare/adicover.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/adrianstefanilles/",
