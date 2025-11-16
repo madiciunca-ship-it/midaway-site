@@ -2,6 +2,7 @@
 import React, { useMemo, useState } from "react";
 import { useCart } from "../context/CartContext";
 import { BOOKS } from "../data/books";
+import { Link } from "react-router-dom";
 
 // endpoint Formspree
 const FORMSPREE_ENDPOINT =
@@ -240,78 +241,72 @@ export default function Checkout() {
           )}
 
           {/* consimțământ legal */}
-          <div
-            style={{
-              marginTop: 16,
-              padding: 12,
-              border: "1px solid #eee",
-              borderRadius: 12,
-              background: "#fff",
-            }}
-          >
-            <label style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-              <input
-                type="checkbox"
-                checked={agreeTerms}
-                onChange={(e) => setAgreeTerms(e.target.checked)}
-              />
-              <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                Sunt de acord cu{" "}
-                <a href="#/termeni" target="_blank" rel="noopener noreferrer">
-                  Termenii și condițiile
-                </a>
-                ,
-                <a
-                  href="#/politica-cookies"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {" "}
-                  Politica de cookies
-                </a>{" "}
-                și
-                <a
-                  href="#/politica-confidentialitate"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {" "}
-                  Politica de confidențialitate
-                </a>
-                .
-              </span>
-            </label>
+<div
+  style={{
+    marginTop: 16,
+    padding: 12,
+    border: "1px solid #eee",
+    borderRadius: 12,
+    background: "#fff",
+  }}
+>
+  {/* ✅ Termeni, cookies, confidențialitate */}
+  <label style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+    <input
+      type="checkbox"
+      checked={agreeTerms}
+      onChange={(e) => setAgreeTerms(e.target.checked)}
+    />
+    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+      Sunt de acord cu{" "}
+      <Link to="/termeni" style={{ color: "var(--accent)" }}>
+        Termenii și condițiile
+      </Link>
+      ,{" "}
+      <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
+        Politica de cookies
+      </Link>{" "}
+      și{" "}
+      <Link
+        to="/politica-confidentialitate"
+        style={{ color: "var(--accent)" }}
+      >
+        Politica de confidențialitate
+      </Link>
+      .
+    </span>
+  </label>
 
-            {hasDigital && (
-              <label
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 8,
-                  marginTop: 10,
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={agreeDigital}
-                  onChange={(e) => setAgreeDigital(e.target.checked)}
-                />
-                <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                  Sunt de acord cu începerea livrării digitale înainte de
-                  expirarea termenului legal de retragere și înțeleg că îmi pierd
-                  dreptul de retragere după descărcare. (
-                  <a
-                    href="#/politica-descarcare"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Detalii
-                  </a>
-                  )
-                </span>
-              </label>
-            )}
-          </div>
+  {/* ✅ Acord pentru conținut digital */}
+  {hasDigital && (
+    <label
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 8,
+        marginTop: 10,
+      }}
+    >
+      <input
+        type="checkbox"
+        checked={agreeDigital}
+        onChange={(e) => setAgreeDigital(e.target.checked)}
+      />
+      <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+        Sunt de acord cu începerea livrării digitale înainte de expirarea
+        termenului legal de retragere și înțeleg că îmi pierd dreptul de
+        retragere după descărcare. (
+        <Link
+          to="/politica-descarcare"
+          style={{ color: "var(--accent)" }}
+        >
+          Detalii
+        </Link>
+        )
+      </span>
+    </label>
+  )}
+</div>
 
           {/* ——— Facturez pe firmă (opțional) ——— */}
           <div
@@ -464,7 +459,7 @@ export default function Checkout() {
             <input
               type="hidden"
               name="_redirect"
-              value="https://midaway.vercel.app/#/thanks"
+              value="https://midaway.ro/thanks"
             />
             <input
               type="hidden"
