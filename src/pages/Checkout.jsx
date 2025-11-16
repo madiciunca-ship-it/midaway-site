@@ -422,23 +422,36 @@ export default function Checkout() {
 
           {/* ——— Buton Stripe ——— */}
           <button
-            type="button"
-            onClick={payWithCard}
-            disabled={!canPay}
-            style={{
-              marginTop: 12,
-              padding: "12px",
-              borderRadius: 10,
-              background: "#2a9d8f",
-              color: "#fff",
-              border: "none",
-              fontWeight: 700,
-              cursor: "pointer",
-              opacity: canPay ? 1 : 0.6,
-            }}
-          >
-            💳 Plătește acum cu cardul (Stripe)
-          </button>
+  type="button"
+  onClick={payWithCard}
+  disabled={!canPay}
+  style={{
+    marginTop: 12,
+    padding: "12px",
+    borderRadius: 10,
+    background: "#2a9d8f",
+    color: "#fff",
+    border: "none",
+    fontWeight: 700,
+    cursor: "pointer",
+    opacity: canPay ? 1 : 0.6,
+  }}
+>
+  💳 Plătește acum cu cardul (Stripe) / Pay now with card (Stripe)
+</button>
+
+<p
+  style={{
+    marginTop: 8,
+    textAlign: "center",
+    fontSize: 12,
+    color: "var(--secondary)",
+  }}
+>
+  Plățile sunt procesate securizat prin Stripe.
+  <br />
+  Payments are processed securely via Stripe.
+</p>
 
           {/* Formular fallback (Formspree) */}
           <form
