@@ -670,13 +670,13 @@ Who knows what destiny has planned for us?`,
         blog: "",
       },
       ro: {
-        intro: `Plecasem din Bali de aproape 80 de zile. Drumul meu spre Papua nu avea un scop clar — doar acea voce interioară care îmi spunea că trebuie să ajung acolo.
+        intro: `Plecasem din Bali de aproape 80 de zile. Drumul meu spre Papua nu avea un scop clar – doar acea voce interioară care îmi spunea că trebuie să ajung acolo.
 Trecusem prin încercări care i-ar fi oprit pe mulți: dureri, oboseală, accidentări, îndoieli.
 
 Dar în mine exista o forță pe care nu o puteam explica.
 Știam că miza era mai mare, chiar dacă nu știam care.
         
-Cu o mână și un picior rupt, cu energia adunată în rucsac ca un talisman, după ce am traversat alte insule din Indonezia, am ajuns — într-un final — în Raja Ampat.
+Cu o mână și un picior rupt, cu energia adunată în rucsac ca un talisman, după ce am traversat alte insule din Indonezia, am ajuns – într-un final – în Raja Ampat.
 O aventură cu „A” mare.
 Și chiar dacă nu știam încă, eram exact în locul potrivit.
         
@@ -694,7 +694,7 @@ Marocanul care părea că mă așteptase.
 De ce spun asta?
 Pentru că, mai târziu, am înțeles că întâlnirea noastră nu a fost una obișnuită.
 Datorită lui, câteva luni mai târziu, am ajuns în Maroc.
-Fără să știe, Yassir a fost unul dintre acei oameni care îți schimbă direcția — subtil, profund, exact cum Universul știe să o facă.
+Fără să știe, Yassir a fost unul dintre acei oameni care îți schimbă direcția – subtil, profund, exact cum Universul știe să o facă.
         
 L-am vizitat în Tanger, orașul lui natal.
 I-am cunoscut familia, frații, nepotul.
@@ -707,21 +707,21 @@ Unele conexiuni nu se explică în cuvinte.
 Ele se trăiesc.
 Atât.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "Numele meu este Yassir. Sunt din Maroc și sunt un om profund conectat cu natura — albastrul mării, verdele pădurilor, frumusețea liniștită a locurilor neatinse. De aceea trăiesc cu rucsacul în spate; să mă mut dintr-un loc frumos în altul mi se pare cel mai natural lucru pentru mine." },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "Sincer, totul a început din cauza vremii din Maroc — dar și fiindcă sunt o persoană activă. Nu-mi puteam imagina să stau într-un singur loc când știam că există altele, mai potrivite pentru mine, care mă așteaptă." },
-          { q: "3. Când ai știut că merită?", a: "De fiecare dată când ajung într-o destinație nouă și o văd pentru prima dată cu ochii mei. Momentul acela în care frumusețea reală a unui loc te lasă fără cuvinte — atunci știu că am făcut alegerea potrivită." },
+          { q: "1. Cine ești în câteva fraze?", a: "Numele meu este Yassir. Sunt din Maroc și sunt un om profund conectat cu natura – albastrul mării, verdele pădurilor, frumusețea liniștită a locurilor neatinse. De aceea trăiesc cu rucsacul în spate; să mă mut dintr-un loc frumos în altul mi se pare cel mai natural lucru pentru mine." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Sincer, totul a început din cauza vremii din Maroc – dar și fiindcă sunt o persoană activă. Nu-mi puteam imagina să stau într-un singur loc când știam că există altele, mai potrivite pentru mine, care mă așteaptă." },
+          { q: "3. Când ai știut că merită?", a: "De fiecare dată când ajung într-o destinație nouă și o văd pentru prima dată cu ochii mei. Momentul acela în care frumusețea reală a unui loc te lasă fără cuvinte – atunci știu că am făcut alegerea potrivită." },
           { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Indonezia, în special prima mea călătorie în Bali. Să trăiesc o cultură, o natură și un stil de viață complet diferite mi-a deschis mintea. M-a făcut să reflectez la multe lucruri pe care le credeam „normale”." },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoria mi-a schimbat dorințele. Înainte cheltuiam bani pe lucruri materiale; acum prefer aventurile și descoperirea locurilor noi. Am descoperit și că pot trăi singur foarte mult timp fără probleme — fără să simt că îmi lipsește ceva." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoria mi-a schimbat dorințele. Înainte cheltuiam bani pe lucruri materiale; acum prefer aventurile și descoperirea locurilor noi. Am descoperit și că pot trăi singur foarte mult timp fără probleme – fără să simt că îmi lipsește ceva." },
           { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Sincer, încă nu am trăit un moment cu adevărat dificil. Poate sunt făcut mai puternic, sau poate nu văd lucrurile ca fiind dificile atât de ușor." },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Dacă ești sărac, muncește, economisește și călătorește pe un alt continent — îți va schimba perspectiva, dorințele, poate chiar viitorul. Ai o singură viață; cu cât vezi mai multe drumuri, cu atât îți vei da seama mai clar care e al tău. Dacă ai deja bani, nu văd niciun motiv serios să nu călătorești, decât dacă pur și simplu nu îți place — după ce ai încercat." },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @freedomtells - acolo postez aventurile mele din Indonezia și Raja Ampat." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Dacă ești sărac, muncește, economisește și călătorește pe un alt continent – îți va schimba perspectiva, dorințele, poate chiar viitorul. Ai o singură viață; cu cât vezi mai multe drumuri, cu atât îți vei da seama mai clar care e al tău. Dacă ai deja bani, nu văd niciun motiv serios să nu călătorești, decât dacă pur și simplu nu îți place – după ce ai încercat." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @freedomtells – acolo postez aventurile mele din Indonezia și Raja Ampat." },
           { q: "9. Bonus: Cum ne-am cunoscut?", a: "Am întâlnit-o pe Mida în Raja Ampat. Am stat în același loc, am mâncat împreună și ne-am cunoscut treptat. Am devenit prieteni natural. Câteva luni mai târziu, Mida a venit în Maroc după ce am invitat-o. Până astăzi, încă ținem legătura." },
         ],
         story: [],
       },
       en: {
         intro: `I had been on the road for nearly 80 days, leaving Bali behind and slowly making my way toward Papua.
-I didn’t have a clear purpose — just a quiet knowing inside me that I had to get there.
+I didn’t have a clear purpose – just a quiet knowing inside me that I had to get there.
 Along the way, I went through trials that would have stopped many people: pain, exhaustion, setbacks, moments where everything seemed too much.
         
 But there was a strength in me I couldn’t explain.
@@ -729,7 +729,7 @@ I knew the journey had a deeper meaning… even if I didn’t yet know what it w
         
 With a broken arm, a broken foot, and all my remaining energy packed into my backpack like a talisman, I crossed island after island in Indonesia until, finally, I reached Raja Ampat.
 An adventure with a capital “A.”
-And even if I didn’t fully understand it then — I was exactly where I needed to be.
+And even if I didn’t fully understand it then – I was exactly where I needed to be.
         
 I didn’t choose the island.
 The island chose me.
@@ -739,13 +739,13 @@ Sam, the owner of the little homestay in Arborek, insisted that I go to his plac
 But the Universe wanted me there.
 And it made sure I arrived.
         
-And there — at the end of a road that felt endless — he appeared: Yassir.
+And there – at the end of a road that felt endless – he appeared: Yassir.
 The Moroccan who felt as if he had been waiting for me.
         
 Why do I say that?
 Because later, I realized our meeting was more than a simple coincidence.
 Thanks to him, months later, I ended up in Morocco.
-Without knowing it, Yassir became one of those people who shift your path — subtly, quietly, exactly the way the Universe likes to send signs.
+Without knowing it, Yassir became one of those people who shift your path – subtly, quietly, exactly the way the Universe likes to send signs.
         
 I visited him in Tangier, his hometown.
 I met his family, his brothers, his little nephew.
@@ -758,14 +758,14 @@ Some connections cannot be explained in words.
 They can only be lived.
 And felt.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "My name is Yassir. I’m from Morocco, and I’m someone who feels deeply connected to nature — the blue of the sea, the green of the forest, the quiet beauty of untouched places. That’s why I live with a backpack; moving from one beautiful place to another feels natural to me." },
-          { q: "2. What made you start traveling?", a: "Honestly, it started with the weather in Morocco, but also because I’m naturally an active person. I couldn’t imagine staying in one place when I knew there were better places out there waiting for me — places that match who I am." },
-          { q: "3. When did you know it was worth it?", a: "It hits me every time I arrive in a new destination and finally see it with my own eyes. That moment of being stunned by the real-life beauty of a place — that’s when I know I made the right choice." },
+          { q: "1. Who are you in a few sentences?", a: "My name is Yassir. I’m from Morocco, and I’m someone who feels deeply connected to nature – the blue of the sea, the green of the forest, the quiet beauty of untouched places. That’s why I live with a backpack; moving from one beautiful place to another feels natural to me." },
+          { q: "2. What made you start traveling?", a: "Honestly, it started with the weather in Morocco, but also because I’m naturally an active person. I couldn’t imagine staying in one place when I knew there were better places out there waiting for me – places that match who I am." },
+          { q: "3. When did you know it was worth it?", a: "It hits me every time I arrive in a new destination and finally see it with my own eyes. That moment of being stunned by the real-life beauty of a place – that’s when I know I made the right choice." },
           { q: "4. A place that changed the way you see the world?", a: "Indonesia, especially my first trip to Bali. Experiencing a totally different culture, nature, and lifestyle opened my mind. It made me reflect on many things I grew up thinking were “normal.”" },
-          { q: "5. How did traveling change you as a person?", a: "Traveling changed my desires. I used to spend money on physical things; now I prefer spending it on adventures and discovering new places. I also discovered that I can live alone for a very long time without any problem — without feeling like I’m missing anything." },
+          { q: "5. How did traveling change you as a person?", a: "Traveling changed my desires. I used to spend money on physical things; now I prefer spending it on adventures and discovering new places. I also discovered that I can live alone for a very long time without any problem – without feeling like I’m missing anything." },
           { q: "6. A hard moment on the road and how you overcame it.", a: "Honestly, I haven’t experienced a real difficult moment yet. Maybe I’m built tough, or maybe I don’t see things as difficult easily." },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "If you’re poor, work, save money, and travel to a new continent — it will change your perspective, your desires, maybe even your whole future. You have only one life; the more paths you see, the better you’ll understand which one is right for you. If you already have money, I don’t really see a reason not to travel unless you simply don’t enjoy it after trying." },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "I’m on YouTube: @freedomtells - I’ve posted some of my adventures from Indonesia and Raja Ampat there." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "If you’re poor, work, save money, and travel to a new continent – it will change your perspective, your desires, maybe even your whole future. You have only one life; the more paths you see, the better you’ll understand which one is right for you. If you already have money, I don’t really see a reason not to travel unless you simply don’t enjoy it after trying." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "I’m on YouTube: @freedomtells – I’ve posted some of my adventures from Indonesia and Raja Ampat there." },
           { q: "9. Bonus: How did we meet?", a: "I met Mida in Raja Ampat. We stayed in the same place, ate together, and slowly got to know each other. We became friends naturally. A few months later, Mida visited me in Morocco after I invited her. Until today, we’re still in touch." },
         ],
         story: [],
