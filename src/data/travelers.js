@@ -657,7 +657,7 @@ Who knows what destiny has planned for us?`,
     
       cover: "/assets/travelers/yassir-maroc/yassircover1.webp",
       gallery: [
-        "/assets/travelers/yassir-maroc/yassir1.webp",
+        "/assets/travelers/yassir-maroc/yassir5.webp",
         "/assets/travelers/yassir-maroc/yassir2.webp",
         "/assets/travelers/yassir-maroc/yassir4.webp",
       ],
