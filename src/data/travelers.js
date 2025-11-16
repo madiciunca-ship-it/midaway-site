@@ -655,7 +655,7 @@ Who knows what destiny has planned for us?`,
         en: "Free. Intuitive. Determined.",
       },
     
-      cover: "/assets/travelers/yassir-maroc/yassircover.webp",
+      cover: "/assets/travelers/yassir-maroc/yassircover1.webp",
       gallery: [
         "/assets/travelers/yassir-maroc/yassir1.webp",
         "/assets/travelers/yassir-maroc/yassir2.webp",
