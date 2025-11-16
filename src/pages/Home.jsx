@@ -20,7 +20,7 @@ const i18nHome = {
     hero_tagline: "Cărți care pornesc la drum",
     hero_meta: "print & digital  • ro / en •  editare & design",
     hero_sub:
-      "Midaway este o editură independentă. Publicăm literatură de călătorie, jurnale și eseuri care inspiră, dau curaj, pun întrebări și creează legături.",
+      "Midaway este o editură independentă născută din drumuri, întâlniri și povești reale. Publicăm literatură de călătorie, jurnale și eseuri – și explorăm, în același timp, portrete de autori, călători, ghizi și localnici care ne inspiră să vedem lumea cu alți ochi. Un spațiu unde poveștile devin conexiuni și inspirație.",
     viziune_btn: "VIZIUNEA MIDAWAY",
     card_carti_t: "Cărți",
     card_carti_s: "Inspirație, provocare, visuri îndrăznețe.",
@@ -37,7 +37,7 @@ const i18nHome = {
     hero_tagline: "Books that set out on a journey",
     hero_meta: "print & digital  • ro / en •  editing & design",
     hero_sub:
-      "Midaway is an independent publishing house. We publish travel literature, journals and essays that inspire, embolden, ask questions, and create connections.",
+      "Midaway is an independent publishing house born from journeys, encounters, and real stories. We publish travel literature, journals, and essays – while also exploring portraits of authors, travelers, guides, and locals who inspire us to see the world differently. A space where stories become connection and inspiration.",
     viziune_btn: "MIDAWAY VISION",
     card_carti_t: "Books",
     card_carti_s: "Inspiration, challenge, bold dreams.",
