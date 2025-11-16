@@ -57,7 +57,7 @@ const SERVICES = [
       "încărcare în KDP + verificări",
     ],
     pricing: "fixed",
-    price: 1800,
+    price: 0,
     currency: "RON",
     delivery: "livrare 7–14 zile",
     cancelWindow: "48h",
@@ -134,11 +134,11 @@ const SERVICES = [
     ],
     note: "*ISBN se obține legal prin Biblioteca Națională; îți oferim suportul procedural.",
     pricing: "fixed",
-    price: 500, // taxă set-up (exemplu)
+    price: 0, // taxă set-up (exemplu)
     currency: "RON",
     delivery: "activare 3–5 zile",
     cancelWindow: "48h",
-    available: true,
+    available: false,
     image: "/assets/services/listare.png",
   },
 

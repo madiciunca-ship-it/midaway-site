@@ -34,7 +34,7 @@ export const SERVICES = [
       id: "publicare-distributie",
       title: "Publicare & distribuție (KDP)",
       short: "Setare cont, formatare, încărcare, optimizare pagină Amazon.",
-      price: 1200,
+      price: 0,
       currency: "RON",
       duration: "livrare 7-14 zile",
       cancellationWindowHours: 48,
