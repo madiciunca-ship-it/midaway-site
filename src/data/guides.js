@@ -35,6 +35,7 @@ Am ajuns întâmplător la restaurantul unde lucrează ca bucătar – și am re
         
 A doua zi, am revenit și am cerut fix același mic dejun, gândindu-mă cu poftă la ziua precedentă. Dar... surpriză. Am primit altceva. La fel de bun, dar prezentarea era total diferită.
 Puțin contrariată, l-am chemat pe chelner și i-am spus, râzând:
+
 — Ieri am comandat același lucru, dar arăta complet diferit. Ați schimbat bucătarul?
         
 Ce-a înțeles el? Habar n-am. Cert e că, în câteva minute, ghici ce: bucătarul a venit la masa mea. Era el, Farid.
@@ -42,6 +43,7 @@ Ce-a înțeles el? Habar n-am. Cert e că, în câteva minute, ghici ce: bucăta
         
 A treia zi – ultima mea zi în Ouarzazate, înainte să plec spre Merzouga – când am intrat din nou în restaurant, toată lumea m-a recunoscut. Mi s-a părut amuzant cât de agitați deveniseră.
 Și, din spate, a apărut Farid. Zâmbind, mi-a spus:
+
 — Pentru că ieri nu am reușit să îți satisfacem așteptările, azi îți voi găti ceva special. Chiar dacă ai comandat meniul simplu.
         
 Și așa a fost. Cel mai delicios mic dejun pe care l-am mâncat vreodată.
@@ -51,7 +53,7 @@ Un om cu suflet deosebit.
 Mă bucur că, punând o simplă întrebare, am descoperit, dincolo de fațada unei bucătării, un om minunat.`,
         qna: [
           { q: "1) Cine ești în câteva cuvinte?", a: "Mă numesc Farid Aitsi Ahmed. Sunt un om simplu, îmi place să gătesc cu bucurie și din inimă. Îmi place să mă distrez, să joc fotbal, să merg la sală și iubesc pisicile. Sunt un bărbat singur, pasionat de călătorii, de gătit, de citit cărți și de a mă bucura de lucrurile simple din viață." },
-          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Sunt din Maroc și trăiesc în orașul meu natal, Ouarzazate. Ceea ce iubesc cel mai mult aici este cultura noastră, mâncarea, muzica și arhitectura Kasbah-urilor. Orașul nostru este plin de studiouri de film internaționale. Turiștii pot vizita Kasbah-urile și se pot bucura de mâncare și de muzică și dansuri tradiționale. La noi s-au filmat multe filme celebre: Gladiator, Lawrence of Arabia, Babel, Kingdom of Heaven, The Mummy, Prince of Persia, Game of Thrones, The Hills Have Eyes, Alexander, Exodus: Gods and Kings și multe altele. Peisajele variază de la deșertul Sahara la Munții Atlas, ceea ce face din Ouarzazate o destinație populară pentru filmări internaționale." },
+          { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Sunt din Maroc și trăiesc în orașul meu natal, Ouarzazate. Ceea ce iubesc cel mai mult aici este cultura noastră, mâncarea, muzica și arhitectura Kasbah-urilor. Orașul nostru este plin de studiouri de film internaționale. Turiștii pot vizita Kasbah-urile și se pot bucura de mâncare, de muzică și dansuri tradiționale. La noi s-au filmat multe filme celebre: Gladiator, Lawrence of Arabia, Babel, Kingdom of Heaven, The Mummy, Prince of Persia, Game of Thrones, The Hills Have Eyes, Alexander, Exodus: Gods and Kings și multe altele. Peisajele variază de la deșertul Sahara la Munții Atlas, ceea ce face din Ouarzazate o destinație populară pentru filmări internaționale." },
           { q: "3) Cum ai ajuns să devii ghid / să arăți locul tău altora?", a: "Îmi place să arăt turiștilor magia orașului Ouarzazate. Așa încep: le arăt locuri frumoase și priveliști, și le gătesc. Gătesc pentru prieteni – așa am făcut și cu Mida când am întâlnit-o. I-am pregătit micul dejun tradițional și i-a plăcut mult. Cel mai mult îmi place să văd turiștii fericiți, bucurându-se de oraș, de mâncare, de oameni. Asta mă face și pe mine fericit." },
           { q: "4) Care e cel mai frumos moment pe care l-ai trăit alături de un vizitator?", a: "Un moment foarte frumos a fost când am cunoscut-o pe Mida – i-am gătit micul dejun tradițional, a fost o dimineață frumoasă, ne-am cunoscut și am devenit prieteni. Altă poveste este cu niște turiști din Japonia. Le-am arătat locuri minunate, le-am gătit și s-au bucurat foarte mult. Le-au plăcut studiourile de film și am devenit prieteni." },
           { q: "5) Dacă ai putea arăta unui străin doar un singur loc sau moment din viața ta de aici, ce ai alege? De ce?", a: "Le-aș arăta orașul Aït Ben Haddou și le-aș găti mâncăruri tradiționale. Asta ne reprezintă – cultura, ospitalitatea și bucătăria noastră." },
@@ -387,7 +389,7 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
 
 De la primul mesaj, până la întâlnirea noastră, pe o plajă din celebra Bali, au fost multe etape de trecut. Dar când momentul a venit, totul a fost pur și simplu… magic.
         
-Povestea completă – care se întinde pe câteva capitole și zeci de pagini — o puteți citi în cartea mea:
+Povestea completă – care se întinde pe câteva capitole și zeci de pagini – o puteți citi în cartea mea:
 „Pași prin Indonezia: Când Bali îți atinge sufletul.”
         
 Un an mai târziu, ne-am revăzut. De data asta, în Ubud. Închiriasem o căsuță în mijlocul junglei tropicale, ca să pot termina un curs online. Acolo, între frangipani, ofrande și liniște, am cunoscut-o cu adevărat pe Irina.
@@ -509,7 +511,7 @@ Ce nu a menționat Inggi este că pentru tot ce a făcut – drumul de peste 40 
 Ba mai mult: mi-a plătit și biletul de vapor spre Gorontalo.
 Am întrebat-o de ce, după toate gesturile ei deja copleșitoare. A ridicat ușor din umeri și mi-a spus, simplu:
         
-„Ești prietena mea.”
+— Ești prietena mea.
         
 Restul… sunt doar detalii.
         
@@ -526,7 +528,7 @@ P.S.
 Când ne-am oprit la o cafea, a probat rochița roșie pe care i-o dăruisem.
 A zâmbit, a făcut o piruetă și a spus cu o mândrie jucăușă:
 
-„Foarte sexy!”
+— Foarte sexy!
 
 Toată lumea a izbucnit în râs.
 Iar în ochii ei se vedea o fericire care nu avea nevoie de traducere.`,
