@@ -26,10 +26,10 @@ export const MEDIA = [
   {
     id: "trailer",
     type: "video",
-    title: "Midaway — trailer",
-    url: "https://www.youtube.com/shorts/HCYQA3cuoMM",
+    title: "Midaway — lansare website",
+    url: "https://youtu.be/YfaRLnoFP44",
     // thumb: "/assets/media/trailer.jpg",
-    tags: ["video", "teaser"],
+    tags: ["video", "lansare", "teaser"],
   },
 
   // INTERVIURI (YouTube)
