@@ -77,6 +77,7 @@ The first time, I ordered breakfast. Delicious, I have to admit.
 The next day, I came back and ordered exactly the same thing, thinking fondly of the day before.
 But surprise – I received something else. Still delicious, but the presentation was totally different.
 A little confused, I called the waiter and said, laughing:
+
 — Yesterday I ordered the same thing, but it looked completely different. Did you change the chef?
         
 What he understood – no idea. But a few minutes later, guess what: the chef came to my table.
@@ -91,6 +92,7 @@ Everyone there instantly knew I had arrived.
 It was funny to watch how the whole staff lit up.
         
 And then Farid appeared from the back, smiling. He said:
+
 — Since we didn’t manage to meet your expectations yesterday, today I’ll cook something special for you… even if you ordered the regular menu.
         
 And he did. It was the most delicious breakfast I’ve ever had.
@@ -280,8 +282,13 @@ Am ajuns într-un bar plin doar de bărbați. Toți s-au uitat la mine ca la o a
         
 Erau cam doi kilometri. Pe drum, mulți bărbați. Unul mă urmărea și tot spunea ceva. Simțeam că vreau doar să scap. Când, dintr-o dată, văd o firmă luminoasă: hotel.
         
-Fără să mai stau pe gânduri, am traversat strada și am intrat. Miros de praf peste tot. A apărut un băiat tânăr – am aflat apoi că avea 17 ani. Nu vorbea engleză, doar câteva cuvinte. Mi-a arătat o cameră cu trei paturi. I-am zis: „Ceva mai mic, buget redus…”
-A zâmbit și mi-a făcut semn spre un divan în hol: „Așteaptă.”
+Fără să mai stau pe gânduri, am traversat strada și am intrat. Miros de praf peste tot. A apărut un băiat tânăr – am aflat apoi că avea 17 ani. Nu vorbea engleză, doar câteva cuvinte. Mi-a arătat o cameră cu trei paturi. I-am zis: 
+
+— Ceva mai mic, buget redus…
+
+A zâmbit și mi-a făcut semn spre un divan în hol: 
+
+— Așteaptă.
         
 Și atunci a apărut el: Kaci.
 Fratele mai mare. Și de acolo… a început povestea.
@@ -330,7 +337,13 @@ Maybe two kilometers. But the streets were full of men. One of them followed me,
         
 I forgot about food and town and crossed the street straight into the building. The smell of dust everywhere. A young boy, maybe 17, appeared. Hardly spoke any English. He showed me a room with three beds.
         
-I tried to explain: “Small room, low budget…” He smiled and pointed to a couch in the lobby: “Wait.”
+I tried to explain: 
+
+— Small room, low budget…
+
+He smiled and pointed to a couch in the lobby: 
+
+— Wait.
         
 And that’s when he came in – Kaci. The boy’s older brother. Both sons of the owner. And just like that, my story with Kaci began.
         
@@ -438,6 +451,7 @@ We’d eat, sip cappuccinos, and talk. Five hours often felt like five minutes. 
 Other times, she’d come to my little house. We’d make pancakes. Swim in the pool. Laugh a lot.
         
 When she found out I was leaving Ubud after three months, she smiled and said:
+
 — Just promise you won’t go without making pancakes one more time.
         
 And so, the day before I left, we made pancakes.
@@ -568,7 +582,7 @@ And even more: she paid for my ferry ticket to Gorontalo.
         
 When I asked her why – after everything she had already done – she simply shrugged and said:
         
-“You are my friend.”
+— You are my friend.
         
 Everything else… is just detail.
         
@@ -585,7 +599,7 @@ P.S.
 When we stopped for a coffee, she tried on the red dress I had given her.
 She smiled, spun around playfully, and said:
 
-“Very sexy!”
+— Very sexy!
 
 Everyone burst into laughter.
 And in her eyes, happiness shone in a way that needed no translation.`,

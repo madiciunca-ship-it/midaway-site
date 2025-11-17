@@ -37,16 +37,24 @@ const travelers = [
         blog: "",
       },
       ro: {
-        intro: `Pe Adi l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: „Cum e în Bali?”
+        intro: `Pe Adi l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: 
+
+— Cum e în Bali?
   
-De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj, începuturi. Mi-a spus atunci ceva ce nu am uitat: „Nu-ți face griji. O să-ți fiu alături cu tot ce pot.” Și așa a fost.
+De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj, începuturi. Mi-a spus atunci ceva ce nu am uitat: 
+
+— Nu-ți face griji. O să-ți fiu alături cu tot ce pot.
+
+Și așa a fost.
   
 Am plecat două luni mai târziu – nu spre Bali, ci spre Palawan, în Filipine. Iar după câteva luni, drumul m-a dus, inevitabil, și în Bali. Adi mi-a trimis fișiere, trasee, contacte, mici secrete de călătorie. Oriunde mergeam, el era la celălalt capăt al telefonului, gata să mă ajute, de la mii de kilometri distanță.
   
 Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sprijinul meu „tehnic” – omul care repara, de la distanță, orice problemă aveam cu laptopul. Ne-am revăzut abia după doi ani și jumătate, la lansarea cărților mele.
   
 Totul a pornit de la un mesaj simplu:
-„Hey, crezi că e safe să plec singură în Asia?”
+
+— Hey, crezi că e safe să plec singură în Asia?
+
 Și da, a fost mai safe decât mi-aș fi imaginat vreodată – pentru că, uneori, oamenii potriviți apar exact când ai nevoie de ei.`,
         qna: [
           { q: "1. Cine ești în câteva fraze?", a: "Sunt Adrian, am 33 de ani, sunt din România și, deși sunt IT-ist de profesie, sufletul meu aparține aventurii și descoperirii. Sunt un visător care crede că fiecare loc, om și moment are o poveste de spus. Dansul latino e felul meu de a simți viața, iar călătoriile – modul în care o trăiesc cu adevărat. Am explorat până acum 34 de țări de pe 4 continente, mereu cu aparatul foto în rucsac și o curiozitate care nu se oprește niciodată. Îmi place să citesc, să ascult muzică, să merg la sală și să mă pierd în locuri noi, unde pot învăța ceva despre lume și despre mine." },
@@ -66,10 +74,14 @@ Totul a pornit de la un mesaj simplu:
       en: {
         intro: `I first met Adi years ago, back when we were both taking dance classes. Back then, I had no idea what role he would one day play in my story.
         
-A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was actually there. We had never really talked before, but I wrote to him on Facebook: “Hey, how’s Bali?”
+A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was actually there. We had never really talked before, but I wrote to him on Facebook: 
+
+— Hey, how’s Bali?
         
 That’s how it all began. We started chatting, I asked him countless questions about traveling solo – safety, courage, what it really feels like. He told me something I’ll never forget:
-“Don’t worry. I’ll be there to help you with anything I can.”
+
+— Don’t worry. I’ll be there to help you with anything I can.
+
 And he was.
 
 Two months later, I left – not to Bali, but to Palawan, in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, encouraging.
@@ -77,7 +89,9 @@ Two months later, I left – not to Bali, but to Palawan, in the Philippines. A 
 Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which constantly broke down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
 
 And to think it all started with one message:
-“Hey, do you think it’s safe for me to travel alone in Asia?”
+
+— Hey, do you think it’s safe for me to travel alone in Asia?
+
 Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "I’m Adrian, 33 years old, I am from Romania, and although I’m an IT professional, my heart belongs to adventure and discovery. I’m a dreamer who believes that every place, person, and moment has a story to tell. Latin dance is how I feel life; traveling is how I truly live it. So far, I’ve explored 34 countries across 4 continents, always with my camera in my backpack and a curiosity that never rests. I love reading, listening to music, working out, and getting lost in new places where I can learn something about the world – and about myself." },
@@ -134,7 +148,7 @@ Am petrecut o dimineață împreună – am vizitat Basilica din centru și am m
     
 Ocazional, ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
     
-“Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!”
+— Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!
     
 Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: da, este.`,
         qna: [
@@ -179,7 +193,7 @@ We spent a morning together – visited the central Basilica and ate pistachio c
 From time to time, we still write to each other.
 Just a few days ago, she sent me a message that made me smile:
     
-Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
+— Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
     
 I had never really thought of Yulia as a traveler – but her message told me everything I needed to know: she is one.`,
         qna: [
@@ -243,7 +257,8 @@ I had never really thought of Yulia as a traveler – but her message told me ev
 Eram acolo de două zile, pierdută printre străduțele labirintice ale Medinei, și în pagina lui mi-a atras atenția ceva. 
 Avea acolo o mică poveste despre oamenii pe care i-a întâlnit în călătoriile lui și despre țările vizitate. Nicio urmă de „România”. Asta m-a intrigat. 
 I-am scris: 
-„Hey, vrei să ai și o româncă în lista ta? Am văzut că îți lipsește.” 
+
+— Hey, vrei să ai și o româncă în lista ta? Am văzut că îți lipsește.
 
 Probabil a zâmbit. Dar a doua zi, spre surprinderea mea, a venit după mine cu mașina și m-a dus să vizitez un mic orășel din apropiere – Ifrane, renumitul „oraș austriac al Marocului”. 
 
@@ -280,7 +295,8 @@ I had been there for two days, wandering through the labyrinthine streets of the
 He had written a short story about the people he’d met on his travels and the countries he had visited – but there was no mention of “Romania.” That intrigued me.
         
 So I wrote to him: 
-“Hey, would you like to have a Romanian on your list? I noticed you’re missing one.”
+
+— Hey, would you like to have a Romanian on your list? I noticed you’re missing one.
         
 He probably smiled. But the next day, to my surprise, he came to pick me up by car and took me to visit a small nearby town – Ifrane, known as “the Austrian town of Morocco.”
 
@@ -563,7 +579,8 @@ Heidi, din Scoția. O rebelă, exact opusul meu – cum chiar ea s-a definit. Ar
 Mi-a povestit cum a cutreierat lumea, cum și-a urmat impulsurile, cum s-a aruncat în experiențe brute, uneori frumoase, alteori dureroase.
         
 Dar fraza care m-a cucerit a fost asta:
-„Când am nevoie de bani, mă pot opri să-i fac… când nu, pot călători.”
+
+— Când am nevoie de bani, mă pot opri să-i fac… când nu, pot călători.
         
 Face meditații și stretching pe plajă. Pictează – nu doar ca hobby, ci ca o formă de respirație. Trăiește liber.
 Și iar Universul a muncit în culise: cu o zi înainte își schimbase hostelul. Inițial îl alesese pe cel la care trebuia să merg și eu – Eco Hostel. Dar a schimbat planurile și a ales aici, pentru trei nopți.
@@ -605,7 +622,8 @@ An artist, a lifelong traveler, a woman who carries inside stories fit for three
 She told me how she’s wandered the world, how she’s followed her impulses, how she’s thrown herself into raw experiences – some beautiful, others painfully deep.
         
 But the sentence that won me completely was this one.
-“When I need money, I can stop and make it… and when I don’t, I can travel.”
+
+— When I need money, I can stop and make it… and when I don’t, I can travel.
         
 She meditates and stretches on the beach. She paints – not as a hobby, but as a way to breathe. She lives freely.
 And again, the Universe worked behind the scenes: the day before, she had changed her hostel.
@@ -684,7 +702,9 @@ Nu eu am ales insula.
 Insula m-a ales pe mine.
         
 Sam, proprietarul micuțului resort din Arborek, a insistat să merg acolo. M-a sunat, m-a convins, iar eu i-am spus:
-„Dacă ajung în port și încă ești acolo, vin cu tine. Dacă nu… nu sta după mine.”
+
+— Dacă ajung în port și încă ești acolo, vin cu tine. Dacă nu… nu sta după mine.
+
 Dar Universul mă voia acolo.
 Și a avut grijă să fie.
         
@@ -735,7 +755,9 @@ I didn’t choose the island.
 The island chose me.
         
 Sam, the owner of the little homestay in Arborek, insisted that I go to his place. He called me, insisted again, and I told him:
-“If I reach the port and you’re still there, I’ll come with you. If not… don’t wait for me.”
+
+— If I reach the port and you’re still there, I’ll come with you. If not… don’t wait for me.
+
 But the Universe wanted me there.
 And it made sure I arrived.
         
