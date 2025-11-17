@@ -137,6 +137,17 @@ export default function BookPurchasePanel({ book, bookId }) {
     ([k, v]) => k !== "amazon" && v?.url && v?.visible !== false
   );
 
+  // vendorul principal (Amazon sau primul din lista de alți parteneri - ex. Novela)
+const mainVendor = hasAmazon
+? { key: "amazon", label: "Amazon" }
+: otherVendors[0]
+? {
+    key: otherVendors[0][0],
+    label: otherVendors[0][1].label || otherVendors[0][0],
+  }
+: null;
+
+
   // adaugă în coș
   const onAdd = (format) => {
     const fmt = String(format || "").toUpperCase();
@@ -184,13 +195,25 @@ export default function BookPurchasePanel({ book, bookId }) {
     // „în curând” doar dacă NU e vânzare externă
     const showSoon = !avail && !isExternal;
 
-    // text preț
-    const priceText = isExternal
-      ? vendors?.amazon?.priceLabel ||
-        (langLabel === "EN" ? "price on Amazon" : "preț pe Amazon")
-      : avail
-      ? money(price, currencyLabel)
-      : money(0, currencyLabel);
+    /// text preț
+const priceText = isExternal && mainVendor
+? vendors?.[mainVendor.key]?.priceLabel ||
+  (langLabel === "EN"
+    ? `price at ${mainVendor.label}`
+    : `preț la ${mainVendor.label}`)
+: avail
+? money(price, currencyLabel)
+: money(0, currencyLabel);
+
+const vendorTermsText = mainVendor
+  ? langLabel === "EN"
+    ? `delivery & returns as per ${mainVendor.label} terms`
+    : `livrare & retur conform termenilor ${mainVendor.label}`
+  : langLabel === "EN"
+  ? "delivery & returns as per store terms"
+  : "livrare & retur conform termenilor magazinului";
+
+
 
     return (
       <div
@@ -301,16 +324,17 @@ export default function BookPurchasePanel({ book, bookId }) {
               </a>
             ))}
 
-            <div
-              style={{
-                fontSize: 11,
-                color: "#666",
-                textAlign: "center",
-                marginTop: 6,
-              }}
-            >
-              delivery & returns as per Amazon terms
-            </div>
+<div
+  style={{
+    fontSize: 11,
+    color: "#666",
+    textAlign: "center",
+    marginTop: 6,
+  }}
+>
+  {vendorTermsText}
+</div>
+
 
             {/* Opțional: păstrezi și varianta internă */}
             {avail && price > 0 && (

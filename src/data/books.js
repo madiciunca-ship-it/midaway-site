@@ -33,7 +33,7 @@ export const BOOKS = [
     tags: ["eBook", "PDF", "EPUB", "călătorii"],
     format: "eBook",
 
-    prices: { PDF: 5, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
+    prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
@@ -113,6 +113,14 @@ export const BOOKS = [
 
     tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
     format: "eBook",
+
+    vendors: {
+      novela: {
+        url: "https://novela.ro/zile-si-nopti-de-vietnam-mida-malena-978-973-0-41386-1",
+        label: "Novela",
+        visible: false,
+      },
+    },
 
     prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
