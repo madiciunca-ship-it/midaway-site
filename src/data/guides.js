@@ -475,25 +475,61 @@ I recommend her with all my heart.`,
     // ────────────────────────────────────────────────────────────
     {
       id: "inggi-luwuk",
-      emoji: "🌸",
+      emoji: "🌿",
       name: { ro: "Inggi — Ghidul care într-o clipă de ploaie transformă natura în poezie", en: "Inggi — The guide who turns a moment of rain into a poem of nature" },
       tagline: { ro: "Blândă. Naturală. Curajoasă.", en: "Gentle. Natural. Brave." },
       cover: "/assets/guides/inggi-luwuk/inggicover.webp",
       gallery: [
-        "/assets/guides/inggi-luwuk/1.webp",
-        "/assets/guides/inggi-luwuk/2.webp",
-        "/assets/guides/inggi-luwuk/3.webp",
+        "/assets/guides/inggi-luwuk/inggi1.webp",
+        "/assets/guides/inggi-luwuk/inggi2.webp",
+        "/assets/guides/inggi-luwuk/inggi3.webp",
       ],
       socials: {
-        instagram: "",
-        facebook: "",
-        tiktok: "",
+        instagram: "https://www.instagram.com/nggisptri_/",
+        facebook: "https://www.facebook.com/nggisptri",
+        tiktok: "https://www.tiktok.com/@dendrophilesixteennine?_r=1&_t=ZN-91U5QKqB8AY",
         youtube: "",
         website: "",
         blog: "",
       },
       ro: {
-        intro: ``,
+        intro: `Eram deja de două zile pe insulă. Încă mă resimțeam după accident, așa că evitam să merg mult pe jos și mă limitam la locurile din apropierea satului unde eram cazată.
+
+Într-una dintre plimbările scurte, am ajuns într-o lagună superbă, cu apă albastră ca cerneala diluată. Femeile spălau rufe în liniște, copiii se bălăceau în râsete, iar câțiva bărbați umpleau bidoane cu apă dintr-un pârâiaș care se vărsa dincolo de lagună.
+Totul părea desprins dintr-o lume paralelă. Eu stăteam pe margine, prinsă în vraja acelui loc.
+        
+Nu puteam înțelege cum, în mijlocul acelei frumuseți copleșitoare, oamenii continuau gesturi atât de simple, atât de omenești. Și exact atunci… a apărut ea: Inggi.
+        
+Când s-a așezat lângă mine, am știut imediat că vom deveni prietene. Și nu m-am înșelat. Povestea noastră o spune chiar ea, mai jos, atât de frumos încât nu o voi repeta. Doar completez câteva detalii mici, dar esențiale.
+        
+Da, ploaia m-a împiedicat să ajung la debarcader în ziua aceea. Dar, privind în urmă, așa trebuia să fie. Ziua următoare, pe vaporul spre Luwuk, mă aștepta o întâlnire neașteptată.
+Iar, per total, zilele petrecute în Banggai au fost magice – o liniște colorată, o umanitate caldă, o sinceritate rară.
+        
+Ce nu a menționat Inggi este că pentru tot ce a făcut – drumul de peste 40 de kilometri cu mașina unchiului ei, mâncarea, timpul, atenția – nu a vrut să ia niciun ban.
+Ba mai mult: mi-a plătit și biletul de vapor spre Gorontalo.
+Am întrebat-o de ce, după toate gesturile ei deja copleșitoare. A ridicat ușor din umeri și mi-a spus, simplu:
+        
+„Ești prietena mea.”
+        
+Restul… sunt doar detalii.
+        
+Mă privea cu o lumină blândă, ca și cum în fața ei coborâse, pentru o clipă, luna în propria curte.
+        
+Am plecat privind-o pe ea și pe prietena ei, cu lacrimi dulci-amare în colțul ochilor.
+Și nu, nu cred că există poveste pe care s-o poți inventa.
+Realitatea bate imaginația – de fiecare dată. Și cu mult.
+        
+I-am promis că într-o zi mă voi întoarce.
+Și da… îmi doresc din tot sufletul ca promisiunea asta să devină realitate.
+
+P.S.
+Când ne-am oprit la o cafea, a probat rochița roșie pe care i-o dăruisem.
+A zâmbit, a făcut o piruetă și a spus cu o mândrie jucăușă:
+
+„Foarte sexy!”
+
+Toată lumea a izbucnit în râs.
+Iar în ochii ei se vedea o fericire care nu avea nevoie de traducere.`,
         qna: [
           { q: "1) Cine ești în câteva cuvinte?", a: "Sunt o fată de 24 de ani, caldă, veselă și apropiată de natură. Am crescut fiind mereu înconjurată de frumusețea naturii și asta mi-a adus fericire. Iubesc animalele și am grijă de ele ori de câte ori le întâlnesc. Uneori, în pauzele dintre aventuri, creez mici bijuterii sau accesorii – brățare, coliere, brelocuri. Sunt o persoană optimistă și iubesc viața, natura, animalele și oamenii din jurul meu. Dacă îți e greu să ți amintești de mine, încearcă doar să ți amintești numele: INGGI SAPUTRI." },
           { q: "2) Unde trăiești și ce iubești cel mai mult la locul tău?", a: "Sunt din Luwuk, regiunea Banggai, o zonă din Sulawesi Central, formată din trei părți: Banggai, Insulele Banggai și Banggai Laut. Este un loc care, deși puțin cunoscut, ascunde o frumusețe naturală rară: dealuri, păduri tropicale, plaje izolate, peșteri spectaculoase și unele dintre cele mai clare lacuri și cascade din Indonezia. În Banggai, cascada Sempe impresionează prin jeturile sale largi, care curg în trepte de pe stânci acoperite cu mușchi. Piala cucerește prin culoarea turcoaz și liniștea pădurii din jur, iar Laumarang ascunde o peșteră misterioasă în spatele căderii de apă. Insulele Banggai găzduiesc lacul Paisupok, cu ape cristaline și reflexii ireal de frumoase, plaja Poganda – cu nisip alb și leagăne între palmieri – și peștera Babanang, unde se află o piscină naturală de un albastru hipnotizant. În Banggai Laut, natura devine și mai spectaculoasă: Tanjung Bandul are un arc natural sculptat de vânt și valuri, locul de snorkeling Bontolan te poartă într-un recif viu și colorat, iar lacul cu meduze Paisu Batongan este un paradis rar, unde poți înota printre creaturi delicate, fără teamă. Toate aceste locuri sunt dovada că Banggai este o comoară naturală ce merită descoperită pas cu pas." },
@@ -512,7 +548,45 @@ I recommend her with all my heart.`,
         story: [],
       },
       en: {
-        intro: ``,
+        intro: `I had already been on the island for two days. I was still recovering from the accident, so I avoided walking too much and stayed close to the village where I was staying.
+
+During one of my short walks, I reached a breathtaking lagoon, with water blue like diluted ink. Women were washing clothes, children were splashing and laughing, and a few men were filling containers with water from a small stream flowing beyond the lagoon.
+Everything felt unreal, as if borrowed from another world. I sat there, caught in its quiet spell.
+        
+I couldn’t understand how, right in the middle of such overwhelming beauty, people continued their simple, everyday rituals. And that’s when… she appeared: Inggi.
+        
+When she sat down next to me, I knew instantly that we would become friends. And I wasn’t wrong. She tells our story below, beautifully, so I won’t repeat it here. I’ll just add a few small but essential details.
+        
+Yes, the rain kept me from reaching the pier that day. But looking back, that’s exactly how it was meant to happen.
+The next morning, on the boat to Luwuk, an unexpected encounter was waiting for me.
+And in the end, the days I spent in Banggai were magical – warm-hearted, sincere, unforgettable.
+        
+What Inggi didn’t mention is that for everything she did – the 40-kilometer drive with her uncle’s car, the food, the time, the care – she refused to take any money.
+And even more: she paid for my ferry ticket to Gorontalo.
+        
+When I asked her why – after everything she had already done – she simply shrugged and said:
+        
+“You are my friend.”
+        
+Everything else… is just detail.
+        
+She looked at me with a gentle light, as if the moon itself had quietly descended into her backyard for a moment.
+        
+I left while looking at her and her friend, their eyes glistening with sweet, bittersweet tears.
+And no, I don’t believe a story like this can be invented.
+Reality always outshines imagination. By far.
+        
+I promised her that one day I would return.
+And yes… I truly hope that day will come.
+
+P.S.
+When we stopped for a coffee, she tried on the red dress I had given her.
+She smiled, spun around playfully, and said:
+
+“Very sexy!”
+
+Everyone burst into laughter.
+And in her eyes, happiness shone in a way that needed no translation.`,
         qna: [
           { q: "1) Who are you in a few words?", a: "I'm a 24-year-old girl who is warm, cheerful, and close to nature. I grew up surrounded by nature's beauty, and that's where I always found my happiness. I love and care for animals whenever I meet them. In between my adventures, I sometimes express my creative side by making small things like bracelets, necklaces, keychains, and bag hangers. I'm an optimistic person who loves life, nature, animals, and the people around me. If you have a bit of trouble remembering me, just remember my name: INGGI SAPUTRI." },
           { q: "2) Where do you live and what do you love most about your place?", a: "I’m from Luwuk, Banggai Regency in Central Sulawesi – a region divided into Banggai, the Banggai Islands, and Banggai Laut. Though lesser-known, it’s filled with rare natural beauty: hills, tropical forests, remote beaches, caves, and some of the clearest lakes and waterfalls in Indonesia. In Banggai, Sempe Waterfall impresses with wide, terraced flows over mossy cliffs. Piala is known for its turquoise pools, and Laumarang hides a cave behind its majestic cascade. The Banggai Islands are home to Paisupok Lake, crystal-clear and dreamlike; Poganda Beach, with white sand and ocean swings; and Babanang Cave, with an electric-blue natural pool beneath ancient rock. In Banggai Laut, nature becomes even more surreal: Tanjung Bandul features a giant rock arch carved by time, Bontolan offers vibrant coral reefs for snorkeling, and Paisu Batongan Jellyfish Lake lets you swim with gentle, stingless jellyfish in a magical setting. Banggai is truly a hidden gem, waiting to be explored." },
