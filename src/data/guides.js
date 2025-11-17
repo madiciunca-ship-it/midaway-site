@@ -478,7 +478,7 @@ I recommend her with all my heart.`,
       emoji: "🌸",
       name: { ro: "Inggi — Ghidul care într-o clipă de ploaie transformă natura în poezie", en: "Inggi — The guide who turns a moment of rain into a poem of nature" },
       tagline: { ro: "Blândă. Naturală. Curajoasă.", en: "Gentle. Natural. Brave." },
-      cover: "/assets/guides/inggi-luwuk/cover.webp",
+      cover: "/assets/guides/inggi-luwuk/inggicover.webp",
       gallery: [
         "/assets/guides/inggi-luwuk/1.webp",
         "/assets/guides/inggi-luwuk/2.webp",
