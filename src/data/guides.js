@@ -482,7 +482,7 @@ I recommend her with all my heart.`,
       gallery: [
         "/assets/guides/inggi-luwuk/inggi1.webp",
         "/assets/guides/inggi-luwuk/inggi2.webp",
-        "/assets/guides/inggi-luwuk/inggi3.webp",
+        "/assets/guides/inggi-luwuk/inggicover.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/nggisptri_/",

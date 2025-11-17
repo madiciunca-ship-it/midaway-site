@@ -538,11 +538,11 @@ We haven’t seen each other again since, but we still keep in touch – as if t
         en: "Creative. Brave. Free.",
       },
     
-      cover: "/assets/travelers/heidi-scotia/Heidicover.webp",
+      cover: "/assets/travelers/heidi-scotia/heidi1.webp",
       gallery: [
-        "/assets/travelers/heidi-scotia/1H.webp",
-        "/assets/travelers/heidi-scotia/2 H.webp",
-        "/assets/travelers/heidi-scotia/3H.webp",
+        "/assets/travelers/heidi-scotia/heidicover1.webp",
+        "/assets/travelers/heidi-scotia/heidi2.webp",
+        "/assets/travelers/heidi-scotia/heidi3.webp",
       ],
       socials: {
         instagram: "",
