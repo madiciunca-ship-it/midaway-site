@@ -70,6 +70,48 @@ const posts = [
     ]
   },
 
+  {
+    slug: "povestea-din-culise-cum-am-construit-site-ul",
+    title: "Povestea din culise: cum mi-am împins „piatra” până a devenit un website, o editură și un drum nou",
+    excerpt:
+      "Uneori, un simplu „nu știu” devine piatra pe care o împingi spre vârf. Așa a început drumul meu către propriul site, propria editură și o nouă versiune de mine.",
+    date: "2025-11-18",
+    tags: ["scris", "proces creativ", "culise", "editura", "proiecte"],
+    cover: "assets/blog/blog-4.jpg",
+    minutes: 8,
+    content: [
+      `Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început povestea site-ului meu. Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam.`,
+      
+      `În secunda aceea, am simțit cum ceva se mișcă în mine – o voce mică, aproape timidă, care îmi șoptea: „Poate tocmai pentru că nu știi… e momentul perfect să începi.” Acel „nu știu” avea să devină piatra mea: grea, alunecoasă, încăpățânată, dar exact piatra care trebuia împinsă.`,
+  
+      `Mult timp n-am înțeles metafora cu piatra urcată spre vârf. Până când am început să construiesc site-ul. Atunci piatra a prins contur: o simțeam cum alunecă, cum îmi rănește degetele, cum mă face să mă opresc și să mă întreb: „De ce te chinui? Pentru ce? Nu e mai simplu să renunți?”`,
+  
+      `Dar exista și cealaltă voce, caldă și încăpățânată, care nu ridica tonul niciodată: „Mai încearcă o dată. Hai. Încă o dată.” Între două căderi, am înțeles că nu vârful te schimbă, ci urcarea. Respirația grea, răbdarea, revenirea. Faptul că, de zece ori căzută, ridici piatra a unsprezecea oară.`,
+  
+      `Tot ce descopeream era necunoscut. Linii de cod într-o limbă străină, setări bizare, un labirint tehnic pe care încercam să-l înțeleg în timp ce îl parcurgeam. Eu voiam doar un loc unde să-mi vând cărțile. Atât. Dar piatra avea alt plan.`,
+  
+      `Apoi a venit momentul declanșator. Într-un webinar, un tip a spus cu o simplitate aproape sfidătoare: „Mi-am făcut singur automatizările. Mi-am construit singur site-ul.” În mine s-a făcut liniște, o liniște densă, ca aerul care se strânge înaintea furtunii. „Dacă el poate… de ce eu nu?” A fost pentru prima dată când piatra mea chiar s-a urnit.`,
+  
+      `N-am știut ce fac – deloc. Fiecare buton, fiecare setare, fiecare eroare roșie era un mister. Dar era un mister pe care simțeam nevoia să-l descifrez. Puțin câte puțin. Când nu-mi plăcea ce ieșea, o luam de la capăt. Când apărea un gând nou – „Dar dacă îl fac așa?” – testam. Când ceva se bloca, mă enervam, respiram și reveneam.`,
+  
+      `De multe ori îmi spuneam în gând: „Nu înțeleg nimic.” Dar câteva secunde mai târziu auzeam: „Dar dacă mai încerc?” Și asta era, de fapt, lupta. Nu cu platforma, nu cu tehnicul. Cu mine însămi: cu nerăbdarea, cu frica de greșeală, cu impulsul de a renunța. Și totuși… reveneam. Pentru că undeva, dincolo de frustrare, era o forță care mă trăgea înainte: „Nu vei ști niciodată ce poți dacă nu rămâi aici. Încă puțin. Încă un pas.”`,
+  
+      `Într-o zi, după multe ore de muncă, am observat că nu eu îmi construiam site-ul. El mă construia pe mine. Îmi rupea orgoliul, îmi cerea răbdare, mă obliga să mă întreb: „Ce vrei, de fapt? Îți e frică sau doar cauți scuze? Ai nevoie de perfecțiune sau ai nevoie de un început?”`,
+  
+      `Atunci am înțeles că nu mă temeam de muncă și nici măcar de necunoscut. De fapt, necunoscutul începea să mă atragă. Și am realizat că trecutul nu e o povară, ci o busolă. Fiecare alegere, oricât de mică, te împinge undeva. Iar toate drumurile mele m-au adus aici: la propriul meu website, la propria mea editură, la propria mea poveste spusă în felul meu.`,
+  
+      `Există un moment înainte de lansarea unui proiect în care timpul se dilată. Totul în jur tace, dar în tine ceva bate altfel – nu de teamă, ci de presimțire. Așa a fost în ziua în care am apăsat „publică”. În inima mea ceva a spus: „Respiră. Uite, exact acum începe.” A fost ca lumina rece de dinaintea zorilor: inevitabilă și limpede.`,
+  
+      `Da, am construit un site. Da, am fondat o editură. Da, am un loc în care îmi pot vinde cărțile așa cum vreau. Dar, în realitate, am construit un spațiu viu, care respiră odată cu mine. Un drum care nu va fi niciodată complet. Un loc pe care îl voi modela, rescrie și îmbogăți, exact ca piatra pe care am împins-o până aici.`,
+  
+      `Poate că asta e frumusețea: nu e niciodată gata. Pentru că nici eu nu sunt. Și poate că nici nu contează cât de greu a fost. Poate că totul – absolut totul – m-a adus exact aici. Și simt, cu o liniște interioară ciudat de limpede, că e doar începutul.`,
+  
+      `Poate ai ajuns aici întâmplător. Poate ești pentru prima dată pe pagina mea. Dar dacă citești asta… deja faci parte din poveste. O poți simți. O poți trăi. O poți lua cu tine. Eu mi-am împins „piatra” până aici. De azi înainte, o iau cu mine mai departe – cu altă energie, altă claritate, altă bucurie. Cu un site, cu o editură, cu un drum care m-a ales, de fapt, pe mine.`,
+  
+      `Mida Malena, 18 noiembrie 2025`
+    ]
+  },
+  
   // 🔒 MODEL INVIZIBIL – COPY/PASTE când adaugi articol nou.
   // Setează draft: false sau șterge proprietatea ca să devină vizibil.
   /*
