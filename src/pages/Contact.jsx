@@ -55,9 +55,14 @@ export default function Contact() {
     <div className="container" style={{ padding: "32px 0 48px", maxWidth: 900 }}>
       <header className="font-cormorant" style={{ marginBottom: 16 }}>
         <h1 style={{ margin: 0, fontSize: 40 }}>📬 Contact</h1>
-        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Scrie-ne dacă vrei să publici, să colaborezi sau doar să povestim despre cărți.
-          Ne bucurăm să descoperim oameni, idei și proiecte care vor să prindă viață.
+        <p style={{ color: "var(--secondary)", marginTop: 10 }}>
+        Scrie-ne dacă vrei să publici, să colaborăm sau doar să povestim despre cărți și drumuri. 
+        
+        La Midaway credem în întâlniri adevărate – cu oameni, cu idei și cu proiecte care așteaptă să prindă viață. 
+        
+        Fie că ai un manuscris, o poveste, o întrebare sau o intenție, ne bucurăm să te cunoaștem. 
+        
+        Fiecare mesaj deschide o ușă spre o poveste nouă.
         </p>
         <p style={{ color: "var(--secondary)", marginTop: 4 }}>
           ✉️{" "}
