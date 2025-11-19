@@ -138,7 +138,7 @@ export default function Guides() {
         <p style={{ color: "var(--secondary)", marginTop: 8, fontSize: 18 }}>
           {lang === "en"
             ? "People who live the place they show – recommended from the heart."
-            : "Oameni care trăiesc locul pe care îl arată – recomandați din inimă."}
+            : "Oameni care trăiesc cu adevărat locul pe care îl arată – recomandați din suflet."}
         </p>
 
         <div style={{ color: "#222", lineHeight: 1.8, fontSize: 18 }}>
