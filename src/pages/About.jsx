@@ -62,9 +62,9 @@ export default function About() {
             <br />
             <br />
             În cei doi ani de rătăcire prin Asia am înțeles că nu ne alegem poveștile –
-            <em> ele ne aleg pe noi</em>. Că uneori trebuie să te pierzi cu totul, ca să începi
-            cu adevărat. Și că lumea nu se poate cunoaște decât trăind-o, cu rucsacul
-            în spate și sufletul deschis.
+            <em> ele ne aleg pe noi</em>. Că uneori trebuie să te pierzi cu totul ca să începi
+            cu adevărat. Și că lumea nu poate fi cunoscută decât trăind-o: 
+            cu rucsacul în spate și cu sufletul deschis.
             <br />
             <br />
             MIDAWAY s-a născut din această certitudine: să facem loc textelor care
@@ -73,12 +73,11 @@ export default function About() {
             <br />
             <br />
             Așa am început: cu pași mici, cu întrebări mari și cu o singură certitudine –
-            că fiecare pas poate deveni o poveste. Și fiecare poveste – un început
+            că fiecare pas poate deveni o poveste. Iar fiecare poveste – un început
             pentru altcineva.
             <br />
             <br />
-            Bine ai venit în Midaway. O lume care se clădește pe curaj, libertate și
-            adevăr. Pas cu pas.
+            Bine ai venit în Midaway. O lume construită pe curaj, libertate și adevăr. Pas cu pas.
             <br />
         
     
@@ -87,8 +86,8 @@ export default function About() {
           <p style={{ marginTop: 16, lineHeight: 1.7 }}>
             Totul a pornit dintr-o întrebare simplă:{" "}
             <em>„Ce se întâmplă cu visul când ajungi să-l trăiești?”</em>.
-            Am ales necunoscutul în locul confortului și am pornit la drum. Din aceste
-            experiențe s-au născut cărți, articole și proiecte care astăzi alcătuiesc Midaway.
+            Am ales necunoscutul în locul confortului și am pornit la drum. 
+            Din aceste experiențe s-au născut cărțile, articolele și proiectele care astăzi conturează Midaway.
           </p>
 
           <blockquote
@@ -105,13 +104,13 @@ export default function About() {
 
           <h2>✨ Ce este Midaway?</h2>
           <ul style={{ lineHeight: 1.9 }}>
-            <li>✍️ <strong>Editură</strong> pentru jurnale de drum, eseuri, proză scurtă și traduceri curate</li>
+            <li>✍️ <strong>Editură</strong> pentru jurnale de drum, eseuri, proză scurtă și traduceri atent lucrate</li>
             <li>🖋️ <strong>Autori Midaway</strong> – vocile independente care scriu lumea</li>
             <li>📚 <strong>Biblioteca Midaway</strong> – fragmente, lecturi și o arhivă vie pentru comunitate</li>
             <li>🎙️ <strong>Conținut media</strong> – podcasturi, interviuri și minidocumentare</li>
             <li>🌄 <strong>Evenimente & Retreaturi</strong> – spații pentru scris, respirație și întâlniri vii (în curând)</li>
-            <li>🌍 <strong>Călători Midaway</strong> – oameni care descoperă lumea cu ochii și inima, împărtășind povești de drum</li>
-            <li>🧭 <strong>Ghizi & Localnici</strong> – prieteni ai locului, cei care trăiesc și arată lumea cu autenticitate</li>
+            <li>🌍 <strong>Călători Midaway</strong> – oameni care descoperă lumea cu ochii și cu inima, împărtășind povești de drum</li>
+            <li>🧭 <strong>Ghizi & Localnici</strong> – cei care trăiesc locurile și le arată cu autenticitate</li>
             <li>🤝 <strong>Implică-te</strong> – colaborări și parteneriate culturale care dau sens</li>
           </ul>
 
