@@ -138,8 +138,8 @@ export default function About() {
             <br />
             <br />
             Midaway is an <strong>independent publishing house</strong> and an open space for
-            living stories – texts that spark dialogue, courage, and closeness. It began on a long journey
-            and from the desire to gather voices that are not heard enough, to give them a place
+            living stories – texts that spark dialogue, courage, and connection. It began on a long journey
+            and from the desire to gather voices that are not heard often enough, to give them a place
             where words become a path and an encounter.
             <br />
             <br />
@@ -153,7 +153,7 @@ export default function About() {
             and respect for the author – these are our guiding values.
             <br />
             <br />
-            This is how it began: with small steps, big questions, and one single certainty –
+            This is how it began: with small steps, big questions, and a single certainty –
             that every step can become a story. And every story – a beginning for someone else.
             <br />
             <br />
@@ -182,14 +182,14 @@ export default function About() {
 
           <h2>✨ What is Midaway?</h2>
           <ul style={{ lineHeight: 1.9 }}>
-            <li>✍️ <strong>Publishing house</strong> for travel journals, essays, short stories, and refined translations</li>
-            <li>🖋️ <strong>Midaway Authors</strong> – independent voices that write the world</li>
+            <li>✍️ <strong>Publishing house</strong> for travel journals, essays, short stories, and carefully crafted translations</li>
+            <li>🖋️ <strong>Midaway Authors</strong> – independent voices who write the world as they live it</li>
             <li>📚 <strong>Midaway Library</strong> – fragments, readings, and a living archive for the community</li>
             <li>🎙️ <strong>Media content</strong> – podcasts, interviews, and mini-documentaries</li>
-            <li>🌄 <strong>Events & Retreats</strong> – spaces for writing, breathing, and real encounters (soon)</li>
-            <li>🌍 <strong>Midaway Travelers</strong> – people who discover the world with open eyes and hearts, sharing stories from the road</li>
-            <li>🧭 <strong>Guides & Locals</strong> – friends of the place, those who live and reveal the world with authenticity</li>
-            <li>🤝 <strong>Get involved</strong> – cultural collaborations and partnerships that bring meaning</li>
+            <li>🌄 <strong>Events & Retreats</strong> – spaces for writing, breathing, and real encounters (coming soon)</li>
+            <li>🌍 <strong>Midaway Travelers</strong> – people who explore the world with open eyes and open hearts, sharing stories from the road</li>
+            <li>🧭 <strong>Guides & Locals</strong> – those who live in the place and reveal it with authenticity</li>
+            <li>🤝 <strong>Get involved</strong> – cultural partnerships with meaning</li>
           </ul>
 
           <p style={{ marginTop: 20, lineHeight: 1.7 }}>
