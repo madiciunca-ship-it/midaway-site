@@ -131,8 +131,8 @@ export default function Authors() {
           }}
         >
           {lang === "en"
-            ? "We believe in authenticity and in voices that grow from real experience. Whether you're just starting or already published, Midaway offers space for editing, validation, and mindful promotion – a place where your voice matters."
-            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început sau ai cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta contează."}
+            ? "We believe in authenticity and in voices shaped by real experience. Whether you’re just beginning your journey or already have books in print, Midaway offers a space for careful editing, guidance, and thoughtful promotion – a place where your voice truly matters."
+            : "Credem în autenticitate și în voci care cresc din experiențe reale. Fie că ești la început de drum sau ai deja cărți publicate, Midaway oferă spațiu pentru editare, validare și promovare atentă – un loc în care vocea ta chiar contează."}
         </p>
 
         <div
