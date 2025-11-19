@@ -34,7 +34,7 @@ const INTRO_RO = (
     Pentru că fiecare om pe care l-am întâlnit a lăsat o amprentă în mine și, într-un fel, în fiecare dintre cărțile mele există câte puțin din fiecare dintre ei.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      CCitește aceste povești cu inima deschisă. 
+      Citește aceste povești cu inima deschisă. 
       S-ar putea să-ți dea curajul să-ți faci și tu bagajele – sau, măcar, să începi propria ta călătorie, oriunde te-ai afla.
     </p>
   </>
