@@ -21,23 +21,21 @@ const FOCUS = isMobile ? "center 12%" : "center top";
 const INTRO_RO = (
   <>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Eu sunt <b>Mida Malena</b> și, în ultimii trei ani, am călătorit prin lumi și prin mine.
-      Am adunat amintiri, oameni, povești și trăiri care mi-au schimbat felul
-      de a privi viața.
+      Eu sunt <b>Mida Malena</b> și, în ultimii trei ani, am călătorit prin lumi și prin mine însămi. 
+      Am adunat amintiri, oameni, povești și trăiri care mi-au schimbat felul de a privi viața.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut – prieten.
-      Fiecare interviu e o fereastră deschisă spre o altă lume, spusă cu vocea celui care a trăit-o.
-      Unii mi-au fost ghizi, alții prieteni – sau doar trecători frumoși în poveștile mele.
+    În rubrica „Călători”, adun vocile celor care și-au făcut din drum o casă și din necunoscut un prieten. 
+    Fiecare interviu e o fereastră deschisă către o altă lume, spusă cu vocea celui care a trăit-o. 
+    Unii mi-au fost ghizi, alții prieteni – iar alții doar trecători frumoși în propriile mele povești.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Am adunat infinit mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând.
-      Pentru că fiecare om pe care l-am întâlnit și-a lăsat o amprentă în mine,
-      și, cumva, în fiecare carte a mea există câte puțin din fiecare dintre ei.
+    Am adunat mult mai multe istorii decât pot încă așterne aici – dar vor veni toate, pe rând. 
+    Pentru că fiecare om pe care l-am întâlnit a lăsat o amprentă în mine și, într-un fel, în fiecare dintre cărțile mele există câte puțin din fiecare dintre ei.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Citește aceste povești cu inima deschisă. S-ar putea să-ți dea curajul să-ți faci și tu bagajele –
-      sau, măcar, să începi călătoria ta, oriunde te-ai afla.
+      CCitește aceste povești cu inima deschisă. 
+      S-ar putea să-ți dea curajul să-ți faci și tu bagajele – sau, măcar, să începi propria ta călătorie, oriunde te-ai afla.
     </p>
   </>
 );
@@ -45,22 +43,21 @@ const INTRO_RO = (
 const INTRO_EN = (
   <>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      I’m <b>Mida Malena</b>, and for the past three years I’ve been traveling – through the world and through myself.
-      I’ve gathered memories, faces, stories, and moments that have forever changed the way I see life.
+    I’m <b>Mida Malena</b>, and for the past three years I’ve been traveling – through the world and through myself. 
+    I’ve gathered memories, faces, stories, and moments that have changed the way I see life forever.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      In “Travelers”, I bring together the voices of those who have made the road their home and the unknown their friend.
-      Each interview is a window into another world – told in the voice of the one who lived it.
-      Some became my guides, others my friends – some just beautiful passersby in my own stories.
+    In Travelers, I bring together the voices of those who have made the road their home and the unknown their companion. 
+    Each interview is a window into a different world – told in the voice of the one who lived it. 
+    Some became my guides, others became friends, and some remained beautiful passersby in my own stories.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      I’ve collected far more stories than I can share here – but they’ll come, one by one.
-      Because every person I’ve met has left a trace in me,
-      and somehow, in each of my books, there’s a little piece of them.
+    I’ve collected far more stories than I can share here – but they’ll come, one by one. 
+    Every person I’ve met has left a trace in me, and in a way, each of my books carries a small piece of them.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Read these stories with an open heart. They might just give you the courage to pack your bags –
-      or simply to begin your own journey, wherever you are.
+    Read these stories with an open heart. 
+    They might give you the courage to pack your bags – or simply to begin your own journey, wherever you are.
     </p>
   </>
 );
