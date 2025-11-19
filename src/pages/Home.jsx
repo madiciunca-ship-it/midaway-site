@@ -37,7 +37,7 @@ const i18nHome = {
     hero_tagline: "Books that set out on a journey",
     hero_meta: "print & digital  • ro / en •  editing & design",
     hero_sub:
-      "Midaway is an independent publishing house born from journeys, encounters, and real stories. We publish travel literature, journals, and essays – and we also exploring portraits of authors, travelers, guides, and locals who inspire us to see the world differently. A space where stories become connection and inspiration.",
+      "Midaway is an independent publishing house born from journeys, encounters, and real stories. We publish travel literature, journals, and essays – and we also explore portraits of authors, travelers, guides, and locals who inspire us to see the world differently. A space where stories become connection and inspiration.",
     viziune_btn: "MIDAWAY VISION",
     card_carti_t: "Books",
     card_carti_s: "Inspiration, challenge, bold dreams.",
