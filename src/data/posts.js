@@ -74,7 +74,7 @@ const posts = [
     slug: "povestea-din-culise-cum-am-construit-site-ul",
     title: "Povestea din culise: cum mi-am împins „piatra” până a devenit un website, o editură și un drum nou",
     excerpt:
-      "Uneori, un simplu „nu știu” devine piatra pe care o împingi spre vârf. Așa a început drumul meu către propriul site, propria editură și o nouă versiune de mine.",
+      "Uneori, un simplu „nu știu” devine piatra pe care o împingi spre vârf. Așa a început drumul meu...",
     date: "2025-11-18",
     tags: ["scris", "proces creativ", "culise", "editura", "proiecte"],
     cover: "assets/blog/blog-4.jpg",
