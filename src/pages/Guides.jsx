@@ -14,20 +14,20 @@ const isMobile =
 const INTRO_RO = (
   <>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      <b>Ghizi, localnici, prieteni ai locului</b> – sunt rari, calzi și plini de povești.
+      <b>Ghizi, localnici, prieteni ai locului</b> – oameni rari, calzi și plini de povești.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Eu sunt <b>Mida Malena</b>. Am ajuns în locuri care mi-au tăiat respirația, dar ceea ce mi-a rămas în inimă au fost oamenii care m-au primit ca pe una de-a lor, care m-au ghidat cu răbdare prin peisaje, obiceiuri și cuvinte necunoscute. Oameni care mi-au arătat lumea nu doar cu ochii, ci și cu sufletul.
+      Eu sunt <b>Mida Malena</b>. Am ajuns în locuri care mi-au tăiat respirația, dar cei care mi-au rămas în inimă au fost oamenii care m-au primit ca pe una de-a lor – cei care m-au ghidat cu răbdare prin peisaje, obiceiuri și cuvinte necunoscute. Oameni care mi-au arătat lumea nu doar cu ochii, ci cu sufletul.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      În această rubrică adun vocile ghizilor locali – oameni care trăiesc cu adevărat locul pe care
-      îl arată. Fie că i-am întâlnit în sate uitate de lume, pe plaje pustii sau în mijlocul
-      orașelor agitate, fiecare dintre ei mi-a oferit o lecție de umanitate.
+    Aici adun vocile ghizilor locali – oameni care trăiesc cu adevărat locurile pe care le arată. 
+    Fie că i-am întâlnit în sate îndepărtate, pe plaje pustii sau în orașe vibrante, fiecare mi-a oferit o lecție de umanitate.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Aici nu e vorba despre turism. Ci despre oameni care fac lumea mai frumoasă – o zi, un zâmbet
-      și un drum pe rând. Dacă ajungi în locurile lor, caută-i. Ascultă-i. Spune-le că vii din
-      partea mea. Sau nu. Eu îi recomand nu pentru că trebuie. Ci pentru că merită.
+    Aici nu e vorba despre turism. 
+    E vorba despre oameni care fac lumea mai blândă – câte o zi, câte un zâmbet, câte un drum pe rând.
+    Dacă ajungi vreodată în locurile lor, găsește-i. Ascultă-i. Spune-le că te-am trimis eu – sau nu.
+    Îi recomand nu pentru că trebuie, ci pentru că merită din plin.
     </p>
   </>
 );
@@ -35,23 +35,20 @@ const INTRO_RO = (
 const INTRO_EN = (
   <>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      <b>Guides, locals, friends of the place</b> – rare, warm, and full of stories.
+      <b>Guides, locals, friends of the place</b> – rare people, warm people, people full of stories.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      I’m <b>Mida Malena</b>. I’ve reached places that took my breath away, but what stayed in my
-      heart were the people who welcomed me as one of their own, who patiently guided me through
-      landscapes, customs, and unknown words. People who showed me the world not only with their
-      eyes, but with their soul.
+      I’m <b>Mida Malena</b>. I’ve reached places that took my breath away, but what stayed with me were the people who welcomed me as one of their own – those who guided me patiently through landscapes, customs, and unfamiliar words. 
+      People who showed me the world not only with their eyes, but with their soul.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      Here I gather the voices of local guides – people who truly live the places they show. Whether
-      I met them in remote villages, empty beaches, or buzzing cities, each offered a lesson in
-      humanity.
+      Here I gather the voices of local guides – people who truly live the places they reveal. 
+      Whether I met them in remote villages, on empty beaches, or in bustling cities, each one offered me a lesson in humanity.
     </p>
     <p style={{ maxWidth: 1050, margin: "8px auto 0", lineHeight: 1.9 }}>
-      This isn’t about tourism. It’s about people who make the world gentler – one day, one smile,
-      one road at a time. If you reach their places, find them. Listen. Tell them I sent you – or
-      don’t. I recommend them not because I must – but because they deserve it.
+      This isn’t about tourism. It’s about people who make the world gentler – one day, one smile, one road at a time. 
+      If you ever reach their places, find them. Listen. Tell them I sent you – or don’t.
+      I recommend them not because I must, but because they genuinely deserve it.
     </p>
   </>
 );
