@@ -21,9 +21,9 @@ const projects = [
       "Căutăm literatura vie: texte care aprind dialog, curaj și apropiere. Fiecare carte este lucrată cu grijă – de la editare la tipar – pentru a rămâne.",
       "• Ce publicăm: jurnale de drum & memorii; eseuri & literatură de idei; proză scurtă & nonficțiune narativă; traduceri selectate din spații „mai puțin cartografiate”.",
       "• Cum lucrăm: curatoriere atentă și editare îngrijită; design tipografic clar, hârtie de calitate, tiraje sustenabile; tipărire locală și atenție la detaliul material; respect pentru autor – contract editorial, transparență, promovare.",
-      "Colecții:"
-      "• Jurnale de drum (călătorii care schimbă viața)"
-      "• Eseuri din mers (idei care luminează prezentul)"
+      "Colecții:",
+      "• Jurnale de drum (călătorii care schimbă viața)",
+      "• Eseuri din mers (idei care luminează prezentul)",
       "• Ficțiune vie (proză scurtă care respiră)",
     ],
     // butoanele din footer-ul paginii de detaliu
