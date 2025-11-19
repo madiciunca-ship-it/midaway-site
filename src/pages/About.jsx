@@ -139,12 +139,12 @@ export default function About() {
             <br />
             Midaway is an <strong>independent publishing house</strong> and an open space for
             living stories – texts that spark dialogue, courage, and connection. It began on a long journey
-            and from the desire to gather voices that are not heard often enough, to give them a place
+            and from a desire to gather voices that are not heard often enough, to give them a place
             where words become a path and an encounter.
             <br />
             <br />
             During two years of wandering through Asia, I understood that we do not choose our stories –
-            <em> they choose us</em>. That sometimes you must get completely lost to truly begin.
+            <em> they choose us</em>. That sometimes you have to lose yourself completely to truly begin.
             And that the world can only be known by living it – with a backpack on your shoulders and an open heart.
             <br />
             <br />
@@ -153,7 +153,7 @@ export default function About() {
             and respect for the author – these are our guiding values.
             <br />
             <br />
-            This is how it began: with small steps, big questions, and a single certainty –
+            This is how it began: with small steps, big questions, and one clear certainty –
             that every step can become a story. And every story – a beginning for someone else.
             <br />
             <br />
@@ -164,7 +164,7 @@ export default function About() {
 
           <p style={{ marginTop: 16, lineHeight: 1.7 }}>
             It all started with a simple question:{" "}
-            <em>“What happens to the dream once you begin to live it?”</em>.
+            <em>“What happens to the dream once you begin to live it?”</em>
             I chose the unknown over comfort and set out on the road. From these experiences
             came the books, articles, and projects that now shape Midaway.
           </p>
@@ -188,7 +188,7 @@ export default function About() {
             <li>🎙️ <strong>Media content</strong> – podcasts, interviews, and mini-documentaries</li>
             <li>🌄 <strong>Events & Retreats</strong> – spaces for writing, breathing, and real encounters (coming soon)</li>
             <li>🌍 <strong>Midaway Travelers</strong> – people who explore the world with open eyes and open hearts, sharing stories from the road</li>
-            <li>🧭 <strong>Guides & Locals</strong> – those who live in the place and reveal it with authenticity</li>
+            <li>🧭 <strong>Guides & Locals</strong> – those who live the place and reveal it with authenticity</li>
             <li>🤝 <strong>Get involved</strong> – cultural partnerships with meaning</li>
           </ul>
 
