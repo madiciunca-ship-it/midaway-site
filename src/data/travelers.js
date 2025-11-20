@@ -16,7 +16,7 @@ const travelers = [
    
       name: {
         ro: "Adi – Cel care mi-a dat curajul să plec",
-        en: "Adi – The one who gave me the courage to leave everything behind",
+        en: "Adi – The one who gave me the courage to leave",
       },
       tagline: {
         ro: "Curios. Aventuros. Adaptabil.",
@@ -37,35 +37,35 @@ const travelers = [
         blog: "",
       },
       ro: {
-        intro: `Pe Adi l-am cunoscut când făceam dansuri. Nu aveam atunci nici cea mai mică idee despre rolul pe care urma să-l joace în povestea mea. Câteva luni mai târziu, cochetam cu ideea de a pleca în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: 
+        intro: `Pe Adi l-am cunoscut pe vremea când făceam dansuri. Atunci nu aveam nicio idee ce rol urma să joace în povestea mea. Câteva luni mai târziu, cochetam cu gândul unei plecări în Bali, iar într-o seară am văzut o postare de-a lui – era fix acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu: 
 
 — Cum e în Bali?
   
-De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj și începuturi. Atunci mi-a spus ceva ce nu am uitat niciodată:
+De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj, începuturi. Mi-a spus atunci ceva ce nu am uitat: 
 
 — Nu-ți face griji. O să-ți fiu alături cu tot ce pot.
 
 Și așa a fost.
   
-Două luni mai târziu am plecat – nu spre Bali, ci spre Palawan, în Filipine. Iar câteva luni după aceea drumul m-a dus, inevitabil, și în Bali. Adi mi-a trimis fișiere, trasee, contacte și mici secrete de călătorie. Oriunde mergeam, el era la celălalt capăt al telefonului, gata să mă ajute, de la mii de kilometri distanță.
+Am plecat două luni mai târziu – nu spre Bali, ci spre Palawan, în Filipine. Iar după câteva luni, drumul m-a dus, inevitabil, și în Bali. Adi mi-a trimis fișiere, trasee, contacte, mici secrete de călătorie. Oriunde mergeam, el era la celălalt capăt al telefonului, gata să mă ajute, de la mii de kilometri distanță.
   
-Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sprijinul meu „tehnic” – omul care repara de la distanță orice problemă aveam cu laptopul. Ne-am revăzut abia după doi ani și jumătate, la lansarea cărților mele.
+Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sprijinul meu „tehnic” – omul care repara, de la distanță, orice problemă aveam cu laptopul. Ne-am revăzut abia după doi ani și jumătate, la lansarea cărților mele.
   
-Și totul pornise de la un simplu mesaj:
+Totul a pornit de la un mesaj simplu:
 
 — Hey, crezi că e safe să plec singură în Asia?
 
 Și da, a fost mai safe decât mi-aș fi imaginat vreodată – pentru că, uneori, oamenii potriviți apar exact când ai nevoie de ei.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "Sunt Adrian, am 33 de ani și sunt din România. Deși lucrez în IT, sufletul meu aparține aventurii și descoperirii. Sunt un visător care crede că fiecare loc, fiecare om și fiecare moment are o poveste de spus. Dansul latino este felul meu de a simți viața, iar călătoriile – modul în care o trăiesc cu adevărat. Până acum am explorat 34 de țări de pe 4 continente, mereu cu aparatul foto în rucsac și cu o curiozitate care nu se oprește niciodată. Îmi place să citesc, să ascult muzică, să merg la sală și să mă pierd în locuri noi, din care să învăț câte ceva despre lume – și despre mine." },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "Totul a pornit dintr-un vis din copilărie – dorința aceea pură de a descoperi lumea, de a vedea cum trăiesc alți oameni, ce gust are mâncarea lor, cum sună limba lor și ce tradiții îi definesc. Nu a fost un moment anume, ci mai degrabă o chemare care a crescut în mine în timp. Într-o zi mi-am dat seama că, dacă nu plec atunci, voi rămâne mereu cu întrebarea: „Cum ar fi fost dacă?”. Așa că mi-am luat rucsacul, aparatul foto și curajul – și am început să transform visul de copil într-un mod de viață." },
-          { q: "3. Când ai știut că merită?", a: "Am știut că merită din primele momente în care am simțit acea bucurie pură a drumului – senzația aceea de „trăiesc cu adevărat”. Fiecare loc nou îmi aducea un entuziasm greu de pus în cuvinte, dar au fost câteva momente care mi s-au întipărit adânc: prima dată când am pășit pe străzile din New York, când am văzut luminile din Las Vegas sau când am admirat Parisul noaptea. Atunci am înțeles că visul meu din copilărie devenise realitate – eram acolo, în locuri pe care le văzusem doar în filme, trăind emoții pe care altădată doar le visam." },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Nu pot spune că un singur loc m-a schimbat complet. Mai degrabă simt că fiecare loc pe care l-am vizitat a adăugat ceva la mine, ca o piesă într-un puzzle. Fiecare experiență, fiecare cultură, fiecare om întâlnit m-a completat puțin câte puțin. Pentru mine, călătoriile nu au fost despre o transformare bruscă, ci despre construcție – despre a mă descoperi pas cu pas prin tot ceea ce trăiesc și învăț de la lume." },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au învățat recunoștința. Cu fiecare țară vizitată am început să văd mai clar cât de multe lucruri avem și cât de puțin le apreciem uneori. Mi-am dat seama că, deși în România ne plângem des de neajunsuri, adevărul este că trăim într-un loc cu foarte multe lucruri frumoase – oameni, natură, libertate. În alte părți ale lumii am văzut cât de greu le este unora și cât de mult și-ar dori să aibă ceea ce noi considerăm „normal”. Călătoria m-a făcut mai recunoscător, mai conștient și mai prezent." },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Cele mai grele momente sunt mereu ultimele zile dintr-o călătorie – clipa în care trebuie să plec și să las totul în urmă. În rest, chiar și situațiile dificile m-au ajutat să cresc. Am învățat să rămân calm, indiferent cât de stresantă pare o situație, și să mă adaptez rapid. De fiecare dată când ceva nu ieșea cum planificasem, mă întrebam: „O să mai conteze asta peste cinci ani?” Dacă răspunsul era „nu”, respiram adânc, zâmbeam și mergeam mai departe." },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Sfatul meu e simplu: nu ezita. Niciodată nu va exista momentul „perfect” să pleci, iar fiecare zi în care amâni e o zi pierdută dintr-o poveste care ar putea fi a ta. Îmi place mult un citat de Mark Twain: „Peste douăzeci de ani vei fi mai dezamăgit de lucrurile pe care nu le-ai făcut decât de cele pe care le-ai făcut. Așa că ridică ancora, părăsește portul sigur, prinde vântul în pânze. Explorează. Visează. Descoperă.” Exact asta le-aș spune celor care stau pe gânduri: pornește acum, pentru că lumea nu te așteaptă." },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. Acolo împărtășesc momente din călătoriile mele, povești, experiențe și mici fragmente din felul în care văd lumea." },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Ne-am întâlnit prima oară acum 5–6 ani, la o petrecere de latino în Baia Mare. Ne-am văzut pe ringul de dans, am schimbat câteva vorbe spontan și apoi contactele pe Facebook. La început am rămas doar cunoscuți, iar tu îmi urmăreai din când în când aventurile și călătoriile. Cu timpul, discuțiile noastre despre lume și călătorii au devenit tot mai dese. Am început să împărtășim povești, impresii și recomandări, iar conexiunea noastră s-a transformat firesc dintr-o simplă cunoaștere într-o prietenie frumoasă – construită în jurul pasiunii pentru descoperirea lumii." },
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt Adrian, am 33 de ani, sunt din România și, deși sunt IT-ist de profesie, sufletul meu aparține aventurii și descoperirii. Sunt un visător care crede că fiecare loc, om și moment are o poveste de spus. Dansul latino e felul meu de a simți viața, iar călătoriile – modul în care o trăiesc cu adevărat. Am explorat până acum 34 de țări de pe 4 continente, mereu cu aparatul foto în rucsac și o curiozitate care nu se oprește niciodată. Îmi place să citesc, să ascult muzică, să merg la sală și să mă pierd în locuri noi, unde pot învăța ceva despre lume și despre mine." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Totul a pornit dintr-un vis din copilărie – dorința aceea pură de a descoperi lumea, de a vedea cum trăiesc alți oameni, ce gust are mâncarea lor, cum sună limba lor și ce tradiții îi definesc. Nu a fost un moment anume, ci mai degrabă o chemare care a crescut în mine în timp. Într-o zi mi-am dat seama că dacă nu plec acum, o să rămân mereu cu întrebarea „cum ar fi fost dacă?”. Așa că mi-am luat rucsacul, aparatul foto și curajul, și am început să transform visul de copil într-un mod de viață." },
+          { q: "3. Când ai știut că merită?", a: "Am știut că merită din primele momente în care am simțit acea bucurie pură pe drum – senzația că trăiesc cu adevărat. Fiecare loc nou îmi aducea o doză de entuziasm greu de descris, dar au fost momente care mi-au rămas adânc întipărite: când am pășit pentru prima dată pe străzile din New York, când am văzut luminile din Las Vegas sau când am admirat Parisul noaptea. Atunci mi-am dat seama că visul meu din copilărie devenise realitate – că eram acolo, în locuri pe care le văzusem doar în filme, trăind emoțiile pe care altădată doar le visam." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Nu pot spune că un anumit loc m-a schimbat complet. Mai degrabă simt că fiecare loc pe care l-am vizitat a adăugat ceva la mine, ca o piesă într-un puzzle. Fiecare experiență, fiecare cultură, fiecare om întâlnit m-a completat puțin câte puțin. Pentru mine, călătoriile nu au fost despre transformare bruscă, ci despre construcție – despre a mă descoperi pas cu pas prin tot ce trăiesc și învăț de la lume." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au învățat recunoștința. Cu fiecare țară vizitată am început să văd mai clar cât de multe lucruri avem și cât de puțin le apreciem uneori. Mi-am dat seama că, deși în România ne plângem des de neajunsuri, adevărul e că trăim într-un loc cu multe lucruri frumoase – oameni, natură, libertate. În alte părți am văzut cât de greu le este unora și cât de mult și-ar dori să aibă ceea ce noi considerăm „normal”. Călătoria m-a făcut să fiu mai recunoscător, mai conștient și mai prezent." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Cele mai grele momente sunt mereu ultimele zile dintr-o călătorie – clipa în care trebuie să plec și să las totul în urmă. În rest, chiar și situațiile dificile m-au ajutat să cresc. Am învățat să rămân calm, indiferent cât de stresantă pare o situație, și să mă adaptez rapid. De fiecare dată când ceva nu mergea cum planificasem, mă întrebam: „O să mai conteze asta peste cinci ani?” Dacă răspunsul era „nu”, atunci respiram adânc, zâmbeam și mergeam mai departe." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Sfatul meu e simplu: nu ezita. Niciodată nu va fi momentul „perfect” să pleci, dar fiecare zi în care amâni e o zi pierdută dintr-o poveste care ar putea fi a ta. Îmi place mult o zicală de la Mark Twain care spune: „Peste douăzeci de ani vei fi mai dezamăgit de lucrurile pe care nu le-ai făcut decât de cele pe care le-ai făcut. Așa că ridică ancora, pleacă din portul sigur, prinde vântul în pânze. Explorează. Visează. Descoperă.” Și exact asta le-aș spune celor care stau pe gânduri – pornește acum, pentru că lumea nu așteaptă." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. Acolo împărtășesc momente din călătoriile mele, povești, experiențe și fragmente din modul în care văd lumea." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Prima oară ne-am întâlnit acum 5-6 ani, la o petrecere de latino în Baia Mare. Ne-am văzut pe ringul de dans, am legat o conversație spontană și am schimbat contactele pe Facebook. La început am rămas doar cunoscuți, iar tu mi-ai urmărit aventurile și călătoriile din când în când. Cu timpul, discuțiile noastre despre lume și călătorii au devenit tot mai dese. Am început să împărtășim povești, impresii și recomandări, iar conexiunea noastră s-a transformat firesc dintr-o simplă cunoaștere într-o prietenie frumoasă – construită în jurul pasiunii pentru descoperirea lumii." },
         ],
         story: [
           "",
@@ -74,19 +74,19 @@ Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sp
       en: {
         intro: `I first met Adi years ago, back when we were both taking dance classes. Back then, I had no idea what role he would one day play in my story.
         
-A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was there. We had never really talked before, but I wrote to him on Facebook: 
+A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was actually there. We had never really talked before, but I wrote to him on Facebook: 
 
 — Hey, how’s Bali?
         
-That’s how it all began. We started chatting, and I asked him countless questions about travelling solo – safety, courage, what it truly feels like. He told me something I’ll never forget:
+That’s how it all began. We started chatting, I asked him countless questions about traveling solo – safety, courage, what it really feels like. He told me something I’ll never forget:
 
 — Don’t worry. I’ll be there to help you with anything I can.
 
 And he was.
 
-Two months later, I left – not to Bali, but to Palawan in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, and encouraging.
+Two months later, I left – not to Bali, but to Palawan, in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, encouraging.
 
-Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which kept breaking down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
+Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which constantly broke down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
 
 And to think it all started with one message:
 
@@ -94,15 +94,15 @@ And to think it all started with one message:
 
 Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "I’m Adrian, 33 years old, from Romania. Although I work in IT, my heart belongs to adventure and discovery. I’m a dreamer who believes that every place, every person, and every moment has a story to tell. Latin dance is how I feel life; traveling is how I truly live it. So far, I’ve explored 34 countries across 4 continents, always with my camera in my backpack and a curiosity that never stops growing. I love reading, listening to music, working out, and getting lost in new places where I can learn something about the world – and about myself." },
-          { q: "2. What made you start traveling?", a: "It all started with a childhood dream – that pure desire to discover the world, to see how other people live, what their food tastes like, how their language sounds, and what traditions shape them. It wasn’t a single moment, but rather a calling that grew inside me over time. One day I realized that if I didn’t leave then, I would always live with the question: “What if?”. So I packed my backpack, my camera, and my courage – and began turning that childhood dream into a way of life." },
-          { q: "3. When did you know it was worth it?", a: "I knew it was worth it from the very first moments when I felt that pure joy of being on the road – that feeling of truly being alive. Every new place brought a thrill that’s hard to describe, but a few moments stayed with me: the first time I walked through the streets of New York, saw the lights of Las Vegas, or admired Paris at night. That’s when I realized my childhood dream had become real – I was there, in places I had only seen in movies, living emotions I had once only imagined." },
-          { q: "4. A place that changed the way you see the world?", a: "I can’t say that one specific place completely changed me. I feel like every destination I’ve visited has added something to me – like a piece of a puzzle. Each experience, each culture, each person I’ve met has completed me little by little. For me, traveling was never about sudden transformation, but about growth – discovering myself step by step through everything I experience and learn from the world." },
-          { q: "5. How did traveling change you as a person?", a: "Travel has taught me gratitude. With every country I’ve visited, I’ve seen more clearly how much we have – and how little we sometimes appreciate it. I realized that although in Romania we often complain about what’s missing, the truth is that we live in a place full of beauty – in its people, its nature, and its freedom. In other parts of the world, I’ve seen how hard life can be, and how much some people wish for what we take for granted. Traveling made me more grateful, more aware, and more present." },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest moments for me are always the last days of a journey – that moment when you have to leave and say goodbye. Everything else, even the difficult parts, has helped me grow. I’ve learned to stay calm no matter how stressful things seem, and to adapt quickly. Whenever something didn’t go as planned, I would ask myself, “Will this matter in five years?” If the answer was “no,” I took a deep breath, smiled, and moved on." },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "My advice is simple: don’t hesitate. There will never be a “perfect” time to leave, and every day you wait is a day lost from a story that could be yours. I love a quote by Mark Twain: “Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.” And that’s exactly what I’d tell anyone who’s hesitating: start now, because the world won’t wait." },
-          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. That’s where I share travel moments, stories, experiences, and glimpses into how I see the world." },
-          { q: "9. Bonus: How did we meet?", a: "We first met about 5–6 years ago at a Latin dance party in Baia Mare. We crossed paths on the dance floor, had a spontaneous chat, and exchanged Facebook contacts. At first, we were just acquaintances, and you’d occasionally follow my travels and adventures. Over time, our conversations about the world and traveling became more frequent. We started sharing stories, impressions, and recommendations, and our connection naturally grew from a simple acquaintance into a beautiful friendship built around our shared passion for discovering the world." },
+          { q: "1. Who are you in a few sentences?", a: "I’m Adrian, 33 years old, I am from Romania, and although I’m an IT professional, my heart belongs to adventure and discovery. I’m a dreamer who believes that every place, person, and moment has a story to tell. Latin dance is how I feel life; traveling is how I truly live it. So far, I’ve explored 34 countries across 4 continents, always with my camera in my backpack and a curiosity that never rests. I love reading, listening to music, working out, and getting lost in new places where I can learn something about the world – and about myself." },
+          { q: "2. What made you start traveling?", a: "It all started with a childhood dream – that pure desire to discover the world, to see how other people live, what their food tastes like, how their language sounds, and what traditions define them. It wasn’t a single moment, but rather a calling that grew inside me over time. One day I realized that if I didn’t leave then, I’d always live with the question, “What if?” So I packed my backpack, my camera, and my courage – and began turning a childhood dream into a way of life." },
+          { q: "3. When did you know it was worth it?", a: "I knew it was worth it from the very first moments when I felt that pure joy of being on the road – the feeling that I was truly living. Every new place brought an indescribable thrill, but some moments stayed deep within me: the first time I walked the streets of New York, saw the lights of Las Vegas, or admired Paris at night. That’s when I realized my childhood dream had become real – I was there, in places I’d only seen in movies, living emotions I once only dreamed of." },
+          { q: "4. A place that changed the way you see the world?", a: "I can’t say that one specific place completely changed me. I feel like every destination I’ve visited has added something to me – like a piece in a puzzle. Each experience, each culture, each person I’ve met has completed me little by little. For me, travel was never about sudden transformation, but about growth – discovering myself step by step through everything I experience and learn from the world." },
+          { q: "5. How did traveling change you as a person?", a: "Travel has taught me gratitude. With every country I’ve visited, I’ve seen more clearly how much we have – and how little we sometimes appreciate it. I realized that, although in Romania we often complain about what’s missing, the truth is that we live in a place full of beauty – in its people, nature, and freedom. In other parts of the world, I’ve seen how hard life can be, and how much some people wish for what we take for granted. Travel made me more grateful, more aware, and more present." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest moments for me are always the last days of a journey – that instant when you have to leave and say goodbye. Everything else, even the tough parts, has helped me grow. I’ve learned to stay calm no matter how stressful things seem, and to adapt quickly. Whenever something didn’t go as planned, I asked myself, “Will this still matter in five years?” If the answer was “no,” I took a deep breath, smiled, and moved on." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "My advice is simple: don’t hesitate. There will never be a “perfect” time to go, and every day you wait is a day lost from a story that could be yours. I love a quote by Mark Twain that says: “Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.” And that’s exactly what I’d tell anyone who’s hesitating – start now, because the world won’t wait." },
+          { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "Instagram: @adrianstefanilles, Facebook: Adrian Stefan Illes. That’s where I share moments from my travels, stories, experiences, and glimpses of how I see the world." },
+          { q: "9. Bonus: How did we meet?", a: "We first met about 5–6 years ago at a Latin dance party in Baia Mare. We met on the dance floor, had a spontaneous chat, and exchanged Facebook contacts. At first, we were just acquaintances, and you occasionally followed my travels and adventures. Over time, our conversations about the world and travel became more frequent. We started sharing stories, impressions, and tips – and our connection naturally grew from a simple acquaintance into a beautiful friendship built around our shared passion for discovering the world." },
         ],
         story: [""],
       },
@@ -138,85 +138,88 @@ Turns out, it was safer – and more beautiful – than I ever imagined. Because
       },
     
       ro: {
-        intro: `Am cunoscut-o pe Yulia întâmplător. Eram pe Coasta Amalfi, în Italia – am aflat mai târziu că Italia e locul ei preferat din lume. Nu aveam de gând să stau mult prin zonă, așa că, pe moment, am decis să merg către un loc mai liniștit, mai puțin vizitat de turiști: Ravello.
-A fost o decizie de o secundă. Dacă n-aș fi luat-o, nu aș fi întâlnit-o niciodată pe Yulia.
+        intro: `Am cunoscut-o pe Yulia întâmplător. 
+Eram pe Coasta Amalfi, în Italia – aveam să aflu mai târziu că Italia este locul ei preferat din lume. Nu plănuiam să stau mult prin zonă, așa că, într-un impuls, am decis să merg într-un loc mai liniștit, mai puțin călcat de turiști: Ravello.
+A fost o decizie de o secundă. Dacă nu o luam, nu aș fi întâlnit-o niciodată pe Yulia.
     
 Era cu cineva, dar povestea lor era… să spunem, puțin ciudată. Mi-a cerut un sfat, i l-am oferit, și am rămas de vorbă aproape o oră. Ne-am plimbat puțin prin Ravello, iar la întoarcere ei au coborât la o altă stație. Am crezut că nu o voi mai revedea vreodată.
     
-Dar Universul a avut alte planuri. Ne-am reîntâlnit, complet neașteptat, în Florența.
+Dar Universul a avut alte planuri. 
+
+Ne-am reîntâlnit, complet neașteptat, în Florența.
 Am petrecut o dimineață împreună – am vizitat Basilica din centru și am mâncat croissante cu fistic pe un trotuar, așteptând să se deschidă porțile. Apoi ea a plecat, la amiază.
     
-Ocazional, ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
+Din când în când, încă ne mai scriem. Iar zilele trecute mi-a trimis un mesaj care m-a făcut să zâmbesc:
     
-— Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my travels. It’s like you wrote about me!
-    
-Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: da, este.`,
+— Mida, am început în sfârșit cartea ta! Este fantastică – atât de simplă și atât de interesantă. Știi, m-am întors din Vietnam acum două luni și sunt atâtea coincidențe cu propriile mele călătorii. Parcă ai fi scris despre mine!
+
+Nu m-am gândit niciodată la Yulia ca la un „călător” – dar mesajul ei mi-a spus clar: este.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "Eu sunt Yulia și sunt din Rusia. Eram o persoană obișnuită – mergeam la birou cinci zile pe săptămână, într-o companie internațională, mă vedeam cu prietenii, petreceri vinerea... viață normală. După despărțirea de soț, am început să călătoresc ca să mă vindec și să trec peste tot ce a fost greu. Nu pot spune că am uitat totul, dar am înțeles ce iubesc cel mai mult: să merg undeva nou, să descopăr locuri, oameni și tradițiile lor." },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "Nu altcineva m-a împins să plec, ci eu însămi. Prima dată a fost din cauza unei despărțiri dureroase – și călătoria a devenit modul meu de a mă vindeca." },
-          { q: "3. Când ai știut că merită?", a: "De fiecare dată când mă întreb ce țară vreau să vizitez în continuare – atunci știu că merită." },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Italia – pentru frumusețea ei, peste tot." },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au schimbat complet. Acum, singurul lucru la care mă gândesc este să descopăr țări noi, oameni noi, tradiții noi – nu lucruri materiale ca mașini, haine sau bijuterii." },
-          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "A fost greu cu sancțiunile – când cardurile rusești au fost blocate peste tot în lume. A fost un stres mare, un șoc." },
+          { q: "1. Cine ești în câteva fraze?", a: "Eu sunt Yulia și sunt din Rusia. Eram o persoană obișnuită – mergeam la birou cinci zile pe săptămână, lucram într-o companie internațională, mă vedeam cu prietenii, petreceri vinerea… o viață normală. După despărțirea de soț, am început să călătoresc ca să mă vindec și să trec peste ce a fost greu. Nu pot spune că am uitat totul, dar am înțeles ce iubesc cel mai mult: să merg în locuri noi, să descopăr oameni, locuri și tradițiile lor." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Nu m-a împins nimeni să plec – am făcut-o eu însămi. Prima dată a fost după o despărțire dureroasă, iar călătoria a devenit modul meu de a mă vindeca și de a-mi aduna bucățile." },
+          { q: "3. Când ai știut că merită?", a: "De fiecare dată când mă surprind întrebându-mă ce țară vreau să vizitez în continuare – atunci știu că a meritat." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Italia – pentru frumusețea ei, pur și simplu peste tot." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile m-au schimbat complet. Acum singurul lucru la care mă gândesc este să descopăr țări noi, oameni noi, tradiții noi – nu lucruri materiale precum mașini, haine sau bijuterii." },
+          { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Cel mai greu a fost momentul sancțiunilor – când cardurile rusești au fost blocate peste tot în lume. A fost un stres imens, un adevărat șoc." },
           { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Fără ezitare. Alege un loc și du-te." },
           { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Am un canal de YouTube." },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Eram cu cineva cu care nu-mi doream să fiu aproape. Pe drum, Mida i-a oferit acelui om locul ei, dar eu am ales să stau lângă Mida. Și n-am pierdut nimic – s-a dovedit a fi o prietenă caldă, sinceră și o povestitoare fascinantă. ❤️" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Eram cu cineva lângă care nu-mi doream, de fapt, să stau. Pe drum, Mida i-a oferit acelui om locul ei, dar eu am ales să stau lângă Mida. Și n-am avut nimic de pierdut – s-a dovedit a fi o prietenă caldă, sinceră și o povestitoare fascinantă." },
         ],
         story: [
-          `Un moment în plus, de păstrat în amintire:
+          `Un moment în plus, de păstrat:
     
-    Zilele dinainte să îi scriu Midei erau plictisitoare – nici măcar apusul, pe care îl vedeam în fiecare zi, nu mă mai impresiona.
-    Apoi, într-o zi, am mers la sală, am deschis cartea ei și am început să citesc.
-    
-    Totul s-a schimbat pe loc. I-am scris ei – și unui alt călător pe care îl întâlnisem cândva în Cambodgia.
-    După ce am vorbit cu Mida, m-am simțit inspirată să merg în Indonezia, după ce termin munca.
-    Același călător mi-a trimis poze din Australia, unde locuiește acum, și chiar m-a invitat într-o excursie prin Sydney.
-    
-    Așa că acum mă tot gândesc… poate că n-ar trebui să mă întorc acasă, ci să continui să călătoresc?
-    
-    Și am observat ceva amuzant – când vorbesc cu Mida, scriu foarte mult!
-    E o profesoară tare bună.`
+Zilele dinainte să îi scriu Midei erau monotone – nici măcar apusul, pe care îl vedeam zilnic, nu mă mai impresiona. Apoi, într-o zi, eram la sală, am deschis cartea ei și am început să citesc. Totul s-a schimbat pe loc.
+
+I-am scris ei – și unui alt călător pe care îl întâlnisem cândva în Cambodgia.
+După ce am vorbit cu Mida, m-am simțit inspirată să merg în Indonezia, după ce termin munca.
+          
+Același călător mi-a trimis poze din Australia, unde locuiește acum, și chiar m-a invitat într-o excursie prin Sydney. Așa că acum mă tot gândesc… poate nu ar trebui să mă întorc acasă, ci să continui să călătoresc?
+          
+Și am observat ceva amuzant – când vorbesc cu Mida, scriu enorm! E o profesoară tare bună.`,
         ],
       },
     
       en: {
         intro: 
-         `I met Yulia by chance. I was on the Amalfi Coast in Italy – later I found out that Italy is actually her favorite place in the world. I wasn’t planning to stay long in the area, so, on a whim, I decided to go somewhere quieter, less touristy: Ravello.
-It was a split-second decision. If I hadn’t made it, I would have never met Yulia.
-    
-She was with someone, though their story was… let’s say, a little complicated. She asked me for advice, I gave it, and we ended up talking for about an hour, walking through the streets of Ravello. On the way back, they got off at another stop. I thought I’d never see her again.
-    
+         `I met Yulia by chance. 
+I was on the Amalfi Coast in Italy – and later I found out that Italy is actually her favorite place in the world. I wasn’t planning to stay long in the area, so on a whim I decided to head somewhere quieter, less touristy: Ravello.
+It was a split-second decision. If I hadn’t made it, I never would have met Yulia.
+         
+She was with someone, though their story was… let’s say, a little complicated. She asked me for advice, I gave it, and we ended up talking for almost an hour, wandering through Ravello. On the way back, they got off at a different stop. I thought I’d never see her again.
+         
 But the universe had other plans.
-We met again, unexpectedly, in Florence.
-We spent a morning together – visited the central Basilica and ate pistachio croissants on the sidewalk, waiting for it to open. Then she left, around noon.
-    
+
+We ran into each other again, unexpectedly, in Florence.
+We spent a morning together – visited the central Basilica and ate pistachio croissants on the sidewalk while waiting for it to open. Then she left around noon.
+         
 From time to time, we still write to each other.
 Just a few days ago, she sent me a message that made me smile:
-    
-— Mida, I finally began your book! It’s fantastic – so simple and interesting. You know, I came back from Vietnam two months ago, and there are so many coincidences with my own travels. It feels like you wrote about me!
-    
+         
+— Mida, I finally started your book! It’s fantastic – so simple and so interesting. You know, I came back from Vietnam two months ago, and there are so many similarities with my own travels. It feels like you wrote about me!
+         
 I had never really thought of Yulia as a traveler – but her message told me everything I needed to know: she is one.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "I am Yulia and I am from Russia. I used to be an ordinary person – working five days a week in a big international company, meeting friends, Friday parties, all that routine. After I separated from my husband, I started traveling to heal and move through the pain. I can’t say I’ve forgotten everything, but I realized what I truly love most: going somewhere new, discovering places, meeting people, learning their traditions." },
-          { q: "2. What made you start traveling?", a: "It was me – not someone else – who made me go. The first time, it was because of a breakup. It hurt a lot, so traveling became my way to heal, to feel better." },
-          { q: "3. When did you know it was worth it?", a: "Whenever I ask myself which country I want to visit next – that’s when I know it’s worth it." },
-          { q: "4. A place that changed the way you see the world?", a: "Italy – for its beauty, everywhere." },
-          { q: "5. How did traveling change you as a person?", a: "Traveling changed me completely. Now, the only thing I think about is discovering new countries, meeting new people, learning new traditions – not material things like cars, clothes, or jewelry." },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest thing was the sanctions – Russian bank cards being blocked around the world. It was a big stress, a shock." },
+          { q: "1. Who are you in a few sentences?", a: "I’m Yulia, and I’m from Russia. I used to be an ordinary person – working five days a week in a large international company, meeting friends, Friday night parties… the usual routine. After I separated from my husband, I started traveling to heal and move through the pain. I can’t say I’ve forgotten everything, but I realized what I truly love most: going somewhere new, discovering places, meeting people, and learning their traditions." },
+          { q: "2. What made you start traveling?", a: "It wasn’t someone else who pushed me – it was me. The first time, it happened after a painful breakup, and traveling became my way of healing and putting myself back together." },
+          { q: "3. When did you know it was worth it?", a: "Every time I catch myself wondering which country I want to visit next – that’s when I know it was worth it." },
+          { q: "4. A place that changed the way you see the world?", a: "Italy – for its beauty, absolutely everywhere." },
+          { q: "5. How did traveling change you as a person?", a: "Traveling changed me completely. Now the only thing I think about is discovering new countries, meeting new people, and learning new traditions – not material things like cars, clothes, or jewelry." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "The hardest moment was when the sanctions came – when Russian bank cards were blocked worldwide. It was incredibly stressful, a real shock." },
           { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Don’t hesitate. Just choose a place – and go." },
           { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "I have a YouTube channel." },
-          { q: "9. Bonus: How did we meet?", a: "I was with someone I didn’t really want to be near. On the road, Mida offered her seat to that person, but I chose to sit next to Mida instead. And I didn’t lose – she turned out to be a kind, genuine friend and a fascinating storyteller. ❤️" },
+          { q: "9. Bonus: How did we meet?", a: "I was with someone I didn’t really want to be near. On the way, Mida offered her seat to that person, but I chose to sit next to her instead. And I didn’t lose anything – she turned out to be a warm, sincere friend, and a fascinating storyteller." },
         ],
         story: [
-          `A little extra moment to remember:
-    The days before I met Mida were dull –s even the sunset didn’t move me anymore. Then one day, I went to the gym, opened her book, and started reading.
-    Everything changed instantly. I wrote to her – and to another traveler I once met in Cambodia.
-    After we talked, I felt inspired to go to Indonesia after finishing my job.
-    That same traveler sent me photos from Australia, where he lives now, and even invited me on an excursion in Sydney.
-    
-    So now I’m wondering… maybe I shouldn’t go home after all, but keep traveling?
-    Also, I noticed something funny – when I talk to Mida, I write a lot!
-    She’s a really good teacher.`
+          `A little extra moment worth remembering:
+
+The days before I wrote to Mida felt dull – even the sunset, which I saw every day, no longer moved me. Then one day, at the gym, I opened her book and started reading. Everything changed instantly.
+
+I wrote to her – and to another traveler I once met in Cambodia.
+After talking to Mida, I felt inspired to go to Indonesia once I finish my job.
+          
+That same traveler sent me photos from Australia, where he lives now, and even invited me on a trip around Sydney. So now I’m wondering… maybe I shouldn’t go home at all, but keep traveling?
+          
+And I noticed something funny – whenever I talk to Mida, I end up writing a lot! She’s a really good teacher.`,
         ],
       },
     
@@ -240,9 +243,9 @@ I had never really thought of Yulia as a traveler – but her message told me ev
       
       cover: "/assets/travelers/hamza-maroc/hamza-maroc-cover.webp",
       gallery: [
-        "/assets/travelers/hamza-maroc/hamza11.webp",
-        "/assets/travelers/hamza-maroc/hamza12.webp",
-        "/assets/travelers/hamza-maroc/hamza14.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-1.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-2.webp",
+        "/assets/travelers/hamza-maroc/hamza-maroc-3.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/lahlou_.hamza?igsh=cTVnYnJxYWh1cGw0",
