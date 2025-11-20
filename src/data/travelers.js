@@ -39,25 +39,25 @@ const travelers = [
       ro: {
         intro: `Pe Adi l-am cunoscut acum mulți ani, când mergeam la dansuri. Nu aveam atunci nici cea mai mică idee despre rolul pe care urma să-l joace în povestea mea.
 
-        Câteva luni mai târziu cochetam cu ideea de a pleca în Bali, iar într-o seară am văzut o postare de-a lui – era chiar acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu:
+Câteva luni mai târziu cochetam cu ideea de a pleca în Bali, iar într-o seară am văzut o postare de-a lui – era chiar acolo, în locul la care visam. Nu vorbisem niciodată cu el, dar i-am scris simplu:
         
-        — Cum e în Bali?
+— Cum e în Bali?
         
-        De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj și începuturi. Atunci mi-a spus ceva ce nu am uitat niciodată:
+De acolo a început totul. Am început să vorbim, să-i pun o mie de întrebări despre cum e să călătorești singur, despre siguranță, curaj și începuturi. Atunci mi-a spus ceva ce nu am uitat niciodată:
         
-        — Nu-ți face griji. O să-ți fiu alături cu tot ce pot.
+— Nu-ți face griji. O să-ți fiu alături cu tot ce pot.
         
-        Și așa a fost.
+Și așa a fost.
         
-        Două luni mai târziu am plecat – nu spre Bali, ci spre Palawan, în Filipine. Iar câteva luni după aceea drumul m-a dus, inevitabil, și în Bali. Adi mi-a trimis fișiere, trasee, contacte și mici secrete de călătorie. Oriunde mergeam, el era la celălalt capăt al telefonului, gata să mă ajute, de la mii de kilometri distanță.
+Două luni mai târziu am plecat – nu spre Bali, ci spre Palawan, în Filipine. Iar câteva luni după aceea drumul m-a dus, inevitabil, și în Bali. Adi mi-a trimis fișiere, trasee, contacte și mici secrete de călătorie. Oriunde mergeam, el era la celălalt capăt al telefonului, gata să mă ajute, de la mii de kilometri distanță.
         
-        Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sprijinul meu „tehnic” – omul care repara de la distanță orice problemă aveam cu laptopul. Ne-am revăzut abia după doi ani și jumătate, la lansarea cărților mele.
+Ani mai târziu, când nu mai aveam nevoie de un ghid prin lume, Adi a rămas sprijinul meu „tehnic” – omul care repara de la distanță orice problemă aveam cu laptopul. Ne-am revăzut abia după doi ani și jumătate, la lansarea cărților mele.
         
-        Și totul pornise de la un singur mesaj:
+Și totul pornise de la un singur mesaj:
         
-        — Hey, crezi că e safe să plec singură în Asia?
+— Hey, crezi că e safe să plec singură în Asia?
         
-        Și da, a fost mai safe decât mi-aș fi imaginat vreodată – pentru că, uneori, oamenii potriviți apar exact atunci când ai nevoie de ei.`,
+Și da, a fost mai safe decât mi-aș fi imaginat vreodată – pentru că, uneori, oamenii potriviți apar exact atunci când ai nevoie de ei.`,
         qna: [
           { q: "1. Cine ești în câteva fraze?", a: "Sunt Adrian, am 33 de ani și sunt din România. Deși lucrez în IT, sufletul meu aparține aventurii și descoperirii. Sunt un visător care crede că fiecare loc, fiecare om și fiecare moment are o poveste de spus. Dansul latino este felul meu de a simți viața, iar călătoriile – modul în care o trăiesc cu adevărat. Până acum am explorat 34 de țări de pe 4 continente, mereu cu aparatul foto în rucsac și cu o curiozitate care nu se oprește niciodată. Îmi place să citesc, să ascult muzică, să merg la sală și să mă pierd în locuri noi, din care să învăț câte ceva despre lume – și despre mine." },
           { q: "2. Ce te-a împins să pleci la drum?", a: "Totul a pornit dintr-un vis din copilărie – dorința aceea pură de a descoperi lumea, de a vedea cum trăiesc alți oameni, ce gust are mâncarea lor, cum sună limba lor și ce tradiții îi definesc. Nu a fost un moment anume, ci mai degrabă o chemare care a crescut în mine în timp. Într-o zi mi-am dat seama că, dacă nu plec atunci, voi rămâne mereu cu întrebarea: „Cum ar fi fost dacă?”. Așa că mi-am luat rucsacul, aparatul foto și curajul – și am început să transform visul de copil într-un mod de viață." },
@@ -76,25 +76,25 @@ const travelers = [
       en: {
         intro: `I first met Adi years ago, back when we were both taking dance classes. Back then, I had no idea what role he would one day play in my story.
 
-        A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was there. We had never really talked before, but I wrote to him on Facebook:
+A few months later, I was toying with the idea of going to Bali, when I stumbled upon one of his posts – he was there. We had never really talked before, but I wrote to him on Facebook:
         
-        — Hey, how’s Bali?
+— Hey, how’s Bali?
         
-        That’s how it all began. We started chatting, and I asked him countless questions about travelling solo – safety, courage, what it truly feels like. He told me something I’ll never forget:
+That’s how it all began. We started chatting, and I asked him countless questions about travelling solo – safety, courage, what it truly feels like. He told me something I’ll never forget:
         
-        — Don’t worry. I’ll be there to help you with anything I can.
+— Don’t worry. I’ll be there to help you with anything I can.
         
-        And he was.
+And he was.
         
-        Two months later, I left – not to Bali, but to Palawan in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, encouraging.
+Two months later, I left – not to Bali, but to Palawan in the Philippines. A few months after that, I finally made it to Bali. Adi sent me everything he knew: files, routes, secret spots, and local tips. Wherever I was, he was there too – from afar – helping, guiding, encouraging.
         
-        Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which kept breaking down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
+Years later, when I no longer needed a travel guide, he still helped me – this time with my laptop, which kept breaking down. From a distance, he fixed every issue. We finally saw each other again after two and a half years, at the launch of my books.
         
-        And to think it all started with one message:
+And to think it all started with one message:
         
-        — Hey, do you think it’s safe for me to travel alone in Asia?
+— Hey, do you think it’s safe for me to travel alone in Asia?
         
-        Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
+Turns out, it was safer – and more beautiful – than I ever imagined. Because sometimes, the right people show up exactly when you need them most.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "I’m Adrian, 33 years old, from Romania. Although I work in IT, my heart belongs to adventure and discovery. I’m a dreamer who believes that every place, every person, and every moment has a story to tell. Latin dance is how I feel life; traveling is how I truly live it. So far, I’ve explored 34 countries across 4 continents, always with my camera in my backpack and a curiosity that never stops growing. I love reading, listening to music, working out, and getting lost in new places where I can learn something about the world – and about myself." },
           { q: "2. What made you start traveling?", a: "It all started with a childhood dream – that pure desire to discover the world, to see how other people live, what their food tastes like, how their language sounds, and what traditions shape them. It wasn’t a single moment, but rather a calling that grew inside me over time. One day I realized that if I didn’t leave then, I would always live with the question: “What if?”. So I packed my backpack, my camera, and my courage – and began turning that childhood dream into a way of life." },
