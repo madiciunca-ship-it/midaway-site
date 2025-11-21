@@ -1,6 +1,6 @@
 // src/pages/Authors.jsx
 import { useMemo, useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import authors from "../data/authors";
 
 // ⬇️ POZE placeholder (din public/assets/authors/*.webp)
@@ -36,7 +36,7 @@ const isMobile =
   window.matchMedia("(max-width: 640px)").matches;
 
 // le păstrăm, chiar dacă nu mai folosim înălțime fixă
-const IMG_H = isMobile ? 360 : 420;
+const IMG_H = isMobile ? 360 : 420; // (dacă vrei, îl poți folosi)
 const FOCUS = isMobile ? "center 12%" : "center top";
 
 // segment button (RO/EN)
@@ -52,31 +52,21 @@ function segBtn(active) {
 }
 
 export default function Authors() {
-  const [params, setParams] = useSearchParams();
-  const [q, setQ] = useState(params.get("q") || "");
-  const lang = params.get("lang") === "en" ? "en" : "ro";
+  // 🔤 LIMBA – doar localStorage, fără ?lang în URL
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("authors.lang");
+    return stored === "en" ? "en" : "ro";
+  });
 
-  // reține ultima limbă aleasă
   useEffect(() => {
-    const saved = localStorage.getItem("authors.lang");
-    if (!params.get("lang") && saved) {
-      setParams((p) => {
-        const c = new URLSearchParams(p);
-        c.set("lang", saved);
-        return c;
-      });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("authors.lang", lang);
     }
-  }, []); // eslint-disable-line
+  }, [lang]);
 
-  const setLang = (l) => {
-    setParams((p) => {
-      const c = new URLSearchParams(p);
-      c.set("lang", l);
-      if (q) c.set("q", q);
-      return c;
-    });
-    localStorage.setItem("authors.lang", l);
-  };
+  // 🔍 căutare (doar în state, nu în URL)
+  const [q, setQ] = useState("");
 
   // listă filtrată după nume/rol/tagline în limba curentă
   const filtered = useMemo(() => {
@@ -113,8 +103,8 @@ export default function Authors() {
         style={{ marginBottom: 16, textAlign: "center" }}
       >
         <h1 style={{ margin: 0, fontSize: 44 }}>
-    {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
-  </h1>
+          {lang === "en" ? "Midaway Authors" : "Autorii Midaway"}
+        </h1>
         <p style={{ color: "var(--secondary)", marginTop: 8, fontSize: 18 }}>
           {lang === "en"
             ? "Independent voices we publish – people first, then books."
@@ -156,15 +146,7 @@ export default function Authors() {
       >
         <input
           value={q}
-          onChange={(e) => {
-            setQ(e.target.value);
-            setParams((p) => {
-              const c = new URLSearchParams(p);
-              if (e.target.value) c.set("q", e.target.value);
-              else c.delete("q");
-              return c;
-            });
-          }}
+          onChange={(e) => setQ(e.target.value)}
           placeholder={lang === "en" ? "Search authors…" : "Caută autori…"}
           style={{
             flex: 1,
@@ -221,7 +203,7 @@ export default function Authors() {
 function AuthorCard({ a, d, lang }) {
   return (
     <Link
-      to={`/autori/${a.id}?lang=${lang}`}
+      to={`/autori/${a.id}`}
       style={{
         textDecoration: "none",
         color: "inherit",
@@ -253,10 +235,10 @@ function AuthorCard({ a, d, lang }) {
             style={{
               width: "100%",
               display: "block",
-              aspectRatio: "4 / 5",   // raport fix, grilă frumoasă
-              objectFit: "contain",   // fără crop
+              aspectRatio: "4 / 5", // raport fix, grilă frumoasă
+              objectFit: "contain", // fără crop
               objectPosition: "center",
-              background: "#fff",     // benzi albe elegante, ca la Călători
+              background: "#fff", // benzi albe elegante, ca la Călători
               borderRadius: 16,
             }}
           />
