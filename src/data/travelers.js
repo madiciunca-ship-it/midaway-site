@@ -245,9 +245,9 @@ And I noticed something funny – whenever I talk to Mida, I end up writing a lo
       
       cover: "/assets/travelers/hamza-maroc/hamza-maroc-cover.webp",
       gallery: [
-        "/assets/travelers/hamza-maroc/hamza-maroc-1.webp",
-        "/assets/travelers/hamza-maroc/hamza-maroc-2.webp",
-        "/assets/travelers/hamza-maroc/hamza-maroc-3.webp",
+        "/assets/travelers/hamza-maroc/hamza11.webp",
+        "/assets/travelers/hamza-maroc/hamza12.webp",
+        "/assets/travelers/hamza-maroc/hamza14.webp",
       ],
       socials: {
         instagram: "https://www.instagram.com/lahlou_.hamza?igsh=cTVnYnJxYWh1cGw0",
