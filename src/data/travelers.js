@@ -295,7 +295,7 @@ Unul dintre acele momente care rămân în poveste, nu pentru că au fost perfec
           { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Provocările neprevăzute apar mereu – dificultăți financiare, întâlniri mai puțin plăcute – dar fiecare experiență te face mai puternic și mai echilibrat." },
           { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Îmbrățișează viitorul. Fă primul pas. Îți va schimba viața în profunzime." },
           { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Pagina mea de Instagram este @Lahlou_.hamza." },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Ne-am întâlnit prin Couchsurfing, în timpul vizitei ei în Fes. Ziua petrecută împreună a fost specială încă de la început. Mida are o poveste de viață impresionantă și o energie caldă, senină. Călătoriile ei, din România până în Vietnam, nu sunt doar despre locuri, ci despre sens – despre felul în care fiecare drum poate deveni o lecție. Cartea ei mi s-a părut plină de inspirație, iar felul în care vorbește despre oameni și experiențe te face să privești lumea altfel." },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Ne-am întâlnit prin Couchsurfing, în timpul vizitei ei în Fes. Ziua petrecută împreună a fost specială încă de la început. Mida are o poveste de viață impresionantă și o energie caldă, senină. Călătoriile ei, din România până în Vietnam, nu sunt doar despre locuri, ci despre sens – despre felul în care fiecare drum poate deveni o lecție. Cartea ei mi s-a părut profund inspirațională, iar felul în care vorbește despre oameni și experiențe te face să privești lumea altfel." },
         ],
         story: [],
       },
@@ -376,19 +376,20 @@ One of those memories that stay with you not because they were perfect, but beca
       },
       ro: {
         intro: `L-am cunoscut pe Rachid datorită lui Kamal. Era ziua lui, iar invitația de a participa la petrecere a venit la momentul potrivit.
-Erau ultimele mele trei zile în Maroc, așa că am zis „da”. Ce nu știam atunci era că, prin acea invitație, Kamal avea să-mi scoată în cale un om cu totul necunoscut – dar de neuitat.
+Erau ultimele mele trei zile în Maroc, așa că am zis „da”. Ce nu știam atunci era că, prin acea invitație, Kamal avea să-mi scoată în cale un om complet necunoscut – dar de neuitat.
         
-Totul s-a întâmplat prin Couchsurfing. Inițial urma să stau două zile, apoi să-mi caut cazare pentru a treia, până la zborul spre Catania.
-Dar Rachid mi-a spus cu un zâmbet că pot rămâne la el până plec – și s-a asigurat că am tot ce-mi trebuie.
-Inclusiv mi-a dus rochia la călcat. 
-Era o rochie lungă, colorată, pe care plănuiam s-o port la ziua lui Kamal – dar era complet șifonată, după atâtea zile de rucsac.
+Totul s-a întâmplat prin Couchsurfing. Inițial urma să stau două zile și apoi să-mi caut cazare pentru a treia, până la zborul spre Catania.
+Dar Rachid mi-a spus, zâmbind, că pot rămâne la el până plec – și s-a asigurat că am tot ce-mi trebuie.
+Inclusiv mi-a dus rochia la călcat.
+        
+Era o rochie lungă, colorată, pe care plănuiam s-o port la ziua lui Kamal – complet șifonată după atâtea zile de rucsac.
 Gestul acela simplu m-a impresionat enorm.
         
 Am ieșit împreună în club, am râs mult și mi-a povestit câteva secrete bine păzite ale Marocului.
-Un om deosebit, generos, cald, care cu siguranță va rămâne în sufletul meu pentru mult timp.
+Un om deosebit, generos, cald, care cu siguranță va rămâne în sufletul meu mult timp.
         
-Ah, da – și în ultima zi, când am plecat, am uitat să încui ușa. 
-Dar, cum se închidea automat, Rachid n-a avut de ce să-și facă griji. Totul a rămas în ordine – așa cum trebuie să rămână amintirile frumoase: simple și liniștite.`,
+Ah, da – și în ultima zi, când am plecat, am uitat să încui ușa.
+Dar, cum se închidea automat, Rachid n-a avut de ce să-și facă griji. Totul a rămas în ordine – așa cum ar trebui să rămână amintirile frumoase: simple și liniștite.`,
         qna: [
           { q: "1. Cine ești în câteva fraze?", a: "Eu sunt Rachid și locuiesc în Casablanca, Maroc. Sunt un suflet curios, cu o dragoste profundă pentru descoperirea oamenilor, a locurilor și a perspectivelor. Sunt condus de frumusețea necunoscutului și de bucuria simplă a conexiunii. Rucsacul meu e ușor, dar inima e mereu plină de povești." },
           { q: "2. Ce te-a împins să pleci la drum?", a: "Nu a fost un moment anume – mai degrabă o voce tăcută care devenea tot mai puternică. Voiam să scap de rutină și să mă simt din nou viu. Într-o zi am realizat că, dacă aștept momentul „perfect”, e posibil ca el să nu vină niciodată. Așa că mi-am făcut bagajul și am plecat." },
@@ -403,22 +404,21 @@ Dar, cum se închidea automat, Rachid n-a avut de ce să-și facă griji. Totul 
         story: [],
       },
       en: {
-        intro: `I met Rachid thanks to Kamal. It was his birthday, and the invitation to join the party came at just the right time.
-It was my last three days in Morocco, so I said “yes.”
-What I didn’t know then was that Kamal’s invitation would bring into my life a stranger – who would soon become unforgettable.
+        intro: `I met Rachid thanks to Kamal. It was Kamal’s birthday, and the invitation to join the party came at just the right time.
+I only had three days left in Morocco, so I said “yes.” What I didn’t know then was that Kamal’s invitation would bring into my life a complete stranger – who would soon become unforgettable.
         
-It all happened through Couchsurfing.
-I was supposed to stay for two days and then find another place for my last night before flying to Catania.
+It all started through Couchsurfing. I was supposed to stay for two nights and then find another place for my last night before flying to Catania.
 But Rachid smiled and told me I could stay at his place until my flight – and he made sure I had everything I needed.
-He even took my dress to be ironed. 
+He even took my dress to be ironed.
+        
 It was a long, colorful dress I wanted to wear to Kamal’s birthday, completely wrinkled after spending days in my backpack.
 That simple gesture really touched me.
         
 We went out to a club together, laughed a lot, and he shared a few of Morocco’s best-kept secrets with me.
-A wonderful, kind-hearted person who will surely stay in my heart for a long time.
+A wonderful, generous, warm-hearted person who will surely stay in my heart for a long time.
         
 Oh, and on my last day, I left the house without locking the door.
-But since it closed automatically, Rachid didn’t have to worry – everything was in perfect order, just like the best memories: simple and peaceful.`,
+But since it closed automatically, Rachid had nothing to worry about. Everything was perfectly fine – just like the best memories: simple and peaceful.`,
         qna: [
           { q: "1. Who are you in a few sentences?", a: "I am Rachid and I live in Casablanca, Morocco. I’m a curious soul with a deep love for discovering people, places, and perspectives. I’m driven by the beauty of the unknown and by the simple joy of connection. My backpack is light, but my heart is always full of stories." },
           { q: "2. What made you start traveling?", a: "It wasn’t one moment – more like a quiet voice that kept getting louder. I wanted to break free from routine and feel alive again. One day I realized that waiting for the “perfect time” might mean it would never come. So I packed my bag and left." },
