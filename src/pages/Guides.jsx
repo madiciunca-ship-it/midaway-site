@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import guides from "../data/guides";
 
 /* ——— stil card ca la Autori/Călători ——— */
@@ -65,15 +65,20 @@ function segBtn(active) {
 }
 
 export default function Guides() {
-  const [params] = useSearchParams();
-  const [q, setQ] = useState(params.get("q") || "");
+  // citim o singură dată ?q din URL (dacă există)
+  const [q, setQ] = useState(() => {
+    if (typeof window === "undefined") return "";
+    const params = new URLSearchParams(window.location.search);
+    return params.get("q") || "";
+  });
 
-  // limbă: din query o singură dată dacă vine, altfel din localStorage, altfel ro
-  const initialLang =
-    params.get("lang") === "en"
-      ? "en"
-      : (localStorage.getItem("guides.lang") || "ro");
-  const [lang, setLang] = useState(initialLang);
+  // limba doar din localStorage (fără să mai citim ?lang din URL)
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const saved = localStorage.getItem("guides.lang");
+    return saved === "en" ? "en" : "ro";
+  });
+
 
   // persistă limba și curăță ?lang din bară (păstrăm ?q dacă există)
   useEffect(() => {
