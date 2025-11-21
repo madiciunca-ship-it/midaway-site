@@ -6,10 +6,10 @@ import { BOOKS } from "../data/books";
 
 const DEFAULT_SERVICE_IMAGE = "/assets/services/default-service.jpg";
 
-
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
 
+  // debug
   useEffect(() => {
     console.log("🧺 CartDrawer mounted. items:", items.length, "open:", open);
   }, [items.length, open]);
@@ -27,6 +27,23 @@ export default function CartDrawer({ open, onClose }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
+  // 👉 BLOCARE SCROLL când coșul e deschis (important pe mobile)
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    const prevOverflow = document.body.style.overflow;
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = prevOverflow || "";
+    }
+
+    // cleanup la unmount / când se închide
+    return () => {
+      document.body.style.overflow = prevOverflow || "";
+    };
+  }, [open]);
+
   const totalsByCurrency = useMemo(() => {
     const m = new Map();
     for (const i of items) {
@@ -43,27 +60,33 @@ export default function CartDrawer({ open, onClose }) {
   const resolveThumb = (it) => {
     const isService =
       String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
-  
+
     if (isService) {
       // serviciu → ia poza din item sau fallback-ul nostru
       return it?.image || DEFAULT_SERVICE_IMAGE;
     }
-  
+
     // carte → întâi imaginea din item, altfel căutăm în BOOKS
     if (it?.image) return it.image;
-  
+
     const book =
       BOOKS.find((b) => b.id === it?.id || b.id === it?.bookId) || null;
-  
+
     const fromBook =
       book?.cover ||
       book?.coverUrl ||
       book?.image ||
       book?.extraImage ||
       (Array.isArray(book?.images) ? book.images[0] : null);
-  
+
     return fromBook || "/placeholder-cover.png";
   };
+
+  // lățime mai blândă pe mobile
+  const drawerWidth =
+    typeof window !== "undefined"
+      ? Math.min(360, window.innerWidth)
+      : 360;
 
   return (
     <div
@@ -96,9 +119,9 @@ export default function CartDrawer({ open, onClose }) {
           position: "absolute",
           top: 0,
           right: 0,
-          height: "100vh",
-          width: 360,
-          maxWidth: "90vw",
+          height: "100%",           // 🔁 în loc de 100vh (mai safe pe mobile)
+          width: drawerWidth,
+          maxWidth: "100vw",
           background: "#fff",
           borderLeft: "1px solid #eee",
           boxShadow: "0 10px 30px rgba(0,0,0,.15)",
@@ -170,29 +193,40 @@ export default function CartDrawer({ open, onClose }) {
                     background: "#fffef9",
                   }}
                 >
-                  <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                    }}
+                  >
                     {/* thumbnail */}
                     {thumb ? (
                       <img
-                      src={thumb}
-                      alt={it.title}
-                      width={48}
-                      height={64}
-                      style={{ objectFit: "cover", borderRadius: 6, flexShrink: 0 }}
-                      decoding="async"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        const isService =
-                          String(it?.format || it?.fulfillment || "").toUpperCase() === "SERVICE";
-                        const fallback = isService
-                          ? "/assets/services/default-service.jpg"
-                          : "/placeholder-cover.png";
-                        if (e?.currentTarget?.src !== fallback) {
-                          e.currentTarget.src = fallback;
-                        }
-                      }}
-                    />
-                    
+                        src={thumb}
+                        alt={it.title}
+                        width={48}
+                        height={64}
+                        style={{
+                          objectFit: "cover",
+                          borderRadius: 6,
+                          flexShrink: 0,
+                        }}
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const isService =
+                            String(
+                              it?.format || it?.fulfillment || ""
+                            ).toUpperCase() === "SERVICE";
+                          const fallback = isService
+                            ? "/assets/services/default-service.jpg"
+                            : "/placeholder-cover.png";
+                          if (e?.currentTarget?.src !== fallback) {
+                            e.currentTarget.src = fallback;
+                          }
+                        }}
+                      />
                     ) : (
                       <div
                         style={{
@@ -228,7 +262,13 @@ export default function CartDrawer({ open, onClose }) {
                           gap: 10,
                         }}
                       >
-                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 6,
+                          }}
+                        >
                           <button
                             type="button"
                             onClick={() => decrement(it.key)}
@@ -237,7 +277,14 @@ export default function CartDrawer({ open, onClose }) {
                           >
                             −
                           </button>
-                          <div style={{ minWidth: 28, textAlign: "center" }}>{qty}</div>
+                          <div
+                            style={{
+                              minWidth: 28,
+                              textAlign: "center",
+                            }}
+                          >
+                            {qty}
+                          </div>
                           <button
                             type="button"
                             onClick={() => add(it)}
@@ -248,12 +295,23 @@ export default function CartDrawer({ open, onClose }) {
                           </button>
                         </div>
 
-                        <div style={{ marginLeft: "auto", fontSize: 14 }}>
+                        <div
+                          style={{
+                            marginLeft: "auto",
+                            fontSize: 14,
+                          }}
+                        >
                           {unit} {cur} / buc • <strong>{sub} {cur}</strong>
                         </div>
                       </div>
 
-                      <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
+                      <div
+                        style={{
+                          marginTop: 8,
+                          display: "flex",
+                          gap: 8,
+                        }}
+                      >
                         <button
                           type="button"
                           onClick={() => remove(it.key)}
@@ -277,7 +335,13 @@ export default function CartDrawer({ open, onClose }) {
         </div>
 
         {/* footer */}
-        <div style={{ padding: 16, borderTop: "1px solid #eee", background: "#fff" }}>
+        <div
+          style={{
+            padding: 16,
+            borderTop: "1px solid #eee",
+            background: "#fff",
+          }}
+        >
           {mixedCurrencies && (
             <div
               style={{
@@ -296,14 +360,28 @@ export default function CartDrawer({ open, onClose }) {
 
           <div style={{ display: "grid", gap: 6 }}>
             {totalsByCurrency.map(([cur, sum]) => (
-              <div key={cur} style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                key={cur}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
                 <span>Total ({cur})</span>
-                <strong>{sum} {cur}</strong>
+                <strong>
+                  {sum} {cur}
+                </strong>
               </div>
             ))}
           </div>
 
-          <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              marginTop: 10,
+            }}
+          >
             <button
               type="button"
               onClick={clear}
