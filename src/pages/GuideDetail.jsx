@@ -1,4 +1,5 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import guides from "../data/guides";
 
 const pickLang = (val, lang) => {
@@ -9,8 +10,20 @@ const pickLang = (val, lang) => {
 
 export default function GuideDetail() {
   const { id } = useParams();
-  const [params, setParams] = useSearchParams();
-  const lang = params.get("lang") === "en" ? "en" : "ro";
+
+  // limba: citim o singură dată din localStorage, altfel "ro"
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("guides.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+
+  // păstrăm alegerea în localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("guides.lang", lang);
+    }
+  }, [lang]);
 
   const g = (guides || []).find((x) => x.id === id);
   if (!g) {
@@ -32,21 +45,13 @@ export default function GuideDetail() {
   const title = pickLang(g.name, lang) || "";
   const subtitle = pickLang(g.tagline, lang) || "";
 
-  const setLang = (newLang) => {
-    setParams((p) => {
-      const copy = new URLSearchParams(p);
-      copy.set("lang", newLang);
-      return copy;
-    });
-    localStorage.setItem("guides.lang", newLang);
-  };
 
-  return (
+    return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
       <p style={{ marginTop: 0 }}>
-        <Link to={`/ghizi?lang=${lang}`} style={{ textDecoration: "none" }}>
-          ← Înapoi la Ghizi
-        </Link>
+      <Link to="/ghizi" style={{ textDecoration: "none" }}>
+  ← Înapoi la Ghizi
+</Link>
       </p>
 
       {/* galerie */}
