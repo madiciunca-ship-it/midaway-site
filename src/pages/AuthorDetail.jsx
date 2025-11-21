@@ -1,5 +1,6 @@
 // src/pages/AuthorDetail.jsx
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import authors from "../data/authors";
 
 // Responsive
@@ -20,8 +21,21 @@ function getLocaleData(author, lang) {
 
 export default function AuthorDetail() {
   const { slug } = useParams();
-  const [params, setParams] = useSearchParams();
-  const lang = params.get("lang") === "en" ? "en" : "ro";
+
+  // limba: citim o singură dată din localStorage, altfel "ro"
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("authors.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+
+  // păstrăm alegerea în localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("authors.lang", lang);
+    }
+  }, [lang]);
+
 
   const a = authors.find((x) => x.id === slug);
 
@@ -47,14 +61,6 @@ export default function AuthorDetail() {
 
   const d = getLocaleData(a, lang);
 
-  const setLang = (newLang) => {
-    setParams((p) => {
-      const copy = new URLSearchParams(p);
-      copy.set("lang", newLang);
-      return copy;
-    });
-    localStorage.setItem("authors.lang", newLang);
-  };
 
   // ----- BIO: patch pentru RO 
   let bio = Array.isArray(d.bio) ? [...d.bio] : [];
@@ -74,12 +80,13 @@ export default function AuthorDetail() {
   style={{ padding: "24px 0 48px", maxWidth: 1000 }}
 >
   <p style={{ marginTop: 0 }}>
-    <Link
-      to={`/autori?lang=${lang}`}
-      style={{ textDecoration: "none", color: "var(--secondary)" }}
-    >
-      ← {lang === "en" ? "Back to Authors" : "Înapoi la Autori"}
-    </Link>
+  <Link
+  to="/autori"
+  style={{ textDecoration: "none", color: "var(--secondary)" }}
+>
+  ← {lang === "en" ? "Back to Authors" : "Înapoi la Autori"}
+</Link>
+
   </p>
 
   <div
@@ -147,9 +154,9 @@ export default function AuthorDetail() {
       </div>
 
       {/* BODY */}
-      <div className="container" style={{ padding: "0 0 60px", maxWidth: 900 }}>
-      <
-        SocialRow socials={a.socials || {}} />
+<div className="container" style={{ padding: "0 0 60px", maxWidth: 900 }}>
+  <SocialRow socials={a.socials || {}} />
+
 
 
         {/* CTA către toate cărțile autorului / editurii */}
@@ -189,13 +196,14 @@ export default function AuthorDetail() {
 
         {/* CTA */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
-          <Link
-            to={`/autori?lang=${lang}`}
-            className="btn-outline"
-            style={{ textDecoration: "none" }}
-          >
-            {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
-          </Link>
+        <Link
+  to="/autori"
+  className="btn-outline"
+  style={{ textDecoration: "none" }}
+>
+  {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
+</Link>
+
           <Link
             to={`/contact?subject=${encodeURIComponent(
               lang === "en" ? "New author collaboration" : "Colaborare autor nou"
