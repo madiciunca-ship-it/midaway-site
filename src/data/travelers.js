@@ -258,77 +258,86 @@ And I noticed something funny – whenever I talk to Mida, I end up writing a lo
         blog: "",
       },
       ro: {
-        intro: `Pe Hamza l-am întâlnit prin Couchsurfing, în timpul vizitei mele în Fes, Maroc. 
-Eram acolo de două zile, pierdută printre străduțele labirintice ale Medinei, și în pagina lui mi-a atras atenția ceva. 
-Avea acolo o mică poveste despre oamenii pe care i-a întâlnit în călătoriile lui și despre țările vizitate. Nicio urmă de „România”. Asta m-a intrigat. 
-I-am scris: 
-
-— Hey, vrei să ai și o româncă în lista ta? Am văzut că îți lipsește.
-
-Probabil a zâmbit. Dar a doua zi, spre surprinderea mea, a venit după mine cu mașina și m-a dus să vizitez un mic orășel din apropiere – Ifrane, renumitul „oraș austriac al Marocului”. 
-
-A fost o după-amiază superbă, plină de povești, râsete și o liniște de drum care doar între necunoscuți devine atât de firească.
+        intro: `Pe Hamza l-am întâlnit prin Couchsurfing, în timpul vizitei mele în Fes, Maroc.
+Eram acolo de două zile, pierdută printre străduțele labirintice ale Medinei, când, răsfoind profiluri, mi-a atras atenția pagina lui.
         
-Un om de milioane!
-
-Câteva luni mai târziu, mi-a scris că urmează examenul de rezidențiat și mi-a trimis o poză cu prima pagină a lucrării lui – acolo unde avea o dedicație pentru cei mai importanți oameni care i-au marcat existența (să nu uităm, are doar 26 de ani!). Printre acele 9 sau 10 nume era și Mida.
+Avea o scurtă poveste despre oamenii pe care i-a întâlnit în călătorii și despre țările vizitate. Nicio urmă de „România”. Asta m-a intrigat.
+        
+I-am scris:
+        
+— Hey, vrei să ai și o româncă în lista ta? Am văzut că îți lipsește.
+        
+Probabil a zâmbit. Dar a doua zi, spre surprinderea mea, a venit după mine cu mașina și m-a dus să vizitez un mic orășel din apropiere – Ifrane, renumitul „oraș austriac al Marocului”.
+        
+A fost o după-amiază superbă, plină de povești, râsete și de acea liniște de drum care, între doi necunoscuți, devine atât de firească.
+        
+Un om de milioane.
+        
+Câteva luni mai târziu, mi-a scris că urmează examenul de rezidențiat și mi-a trimis o poză cu prima pagină a lucrării lui – acolo unde avea o dedicație pentru cei mai importanți oameni care i-au marcat viața (să nu uităm, are doar 26 de ani!). Printre acele 9–10 nume era și Mida.
         
 Mi-a spus că am fost una dintre persoanele care, în doar câteva ore și câteva cuvinte, au reușit să miște ceva profund în interiorul lui. Să-i schimbe puțin felul de a vedea viața.
+        
 Așa că azi, aici, îi mulțumesc pentru că a ales să-mi împărtășească un moment atât de personal și frumos.
-
-Extra-story: 
-Când ne întorceam din Ifrane, am decis spontan să oprim la un loc luxos – renumitul Michlifen Resort & Golf, ca doi turiști cu mulți bani. La poartă, Hamza le-a spus portarilor că mergem să luăm masa acolo.
+        
+Extra-story:
+Când ne întorceam din Ifrane, am decis spontan să oprim la un loc luxos – renumitul Michlifen Resort & Golf – ca doi turiști cu mulți bani. La poartă, Hamza le-a spus portarilor că mergem să luăm masa acolo.
+        
 Desigur, nu am mâncat. Dar am vizitat celebra locație, am făcut poze și ne-am bucurat de aerul acela elegant, de vacanță de vis.
+        
 Pe treptele care duceau spre grădină, ne-am întâlnit și cu un mic șarpe – un moment de neuitat, amuzant și puțin… exotic.
 Unul dintre acele momente care rămân în poveste, nu pentru că au fost perfecte, ci pentru că au fost vii.`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "Sunt Hamza, medic de 26 de ani din Fes, Maroc. Am o perspectivă deschisă asupra lumii și o curiozitate profundă față de oameni și culturi diferite. Îmi place să explorez experiențe globale și să învăț din modul unic în care fiecare persoană înțelege lumea. Consider că ființa umană este remarcabil de complexă și cred că spiritul uman nu poate fi definit printr-un set limitat de cuvinte." },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "Motivația mea pentru a explora lumea vine din dorința de a înțelege perspectivele diferite – mai ales felul în care gândirea variază între oameni și culturi." },
-          { q: "3. Când ai știut că merită?", a: "Momentele în care am întâlnit și am înțeles punctele de vedere diferite ale oamenilor despre lume au fost cu adevărat uimitoare și pline de inspirație." },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Fiecare loc mi-a lăsat o amprentă unică, dar dacă ar fi să aleg o țară, aș spune Turcia. Asta pentru că am explorat-o în profunzime, nu doar câteva orașe. Fiecare loc mi-a oferit ocazia să mă cufund în atmosfera sa, iar acolo am întâlnit oameni din toate colțurile lumii – europeni, americani, asiatici, africani. Această experiență a fost profund pozitivă și îmbogățitoare." },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Înainte să călătoresc, eram mai retras și timid, îmi era teamă să mă exprim, să nu fiu judecat sau ridiculizat. După călătorii, am devenit o persoană mai deschisă, comunicativă și liberă. Acum pot vorbi și împărtăși ideile mele fără teamă." },
+          { q: "1. Cine ești în câteva fraze?", a: "Sunt Hamza, medic de 26 de ani din Fes, Maroc. Am o perspectivă deschisă asupra lumii și o curiozitate profundă față de oameni și culturi diferite. Îmi place să explorez experiențe din toată lumea și să învăț din felul unic în care fiecare persoană o înțelege. Cred că ființa umană este remarcabil de complexă și că spiritul uman nu poate fi redus la câteva cuvinte." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Motivația mea de a explora lumea vine din dorința de a înțelege perspectivele diferite – mai ales felul în care gândirea variază de la un om la altul și de la o cultură la alta." },
+          { q: "3. Când ai știut că merită?", a: "Momentele în care am întâlnit și am înțeles punctele de vedere diferite ale oamenilor asupra lumii au fost cu adevărat uimitoare și pline de inspirație." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Fiecare loc mi-a lăsat o amprentă unică, dar dacă ar fi să aleg o țară, aș spune Turcia. Asta pentru că am explorat-o în profunzime, nu doar câteva orașe. Fiecare loc mi-a dat ocazia să mă cufund în atmosfera lui, iar acolo am întâlnit oameni din toate colțurile lumii – europeni, americani, asiatici, africani. A fost o experiență profund pozitivă și îmbogățitoare." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Înainte să călătoresc, eram mult mai retras și timid. Mi-era teamă să mă exprim, de frica de a nu fi judecat sau ridiculizat. Călătoriile m-au transformat într-o persoană mai deschisă, comunicativă și liberă. Acum pot să vorbesc și să-mi împărtășesc ideile fără teamă." },
           { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "Provocările neprevăzute apar mereu – dificultăți financiare, întâlniri mai puțin plăcute – dar fiecare experiență te face mai puternic și mai echilibrat." },
-          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Îmbrățișează viitorul. Fă primul pas. Îți va schimba viața profund." },
+          { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Îmbrățișează viitorul. Fă primul pas. Îți va schimba viața în profunzime." },
           { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "Pagina mea de Instagram este @Lahlou_.hamza." },
           { q: "9. Bonus: Cum ne-am cunoscut?", a: "Ne-am întâlnit prin Couchsurfing, în timpul vizitei ei în Fes. Ziua petrecută împreună a fost specială încă de la început. Mida are o poveste de viață impresionantă și o energie caldă, senină. Călătoriile ei, din România până în Vietnam, nu sunt doar despre locuri, ci despre sens – despre felul în care fiecare drum poate deveni o lecție. Cartea ei mi s-a părut plină de inspirație, iar felul în care vorbește despre oameni și experiențe te face să privești lumea altfel." },
         ],
         story: [],
       },
       en: {
-        intro: `I met Hamza through Couchsurfing, during my visit to Fes, Morocco.
-I had been there for two days, wandering through the labyrinthine streets of the Medina, when something on his profile caught my attention.
-He had written a short story about the people he’d met on his travels and the countries he had visited – but there was no mention of “Romania.” That intrigued me.
+        intro: `I met Hamza through Couchsurfing, during a trip to Fes, Morocco.
+I’d been there for two days, wandering through the labyrinthine streets of the Medina, when something on his profile caught my eye.
         
-So I wrote to him: 
-
+He had this short story about the people he’d met on his travels and the countries he’d visited – but there was no mention of Romania. That intrigued me.
+        
+So I wrote to him:
+        
 — Hey, would you like to have a Romanian on your list? I noticed you’re missing one.
         
-He probably smiled. But the next day, to my surprise, he came to pick me up by car and took me to visit a small nearby town – Ifrane, known as “the Austrian town of Morocco.”
-
-It was a beautiful afternoon, full of stories, laughter, and that quiet ease that only exists between strangers who somehow feel like old friends.
-
-A truly remarkable person.
-A few months later, he wrote to tell me he was preparing for his residency exam and sent me a photo of the first page of his thesis – where he had written a dedication to the most important people who had marked his life (let’s remember, he’s only 26!). Among those nine or ten names was Mida.
-
-He told me that, in just a few hours and a few words, I had managed to stir something deep within him – to make him see life a little differently.
-So today, here, I thank him for sharing such a personal and beautiful moment with me.
-
-Extra-story: 
-On our way back from Ifrane, we decided, quite spontaneously, to stop at a fancy place – the famous Michlifen Resort & Golf – like two rich tourists on vacation.
+He probably smiled. But the next day, to my surprise, he showed up by car and took me to visit a small town nearby – Ifrane, known as “the Austrian town of Morocco.”
+        
+It turned into a beautiful afternoon, full of stories, laughter, and that easy silence you sometimes find only on the road between two strangers who somehow feel like old friends.
+        
+He’s a truly remarkable person.
+        
+A few months later, he wrote to tell me he was preparing for his residency exam and sent me a photo of the first page of his thesis – the one with a dedication to the most important people who had shaped his life (and mind you, he’s only 26!). Among those nine or ten names was Mida.
+        
+He told me that in just a few hours, with just a few words, I had managed to stir something deep within him – to shift, even just a little, the way he saw life.
+So today, here, I want to thank him for choosing to share such a personal and beautiful moment with me.
+        
+Extra story
+On our way back from Ifrane, we decided, quite spontaneously, to stop at a fancy place – the famous Michlifen Resort & Golf – like two very wealthy tourists on holiday.
 At the gate, Hamza told the guards we were going there for lunch.
-Of course, we didn’t eat. But we did visit the beautiful location, took photos, and soaked in that dreamy, luxurious atmosphere.
-On the steps leading to the garden, we even met a little snake – an unforgettable, funny, and slightly exotic moment.
-One of those memories that stay with you not because they were perfect, but because they were alive.`,
+        
+Of course, we didn’t eat there. But we did walk around the place, took photos, and soaked in that dreamy, luxurious atmosphere.
+        
+On the steps leading down to the garden, we even came across a small snake – an unforgettable moment: funny, and just a little… exotic.
+One of those memories that stay with you not because they were perfect, but because they were so alive.`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "I am Hamza, a 26-year-old physician from Fes, Morocco. I have an open-minded outlook and a deep curiosity toward diverse people and cultures. I’m eager to explore global experiences and to learn from the unique ways each person understands the world. I find human beings remarkably complex, and I believe the human spirit cannot be defined by a limited set of descriptors." },
-          { q: "2. What made you start traveling?", a: "My motivation for global engagement stems from curiosity – the desire to understand different perspectives, especially the ways of thinking that vary among individuals and cultures." },
-          { q: "3. When did you know it was worth it?", a: "The moments when I encountered and truly comprehended the diverse perspectives of others regarding the world were astonishing and deeply inspiring." },
-          { q: "4. A place that changed the way you see the world?", a: "Each location left a distinct impression on me, but if I were to choose one country, it would be Turkey. I traveled extensively within it, not limiting myself to just a few cities. Each one allowed me to immerse myself in its unique atmosphere and meet people from all over the world – Europeans, Americans, Asians, and Africans. It was a profoundly positive and enriching experience." },
-          { q: "5. How did traveling change you as a person?", a: "Before I started traveling, I was more reserved and shy – afraid to express myself or to be misunderstood. After my travels, I became more open-minded and communicative. I can now share my thoughts and ideas without fear of being judged." },
-          { q: "6. A hard moment on the road and how you overcame it.", a: "Unforeseen challenges may arise – financial troubles, uncomfortable encounters – but each one contributes to personal growth and resilience." },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Embrace the future. Take the first step. It will profoundly transform your life." },
+          { q: "1. Who are you in a few sentences?", a: "I’m Hamza, a 26-year-old doctor from Fes, Morocco. I’m open-minded and deeply curious about people and different cultures. I love exploring the world and learning from the unique ways each person makes sense of it. I believe human beings are remarkably complex, and that the human spirit can’t be reduced to just a handful of words." },
+          { q: "2. What made you start traveling?", a: "My motivation to explore the world comes from one simple thing: curiosity. I want to understand different perspectives – especially the ways of thinking that change from one person to another and from one culture to the next." },
+          { q: "3. When did you know it was worth it?", a: "The moments when I’ve truly come to understand people’s different ways of seeing the world have been nothing short of astonishing – and deeply inspiring every single time." },
+          { q: "4. A place that changed the way you see the world?", a: "very place I’ve visited has left its own unique mark on me, but if I had to choose one country, it would be Turkey. I was able to explore it in depth, not just pass through a few cities. Each place gave me the chance to really sink into its atmosphere, and there I met people from all over the world – Europeans, Americans, Asians and Africans. It was a deeply positive and enriching experience." },
+          { q: "5. How did traveling change you as a person?", a: "Before I started traveling, I was much more reserved and shy, afraid to speak up for fear of being judged or laughed at. Traveling has made me more open, communicative and free. Now I can share my thoughts and ideas without that fear holding me back." },
+          { q: "6. A hard moment on the road and how you overcame it.", a: "Unexpected challenges always come up – financial struggles, uncomfortable encounters – but each experience helps you grow, making you stronger and more balanced." },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Embrace the future. Take the first step. It will change your life forever." },
           { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "My Instagram is @Lahlou_.hamza." },
-          { q: "9. Bonus: How did we meet?", a: "We met through Couchsurfing during her visit to Fes. The day we spent together was special from the very beginning. Mida has an inspiring life story and a calm, warm energy. Her travels – from Romania to Vietnam – aren’t just about places, but about meaning: about how every journey can become a lesson. Her book felt deeply inspiring to me, and the way she speaks about people and experiences makes you see the world differently." },
+          { q: "9. Bonus: How did we meet?", a: "We met through Couchsurfing during her visit to Fes, and the day we spent together felt special from the very beginning. Mida has an inspiring life story and a warm, calm energy. Her travels – from Romania to Vietnam – aren’t just about places, but about meaning: about the way every journey can become a lesson. I found her book deeply inspiring, and the way she talks about people and experiences makes you see the world in a different light." },
         ],
         story: [],
       },
