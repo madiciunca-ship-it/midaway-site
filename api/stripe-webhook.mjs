@@ -179,6 +179,11 @@ export default async function handler(req, res) {
 
       const email = session.customer_details?.email || null;
       const name = session.customer_details?.name || "Client";
+      const phone =
+        session.customer_details?.phone ||
+        session.customer_details?.shipping?.phone ||
+        null;
+      
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
         return res.json({ received: true });
@@ -270,6 +275,7 @@ export default async function handler(req, res) {
           createdAt: Date.now(),
           email,
           name,
+          phone, 
 
           amount: total_amount,
           currency,
@@ -428,6 +434,7 @@ export default async function handler(req, res) {
             text: [
               `Order: ${orderNo}`,
               `Client: ${name} <${email}>`,
+              `Telefon: ${phone || "-"}`,   
               `Total: ${total_amount} ${currency}`,
               `Țară: ${countryCode || "-"}`,
               `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
@@ -462,6 +469,7 @@ export default async function handler(req, res) {
       const reason = pi?.last_payment_error?.message || "Payment failed";
       const countryCode =
         (last?.billing_details?.address?.country || "").toUpperCase() || null;
+        const phone = last?.billing_details?.phone || null;
 
       await appendOrder({
         id: pi.id,
@@ -469,6 +477,7 @@ export default async function handler(req, res) {
         createdAt: Date.now(),
         email,
         name,
+        phone,
         amount,
         currency,
         items: [],
@@ -497,6 +506,7 @@ export default async function handler(req, res) {
         createdAt: Date.now(),
         email: s.customer_details?.email || null,
         name: s.customer_details?.name || null,
+        phone: s.customer_details?.phone || null,
         amount: (s.amount_total || 0) / 100,
         currency: (s.currency || "").toUpperCase(),
         items: [],
