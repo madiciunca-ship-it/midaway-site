@@ -585,88 +585,86 @@ We haven’t seen each other again since then, but we still keep in touch – as
         blog: "",
       },
       ro: {
-        intro: `Era o zi superbă de vară, într-un hostel din Catania. Eram singură în cameră, cu aerul condiționat pornit și 33 de grade care fierbeau orașul de afară.
-Am mers până la baie… și când m-am întors, nu mai eram singură.
+        intro: `Era o zi superbă de vară, într-un hostel din Catania. Eram singură în cameră, cu aerul condiționat pornit și cu 33 de grade care fierbeau orașul de afară.  
+Am mers până la baie… și, când m-am întors, nu mai eram singură.
         
-Apăruse o tipă – exact în momentul în care mă pregăteam să închid laptopul și să ies să mănânc.
-O întâlnire „aranjată”. Nu o spun doar eu; am descoperit asta împreună.
+Apăruse o tipă – exact în momentul în care mă pregăteam să închid laptopul și să ies să mănânc.  
+O întâlnire „aranjată”. Nu o spun doar eu – am simțit asta împreună.
         
-Heidi, din Scoția. O rebelă, exact opusul meu – cum chiar ea s-a definit. Artistă, călătoare de o viață, o femeie care a strâns în suflet povești cât pentru trei existențe.
+Heidi, din Scoția. O rebelă, exact opusul meu – cum chiar ea s-a definit. Artistă, călătoare de o viață, o femeie care a strâns în suflet povești cât pentru trei existențe.  
 Mi-a povestit cum a cutreierat lumea, cum și-a urmat impulsurile, cum s-a aruncat în experiențe brute, uneori frumoase, alteori dureroase.
         
 Dar fraza care m-a cucerit a fost asta:
-
+        
 — Când am nevoie de bani, mă pot opri să-i fac… când nu, pot călători.
         
-Face meditații și stretching pe plajă. Pictează – nu doar ca hobby, ci ca o formă de respirație. Trăiește liber.
-Și iar Universul a muncit în culise: cu o zi înainte își schimbase hostelul. Inițial îl alesese pe cel la care trebuia să merg și eu – Eco Hostel. Dar a schimbat planurile și a ales aici, pentru trei nopți.
+Face meditație și stretching pe plajă. Pictează – nu doar ca hobby, ci ca o formă de respirație. Trăiește liber.  
+Și iar Universul a lucrat în culise: cu o zi înainte își schimbase hostelul. Inițial îl alesese pe cel la care trebuia să merg și eu – Eco Hostel. Dar a schimbat planurile și a ales aici, pentru trei nopți.  
 Bizar? Deloc. Știm amândouă că nimic nu e întâmplător.
         
-Era fascinată de cât de diferite suntem. Și în timp ce povestea, i se vedea în ochi ceva foarte rar: iubirea sinceră pentru viață, în cele mai brute forme ale ei.
-O cred. Se simțea în felul în care respira, în felul în care zâmbea.
-Puțini oameni pot spune asta, în ciuda greutăților vizibile pe care le trăim toți.
+Era fascinată de cât de diferite suntem. Și, în timp ce povestea, i se vedea în ochi ceva foarte rar: iubirea sinceră pentru viață, în cele mai brute forme ale ei.  
+O cred. Se simțea în felul în care respira, în felul în care zâmbea.  
+Puțini oameni pot spune asta, în ciuda greutăților vizibile pe care le trăim cu toții.
         
-Și da, apropo de rochița mea „boemă”… logic că a doua zi a mers să-și cumpere și ea una.
-Poate că undeva, cândva, drumurile noastre se vor intersecta din nou.
+Și da, apropo de rochița mea „boemă”… era logic ca a doua zi să meargă să-și cumpere și ea una.  
+        
+Poate că undeva, cândva, drumurile noastre se vor intersecta din nou.  
 Cine știe ce ne este menit?`,
         qna: [
-          { q: "1. Cine ești în câteva fraze?", a: "Numele meu este Heidi Karin. M-am născut pe coasta de nord-est a Scoției și am o pătrime sânge norvegian. Lucrez ca artistă și pentru o companie norvegiană. Călătoresc de când eram foarte tânără – cred că drumul a făcut mereu parte din mine." },
-          { q: "2. Ce te-a împins să pleci la drum?", a: "Am început să călătoresc singură la începutul anilor 20. Am avut mereu o dragoste pentru descoperire – pentru lucruri noi, pentru învățare, pentru culturi diferite. Sunt o persoană profund curioasă despre lume și despre tot ce are ea de oferit." },
+          { q: "1. Cine ești în câteva fraze?", a: "Numele meu este Heidi Karin. M-am născut pe coasta de nord-est a Scoției și am un sfert sânge norvegian. Lucrez ca artistă și pentru o companie norvegiană. Călătoresc de când eram foarte tânără – cred că drumul a făcut mereu parte din mine." },
+          { q: "2. Ce te-a împins să pleci la drum?", a: "Am început să călătoresc singură la începutul vârstei de 20 de ani. Am avut mereu o dragoste pentru descoperire – pentru lucruri noi, pentru învățare, pentru culturi diferite. Sunt o persoană profund curioasă despre lume și despre tot ce are ea de oferit." },
           { q: "3. Când ai știut că merită?", a: "Acel moment în care simți cu adevărat că trăiești! Când realizezi că există atât de mult de descoperit dincolo de ușa ta – și că totul se rezumă la oamenii pe care îi întâlnești pe drum." },
-          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Sunt multe locuri, dar primul a fost Egiptul. L-am vizitat la 13 ani și a fost prima mea „lovitură culturală”. De atunci, am tot revenit acolo – călătoresc în Egipt încă din anii ’90." },
-          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile mi-au modelat întreaga viață. Mi-au deschis mintea și inima. M-au ajutat să mă privesc mai adânc, să caut sens, să mă inspir și să creez artă – să surprind cele mai frumoase momente cu aparatul foto. A fost uimitor. Trebuie doar să trăiești clipa și să o respiri cu totul." },
+          { q: "4. Ce loc ți-a schimbat cel mai mult felul de a privi lumea?", a: "Sunt multe locuri, dar primul a fost Egiptul. L-am vizitat la 13 ani și a fost prima mea „lovitură culturală”. De atunci m-am tot întors – călătoresc în Egipt încă din anii ’90." },
+          { q: "5. Cum te-a schimbat călătoria ca om?", a: "Călătoriile mi-au modelat întreaga viață. Mi-au deschis mintea și inima. M-au ajutat să mă privesc mai adânc, să caut sens, să mă las inspirată și să creez artă – să surprind cele mai frumoase momente cu aparatul foto. A fost uimitor. Tot ce trebuie să faci este să trăiești clipa și să o respiri cu totul." },
           { q: "6. Un moment greu de pe drum și cum l-ai depășit.", a: "M-am îmbolnăvit de mai multe ori, mai ales în țările mai puțin dezvoltate. Odată, în Mumbai, India, am fost bolnavă aproape 12 săptămâni. Am mers la spital în Kerala, am primit tratament și apoi mi-am continuat drumul spre Sri Lanka. La scurt timp după, am fost electrocutată într-un duș – dar am supraviețuit, am ajuns în Dubai și, în cele din urmă, am primit medicația corectă. A trebuit doar să merg mai departe. Eram singură, dar trebuia să-mi croiesc drumul spre casă." },
           { q: "7. Un sfat pentru cine vrea să pornească, dar încă ezită.", a: "Doar fă-o. Nu planifica prea mult. Fii spontan. Încearcă lucruri pe care, de obicei, nu le-ai face. Călătorește ușor. Simplifică-ți viața. Nu ai nevoie de multe – doar de un rucsac mic, un zâmbet mare și o inimă deschisă. Dar… ține ochii deschiși!" },
-          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @eatlovetravelwithheidi (Heidi nu folosește rețelele sociale, dar împărtășește momente și povești de călătorie pe canalul ei de YouTube.)" },
-          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Tocmai ajunsesem la hostelul din Catania, Sicilia, după un drum lung cu autobuzul din Palermo. Mida a intrat în dormitor purtând o rochie boemă superbă, și am început imediat să vorbim. Am rezonat pe loc. Mi-a povestit puțin despre călătoria ei – mi s-a părut fascinantă. De atunci, am rămas în contact din când în când." },
+          { q: "8. Unde te găsim (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @eatlovetravelwithheidi (Heidi nu folosește foarte mult rețelele sociale, dar împărtășește momente și povești de călătorie pe canalul ei de YouTube.)" },
+          { q: "9. Bonus: Cum ne-am cunoscut?", a: "Tocmai ajunsesem la hostelul din Catania, în Sicilia, după un drum lung cu autobuzul din Palermo. Mida a intrat în dormitor purtând o rochie boemă superbă și am început să vorbim imediat. Am rezonat pe loc. Mi-a povestit puțin despre călătoria ei – mi s-a părut fascinantă. De atunci am mai ținut legătura, din când în când." },
         ],
         story: [],
       },
       en: {
-        intro: `It was a beautiful summer day, in a small hostel in Catania.
-I was alone in the room, the air conditioning humming softly, while the heat outside – over 33 degrees – melted the city.
+        intro: `It was a beautiful summer day in a small hostel in Catania.  
+I was alone in the room, the air conditioning humming softly while the heat outside – over 33 degrees – was melting the city.  
 I went to the bathroom… and when I came back, I was no longer alone.
         
-A woman had appeared – right in the moment when I was about to close my laptop and go eat.
-An “arranged” meeting. And not just according to me – we discovered that together.
+A woman had appeared – right in the moment when I was about to close my laptop and go eat.  
+An “arranged” meeting. Not just according to me – that’s how we both felt.
         
-Heidi, from Scotland.
-A rebel.
-My opposite – as she herself put it.
-An artist, a lifelong traveler, a woman who carries inside stories fit for three lifetimes.
+Heidi, from Scotland.  
+A rebel.  
+My opposite – as she herself put it.  
+An artist, a lifelong traveler, a woman who carries inside her enough stories for three lifetimes.
         
 She told me how she’s wandered the world, how she’s followed her impulses, how she’s thrown herself into raw experiences – some beautiful, others painfully deep.
         
-But the sentence that won me completely was this one.
-
+But the sentence that completely won me over was this:
+        
 — When I need money, I can stop and make it… and when I don’t, I can travel.
         
-She meditates and stretches on the beach. She paints – not as a hobby, but as a way to breathe. She lives freely.
-And again, the Universe worked behind the scenes: the day before, she had changed her hostel.
-Originally, she had booked the same place I was supposed to stay – Eco Hostel.
-But then she switched and chose here, for three nights.
+She meditates and stretches on the beach. She paints – not as a hobby, but as a way to breathe. She lives freely.  
+And once again, the universe was working behind the scenes: the day before, she had changed her hostel.  
+Originally, she had booked the same place I was supposed to stay at – Eco Hostel – but she switched and chose this one instead, for three nights.  
 Strange? Not at all. We both know nothing is ever random.
         
-She was fascinated by how different we are.
-And as she spoke, I noticed something rare in her eyes: a sincere love for life – in its rawest, most unfiltered forms.
-I believed her immediately. You could feel it in the way she smiled, in the way she breathed.
-Few people can say that, despite the obvious hardships we all navigate.
+She was fascinated by how different we are. And as she spoke, I noticed something rare in her eyes: a sincere love for life, in its rawest, most unfiltered forms.  
+I believed her instantly. You could feel it in the way she smiled, in the way she breathed.  
+Few people can truly say that, despite the visible hardships we all go through.
         
-And yes, about my little “bohemian dress”…
-Of course she went out the next day to buy one for herself.
+And yes, about my little “bohemian dress”… of course she went out the next day and bought one for herself.
         
-Maybe somewhere, someday, our paths will cross again.
-Who knows what destiny has planned for us?`,
+Maybe somewhere, someday, our paths will cross again.  
+Who knows what life has in store for us?`,
         qna: [
-          { q: "1. Who are you in a few sentences?", a: "My name is Heidi Karin, I was born on the North East Coast of Scotland. I am 1/4 Norwegian. I work as an artist and for a Norwegian company. I’ve been travelling since I was very young – it’s always been part of who I am." },
-          { q: "2. What made you start traveling?", a: "I first started travelling solo in my early 20s. I always had a love for travel – to discover new things, to learn, and to absorb new cultures. I’ve always been deeply curious about the world." },
-          { q: "3. When did you know it was worth it?", a: "That moment when you really feel alive! You realise that there is so much more outside your door to discover – and it’s absolutely about the people you meet on your journey." },
-          { q: "4. A place that changed the way you see the world?", a: "So many places, really. I visited Egypt when I was 13 years old and have been travelling there since the early 90s. That was my first culture shock." },
-          { q: "5. How did traveling change you as a person?", a: "Travel has shaped my whole life. It has opened my mind and my heart. It’s allowed me to look deeper into myself, to search for meaning, to be inspired and to create art – to capture the most beautiful moments with my camera. It’s been amazing. You just have to live in that moment and breathe it in." },
+          { q: "1. Who are you in a few sentences?", a: "My name is Heidi Karin. I was born on the north-east coast of Scotland, and I’m one-quarter Norwegian. I work as an artist and I also work for a Norwegian company. I’ve been travelling since I was very young – it’s always been part of who I am." },
+          { q: "2. What made you start traveling?", a: "I first started travelling solo in my early 20s. I’ve always had a love for travel – to discover new things, to learn, and to absorb new cultures. I’ve always been deeply curious about the world." },
+          { q: "3. When did you know it was worth it?", a: "That moment when you really feel alive! You realise there is so much more outside your door to discover – and that it’s really all about the people you meet on your journey." },
+          { q: "4. A place that changed the way you see the world?", a: "So many places, really. I first visited Egypt when I was 13, and it was my first real culture shock. I’ve been travelling back there since the early ’90s." },
+          { q: "5. How did traveling change you as a person?", a: "Travel has shaped my whole life. It has opened my mind and my heart. It’s allowed me to look deeper into myself, to search for meaning, to be inspired and to create art – to capture the most beautiful moments with my camera. All of it has been amazing. You just have to live in that moment and breathe it in." },
           { q: "6. A hard moment on the road and how you overcame it.", a: "I’ve gotten sick quite a few times, especially in the less developed countries. I got sick in Mumbai, India, and was ill for around 12 weeks. I visited a hospital in Kerala, got medication, and made my way to Sri Lanka. After that, I got electrocuted in a shower – but I survived, made my way to Dubai, and finally got the proper medication I needed. I just had to keep going. I was alone, but I had to make my way home." },
-          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Just do it. Don’t plan too much, be spontaneous, try things you would never normally do. Travel light! Make your life simple! You don’t need much in life – just the necessities! Bring a small rucksack, a big smile, and an open heart… but keep your eyes open!" },
+          { q: "7. A tip for someone who wants to leave but still hesitates.", a: "Just do it. Don’t plan too much. Be spontaneous – try things you would never normally do. Travel light. Keep your life simple. You don’t need much in life – just the essentials. Bring a small rucksack, a big smile and an open heart… but keep your eyes open!" },
           { q: "8. Where can we find you (IG / FB / YouTube / TikTok / site / blog)?", a: "YouTube: @eatlovetravelwithheidi (I don’t use social media much, but I share my travel moments and stories on my YouTube channel.)" },
-          { q: "9. Bonus: How did we meet?", a: "I had just arrived at the hostel in Catania, Sicily, after a long bus journey from Palermo. Mida walked into the dorm wearing a lovely bohemian dress, and we instantly started chatting. We hit it off right away. She told me briefly about her journey, and I found it very interesting. Now we stay in touch from time to time." },
+          { q: "9. Bonus: How did we meet?", a: "I had just arrived at a hostel in Catania, Sicily, after a long bus journey from Palermo. Mida walked into the dorm wearing a beautiful bohemian dress, and we instantly started talking. We hit it off right away. She told me a little about her journey, and I found it fascinating. Since then, we’ve stayed in touch from time to time." },
         ],
         story: [],
       },
