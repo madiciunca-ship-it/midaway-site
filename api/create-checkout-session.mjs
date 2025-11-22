@@ -268,6 +268,10 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
+  
+  phone_number_collection: {
+    enabled: true,
+  },
     });
 
     console.log("✅ create-checkout-session OK:", session.id);
