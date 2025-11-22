@@ -464,6 +464,7 @@ export default async function handler(req, res) {
       const last = pi?.charges?.data?.[0] || {};
       const email = last?.billing_details?.email || null;
       const name = last?.billing_details?.name || null;
+      const phone = last?.billing_details?.phone || null;
       const currency = (pi?.currency || "").toUpperCase();
       const amount = (pi?.amount || 0) / 100;
       const reason = pi?.last_payment_error?.message || "Payment failed";
@@ -507,6 +508,7 @@ export default async function handler(req, res) {
         email: s.customer_details?.email || null,
         name: s.customer_details?.name || null,
         phone: s.customer_details?.phone || null,
+        
         amount: (s.amount_total || 0) / 100,
         currency: (s.currency || "").toUpperCase(),
         items: [],

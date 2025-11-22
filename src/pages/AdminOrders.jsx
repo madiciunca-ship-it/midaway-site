@@ -114,10 +114,25 @@ export default function AdminOrders() {
       }
 
       if (query) {
-        const hay =
-          `${o.orderNo || ""} ${o.merchantOrderId || ""} ${o.id || ""} ${o.email || ""} ${o.name || ""}`.toLowerCase();
+        const hay = [
+          o.orderNo,
+          o.merchantOrderId,
+          o.id,
+          o.email,
+          o.name,
+          o.phone,
+          o.address?.line1,
+          o.address?.city,
+          o.address?.state,
+          o.address?.postal_code,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+      
         if (!hay.includes(query)) return false;
       }
+      
       return true;
     });
   }, [orders, q, year, month, status, currency, format]);
@@ -156,7 +171,12 @@ export default function AdminOrders() {
       "createdAtIso",
       "email",
       "name",
+      "phone",
       "country",
+      "addressLine1",
+      "city",
+      "state",
+      "postal_code",
       "currency",
       "amount",
       "courierFee",
@@ -164,6 +184,7 @@ export default function AdminOrders() {
       "formats",
       "items",
     ];
+    
     const rows = filtered.map((o, idx) => [
       filtered.length - idx,
       o.orderNo || "",
@@ -171,7 +192,12 @@ export default function AdminOrders() {
       new Date(Number(o.createdAt || 0)).toISOString(),
       o.email || "",
       o.name || "",
+      o.phone || "",
       (o.country || "").toUpperCase(),
+      o.address?.line1 || "",
+      o.address?.city || "",
+      o.address?.state || "",
+      o.address?.postal_code || "",
       (o.currency || "").toUpperCase(),
       o.amount ?? "",
       typeof o.courierFee === "number" ? o.courierFee : "",
@@ -184,6 +210,7 @@ export default function AdminOrders() {
         )
         .join(" | "),
     ]);
+    
     const csv = [
       head.join(","),
       ...rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(",")),
@@ -417,8 +444,30 @@ export default function AdminOrders() {
                           Copiază
                         </button>
                       </div>
-                    </div>
+                  
 
+{/* Telefon + adresă */}
+{(o.phone || (o.address && (o.address.line1 || o.address.city || o.address.state))) && (
+    <div
+      style={{
+        marginTop: 2,
+        fontSize: 12,
+        color: "#777",
+        lineHeight: 1.4,
+      }}
+    >
+      {o.phone && <div>📞 {o.phone}</div>}
+      {o.address && (o.address.line1 || o.address.city || o.address.state) && (
+        <div>
+          {o.address.line1 || ""}
+          {o.address.city ? `, ${o.address.city}` : ""}
+          {o.address.state ? `, ${o.address.state}` : ""}
+          {o.address.postal_code ? ` (${o.address.postal_code})` : ""}
+        </div>
+      )}
+    </div>
+  )}
+</div>
                     {/* Data */}
                     <div style={{ color: "#444" }}>
                       <div>{!isNaN(d) ? d.toLocaleDateString() : "-"}</div>
