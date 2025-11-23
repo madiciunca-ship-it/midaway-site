@@ -9,7 +9,7 @@ const stripe = new Stripe(STRIPE_KEY);
 // ─────────────────────────────────────────────────────────────────────────────
 //  Config
 // ─────────────────────────────────────────────────────────────────────────────
-const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 20);
+const COURIER_FEE_RON = Number(process.env.COURIER_FEE_RON ?? 30);
 const COURIER_FEE_EUR = Number(process.env.COURIER_FEE_EUR ?? 10);
 
 // Harta cărți + whitelist fișiere disponibile (ex: "carte-id:PDF")
@@ -268,10 +268,6 @@ export default async function handler(req, res) {
             ],
           }
         : undefined,
-  
-  phone_number_collection: {
-    enabled: true,
-  },
     });
 
     console.log("✅ create-checkout-session OK:", session.id);
