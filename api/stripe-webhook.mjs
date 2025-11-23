@@ -183,6 +183,18 @@ export default async function handler(req, res) {
         session.customer_details?.phone ||
         session.customer_details?.shipping?.phone ||
         null;
+
+const addr = session.customer_details?.address || {};
+const countryCode = (addr.country || "").toUpperCase() || null;
+
+const addrStr = [
+  addr.line1,
+  addr.line2,
+  addr.postal_code,
+  addr.city,
+  addr.state,
+  countryCode,
+].filter(Boolean).join(", ");
       
       if (!email) {
         console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
