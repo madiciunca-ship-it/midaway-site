@@ -260,6 +260,10 @@ export default async function handler(req, res) {
       cancel_url,
       customer_creation: "always",
       billing_address_collection: "required",
+      phone_number_collection: {           // ← ADĂUGAT
+        enabled: true
+      },
+    
       allow_promotion_codes: true,
       shipping_address_collection: hasPaperback
         ? {
