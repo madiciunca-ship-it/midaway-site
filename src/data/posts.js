@@ -113,17 +113,16 @@ const posts = [
   },
 
   {
-    id: "no-connection-jurnale-de-drum-din-china",
     slug: "no-connection-jurnale-de-drum-din-china",
     title: "No Connection – Jurnale de drum din China",
-    subtitle: "Despre frig, hosteluri, tuse, mâncare picantă și liniștea pe care nu o poți descărca din niciun app",
+    excerpt: "Despre frig, hosteluri, tuse, mâncare picantă și liniștea pe care nu o poți descărca din niciun app",
     date: "2025-12-23",
     author: "Mida Malena",
-    tags: ["China", "jurnal", "călătorie", "tech", "mindset"],
+    tags: ["China", "jurnal", "călătorii", "scris", "mindset"],
     excerpt:
       "Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.",
-    cover: "/assets/blog/no-connection-china.webp", // schimbă dacă ai altă imagine
-    lang: "ro",
+    cover: "/assets/blog/no-connection-china.jpg", 
+    minutes: 9,
     content: [
       `Unele vise încep fix atunci când nu te mai gândești la ele. Când nu mai stai cu ochii pe destinație, cu dorul încordat, cu liste și planuri. Pur și simplu… se întâmplă.`,
       `China a fost mereu undeva în spatele minții mele. Ca o imagine neclară: zgârie-nori, metrou, tehnologie de ultimă generație, ecrane uriașe, caractere pe care nu le înțelegeam și o limbă care suna ca o ploaie de sunete fără logică pentru mine.`,
@@ -131,7 +130,7 @@ const posts = [
       `Auzisem de: aplicații noi, fără de care „nu exiști” acolo; restricții; faptul că mulți oameni nu vorbesc engleză… Nu că engleza mea ar fi perfectă, dar măcar aveam iluzia că mă pot descurca cu ea.`,
       `Și totuși…`,
   
-      `### Bilet „out of nowhere”`,
+      `*Bilet „out of nowhere*”`,
       `Într-o zi, fără mari pregătiri, fără vision board, fără plan pe un an înainte… mi-am luat bilet. Atât.`,
       `În 9 zile urma să zbor spre China. Beijing.`,
       `Nu mă întreba de ce Beijing. N-am un răspuns logic.`,
@@ -140,7 +139,7 @@ const posts = [
       `Și, cumva, știam deja: zarurile fuseseră aruncate.`,
       `Ce a urmat a fost mai mult decât aș fi putut să: plănuiesc, controlez sau măcar să-mi imaginez în liniște, într-o seară de iarnă, în România, când lucram de zor să-mi termin site-ul ca să pot „zbura”.`,
   
-      `### Beijing, frigul care mușcă`,
+      `*Beijing, frigul care mușcă*`,
       `Știam că va fi iarnă acolo. Ce nu știam era că iarna aceea avea să mă muște, la propriu.`,
       `„În Beijing sunt minus patru grade,” ne-a anunțat, oarecum nepăsător, căpitanul aeronavei Turkish Airlines.`,
       `Când „îl auzi”, pare un număr ușor de suportat. În realitate, frigul din Beijing mușca din mine ca un animal flămând, hotărât să-și apere teritoriul.`,
@@ -152,7 +151,7 @@ const posts = [
       `Fiecare pas afară era un mic război cu aerul. Mă strângeam în geacă, îmi băgam mâinile mai adânc în buzunare și îmi spuneam în gând: „Ai vrut China, Mida. Acum ai China. Asta e China!”`,
       `Dar dacă doar frigul ar fi fost problema…`,
   
-      `### Lecția la care nu mă așteptam: când tehnologia îți întoarce spatele`,
+      `*Lecția la care nu mă așteptam: când tehnologia îți întoarce spatele*`,
       `China avea altă lecție pregătită pentru mine. Mai dură decât îmi imaginam.`,
       `Și totuși, înainte să ajung la lecția aceea mare, China m-a luat pe ocolite.`,
       `M-a trecut prin frig, tuse și prin focul mic al wok-urilor lor. Mâncarea lor picantă mi-a dat destule „senzații interioare” cât să nu le uit prea curând.`,
@@ -175,7 +174,7 @@ const posts = [
       `Ajunsesem într-un punct foarte clar: ori rezist, ori cedez.`,
       `Dar știam. Nu era doar despre internet. Era despre: control, nevoia de a fi „la curent”, dependența de „a fi online” și frica de a nu „dispărea” dacă nu postez, nu răspund, nu apar.`,
   
-      "### Când universul îți scoate din priză telefonul ca să-ți bagi sufletul înapoi",
+      "*Când universul îți scoate din priză telefonul ca să-ți bagi sufletul înapoi*",
       "Am rezistat. Dar nu în felul în care eram obișnuită să o fac.",
       "China mi-a adus pace. Dar nu pacea aceea zen, instagramabilă, cu cafele fierbinți și bambus în spate. Alt tip de pace.",
       "Mi-a adus înapoi ceva ce nu știam că pierdusem demult, în tumultul notificărilor și al scroll-ului: timp de reconectare cu mine, cu sufletul meu.",
@@ -186,7 +185,7 @@ const posts = [
       "Pentru prima dată după mult timp: am mers mai mult pe jos fără să caut mereu semnal; m-am uitat mai mult la oameni, nu la ecran; am simțit mai clar ce îmi doresc, ce mă doare, ce mă bucură.",
       "China m-a forțat să desacelerez agresiv. Nu cu blândețe, nu cu un retreat de mindfulness, ci cu un „NO CONNECTION” rece, repetat, enervant.",
   
-      "### În mijlocul deconectării, am decis să nu renunț",
+      "*În mijlocul deconectării, am decis să nu renunț*",
       "Printre zecile de minute de „connect / reconnect”, am reușit totuși să am acces. Parțial. Limitat. Încet.",
       "Îmi lua și jumătate de oră să postez ceva pe social media. Un story. O poză. Câteva rânduri.",
       "Orice „normal” ar fi renunțat la un moment dat. Dar ceva în mine s-a încăpățânat.",
@@ -196,7 +195,7 @@ const posts = [
       "Și, undeva între un resend și altul, am realizat că „ăsta e testul meu!”",
       "Nu să fiu „cea mai conectată”. Ci să văd cine sunt atunci când conexiunea externă se rupe.",
   
-      "### Ce mi-a dat, de fapt, China",
+      "*Ce mi-a dat, de fapt, China*",
       "China mi-a dat: frig care m-a trezit din inerție; limitări care m-au obligat să-mi văd dependențele; „no connection”-uri care m-au deconectat de la lume, ca să mă conectez cu mine.",
       "Și, peste toate, mi-a dat un alt fel de liniște.",
       "Liniștea de a ști că mă pot descurca și acolo unde nimic nu merge „ca acasă”.",
