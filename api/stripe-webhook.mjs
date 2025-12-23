@@ -184,9 +184,6 @@ export default async function handler(req, res) {
         session.customer_details?.shipping?.phone ||
         null;
 
-const addr = session.customer_details?.address || {};
-const countryCode = (addr.country || "").toUpperCase() || null;
-
 const addrStr = [
   addr.line1,
   addr.line2,
@@ -482,7 +479,7 @@ const addrStr = [
       const reason = pi?.last_payment_error?.message || "Payment failed";
       const countryCode =
         (last?.billing_details?.address?.country || "").toUpperCase() || null;
-        const phone = last?.billing_details?.phone || null;
+      
 
       await appendOrder({
         id: pi.id,
