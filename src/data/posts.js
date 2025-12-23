@@ -111,6 +111,108 @@ const posts = [
       `Mida Malena, 18 noiembrie 2025`
     ]
   },
+
+  {
+    id: "no-connection-jurnale-de-drum-din-china",
+    slug: "no-connection-jurnale-de-drum-din-china",
+    title: "No Connection – Jurnale de drum din China",
+    subtitle: "Despre frig, hosteluri, tuse, mâncare picantă și liniștea pe care nu o poți descărca din niciun app",
+    date: "2025-12-23",
+    author: "Mida Malena",
+    tags: ["China", "jurnal", "călătorie", "tech", "mindset"],
+    excerpt:
+      "Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.",
+    cover: "/assets/blog/no-connection-china.webp", // schimbă dacă ai altă imagine
+    lang: "ro",
+    content: [
+      `Unele vise încep fix atunci când nu te mai gândești la ele. Când nu mai stai cu ochii pe destinație, cu dorul încordat, cu liste și planuri. Pur și simplu… se întâmplă.`,
+      `China a fost mereu undeva în spatele minții mele. Ca o imagine neclară: zgârie-nori, metrou, tehnologie de ultimă generație, ecrane uriașe, caractere pe care nu le înțelegeam și o limbă care suna ca o ploaie de sunete fără logică pentru mine.`,
+      `Fascinația necunoscutului era „acolo”. Dar, undeva, foarte bine ascunsă, era și o emoție mică: „Și dacă nu mă descurc?”`,
+      `Auzisem de: aplicații noi, fără de care „nu exiști” acolo; restricții; faptul că mulți oameni nu vorbesc engleză… Nu că engleza mea ar fi perfectă, dar măcar aveam iluzia că mă pot descurca cu ea.`,
+      `Și totuși…`,
+  
+      `### Bilet „out of nowhere”`,
+      `Într-o zi, fără mari pregătiri, fără vision board, fără plan pe un an înainte… mi-am luat bilet. Atât.`,
+      `În 9 zile urma să zbor spre China. Beijing.`,
+      `Nu mă întreba de ce Beijing. N-am un răspuns logic.`,
+      `Cochetasem ultimele două luni cu o cu totul altă destinație – ceva cu soare, mare, nisip cald, tot pachetul de „lifestyle de prințesă”.`,
+      `Doar că planurile și destinația finală nu sunt întotdeauna același lucru. De multe ori, sunt diametral opuse.`,
+      `Și, cumva, știam deja: zarurile fuseseră aruncate.`,
+      `Ce a urmat a fost mai mult decât aș fi putut să: plănuiesc, controlez sau măcar să-mi imaginez în liniște, într-o seară de iarnă, în România, când lucram de zor să-mi termin site-ul ca să pot „zbura”.`,
+  
+      `### Beijing, frigul care mușcă`,
+      `Știam că va fi iarnă acolo. Ce nu știam era că iarna aceea avea să mă muște, la propriu.`,
+      `„În Beijing sunt minus patru grade,” ne-a anunțat, oarecum nepăsător, căpitanul aeronavei Turkish Airlines.`,
+      `Când „îl auzi”, pare un număr ușor de suportat. În realitate, frigul din Beijing mușca din mine ca un animal flămând, hotărât să-și apere teritoriul.`,
+      `Pe lângă frig, corpul meu a decis să își facă și el numărul. Am tușit aproape constant, ca și cum plămânii mei încercau să țină ritmul cu orașul.`,
+      `Iar cazările din hosteluri mi-au mâncat și restul de nervi pe care îi mai aveam. Paturi suprapuse care scârțâiau la fiecare întoarcere, pereți subțiri, lumini aprinse la două noaptea – micile taxe pe care le plătești când alegi să vezi lumea la preț de hostel, nu de hotel.`,
+      `Într-una dintre nopți, într-un hostel din Chengdu, am dormit cu geamul deschis, la minus un grad afară. Eu îl închideam, o chinezoaică înfocată îl deschidea la loc.`,
+      `Un tango absurd între frigul ei și frigul meu, între „mie mi-e prea cald” și „mie mi-au înghețat deja gândurile”.`,
+      `Mă uitam la geam, la termometru și la respirația mea în aerul rece și mă întrebam, cu un râs amar: „Chiar asta ți-ai dorit, Mida?”`,
+      `Fiecare pas afară era un mic război cu aerul. Mă strângeam în geacă, îmi băgam mâinile mai adânc în buzunare și îmi spuneam în gând: „Ai vrut China, Mida. Acum ai China. Asta e China!”`,
+      `Dar dacă doar frigul ar fi fost problema…`,
+  
+      `### Lecția la care nu mă așteptam: când tehnologia îți întoarce spatele`,
+      `China avea altă lecție pregătită pentru mine. Mai dură decât îmi imaginam.`,
+      `Și totuși, înainte să ajung la lecția aceea mare, China m-a luat pe ocolite.`,
+      `M-a trecut prin frig, tuse și prin focul mic al wok-urilor lor. Mâncarea lor picantă mi-a dat destule „senzații interioare” cât să nu le uit prea curând.`,
+      `Genul acela de iuțeală care nu îți arde doar gura, ci îți reaprinde tot corpul din interior.`,
+      `Mi-era foame, o foame de ceva ce nici măcar nu puteam defini. Farfurii aproape neatinse. Pentru ei, era „puțin picant”. Pentru mine? Infernul pe pământ.`,
+      `Au fost seri în care stomacul meu protesta serios, în timp ce corpul încerca să adoarmă, doar ca să uite.`,
+      `Râdeam singură, într-un efort de a „face haz de necaz”: „Dacă nu mă termină frigul și hostelurile, sigur o face chili-ul chinezesc.”`,
+      `Dar nu era despre mâncare, nici despre temple sau mulțimea de oameni de pretutindeni. Era despre… conexiune.`,
+  
+      `Știam de restricțiile lor. Îmi instalasem VPN, eram liniștită. „Ce poate să fie atât de complicat?” mi-am zis, din confortul casei mamei mele, din România.`,
+      `Răspuns scurt: TOTUL!`,
+      `M-am trezit în cea mai dură perioadă tehnologică a vieții mele. Și nu exagerez.`,
+      `Fiecare: mesaj, mail, postare, încercare de conectare… era un mic maraton spre nicăieri.`,
+      `Laptopul? Inutilizabil. Nu a vrut nici mort să se conecteze la vreo rețea existentă.`,
+      `Fiecare nouă zi, fiecare oraș nou îmi aducea exact același lucru: „Resend.”, „Retry.”, „No connection.”`,
+      `De zeci de ori. Poate chiar mii…`,
+      `Conexiunea ținea uneori trei minute, sau trei secunde… apoi se rupea. Fix când aveam senzația că „gata, merge”, apărea din nou micul mesaj care părea să-mi râdă în față.`,
+      `Am vrut să renunț.`,
+      `Mi-am imaginat biletul de retur, spre orice loc în care nu trebuie să te rogi la Wi-Fi ca la un zeu capricios.`,
+      `Ajunsesem într-un punct foarte clar: ori rezist, ori cedez.`,
+      `Dar știam. Nu era doar despre internet. Era despre: control, nevoia de a fi „la curent”, dependența de „a fi online” și frica de a nu „dispărea” dacă nu postez, nu răspund, nu apar.`,
+  
+      "### Când universul îți scoate din priză telefonul ca să-ți bagi sufletul înapoi",
+      "Am rezistat. Dar nu în felul în care eram obișnuită să o fac.",
+      "China mi-a adus pace. Dar nu pacea aceea zen, instagramabilă, cu cafele fierbinți și bambus în spate. Alt tip de pace.",
+      "Mi-a adus înapoi ceva ce nu știam că pierdusem demult, în tumultul notificărilor și al scroll-ului: timp de reconectare cu mine, cu sufletul meu.",
+      "Aveam timp și înainte, dar nu îl vedeam așa. Îl acopeream cu: scris, gândit, creație, inbox-uri, feed-uri și uneori cu mesaje la care „trebuie să răspund acum”.",
+      "Când multe dintre lucrurile pe care le consideri „normale” dispar – acces constant la internet, aplicații familiare, ritmul tău obișnuit – ce rămâne?",
+      "Rămâi tu, cu tine. Cu gândurile tale. Cu corpul tău, care simte frigul, oboseala, curiozitatea.",
+      "Cu cerul de deasupra unui oraș pe care nu-l înțelegi, dar pe care îl simți.",
+      "Pentru prima dată după mult timp: am mers mai mult pe jos fără să caut mereu semnal; m-am uitat mai mult la oameni, nu la ecran; am simțit mai clar ce îmi doresc, ce mă doare, ce mă bucură.",
+      "China m-a forțat să desacelerez agresiv. Nu cu blândețe, nu cu un retreat de mindfulness, ci cu un „NO CONNECTION” rece, repetat, enervant.",
+  
+      "### În mijlocul deconectării, am decis să nu renunț",
+      "Printre zecile de minute de „connect / reconnect”, am reușit totuși să am acces. Parțial. Limitat. Încet.",
+      "Îmi lua și jumătate de oră să postez ceva pe social media. Un story. O poză. Câteva rânduri.",
+      "Orice „normal” ar fi renunțat la un moment dat. Dar ceva în mine s-a încăpățânat.",
+      "Nu era vorba despre algoritmi. Era vorba despre promisiunea pe care mi-o făcusem mie: „Vreau să duc cu mine poveștile astea, să le las undeva în lume.”",
+      "Așa că am continuat. Frustrată. Înghețată. Enervată. Dar prezentă.",
+      "Uneori, nici chef să scriu nu aveam. Nici măcar să deschid laptopul. Dar știam că… trebuie.",
+      "Și, undeva între un resend și altul, am realizat că „ăsta e testul meu!”",
+      "Nu să fiu „cea mai conectată”. Ci să văd cine sunt atunci când conexiunea externă se rupe.",
+  
+      "### Ce mi-a dat, de fapt, China",
+      "China mi-a dat: frig care m-a trezit din inerție; limitări care m-au obligat să-mi văd dependențele; „no connection”-uri care m-au deconectat de la lume, ca să mă conectez cu mine.",
+      "Și, peste toate, mi-a dat un alt fel de liniște.",
+      "Liniștea de a ști că mă pot descurca și acolo unde nimic nu merge „ca acasă”.",
+      "Că pot sta cu mine, fără să mă ascund după ecrane.",
+      "Că pot alege să rămân, chiar și atunci când primul impuls e să fug.",
+      "Uneori, cele mai mari visuri nu încep când le planifici. Încep într-un ecran care îți spune „NO CONNECTION”, într-un oraș înghețat, pe un continent care vorbește o altă limbă și într-o versiune de tine pe care încă n-ai cunoscut-o.",
+      "China a fost, pentru mine, exact asta: țara în care s-au blocat aplicațiile și s-a deblocat ceva în mine.",
+  
+      "La un moment dat, nici eu nu știu exact când, am decis să nu scriu o carte întreagă despre China.",
+      "Ar însemna probabil să mă plâng pe sute de pagini. Sute de pagini în care aș povesti mai mult despre cât am tușit, cât am înghețat și câte „No connection” am primit.",
+      "Am decis altceva: să las China să trăiască aici, în mici jurnale de drum.",
+      "În următoarele articole, o să te plimb prin Beijing, Xi’an, Chengdu, Chongqing, Zhangjiajie, Yangshuo și Hong Kong – așa cum au fost ele: imperfecte, reci, aglomerate și, cumva, absolut necesare pentru mine.",
+      "Dacă ai ajuns până aici, spune-mi: tu unde ai trăit propriul tău „No Connection” – și ce ți-a deblocat în tine?"
+    ]
+  }
+  
   
   // 🔒 MODEL INVIZIBIL – COPY/PASTE când adaugi articol nou.
   // Setează draft: false sau șterge proprietatea ca să devină vizibil.
