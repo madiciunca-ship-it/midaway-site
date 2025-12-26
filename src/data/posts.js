@@ -122,7 +122,7 @@ const posts = [
     excerpt:
       "Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.",
     cover: "/assets/blog/no-connection-china.jpg", 
-    minutes: 9,
+    minutes: 11,
     content: [
       `Unele vise încep fix atunci când nu te mai gândești la ele. Când nu mai stai cu ochii pe destinație, cu dorul încordat, cu liste și planuri. Pur și simplu… se întâmplă.`,
       `China a fost mereu undeva în spatele minții mele. Ca o imagine neclară: zgârie-nori, metrou, tehnologie de ultimă generație, ecrane uriașe, caractere pe care nu le înțelegeam și o limbă care suna ca o ploaie de sunete fără logică pentru mine.`,
@@ -216,7 +216,7 @@ const posts = [
     slug: "beijing-orasul-in-care-frigul-iti-taie-respiratia",
     title: "Beijing – orașul în care frigul îți taie respirația",
     excerpt:
-      "22 de ore de drum, tuse, hosteluri înghețate și un Beijing care nu negociază. Primul prag din seria «NO CONNECTION» – unde telefonul moare și tu alegi să mergi mai departe.",
+      "22 de ore de drum, tuse, hosteluri înghețate și un Beijing care nu negociază. Primul prag din seria «NO CONNECTION» – unde telefonul moare și eu aleg să merg mai departe.",
     date: "2025-12-26",
     author: "Mida Malena",
     tags: ["China", "Beijing", "jurnal", "călătorii", "mindset", "No Connection"],
