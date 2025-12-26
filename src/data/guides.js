@@ -394,8 +394,8 @@ Kaci isn’t just kind. He’s the kind of guide who knows every corner, every m
         facebook: "https://www.facebook.com/ana777.irina?mibextid=wwXIfr&rdid=8qAvqmM2FwUMya3F&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BfUrTprmT%2F%3Fmibextid%3DwwXIfr#",
         tiktok: "",
         youtube: "",
-        website: "www.mereuinvacanta.com",
-        blog: "https://www.facebook.com/share/17U3AoAwVK/",
+        website: "https://www.mereuinvacanta.com/",
+        blog: "",
       },
       ro: {
         intro: `Irina, pentru mine, a fost acel cântec de sirenă despre care au scris marii poeți ai lumii. Era omul care trăia deja visul pe care eu abia începeam să-l ating.
