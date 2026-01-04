@@ -361,11 +361,11 @@ const posts = [
     title: "Xi’an – orașul contrastelor în care am respirat din nou",
     excerpt:
       "Despre trenul-glonț, ziduri vechi, armuri inutile, ploaie, Cartierul Musulman și orașul care m-a învățat să accept",
-
+      date: "2026-01-04",
     author: "Mida Malena",
-    tags: ["China", "Xi’an", "Jurnal", "Călătorii", "No Connection"],
+    tags: ["China", "Xi’an", "jurnal", "călătorii", "mindset", "No Connection"],
     minutes: 8,
-    cover: "/assets/blog/xian-contrasts-china.jpg",
+    cover: "/assets/blog/xian-no-connection-china.jpg",
     content: [
       "Am ajuns la gară cu un adevăr simplu în minte: știam că sunt multe trenuri spre Xi’an.",
       "Aplicația Trip.com confirma. Trenuri multe, rapide, impecabile.",
