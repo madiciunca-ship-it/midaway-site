@@ -4,11 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "engines": { "node": "22.x" },
-    "scripts": {
-      "dev": "vite --host",
-      "build": "vite build && node scripts/generate-rss.js",
-      "preview": "vite preview --port 5173 --host"
-    },
+  "scripts": {
+    "dev": "vite --host --port 5173",
+    "start": "vite --host --port 5173",
+    "build": "vite build",
+    "postbuild": "node scripts/generate-rss.js",
+    "preview": "vite preview --port 5173 --host"
+  },
+  
   "dependencies": {
     "@vercel/blob": "^0.23.4",
     "nodemailer": "^6.9.8",
