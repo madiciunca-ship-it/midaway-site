@@ -17,7 +17,7 @@ const stripDiacritics = (s) =>
 
   // normalizează orice sursă de imagine (acceptă cover, image, hero etc.)
 function resolveSrc(src) {
-  if (!src) return "";
+  if (!src) return ""; 
   const s = String(src).trim();
   // deja absolut sau data-uri
   if (s.startsWith("http://") || s.startsWith("https://") || s.startsWith("data:") || s.startsWith("/")) {
@@ -26,7 +26,6 @@ function resolveSrc(src) {
   // transformă "assets/..." sau "./assets/..." în "/assets/..."
   return "/" + s.replace(/^\.?\/*/, "");
 }
-
 
 export default function BlogDetail() {
   const { id: rawId } = useParams();

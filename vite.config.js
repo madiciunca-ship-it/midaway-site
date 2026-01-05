@@ -1,3 +1,11 @@
+process.on("uncaughtException", (err) => {
+  console.error("🔥 uncaughtException:", err?.stack || err);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.error("🔥 unhandledRejection:", err?.stack || err);
+});
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
