@@ -360,7 +360,7 @@ const posts = [
     slug: "xian-orasul-contrastelor-in-care-am-respirat-din-nou",
     title: "Xi’an – orașul contrastelor în care am respirat din nou",
     excerpt:
-      "Despre trenul-glonț, ziduri vechi, armuri inutile, ploaie, Cartierul Musulman și orașul care m-a învățat să accept",
+      "Despre trenul-glonț, ziduri vechi, armuri inutile, ploaie, Cartierul Musulman și orașul care m-a învățat să accept – seria «NO CONNECTION» continuă.",
       date: "2026-01-04",
     author: "Mida Malena",
     tags: ["China", "Xi’an", "jurnal", "călătorii", "mindset", "No Connection"],
@@ -475,7 +475,122 @@ const posts = [
       "În următoarele articole, iau orașele la rând, așa cum le-am trăit: Chengdu, Chongqing, Zhangjiajie, Yangshuo și Hong Kong.",
       "Stai aproape. Drumul continuă."
     ]
+  },
+
+  {
+    slug: "chengdu-orasul-ceaiului-al-timpului-care-nu-se-negociaza",
+    title: "Chengdu – oraș al ceaiului, al statului pe loc, al timpului care nu se negociază",
+    excerpt:
+      "Panda, ceai, străzi care nu se grăbesc și un oraș care te așază. Chengdu este locul în care «NO CONNECTION» devine rutină și ritmul încetinește suficient cât să respiri.",
+    date: "2026-01-09",
+    author: "Mida Malena",
+    tags: ["China", "Chengdu", "jurnal", "călătorii", "mindset", "No Connection"],
+    cover: "/assets/blog/chengdu-no-connection-china.jpg",
+    minutes: 11,
+    content: [
+      `Am plecat spre Chengdu dimineața, după ultimul mic dejun delicios din Xi’an.`,
+      `Îl făcea o doamnă chinezoaică care nu știa o boabă de engleză, dar era impecabilă, în fiecare dimineață, fără excepție. Mă hrănea fără să-mi pună întrebări. Eu îi zâmbeam, înclinam capul și mâncam – un fel de conversație mută, dar perfectă.`,
+      `În ziua aia era mai frig decât în zilele trecute, de parcă și orașul știa că eu plec și nu mai e nevoie de căldură.`,
+      `Rucsacul îmi atârna greu pe spate. Dar am ieșit din hotel cu un soi de încredere pe care nu o aveam la plecarea din Beijing.`,
+  
+      `Am ajuns la gară.`,
+      `Ca de obicei… eram fără bilet.`,
+      `Nu pentru că trăiesc pe ultima sută de metri, ci pentru că în China, fără internet, ultima sută devine stil de viață. Nu puteam cumpăra online. Nu aveam acces la nimic din ce înseamnă „normal” pentru un turist: aplicații, confirmări, bilete digitale, confort.`,
+      `Așa că îmi făcusem regula mea nouă de supraviețuire: screenshot-uri.`,
+      `Screenshot-uri cu traseul, cu numele hostelului, cu orice informație importantă.`,
+      `Telefonul meu devenise un carnețel digital, nu un smartphone.`,
+  
+      `La ghișeu am luat biletul rapid. Mai rapid decât speram.`,
+      `De data asta, totul a mers din prima. Ca și cum, undeva acolo sus, universul ar fi zis: „Ok. Azi te lăsăm să mergi mai departe.”`,
+  
+      `*Chengdu și strada care nu se grăbea nicăieri*`,
+      `Am ajuns în Chengdu cu screenshot-urile în telefon și cu senzația că începe o etapă nouă.`,
+      `Hostelul era pe o stradă plină de terase: mese mici, scaune joase, restaurante locale lipite unele de altele.`,
+      `Miros de mâncare, oameni care vorbeau tare, lumină caldă, viață.`,
+      `O stradă care nu părea făcută pentru turiști, ci pentru chinezi care ies, stau, mănâncă și nu se grăbesc nicăieri.`,
+  
+      `La recepție, fata știa cât de cât engleză. Atât cât să simt, pentru prima dată, că nu trebuie să mimez totul.`,
+      `Mi-a dat un pat într-o cameră cu alte trei fete.`,
+  
+      `*Prima noapte: minus 2 grade și geamul deschis*`,
+      `În prima noapte, afară erau minus 2 grade. Și noi dormeam… cu geamul deschis.`,
+      `Eu îl închideam. O chinezoaică înfocată îl deschidea.`,
+      `A fost un război tăcut, dus în șoaptă, la 3:00 dimineața, cu mișcări lente și nervi înghețați.`,
+      `Eu nu înțelegeam nimic. Ea probabil că nici atât. Doar că ea câștiga constant, pentru că se ridica din pat ca și cum frigul ar fi fost un concept occidental.`,
+  
+      `Dimineața m-am trezit cu o singură concluzie: „Nu pot să mor înghețată într-un oraș cu panda.”`,
+      `Noaptea următoare am sesizat situația la recepție. Și am primit alt pat. În altă cameră. Victorie mică. Dar foarte importantă.`,
+  
+      `*Panda Base – locul în care și oamenii devin ursuleți*`,
+      `Am stat trei nopți în Chengdu.`,
+      `Și am făcut ce face toată lumea aici: am mers la Panda Base.`,
+      `Pentru asta m-am trezit la 5:30. Ca să ajung la 8:00 la rezervație, înainte ca ursuleții să intre complet în modul lor preferat: somn.`,
+  
+      `Panda sunt exact cum îți imaginezi: leneși, pufoși, adorabili, ca niște jucării care au prins viață și au decis că viața e prea multă muncă.`,
+      `Rezervația nu e genul de loc care te ia prin surprindere cu spectaculosul. Te cucerește lent. Cu alei largi, copaci umezi, aer curat și senzația că nimeni nu te presează să „vezi tot”.`,
+  
+      `Panda stau, mănâncă, se rostogolesc, se cațără, apoi adorm din nou. Fără grabă. Fără obiective. Fără performanță.`,
+      `Și, fără să vrei, începi să-i imiți. Să stai mai mult. Să te uiți. Să nu faci nimic productiv.`,
+  
+      `Acolo am înțeles că Chengdu nu e despre atracții. E despre ritm. Despre a-ți da voie să fii lent, într-o lume care te împinge mereu să fii mai rapid.`,
+  
+      `Dar partea mea preferată n-a fost panda.`,
+      `Au fost chinezii.`,
+      `Stăteau la coadă la fiecare unghi bun, cu telefoanele ridicate, răbdători și concentrați. Aproape ca niște ursuleți disciplinați care vin să-și ia porția de „poză perfectă”. Nu se grăbea nimeni. Nu renunța nimeni. Toată lumea voia dovada.`,
+  
+      `Și m-am trezit râzând singură, pentru că, în țara în care eu nu aveam semnal, oamenii ăștia trăiau prin ecran mai intens decât oriunde.`,
+  
+      `De acolo mi-am luat un suvenir simplu: un tricou alb cu trei panda mici pe el.`,
+      `N-am avut nevoie de altceva. Era suficient.`,
+  
+      `*People’s Park, Kuan Alley și Zhai Alley – Chengdu la pas lent*`,
+      `Am mers și în People’s Park.`,
+      `Un alt fel de „China”. Una care respiră. Care stă. Care se plimbă fără scop. Care pare că are timp. Care cântă, dansează, citește.`,
+  
+      `Am ajuns de două ori în Kuan Alley și Zhai Alley.`,
+      `Superbe. Mai ales seara. Când luminile se aprind și totul devine mai cald, mai filmic. Când aleile nu mai sunt doar frumoase, ci te trag în ele.`,
+  
+      `Dar Kuan Alley și Zhai Alley nu sunt doar niște alei frumoase.`,
+      `Sunt genul de locuri care te fac să încetinești fără să-ți spună explicit. Case vechi restaurate, lumini calde, ceaiuri fierbinți, magazine mici, oameni care stau pur și simplu la mese și vorbesc.`,
+  
+      `Seara, totul devine mai domol. Pașii se aud mai clar. Râsetele sunt mai joase. Mirosul de mâncare plutește constant, fără să te agreseze.`,
+  
+      `Chengdu, aici, nu vrea să te impresioneze. Vrea doar să te țină puțin. Și reușește.`,
+  
+      `În Chengdu am mâncat multe lucruri pe care n-aș ști să le definesc nici dacă mi-ar da cineva un dicționar.`,
+      `A fost o combinație de curaj, foame și rugăciuni tăcute să nu fie prea picant.`,
+  
+      `*Fără semnal, dar cu planuri*`,
+      `Chengdu mi-a adus o altă înțelegere.`,
+      `Cu fiecare oraș traversat, înaintam mai adânc în China, cu același curaj și cu aceeași lipsă de semnal. Nu mai era panică. Devenise rutină.`,
+  
+      `Și totuși… simțeam că vreau să ies. Nu din Chengdu. Din țară. Începusem să fac planuri. Dar nu știam încă încotro să mă îndrept și pe unde voi ieși din China.`,
+  
+      `Cele trei zile au trecut repede.`,
+      `În ultima seară, la hostel, am întâlnit câțiva tineri. Veseli, de la o sticlă de alcool local, mi-au pus mii de întrebări.`,
+      `Erau fascinați: de mine, de Europa, de țările în care fusesem, de cum e „afară”, de ce călătoresc singură.`,
+  
+      `Eu eram obosită. Dar am stat cu ei.`,
+      `Pentru că, uneori, cele mai bune momente apar când nu ai nimic planificat. Și, oricum, în China, planificarea era un lux.`,
+  
+      `În Chengdu am învățat că nu toate orașele te provoacă. Unele te așază. Te fac să respiri mai adânc și să-ți dai seama că nu trebuie să demonstrezi nimic ca să fii „unde trebuie”.`,
+  
+      `Dar trebuia să plec.`,
+      `Următoarea oprire: Chongqing.`,
+      `Evident.`,
+      `Un mic vis pe cale să devină real.`,
+  
+      `Și povestea continuă.`,
+  
+      `Dacă ai fost vreodată într-un loc în care te-ai adaptat din mers, spune-mi:`,
+      `„Unde ai simțit ultima dată că nu trebuie să te grăbești?”`,
+  
+      `Acest text face parte din seria „No Connection – Jurnale de drum din China”.`,
+      `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Chongqing, Zhangjiajie, Yangshuo și Hong Kong.`,
+      `Stai aproape. Drumul continuă.`
+    ]
   }
+  
   
   
   
