@@ -195,8 +195,8 @@ export const BOOKS = [
     currency: "RON",
     hidden: false,
 
-    title: "Pași prin Indonezia – Vol. I",
-    subtitle: "Când Bali îți atinge sufletul",
+    title: "Pași prin Indonezia – Când Bali îți atinge sufletul",
+    subtitle: "Nu e despre Bali ca destinație. E despre ce se schimbă în tine când ajungi acolo.",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Indonezia",
@@ -209,13 +209,20 @@ export const BOOKS = [
       paperback: { pages: 366, isbn: "978-97304-1386-1", dimensions: "13 x 20 cm", weight: "400 gr." },
     },
 
-    description: `Bali nu e doar o destinație. E o oglindă. Un test. O ardere lentă. O carte despre feminitate, libertate și povești care ard intens, chiar dacă nu durează.
-    „Pași prin Indonezia: Când Bali îți atinge sufletul” nu e o simplă poveste de călătorie. Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu e o vacanță – ci o imersiune profundă în sine.
-    Acest prim volum al seriei „Pași prin Indonezia” e o confesiune poetică, o căutare sinceră printre plaje, cascade și conversații care schimbă destine.
-    De la Seminyak la Lovina, printre temple sacre și ape amețitoare, Yda scrie cu o sinceritate crudă și luminoasă despre frici care se cer confruntate sub apă, despre femeia care învață să spună „nu”, despre prietenii care apar și dispar cu sens, și despre bărbați care vin și se destramă în cuvinte.
-    Bali o învață despre frumusețe, despre rătăcire, despre curajul de a rămâne în adevăr și de a-și scrie propria poveste. Ea descoperă că nu locurile ne schimbă, ci felul în care alegem să le trăim.
-    Într-o lume în care toți aleargă să bifeze destinații, Yda călătorește înăuntru. În Bali, totul pare o poveste – dar adevărata magie e cea care se întâmplă în tine.
-    Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la tine, cartea asta e pentru tine.`,
+    description: [
+      "Cartea asta nu este despre Bali. Este despre ce se rupe în tine atunci când ajungi unde ai visat – și liniștea tot nu vine.",
+      "Nu e un ghid. Nu e o carte de vacanță. Nu e o poveste motivațională. Bali e doar decorul.",
+      "Cartea asta este pentru tine dacă:",
+      "– simți că „ar trebui” să fii bine, dar nu ești\n– ai schimbat locuri, oameni, contexte – și totuși ceva lipsește\n– te gândești să pleci, dar știi că nu asta e problema\n– vrei liniște, dar nu știi unde s-a ascuns",
+      "Nu trebuie să fi fost în Bali. Trebuie doar să te fi pierdut puțin pe drum.",
+      "Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu este o vacanță, ci o imersiune profundă în sine.",
+      "„Pași prin Indonezia” este o confesiune poetică despre frici, despre limite puse sub apă, despre femeia care învață să spună „nu”, despre oameni care apar și dispar cu sens.",
+      "Nu locurile ne schimbă, ci felul în care alegem să le trăim.",
+      "Aceasta nu este:\n– o carte despre Bali ca destinație\n– un ghid de călătorie\n– o lectură motivațională",
+      "Este o carte despre tine, chiar dacă numele tău nu apare nicăieri.",
+      "Dacă ai simțit vreodată că trebuie să pleci… ca să te poți întoarce la tine, cartea asta e pentru tine."
+    ],
+    
 
     coverUrl: "/assets/books/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-cover.jpg",
     extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",

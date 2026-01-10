@@ -176,7 +176,21 @@ export default function BookDetail() {
           </div>
 
           {/* Descriere */}
-          <p style={{ marginTop: 16, lineHeight: 1.6 }}>{book.description}</p>
+<div style={{ marginTop: 16, lineHeight: 1.75 }}>
+  {Array.isArray(book.description) ? (
+    book.description.map((para, idx) => (
+      <p key={idx} style={{ margin: "0 0 16px 0", whiteSpace: "pre-line" }}>
+  {para}
+</p>
+
+    ))
+  ) : (
+    <p style={{ margin: 0, whiteSpace: "pre-line" }}>
+      {book.description}
+    </p>
+  )}
+</div>
+
 
           {/* Detalii tehnice */}
           <div style={{ marginTop: 16 }}>
