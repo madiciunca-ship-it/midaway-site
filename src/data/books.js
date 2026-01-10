@@ -216,7 +216,7 @@ export const BOOKS = [
       "– simți că „ar trebui” să fii bine, dar nu ești\n– ai schimbat locuri, oameni, contexte – și totuși ceva lipsește\n– te gândești să pleci, dar știi că nu asta e problema\n– vrei liniște, dar nu știi unde s-a ascuns",
       "Nu trebuie să fi fost în Bali. Trebuie doar să te fi pierdut puțin pe drum.",
       "Yda ajunge pe insula zeilor cu speranța unui nou început. Dar ceea ce o așteaptă nu este o vacanță, ci o imersiune profundă în sine.",
-      "„Pași prin Indonezia” este o confesiune poetică despre frici, despre limite puse sub apă, despre femeia care învață să spună „nu”, despre oameni care apar și dispar cu sens.",
+      "„Pași prin Indonezia – Când Bali îți atinge sufletul” este o confesiune poetică despre frici, despre limite puse sub apă, despre femeia care învață să spună „nu”, despre oameni care apar și dispar cu sens.",
       "Nu locurile ne schimbă, ci felul în care alegem să le trăim.",
       "Aceasta nu este:\n– o carte despre Bali ca destinație\n– un ghid de călătorie\n– o lectură motivațională",
       "Este o carte despre tine, chiar dacă numele tău nu apare nicăieri.",
