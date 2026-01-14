@@ -16,10 +16,14 @@ export default function Checkout() {
   const isServiceItem = (it) =>
     String(it?.fulfillment || it?.format || "").toLowerCase() === "service";
 
-  const isDigitalItem = (it) => {
-    const f = String(it?.fulfillment || it?.format || "").toLowerCase();
-    return f === "digital";
-  };
+    const isDigitalItem = (it) => {
+      const f = String(it?.fulfillment || "").toLowerCase();
+      if (f === "digital") return true;
+    
+      const fmt = String(it?.format || "").toUpperCase();
+      return ["PDF", "EPUB", "AUDIOBOOK", "AUDIO"].includes(fmt);
+    };
+    
 
   // --- flaguri coș ---
   const hasService = (items || []).some(isServiceItem);
@@ -27,9 +31,8 @@ export default function Checkout() {
 
   // --- verificăm fișiere doar pentru PRODUSE DIGITALE care există în BOOKS ---
   const hasMissingFiles = (items || []).some((it) => {
-    const isDigital =
-      String(it?.fulfillment || it?.format || "").toLowerCase() === "digital";
-    if (!isDigital) return false;
+    const isDigital = isDigitalItem(it);
+
 
     const book = BOOKS.find((b) => b.id === it.id);
     if (!book) return false; // servicii (svc-*) sau item necunoscut: nu afișăm banner
