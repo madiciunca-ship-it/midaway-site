@@ -432,6 +432,31 @@ export default function Checkout() {
             💳 Plătește acum cu cardul (Stripe) / Pay now with card (Stripe)
           </button>
 
+          {!canPay && (
+  <div
+    style={{
+      marginTop: 8,
+      padding: "10px 12px",
+      borderRadius: 10,
+      background: "#fff7e6",
+      border: "1px solid #ffe2b3",
+      color: "#7a4b00",
+      fontSize: 13,
+      lineHeight: 1.4,
+    }}
+  >
+    Te rugăm bifează <strong>Termenii și condițiile</strong>
+    {hasDigital ? (
+      <>
+        {" "}
+        și acordul pentru <strong>livrare digitală</strong>
+      </>
+    ) : null}
+    {!hasMissingFiles ? "." : " (și revino când fișierele digitale sunt disponibile)."}
+  </div>
+)}
+
+
           <p
             style={{
               marginTop: 8,
