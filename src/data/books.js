@@ -14,7 +14,7 @@ export const BOOKS = [
 
     title: "O zi de care să-ți amintești / Filipine",
     subtitle: "O carte despre curajul de a începe o călătorie – chiar când nu ai planul complet.",
-    author: "Mida-Malena",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Filipine",
     year: 2023,
@@ -71,7 +71,7 @@ export const BOOKS = [
 
     title: "A Day to Remember",
     subtitle: "Travel Journal in the Philippines",
-    author: "Mida-Malena",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Philippines",
     year: 2023,
@@ -110,7 +110,7 @@ export const BOOKS = [
 
     title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
     subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
-    author: "Mida-Malena",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Vietnam",
     year: 2025,
@@ -174,7 +174,7 @@ export const BOOKS = [
 
     title: "Days and Nights of Vietnam – The Puzzle of My Soul",
     subtitle: "A journey with no return date. Not because you can’t go back – but because you can’t go back unchanged.",
-    author: "Mida-Malena",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Vietnam",
     year: 2025,
@@ -240,7 +240,7 @@ export const BOOKS = [
 
     title: "Pași prin Indonezia – Când Bali îți atinge sufletul",
     subtitle: "Nu e despre Bali ca destinație. E despre ce se schimbă în tine când ajungi acolo.",
-    author: "Mida-Malena",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
@@ -293,9 +293,9 @@ export const BOOKS = [
     currency: "EUR",
     hidden: false,
 
-    title: "Steps Through Indonezia",
-    subtitle: "When Bali Touches Your Soul",
-    author: "Mida-Malena",
+    title: "Steps Through Indonezia – When Bali Touches Your Soul",
+    subtitle: "It’s not about Bali. It’s about what breaks open in you when you arrive – and the calm still doesn’t come.",
+    author: "Mida Malena",
     genre: "Travel",
     location: "Indonesia",
     year: 2025,
@@ -331,7 +331,25 @@ export const BOOKS = [
       },
     },
 
-    description: `Bali is not just a destination. It is a mirror. A test. A slow burn. A book about femininity, freedom, and stories that burn brightly, even if they don't last. “Steps Through Indonesia: When Bali Touches Your Soul” is not just a travel story. Yda arrives on the island of the gods with the hope of a new beginning. But what awaits her is not a vacation – it is a deep immersion into herself. This first volume of the series “Steps Through Indonesia” is a poetic confession, a sincere search among beaches, waterfalls, and conversations that change destinies. From Seminyak to Lovina, among sacred temples and dizzying waters, Yda writes with raw and luminous sincerity about fears that must be confronted underwater, about the woman who learns to say “no,” about friends who appear and disappear with meaning, and about men who come and fall apart in words. Bali teaches her about beauty, about wandering, about the courage to stay true and write her own story. She discovers that it is not places that change us, but the way we choose to experience them. In a world where everyone is rushing to check off destinations, Yda travels inward. In Bali, everything seems like a story – but the real magic is what happens inside you. If you've ever felt like you had to leave... so you could return to yourself, this book is for you.`,
+    description: [
+      "This book isn’t about Bali. It’s about what breaks in you when you finally reach what you dreamed of – and the calm still doesn’t come.",
+      "It’s not a guide. Not a vacation book. Not a motivational story. Bali is only the setting.",
+      "This book is for you if:",
+      "– you feel like you “should” be okay, but you’re not",
+      "– you’ve changed places, people, contexts – and still something is missing",
+      "– you’re thinking of leaving, but you know that’s not the real problem",
+      "– you want peace, but you don’t know where it went",
+      "You don’t have to have been to Bali. You only have to have gotten a little lost along the way.",
+      "Yda arrives on the Island of the Gods hoping for a new beginning. But what awaits her isn’t a vacation – it’s a deep immersion into herself.",
+      "“Steps Through Indonesia – When Bali Touches Your Soul” is a poetic confession about fear, about boundaries held underwater, about a woman learning to say “no,” about people who appear and disappear – and still matter.",
+      "It’s not places that change us, but the way we choose to live them.",
+      "This is not:",
+      "– a book about Bali as a destination",
+      "– a travel guide",
+      "– a motivational read",
+      "It’s a book about you – even if your name never appears anywhere.",
+      "If you’ve ever felt you had to leave… so you could return to yourself, this book is for you.",
+    ],
   },
 ];
 
