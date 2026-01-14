@@ -108,8 +108,8 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam",
-    subtitle: "Bucăți dintr-un suflet nomad",
+    title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
+    subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Vietnam",
@@ -145,7 +145,21 @@ export const BOOKS = [
       EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro1.epub",
     },
 
-    description: `Această călătorie nu este doar despre mine – este despre tine și despre oamenii care ne intersectează drumul, modelând ceea ce suntem și ceea ce urmează să devenim. Pășește spre extraordinar și lasă în urmă previzibilul. Această carte te invită să ieși din zona de confort, chiar și pentru câteva momente, și să redescoperi fragmentele autentice din tine, ascunse în imprevizibil. Cum ar fi dacă fiecare pas spre necunoscut te-ar aduce mai aproape de cine ești cu adevărat? „Zile și Nopți de Vietnam: Bucăți dintr-un suflet nomad” nu este doar un jurnal de călătorie – este o explorare a sinelui. Prin agitația vibrantă și frumusețea calmă a Vietnamului, Yda descoperă magia din banalul fiecărei zile, țesând povești despre curaj, vulnerabilitate și bucuria de a trăi cu autenticitate. De la forfota orașelor aglomerate până la liniștea satelor ascunse în munți, fiecare moment se transformă într-o piesă dintr-un puzzle mai mare, dezvăluind adevăruri neașteptate ce ies la iveală atunci când te aventurezi dincolo de predictibil. Pentru cei care tânjesc după aventură, introspecție și curajul de a îmbrățișa viața în toate nuanțele sale, această carte este o invitație de a te rătăci și, totodată, de a te regăsi.`,
+    description: [
+      "Nu trebuie să fi fost în Vietnam. Trebuie doar să fi simțit că previzibilul nu te mai încape.",
+      "„Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad” nu e doar un jurnal de călătorie. E o explorare a sinelui – în care locurile devin oglinzi, iar oamenii care îți intersectează drumul modelează ce ești și ce urmează să devii.",
+      "Prin agitația vibrantă și frumusețea calmă a Vietnamului, Yda descoperă magia din banalul fiecărei zile și țese povești despre curaj, vulnerabilitate și bucuria de a trăi cu autenticitate.",
+      "De la forfota orașelor aglomerate până la liniștea satelor ascunse în munți, fiecare moment se așază ca o piesă dintr-un puzzle mai mare – și îți arată adevăruri care ies la iveală doar când îndrăznești să mergi dincolo de predictibil.",
+      "Aceasta nu este:",
+      "– o carte despre Vietnam ca destinație",
+      "– un ghid de călătorie",
+      "– o lectură cu rețete rapide pentru „reinventare”",
+      "Este o invitație să te rătăcești puțin – și, tocmai de aceea, să te regăsești.",
+      "Cartea asta e pentru tine dacă:",
+      "– vrei o călătorie care te scoate din zona de confort, chiar și pentru câteva pagini",
+      "– simți că fragmentele autentice din tine stau ascunse în imprevizibil",
+      "– îți plac poveștile care rămân cu tine după ce închizi cartea",
+    ],
     hidden: false,
   },
 
