@@ -1,10 +1,13 @@
-process.on("uncaughtException", (err) => {
-  console.error("🔥 uncaughtException:", err?.stack || err);
-});
+// Cod Node.js comentat pentru a evita eroarea în StackBlitz
+// Acest cod funcționează doar în medii server (ex: Node.js), nu în StackBlitz/browser
 
-process.on("unhandledRejection", (err) => {
-  console.error("🔥 unhandledRejection:", err?.stack || err);
-});
+// process.on("uncaughtException", (err) => {
+//   console.error("🔥 uncaughtException:", err?.stack || err);
+// });
+
+// process.on("unhandledRejection", (err) => {
+//   console.error("🔥 unhandledRejection:", err?.stack || err);
+// });
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
