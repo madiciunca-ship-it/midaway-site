@@ -172,8 +172,8 @@ export const BOOKS = [
     lang: "EN",
     currency: "EUR",
 
-    title: "Days and Nights of Vietnam",
-    subtitle: "The Puzzle of My Soul",
+    title: "Days and Nights of Vietnam – The Puzzle of My Soul",
+    subtitle: "A journey with no return date. Not because you can’t go back – but because you can’t go back unchanged.",
     author: "Mida-Malena",
     genre: "Travel",
     location: "Vietnam",
@@ -210,7 +210,21 @@ export const BOOKS = [
       },
     },
 
-    description: `This journey isn’t just about me – it’s about you, and about the people who cross our paths, shaping who we are and who we’re becoming. Discover. Feel. Evolve. Step into the extraordinary. Leave behind the predictable. Days and Nights of Vietnam is a deeply personal travel memoir that invites you to step out of your comfort zone, even if just for a few moments, and rediscover the authentic pieces of yourself that lie waiting in the unfamiliar. Through the breathtaking landscapes of Vietnam – from bustling cities to serene mountain villages – and deeply introspective moments, this heartfelt journey weaves vivid descriptions of exotic locales with raw, honest reflections. Each experience – whether extraordinary or seemingly mundane – becomes a piece of a larger puzzle, revealing profound truths about self-discovery, courage, and the joy of living fully. This is not just a story about Vietnam; it’s a journey into the heart of what makes us human. It challenges you to embrace life in all its complexities, to welcome serendipitous encounters and fleeting moments of connection that can reshape your perspective. Let yourself be inspired to pause, reflect, and reconnect with who you truly are. Lose yourself in the vibrant chaos and serene beauty of Vietnam and find the strength to live boldly, authentically, and unapologetically. If you’ve ever dreamed of stepping into the unknown, of seeing life through a different lens, and of reclaiming the parts of yourself that were always meant to shine, Days and Nights of Vietnam is your invitation to embark on a journey of adventure, reflection, and transformation.`,
+    description: [
+      "You don’t have to have been to Vietnam. You only have to feel like the predictable life no longer fits.",
+      "“Days and Nights of Vietnam – The Puzzle of My Soul” isn’t just a travel journal. It’s an exploration of the self – where places become mirrors, and the people who cross your path shape who you are and who you’re becoming.",
+      "Through Vietnam’s vibrant rush and quiet beauty, Yda discovers the magic in the ordinary and weaves stories about courage, vulnerability, and the joy of living with authenticity.",
+      "From the chaos of crowded cities to the stillness of mountain villages, each moment settles like a piece of a larger puzzle – revealing truths that only surface when you dare to step beyond what’s predictable.",
+      "This is not:",
+      "– a book about Vietnam as a destination",
+      "– a travel guide",
+      "– a quick “reinvention” manual",
+      "It’s an invitation to get a little lost – and, because of that, to find yourself again.",
+      "This book is for you if:",
+      "– you want a journey that nudges you out of your comfort zone, even for a few pages",
+      "– you feel your truest fragments are hidden inside the unknown",
+      "– you love stories that stay with you after you close the book",
+    ],
     hidden: false,
   },
 
