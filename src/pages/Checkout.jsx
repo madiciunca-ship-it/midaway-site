@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { BOOKS } from "../data/books";
 import { Link } from "react-router-dom";
 
-// endpoint Formspree
+// endpoint Formspree (rămâne aici dacă vrei cândva, dar NU îl mai folosim în UI)
 const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mrbaajzn";
 
@@ -241,72 +241,69 @@ export default function Checkout() {
           )}
 
           {/* consimțământ legal */}
-<div
-  style={{
-    marginTop: 16,
-    padding: 12,
-    border: "1px solid #eee",
-    borderRadius: 12,
-    background: "#fff",
-  }}
->
-  {/* ✅ Termeni, cookies, confidențialitate */}
-  <label style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-    <input
-      type="checkbox"
-      checked={agreeTerms}
-      onChange={(e) => setAgreeTerms(e.target.checked)}
-    />
-    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-      Sunt de acord cu{" "}
-      <Link to="/termeni" style={{ color: "var(--accent)" }}>
-        Termenii și condițiile
-      </Link>
-      ,{" "}
-      <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
-        Politica de cookies
-      </Link>{" "}
-      și{" "}
-      <Link
-        to="/politica-confidentialitate"
-        style={{ color: "var(--accent)" }}
-      >
-        Politica de confidențialitate
-      </Link>
-      .
-    </span>
-  </label>
+          <div
+            style={{
+              marginTop: 16,
+              padding: 12,
+              border: "1px solid #eee",
+              borderRadius: 12,
+              background: "#fff",
+            }}
+          >
+            {/* ✅ Termeni, cookies, confidențialitate */}
+            <label style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
+              <input
+                type="checkbox"
+                checked={agreeTerms}
+                onChange={(e) => setAgreeTerms(e.target.checked)}
+              />
+              <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                Sunt de acord cu{" "}
+                <Link to="/termeni" style={{ color: "var(--accent)" }}>
+                  Termenii și condițiile
+                </Link>
+                ,{" "}
+                <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
+                  Politica de cookies
+                </Link>{" "}
+                și{" "}
+                <Link
+                  to="/politica-confidentialitate"
+                  style={{ color: "var(--accent)" }}
+                >
+                  Politica de confidențialitate
+                </Link>
+                .
+              </span>
+            </label>
 
-  {/* ✅ Acord pentru conținut digital */}
-  {hasDigital && (
-    <label
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 8,
-        marginTop: 10,
-      }}
-    >
-      <input
-        type="checkbox"
-        checked={agreeDigital}
-        onChange={(e) => setAgreeDigital(e.target.checked)}
-      />
-      <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-        Sunt de acord cu începerea livrării digitale înainte de expirarea
-        termenului legal de retragere și înțeleg că îmi pierd dreptul de
-        retragere după descărcare. (
-        <Link
-          to="/politica-descarcare"
-          style={{ color: "var(--accent)" }}
-        >
-          Detalii
-        </Link>
-        )
-      </span>
-    </label>
-  )}
-</div>
+            {/* ✅ Acord pentru conținut digital */}
+            {hasDigital && (
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 8,
+                  marginTop: 10,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={agreeDigital}
+                  onChange={(e) => setAgreeDigital(e.target.checked)}
+                />
+                <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                  Sunt de acord cu începerea livrării digitale înainte de expirarea
+                  termenului legal de retragere și înțeleg că îmi pierd dreptul de
+                  retragere după descărcare. (
+                  <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
+                    Detalii
+                  </Link>
+                  )
+                </span>
+              </label>
+            )}
+          </div>
 
           {/* ——— Facturez pe firmă (opțional) ——— */}
           <div
@@ -417,104 +414,36 @@ export default function Checkout() {
 
           {/* ——— Buton Stripe ——— */}
           <button
-  type="button"
-  onClick={payWithCard}
-  disabled={!canPay}
-  style={{
-    marginTop: 12,
-    padding: "12px",
-    borderRadius: 10,
-    background: "#2a9d8f",
-    color: "#fff",
-    border: "none",
-    fontWeight: 700,
-    cursor: "pointer",
-    opacity: canPay ? 1 : 0.6,
-  }}
->
-  💳 Plătește acum cu cardul (Stripe) / Pay now with card (Stripe)
-</button>
-
-<p
-  style={{
-    marginTop: 8,
-    textAlign: "center",
-    fontSize: 12,
-    color: "var(--secondary)",
-  }}
->
-  Plățile sunt procesate securizat prin Stripe.
-  <br />
-  Payments are processed securely via Stripe.
-</p>
-
-          {/* Formular fallback (Formspree) */}
-          <form
-            action={FORMSPREE_ENDPOINT}
-            method="POST"
-            style={{ display: "grid", gap: 10, marginTop: 16 }}
-            onSubmit={() => setTimeout(clear, 1000)}
+            type="button"
+            onClick={payWithCard}
+            disabled={!canPay}
+            style={{
+              marginTop: 12,
+              padding: "12px",
+              borderRadius: 10,
+              background: "#2a9d8f",
+              color: "#fff",
+              border: "none",
+              fontWeight: 700,
+              cursor: "pointer",
+              opacity: canPay ? 1 : 0.6,
+            }}
           >
-            <input type="text" name="_gotcha" style={{ display: "none" }} />
-            <input
-              type="hidden"
-              name="_redirect"
-              value="https://midaway.ro/thanks"
-            />
-            <input
-              type="hidden"
-              name="agree_terms"
-              value={agreeTerms ? "yes" : "no"}
-            />
-            <input
-              type="hidden"
-              name="agree_digital_waiver"
-              value={agreeDigital ? "yes" : "no"}
-            />
+            💳 Plătește acum cu cardul (Stripe) / Pay now with card (Stripe)
+          </button>
 
-            <input name="name" required placeholder="Nume complet" style={field} />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="Email"
-              style={field}
-            />
-            <input name="phone" placeholder="Telefon (opțional)" style={field} />
-            <textarea
-              name="address"
-              placeholder="Adresă (pentru paperback)"
-              rows={3}
-              style={field}
-            />
-            <textarea
-              name="order"
-              readOnly
-              value={orderText}
-              rows={Math.min(8, items.length + 3)}
-              style={{ ...field, fontFamily: "monospace" }}
-            />
-            <input
-              name="total"
-              readOnly
-              value={`${total} ${primaryCurrency}`}
-              style={field}
-            />
-            <button
-              type="submit"
-              style={{
-                padding: "12px",
-                borderRadius: 10,
-                background: "#2a9d8f",
-                color: "#fff",
-                border: "none",
-                fontWeight: 700,
-                cursor: "pointer",
-              }}
-            >
-              Trimite comanda (fără plată)
-            </button>
-          </form>
+          <p
+            style={{
+              marginTop: 8,
+              textAlign: "center",
+              fontSize: 12,
+              color: "var(--secondary)",
+            }}
+          >
+            Plățile sunt procesate securizat prin Stripe.
+            <br />
+            Payments are processed securely via Stripe.
+          </p>
         </>
       )}
     </div>
