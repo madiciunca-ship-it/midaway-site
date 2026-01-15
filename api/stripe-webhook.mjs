@@ -155,316 +155,325 @@ export default async function handler(req, res) {
 
   console.log("📬 Event:", event.type);
 
-  // ───────────────── CHECKOUT COMPLETED ─────────────────
-  if (event.type === "checkout.session.completed") {
-    // Idempotency guard – oprește dublurile Stripe
-    try {
-      const sessionId = event.data.object.id;
-      if (await orderExists(sessionId)) {
-        console.log(
-          "🔁 duplicate checkout.session.completed — already processed:",
-          sessionId
-        );
-        return res.json({ received: true });
-      }
-    } catch (e) {
-      console.warn("idempotency check failed, continuing defensively:", e?.message || e);
-    }
-
-    try {
-      const session = await stripe.checkout.sessions.retrieve(
-        event.data.object.id,
-        { expand: ["customer_details"] }
-      );
-
-      const email = session.customer_details?.email || null;
-      const name = session.customer_details?.name || "Client";
-      const phone =
-        session.customer_details?.phone ||
-        session.customer_details?.shipping?.phone ||
-        null;
-
-const addrStr = [
-  addr.line1,
-  addr.line2,
-  addr.postal_code,
-  addr.city,
-  addr.state,
-  countryCode,
-].filter(Boolean).join(", ");
-      
-      if (!email) {
-        console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
-        return res.json({ received: true });
-      }
-
-      // — adresa Stripe — o singură sursă
-      const addr = session.customer_details?.address || {};
-      const countryCode = (addr.country || "").toUpperCase() || null;
-
-      // Line items
-      const li = await stripe.checkout.sessions.listLineItems(session.id, {
-        expand: ["data.price.product"],
-      });
-
-      const items =
-        (li?.data || []).map((it) => {
-          const meta = it?.price?.product?.metadata || {};
-          const rawFormat = meta?.format ? String(meta.format).toUpperCase() : null;
-          const pname = it?.price?.product?.name || it.description || "Produs";
-          const metaType = meta?.type || null;
-
-          let fileKey = meta?.fileKey || null;
-          if (
-            metaType === "courier_fee" ||
-            metaType === "service" ||
-            rawFormat === "PAPERBACK" ||
-            !isDigitalFormat(rawFormat)
-          ) {
-            fileKey = null;
-          }
-
-          let type = "book";
-          if (metaType === "courier_fee") type = "courier_fee";
-          else if (metaType === "service") type = "service";
-
-          return {
-            description: it.description,
-            quantity: it.quantity,
-            amount_total: (it.amount_total || 0) / 100,
-            currency:
-              it.currency?.toUpperCase() ||
-              session.currency?.toUpperCase() ||
-              "RON",
-            fileKey,
-            format: rawFormat,
-            type,
-            name: pname,
-          };
-        }) || [];
-
-      const hasPaperback = items.some((it) => it.format === "PAPERBACK");
-      const keys = Array.from(new Set(items.map((it) => it.fileKey).filter(Boolean)));
-      const hasDownloads = keys.length > 0;
-
-      const courierFee = items
-        .filter((it) => it.type === "courier_fee")
-        .reduce((s, it) => s + Number(it.amount_total || 0), 0);
-
-      const total_amount = (session.amount_total || 0) / 100;
-      const currency =
-        (session.currency || items[0]?.currency || "RON").toUpperCase();
-
-      const formatsList = Array.from(
-        new Set(items.map((it) => it.format).filter(Boolean))
-      );
-
-      const orderNo = genOrderNo(session.id);
-
-      // metadata companie
-      const md = session.metadata || {};
-      const companyMeta = {
-        requested: md.invoice_requested === "yes",
-        name: md.company_name || "",
-        cui: md.company_cui || "",
-        regCom: md.company_regcom || "",
-        vatPayer: md.company_vat_payer === "yes",
-        address: md.company_address || "",
-        city: md.company_city || "",
-        county: md.company_county || "",
-        country: (md.company_country || countryCode || "RO").toUpperCase(),
-      };
-
-      // ───────────────── LOG IN ORDERS (o singură structură coerentă) ─────────────────
-      let orderForLog = null;
+    // ───────────────── CHECKOUT COMPLETED ─────────────────
+    if (event.type === "checkout.session.completed") {
+      // Idempotency guard – oprește dublurile Stripe
       try {
-        const order = {
-          id: session.id,
-          orderNo,
-          createdAt: Date.now(),
-          email,
-          name,
-          phone, 
-
-          amount: total_amount,
-          currency,
-
-          items,
-          hasDownloads,
-          hasPaperback,
-          courierFee,
-
-          status: "paid",
-
-          // adresă completă pentru FGO + emailuri
-          country: countryCode, // ex. "RO"
-          address: {
-            line1: addr.line1 || null,
-            line2: addr.line2 || null,
-            city: addr.city || null,
-            state: addr.state || null,          // judet/region (FGO: Client[Judet])
-            postal_code: addr.postal_code || null,
-            country: countryCode || null,
-          },
-
-          // alias util
-          county: addr.state || null,
-
-          formats: formatsList,
-          company: companyMeta,
-        };
-
-        orderForLog = order;
-        await appendOrder(order);
-        console.log("🗂️ Order logged:", order.orderNo, order.id);
-      } catch (e) {
-        console.error("❌ Failed to append order:", e);
-      }
-
-      /* FGO INVOICE (non-blocking, după ce orderForLog a fost setat) */
-      try {
-        let createFgoInvoice = null;
-        try {
-          const mod = await import("./invoice-fgo.mjs");
-          createFgoInvoice = mod?.createFgoInvoice;
-        } catch (e) {
-          console.warn("ℹ️ FGO module not found. Skipping FGO invoice.");
+        const sessionId = event.data.object.id;
+        if (await orderExists(sessionId)) {
+          console.log(
+            "🔁 duplicate checkout.session.completed — already processed:",
+            sessionId
+          );
+          return res.json({ received: true });
         }
-
-        if (createFgoInvoice && orderForLog) {
-          const fgo = await createFgoInvoice({
-            order: orderForLog,
-            email,
-            company: companyMeta,
-          });
-
-          console.log("🧾 FGO result:", fgo);
-
-          // email scurt cu detalii factură → client + admin
-          try {
-            const transporter = nodemailer.createTransport({
-              service: "gmail",
-              auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-            });
-
-            const toClient = {
-              from: `"Midaway" <${process.env.EMAIL_USER}>`,
-              to: email,
-              replyTo: process.env.ADMIN_EMAIL,
-              subject: `Factura fiscala – Comanda #${orderNo}`,
-              html: [
-                `<p>Bună, ${name || ""}. Factura fiscală pentru comanda <strong>#${orderNo}</strong> a fost emisă.</p>`,
-                fgo?.number
-                  ? `<p><strong>Număr:</strong> ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}</p>`
-                  : "",
-                fgo?.pdfUrl
-                  ? `<p>Poți descărca factura în format PDF de <a href="${fgo.pdfUrl}" target="_blank">aici</a>.</p>`
-                  : `<p>Factura a fost trimisă automat de sistemul FGO pe emailul tău.</p>`,
-              ].join(""),
+      } catch (e) {
+        console.warn(
+          "idempotency check failed, continuing defensively:",
+          e?.message || e
+        );
+      }
+  
+      try {
+        const session = await stripe.checkout.sessions.retrieve(
+          event.data.object.id,
+          { expand: ["customer_details"] }
+        );
+  
+        const email = session.customer_details?.email || null;
+        const name = session.customer_details?.name || "Client";
+        const phone =
+          session.customer_details?.phone ||
+          session.customer_details?.shipping?.phone ||
+          null;
+  
+        if (!email) {
+          console.warn("❗ Lipsă email client – nu pot trimite confirmarea.");
+          return res.json({ received: true });
+        }
+  
+        // — adresa Stripe — o singură sursă (și fallback pe shipping_details dacă există)
+        const addr =
+          session.customer_details?.address ||
+          session.shipping_details?.address ||
+          {};
+  
+        const countryCode = (addr.country || "").toUpperCase() || null;
+  
+        const addrStr = [
+          addr.line1,
+          addr.line2,
+          addr.postal_code,
+          addr.city,
+          addr.state,
+          countryCode,
+        ]
+          .filter(Boolean)
+          .join(", ");
+  
+        // Line items
+        const li = await stripe.checkout.sessions.listLineItems(session.id, {
+          expand: ["data.price.product"],
+        });
+  
+        const items =
+          (li?.data || []).map((it) => {
+            const meta = it?.price?.product?.metadata || {};
+            const rawFormat = meta?.format ? String(meta.format).toUpperCase() : null;
+            const pname = it?.price?.product?.name || it.description || "Produs";
+            const metaType = meta?.type || null;
+  
+            let fileKey = meta?.fileKey || null;
+            if (
+              metaType === "courier_fee" ||
+              metaType === "service" ||
+              rawFormat === "PAPERBACK" ||
+              !isDigitalFormat(rawFormat)
+            ) {
+              fileKey = null;
+            }
+  
+            let type = "book";
+            if (metaType === "courier_fee") type = "courier_fee";
+            else if (metaType === "service") type = "service";
+  
+            return {
+              description: it.description,
+              quantity: it.quantity,
+              amount_total: (it.amount_total || 0) / 100,
+              currency:
+                it.currency?.toUpperCase() ||
+                session.currency?.toUpperCase() ||
+                "RON",
+              fileKey,
+              format: rawFormat,
+              type,
+              name: pname,
             };
-
-            const toAdmin = {
+          }) || [];
+  
+        const hasPaperback = items.some((it) => it.format === "PAPERBACK");
+        const keys = Array.from(new Set(items.map((it) => it.fileKey).filter(Boolean)));
+        const hasDownloads = keys.length > 0;
+  
+        const courierFee = items
+          .filter((it) => it.type === "courier_fee")
+          .reduce((s, it) => s + Number(it.amount_total || 0), 0);
+  
+        const total_amount = (session.amount_total || 0) / 100;
+        const currency =
+          (session.currency || items[0]?.currency || "RON").toUpperCase();
+  
+        const formatsList = Array.from(
+          new Set(items.map((it) => it.format).filter(Boolean))
+        );
+  
+        const orderNo = genOrderNo(session.id);
+  
+        // metadata companie
+        const md = session.metadata || {};
+        const companyMeta = {
+          requested: md.invoice_requested === "yes",
+          name: md.company_name || "",
+          cui: md.company_cui || "",
+          regCom: md.company_regcom || "",
+          vatPayer: md.company_vat_payer === "yes",
+          address: md.company_address || "",
+          city: md.company_city || "",
+          county: md.company_county || "",
+          country: (md.company_country || countryCode || "RO").toUpperCase(),
+        };
+  
+        // ───────────────── LOG IN ORDERS ─────────────────
+        let orderForLog = null;
+        try {
+          const order = {
+            id: session.id,
+            orderNo,
+            createdAt: Date.now(),
+            email,
+            name,
+            phone,
+  
+            amount: total_amount,
+            currency,
+  
+            items,
+            hasDownloads,
+            hasPaperback,
+            courierFee,
+  
+            status: "paid",
+  
+            country: countryCode,
+            address: {
+              line1: addr.line1 || null,
+              line2: addr.line2 || null,
+              city: addr.city || null,
+              state: addr.state || null,
+              postal_code: addr.postal_code || null,
+              country: countryCode || null,
+            },
+  
+            county: addr.state || null,
+            formats: formatsList,
+            company: companyMeta,
+          };
+  
+          orderForLog = order;
+          await appendOrder(order);
+          console.log("🗂️ Order logged:", order.orderNo, order.id);
+        } catch (e) {
+          console.error("❌ Failed to append order:", e);
+          throw e; // IMPORTANT: dacă nu s-a salvat comanda, forțăm retry Stripe
+        }
+  
+        /* FGO INVOICE (non-blocking) */
+        try {
+          let createFgoInvoice = null;
+          try {
+            const mod = await import("./invoice-fgo.mjs");
+            createFgoInvoice = mod?.createFgoInvoice;
+          } catch (e) {
+            console.warn("ℹ️ FGO module not found. Skipping FGO invoice.");
+          }
+  
+          if (createFgoInvoice && orderForLog) {
+            const fgo = await createFgoInvoice({
+              order: orderForLog,
+              email,
+              company: companyMeta,
+            });
+  
+            console.log("🧾 FGO result:", fgo);
+  
+            try {
+              const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+              });
+  
+              const toClient = {
+                from: `"Midaway" <${process.env.EMAIL_USER}>`,
+                to: email,
+                replyTo: process.env.ADMIN_EMAIL,
+                subject: `Factura fiscala – Comanda #${orderNo}`,
+                html: [
+                  `<p>Bună, ${name || ""}. Factura fiscală pentru comanda <strong>#${orderNo}</strong> a fost emisă.</p>`,
+                  fgo?.number
+                    ? `<p><strong>Număr:</strong> ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}</p>`
+                    : "",
+                  fgo?.pdfUrl
+                    ? `<p>Poți descărca factura în format PDF de <a href="${fgo.pdfUrl}" target="_blank">aici</a>.</p>`
+                    : `<p>Factura a fost trimisă automat de sistemul FGO pe emailul tău.</p>`,
+                ].join(""),
+              };
+  
+              const toAdmin = {
+                from: `"Midaway" <${process.env.EMAIL_USER}>`,
+                to: process.env.ADMIN_EMAIL,
+                subject: `📄 FGO • Factură emisă #${orderNo}${fgo?.number ? ` • ${fgo.number}` : ""}`,
+                text: [
+                  `Order: ${orderNo}`,
+                  `Client: ${name} <${email}>`,
+                  fgo?.number ? `Nr factură: ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}` : "",
+                  fgo?.pdfUrl ? `PDF: ${fgo.pdfUrl}` : "PDF: -",
+                ].join("\n"),
+              };
+  
+              await Promise.all([
+                transporter.sendMail(toClient),
+                transporter.sendMail(toAdmin),
+              ]);
+  
+              console.log("✉️ FGO invoice emails sent to client & admin.");
+            } catch (e) {
+              console.error("❌ Email after FGO invoice failed:", e);
+            }
+          }
+        } catch (e) {
+          console.error("🧾 FGO call failed (non-blocking):", e?.message || e);
+        }
+  
+        // token descărcare (dacă există fișiere)
+        const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
+        const token = signToken({ sid: session.id, email, keys, exp });
+  
+        const SITE = process.env.SITE_URL || "https://midaway.ro";
+        const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
+  
+        // ——— e-mailuri ———
+        try {
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+          });
+  
+          const itemsForEmail = items.map((it) => ({
+            type: it.type,
+            name: it.name || it.description || "Produs",
+            format: it.format || null,
+            quantity: it.quantity || 1,
+          }));
+  
+          const html = buildEmailHTML({
+            orderId: orderNo,
+            name,
+            total: total_amount,
+            currency,
+            downloadsUrl: downloadPage,
+            items: itemsForEmail,
+            hasDownloads,
+          });
+  
+          await transporter.sendMail({
+            from: `"Midaway" <${process.env.EMAIL_USER}>`,
+            to: email,
+            replyTo: process.env.ADMIN_EMAIL,
+            subject: `Midaway • Confirmare comanda #${orderNo}`,
+            html,
+          });
+          console.log("✅ Email client OK:", email, "| orderNo:", orderNo);
+  
+          try {
+            const itemsSummary = itemsForEmail
+              .map((it) => `• ${it.name}${it.format ? ` (${it.format})` : ""} ×${it.quantity}`)
+              .join("\n");
+  
+            const adminResp = await transporter.sendMail({
               from: `"Midaway" <${process.env.EMAIL_USER}>`,
               to: process.env.ADMIN_EMAIL,
-              subject: `📄 FGO • Factură emisă #${orderNo}${fgo?.number ? ` • ${fgo.number}` : ""}`,
+              subject: `🧾 Comandă nouă #${orderNo} • ${total_amount} ${currency}`,
               text: [
                 `Order: ${orderNo}`,
                 `Client: ${name} <${email}>`,
-                fgo?.number ? `Nr factură: ${fgo.number}${fgo.series ? ` / ${fgo.series}` : ""}` : "",
-                fgo?.pdfUrl ? `PDF: ${fgo.pdfUrl}` : "PDF: -",
+                `Telefon: ${phone || "-"}`,
+                `Adresă: ${addrStr || "-"}`,
+                `Total: ${total_amount} ${currency}`,
+                `Țară: ${countryCode || "-"}`,
+                `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
+                `Paperback: ${hasPaperback ? "DA" : "nu"}`,
+                "",
+                "Produse:",
+                itemsSummary || "-",
               ].join("\n"),
-            };
-
-            await Promise.all([
-              transporter.sendMail(toClient),
-              transporter.sendMail(toAdmin),
-            ]);
-
-            console.log("✉️ FGO invoice emails sent to client & admin.");
+            });
+  
+            console.log("📬 Admin email OK:", process.env.ADMIN_EMAIL, "| accepted:", adminResp.accepted);
           } catch (e) {
-            console.error("❌ Email after FGO invoice failed:", e);
+            console.error("❌ Admin email failed:", e);
           }
-        }
-      } catch (e) {
-        console.error("🧾 FGO call failed (non-blocking):", e?.message || e);
-      }
-
-      // token descărcare (dacă există fișiere)
-      const exp = Date.now() + 48 * 60 * 60 * 1000; // 48h
-      const token = signToken({ sid: session.id, email, keys, exp });
-
-      const SITE = process.env.SITE_URL || "https://midaway.ro";
-      const downloadPage = `${SITE}/api/download?token=${encodeURIComponent(token)}`;
-
-      // ——— e-mailuri ———
-      try {
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-        });
-
-        const itemsForEmail = items.map((it) => ({
-          type: it.type,
-          name: it.name || it.description || "Produs",
-          format: it.format || null,
-          quantity: it.quantity || 1,
-        }));
-
-        const html = buildEmailHTML({
-          orderId: orderNo,
-          name,
-          total: total_amount,
-          currency,
-          downloadsUrl: downloadPage,
-          items: itemsForEmail,
-          hasDownloads,
-        });
-
-        // 1) Mail către client
-        await transporter.sendMail({
-          from: `"Midaway" <${process.env.EMAIL_USER}>`,
-          to: email,
-          replyTo: process.env.ADMIN_EMAIL,
-          subject: `Midaway • Confirmare comanda #${orderNo}`,
-          html,
-        });
-        console.log("✅ Email client OK:", email, "| orderNo:", orderNo);
-
-        // 2) Mail scurt către admin (sumar text) — non-blocking
-        try {
-          const itemsSummary = itemsForEmail
-            .map((it) => `• ${it.name}${it.format ? ` (${it.format})` : ""} ×${it.quantity}`)
-            .join("\n");
-
-          const adminResp = await transporter.sendMail({
-            from: `"Midaway" <${process.env.EMAIL_USER}>`,
-            to: process.env.ADMIN_EMAIL,
-            subject: `🧾 Comandă nouă #${orderNo} • ${total_amount} ${currency}`,
-            text: [
-              `Order: ${orderNo}`,
-              `Client: ${name} <${email}>`,
-              `Telefon: ${phone || "-"}`,   
-              `Total: ${total_amount} ${currency}`,
-              `Țară: ${countryCode || "-"}`,
-              `Descărcări: ${hasDownloads ? "DA" : "nu"}`,
-              `Paperback: ${hasPaperback ? "DA" : "nu"}`,
-              "",
-              "Produse:",
-              itemsSummary || "-",
-            ].join("\n"),
-          });
-
-          console.log("📬 Admin email OK:", process.env.ADMIN_EMAIL, "| accepted:", adminResp.accepted);
         } catch (e) {
-          console.error("❌ Admin email failed:", e);
+          console.error("❌ Email block failed:", e);
         }
-      } catch (e) {
-        console.error("❌ Email block failed:", e);
+  
+        return res.json({ received: true });
+      } catch (err) {
+        console.error("Eroare procesare checkout.session.completed:", err);
+        return res.status(500).send("checkout.session.completed failed");
       }
-    } catch (err) {
-      console.error("Eroare procesare checkout.session.completed:", err);
     }
-  }
+  
 
   // ───────────────── PAYMENT FAILED ─────────────────
   if (event.type === "payment_intent.payment_failed") {
