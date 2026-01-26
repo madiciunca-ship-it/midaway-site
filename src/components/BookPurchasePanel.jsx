@@ -20,19 +20,32 @@ export function FormatSpecs({ book }) {
 
   const items = [];
 
-  if (fdet.ebook) {
-    const e = fdet.ebook, p = [];
-    if (e.pages) p.push(`${e.pages} pagini`);
-    if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
-    if (e.dimensions && e.dimensions !== "—") p.push(e.dimensions);
-    if (e.weight && e.weight !== "—") p.push(e.weight);
-    if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
-    items.push(
-      <li key="ebook">
-        <strong>eBook:</strong> {p.length ? p.join(" • ") : "—"}
-      </li>
-    );
-  }
+  // PDF
+if (fdet.eBook) {
+  const e = fdet.eBook, p = [];
+  if (e.pages) p.push(`${e.pages} pagini`);
+  if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
+  if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
+  items.push(
+    <li key="pdf">
+      <strong>PDF:</strong> {p.length ? p.join(" • ") : "—"}
+    </li>
+  );
+}
+
+// EPUB
+if (fdet.epub) {
+  const e = fdet.epub, p = [];
+  if (e.pages) p.push(`${e.pages} pagini`);
+  if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
+  if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
+  items.push(
+    <li key="epub">
+      <strong>EPUB:</strong> {p.length ? p.join(" • ") : "—"}
+    </li>
+  );
+}
+
 
   if (fdet.paperback) {
     const pb = fdet.paperback, p = [];
@@ -48,17 +61,18 @@ export function FormatSpecs({ book }) {
     );
   }
 
-  if (fdet.audiobook) {
-    const a = fdet.audiobook, p = [];
+  if (fdet.audiobook || book?.availability?.AUDIOBOOK === false) {
+    const a = fdet.audiobook || {};
+    const p = [];
     if (a.minutes) p.push(`${a.minutes} minute`);
     if (a.narrator) p.push(`Narator: ${a.narrator}`);
     items.push(
       <li key="audiobook">
-        <strong>Audiobook:</strong> {p.length ? p.join(" • ") : "—"}
+        <strong>Audiobook:</strong> {p.length ? p.join(" • ") : "în curs de producție"}
       </li>
     );
   }
-
+  
   if (!items.length) return null;
 
   return (
