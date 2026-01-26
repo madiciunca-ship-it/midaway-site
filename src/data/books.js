@@ -421,7 +421,7 @@ sampleUrl: "/files/sample-pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
 prices: {
   PDF: 45,
   EPUB: 45,
-  PAPERBACK: 70,
+  PAPERBACK: 65,
   AUDIOBOOK: 0
 },
 
