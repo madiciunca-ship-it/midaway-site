@@ -361,7 +361,7 @@ export const BOOKS = [
   addedAt: "2026-01-15T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: true,
+  hidden: false,
 
   title: "Pași prin Indonezia – Pe mâini de străini",
   subtitle: "Yda trăiește fiecare zi fără plasă de siguranță. Departe de Bali, Java devine spațiul unde controlul se pierde, iar încrederea în străini ține loc de supraviețuire.",
