@@ -705,7 +705,126 @@ const posts = [
       `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Zhangjiajie, Yangshuo și Hong Kong.`,
       `Stai aproape. Drumul continuă.`
     ]
+  },
+
+  {
+    slug: "zhangjiajie-muntii-avatar-si-semnalul-imposibil",
+    title: "Zhangjiajie – munții Avatar, semnalul imposibil și locul în care China devine ireală",
+    excerpt:
+      "Munți care nu par reali, lifturi lipite de stânci, semnal în vârf de lume și un parc care nu e parc, ci univers. Zhangjiajie este locul în care China devine Avatar, iar «NO CONNECTION» capătă un sens neașteptat.",
+    date: "2026-01-28",
+    author: "Mida Malena",
+    tags: ["China", "Zhangjiajie", "jurnal", "călătorii", "mindset", "No Connection"],
+    cover: "/assets/blog/zhangjiajie-no-connection-china.jpg",
+    minutes: 13,
+    content: [
+      `Plecarea din Chongqing trebuia să fie simplă. Și, pentru câteva minute, chiar a fost.`,
+      `8:00. Cu o cafea în mână și o siguranță falsă în privire, eram convinsă că știu drumul spre gară. Doar că nu știam. În China, „gara” nu e niciodată doar o gară, ci un univers paralel, cu reguli proprii și cu destinații care nu seamănă între ele nici măcar în nume.`,
+      `O tipă de la metrou m-a văzut rătăcită și m-a ajutat.`,
+      `La 8:55 eram deja în gară, cu biletul luat în grabă și trenul programat la 9:52. Interiorul era imens, aproape gol, cu zeci de porți A și B și o liniște care părea regizată. China are darul de a te face să simți că ești într-un film în care oamenii apar exact când trebuie.`,
+      `Am urcat în tren fără cazare rezervată. După zile întregi de internet instabil, am prins cu greu un Wi-Fi și am scris unei pensiuni din Zhangjiajie.`, 
+      `Tipa mi-a spus că nu există autobuz până la ea. După toate aventurile din China, am cedat.`,
+      `„— Trimite-mi șofer.”`,
+      `Nu mai aveam energie să negociez cu hărți care nu duc nicăieri. 120 yuani pentru transport și 45 de kilometri. Am acceptat fără ezitare.`,
+      `Taxi impecabil. Șoferul – zero engleză. Eu – zero răbdare.`, 
+      `Și, undeva în mintea mea, o imagine absurdă: eu coborând din tren, așteptată cu o plăcuță cu numele meu.`, 
+      `Heh. China nu funcționează așa.`,
+      `La 14:00 eram deja la cazare, într-un sat mic, prins între pădure și stânci verticale. Pensiunea era fix la intrarea în parc.`, 
+      `Carol, proprietara, era genul de femeie care nu vorbește mult, dar face totul. Caldă, atentă, prezentă. Mi-a dat camera și am coborât să mănânc ceva. Mi-a gătit atât de bine și atât de nepicant, încât mi-a venit să o iau în brațe. În China, asta e o declarație de iubire.`,
+      `M-a întrebat dacă vreau în parc.`, 
+      `Sincer? Nu prea. Aveam chef să stau.`, 
+      `De ce? Pentru că aveam Wi-Fi. Și nu orice Wi-Fi.`,
+      `Aici, în inima munților, telefonul meu funcționa perfect. Nu fluctua. Nu dispărea. Nu cerea refresh la fiecare trei secunde. În China. În munți. Ironia supremă.`,
+      `Am aflat că biletele pentru parc se vând doar pe patru zile, așa că am prelungit șederea.`, 
+      `Carol s-a ocupat de tot. În fiecare dimineață îmi dădea o hartă cu traseul zilei. Trasee. Telecabine. Autobuze interne. Scări. Poduri. Conexiuni.`, 
+      `Zhangjiajie nu era un parc, ci un labirint vertical.`,
+
+      `*Doi australieni și o seară care n-ar fi trebuit să existe*`,
+
+      `În seara aceea am ieșit în sat și i-am întâlnit pe doi australieni de 19 ani, pierduți și fără cazare.`, 
+      `Până la urmă, i-am dus la Carol. Le-a găsit o cameră.`, 
+      `Și brusc mi-am dat seama de ceva: dacă rămâneam în cameră, la Wi-Fi-ul meu perfect, n-aș fi trăit momentul ăsta.`, 
+      `Universul m-a scos afară exact când trebuia.`,
+      `Mi-am petrecut seara cu ei și nu puteam să nu mă gândesc cât de fragil e totul: o decizie mică – și o poveste mare.`,
+
+      `*Prima zi în Zhangjiajie – când „wow” devine stare permanentă*`,
+
+      `Zhangjiajie National Forest Park face parte din zona scenică Wulingyuan, un teritoriu montan de peste 260 km², sculptat din coloane de gresie cuarțoasă care se ridică vertical până la peste 1.200 de metri.`, 
+      `Nu sunt munți în sensul clasic.`, 
+      `Stâlpi de piatră care se ridică din ceață, prăpăstii verticale, platforme suspendate, poteci care par desenate, nu construite.`,
+      `Prima zi în parc a fost intensă.`, 
+      `Yuanjiajie, zona faimoasă pentru peisajele care au inspirat munții plutitori din Avatar, părea un decor construit de o inteligență suprarealistă.`, 
+      `Munții nu arătau ca munții. Arătau ca niște coloane desprinse din altă lume.`,
+      
+      `Am urcat spre Tianzi Mountain cu una dintre cele mai lungi telecabine din China.`, 
+      `Sus, panorama era atât de vastă încât munții păreau mai degrabă idei decât forme.`, 
+      `Și atunci s-a întâmplat ceva absurd: aveam semnal perfect. După zile întregi în orașe fără internet, sus, între stânci și ceață, puteam vorbi la telefon, face video, posta.`,
+      
+      `Între două creste dramatice am găsit un McDonald’s. O înghețată în vârf de munte a fost mai mult decât binevenită.`, 
+      `Globalizarea ajunsese înaintea mea. Bine, McDonald’s nu era singurul gigant de aici, am găsit și altele „cunoscute”.`,
+      
+      `Apoi am ajuns la liftul Bailong – cel mai înalt lift exterior din lume.`,
+      `În mai puțin de două minute, m-a ridicat aproape 330 de metri pe fața unei stânci verticale.`, 
+      `Să urci într-un lift lipit de o stâncă, cu prăpastia sub tine, nu seamănă cu nimic din ce știam despre munți.`,
+      `Nici n-am apucat să filmez cum trebuie.`,
+      `Eram prea impresionată.`,
+    
+    `*Hărți, trasee și realitatea: nu am făcut un parc, am traversat un univers*`,
+    
+    `Zhangjiajie nu e un parc în care te plimbi.`,
+    `E un teritoriu.`,
+    `În trei zile, am traversat nu doar zonele celebre, ci și pe cele pe care mulți turiști le sar:`,
+`– Yuanjiajie, munții Avatar;`,
+`– Tianzi Mountain, creasta poetică a parcului;`,
+`– Golden Whip Stream, valea lungă și umedă;`,
+`– Huangshizhai, traseele circulare de pe creastă;`,
+`– Yangjiajie, zona mai sălbatică, mai brutală.`,
+`Nu am urmat hărțile.`,
+`Le-am rescris.`,
+`La final, mi-am dat seama că am parcurs probabil între 40 și 60 de kilometri, pe verticală și orizontală, printre munți, scări, poteci și platforme.`,
+`Nu ca performanță.`,
+`Ci ca dovadă că limitele sunt adesea doar presupuneri.`,
+
+`*Cartea și Avatarul*`,
+`Tot în a doua zi, am urcat în munți cu cartea mea în rucsac.`,
+`Am filmat, am fotografiat, am pus cartea între stânci și ceață, ca și cum ar fi aparținut acelui loc.`, 
+`Pentru câteva ore, cartea mea „Pași prin Indonezia - Când Bali îți atinge sufletul” ajunsese pe Pandora.`,
+`Nu știu dacă o voi scoate vreodată la licitație, dar știu că, într-o zi, cineva va întreba: unde a fost fotografia asta făcută?`, 
+`Și răspunsul va fi: într-un loc în care munții nu sunt munți, ci coloane de vis.`,
+
+`*Când munții dispar*`,
+`A treia zi, ploaia și ceața au înghițit totul.`,
+`Munții au dispărut.`,
+`Aceleași poteci.`,
+`Aceleași platforme.`,
+`Aceleași trasee.`,
+`Dar fără peisaj.`,
+`Și atunci am înțeles că unele locuri nu trebuie forțate.`,
+`Dacă natura îți spune „azi nu”, China chiar nu negociază.`,
+`Am decis acolo, sus, că pot pleca.`,
+`Nu pentru că văzusem totul, ci pentru că înțelesesem suficient.`,
+
+`*Zhangjiajie nu e despre munți*`,
+
+`E despre perspectivă.`,
+`În timp ce orașele Chinei îmi tăiau semnalul, munții mi l-au dat înapoi.`,
+`Ca și cum cineva mi-ar fi spus:`, 
+`„Nu trebuie să cobori ca să te conectezi.`,
+`Uneori, trebuie să urci.”`,
+
+`Dar trebuia să plec.`,
+`Următoarea oprire: Yangshuo.`,
+`Și aveam să descopăr că, după un loc ca Zhangjiajie, liniștea arată cu totul altfel.`,
+
+`Dacă ai fost vreodată într-un loc care te-a făcut să urci mai mult decât credeai că poți, spune-mi:`,
+`„Ai vrut să te întorci… sau să mergi mai departe?”`,
+
+`Acest text face parte din seria „No Connection – Jurnale de drum din China”.`,
+      `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Zhangjiajie, Yangshuo și Hong Kong.`,
+      `Stai aproape. Drumul continuă.`,
+    ]
   }
+  
   
   
   
