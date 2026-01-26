@@ -351,6 +351,89 @@ export const BOOKS = [
       "If you’ve ever felt you had to leave… so you could return to yourself, this book is for you.",
     ],
   },
+
+  // ————————————————————————————————————————————————
+// Pași prin Indonezia – Pe mâini de străini (RO)
+// ————————————————————————————————————————————————
+{
+  id: "indonezia-2-ro",
+  slug: "pasi-prin-indonezia-pe-maini-de-straini",
+  addedAt: "2026-01-15T10:00:00Z",
+  lang: "RO",
+  currency: "RON",
+  hidden: true,
+
+  title: "Pași prin Indonezia – Pe mâini de străini",
+  subtitle: "Yda trăiește fiecare zi fără plasă de siguranță. Departe de Bali, Java devine spațiul unde controlul se pierde, iar încrederea în străini ține loc de supraviețuire.",
+  author: "Mida Malena",
+  genre: "Travel",
+  location: "Indonezia",
+  tags: ["memoir", "travel", "introspective", "authentic"],
+  year: 2026,
+  publisher: "Editura Midaway",
+
+  formatDetails: {
+    eBook: {
+      type: "pdf",
+      pages: 242,
+      isbn: "978-630-95287-0-4"
+    },
+    epub: {
+      pages: null, // la epub NU e obligatoriu
+      isbn: "978-630-95287-2-8"
+    },
+    paperback: {
+      pages: 262,
+      isbn: "978-630-95287-1-1",
+      dimensions: "13 x 20 cm",
+      weight: "380 gr"
+    }
+  },
+
+  description: [
+    "După ce Bali o trezește la viață, Yda nu se oprește.",
+    "Pășește mai departe – prin Java, orașe haotice, sate de munte, cratere fumegânde și tăceri care spun mai mult decât cuvintele.",
+    "Cu un rucsac, un laptop și puțină nebunie frumoasă.",
+    " Fără plan. Fără busolă. Cu curaj.",
+    "„Pași prin Indonezia – Pe mâini de străini” nu este o continuare de traseu, ci o adâncire.",
+    "O carte despre vulnerabilitate asumată, despre oameni necunoscuți care îți schimbă privirea și despre momentele în care viața devine mai clară tocmai când nu mai știi încotro mergi.",
+    "Nu este o carte despre călătorii perfecte.",
+    "Este despre lacrimi și râs, despre gări, vize, banane, nopți în care nu știi unde vei dormi – dar știi că ești exact acolo unde trebuie.",
+    "Această carte este pentru tine dacă:",
+    "– simți nevoia să lași viața să te ducă, măcar o dată",
+    "– ai obosit să planifici și să controlezi tot",
+    "– ai întâlnit oameni care au contat mai mult decât locurile",
+    "– crezi că uneori necunoscuții ne oferă cea mai pură formă de umanitate",
+    "Nu trebuie să fi fost în Indonezia.",
+    "Trebuie doar să fi avut curajul să te pierzi puțin.",
+    "„Uneori, viața e mai clară când o privești din mijlocul necunoscutului.”",
+  ],
+  coverUrl: "/assets/books/pasi-prin-indonezia-pe-maini-de-straini-cover.png",
+extraImage: "/assets/books/pasi-prin-indonezia-pe-maini-de-straini-back.png",
+
+files: {
+  PDF:  "/files/pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
+  EPUB: "/files/pasi-prin-indonezia-pe-maini-de-straini-ro.epub",
+},
+
+sampleUrl: "/files/sample-pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
+
+prices: {
+  PDF: 45,
+  EPUB: 45,
+  PAPERBACK: 70,
+  AUDIOBOOK: 0
+},
+
+availability: {
+  PDF: true,
+  EPUB: true,
+  PAPERBACK: true,
+  AUDIOBOOK: false
+},
+
+payLink: null,
+}
 ];
 
 // Export opțional: listă standard pentru UI
