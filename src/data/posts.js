@@ -715,7 +715,7 @@ const posts = [
     date: "2026-01-28",
     author: "Mida Malena",
     tags: ["China", "Zhangjiajie", "jurnal", "călătorii", "mindset", "No Connection"],
-    cover: "/assets/blog/zhangjiajie-no-connection-china.jpg",
+    cover: "/assets/blog/zhangjiajie-no-connection-china1.jpg",
     minutes: 13,
     content: [
       `Plecarea din Chongqing trebuia să fie simplă. Și, pentru câteva minute, chiar a fost.`,
@@ -768,6 +768,29 @@ const posts = [
       `Să urci într-un lift lipit de o stâncă, cu prăpastia sub tine, nu seamănă cu nimic din ce știam despre munți.`,
       `Nici n-am apucat să filmez cum trebuie.`,
       `Eram prea impresionată.`,
+
+      `*Cover-ul care n-a vrut să fie unul singur*`,
+
+`Adevărul?`,
+`N-am putut alege o singură imagine pentru cover.`,
+
+`Zhangjiajie nu e un cadru. E o succesiune de secvențe.`,
+
+`Un maimuțel pe o stâncă.`,
+`Un munte Avatar suspendat în ceață.`,
+`Un indicator spre „Fascinating Terrace”.`,
+`O potecă prin pădure.`,
+`Doi australieni pierduți în sat.`,
+`Un tren absurd de drăguț.`,
+`Două figurine Avatar.`,
+`Cartea mea, pusă între cer și prăpastie.`,
+`Și eu, râzând într-un loc în care realitatea părea editată.`,
+
+`Așa că am făcut un colaj.`,
+`Nu pentru estetică. Ci pentru adevăr.`,
+
+`Pentru că Zhangjiajie nu se povestește într-o singură fotografie.`,
+`Se trăiește în fragmente.`,
     
     `*Hărți, trasee și realitatea: nu am făcut un parc, am traversat un univers*`,
     
