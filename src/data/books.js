@@ -370,7 +370,8 @@ export const BOOKS = [
   location: "Indonezia",
   tags: ["memoir", "travel", "introspective", "authentic"],
   year: 2026,
-  publisher: "Editura Midaway",
+  publisher: "Editura Midaway / Autor Mida Malena",
+
 
   formatDetails: {
     eBook: {
