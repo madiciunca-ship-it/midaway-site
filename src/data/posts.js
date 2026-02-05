@@ -918,7 +918,7 @@ const posts = [
       `Și Kate?`,
       `O dulceață de fată, din aceea pe care o întâlnești rar.`,
       `Prima oprire, evident: baia. Mă mir că nu explodasem până aici.`,
-      `După ce m-am mai liniștit, Kate mi-a explicat ceva important: între 8:00 și 18:00 există un mic vaporaș care traversează râul și, pentru câțiva yuani, te duce aproape de West Street.`,
+      `După ce m-am mai liniștit, Kate mi-a explicat ceva important: între 8:00 și 18:00 există un mic vaporaș care traversează râul și, pentru câțiva yuani, te duce aproape de West Street (cel din poza de cover – nu e deloc întâmplătoare).`,
       `Aha. De asta îmi spusese că e „aproape”.`,
       `În teorie, da. În practică, erau 2,8 kilometri pe jos, peste pod, după ce barca nu mai era o opțiune.`,
       `Am înțeles. Uneori, reclama e și ea o formă de adevăr.`,
