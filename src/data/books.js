@@ -119,7 +119,7 @@ export const BOOKS = [
     formatDetails: {
       eBook: {
         type: "pdf",
-        pages: 334,
+        pages: 311,
         isbn: "978-630-95287-7-3"
       },
       epub: {
