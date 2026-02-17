@@ -113,12 +113,25 @@ export const BOOKS = [
     author: "Mida Malena",
     genre: "Travel",
     location: "Vietnam",
-    year: 2025,
-    publisher: "Independent Publisher Mida Malena",
+    year: 2026,
+    publisher: "Editura Midaway / Autor Mida Malena",
 
     formatDetails: {
-      ebook:     { pages: 302, isbn: "978-973-0-41387-8" },
-      paperback: { pages: 314, isbn: "978-9-7304-1386-1", dimensions: "13 x 20 cm", weight: "380 gr." },
+      eBook: {
+        type: "pdf",
+        pages: 334,
+        isbn: "978-630-95287-7-3"
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: "978-630-95287-8-0"
+      },
+      paperback: {
+        pages: 334,
+        isbn: "978-630-95287-6-6",
+        dimensions: "13 x 20 cm",
+        weight: "360 gr"
+      }
     },
 
     coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
