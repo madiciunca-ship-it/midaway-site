@@ -154,8 +154,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro1.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro1.epub",
+      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.pdf",
+      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.epub",
     },
 
     description: [
