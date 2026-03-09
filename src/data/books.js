@@ -75,7 +75,7 @@ export const BOOKS = [
     genre: "Travel",
     location: "Philippines",
     year: 2023,
-    publisher: "Independent Publisher Mida MAlena",
+    publisher: "Independent Publisher Mida Malena",
 
     formatDetails: {
       ebook:     { pages: null, isbn: "" },
@@ -114,7 +114,7 @@ export const BOOKS = [
     genre: "Travel",
     location: "Vietnam",
     year: 2026,
-    publisher: "Editura Midaway / Autor Mida Malena",
+    publisher: "Midaway / Autor Mida Malena",
 
     formatDetails: {
       eBook: {
@@ -383,7 +383,7 @@ export const BOOKS = [
   location: "Indonezia",
   tags: ["memoir", "travel", "introspective", "authentic"],
   year: 2026,
-  publisher: "Editura Midaway / Autor Mida Malena",
+  publisher: "Midaway / Autor Mida Malena",
 
 
   formatDetails: {
