@@ -1,5 +1,5 @@
 // src/pages/BookDetail.jsx 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BOOKS } from "../data/books";
 import { useCart } from "../context/CartContext";
@@ -50,7 +50,25 @@ export default function BookDetail() {
   const { id } = useParams();
   const book = BOOKS.find((b) => String(b.id) === String(id));
   const [open, setOpen] = useState({ pdf: false, epub: false, audio: false });
-
+  useEffect(() => {
+    if (!book) return;
+  
+    document.title = book.seoTitle || `${book.title} | Mida Malena`;
+  
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", book.seoDescription || "");
+    }
+  
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", `https://midaway.ro/carti/${book.id}`);
+  }, [book]);
+  
   // Link-uri Revolut (45 lei & 65 lei)
   // const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
   // const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
