@@ -14,7 +14,7 @@ export const BOOKS = [
 
     title: "O zi de care să-ți amintești",
     seoTitle: "O zi de care să-ți amintești – carte de călătorie Filipine | Mida Malena",
-    subtitle: "Filipine — o carte despre curajul de a începe o călătorie chiar când nu ai planul complet.",
+    subtitle: "Filipine – o carte despre curajul de a începe o călătorie chiar când nu ai planul complet.",
     seoDescription: "O zi de care să-ți amintești este un jurnal de călătorie despre curajul de a pleca singur în lume și despre întâlnirea cu tine însuți, pe fundalul insulei Palawan din Filipine.",
     
     author: "Mida Malena",
