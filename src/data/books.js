@@ -12,8 +12,11 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "O zi de care să-ți amintești / Filipine",
-    subtitle: "O carte despre curajul de a începe o călătorie – chiar când nu ai planul complet.",
+    title: "O zi de care să-ți amintești",
+    seoTitle: "O zi de care să-ți amintești – carte de călătorie Filipine | Mida Malena",
+    subtitle: "Filipine — o carte despre curajul de a începe o călătorie chiar când nu ai planul complet.",
+    seoDescription: "O zi de care să-ți amintești este un jurnal de călătorie despre curajul de a pleca singur în lume și despre întâlnirea cu tine însuți, pe fundalul insulei Palawan din Filipine.",
+    
     author: "Mida Malena",
     genre: "Travel",
     location: "Filipine",
@@ -108,8 +111,11 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
-    subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
+    title: "Zile și nopți de Vietnam",
+    seoTitle: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad | Mida Malena",
+    subtitle: "Bucăți dintr-un suflet nomad — o explorare a sinelui prin oameni, locuri și momente care schimbă direcția unei vieți.",
+    seoDescription: "Zile și nopți de Vietnam este un jurnal de călătorie despre descoperirea sinelui prin experiențe reale, oameni neașteptați și locuri care devin oglinzi ale sufletului.",
+    
     author: "Mida Malena",
     genre: "Travel",
     location: "Vietnam",
@@ -251,8 +257,11 @@ export const BOOKS = [
     currency: "RON",
     hidden: false,
 
-    title: "Pași prin Indonezia – Când Bali îți atinge sufletul",
-    subtitle: "Nu e despre Bali ca destinație. E despre ce se schimbă în tine când ajungi acolo.",
+    title: "Pași prin Indonezia",
+    seoTitle: "Pași prin Indonezia – Când Bali îți atinge sufletul | Mida Malena",
+    subtitle: "Când Bali îți atinge sufletul — o confesiune despre schimbare, frici și întâlnirea cu tine însuți.",
+    seoDescription: "Pași prin Indonezia – Când Bali îți atinge sufletul este o confesiune despre frici, schimbare și căutarea liniștii interioare într-un loc care promite paradisul.",
+   
     author: "Mida Malena",
     genre: "Travel",
     location: "Indonezia",
@@ -376,8 +385,11 @@ export const BOOKS = [
   currency: "RON",
   hidden: false,
 
-  title: "Pași prin Indonezia – Pe mâini de străini",
-  subtitle: "Yda trăiește fiecare zi fără plasă de siguranță. Departe de Bali, Java devine spațiul unde controlul se pierde, iar încrederea în străini ține loc de supraviețuire.",
+  title: "Pași prin Indonezia",
+  seoTitle: "Pași prin Indonezia – Pe mâini de străini | Mida Malena",
+  subtitle: "Pe mâini de străini — o călătorie prin Java unde necunoscuții devin ghizi, iar vulnerabilitatea deschide drumul către autenticitate.",
+  seoDescription: "Pași prin Indonezia – Pe mâini de străini continuă călătoria prin Java, unde necunoscuții devin ghizi, iar vulnerabilitatea devine forță.",
+  
   author: "Mida Malena",
   genre: "Travel",
   location: "Indonezia",
