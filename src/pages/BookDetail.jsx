@@ -49,6 +49,24 @@ function AddToCart({ id, title, format, lang, price, payLink, children }) {
 export default function BookDetail() {
   const { id } = useParams();
   const book = BOOKS.find((b) => String(b.id) === String(id));
+  const bookSchema = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: book.title,
+    author: {
+      "@type": "Person",
+      name: "Mida Malena"
+    },
+    publisher: {
+      "@type": "Organization",
+      name: book.publisher || "Midaway"
+    },
+    datePublished: book.year,
+    inLanguage: book.lang || "ro",
+    url: "https://midaway.ro/carti/" + book.id,
+    genre: book.genre || "Travel",
+    description: book.subtitle
+  };
   const [open, setOpen] = useState({ pdf: false, epub: false, audio: false });
   useEffect(() => {
     if (!book) return;
@@ -68,7 +86,7 @@ export default function BookDetail() {
     }
     canonical.setAttribute("href", `https://midaway.ro/carti/${book.id}`);
   }, [book]);
-  
+
   // Link-uri Revolut (45 lei & 65 lei)
   // const PAY_45 = "https://revolut.me/r/1bDPKVQoBh";
   // const PAY_65 = "https://revolut.me/r/dLpZN4yYgC";
@@ -78,12 +96,19 @@ export default function BookDetail() {
 
   if (!book) {
     return (
-      <div style={{ padding: 24 }}>
-        <h2>Cartea nu există</h2>
-        <p>
-          <Link to="/carti">← Înapoi la toate cărțile</Link>
-        </p>
-      </div>
+      <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookSchema) }}
+      />
+  
+        <div style={{ padding: 24 }}>
+          <h2>Cartea nu există</h2>
+          <p>
+            <Link to="/carti">← Înapoi la toate cărțile</Link>
+          </p>
+        </div>
+        </>
     );
   }
 
