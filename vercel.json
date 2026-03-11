@@ -2,12 +2,12 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/files/(.*)",  "destination": "/files/$1" },
+    { "source": "/files/(.*)", "destination": "/files/$1" },
     { "source": "/favicon.ico", "destination": "/favicon.ico" },
-    { "source": "/robots.txt",  "destination": "/robots.txt" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/feed.xml",    "destination": "/feed.xml" },
+    { "source": "/feed.xml", "destination": "/feed.xml" },
     { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
