@@ -111,9 +111,9 @@ export const BOOKS = [
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam",
+    title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
     seoTitle: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad | Mida Malena",
-    subtitle: "Bucăți dintr-un suflet nomad — o explorare a sinelui prin oameni, locuri și momente care schimbă direcția unei vieți.",
+    subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
     seoDescription: "Zile și nopți de Vietnam este un jurnal de călătorie despre descoperirea sinelui prin experiențe reale, oameni neașteptați și locuri care devin oglinzi ale sufletului.",
     
     author: "Mida Malena",
@@ -257,9 +257,9 @@ export const BOOKS = [
     currency: "RON",
     hidden: false,
 
-    title: "Pași prin Indonezia",
+    title: "Pași prin Indonezia – Când Bali îți atinge sufletul",
     seoTitle: "Pași prin Indonezia – Când Bali îți atinge sufletul | Mida Malena",
-    subtitle: "Când Bali îți atinge sufletul — o confesiune despre schimbare, frici și întâlnirea cu tine însuți.",
+    subtitle: "Nu e despre Bali ca destinație. E despre ce se schimbă în tine când ajungi acolo.",
     seoDescription: "Pași prin Indonezia – Când Bali îți atinge sufletul este o confesiune despre frici, schimbare și căutarea liniștii interioare într-un loc care promite paradisul.",
    
     author: "Mida Malena",
@@ -385,9 +385,9 @@ export const BOOKS = [
   currency: "RON",
   hidden: false,
 
-  title: "Pași prin Indonezia",
+  title: "Pași prin Indonezia – Pe mâini de străini",
   seoTitle: "Pași prin Indonezia – Pe mâini de străini | Mida Malena",
-  subtitle: "Pe mâini de străini — o călătorie prin Java unde necunoscuții devin ghizi, iar vulnerabilitatea deschide drumul către autenticitate.",
+  subtitle: "Yda trăiește fiecare zi fără plasă de siguranță. Departe de Bali, Java devine spațiul unde controlul se pierde, iar încrederea în străini ține loc de supraviețuire.",
   seoDescription: "Pași prin Indonezia – Pe mâini de străini continuă călătoria prin Java, unde necunoscuții devin ghizi, iar vulnerabilitatea devine forță.",
   
   author: "Mida Malena",
