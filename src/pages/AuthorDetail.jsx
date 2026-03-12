@@ -38,6 +38,25 @@ export default function AuthorDetail() {
 
 
   const a = authors.find((x) => x.id === slug);
+  const authorSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mida Malena",
+    "url": "https://midaway.ro/autori/mida-malena",
+    "image": "https://midaway.ro/mida-malena.jpg",
+    "jobTitle": "Travel Writer",
+    "description": "Travel writer and storyteller exploring Asia through immersive journeys and books.",
+    "sameAs": [
+      "https://instagram.com/midaway.official",
+      "https://facebook.com/midaway",
+      "https://youtube.com/@midaway",
+      "https://tiktok.com/@midaway"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Midaway"
+    }
+  };
 
   if (!a) {
     return (
@@ -58,7 +77,6 @@ export default function AuthorDetail() {
       </div>
     );
   }
-
   const d = getLocaleData(a, lang);
 
 
@@ -72,13 +90,17 @@ export default function AuthorDetail() {
       ? a.gallery.slice(0, 3)
       : [a.photo || "/assets/placeholder-cover.png"];
 
-  return (
-    <>
-      {/* HERO – galerie preluată și adaptată din TravelerDetail */}
-<div
-  className="container"
-  style={{ padding: "24px 0 48px", maxWidth: 1000 }}
->
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(authorSchema) }}
+        />
+    {/* HERO – galerie preluată și adaptată din TravelerDetail */}
+        <div
+          className="container"
+          style={{ padding: "24px 0 48px", maxWidth: 1000 }}
+        >
   <p style={{ marginTop: 0 }}>
   <Link
   to="/autori"
