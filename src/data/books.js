@@ -476,7 +476,7 @@ payLink: null,
   title: "Focuri care nu ating",
   seoTitle: "Focuri care nu ating | Mida Malena",
   subtitle: "O carte despre dorință, limite, luciditate și puterea rară de a pleca înainte să te pierzi.",
-  seoDescription: "Focuri care nu ating de Mida Malena este o carte despre dorință, libertate interioară, limite și forța de a spune «nu» atunci când intensitatea nu mai înseamnă iubire reală.",
+  seoDescription: "Focuri care nu ating este un roman confesiv contemporan, ficționalizat, construit din episoade de călătorie și întâlniri-limită, în care protagonista explorează granițele dintre dorință și autonomie și transformă alegerea «am putut să NU» într-o formă de libertate personală.",
 
   author: "Mida Malena",
   genre: "Roman confesiv / Proză contemporană",
@@ -505,7 +505,9 @@ payLink: null,
 
   description: [
     "„Dacă ai primi o singură zi de iubire reală… ai trăi-o sau ai păstra viața neatinsă?”",
-  
+
+    "„Focuri care nu ating” este un roman confesiv contemporan, construit din episoade de călătorie și întâlniri-limită.",
+    
     "Există momente în care dorința nu vine să te completeze, ci să te testeze. Să vadă cât ești dispus/ă să pierzi ca să simți ceva.",
   
     "„Focuri care nu ating” nu este o carte despre iubire. Este o carte despre praguri.",
@@ -526,7 +528,7 @@ payLink: null,
     "– cauți o formă de libertate care nu depinde de nimeni",
   
     "Nu este o carte despre control. Este despre conștiință. Despre acel moment rar în care știi:",
-    "am putut să NU.",
+    "Am putut să NU.",
   
     "Și asta a fost suficient."
   ],
