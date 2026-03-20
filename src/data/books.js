@@ -459,7 +459,104 @@ availability: {
 },
 
 payLink: null,
-}
+},
+
+// ————————————————————————————————————————————————
+// Focuri care NU ating (RO)
+// ————————————————————————————————————————————————
+
+{
+  id: "focuri-care-nu-ating-ro",
+  slug: "focuri-care-nu-ating",
+  addedAt: "2026-03-22T10:00:00Z",
+  lang: "RO",
+  currency: "RON",
+  hidden: true,
+
+  title: "Focuri care nu ating",
+  seoTitle: "Focuri care nu ating | Mida Malena",
+  subtitle: "O carte despre dorință, limite, luciditate și puterea rară de a pleca înainte să te pierzi.",
+  seoDescription: "Focuri care nu ating de Mida Malena este o carte despre dorință, libertate interioară, limite și forța de a spune «nu» atunci când intensitatea nu mai înseamnă iubire reală.",
+
+  author: "Mida Malena",
+  genre: "Roman confesiv / Proză contemporană",
+  location: "Romania",
+  tags: ["desire", "introspective", "self-mastery", "lovestory", "boundaries", "femininity"],
+  year: 2026,
+  publisher: "Midaway / Autor Mida Malena",
+
+  formatDetails: {
+    eBook: {
+      type: "pdf",
+      pages: 192,
+      isbn: "978-630-95287-4-2",
+    },
+    epub: {
+      pages: null,
+      isbn: "978-630-95287-5-9",
+    },
+    paperback: {
+      pages: 192,
+      isbn: "978-630-95287-9-7",
+      dimensions: "13 x 20 cm",
+      weight: "280 gr.",
+    },
+  },
+
+  description: [
+    "„Dacă ai primi o singură zi de iubire reală… ai trăi-o sau ai păstra viața neatinsă?”",
+  
+    "Există momente în care dorința nu vine să te completeze, ci să te testeze. Să vadă cât ești dispus/ă să pierzi ca să simți ceva.",
+  
+    "„Focuri care nu ating” nu este o carte despre iubire. Este o carte despre praguri.",
+  
+    "Despre clipa în care o emoție te îmbie să te micșorezi ca să încapi în ea – iar tu alegi să rămâi întreagă.",
+  
+    "Despre dorința care nu consumă, ci aprinde. Despre intensitate fără pierdere. Despre libertatea de a pleca atunci când ai putea rămâne.",
+  
+    "Nu există finaluri spectaculoase. Uneori e furtună. Alteori e liniște. Uneori e doar o privire care mută totul.",
+  
+    "Aceasta nu este o carte despre ce se întâmplă între două persoane. Este despre ce alegi să nu se întâmple.",
+  
+    "Este pentru tine dacă:",
+  
+    "– ai simțit vreodată că dorința te poate face să te pierzi",
+    "– ai ales, măcar o dată, să pleci în loc să rămâi",
+    "– înveți să spui „nu” fără să te explici",
+    "– cauți o formă de libertate care nu depinde de nimeni",
+  
+    "Nu este o carte despre control. Este despre conștiință. Despre acel moment rar în care știi:",
+    "am putut să NU.",
+  
+    "Și asta a fost suficient."
+  ],
+
+  coverUrl: "/assets/books/focuri-care-nu-ating-cover-ro.png",
+  extraImage: "/assets/books/focuri-care-nu-ating-back.png",
+
+  files: {
+    PDF: "/files/focuri-care-nu-ating-ro.pdf",
+    EPUB: "/files/focuri-care-nu-ating-ro.epub",
+  },
+
+  sampleUrl: "/files/sample-focuri-care-nu-ating.pdf",
+
+  prices: {
+    PDF: 50,
+    EPUB: 50,
+    PAPERBACK: 75,
+    AUDIOBOOK: 0
+  },
+
+  availability: {
+    PDF: true,
+    EPUB: true,
+    PAPERBACK: true,
+    AUDIOBOOK: false
+  },
+
+  payLink: null,
+},
 ];
 
 // Export opțional: listă standard pentru UI
