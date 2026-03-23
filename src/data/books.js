@@ -23,9 +23,23 @@ export const BOOKS = [
     year: 2023,
     publisher: "Dreams Publishing House",
 
+   
     formatDetails: {
-      ebook:     { pages: 272, isbn: "978-606-94962-8-2" },
-      paperback: { pages: 272, isbn: "978-606-95545-7-9", dimensions: "13 x 20 cm", weight: "380 gr." },
+      eBook: {
+        type: "pdf",
+        pages: 272,
+        isbn: "978-606-94962-8-2",
+      },
+      epub: {
+        pages: null,
+        isbn: "978-606-94962-8-2",
+      },
+      paperback: {
+        pages: 272,
+        isbn: "978-606-95545-7-9",
+        dimensions: "13 x 20 cm",
+        weight: "380 gr.",
+      },
     },
 
     coverUrl: "/assets/books/gallery/o-zi-de-care-sa-ti-amintesti-cover.JPEG",
@@ -199,9 +213,23 @@ export const BOOKS = [
     year: 2025,
     publisher: "Independent Publisher Mida Malena",
 
+
     formatDetails: {
-      ebook:     { pages: 349, isbn: "B0DSBS9J8T" },
-      paperback: { pages: 300, isbn: "979-8303117099", dimensions: "6 x 0.68 x 9 inches", weight: "1.14 pounds" },
+      eBook: {
+        type: "pdf",
+        pages: 349,
+        isbn: "B0DSBS9J8T"
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: "B0DSBS9J8T"
+      },
+      paperback: {
+        pages: 300,
+        isbn: "979-8303117099",
+        dimensions: "6 x 0.68 x 9 inches",
+        weight: "1.14 pounds"
+      }
     },
 
     coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
@@ -269,9 +297,23 @@ export const BOOKS = [
     year: 2025,
     publisher: "Independent Publisher Mida Malena",
 
+
     formatDetails: {
-      ebook:     { pages: 346, isbn: "978-973-0-41387-8" },
-      paperback: { pages: 366, isbn: "978-97304-1386-1", dimensions: "13 x 20 cm", weight: "400 gr." },
+      eBook: {
+        type: "pdf",
+        pages: 346,
+        isbn: " - "
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: " - "
+      },
+      paperback: {
+        pages: 366,
+        isbn: "978-97304-1386-1",
+        dimensions: "13 x 20 cm",
+        weight: "400 gr."
+      }
     },
 
     description: [
@@ -324,8 +366,21 @@ export const BOOKS = [
     publisher: "Independent Publisher Mida Malena",
 
     formatDetails: {
-      ebook:     { pages: 343, isbn: "978-973-0-41387-8" },
-      paperback: { pages: 356, isbn: "979-8273659506", dimensions: "", weight: "" },
+      eBook: {
+        type: "pdf",
+        pages: 343,
+        isbn: "978-973-0-41387-8"
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: "978-973-0-41387-8"
+      },
+      paperback: {
+        pages: 356,
+        isbn: "979-8273659506",
+        dimensions: "15.24 x 2.06 x 22.86 cm",
+        weight: ""
+      }
     },
 
     coverUrl: "/assets/books/steps-through-indonesia-when-bali-touches-your-soul-cover.png",
@@ -471,7 +526,7 @@ payLink: null,
   addedAt: "2026-03-22T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: true,
+  hidden: false,
 
   title: "Focuri care nu ating",
   seoTitle: "Focuri care nu ating | Mida Malena",
@@ -496,7 +551,7 @@ payLink: null,
       isbn: "978-630-95287-5-9",
     },
     paperback: {
-      pages: 192,
+      pages: 176,
       isbn: "978-630-95287-9-7",
       dimensions: "13 x 20 cm",
       weight: "280 gr.",
