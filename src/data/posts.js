@@ -1090,7 +1090,7 @@ const posts = [
     slug: "cartea-pe-care-nu-voiam-sa-o-scriu-focuri-care-nu-ating",
     title: "Cartea pe care nu voiam să o scriu",
     excerpt:
-      "A început dintr-o glumă și a devenit o probă de foc: un jurnal lucid despre dorință, limite și alegeri — și despre cum un „Nu”, spus la timp, poate deveni cea mai mare formă de iubire de sine.",
+      "A început dintr-o glumă și a devenit o probă de foc: un jurnal lucid despre dorință, limite și alegeri – și despre cum un „Nu”, spus la timp, poate deveni cea mai mare formă de iubire de sine.",
     date: "2026-03-25",
     author: "Mida Malena",
     tags: [
