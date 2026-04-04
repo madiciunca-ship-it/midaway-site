@@ -1277,7 +1277,9 @@ const posts = [
       `Libertatea de a putea.`,
       `Libertatea de a alege.`,
       `Libertatea de a rămâne.`,
-      ]
+      `Unele dintre aceste întâlniri, tensiuni și alegeri se regăsesc și în „Focuri care nu ating” – o carte despre dorință, limite și acele momente rare în care alegerea spune mai mult decât experiența.`,
+      `Dacă vrei să mergi mai departe în această direcție, o găsești aici: https://midaway.ro/carti/focuri-care-nu-ating-ro.`,
+    ]
   }
   
 
