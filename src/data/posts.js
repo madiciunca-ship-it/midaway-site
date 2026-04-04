@@ -1182,17 +1182,15 @@ const posts = [
     slug: "cand-libertatea-inseamna-lucruri-diferite-barbat-femeie",
     title: "Libertăți diferite: când bărbatul poate, iar femeia alege",
     excerpt:
-      "Nu toate formele de libertate arată la fel. Pentru un bărbat, libertatea poate însemna să poată avea orice femeie își dorește. Pentru o femeie, libertatea apare uneori atunci când poate avea… și alege să nu o facă. Despre întâlnirea rară dintre două libertăți diferite – și despre vibrația care apare atunci când dorința nu mai este consumată.",
+      "Nu toate formele de libertate arată la fel. Pentru un bărbat, libertatea poate însemna să poată avea orice femeie își dorește. Pentru o femeie, libertatea apare uneori atunci când poate avea… și alege să nu o facă. Despre întâlnirea rară dintre două libertăți diferite.",
     date: "2026-04-05",
     author: "Mida Malena",
     tags:
     [
-      "Relatii",
-      "Barbat si femeie",
+      "dorinta",
       "Focuri care nu ating",
-      "Midaway",
       "dorință",
-      "Libertate",
+      "libertate",
       "limite",
       "Relatii moderne",
       "confesiune",
