@@ -1182,7 +1182,7 @@ const posts = [
     slug: "cand-libertatea-inseamna-lucruri-diferite-barbat-femeie",
     title: "Libertăți diferite: când bărbatul poate, iar femeia alege",
     excerpt:
-      "Nu toate formele de libertate arată la fel. Pentru un bărbat, libertatea poate însemna să poată avea orice femeie își dorește. Pentru o femeie, libertatea apare uneori atunci când poate avea… și alege să nu o facă. Despre întâlnirea rară dintre două libertăți diferite.",
+      "Nu toate formele de libertate arată la fel. Pentru un bărbat, libertatea poate însemna să poată avea orice femeie își dorește. Pentru o femeie, libertatea apare atunci când poate avea… și alege să nu o facă. Despre întâlnirea rară dintre două libertăți diferite.",
     date: "2026-04-05",
     author: "Mida Malena",
     tags:
@@ -1277,8 +1277,9 @@ const posts = [
       `Libertatea de a putea.`,
       `Libertatea de a alege.`,
       `Libertatea de a rămâne.`,
-      `Unele dintre aceste întâlniri, tensiuni și alegeri se regăsesc și în „Focuri care nu ating” – o carte despre dorință, limite și acele momente rare în care alegerea spune mai mult decât experiența.`,
-      `Dacă vrei să mergi mai departe în această direcție, o găsești aici: https://midaway.ro/carti/focuri-care-nu-ating-ro.`,
+      `Poate că unele dintre aceste întâlniri nu sunt doar idei.`,
+      `Poate că sunt povești.`,
+      `Unele dintre ele le-am adunat în „Focuri care nu ating”.`, 
     ]
   }
   
