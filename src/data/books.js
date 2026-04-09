@@ -555,7 +555,7 @@ payLink: null,
     coverUrl: "/assets/books/steps-through-indonesia-in-the-hands-of-strangers-cover.png",
     extraImage: "/assets/books/steps-through-indonesia-in-the-hands-of-strangers-back.png",
 
-    sampleUrl: "/files/sample-steps-through-indonesia-in-the-hands-of-strangers.pdf",
+    sampleUrl: "/files/sample-steps-through-indonesia-in-the-hands-of-strangers-en.pdf",
 
     tags: ["memoir", "travel", "authentic"],
     format: "eBook",
