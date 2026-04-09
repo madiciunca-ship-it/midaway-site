@@ -50,7 +50,7 @@ export const BOOKS = [
     tags: ["eBook", "PDF", "EPUB", "călătorii"],
     format: "eBook",
 
-    prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
+    prices: { PDF: 40, EPUB: 40, PAPERBACK: 60, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
@@ -170,7 +170,7 @@ export const BOOKS = [
       },
     },
 
-    prices: { PDF: 45, EPUB: 45, PAPERBACK: 65, AUDIOBOOK: 0 },
+    prices: { PDF: 40, EPUB: 40, PAPERBACK: 60, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
@@ -240,7 +240,7 @@ export const BOOKS = [
     tags: ["memoir", "travel", "culture", "authentic"],
     format: "ebook",
 
-    prices: { PDF: 12, EPUB: 12, PAPERBACK: 20, AUDIOBOOK: 0 },
+    prices: { PDF: 8, EPUB: 8, PAPERBACK: 0, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
@@ -341,7 +341,7 @@ export const BOOKS = [
 
     sampleUrl: "/files/sample-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
 
-    prices: { PDF: 45, EPUB: 45, PAPERBACK: 70, AUDIOBOOK: 0 },
+    prices: { PDF: 40, EPUB: 40, PAPERBACK: 65, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     payLink: null,
@@ -391,7 +391,7 @@ export const BOOKS = [
     tags: ["memoir", "travel", "authentic"],
     format: "eBook",
 
-    prices: { PDF: 12, EPUB: 12, PAPERBACK: 0, AUDIOBOOK: 0 },
+    prices: { PDF: 8, EPUB: 8, PAPERBACK: 0, AUDIOBOOK: 0 },
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
@@ -500,9 +500,9 @@ files: {
 sampleUrl: "/files/sample-pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
 
 prices: {
-  PDF: 45,
-  EPUB: 45,
-  PAPERBACK: 65,
+  PDF: 40,
+  EPUB: 40,
+  PAPERBACK: 60,
   AUDIOBOOK: 0
 },
 
@@ -515,6 +515,79 @@ availability: {
 
 payLink: null,
 },
+
+// ————————————————————————————————————————————————
+  // Steps Through Indonezia (EN)
+  // ————————————————————————————————————————————————
+  {
+    id: "indonezia-2-en",
+    addedAt: "2026-03-21T00:00:00Z",
+    lang: "EN",
+    currency: "EUR",
+    hidden: false,
+
+    title: "Steps Through Indonezia – In the Hands of Strangers",
+    subtitle: "Based on a true journey through Bali and Java, this memoir follows a woman who lets go of control and discovers that strangers can sometimes hold the deepest lessons.",
+    author: "Mida Malena",
+    genre: "Travel Journal · Real Experiences",
+    location: "Indonesia",
+    year: 2026,
+    publisher: "Independent Publisher Mida Malena",
+
+    formatDetails: {
+      eBook: {
+        type: "pdf",
+        pages: 250,
+        isbn: "–"
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: "–"
+      },
+      paperback: {
+        pages: 266,
+        isbn: "9798255650071",
+        dimensions: "15.24 x 2.06 x 22.86 cm",
+        weight: ""
+      }
+    },
+
+    coverUrl: "/assets/books/steps-through-indonesia-in-the-hands-of-strangers-cover.png",
+    extraImage: "/assets/books/steps-through-indonesia-in-the-hands-of-strangers-back.png",
+
+    sampleUrl: "/files/sample-steps-through-indonesia-in-the-hands-of-strangers.pdf",
+
+    tags: ["memoir", "travel", "authentic"],
+    format: "eBook",
+
+    prices: { PDF: 8, EPUB: 8, PAPERBACK: 0, AUDIOBOOK: 0 },
+    availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
+
+    files: {
+      PDF:  "/files/steps-through-indonesia-in-the-hands-of-strangers-en.pdf",
+      EPUB: "/files/steps-through-indonesia-in-the-hands-of-strangers-en.epub"
+    },
+
+    vendors: {
+      amazon: {
+        url: "",
+        label: "Amazon",
+        visible: true,
+        priceLabel: "Price on Amazon",
+      },
+    },
+
+    description: [
+      "A true travel memoir about vulnerability, freedom, and the courage to let go.",
+      "After Bali awakens something deep inside her, Yda keeps moving forward – across Java, through chaotic cities, mountain villages, smoking craters, train stations, and silences that speak louder than words.",
+      "With only a backpack, a laptop, and a touch of beautiful madness, she leaves behind plans, certainty, and control. What begins as a journey through Indonesia becomes a deeper search for trust, meaning, and self-discovery.",
+      "Along the way, strangers become unexpected guides, and the unknown slowly becomes a place of clarity.",
+      "This is not a book about perfect travel. It is about tears and laughter, visas and train stations, bananas and backpacks, and nights when you do not know where you will sleep – but know you are exactly where you need to be.",
+      "Perfect for readers of travel memoirs, solo female journeys, and stories of personal transformation, Steps Through Indonesia: In the Hands of Strangers is a memoir about human connection, courage, and what happens when you let life unfold.",
+      "“Sometimes, life becomes clearer when you look at it from the middle of the unknown.”",
+    ],
+  },
+
 
 // ————————————————————————————————————————————————
 // Focuri care NU ating (RO)
@@ -599,9 +672,9 @@ payLink: null,
   sampleUrl: "/files/sample-focuri-care-nu-ating.pdf",
 
   prices: {
-    PDF: 50,
-    EPUB: 50,
-    PAPERBACK: 75,
+    PDF: 45,
+    EPUB: 45,
+    PAPERBACK: 70,
     AUDIOBOOK: 0
   },
 
