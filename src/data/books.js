@@ -570,7 +570,7 @@ payLink: null,
 
     vendors: {
       amazon: {
-        url: "",
+        url: "https://www.amazon.com/dp/B0GWQKDH8Y",
         label: "Amazon",
         visible: true,
         priceLabel: "Price on Amazon",
