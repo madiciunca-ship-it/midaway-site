@@ -110,12 +110,66 @@ export default function BlogDetail() {
 
       {/* conținut */}
       <div style={{ lineHeight: 1.85, fontSize: 18 }}>
-        {post.content.map((para, i) => (
-          <p key={i} style={{ margin: "16px 0" }}>
-            {para}
-          </p>
-        ))}
-      </div>
+  {post.content.map((block, i) => {
+    // Compatibilitate cu articolele vechi (string simplu)
+    if (typeof block === "string") {
+      return (
+        <p key={i} style={{ margin: "16px 0" }}>
+          {block}
+        </p>
+      );
+    }
+
+    // Paragraf nou, cu bucăți de text + linkuri
+    if (block?.type === "paragraph" && Array.isArray(block.parts)) {
+      return (
+        <p key={i} style={{ margin: "16px 0" }}>
+          {block.parts.map((part, idx) => {
+            if (!part?.href) {
+              return <span key={idx}>{part?.text || ""}</span>;
+            }
+
+            const isExternal = part.kind === "external";
+
+            if (isExternal) {
+              return (
+                <a
+                  key={idx}
+                  href={part.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "var(--accent)",
+                    textDecoration: "underline",
+                    textUnderlineOffset: "2px",
+                  }}
+                >
+                  {part.text}
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                key={idx}
+                to={part.href}
+                style={{
+                  color: "var(--accent)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "2px",
+                }}
+              >
+                {part.text}
+              </Link>
+            );
+          })}
+        </p>
+      );
+    }
+
+    return null;
+  })}
+</div>
 
       {/* tags */}
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 16 }}>
