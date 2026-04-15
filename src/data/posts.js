@@ -14,18 +14,66 @@ const posts = [
     content: [
       `Uneori, călătoriile nu încep cu un pas, ci cu o întrebare care nu te mai lasă să dormi. În cazul meu, întrebarea era: „Ce se întâmplă cu visul când ajungi să-l trăiești?”`,
       `Aveam tot ce „ar fi trebuit” să-mi aducă liniștea: un apartament frumos în București, o firmă care mergea bine, o mașină de lux, oameni care mă iubeau. Dar într-o zi m-am trezit simțindu-mă străină în propria viață. Nu mai aparțineam acelui univers familiar. Simțeam că ceea ce construisem nu mai avea greutate.`,
-      `A fost nevoie de o singură lună în Filipine – 30 de zile pe care le credeam o vacanță – ca să-mi dau seama că nu mă mai pot întoarce la vechiul „eu”. Plajele din Palawan, liniștea oceanului, oamenii întâlniți, dialogurile profunde și tăcerile și mai puternice mi-au arătat că lumea e mai mare decât visul din care făcusem parte.`,
+      {  type: "paragraph",  parts: [    { text: "A fost nevoie de o singură lună în Filipine – 30 de zile pe care le credeam o vacanță – ca să-mi dau seama că nu mă mai pot întoarce la vechiul „eu”. Dacă vrei să vezi locul exact, deschide " },    {      text: "Palawan pe Google Maps",      href: "https://www.google.com/maps?q=Palawan+Philippines",      kind: "external"    },    { text: "." }  ]},
       `Așa a început. Nu cu un plan, ci cu o ruptură. Cu o nevoie de a înțelege, de a simți, de a deveni.`,
       `De la decizie la desprindere nu a fost un salt spectaculos, ci o serie de alegeri dureroase: am renunțat la iubire. La stabilitate. La venituri sigure. La prieteni care nu mai rezonau cu mine. La viața pe care alții o visau și pe care eu nu o mai puteam purta.`,
       `Am înțeles că nu pierd – ci eliberez. Că tot ceea ce mă frământa era, de fapt, un portal către o formă mai autentică a mea.`,
       `Scrisul a devenit busola mea. Fiecare pagină scrisă era o oglindă. Uneori încețoșată, alteori limpezită de curaj.`,
-      `Așa s-a născut a doua mea carte. Yda a mers mai departe. Și, mult mai târziu, a apărut Midaway.`,
-      `„Zile și nopți de Vietnam” este prima oprire scrisă a acestui nou drum. O carte despre transformare, despre rătăcire și regăsire. Despre cum te poți pierde în lume pentru a te regăsi în tine.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Așa s-a născut a doua mea carte. Yda a mers mai departe. Și, mult mai târziu, a apărut " },
+          {
+            text: "Midaway",
+            href: "/",
+            kind: "internal"
+          },
+          { text: "." }
+        ]
+      },
+      {
+        type: "paragraph",
+        parts: [
+          {
+            text: "„Zile și nopți de Vietnam”",
+            href: "/books/zile-si-nopti-de-vietnam",
+            kind: "internal"
+          },
+          { text: " este prima oprire scrisă a acestui nou drum. O carte despre transformare, despre rătăcire și regăsire. Despre cum te poți pierde în lume pentru a te regăsi în tine." }
+        ]
+      },
       `Yda nu e doar un personaj. E reflexia acelei femei care a ales necunoscutul în locul confortului. Care a trăit 626 de zile într-un haos frumos, în Asia, și a descoperit că libertatea nu înseamnă lipsa fricii, ci puterea de a merge mai departe în ciuda ei.`,
       `Și tu poți începe o astfel de călătorie. Poate nu pe un alt continent. Poate nu cu un bilet de avion. Dar sigur cu o întrebare sinceră: „Trăiesc ceea ce mi se potrivește... sau doar ceea ce mi s-a spus că trebuie?”`,
       `Dacă ai simțit vreodată că vrei mai mult – nu în sens de „a avea”, ci în sens de a deveni – atunci povestea mea s-ar putea să fie și despre tine.`,
-      `Midaway este spațiul unde îți poți lăsa sufletul să respire. Unde te poți regăsi printre pagini, printre povești, printre pașii altora care au avut curajul să plece.`,
-      `Cartea „Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad” este acum disponibilă în România. Dacă simți să o citești, scrie-mi. S-ar putea să găsești în ea exact ceea ce aveai nevoie să auzi.`
+      {
+        type: "paragraph",
+        parts: [
+          {
+            text: "Midaway",
+            href: "/",
+            kind: "internal"
+          },
+          { text: " este spațiul unde îți poți lăsa sufletul să respire. Unde te poți regăsi printre pagini, printre povești, printre pașii altora care au avut curajul să plece." }
+        ]
+      },
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Cartea " },
+          {
+            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
+            href: "/books/zile-si-nopti-de-vietnam",
+            kind: "internal"
+          },
+          { text: " este acum disponibilă în România. Dacă simți să o citești, " },
+          {
+            text: "scrie-mi",
+            href: "/contact",
+            kind: "internal"
+          },
+          { text: ". S-ar putea să găsești în ea exact ceea ce aveai nevoie să auzi." }
+        ]
+      },
     ]
   },
   {
