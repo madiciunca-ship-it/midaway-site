@@ -8,7 +8,7 @@ const posts = [
     excerpt:
       "Povestea startului: primele zile, primele decizii, primul pas în necunoscut.",
     date: "2025-10-15",
-    tags: ["călătorii", "jurnal"],
+    tags: ["calatorii", "jurnal"],
     cover: "assets/blog/blog-1.jpg",
     minutes: 5,
     content: [
@@ -324,7 +324,7 @@ const posts = [
     excerpt: "Despre frig, hosteluri, tuse, mâncare picantă și liniștea pe care nu o poți descărca din niciun app",
     date: "2025-12-23",
     author: "Mida Malena",
-    tags: ["China", "jurnal", "călătorii", "scris", "mindset"],
+    tags: ["China", "jurnal", "calatorii", "scris", "mindset"],
     excerpt:
       "Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.",
     cover: "/assets/blog/no-connection-china.jpg", 
@@ -425,7 +425,7 @@ const posts = [
       "22 de ore de drum, tuse, hosteluri înghețate și un Beijing care nu negociază. Primul prag din seria «NO CONNECTION» – unde telefonul moare și eu aleg să merg mai departe.",
     date: "2025-12-26",
     author: "Mida Malena",
-    tags: ["China", "Beijing", "jurnal", "călătorii", "mindset", "No Connection"],
+    tags: ["China", "Beijing", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/beijing-no-connection-china.jpg",
     minutes: 12,
     content: [
@@ -569,7 +569,7 @@ const posts = [
       "Despre trenul-glonț, ziduri vechi, armuri inutile, ploaie, Cartierul Musulman și orașul care m-a învățat să accept – seria «NO CONNECTION» continuă.",
       date: "2026-01-04",
     author: "Mida Malena",
-    tags: ["China", "Xi’an", "jurnal", "călătorii", "mindset", "No Connection"],
+    tags: ["China", "Xi’an", "jurnal", "calatorii", "mindset", "No Connection"],
     minutes: 8,
     cover: "/assets/blog/xian-no-connection-china.jpg",
     content: [
@@ -690,7 +690,7 @@ const posts = [
       "Panda, ceai, străzi care nu se grăbesc și un oraș care te așază. Chengdu este locul în care «NO CONNECTION» devine rutină și ritmul încetinește suficient cât să respiri.",
     date: "2026-01-09",
     author: "Mida Malena",
-    tags: ["China", "Chengdu", "jurnal", "călătorii", "mindset", "No Connection"],
+    tags: ["China", "Chengdu", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/chengdu-no-connection-china.jpg",
     minutes: 11,
     content: [
@@ -804,7 +804,7 @@ const posts = [
       "Poduri, metrou prin clădiri, lumini hipnotice și un oraș care nu doarme. Chongqing e locul unde «NO CONNECTION» devine haos controlat și curajul învață să meargă pe verticală.",
     date: "2026-01-12",
     author: "Mida Malena",
-    tags: ["China", "Chongqing", "jurnal", "călătorii", "mindset", "No Connection"],
+    tags: ["China", "Chongqing", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/chongqing-no-connection-china.jpg",
     minutes: 12,
     content: [
@@ -920,7 +920,7 @@ const posts = [
       "Munți care nu par reali, lifturi lipite de stânci, semnal în vârf de lume și un parc care nu e parc, ci univers. Zhangjiajie este locul în care China devine Avatar, iar «NO CONNECTION» capătă un sens neașteptat.",
     date: "2026-01-28",
     author: "Mida Malena",
-    tags: ["China", "Zhangjiajie", "jurnal", "călătorii", "mindset", "No Connection"],
+    tags: ["China", "Zhangjiajie", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/zhangjiajie-no-connection-china1.jpg",
     minutes: 13,
     content: [
@@ -1061,7 +1061,7 @@ const posts = [
       "Între Zhangjiajie și Yangshuo, China mi-a arătat că uneori direcția nu se alege – se întâmplă. Fără hartă, fără semnal și cu același «NO CONNECTION», dar cu oameni care apar exact când ai nevoie de ei.",
     date: "2026-02-05",
     author: "Mida Malena",
-    tags: ["China", "Yangshuo", "Guilin", "Xingping", "No Connection", "jurnal", "călătorii"],
+    tags: ["China", "Yangshuo", "Guilin", "Xingping", "No Connection", "jurnal", "calatorii"],
     cover: "/assets/blog/yangshuo-no-connection-china.jpg",
     minutes: 12,
     content: [
@@ -1228,7 +1228,7 @@ const posts = [
         "După haosul Chinei continentale, Hong Kong a venit ca o ieșire din film: fără cartelă, fără cazare, cu un fișier dispărut și cu același «NO CONNECTION» transformat, în sfârșit, în sens.",
       date: "2026-03-20",
       author: "Mida Malena",
-      tags: ["China", "Hong Kong", "No Connection", "jurnal", "călătorii", "mindset"],
+      tags: ["China", "Hong Kong", "No Connection", "jurnal", "calatorii", "mindset"],
       cover: "/assets/blog/hong-kong-no-connection-china.jpg",
       minutes: 13,
       content: [
@@ -1305,7 +1305,7 @@ const posts = [
       "lansare",
       "jurnal",
       "confesiune",
-      "dorință",
+      "dorinta",
       "limite",
       "alegeri",
       "iubire de sine",
@@ -1395,7 +1395,6 @@ const posts = [
     [
       "dorinta",
       "Focuri care nu ating",
-      "dorință",
       "libertate",
       "limite",
       "Relatii moderne",
