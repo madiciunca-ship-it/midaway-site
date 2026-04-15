@@ -86,15 +86,54 @@ const posts = [
     cover: "assets/blog/blog-2.jpg",
     minutes: 6,
     content: [
-      `„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat „Zile și nopți de Vietnam”. E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat " },
+          {
+            text: "„Zile și nopți de Vietnam”",
+            href: "/carti/vietnam-ro",
+            kind: "internal"
+          },
+          { text: ". E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?" }
+        ]
+      },
       `Răspunsul sincer? Da. La toate. Yda s-a născut din realitate, dar trăiește și dincolo de ea. A apărut într-o perioadă în care viața mea nu mai încăpea în formele vechi. Eram între lumi: între o identitate pe care o lăsam în urmă și un drum care nu era încă vizibil. În acea ruptură, am început să scriu. Nu pentru a crea un personaj, ci pentru a mă ține de ceva.`,
       `Yda a fost acea parte din mine care a avut curajul să meargă mai departe când eu ezitam. A spus adevărul când eu îl sugrumam. A privit înainte când eu mă agățam de trecut. Scrisul a fost oglinda. Iar în acea oglindă, Yda a început să prindă contur.`,
-      `Ficțiune? Doar atât cât e nevoie ca să spun adevărul mai bine. Sunt detalii din carte care s-au întâmplat exact așa. Oamenii pe care i-am întâlnit. Deciziile luate. Fricile și revelațiile. Dar sunt și scene în care realitatea se topește în metaforă, pentru că uneori doar o poveste poate cuprinde întregul sens.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Ficțiune? Doar atât cât e nevoie ca să spun adevărul mai bine. Sunt detalii din carte care s-au întâmplat exact așa. Oamenii " },
+          {
+            text: "(o parte dintre ei îi găsești aici)",
+            href: "/calatori",
+            kind: "internal"
+          },
+          { text: " pe care i-am întâlnit. Deciziile luate. Fricile și revelațiile. Dar sunt și scene în care realitatea se topește în metaforă, pentru că uneori doar o poveste poate cuprinde întregul sens." }
+        ]
+      },
       `Yda este, în esență, o voce sinceră. Un alter ego, da, dar și un canal prin care am învățat să mă ascult. Nu este idealizată. Nu e salvatoare. E imperfectă, vulnerabilă, uneori contradictorie. Exact ca mine. Exact ca tine.`,
       `De ce am scris-o așa? Pentru că aveam nevoie să înțeleg. Pentru că aveam nevoie să iert. Pentru că aveam nevoie să transform ceea ce mă apăsa într-o formă care să poată merge mai departe. Și pentru că știam, cumva, că încercările mele nu sunt doar ale mele.`,
       `Yda e un nume. Dar și o cale. Poate că Yda este partea aceea din noi care vrea să plece și nu îndrăznește. Poate e femeia care a fost învățată să se conformeze, dar alege să se asculte. Poate este pur și simplu o versiune posibilă a ceea ce putem deveni atunci când spunem: „Nu știu ce mă așteaptă, dar aleg să merg.”`,
       `Așadar, este Yda reală? Poate nu în sensul clasic. Dar este vie. Și continuă să respire în fiecare pagină, în fiecare pas făcut în necunoscut, în fiecare alegere curajoasă. Și dacă citind ai simțit că o înțelegi, că te regăsești, că parcă ești și tu acolo – atunci poate că și tu porți o Yda în tine.`,
-      `Yda trăiește în „Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad” – o carte scrisă cu toată sinceritatea de care am fost capabilă. Dacă vrei să o citești, scrie-mi. Povestea e deschisă.`
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Yda trăiește în " },
+          {
+            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
+            href: "/carti/vietnam-ro",
+            kind: "internal"
+          },
+          { text: " – o carte scrisă cu toată sinceritatea de care am fost capabilă. Dacă vrei să o citești, " },
+          {
+            text: "scrie-mi",
+            href: "/contact",
+            kind: "internal"
+          },
+          { text: ". Povestea e deschisă." }
+        ]
+      },
     ]
   },
   {
