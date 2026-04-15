@@ -153,7 +153,24 @@ const posts = [
       `Nu toate drumurile au hartă. Dar toate lasă urme. Drumul meu neștiut a durat 626 de zile și a traversat Asia. Dar cel mai important drum nu a fost cel dintre țări, ci cel dintre versiuni de sine.`,
       `Am plecat cu un rucsac. M-am întors cu o carte nouă. Și cu o întrebare rămasă deschisă: Cine sunt eu, cu adevărat, atunci când mă dau jos de pe pilot automat?`,
       `Alegem drumuri neștiute pentru că vrem să ne reamintim că suntem vii. Că suntem mai mult decât funcții, roluri și așteptări.`,
-      `Dacă simți că acest text ți-a atins o coardă sensibilă, „Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad” e prima carte de nomad pe care am scris-o din acea călătorie. Și poate e exact ce aveai nevoie să citești acum. Scrie-mi. Hai să vorbim. Călătoria ta s-ar putea să înceapă chiar acum.`
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Dacă simți că acest text ți-a atins o coardă sensibilă, " },
+          {
+            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
+            href: "/carti/vietnam-ro",
+            kind: "internal"
+          },
+          { text: " e prima carte de nomad pe care am scris-o din acea călătorie. Și poate e exact ce aveai nevoie să citești acum. " },
+          {
+            text: "Scrie-mi",
+            href: "/contact",
+            kind: "internal"
+          },
+          { text: ". Hai să vorbim. Călătoria ta s-ar putea să înceapă chiar acum." }
+        ]
+      },
     ]
   },
 
@@ -167,15 +184,48 @@ const posts = [
     cover: "assets/blog/blog-4.jpg",
     minutes: 8,
     content: [
-      `Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început povestea site-ului meu. Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început " },
+          {
+            text: "povestea site-ului meu",
+            href: "/",
+            kind: "internal"
+          },
+          { text: ". Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam." }
+        ]
+      },
       
       `În secunda aceea, am simțit cum ceva se mișcă în mine – o voce mică, aproape timidă, care îmi șoptea: „Poate tocmai pentru că nu știi… e momentul perfect să începi.” Acel „nu știu” avea să devină piatra mea: grea, alunecoasă, încăpățânată, dar exact piatra care trebuia împinsă.`,
   
-      `Mult timp n-am înțeles metafora cu piatra urcată spre vârf. Până când am început să construiesc site-ul. Atunci piatra a prins contur: o simțeam cum alunecă, cum îmi rănește degetele, cum mă face să mă opresc și să mă întreb: „De ce te chinui? Pentru ce? Nu e mai simplu să renunți?”`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Mult timp n-am înțeles metafora cu piatra urcată spre vârf. Până când am început să construiesc " },
+          {
+            text: "site-ul",
+            href: "/",
+            kind: "internal"
+          },
+          { text: ". Atunci piatra a prins contur: o simțeam cum alunecă, cum îmi rănește degetele, cum mă face să mă opresc și să mă întreb: „De ce te chinui? Pentru ce? Nu e mai simplu să renunți?”" }
+        ]
+      },
   
       `Dar exista și cealaltă voce, caldă și încăpățânată, care nu ridica tonul niciodată: „Mai încearcă o dată. Hai. Încă o dată.” Între două căderi, am înțeles că nu vârful te schimbă, ci urcarea. Respirația grea, răbdarea, revenirea. Faptul că, de zece ori căzută, ridici piatra a unsprezecea oară.`,
   
-      `Tot ce descopeream era necunoscut. Linii de cod într-o limbă străină, setări bizare, un labirint tehnic pe care încercam să-l înțeleg în timp ce îl parcurgeam. Eu voiam doar un loc unde să-mi vând cărțile. Atât. Dar piatra avea alt plan.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Tot ce descopeream era necunoscut. Linii de cod într-o limbă străină, setări bizare, un labirint tehnic pe care încercam să-l înțeleg în timp ce îl parcurgeam. Eu voiam doar un loc unde să-mi vând " },
+          {
+            text: "cărțile",
+            href: "/carti",
+            kind: "internal"
+          },
+          { text: ". Atât. Dar piatra avea alt plan." }
+        ]
+      },
   
       `Apoi a venit momentul declanșator. Într-un webinar, un tip a spus cu o simplitate aproape sfidătoare: „Mi-am făcut singur automatizările. Mi-am construit singur site-ul.” În mine s-a făcut liniște, o liniște densă, ca aerul care se strânge înaintea furtunii. „Dacă el poate… de ce eu nu?” A fost pentru prima dată când piatra mea chiar s-a urnit.`,
   
@@ -185,15 +235,84 @@ const posts = [
   
       `Într-o zi, după multe ore de muncă, am observat că nu eu îmi construiam site-ul. El mă construia pe mine. Îmi rupea orgoliul, îmi cerea răbdare, mă obliga să mă întreb: „Ce vrei, de fapt? Îți e frică sau doar cauți scuze? Ai nevoie de perfecțiune sau ai nevoie de un început?”`,
   
-      `Atunci am înțeles că nu mă temeam de muncă și nici măcar de necunoscut. De fapt, necunoscutul începea să mă atragă. Și am realizat că trecutul nu e o povară, ci o busolă. Fiecare alegere, oricât de mică, te împinge undeva. Iar toate drumurile mele m-au adus aici: la propriul meu website, la propria mea editură, la propria mea poveste spusă în felul meu.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Atunci am înțeles că nu mă temeam de muncă și nici măcar de necunoscut. De fapt, necunoscutul începea să mă atragă. Și am realizat că trecutul nu e o povară, ci o busolă. Fiecare alegere, oricât de mică, te împinge undeva. Iar toate drumurile mele m-au adus aici: la propriul meu " },
+          {
+            text: "website",
+            href: "/",
+            kind: "internal"
+          },
+          { text: ", la propria mea " },
+          {
+            text: "editură",
+            href: "/servicii",
+            kind: "internal"
+          },
+          { text: ", la propria mea  " },
+          {
+            text: "poveste",
+            href: "/autori/mida-malena",
+            kind: "internal"
+          },
+          { text: " spusă în felul meu." }
+        ]
+      },
   
       `Există un moment înainte de lansarea unui proiect în care timpul se dilată. Totul în jur tace, dar în tine ceva bate altfel – nu de teamă, ci de presimțire. Așa a fost în ziua în care am apăsat „publică”. În inima mea ceva a spus: „Respiră. Uite, exact acum începe.” A fost ca lumina rece de dinaintea zorilor: inevitabilă și limpede.`,
   
-      `Da, am construit un site. Da, am fondat o editură. Da, am un loc în care îmi pot vinde cărțile așa cum vreau. Dar, în realitate, am construit un spațiu viu, care respiră odată cu mine. Un drum care nu va fi niciodată complet. Un loc pe care îl voi modela, rescrie și îmbogăți, exact ca piatra pe care am împins-o până aici.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Da, am construit un " },
+          {
+            text: "site",
+            href: "/",
+            kind: "internal"
+          },
+          { text: ". Da, am fondat o " },
+          {
+            text: "editură",
+            href: "/servicii",
+            kind: "internal"
+          },
+          { text: ". Da, am un loc în care îmi pot vinde " },
+          {
+            text: "cărțile",
+            href: "/carti",
+            kind: "internal"
+          },
+          { text: " așa cum vreau. Dar, în realitate, am construit un spațiu viu, care respiră odată cu mine. Un drum care nu va fi niciodată complet. Un loc pe care îl voi modela, rescrie și îmbogăți, exact ca piatra pe care am împins-o până aici." }
+        ]
+      },
   
       `Poate că asta e frumusețea: nu e niciodată gata. Pentru că nici eu nu sunt. Și poate că nici nu contează cât de greu a fost. Poate că totul – absolut totul – m-a adus exact aici. Și simt, cu o liniște interioară ciudat de limpede, că e doar începutul.`,
   
-      `Poate ai ajuns aici întâmplător. Poate ești pentru prima dată pe pagina mea. Dar dacă citești asta… deja faci parte din poveste. O poți simți. O poți trăi. O poți lua cu tine. Eu mi-am împins „piatra” până aici. De azi înainte, o iau cu mine mai departe – cu altă energie, altă claritate, altă bucurie. Cu un site, cu o editură, cu un drum care m-a ales, de fapt, pe mine.`,
+      {
+        type: "paragraph",
+        parts: [
+          { text: "Poate ai ajuns aici întâmplător. Poate ești pentru prima dată pe pagina mea. Dar dacă citești asta… deja faci parte din poveste. O poți simți. O poți trăi. O poți lua cu tine. Eu mi-am împins „piatra” până aici. De azi înainte, o iau cu mine mai departe – cu altă energie, altă claritate, altă bucurie. Cu un " },
+          {
+            text: "site",
+            href: "/",
+            kind: "internal"
+          },
+          { text: ", cu o " },
+          {
+            text: "editură",
+            href: "/servicii",
+            kind: "internal"
+          },
+          { text: ", cu un drum care m-a ales, de fapt, pe mine. Dacă simți că povestea asta te-a atins, " },
+          {
+            text: "hai să vorbim",
+            href: "/contact",
+            kind: "internal"
+          },
+          { text: "." }
+        ]
+      },
   
       `Mida Malena, 18 noiembrie 2025`
     ]
