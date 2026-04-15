@@ -36,7 +36,7 @@ const posts = [
         parts: [
           {
             text: "„Zile și nopți de Vietnam”",
-            href: "/books/vietnam-ro",
+            href: "/carti/vietnam-ro",
             kind: "internal"
           },
           { text: " este prima oprire scrisă a acestui nou drum. O carte despre transformare, despre rătăcire și regăsire. Despre cum te poți pierde în lume pentru a te regăsi în tine." }
@@ -62,7 +62,7 @@ const posts = [
           { text: "Cartea " },
           {
             text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
-            href: "/books/vietnam-ro",
+            href: "/carti/vietnam-ro",
             kind: "internal"
           },
           { text: " este acum disponibilă în România. Dacă simți să o citești, " },
