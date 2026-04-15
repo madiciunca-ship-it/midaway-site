@@ -231,7 +231,7 @@ const posts = [
       `Și totuși… știam că sunt așteptată.`,
       `Asia avea o nouă lecție pentru mine.`,
   
-      `*Beijing: aerul rece și cerul pe care nu-l puteam citi*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Beijing", href: "https://www.google.com/maps/place/Beijing/", kind: "external" }, { text: ": aerul rece și cerul pe care nu-l puteam citi*" }] },
       `Beijing m-a întâmpinat cu un aer tăios, uscat, care nu te „răcește” treptat, ci îți taie respirația direct. Era genul de frig care nu intră doar în oase, ci și în gânduri.`,
       `Nu aveam o strategie. Aveam doar o adresă și un traseu salvat pe Google Maps. Atât. Dar undeva exista și convingerea aia încăpățânată că mă voi descurca.`,
       `În stația de tren, oamenii păreau încremeniți. Totul era înghețat: mișcările, fețele, vocile. Aproape de hostel, m-am agățat de singurul lucru familiar, ca de o bucată de normalitate: Starbucks. Brand cunoscut. Cafea bună. Promisiunea unei călduri.`,
@@ -245,7 +245,7 @@ const posts = [
       `Acolo m-am prăbușit. La propriu.`,
       `Tusea lua amploare, iar energia mea se scurgea în reprize scurte. Una dintre fete mi-a întins Strepsils. Nu știu dacă era grijă sau doar era sătulă de tusea mea „măgărească”, dar am acceptat cu recunoștință.`,
       `În seara aia mi-a trecut pentru prima oară prin cap, foarte clar:`,
-      `„Ce caut eu aici, când aș putea fi pe o plajă în Bali?”`,
+      { type: "paragraph", parts: [{ text: "„Ce caut eu aici, când aș putea fi pe o plajă în " }, { text: "Bali", href: "https://www.google.com/maps/place/Bali/", kind: "external" }, { text: "?”" }] },
   
       `*Prima ieșire: vântul biciuie, Beijingul nu negociază*`,
       `Am ieșit afară. Vântul bătea ca o pedeapsă. Un frig uscat, care încrețește pielea din jurul ochilor și te face să clipești des, ca și cum ai încerca să-ți protejezi privirea de realitate.`,
@@ -258,7 +258,7 @@ const posts = [
       `Dimineața, când am ieșit spre baie, aerul rece de pe hol a fost ca un pumn în plex. M-am întrebat, pentru a zecea oară:`,
       `„Cum pot trăi oamenii ăștia așa?”`,
       `Parcă eram un sac de box și frigul lovea din orice direcție, cu o consecvență impresionantă.`,
-      `În ziua aceea am ajuns la Orașul Interzis.`,
+      { type: "paragraph", parts: [{ text: "În ziua aceea am ajuns la " }, { text: "Orașul Interzis", href: "https://www.google.com/maps/place/Forbidden+City/", kind: "external" }, { text: "." }] },
       `Mii de oameni. Un furnicar uman care se mișca printr-o istorie uriașă, în care eu eram doar o particulă cu gât inflamat și ochi curioși.`,
       `Orașul Interzis nu te întâmpină spectaculos. Te copleșește încet.`,
       `Curți care se succed la nesfârșit, porți masive, acoperișuri grele, culori care par că rezistă timpului din ambiție, nu din delicatețe.`,
@@ -268,7 +268,7 @@ const posts = [
       `M-am întors pe jos spre hostel. Voiam să văd orașul, să-l simt și, poate, să mă încălzesc. Am mers repede, cu pași apăsați. La finalul zilei, când am contorizat pașii, am râs:`,
       `34.300 de pași.`,
       `Beijingul nu te plimbă. Beijingul te antrenează.`,
-      `Planul era simplu: Marele Zid, apoi plec. Aveam doar trei zile de cazare în Beijing. Următoarea destinație era clară: Xi’an.`,
+      { type: "paragraph", parts: [{ text: "Planul era simplu: " }, { text: "Marele Zid", href: "https://www.google.com/maps/place/Great+Wall+of+China/", kind: "external" }, { text: ", apoi plec. Aveam doar trei zile de cazare în Beijing. Următoarea destinație era clară: " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
       `Dar ziua următoare avea să mă ia pe nepregătite.`,
   
       `*Ziua în care telefonul a murit și hărțile au dispărut*`,
@@ -309,7 +309,7 @@ const posts = [
       `McDonald’s, KFC sau orice nu pare că mă arde din interior.`,
       `Și am ajuns.`,
   
-      `*Marele Zid: victoria mea fără semnal*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Marele Zid", href: "https://www.google.com/maps/place/Great+Wall+of+China/", kind: "external" }, { text: ": victoria mea fără semnal*" }] },
       `M-am trezit pe la 5:20. Nu știu ce era cu mine – mă culcam la miezul nopții și pe la 5:00 dimineața eram trează, ca și cum corpul meu încerca să țină pasul cu haosul.`,
       `Pe la 7:00 eram deja la metrou. La recepție nu era nimeni să-mi iau cafea sau să plătesc noaptea în plus, așa că am lăsat mesaj că revin. Și gata: drum către Marele Zid.`,
       `Mi-a luat ore. Metrou, mers, căutat, așteptat. GPS-ul îmi arăta că stația e „aici”, dar „aici” era Beijing – adică un mic continent, nu un loc.`,
@@ -351,7 +351,7 @@ const posts = [
       `„Ai fugit sau ai rămas?”`,
       ``,
       `Acest text face parte din seria „No Connection – Jurnale de drum din China”.`,
-      `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Xi’an, Chengdu, Chongqing, Zhangjiajie, Yangshuo și Hong Kong.`,
+      { type: "paragraph", parts: [{ text: "În următoarele articole, iau orașele la rând, așa cum le-am trăit: " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: ", " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: ", " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: ", " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: ", " }, { text: "Yangshuo", href: "https://www.google.com/maps/place/Yangshuo/", kind: "external" }, { text: " și " }, { text: "Hong Kong", href: "https://www.google.com/maps/place/Hong+Kong/", kind: "external" }, { text: "." }] },
       `Stai aproape. Drumul continuă.`
     ]
   },
@@ -367,7 +367,7 @@ const posts = [
     minutes: 8,
     cover: "/assets/blog/xian-no-connection-china.jpg",
     content: [
-      "Am ajuns la gară cu un adevăr simplu în minte: știam că sunt multe trenuri spre Xi’an.",
+      { type: "paragraph", parts: [{ text: "Am ajuns la gară cu un adevăr simplu în minte: știam că sunt multe trenuri spre " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
       "Aplicația Trip.com confirma. Trenuri multe, rapide, impecabile.",
       "Problema era alta: timpul.",
       "Când lași lucrurile pe ultima sută de metri – sau, mai corect, pe ultimele minute – prețurile explodează. Nu pentru că „așa vor ei”, ci pentru că biletele ieftine se epuizează. Și ce rămâne disponibil e, de obicei, clasa 1.",
@@ -385,9 +385,9 @@ const posts = [
       "Mă gândeam cât de ironic e totul: într-o țară în care internetul îți lipsește, trenurile merg cu o precizie care îți taie respirația.",
       "Cred că am moțăit puțin. Fără internet, muzică sau distracții infinite, fie dormi, fie te uiți în jur. Și, uneori, exact asta e suficient.",
   
-      "*Xi’an – când armura devine inutilă*",
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: " – când armura devine inutilă*" }] },
       "Xi’an m-a întâmpinat cu… căldură.",
-      "Nu știu exact câte grade erau. Știu doar că erau incomparabil mai multe decât în Beijing. Geaca și bocancii mi se transformaseră în armuri inutile.",
+      { type: "paragraph", parts: [{ text: "Nu știu exact câte grade erau. Știu doar că erau incomparabil mai multe decât în " }, { text: "Beijing", href: "https://www.google.com/maps/place/Beijing/", kind: "external" }, { text: ". Geaca și bocancii mi se transformaseră în armuri inutile." }] },
       "Transpiram serios. Simțeam cum sudoarea îmi curge pe sub maiou, în timp ce orașul pulsa de viață.",
       "GPS-ul a luat-o razna. Probabil de la China. Sau de la mine.",
       "Am mers vreo trei kilometri cu rucsacul în spate, după o cazare-fantomă.",
@@ -397,19 +397,19 @@ const posts = [
       "Xi’an e orașul contrastelor.",
       "Și avea să rămână unul dintre preferatele mele din China.",
   
-      "*Centrul vechi și strada artizanilor*",
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Centrul vechi", href: "https://www.google.com/maps/place/Xi'an+City+Wall+Scenic+Area/", kind: "external" }, { text: " și strada artizanilor*" }] },
       "Când am ajuns, tipa de la recepție nu vorbea deloc engleză.",
       "Dar aveam o cameră dublă doar pentru mine. Și eram fericită.",
       "Locația? Fix în centrul vechi, pe strada artizanilor. Un vibe viu, autentic, cald. Exact ce aveam nevoie după Beijing.",
       "Am ieșit să mănânc și am nimerit într-un local micuț. Am descoperit niște pâinici mici cu susan. O bunătate. Simplă. Perfectă.",
       "Aveam cazare pentru trei nopți. Am mai adăugat una. Pentru sufletul meu.",
   
-      "*Zidul orașului: 14 kilometri de liniște*",
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Zidul orașului", href: "https://www.google.com/maps/place/Xi'an+City+Wall+Scenic+Area/", kind: "external" }, { text: ": 14 kilometri de liniște*" }] },
       "În zilele următoare, Xi’an s-a desfășurat pe rând.",
       "Am ajuns pe zidul orașului – și acolo mi-am închiriat o bicicletă. Am pedalat aproape 14 kilometri, ocolind orașul de sus.",
       "Zidurile acelea… Nu știu cum să explic. Aș fi stat acolo sus zile întregi, dacă ar fi fost posibil. Orașul se vede altfel de acolo. Mai clar. Mai liniștit. Mai așezat.",
   
-      "*Armata de teracotă și pașii prin oraș*",
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Armata de teracotă", href: "https://www.google.com/maps/place/Emperor+Qinshihuang's+Mausoleum+Site+Museum/", kind: "external" }, { text: " și pașii prin oraș*" }] },
       "Am ajuns și la Armata de teracotă.",
       "Impresionantă, fără îndoială.",
       "Dar adevărul e că Xi’an nu se reduce la repere.",
@@ -423,11 +423,11 @@ const posts = [
       "Xi’an e, categoric, un oraș care se simte.",
       "În rest, m-am plimbat. Mult. Fără scop. Pentru că orașul e atât de viu încât nici nu simți nevoia să-l explici. Doar îl trăiești.",
   
-      "*Ziua a treia în Xi’an – Cartierul musulman, Marea Moschee din Xi’an și rochia albastră*",
+      { type: "paragraph", parts: [{ text: "*Ziua a treia în " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: " – Cartierul musulman, " }, { text: "Marea Moschee din Xi’an", href: "https://www.google.com/maps/place/Great+Mosque+of+Xi'an/", kind: "external" }, { text: " și rochia albastră*" }] },
       "În ziua a treia, Xi’an m-a prins nepregătită din nou. De data asta, nu cu căldură sau haos, ci cu ploaie.",
       "O ploaie măruntă, calmă, care făcea luminile orașului să pară mai moi, mai blânde, aproape festive.",
       "Străzile luciau, umbrelele colorate se mișcau în valuri, iar orașul avea un aer de sărbătoare ciudată – de parcă ar fi fost Crăciun, dar fără brazi și colinde.",
-      "Am ajuns în Cartierul Musulman (Muslim Quarter) – un loc în care Xi’anul explodează în culori, mirosuri și oameni.",
+      { type: "paragraph", parts: [{ text: "Am ajuns în " }, { text: "Cartierul Musulman", href: "https://www.google.com/maps/place/Muslim+Quarter,+Xi'an/", kind: "external" }, { text: " (Muslim Quarter) – un loc în care Xi’anul explodează în culori, mirosuri și oameni." }] },
       "Tarabe peste tarabe, carne friptă, pâine caldă, condimente, dulciuri lipicioase, aburi care se ridică din wok-uri uriașe. O aglomerație vie, zgomotoasă, care nu te sufocă, ci te trage în ea.",
       "Mergeam încet, udă, cu telefonul în mână, făcând poze care păreau desprinse dintr-o poveste orientală. Ploaia le dădea tuturor un luciu aparte, aproape cinematografic.",
   
@@ -472,7 +472,7 @@ const posts = [
       "„Ce oraș ți-a schimbat starea din prima zi?”",
   
       "Acest text face parte din seria „No Connection – Jurnale de drum din China”.",
-      "În următoarele articole, iau orașele la rând, așa cum le-am trăit: Chengdu, Chongqing, Zhangjiajie, Yangshuo și Hong Kong.",
+      { type: "paragraph", parts: [{ text: "În următoarele articole, iau orașele la rând, așa cum le-am trăit: " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: ", " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: ", " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: ", " }, { text: "Yangshuo", href: "https://www.google.com/maps/place/Yangshuo/", kind: "external" }, { text: " și " }, { text: "Hong Kong", href: "https://www.google.com/maps/place/Hong+Kong/", kind: "external" }, { text: "." }] },
       "Stai aproape. Drumul continuă."
     ]
   },
@@ -488,14 +488,14 @@ const posts = [
     cover: "/assets/blog/chengdu-no-connection-china.jpg",
     minutes: 11,
     content: [
-      `Am plecat spre Chengdu dimineața, după ultimul mic dejun delicios din Xi’an.`,
+      { type: "paragraph", parts: [{ text: "Am plecat spre " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: " dimineața, după ultimul mic dejun delicios din " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
       `Îl făcea o doamnă chinezoaică care nu știa o boabă de engleză, dar era impecabilă, în fiecare dimineață, fără excepție. Mă hrănea fără să-mi pună întrebări. Eu îi zâmbeam, înclinam capul și mâncam – un fel de conversație mută, dar perfectă.`,
       `În ziua aia era mai frig decât în zilele trecute, de parcă și orașul știa că eu plec și nu mai e nevoie de căldură.`,
       `Rucsacul îmi atârna greu pe spate. Dar am ieșit din hotel cu un soi de încredere pe care nu o aveam la plecarea din Beijing.`,
   
       `Am ajuns la gară.`,
       `Ca de obicei… eram fără bilet.`,
-      `Nu pentru că trăiesc pe ultima sută de metri, ci pentru că în China, fără internet, ultima sută devine stil de viață. Nu puteam cumpăra online. Nu aveam acces la nimic din ce înseamnă „normal” pentru un turist: aplicații, confirmări, bilete digitale, confort.`,
+      { type: "paragraph", parts: [{ text: "Nu pentru că trăiesc pe ultima sută de metri, ci pentru că în " }, { text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: ", fără internet, ultima sută devine stil de viață. Nu puteam cumpăra online. Nu aveam acces la nimic din ce înseamnă „normal” pentru un turist: aplicații, confirmări, bilete digitale, confort." }] },
       `Așa că îmi făcusem regula mea nouă de supraviețuire: screenshot-uri.`,
       `Screenshot-uri cu traseul, cu numele hostelului, cu orice informație importantă.`,
       `Telefonul meu devenise un carnețel digital, nu un smartphone.`,
@@ -503,7 +503,7 @@ const posts = [
       `La ghișeu am luat biletul rapid. Mai rapid decât speram.`,
       `De data asta, totul a mers din prima. Ca și cum, undeva acolo sus, universul ar fi zis: „Ok. Azi te lăsăm să mergi mai departe.”`,
   
-      `*Chengdu și strada care nu se grăbea nicăieri*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: " și strada care nu se grăbea nicăieri*" }] },
       `Am ajuns în Chengdu cu screenshot-urile în telefon și cu senzația că începe o etapă nouă.`,
       `Hostelul era pe o stradă plină de terase: mese mici, scaune joase, restaurante locale lipite unele de altele.`,
       `Miros de mâncare, oameni care vorbeau tare, lumină caldă, viață.`,
@@ -521,7 +521,7 @@ const posts = [
       `Dimineața m-am trezit cu o singură concluzie: „Nu pot să mor înghețată într-un oraș cu panda.”`,
       `Noaptea următoare am sesizat situația la recepție. Și am primit alt pat. În altă cameră. Victorie mică. Dar foarte importantă.`,
   
-      `*Panda Base – locul în care și oamenii devin ursuleți*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Panda Base", href: "https://www.google.com/maps/place/Chengdu+Research+Base+of+Giant+Panda+Breeding/", kind: "external" }, { text: " – locul în care și oamenii devin ursuleți*" }] },
       `Am stat trei nopți în Chengdu.`,
       `Și am făcut ce face toată lumea aici: am mers la Panda Base.`,
       `Pentru asta m-am trezit la 5:30. Ca să ajung la 8:00 la rezervație, înainte ca ursuleții să intre complet în modul lor preferat: somn.`,
@@ -543,7 +543,7 @@ const posts = [
       `De acolo mi-am luat un suvenir simplu: un tricou alb cu trei panda mici pe el.`,
       `N-am avut nevoie de altceva. Era suficient.`,
   
-      `*People’s Park, Kuan Alley și Zhai Alley – Chengdu la pas lent*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "People’s Park", href: "https://www.google.com/maps/place/People's+Park,+Chengdu/", kind: "external" }, { text: ", " }, { text: "Kuan Alley & Zhai Alley", href: "https://www.google.com/maps/place/Kuan+Alley+and+Zhai+Alley/", kind: "external" }, { text: " – Chengdu la pas lent*" }] },
       `Am mers și în People’s Park.`,
       `Un alt fel de „China”. Una care respiră. Care stă. Care se plimbă fără scop. Care pare că are timp. Care cântă, dansează, citește.`,
   
@@ -586,7 +586,7 @@ const posts = [
       `„Unde ai simțit ultima dată că nu trebuie să te grăbești?”`,
   
       `Acest text face parte din seria „No Connection – Jurnale de drum din China”.`,
-      `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Chongqing, Zhangjiajie, Yangshuo și Hong Kong.`,
+      { type: "paragraph", parts: [{ text: "În următoarele articole, iau orașele la rând, așa cum le-am trăit: " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: ", " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: ", " }, { text: "Yangshuo", href: "https://www.google.com/maps/place/Yangshuo/", kind: "external" }, { text: " și " }, { text: "Hong Kong", href: "https://www.google.com/maps/place/Hong+Kong/", kind: "external" }, { text: "." }] },
       `Stai aproape. Drumul continuă.`
     ]
   },
@@ -602,7 +602,7 @@ const posts = [
     cover: "/assets/blog/chongqing-no-connection-china.jpg",
     minutes: 12,
     content: [
-      `Dimineața m-am trezit devreme. Nu pentru că așa îmi propusesem. Ci pentru că ultima mea noapte în Chengdu n-a fost noapte.`,
+      { type: "paragraph", parts: [{ text: "Dimineața m-am trezit devreme. Nu pentru că așa îmi propusesem. Ci pentru că ultima mea noapte în " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: " n-a fost noapte." }] },
       `Mi se schimbaseră colegele de cameră. Și noile colege… n-aveau somn. Deloc. Am râs singură în întuneric, gândindu-mă că părăsisem camera aia în care dormeam cu geamul deschis la minus două grade, doar ca să ajung într-una în care păsările de noapte vorbesc toată noaptea.`,
       `Nu glumesc.`,
       `Au râs. Au împachetat și despachetat. Au trântit uși. Se plimbau ca la spectacol, cu o cortină trasă prost. Iar perdeaua mea subțire de la pat, oricât ar fi vrut, nu putea filtra zgomotele.`,
@@ -611,13 +611,13 @@ const posts = [
       `Mi-am strâns totul în tăcere mută. Ce rost avea să-mi consum energia cu ele?`,
       `La 7:30 eram deja afară din hostel.`,
       `După ce am așteptat la cafeneaua hostelului un cappuccino vreo 20 de minute, l-am luat la pachet. Nici chef să mai stau acolo o secundă în plus nu aveam…`,
-      `În dimineața aia mi-am promis ceva: cât timp sunt în China, la alt hostel… nu mă mai cazez.`,
+      { type: "paragraph", parts: [{ text: "În dimineața aia mi-am promis ceva: cât timp sunt în " }, { text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: ", la alt hostel… nu mă mai cazez." }] },
       
       `*Gara: „care din ele?”*`,
       `Am ajuns la gară.`,
-      `Asta era mai departe decât cea în care venisem din Xi’an. Și, sincer, chinezii ăștia au atâtea gări încât ajungi să te întrebi dacă nu cumva fiecare cartier are una.`,
+      { type: "paragraph", parts: [{ text: "Asta era mai departe decât cea în care venisem din " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: ". Și, sincer, chinezii ăștia au atâtea gări încât ajungi să te întrebi dacă nu cumva fiecare cartier are una." }] },
       `Mereu trebuie să fiu atentă unde mă duc. Să verific. Să mă uit de două ori. Și chiar și așa… nici acum nu sunt convinsă că am nimerit din prima la gara „bună”.`,
-      `Uitasem să verific trenurile către Chongqing din timp, dar mi-am zis că nici nu are rost. Oricum Wi-Fi-ul din hostel fusese groaznic. Mă descurc eu cumva. Ca de obicei.`,
+      { type: "paragraph", parts: [{ text: "Uitasem să verific trenurile către " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: " din timp, dar mi-am zis că nici nu are rost. Oricum Wi-Fi-ul din hostel fusese groaznic. Mă descurc eu cumva. Ca de obicei." }] },
       `Doar că surpriza a fost alta: deși era dimineață, pe la 9:00, nu mai erau locuri la tren… decât la clasa 1.`,
       `Și cele mai multe, fix la altă gară. Exact cum credeam. Pfff.`,
       `După o secundă de cugetare, mi-am luat bilet la clasa 1.`,
@@ -631,7 +631,7 @@ const posts = [
       `Patru ore au trecut repede.`,
       `Și, cum am coborât… Chongqing mi-a dat imediat senzația că intru într-o altă lume.`,
       
-      `*Chongqing: KFC și credința în screenshot-uri*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: ": KFC și credința în screenshot-uri*" }] },
       `Ajunsă în oraș, am oprit direct la un KFC.`,
       `Mi-era foame. Foamea aia care nu e dramatică, dar e foarte reală, după un drum lung și o noapte albă. Și apoi mai e și foamea psihică: foamea de ceva familiar, care să nu te surprindă cu gust de „nu știu ce tocmai am mâncat”.`,
       `Între timp, în telefon aveam aceeași comoară: screenshot-uri.`,
@@ -655,21 +655,21 @@ const posts = [
       `M-am oprit și mi-am zis, foarte sincer: „Eu nu aș vrea să locuiesc niciodată într-un loc nebun ca ăsta.”`,
       `Și, pentru câteva minute, m-am rătăcit. Nu dramatic. Doar suficient cât să-mi amintesc regula mea nouă: fără semnal, nu te grăbești. Te uiți, respiri și mergi mai departe ca și cum „așa era planul”.`,
       'Chongqing nu e orașul în care te pierzi. E orașul în care înțelegi că „direcția” e relativă.',
-      `În Chongqing, când zici «mă duc la apă», orașul îți răspunde: «sigur, dar mai întâi urcă puțin».`,
+      `În Chongqing, când zici „mă duc la apă”, orașul îți răspunde: „sigur, dar mai întâi urcă puțin”.`,
       `Chongqing e prins între munți și ape, strâns, înghesuit, forțat să crească în sus. Nu se întinde. Se cațără.`,
       
       `În restul zilelor, m-am plimbat mult cu metroul. Doar ca să mă uit pe geam.`,
       `Pentru că aici metroul nu e doar transport – e atracție. E suspendat, e printre clădiri, e ca un șarpe luminos care taie orașul în bucăți.`,
-      `Și, evident, am ajuns și la locul iconic – Liziba Station: blocul prin care intră metroul, pe la etajul nu-știu-cât. (Era etajul 6. Sună prea bine ca să nu fie adevărat.)`,
+      { type: "paragraph", parts: [{ text: "Și, evident, am ajuns și la locul iconic – " }, { text: "Liziba Station", href: "https://www.google.com/maps/place/Liziba+Station/", kind: "external" }, { text: ": blocul prin care intră metroul, pe la etajul nu-știu-cât. (Era etajul 6. Sună prea bine ca să nu fie adevărat.)" }] },
       `Am stat acolo și am privit, cu oamenii strânși grămadă, cu telefoanele ridicate, în poziția clasică de „trebuie să am dovada”.`,
       `Și când a intrat metroul în clădire… chiar e superb.`,
       `E genul de chestie care, dacă n-ai vedea-o cu ochii tăi, ai zice că e editată.`,
       
-      `*Eling Park: ca din avion*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Eling Park", href: "https://www.google.com/maps/place/Eling+Park/", kind: "external" }, { text: ": ca din avion*" }] },
       `Am mers și în Eling Park. Și acolo am făcut poze de zici că eram în avion.`,
       `Chongqing e un oraș vertical. Nu se întinde, se ridică. Te face să te simți mic, dar și entuziasmat, ca și cum ai fi într-un decor SF construit pentru oameni care nu obosesc.`,
       
-      `*Ciqikou: pauza care mi-a resetat Chongqingul*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Ciqikou", href: "https://www.google.com/maps/place/Ciqikou+Ancient+Town/", kind: "external" }, { text: ": pauza care mi-a resetat Chongqingul*" }] },
       `În ultima zi, înainte să merg la Hongyadong, am făcut ceva ce n-aș fi crezut că o să-mi placă atât: am mers la Ciqikou.`,
       `E departe de centru. Aproape o oră cu metroul. Și, sincer, când am urcat în metrou, mi-am zis: „Dacă e o țeapă, măcar am văzut orașul pe drum.”`,
       `N-a fost țeapă. A meritat fiecare secundă petrecută în metrou.`,
@@ -679,7 +679,7 @@ const posts = [
       `Și, culmea, aici am ajuns în sfârșit la apă. Incredibil.`,
       `Când am plecat de acolo, aveam deja sentimentul că seara o să fie bună. Și a fost.`,
       
-      `*Hongyadong: luminile care te hipnotizează*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Hongyadong", href: "https://www.google.com/maps/place/Hongyadong/", kind: "external" }, { text: ": luminile care te hipnotizează*" }] },
       `Ultima seară am păstrat-o pentru Hongyadong. Iconicul cu luminile.`,
       `Și da: e o superbitate.`,
       `Noaptea acolo e ca o scenă. Totul e aprins, strălucește, forfotește. Oamenii sunt peste tot, ca într-un festival continuu. În aer e miros de mâncare dulce, prăjeli, condimente. Te lovește un val de sunete și culori și, cumva, nu vrei să pleci.`,
@@ -702,7 +702,7 @@ const posts = [
       `„Ți-ai dorit să dormi… sau să mai ieși o dată?”`,
       ``,
       `Acest text face parte din seria „No Connection – Jurnale de drum din China”.`,
-      `În următoarele articole, iau orașele la rând, așa cum le-am trăit: Zhangjiajie, Yangshuo și Hong Kong.`,
+      { type: "paragraph", parts: [{ text: "În următoarele articole, iau orașele la rând, așa cum le-am trăit: " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: ", " }, { text: "Yangshuo", href: "https://www.google.com/maps/place/Yangshuo/", kind: "external" }, { text: " și " }, { text: "Hong Kong", href: "https://www.google.com/maps/place/Hong+Kong/", kind: "external" }, { text: "." }] },
       `Stai aproape. Drumul continuă.`
     ]
   },
