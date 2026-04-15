@@ -19,61 +19,13 @@ const posts = [
       `De la decizie la desprindere nu a fost un salt spectaculos, ci o serie de alegeri dureroase: am renunțat la iubire. La stabilitate. La venituri sigure. La prieteni care nu mai rezonau cu mine. La viața pe care alții o visau și pe care eu nu o mai puteam purta.`,
       `Am înțeles că nu pierd – ci eliberez. Că tot ceea ce mă frământa era, de fapt, un portal către o formă mai autentică a mea.`,
       `Scrisul a devenit busola mea. Fiecare pagină scrisă era o oglindă. Uneori încețoșată, alteori limpezită de curaj.`,
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Așa s-a născut a doua mea carte. Yda a mers mai departe. Și, mult mai târziu, a apărut " },
-          {
-            text: "Midaway",
-            href: "/",
-            kind: "internal"
-          },
-          { text: "." }
-        ]
-      },
-      {
-        type: "paragraph",
-        parts: [
-          {
-            text: "„Zile și nopți de Vietnam”",
-            href: "/carti/vietnam-ro",
-            kind: "internal"
-          },
-          { text: " este prima oprire scrisă a acestui nou drum. O carte despre transformare, despre rătăcire și regăsire. Despre cum te poți pierde în lume pentru a te regăsi în tine." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Așa s-a născut a doua mea carte. Yda a mers mai departe. Și, mult mai târziu, a apărut " }, { text: "Midaway", href: "/", kind: "internal" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "„Zile și nopți de Vietnam”", href: "/carti/vietnam-ro", kind: "internal" }, { text: " este prima oprire scrisă a acestui nou drum. O carte despre transformare, despre rătăcire și regăsire. Despre cum te poți pierde în lume pentru a te regăsi în tine." }] },
       `Yda nu e doar un personaj. E reflexia acelei femei care a ales necunoscutul în locul confortului. Care a trăit 626 de zile într-un haos frumos, în Asia, și a descoperit că libertatea nu înseamnă lipsa fricii, ci puterea de a merge mai departe în ciuda ei.`,
       `Și tu poți începe o astfel de călătorie. Poate nu pe un alt continent. Poate nu cu un bilet de avion. Dar sigur cu o întrebare sinceră: „Trăiesc ceea ce mi se potrivește... sau doar ceea ce mi s-a spus că trebuie?”`,
       `Dacă ai simțit vreodată că vrei mai mult – nu în sens de „a avea”, ci în sens de a deveni – atunci povestea mea s-ar putea să fie și despre tine.`,
-      {
-        type: "paragraph",
-        parts: [
-          {
-            text: "Midaway",
-            href: "/",
-            kind: "internal"
-          },
-          { text: " este spațiul unde îți poți lăsa sufletul să respire. Unde te poți regăsi printre pagini, printre povești, printre pașii altora care au avut curajul să plece." }
-        ]
-      },
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Cartea " },
-          {
-            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
-            href: "/carti/vietnam-ro",
-            kind: "internal"
-          },
-          { text: " este acum disponibilă în România. Dacă simți să o citești, " },
-          {
-            text: "scrie-mi",
-            href: "/contact",
-            kind: "internal"
-          },
-          { text: ". S-ar putea să găsești în ea exact ceea ce aveai nevoie să auzi." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Midaway", href: "/", kind: "internal" }, { text: " este spațiul unde îți poți lăsa sufletul să respire. Unde te poți regăsi printre pagini, printre povești, printre pașii altora care au avut curajul să plece." }] },
+      { type: "paragraph", parts: [{ text: "Cartea " }, { text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”", href: "/carti/vietnam-ro", kind: "internal" }, { text: " este acum disponibilă în România. Dacă simți să o citești, " }, { text: "scrie-mi", href: "/contact", kind: "internal" }, { text: ". S-ar putea să găsești în ea exact ceea ce aveai nevoie să auzi." }] },
     ]
   },
   {
@@ -86,54 +38,15 @@ const posts = [
     cover: "assets/blog/blog-2.jpg",
     minutes: 6,
     content: [
-      {
-        type: "paragraph",
-        parts: [
-          { text: "„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat " },
-          {
-            text: "„Zile și nopți de Vietnam”",
-            href: "/carti/vietnam-ro",
-            kind: "internal"
-          },
-          { text: ". E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?" }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat " }, { text: "„Zile și nopți de Vietnam”", href: "/carti/vietnam-ro", kind: "internal" }, { text: ". E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?" }] },
       `Răspunsul sincer? Da. La toate. Yda s-a născut din realitate, dar trăiește și dincolo de ea. A apărut într-o perioadă în care viața mea nu mai încăpea în formele vechi. Eram între lumi: între o identitate pe care o lăsam în urmă și un drum care nu era încă vizibil. În acea ruptură, am început să scriu. Nu pentru a crea un personaj, ci pentru a mă ține de ceva.`,
       `Yda a fost acea parte din mine care a avut curajul să meargă mai departe când eu ezitam. A spus adevărul când eu îl sugrumam. A privit înainte când eu mă agățam de trecut. Scrisul a fost oglinda. Iar în acea oglindă, Yda a început să prindă contur.`,
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Ficțiune? Doar atât cât e nevoie ca să spun adevărul mai bine. Sunt detalii din carte care s-au întâmplat exact așa. Oamenii " },
-          {
-            text: "(o parte dintre ei îi găsești aici)",
-            href: "/calatori",
-            kind: "internal"
-          },
-          { text: " pe care i-am întâlnit. Deciziile luate. Fricile și revelațiile. Dar sunt și scene în care realitatea se topește în metaforă, pentru că uneori doar o poveste poate cuprinde întregul sens." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Ficțiune? Doar atât cât e nevoie ca să spun adevărul mai bine. Sunt detalii din carte care s-au întâmplat exact așa. Oamenii " }, { text: "(o parte dintre ei îi găsești aici)", href: "/calatori", kind: "internal" }, { text: " pe care i-am întâlnit. Deciziile luate. Fricile și revelațiile. Dar sunt și scene în care realitatea se topește în metaforă, pentru că uneori doar o poveste poate cuprinde întregul sens." }] },
       `Yda este, în esență, o voce sinceră. Un alter ego, da, dar și un canal prin care am învățat să mă ascult. Nu este idealizată. Nu e salvatoare. E imperfectă, vulnerabilă, uneori contradictorie. Exact ca mine. Exact ca tine.`,
       `De ce am scris-o așa? Pentru că aveam nevoie să înțeleg. Pentru că aveam nevoie să iert. Pentru că aveam nevoie să transform ceea ce mă apăsa într-o formă care să poată merge mai departe. Și pentru că știam, cumva, că încercările mele nu sunt doar ale mele.`,
       `Yda e un nume. Dar și o cale. Poate că Yda este partea aceea din noi care vrea să plece și nu îndrăznește. Poate e femeia care a fost învățată să se conformeze, dar alege să se asculte. Poate este pur și simplu o versiune posibilă a ceea ce putem deveni atunci când spunem: „Nu știu ce mă așteaptă, dar aleg să merg.”`,
       `Așadar, este Yda reală? Poate nu în sensul clasic. Dar este vie. Și continuă să respire în fiecare pagină, în fiecare pas făcut în necunoscut, în fiecare alegere curajoasă. Și dacă citind ai simțit că o înțelegi, că te regăsești, că parcă ești și tu acolo – atunci poate că și tu porți o Yda în tine.`,
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Yda trăiește în " },
-          {
-            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
-            href: "/carti/vietnam-ro",
-            kind: "internal"
-          },
-          { text: " – o carte scrisă cu toată sinceritatea de care am fost capabilă. Dacă vrei să o citești, " },
-          {
-            text: "scrie-mi",
-            href: "/contact",
-            kind: "internal"
-          },
-          { text: ". Povestea e deschisă." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Yda trăiește în " }, { text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”", href: "/carti/vietnam-ro", kind: "internal" }, { text: " – o carte scrisă cu toată sinceritatea de care am fost capabilă. Dacă vrei să o citești, " }, { text: "scrie-mi", href: "/contact", kind: "internal" }, { text: ". Povestea e deschisă." }] },
     ]
   },
   {
@@ -153,24 +66,7 @@ const posts = [
       `Nu toate drumurile au hartă. Dar toate lasă urme. Drumul meu neștiut a durat 626 de zile și a traversat Asia. Dar cel mai important drum nu a fost cel dintre țări, ci cel dintre versiuni de sine.`,
       `Am plecat cu un rucsac. M-am întors cu o carte nouă. Și cu o întrebare rămasă deschisă: Cine sunt eu, cu adevărat, atunci când mă dau jos de pe pilot automat?`,
       `Alegem drumuri neștiute pentru că vrem să ne reamintim că suntem vii. Că suntem mai mult decât funcții, roluri și așteptări.`,
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Dacă simți că acest text ți-a atins o coardă sensibilă, " },
-          {
-            text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”",
-            href: "/carti/vietnam-ro",
-            kind: "internal"
-          },
-          { text: " e prima carte de nomad pe care am scris-o din acea călătorie. Și poate e exact ce aveai nevoie să citești acum. " },
-          {
-            text: "Scrie-mi",
-            href: "/contact",
-            kind: "internal"
-          },
-          { text: ". Hai să vorbim. Călătoria ta s-ar putea să înceapă chiar acum." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Dacă simți că acest text ți-a atins o coardă sensibilă, " }, { text: "„Zile și nopți de Vietnam: Bucăți dintr-un suflet nomad”", href: "/carti/vietnam-ro", kind: "internal" }, { text: " e prima carte de nomad pe care am scris-o din acea călătorie. Și poate e exact ce aveai nevoie să citești acum. " }, { text: "Scrie-mi", href: "/contact", kind: "internal" }, { text: ". Hai să vorbim. Călătoria ta s-ar putea să înceapă chiar acum." }] },
     ]
   },
 
@@ -184,48 +80,15 @@ const posts = [
     cover: "assets/blog/blog-4.jpg",
     minutes: 8,
     content: [
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început " },
-          {
-            text: "povestea site-ului meu",
-            href: "/",
-            kind: "internal"
-          },
-          { text: ". Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început " }, { text: "povestea site-ului meu", href: "/", kind: "internal" }, { text: ". Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam." }] },
       
       `În secunda aceea, am simțit cum ceva se mișcă în mine – o voce mică, aproape timidă, care îmi șoptea: „Poate tocmai pentru că nu știi… e momentul perfect să începi.” Acel „nu știu” avea să devină piatra mea: grea, alunecoasă, încăpățânată, dar exact piatra care trebuia împinsă.`,
   
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Mult timp n-am înțeles metafora cu piatra urcată spre vârf. Până când am început să construiesc " },
-          {
-            text: "site-ul",
-            href: "/",
-            kind: "internal"
-          },
-          { text: ". Atunci piatra a prins contur: o simțeam cum alunecă, cum îmi rănește degetele, cum mă face să mă opresc și să mă întreb: „De ce te chinui? Pentru ce? Nu e mai simplu să renunți?”" }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Mult timp n-am înțeles metafora cu piatra urcată spre vârf. Până când am început să construiesc " }, { text: "site-ul", href: "/", kind: "internal" }, { text: ". Atunci piatra a prins contur: o simțeam cum alunecă, cum îmi rănește degetele, cum mă face să mă opresc și să mă întreb: „De ce te chinui? Pentru ce? Nu e mai simplu să renunți?”" }] },
   
       `Dar exista și cealaltă voce, caldă și încăpățânată, care nu ridica tonul niciodată: „Mai încearcă o dată. Hai. Încă o dată.” Între două căderi, am înțeles că nu vârful te schimbă, ci urcarea. Respirația grea, răbdarea, revenirea. Faptul că, de zece ori căzută, ridici piatra a unsprezecea oară.`,
   
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Tot ce descopeream era necunoscut. Linii de cod într-o limbă străină, setări bizare, un labirint tehnic pe care încercam să-l înțeleg în timp ce îl parcurgeam. Eu voiam doar un loc unde să-mi vând " },
-          {
-            text: "cărțile",
-            href: "/carti",
-            kind: "internal"
-          },
-          { text: ". Atât. Dar piatra avea alt plan." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Tot ce descopeream era necunoscut. Linii de cod într-o limbă străină, setări bizare, un labirint tehnic pe care încercam să-l înțeleg în timp ce îl parcurgeam. Eu voiam doar un loc unde să-mi vând " }, { text: "cărțile", href: "/carti", kind: "internal" }, { text: ". Atât. Dar piatra avea alt plan." }] },
   
       `Apoi a venit momentul declanșator. Într-un webinar, un tip a spus cu o simplitate aproape sfidătoare: „Mi-am făcut singur automatizările. Mi-am construit singur site-ul.” În mine s-a făcut liniște, o liniște densă, ca aerul care se strânge înaintea furtunii. „Dacă el poate… de ce eu nu?” A fost pentru prima dată când piatra mea chiar s-a urnit.`,
   
@@ -235,84 +98,15 @@ const posts = [
   
       `Într-o zi, după multe ore de muncă, am observat că nu eu îmi construiam site-ul. El mă construia pe mine. Îmi rupea orgoliul, îmi cerea răbdare, mă obliga să mă întreb: „Ce vrei, de fapt? Îți e frică sau doar cauți scuze? Ai nevoie de perfecțiune sau ai nevoie de un început?”`,
   
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Atunci am înțeles că nu mă temeam de muncă și nici măcar de necunoscut. De fapt, necunoscutul începea să mă atragă. Și am realizat că trecutul nu e o povară, ci o busolă. Fiecare alegere, oricât de mică, te împinge undeva. Iar toate drumurile mele m-au adus aici: la propriul meu " },
-          {
-            text: "website",
-            href: "/",
-            kind: "internal"
-          },
-          { text: ", la propria mea " },
-          {
-            text: "editură",
-            href: "/servicii",
-            kind: "internal"
-          },
-          { text: ", la propria mea  " },
-          {
-            text: "poveste",
-            href: "/autori/mida-malena",
-            kind: "internal"
-          },
-          { text: " spusă în felul meu." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Atunci am înțeles că nu mă temeam de muncă și nici măcar de necunoscut. De fapt, necunoscutul începea să mă atragă. Și am realizat că trecutul nu e o povară, ci o busolă. Fiecare alegere, oricât de mică, te împinge undeva. Iar toate drumurile mele m-au adus aici: la propriul meu " }, { text: "website", href: "/", kind: "internal" }, { text: ", la propria mea " }, { text: "editură", href: "/servicii", kind: "internal" }, { text: ", la propria mea  " }, { text: "poveste", href: "/autori/mida-malena", kind: "internal" }, { text: " spusă în felul meu." }] },
   
       `Există un moment înainte de lansarea unui proiect în care timpul se dilată. Totul în jur tace, dar în tine ceva bate altfel – nu de teamă, ci de presimțire. Așa a fost în ziua în care am apăsat „publică”. În inima mea ceva a spus: „Respiră. Uite, exact acum începe.” A fost ca lumina rece de dinaintea zorilor: inevitabilă și limpede.`,
   
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Da, am construit un " },
-          {
-            text: "site",
-            href: "/",
-            kind: "internal"
-          },
-          { text: ". Da, am fondat o " },
-          {
-            text: "editură",
-            href: "/servicii",
-            kind: "internal"
-          },
-          { text: ". Da, am un loc în care îmi pot vinde " },
-          {
-            text: "cărțile",
-            href: "/carti",
-            kind: "internal"
-          },
-          { text: " așa cum vreau. Dar, în realitate, am construit un spațiu viu, care respiră odată cu mine. Un drum care nu va fi niciodată complet. Un loc pe care îl voi modela, rescrie și îmbogăți, exact ca piatra pe care am împins-o până aici." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Da, am construit un " }, { text: "site", href: "/", kind: "internal" }, { text: ". Da, am fondat o " }, { text: "editură", href: "/servicii", kind: "internal" }, { text: ". Da, am un loc în care îmi pot vinde " }, { text: "cărțile", href: "/carti", kind: "internal" }, { text: " așa cum vreau. Dar, în realitate, am construit un spațiu viu, care respiră odată cu mine. Un drum care nu va fi niciodată complet. Un loc pe care îl voi modela, rescrie și îmbogăți, exact ca piatra pe care am împins-o până aici." }] },
   
       `Poate că asta e frumusețea: nu e niciodată gata. Pentru că nici eu nu sunt. Și poate că nici nu contează cât de greu a fost. Poate că totul – absolut totul – m-a adus exact aici. Și simt, cu o liniște interioară ciudat de limpede, că e doar începutul.`,
   
-      {
-        type: "paragraph",
-        parts: [
-          { text: "Poate ai ajuns aici întâmplător. Poate ești pentru prima dată pe pagina mea. Dar dacă citești asta… deja faci parte din poveste. O poți simți. O poți trăi. O poți lua cu tine. Eu mi-am împins „piatra” până aici. De azi înainte, o iau cu mine mai departe – cu altă energie, altă claritate, altă bucurie. Cu un " },
-          {
-            text: "site",
-            href: "/",
-            kind: "internal"
-          },
-          { text: ", cu o " },
-          {
-            text: "editură",
-            href: "/servicii",
-            kind: "internal"
-          },
-          { text: ", cu un drum care m-a ales, de fapt, pe mine. Dacă simți că povestea asta te-a atins, " },
-          {
-            text: "hai să vorbim",
-            href: "/contact",
-            kind: "internal"
-          },
-          { text: "." }
-        ]
-      },
+      { type: "paragraph", parts: [{ text: "Poate ai ajuns aici întâmplător. Poate ești pentru prima dată pe pagina mea. Dar dacă citești asta… deja faci parte din poveste. O poți simți. O poți trăi. O poți lua cu tine. Eu mi-am împins „piatra” până aici. De azi înainte, o iau cu mine mai departe – cu altă energie, altă claritate, altă bucurie. Cu un " }, { text: "site", href: "/", kind: "internal" }, { text: ", cu o " }, { text: "editură", href: "/servicii", kind: "internal" }, { text: ", cu un drum care m-a ales, de fapt, pe mine. Dacă simți că povestea asta te-a atins, " }, { text: "hai să vorbim", href: "/contact", kind: "internal" }, { text: "." }] },
   
       `Mida Malena, 18 noiembrie 2025`
     ]
@@ -331,27 +125,27 @@ const posts = [
     minutes: 11,
     content: [
       `Unele vise încep fix atunci când nu te mai gândești la ele. Când nu mai stai cu ochii pe destinație, cu dorul încordat, cu liste și planuri. Pur și simplu… se întâmplă.`,
-      `China a fost mereu undeva în spatele minții mele. Ca o imagine neclară: zgârie-nori, metrou, tehnologie de ultimă generație, ecrane uriașe, caractere pe care nu le înțelegeam și o limbă care suna ca o ploaie de sunete fără logică pentru mine.`,
+      { type: "paragraph", parts: [{ text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: " a fost mereu undeva în spatele minții mele. Ca o imagine neclară: zgârie-nori, metrou, tehnologie de ultimă generație, ecrane uriașe, caractere pe care nu le înțelegeam și o limbă care suna ca o ploaie de sunete fără logică pentru mine." }] },
       `Fascinația necunoscutului era „acolo”. Dar, undeva, foarte bine ascunsă, era și o emoție mică: „Și dacă nu mă descurc?”`,
       `Auzisem de: aplicații noi, fără de care „nu exiști” acolo; restricții; faptul că mulți oameni nu vorbesc engleză… Nu că engleza mea ar fi perfectă, dar măcar aveam iluzia că mă pot descurca cu ea.`,
       `Și totuși…`,
   
       `*Bilet „out of nowhere*”`,
       `Într-o zi, fără mari pregătiri, fără vision board, fără plan pe un an înainte… mi-am luat bilet. Atât.`,
-      `În 9 zile urma să zbor spre China. Beijing.`,
+      { type: "paragraph", parts: [{ text: "În 9 zile urma să zbor spre China. " }, { text: "Beijing", href: "https://www.google.com/maps/place/Beijing/", kind: "external" }, { text: "." }] },
       `Nu mă întreba de ce Beijing. N-am un răspuns logic.`,
       `Cochetasem ultimele două luni cu o cu totul altă destinație – ceva cu soare, mare, nisip cald, tot pachetul de „lifestyle de prințesă”.`,
       `Doar că planurile și destinația finală nu sunt întotdeauna același lucru. De multe ori, sunt diametral opuse.`,
       `Și, cumva, știam deja: zarurile fuseseră aruncate.`,
       `Ce a urmat a fost mai mult decât aș fi putut să: plănuiesc, controlez sau măcar să-mi imaginez în liniște, într-o seară de iarnă, în România, când lucram de zor să-mi termin site-ul ca să pot „zbura”.`,
   
-      `*Beijing, frigul care mușcă*`,
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Beijing", href: "https://www.google.com/maps/place/Beijing/", kind: "external" }, { text: ", frigul care mușcă*" }] },
       `Știam că va fi iarnă acolo. Ce nu știam era că iarna aceea avea să mă muște, la propriu.`,
       `„În Beijing sunt minus patru grade,” ne-a anunțat, oarecum nepăsător, căpitanul aeronavei Turkish Airlines.`,
       `Când „îl auzi”, pare un număr ușor de suportat. În realitate, frigul din Beijing mușca din mine ca un animal flămând, hotărât să-și apere teritoriul.`,
       `Pe lângă frig, corpul meu a decis să își facă și el numărul. Am tușit aproape constant, ca și cum plămânii mei încercau să țină ritmul cu orașul.`,
       `Iar cazările din hosteluri mi-au mâncat și restul de nervi pe care îi mai aveam. Paturi suprapuse care scârțâiau la fiecare întoarcere, pereți subțiri, lumini aprinse la două noaptea – micile taxe pe care le plătești când alegi să vezi lumea la preț de hostel, nu de hotel.`,
-      `Într-una dintre nopți, într-un hostel din Chengdu, am dormit cu geamul deschis, la minus un grad afară. Eu îl închideam, o chinezoaică înfocată îl deschidea la loc.`,
+      { type: "paragraph", parts: [{ text: "Într-una dintre nopți, într-un hostel din " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: ", am dormit cu geamul deschis, la minus un grad afară. Eu îl închideam, o chinezoaică înfocată îl deschidea la loc." }] },
       `Un tango absurd între frigul ei și frigul meu, între „mie mi-e prea cald” și „mie mi-au înghețat deja gândurile”.`,
       `Mă uitam la geam, la termometru și la respirația mea în aerul rece și mă întrebam, cu un râs amar: „Chiar asta ți-ai dorit, Mida?”`,
       `Fiecare pas afară era un mic război cu aerul. Mă strângeam în geacă, îmi băgam mâinile mai adânc în buzunare și îmi spuneam în gând: „Ai vrut China, Mida. Acum ai China. Asta e China!”`,
@@ -413,7 +207,7 @@ const posts = [
       "La un moment dat, nici eu nu știu exact când, am decis să nu scriu o carte întreagă despre China.",
       "Ar însemna probabil să mă plâng pe sute de pagini. Sute de pagini în care aș povesti mai mult despre cât am tușit, cât am înghețat și câte „No connection” am primit.",
       "Am decis altceva: să las China să trăiască aici, în mici jurnale de drum.",
-      "În următoarele articole, o să te plimb prin Beijing, Xi’an, Chengdu, Chongqing, Zhangjiajie, Yangshuo și Hong Kong – așa cum au fost ele: imperfecte, reci, aglomerate și, cumva, absolut necesare pentru mine.",
+      { type: "paragraph", parts: [{ text: "În următoarele articole, o să te plimb prin " }, { text: "Beijing", href: "https://www.google.com/maps/place/Beijing/", kind: "external" }, { text: ", " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: ", " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: ", " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: ", " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: ", " }, { text: "Yangshuo", href: "https://www.google.com/maps/place/Yangshuo/", kind: "external" }, { text: " și " }, { text: "Hong Kong", href: "https://www.google.com/maps/place/Hong+Kong/", kind: "external" }, { text: " – așa cum au fost ele: imperfecte, reci, aglomerate și, cumva, absolut necesare pentru mine." }] },
       "Dacă ai ajuns până aici, spune-mi: tu unde ai trăit propriul tău „No Connection” – și ce ți-a deblocat în tine?"
     ]
   },
