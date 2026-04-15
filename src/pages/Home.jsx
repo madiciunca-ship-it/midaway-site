@@ -426,6 +426,58 @@ export default function Home() {
       published: false },
   ];
 
+  const socialLinks = [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/midaway.official/",
+      icon: (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+        </svg>
+      ),
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61579784437417#",
+      icon: (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <path
+            d="M13.4 20V12.8H15.9L16.3 10h-2.9V8.2c0-.9.3-1.5 1.5-1.5h1.5V4.2c-.3 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.7V10H8.5v2.8h2.3V20h2.6Z"
+            fill="currentColor"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/tag/midaway",
+      icon: (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <path
+            d="M14.8 4c.3 2 1.5 3.5 3.4 4.1v2.5c-1.4 0-2.7-.4-3.8-1.2v5.1c0 2.8-2.1 4.9-5 4.9-2.6 0-4.6-2-4.6-4.5 0-2.7 2.1-4.7 4.9-4.7.3 0 .6 0 .9.1v2.6c-.3-.1-.6-.1-.8-.1-1.3 0-2.3.9-2.3 2.1 0 1.1.9 2.1 2.1 2.1 1.4 0 2.2-1 2.2-2.5V4h3Z"
+            fill="currentColor"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: "YouTube",
+      href: "https://www.youtube.com/channel/UCKos5McBc44j6dViovnKiZw/videos",
+      icon: (
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+          <path
+            d="M20.4 7.2c-.2-.9-.9-1.6-1.8-1.8C17 5 12 5 12 5s-5 0-6.6.4c-.9.2-1.6.9-1.8 1.8C3.2 8.8 3.2 12 3.2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8C7 19 12 19 12 19s5 0 6.6-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            fill="none"
+          />
+          <path d="M10 9.2 15 12l-5 2.8V9.2Z" fill="currentColor" />
+        </svg>
+      ),
+    },
+  ];
   return (
     <>
            {/* HERO */} 
@@ -448,29 +500,79 @@ export default function Home() {
         {t.viziune_btn}
       </Link>
     </div>
-     {/* SWITCH RO/EN SUB VIZIUNE – EXACT CA ÎNAINTE */}
-     <div
-            role="group"
-            aria-label="Language switch"
-            style={{
-              marginTop: 16,
-              display: "inline-flex",
-              border: "1px solid #ddd",
-              borderRadius: 999,
-              overflow: "hidden",
-              background: "#fff",
-            }}
-          >
-            <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>
-              RO
-            </button>
-            <button onClick={() => setLang("en")} style={segBtn(lang === "en")}>
-              EN
-            </button>
-          </div>
-  </div>
-</section>
+          {/* SWITCH RO/EN SUB VIZIUNE – EXACT CA ÎNAINTE */}
+          <div
+       role="group"
+       aria-label="Language switch"
+       style={{
+         marginTop: 16,
+         display: "inline-flex",
+         border: "1px solid #ddd",
+         borderRadius: 999,
+         overflow: "hidden",
+         background: "#fff",
+       }}
+     >
+       <button onClick={() => setLang("ro")} style={segBtn(lang === "ro")}>
+         RO
+       </button>
+       <button onClick={() => setLang("en")} style={segBtn(lang === "en")}>
+         EN
+       </button>
+     </div>
 
+     <div
+  style={{
+    marginTop: 18,
+    display: "flex",
+    justifyContent: "center",
+    gap: 12,
+    flexWrap: "wrap",
+  }}
+>
+  {socialLinks.map((item) => (
+    <a
+      key={item.label}
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={item.label}
+      aria-label={item.label}
+      style={{
+        width: 40,
+        height: 40,
+        borderRadius: "50%",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textDecoration: "none",
+        color: "var(--accent)",
+        background: "#FCFAF8",
+        border: "1px solid rgba(150, 70, 77, 0.14)",
+        boxShadow: "0 4px 12px rgba(0,0,0,.035)",
+        lineHeight: 1,
+        transition:
+          "transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-2px)";
+        e.currentTarget.style.boxShadow = "0 10px 22px rgba(0,0,0,.08)";
+        e.currentTarget.style.background = "#F8F1EE";
+        e.currentTarget.style.borderColor = "rgba(150, 70, 77, 0.34)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,.04)";
+        e.currentTarget.style.background = "#FCFAF8";
+        e.currentTarget.style.borderColor = "rgba(150, 70, 77, 0.18)";
+      }}
+    >
+      {item.icon}
+    </a>
+  ))}
+</div>
+     </div>
+</section>
 
       {/* SECȚIUNI RAPIDE */}
       <div id="sectiuni" className="container">
