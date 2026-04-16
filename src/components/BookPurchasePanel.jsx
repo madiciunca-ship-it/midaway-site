@@ -57,7 +57,7 @@ if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
 if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="pdf">
-      <strong>PDF:</strong> {p.length ? p.join(" • ") : "—"}
+      <strong>{t.digitalLabel}:</strong> {p.length ? p.join(" • ") : "—"}
     </li>
   );
 }
@@ -70,7 +70,7 @@ if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
 if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="epub">
-      <strong>EPUB:</strong> {p.length ? p.join(" • ") : "—"}
+      <strong>{t.epubLabel}::</strong> {p.length ? p.join(" • ") : "—"}
     </li>
   );
 }
@@ -81,11 +81,11 @@ if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
     if (pb.pages) p.push(`${pb.pages} ${t.pages}`);
     if (pb.isbn && pb.isbn !== "—") p.push(`${t.idLabel}: ${pb.isbn}`);
     if (pb.language && pb.language !== "—") p.push(`${t.language}: ${pb.language}`);
-    if (pb.dimensions && pb.dimensions !== "—") p.push(pb.dimensions);
-   
+    if (pb.dimensions && pb.dimensions !== "—") p.push(`${t.dimensions}: ${pb.dimensions}`);
+    if (pb.weight && pb.weight !== "—") p.push(`${t.weight}: ${pb.weight}`);
     items.push(
       <li key="paperback">
-        <strong>Paperback:</strong> {p.length ? p.join(" • ") : "—"}
+        <strong>{t.printLabel}:</strong> {p.length ? p.join(" • ") : "—"}
       </li>
     );
   }
@@ -116,6 +116,8 @@ if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
       }}
     >
       <h3 style={{ margin: "0 0 8px 0", fontSize: 16 }}>
+        {t.detailsTitle}
+      </h3>
       <ul style={{ margin: 0, paddingLeft: 18 }}>{items}</ul>
     </div>
   );
