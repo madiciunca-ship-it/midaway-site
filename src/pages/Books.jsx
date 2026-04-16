@@ -196,6 +196,22 @@ export default function Books() {
           .map((book, i) => {
             const isNew = i < 2; // badge „NOU” pe primele 2 rezultate
             const rating = getBookRating(book.id);
+            const isEN = String(book.lang || "").toUpperCase() === "EN";
+          
+            const ui = isEN
+              ? {
+                  sample: "Read a sample",
+                  buy: "Buy",
+                  audiobookSoon: "Audiobook – coming soon",
+                  newBadge: "NEW",
+                }
+              : {
+                  sample: "Citește un fragment",
+                  buy: "Cumpără",
+                  audiobookSoon: "Audiobook – în curând",
+                  newBadge: "NOU",
+                };
+          
             return (
               <div
                 key={book.id}
@@ -227,7 +243,7 @@ export default function Books() {
                       boxShadow: "0 4px 14px rgba(0,0,0,.12)",
                     }}
                   >
-                    NOU
+                    {ui.newBadge}
                   </span>
                 )}
 
@@ -347,7 +363,7 @@ export default function Books() {
                         fontSize: 14,
                       }}
                     >
-                      📖 Citește un fragment
+                    📖 {ui.sample}
                     </a>
                   )}
 
@@ -363,7 +379,7 @@ export default function Books() {
                       fontSize: 14,
                     }}
                   >
-                    🛒 Cumpără
+                    🛒 {ui.buy}
                   </Link>
 
                   <span
@@ -377,7 +393,7 @@ export default function Books() {
                       fontSize: 14,
                     }}
                   >
-                    🎧 Audiobook – în curând
+                 🎧 {ui.audiobookSoon}
                   </span>
                 </div>
                 </div>
