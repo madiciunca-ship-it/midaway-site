@@ -22,6 +22,7 @@ export default function Blog() {
   const [activeTag, setActiveTag] = useState("toate");
   const [newsletterStatus, setNewsletterStatus] = useState("idle");
   const [newsletterMessage, setNewsletterMessage] = useState("");
+  const [newsletterLang, setNewsletterLang] = useState("ro");
 
   const tags = useMemo(() => {
     const t = new Set();
@@ -76,7 +77,11 @@ export default function Blog() {
       if (res.ok) {
         form.reset();
         setNewsletterStatus("success");
-        setNewsletterMessage("Mulțumesc! Te-ai abonat. 🥰");
+        setNewsletterMessage(
+          newsletterLang === "en"
+            ? "Thank you! You have subscribed to the English newsletter. 🥰"
+            : "Mulțumesc! Te-ai abonat la newsletter-ul în limba română. 🥰"
+        );
       } else {
         setNewsletterStatus("error");
         setNewsletterMessage(data?.errors?.[0]?.message || "A apărut o problemă. Te rog încearcă din nou.");
@@ -166,10 +171,14 @@ export default function Blog() {
 
       {/* Newsletter mini-CTA */}
       <section className="newsletter-cta" style={{ marginTop: 24 }}>
-        <h4 className="font-cormorant" style={{ margin: 0 }}>Abonează-te la noutăți</h4>
+      <h4 className="font-cormorant" style={{ margin: 0 }}>
+  {newsletterLang === "en" ? "Subscribe to updates" : "Abonează-te la noutăți"}
+</h4>
         <p style={{ marginTop: 6, color: "var(--secondary)" }}>
-          Primești un email scurt când apare un articol nou.
-        </p>
+  {newsletterLang === "en"
+    ? "You will receive a short email when a new article is published."
+    : "Primești un email scurt când apare un articol nou."}
+</p>
         <>
   {newsletterMessage && (
     <div
@@ -186,10 +195,59 @@ export default function Blog() {
       {newsletterMessage}
     </div>
   )}
-
+<div
+  role="group"
+  aria-label="Newsletter language"
+  style={{
+    marginBottom: 12,
+    display: "inline-flex",
+    border: "1px solid #ddd",
+    borderRadius: 999,
+    overflow: "hidden",
+    background: "#fff",
+  }}
+>
+  <button
+    type="button"
+    onClick={() => setNewsletterLang("ro")}
+    style={{
+      padding: "8px 14px",
+      border: "none",
+      background: newsletterLang === "ro" ? "var(--accent)" : "transparent",
+      color: newsletterLang === "ro" ? "#fff" : "#444",
+      cursor: "pointer",
+      fontWeight: 700,
+    }}
+  >
+    RO
+  </button>
+  <button
+    type="button"
+    onClick={() => setNewsletterLang("en")}
+    style={{
+      padding: "8px 14px",
+      border: "none",
+      background: newsletterLang === "en" ? "var(--accent)" : "transparent",
+      color: newsletterLang === "en" ? "#fff" : "#444",
+      cursor: "pointer",
+      fontWeight: 700,
+    }}
+  >
+    EN
+  </button>
+</div>
   <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
-    <input name="email" type="email" placeholder="Emailul tău" required />
-    <input type="hidden" name="_subject" value="Abonare newsletter Midaway" />
+    <input name="email" type="email" placeholder={newsletterLang === "en" ? "Your email" : "Emailul tău"} required />
+    <input
+  type="hidden"
+  name="_subject"
+  value={
+    newsletterLang === "en"
+      ? "English newsletter subscription Midaway"
+      : "Abonare newsletter Midaway"
+  }
+/>
+    <input type="hidden" name="language" value={newsletterLang} />
     <button
       type="submit"
       className="btn"
@@ -199,7 +257,9 @@ export default function Blog() {
         cursor: newsletterStatus === "submitting" ? "wait" : "pointer",
       }}
     >
-      {newsletterStatus === "submitting" ? "Se trimite..." : "Mă abonez"}
+     {newsletterStatus === "submitting"
+  ? (newsletterLang === "en" ? "Sending..." : "Se trimite...")
+  : (newsletterLang === "en" ? "Subscribe" : "Mă abonez")}
     </button>
   </form>
 </>
