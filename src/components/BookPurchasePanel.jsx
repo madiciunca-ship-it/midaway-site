@@ -144,6 +144,30 @@ export default function BookPurchasePanel({ book, bookId }) {
   const title = resolvedBook?.title;
   const id = resolvedBook?.id;
   const langLabel = (resolvedBook?.lang || "RO").toUpperCase();
+  const isEN = langLabel === "EN";
+
+  const t = isEN
+    ? {
+        chooseFormat: "Choose format",
+        addToCart: "Add to cart",
+        soon: "soon",
+        buyFrom: "Buy from",
+        sample: "Read a sample",
+        buy: "Buy",
+        afterPayment:
+          "After payment, you will receive the download links by email (valid for 48h).",
+      }
+    : {
+        chooseFormat: "Alege formatul",
+        addToCart: "Adaugă în coș",
+        soon: "în curând",
+        buyFrom: "Cumpără de la",
+        sample: "Citește un fragment",
+        buy: "Cumpără",
+        afterPayment:
+          "După plată vei primi pe email linkurile de descărcare (valabile 48h).",
+      };
+
 
   // ---- vendori externi (Amazon, alți parteneri) ----
   const vendors = resolvedBook?.vendors || {};
@@ -201,7 +225,7 @@ const mainVendor = hasAmazon
     const KEY = String(fmt).toUpperCase();
     const avail = Boolean(availability?.[KEY]);
     const price = Number(prices?.[KEY]) || 0;
-    const labelSoon = langLabel === "EN" ? "soon" : "în curând";
+    const labelSoon = t.soon;
 
     // vânzare externă pt. paperback
     const isExternal =
@@ -311,8 +335,8 @@ const vendorTermsText = mainVendor
                   textDecoration: "none",
                   fontWeight: 700,
                 }}
-              >
-                Buy on Amazon
+                >
+                {isEN ? "Buy on Amazon" : "Cumpără de pe Amazon"}
               </a>
             )}
 
@@ -334,8 +358,8 @@ const vendorTermsText = mainVendor
                   fontWeight: 600,
                   marginTop: 8,
                 }}
-              >
-                Cumpără de la {v.label || key}
+                >
+                {t.buyFrom} {v.label || key}
               </a>
             ))}
 
@@ -367,8 +391,8 @@ const vendorTermsText = mainVendor
                   fontSize: 13,
                   marginTop: 8,
                 }}
-              >
-                Adaugă în coș
+                >
+                {t.addToCart}
               </button>
             )}
           </>
@@ -388,7 +412,7 @@ const vendorTermsText = mainVendor
               fontSize: 13,
             }}
           >
-            {avail ? "Adaugă în coș" : labelSoon}
+            {avail ? t.addToCart : labelSoon}
           </button>
         )}
       </div>
@@ -418,8 +442,8 @@ const vendorTermsText = mainVendor
           borderRadius: 12,
           fontSize: 16,
         }}
-      >
-        Alege formatul
+        >
+        {t.chooseFormat}
       </h2>
 
       <div
@@ -437,16 +461,15 @@ const vendorTermsText = mainVendor
       </div>
 
       <p
-        style={{
-          marginTop: 12,
-          color: "#666",
-          fontSize: 12,
-          textAlign: "center",
-        }}
-      >
-        După plată vei primi pe email linkurile de descărcare (valabile 48h).
-        — After payment, you will recieve the download links by email (valid for 48h).
-      </p>
+  style={{
+    marginTop: 12,
+    color: "#666",
+    fontSize: 12,
+    textAlign: "center",
+  }}
+>
+  {t.afterPayment}
+</p>
       {/* 🔔 Intenționat NU mai randez aici „Specificații pe format”.
           Ele se randează sub „Detalii tehnice”, prin <FormatSpecs book={book} /> */}
     </section>
