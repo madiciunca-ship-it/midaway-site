@@ -2,6 +2,7 @@
 import React, { useMemo, useState } from "react";
 import { BOOKS } from "../data/books";
 import { Link } from "react-router-dom";
+import { BOOK_REVIEWS } from "../data/bookReviews";
 
 const CARD_BG = "#fffef9"; // aceeași culoare ca background-ul cardului
 
@@ -26,6 +27,17 @@ const Tag = ({ children }) => (
 
 const GENRES = Array.from(new Set(BOOKS.map((b) => b.genre))).sort();
 const LOCATIONS = Array.from(new Set(BOOKS.map((b) => b.location))).sort();
+function getBookRating(bookId) {
+  const reviews = (BOOK_REVIEWS[bookId] || []).filter((r) => r && r.published !== false);
+  if (!reviews.length) return null;
+
+  const avg = reviews.reduce((sum, r) => sum + (Number(r.rating) || 0), 0) / reviews.length;
+  return {
+    average: avg,
+    count: reviews.length,
+    stars: "★".repeat(Math.round(avg)) + "☆".repeat(5 - Math.round(avg)),
+  };
+}
 
 export default function Books() {
   const [genre, setGenre] = useState("Toate");
@@ -183,6 +195,7 @@ export default function Books() {
           }) // cele mai noi primele
           .map((book, i) => {
             const isNew = i < 2; // badge „NOU” pe primele 2 rezultate
+            const rating = getBookRating(book.id);
             return (
               <div
                 key={book.id}
@@ -284,6 +297,23 @@ export default function Books() {
                       {book.year} • {book.publisher}
                     </p>
                   )}
+                  {rating && (
+  <div
+    style={{
+      marginTop: 4,
+      fontSize: 13,
+      color: "#666",
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      flexWrap: "wrap",
+    }}
+  >
+    <span style={{ color: "#d4a017", letterSpacing: 1 }}>{rating.stars}</span>
+    <span>{rating.average.toFixed(1)}</span>
+    <span>({rating.count})</span>
+  </div>
+)}
                 </div>
 
                 {/* Subtitlu */}
