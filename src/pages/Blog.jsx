@@ -76,7 +76,7 @@ export default function Blog() {
       if (res.ok) {
         form.reset();
         setNewsletterStatus("success");
-        setNewsletterMessage("Mulțumesc! Te-ai abonat la noutăți.");
+        setNewsletterMessage("Mulțumesc! Te-ai abonat. 🥰");
       } else {
         setNewsletterStatus("error");
         setNewsletterMessage(data?.errors?.[0]?.message || "A apărut o problemă. Te rog încearcă din nou.");
