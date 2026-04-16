@@ -20,6 +20,8 @@ function estimateMinutes(p) {
 export default function Blog() {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState("toate");
+  const [newsletterStatus, setNewsletterStatus] = useState("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
 
   const tags = useMemo(() => {
     const t = new Set();
@@ -50,6 +52,40 @@ export default function Blog() {
     }
     return list;
   }, [activeTag, query]);
+
+  async function handleNewsletterSubmit(e) {
+    e.preventDefault();
+  
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+  
+    setNewsletterStatus("submitting");
+    setNewsletterMessage("");
+  
+    try {
+      const res = await fetch("https://formspree.io/f/mrbaajzn", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+  
+      const data = await res.json();
+  
+      if (res.ok) {
+        form.reset();
+        setNewsletterStatus("success");
+        setNewsletterMessage("Mulțumesc! Te-ai abonat la noutăți.");
+      } else {
+        setNewsletterStatus("error");
+        setNewsletterMessage(data?.errors?.[0]?.message || "A apărut o problemă. Te rog încearcă din nou.");
+      }
+    } catch {
+      setNewsletterStatus("error");
+      setNewsletterMessage("Nu am reușit să trimit formularul. Verifică internetul și încearcă din nou.");
+    }
+  }
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
@@ -134,16 +170,39 @@ export default function Blog() {
         <p style={{ marginTop: 6, color: "var(--secondary)" }}>
           Primești un email scurt când apare un articol nou.
         </p>
-        <form
-          action="https://formspree.io/f/mrbaajzn"
-          method="POST"
-          className="newsletter-form"
-        >
-          <input name="email" type="email" placeholder="Emailul tău" required />
-          <input type="hidden" name="_subject" value="Abonare newsletter Midaway" />
-          <input type="hidden" name="_next" value="/multumesc-newsletter" />
-          <button type="submit" className="btn">Mă abonez</button>
-        </form>
+        <>
+  {newsletterMessage && (
+    <div
+      style={{
+        marginBottom: 12,
+        padding: "12px 14px",
+        borderRadius: 12,
+        border: newsletterStatus === "success" ? "1px solid #7dc9bf" : "1px solid #e3b0b0",
+        background: newsletterStatus === "success" ? "#e8f8f5" : "#fff3f3",
+        color: newsletterStatus === "success" ? "#1f6f67" : "#9f2f2f",
+        fontWeight: 600,
+      }}
+    >
+      {newsletterMessage}
+    </div>
+  )}
+
+  <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
+    <input name="email" type="email" placeholder="Emailul tău" required />
+    <input type="hidden" name="_subject" value="Abonare newsletter Midaway" />
+    <button
+      type="submit"
+      className="btn"
+      disabled={newsletterStatus === "submitting"}
+      style={{
+        opacity: newsletterStatus === "submitting" ? 0.8 : 1,
+        cursor: newsletterStatus === "submitting" ? "wait" : "pointer",
+      }}
+    >
+      {newsletterStatus === "submitting" ? "Se trimite..." : "Mă abonez"}
+    </button>
+  </form>
+</>
       </section>
     </div>
   );
