@@ -54,7 +54,7 @@ const BASE_PATH =
           if (res.ok) {
             form.reset();
             setStatus("success");
-            setMessage("Mulțumesc! Review-ul tău a fost trimis și va apărea pe site după verificare.");
+            setMessage("Mulțumesc! Review-ul a fost trimis.");
           } else {
             setStatus("error");
             setMessage(data?.errors?.[0]?.message || "A apărut o problemă la trimitere. Te rog încearcă din nou.");
@@ -78,12 +78,23 @@ const BASE_PATH =
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
-            <h2 style={{ margin: 0, fontSize: 24 }}>Ce spun cititorii</h2>
+          <h2 style={{ margin: 0, fontSize: 24 }} className="font-cormorant">
+  Ce spun cititorii
+</h2>
     
             {reviews.length > 0 ? (
               <div style={{ color: "#3b2f2f", fontSize: 16 }}>
-                <strong>{averageRating.toFixed(1)}</strong> din 5 ·{" "}
-                <span style={{ color: "#c99700", letterSpacing: 1 }}>{averageStars}</span>{" "}
+                <strong>{averageRating.toFixed(1)}</strong> din 5 ·{" "}<span
+  style={{
+    color: "#d4a017",
+    letterSpacing: 2,
+    fontSize: 18,
+    verticalAlign: "middle",
+  }}
+>
+  {averageStars}
+</span>
+                {" "}
                 <span style={{ color: "#666" }}>({reviews.length} review{reviews.length === 1 ? "" : "-uri"})</span>
               </div>
             ) : (
@@ -100,10 +111,10 @@ const BASE_PATH =
                   key={r.id}
                   style={{
                     border: "1px solid #ece7df",
-                    borderRadius: 14,
+                    borderRadius: 16,
                     background: "#fff",
-                    padding: 14,
-                    boxShadow: "0 4px 10px rgba(0,0,0,.04)",
+                    padding: 16,
+                    boxShadow: "0 6px 18px rgba(0,0,0,.04)",
                   }}
                 >
                   <div
@@ -115,14 +126,38 @@ const BASE_PATH =
                       marginBottom: 8,
                     }}
                   >
-                    <strong style={{ color: "#2b2b2b" }}>{r.name}</strong>
-                    <span style={{ color: "#c99700" }}>
+                    <strong
+  style={{
+    color: "#2b2b2b",
+    fontSize: 15,
+  }}
+>
+  {r.name}
+</strong>
+                    <span
+  style={{
+    color: "#d4a017",
+    letterSpacing: 1.5,
+    fontSize: 16,
+    lineHeight: 1,
+  }}
+>
                       {"★".repeat(Number(r.rating) || 0)}
                       {"☆".repeat(5 - (Number(r.rating) || 0))}
                     </span>
                   </div>
     
-                  <p style={{ margin: 0, lineHeight: 1.7, color: "#2b2b2b" }}>{r.text}</p>
+                  <p
+  style={{
+    margin: 0,
+    lineHeight: 1.8,
+    color: "#2b2b2b",
+    paddingLeft: 12,
+    borderLeft: "3px solid rgba(212,160,23,.22)",
+  }}
+>
+  {r.text}
+</p>
                 </article>
               ))}
             </div>
