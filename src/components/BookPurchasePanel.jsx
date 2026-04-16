@@ -87,7 +87,11 @@ if (fdet.epub) {
         background: "#fffef9",
       }}
     >
-      <h3 style={{ margin: "0 0 8px 0", fontSize: 16 }}>Specificații pe format</h3>
+      <h3 style={{ margin: "0 0 8px 0", fontSize: 16 }}>
+  {String(book?.lang || "").toUpperCase() === "EN"
+    ? "Format details"
+    : "Specificații pe format"}
+</h3>
       <ul style={{ margin: 0, paddingLeft: 18 }}>{items}</ul>
     </div>
   );
