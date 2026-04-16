@@ -35,6 +35,8 @@ export function FormatSpecs({ book }) {
         epubLabel: "EPUB",
         audiobookLabel: "Audiobook",
         idLabel: "ASIN",
+        dimensions: "Dimensions",
+        weight: "Weight",
       }
     : {
         pages: "pagini",
@@ -47,6 +49,8 @@ export function FormatSpecs({ book }) {
         epubLabel: "EPUB",
         audiobookLabel: "Audiobook",
         idLabel: "ISBN",
+        dimensions: "Dimensiuni",
+        weight: "Greutate",
       };
 
   // PDF
@@ -70,7 +74,7 @@ if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
 if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="epub">
-      <strong>{t.epubLabel}::</strong> {p.length ? p.join(" • ") : "—"}
+      <strong>{t.epubLabel}:</strong> {p.length ? p.join(" • ") : "—"}
     </li>
   );
 }
