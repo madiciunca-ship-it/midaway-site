@@ -258,7 +258,7 @@ const posts = [
       `Dimineața, când am ieșit spre baie, aerul rece de pe hol a fost ca un pumn în plex. M-am întrebat, pentru a zecea oară:`,
       `„Cum pot trăi oamenii ăștia așa?”`,
       `Parcă eram un sac de box și frigul lovea din orice direcție, cu o consecvență impresionantă.`,
-      { type: "paragraph", parts: [{ text: "În ziua aceea am ajuns la " }, { text: "Orașul Interzis", href: "https://www.google.com/maps/place/Forbidden+City/", kind: "external" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "În ziua aceea am ajuns la " }, { text: "Orașul Interzis", href: " https://maps.app.goo.gl/owyq5UZnAc1gXP3Y8?g_st=iw", kind: "external" }, { text: "." }] },
       `Mii de oameni. Un furnicar uman care se mișca printr-o istorie uriașă, în care eu eram doar o particulă cu gât inflamat și ochi curioși.`,
       `Orașul Interzis nu te întâmpină spectaculos. Te copleșește încet.`,
       `Curți care se succed la nesfârșit, porți masive, acoperișuri grele, culori care par că rezistă timpului din ambiție, nu din delicatețe.`,
@@ -268,7 +268,7 @@ const posts = [
       `M-am întors pe jos spre hostel. Voiam să văd orașul, să-l simt și, poate, să mă încălzesc. Am mers repede, cu pași apăsați. La finalul zilei, când am contorizat pașii, am râs:`,
       `34.300 de pași.`,
       `Beijingul nu te plimbă. Beijingul te antrenează.`,
-      { type: "paragraph", parts: [{ text: "Planul era simplu: " }, { text: "Marele Zid", href: "https://www.google.com/maps/place/Great+Wall+of+China/", kind: "external" }, { text: ", apoi plec. Aveam doar trei zile de cazare în Beijing. Următoarea destinație era clară: " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "Planul era simplu: " }, { text: "Marele Zid", href: "https://maps.app.goo.gl/53AfEGshxyUF1yEx7?g_st=iw", kind: "external" }, { text: "." }] },
       `Dar ziua următoare avea să mă ia pe nepregătite.`,
   
       `*Ziua în care telefonul a murit și hărțile au dispărut*`,
@@ -309,7 +309,7 @@ const posts = [
       `McDonald’s, KFC sau orice nu pare că mă arde din interior.`,
       `Și am ajuns.`,
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Marele Zid", href: "https://www.google.com/maps/place/Great+Wall+of+China/", kind: "external" }, { text: ": victoria mea fără semnal*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Marele Zid", href: "https://maps.app.goo.gl/53AfEGshxyUF1yEx7?g_st=iw", kind: "external" }, { text: ": victoria mea fără semnal*" }] },
       `M-am trezit pe la 5:20. Nu știu ce era cu mine – mă culcam la miezul nopții și pe la 5:00 dimineața eram trează, ca și cum corpul meu încerca să țină pasul cu haosul.`,
       `Pe la 7:00 eram deja la metrou. La recepție nu era nimeni să-mi iau cafea sau să plătesc noaptea în plus, așa că am lăsat mesaj că revin. Și gata: drum către Marele Zid.`,
       `Mi-a luat ore. Metrou, mers, căutat, așteptat. GPS-ul îmi arăta că stația e „aici”, dar „aici” era Beijing – adică un mic continent, nu un loc.`,
@@ -397,19 +397,19 @@ const posts = [
       "Xi’an e orașul contrastelor.",
       "Și avea să rămână unul dintre preferatele mele din China.",
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Centrul vechi", href: "https://www.google.com/maps/place/Xi'an+City+Wall+Scenic+Area/", kind: "external" }, { text: " și strada artizanilor*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Centrul vechi", href: "https://maps.app.goo.gl/bmM6ygpypBqYaV269?g_st=iw", kind: "external" }, { text: " și strada artizanilor*" }] },
       "Când am ajuns, tipa de la recepție nu vorbea deloc engleză.",
       "Dar aveam o cameră dublă doar pentru mine. Și eram fericită.",
       "Locația? Fix în centrul vechi, pe strada artizanilor. Un vibe viu, autentic, cald. Exact ce aveam nevoie după Beijing.",
       "Am ieșit să mănânc și am nimerit într-un local micuț. Am descoperit niște pâinici mici cu susan. O bunătate. Simplă. Perfectă.",
       "Aveam cazare pentru trei nopți. Am mai adăugat una. Pentru sufletul meu.",
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Zidul orașului", href: "https://www.google.com/maps/place/Xi'an+City+Wall+Scenic+Area/", kind: "external" }, { text: ": 14 kilometri de liniște*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Zidul orașului", href: "https://maps.app.goo.gl/jXovNbVrLQLziPV1A?g_st=iw", kind: "external" }, { text: ": 14 kilometri de liniște*" }] },
       "În zilele următoare, Xi’an s-a desfășurat pe rând.",
       "Am ajuns pe zidul orașului – și acolo mi-am închiriat o bicicletă. Am pedalat aproape 14 kilometri, ocolind orașul de sus.",
       "Zidurile acelea… Nu știu cum să explic. Aș fi stat acolo sus zile întregi, dacă ar fi fost posibil. Orașul se vede altfel de acolo. Mai clar. Mai liniștit. Mai așezat.",
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Armata de teracotă", href: "https://www.google.com/maps/place/Emperor+Qinshihuang's+Mausoleum+Site+Museum/", kind: "external" }, { text: " și pașii prin oraș*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Armata de teracotă", href: "https://maps.app.goo.gl/BDV4B2NHicpKExqC6?g_st=iw", kind: "external" }, { text: " și pașii prin oraș*" }] },
       "Am ajuns și la Armata de teracotă.",
       "Impresionantă, fără îndoială.",
       "Dar adevărul e că Xi’an nu se reduce la repere.",
@@ -423,11 +423,11 @@ const posts = [
       "Xi’an e, categoric, un oraș care se simte.",
       "În rest, m-am plimbat. Mult. Fără scop. Pentru că orașul e atât de viu încât nici nu simți nevoia să-l explici. Doar îl trăiești.",
   
-      { type: "paragraph", parts: [{ text: "*Ziua a treia în " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: " – Cartierul musulman, " }, { text: "Marea Moschee din Xi’an", href: "https://www.google.com/maps/place/Great+Mosque+of+Xi'an/", kind: "external" }, { text: " și rochia albastră*" }] },
+      { type: "paragraph", parts: [{ text: "*Ziua a treia în " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: " – Cartierul musulman, " }, { text: "Marea Moschee din Xi’an", href: "https://maps.app.goo.gl/9Nw2vLkiioU7yqEk8?g_st=iw", kind: "external" }, { text: " și rochia albastră*" }] },
       "În ziua a treia, Xi’an m-a prins nepregătită din nou. De data asta, nu cu căldură sau haos, ci cu ploaie.",
       "O ploaie măruntă, calmă, care făcea luminile orașului să pară mai moi, mai blânde, aproape festive.",
       "Străzile luciau, umbrelele colorate se mișcau în valuri, iar orașul avea un aer de sărbătoare ciudată – de parcă ar fi fost Crăciun, dar fără brazi și colinde.",
-      { type: "paragraph", parts: [{ text: "Am ajuns în " }, { text: "Cartierul Musulman", href: "https://www.google.com/maps/place/Muslim+Quarter,+Xi'an/", kind: "external" }, { text: " (Muslim Quarter) – un loc în care Xi’anul explodează în culori, mirosuri și oameni." }] },
+      { type: "paragraph", parts: [{ text: "Am ajuns în " }, { text: "Cartierul Musulman", href: "https://maps.app.goo.gl/sF3onTWb2D5L32hF8?g_st=iw", kind: "external" }, { text: " (Muslim Quarter) – un loc în care Xi’anul explodează în culori, mirosuri și oameni." }] },
       "Tarabe peste tarabe, carne friptă, pâine caldă, condimente, dulciuri lipicioase, aburi care se ridică din wok-uri uriașe. O aglomerație vie, zgomotoasă, care nu te sufocă, ci te trage în ea.",
       "Mergeam încet, udă, cu telefonul în mână, făcând poze care păreau desprinse dintr-o poveste orientală. Ploaia le dădea tuturor un luciu aparte, aproape cinematografic.",
   
