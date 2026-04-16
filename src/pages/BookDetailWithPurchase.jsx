@@ -11,7 +11,7 @@ function findBookByIdOrAlias(bookId) {
   if (!bookId) return null;
   const direct = BOOKS.find((b) => b.id === bookId);
   if (direct) return direct;
-
+  
   const s = String(bookId).toLowerCase();
   if (s.startsWith("o-zi-de-care-sa-ti-amintesti")) {
     return BOOKS.find((b) => b.id === "o-zi-ro") || null;
@@ -30,6 +30,50 @@ const BASE_PATH =
     function BookReviewsSection({ book, reviews, averageRating, averageStars }) {
       const [status, setStatus] = useState("idle");
       const [message, setMessage] = useState("");
+
+      const isEN = String(book?.lang || "").toUpperCase() === "EN";
+
+      const t = isEN
+        ? {
+            heading: "What readers say",
+            empty: "There are no published reviews for this book yet.",
+            leave: "Leave a review",
+            intro: "You can leave a review here, and I will publish it on the site after verification. 🥰",
+            success: "Thank you! Your review has been sent.",
+            submit: "Submit review",
+            submitting: "Sending...",
+            name: "Your name",
+            email: "Your email",
+            rating: "Choose rating",
+            review: "Write your review here",
+            stars: ["1 star", "2 stars", "3 stars", "4 stars", "5 stars"],
+            reviewWord: "review",
+            reviewsWord: "reviews",
+            outOf: "out of 5",
+            subject: `New book review: ${book?.title || ""}`,
+            genericError: "There was a problem sending your review. Please try again.",
+            networkError: "I couldn't send your review. Please check your internet connection and try again.",
+          }
+        : {
+            heading: "Ce spun cititorii",
+            empty: "Încă nu există review-uri publicate pentru această carte.",
+            leave: "Lasă un review",
+            intro: "Îmi poți lăsa un review aici, iar eu îl voi publica pe site după verificare. 🥰",
+            success: "Mulțumesc! Review-ul a fost trimis.",
+            submit: "Trimite review-ul",
+            submitting: "Se trimite...",
+            name: "Numele tău",
+            email: "Emailul tău",
+            rating: "Alege ratingul",
+            review: "Scrie review-ul tău aici",
+            stars: ["1 stea", "2 stele", "3 stele", "4 stele", "5 stele"],
+            reviewWord: "review",
+            reviewsWord: "review-uri",
+            outOf: "din 5",
+            subject: `Review nou carte: ${book?.title || ""}`,
+            genericError: "A apărut o problemă la trimitere. Te rog încearcă din nou.",
+            networkError: "Nu am reușit să trimit review-ul. Verifică internetul și încearcă din nou.",
+          };
     
       async function handleReviewSubmit(e) {
         e.preventDefault();
@@ -54,14 +98,14 @@ const BASE_PATH =
           if (res.ok) {
             form.reset();
             setStatus("success");
-            setMessage("Mulțumesc! Review-ul a fost trimis.");
+            setMessage(t.success);
           } else {
             setStatus("error");
-            setMessage(data?.errors?.[0]?.message || "A apărut o problemă la trimitere. Te rog încearcă din nou.");
+            setMessage(data?.errors?.[0]?.message || t.genericError);
           }
         } catch {
           setStatus("error");
-          setMessage("Nu am reușit să trimit review-ul. Verifică internetul și încearcă din nou.");
+          setMessage(t.networkError);
         }
       }
     
@@ -79,27 +123,22 @@ const BASE_PATH =
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
           <h2 style={{ margin: 0, fontSize: 24 }} className="font-cormorant">
-  Ce spun cititorii
+          {t.heading}
 </h2>
     
             {reviews.length > 0 ? (
               <div style={{ color: "#3b2f2f", fontSize: 16 }}>
-                <strong>{averageRating.toFixed(1)}</strong> din 5 ·{" "}<span
-  style={{
-    color: "#d4a017",
-    letterSpacing: 2,
-    fontSize: 18,
-    verticalAlign: "middle",
-  }}
->
+<strong>{averageRating.toFixed(1)}</strong> {t.outOf} ·{" "}
+<span style={{ color: "#d4a017", letterSpacing: 2, fontSize: 18, verticalAlign: "middle" }}>
   {averageStars}
+</span>{" "}
+<span style={{ color: "#666" }}>
+  ({reviews.length} {reviews.length === 1 ? t.reviewWord : t.reviewsWord})
 </span>
-                {" "}
-                <span style={{ color: "#666" }}>({reviews.length} review{reviews.length === 1 ? "" : "-uri"})</span>
               </div>
             ) : (
               <div style={{ color: "#666", fontSize: 15 }}>
-                Încă nu există review-uri publicate pentru această carte.
+                {t.empty}
               </div>
             )}
           </div>
@@ -170,9 +209,9 @@ const BASE_PATH =
               marginTop: 10,
             }}
           >
-            <h3 style={{ margin: "0 0 8px 0", fontSize: 18 }}>Lasă un review</h3>
+            <h3 style={{ margin: "0 0 8px 0", fontSize: 18 }}>{t.leave}</h3>
             <p style={{ marginTop: 0, color: "#666", fontSize: 14 }}>
-              Îmi poți lăsa un review aici, iar eu îl voi publica pe site după verificare. 🥰
+            {t.intro}
             </p>
     
             {message && (
@@ -194,13 +233,13 @@ const BASE_PATH =
             <form onSubmit={handleReviewSubmit} style={{ display: "grid", gap: 10 }}>
               <input type="hidden" name="bookId" value={book.id} />
               <input type="hidden" name="bookTitle" value={book.title} />
-              <input type="hidden" name="_subject" value={`Review nou carte: ${book.title}`} />
+              <input type="hidden" name="_subject" value={t.subject} />
     
               <div style={{ display: "grid", gap: 10, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
                 <input
                   type="text"
                   name="name"
-                  placeholder="Numele tău"
+                  placeholder={t.name}
                   required
                   style={{
                     padding: "10px 12px",
@@ -212,7 +251,7 @@ const BASE_PATH =
                 <input
                   type="email"
                   name="email"
-                  placeholder="Emailul tău"
+                  placeholder={t.email}
                   required
                   style={{
                     padding: "10px 12px",
@@ -235,19 +274,17 @@ const BASE_PATH =
                   maxWidth: 220,
                 }}
               >
-                <option value="" disabled>
-                  Alege ratingul
-                </option>
-                <option value="5">5 stele</option>
-                <option value="4">4 stele</option>
-                <option value="3">3 stele</option>
-                <option value="2">2 stele</option>
-                <option value="1">1 stea</option>
+                <option value="" disabled>{t.rating}</option>
+                <option value="5">{t.stars[4]}</option>
+<option value="4">{t.stars[3]}</option>
+<option value="3">{t.stars[2]}</option>
+<option value="2">{t.stars[1]}</option>
+<option value="1">{t.stars[0]}</option>
               </select>
     
               <textarea
                 name="review"
-                placeholder="Scrie review-ul tău aici"
+                placeholder={t.review}
                 required
                 rows={5}
                 style={{
@@ -274,7 +311,7 @@ const BASE_PATH =
                   opacity: status === "submitting" ? 0.75 : 1,
                 }}
               >
-                {status === "submitting" ? "Se trimite..." : "Trimite review-ul"}
+                {status === "submitting" ? t.submitting : t.submit}
               </button>
             </form>
           </div>
