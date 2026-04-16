@@ -475,7 +475,10 @@ try {
           : "/books";
 
       // recomandările (din BOOKS)
-      const rel = (recommendBooks(book, 3) || []);
+      const rel = (recommendBooks(book, 20) || [])
+      .filter((b) => String(b?.lang || "").toUpperCase() === String(book?.lang || "").toUpperCase())
+      .filter((b) => b.id !== book.id)
+      .slice(0, 3);
 
       // 4.a) Construieste link ABSOLUT (cu domeniul curent); NO ESCAPES RELATIVE
       const origin = (typeof window !== "undefined" ? window.location.origin : "");

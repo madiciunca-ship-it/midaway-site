@@ -21,12 +21,40 @@ export function FormatSpecs({ book }) {
 
   const items = [];
 
+  const isEN = String(book?.lang || "").toUpperCase() === "EN";
+
+  const t = isEN
+    ? {
+        pages: "pages",
+        language: "Language",
+        narrator: "Narrator",
+        audiobookSoon: "in production",
+        detailsTitle: "Format details",
+        printLabel: "Paperback",
+        digitalLabel: "PDF",
+        epubLabel: "EPUB",
+        audiobookLabel: "Audiobook",
+        idLabel: "ASIN",
+      }
+    : {
+        pages: "pagini",
+        language: "Limba",
+        narrator: "Narator",
+        audiobookSoon: "în curs de producție",
+        detailsTitle: "Specificații pe format",
+        printLabel: "Paperback",
+        digitalLabel: "PDF",
+        epubLabel: "EPUB",
+        audiobookLabel: "Audiobook",
+        idLabel: "ISBN",
+      };
+
   // PDF
 if (fdet.eBook) {
   const e = fdet.eBook, p = [];
-  if (e.pages) p.push(`${e.pages} pagini`);
-  if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
-  if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
+  if (e.pages) p.push(`${e.pages} ${t.pages}`);
+if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
+if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="pdf">
       <strong>PDF:</strong> {p.length ? p.join(" • ") : "—"}
@@ -37,9 +65,9 @@ if (fdet.eBook) {
 // EPUB
 if (fdet.epub) {
   const e = fdet.epub, p = [];
-  if (e.pages) p.push(`${e.pages} pagini`);
-  if (e.isbn && e.isbn !== "—") p.push(`ISBN: ${e.isbn}`);
-  if (e.language && e.language !== "—") p.push(`Limba: ${e.language}`);
+  if (e.pages) p.push(`${e.pages} ${t.pages}`);
+if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
+if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="epub">
       <strong>EPUB:</strong> {p.length ? p.join(" • ") : "—"}
@@ -50,11 +78,11 @@ if (fdet.epub) {
 
   if (fdet.paperback) {
     const pb = fdet.paperback, p = [];
-    if (pb.pages) p.push(`${pb.pages} pagini`);
-    if (pb.isbn && pb.isbn !== "—") p.push(`ISBN: ${pb.isbn}`);
+    if (pb.pages) p.push(`${pb.pages} ${t.pages}`);
+    if (pb.isbn && pb.isbn !== "—") p.push(`${t.idLabel}: ${pb.isbn}`);
+    if (pb.language && pb.language !== "—") p.push(`${t.language}: ${pb.language}`);
     if (pb.dimensions && pb.dimensions !== "—") p.push(pb.dimensions);
-    if (pb.weight && pb.weight !== "—") p.push(pb.weight);
-    if (pb.language && pb.language !== "—") p.push(`Limba: ${pb.language}`);
+   
     items.push(
       <li key="paperback">
         <strong>Paperback:</strong> {p.length ? p.join(" • ") : "—"}
@@ -66,10 +94,10 @@ if (fdet.epub) {
     const a = fdet.audiobook || {};
     const p = [];
     if (a.minutes) p.push(`${a.minutes} minute`);
-    if (a.narrator) p.push(`Narator: ${a.narrator}`);
+    if (a.narrator) p.push(`${t.narrator}: ${a.narrator}`);
     items.push(
       <li key="audiobook">
-        <strong>Audiobook:</strong> {p.length ? p.join(" • ") : "în curs de producție"}
+       <strong>{t.audiobookLabel}:</strong> {p.length ? p.join(" • ") : t.audiobookSoon}
       </li>
     );
   }
@@ -88,10 +116,6 @@ if (fdet.epub) {
       }}
     >
       <h3 style={{ margin: "0 0 8px 0", fontSize: 16 }}>
-  {String(book?.lang || "").toUpperCase() === "EN"
-    ? "Format details"
-    : "Specificații pe format"}
-</h3>
       <ul style={{ margin: 0, paddingLeft: 18 }}>{items}</ul>
     </div>
   );
