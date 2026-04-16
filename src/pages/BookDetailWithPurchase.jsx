@@ -1,5 +1,5 @@
 // src/pages/BookDetailWithPurchase.jsx
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookDetail from "./BookDetail";
 import { BOOKS } from "../data/books";
@@ -28,6 +28,43 @@ const BASE_PATH =
     : "/books";
 
     function BookReviewsSection({ book, reviews, averageRating, averageStars }) {
+      const [status, setStatus] = useState("idle");
+      const [message, setMessage] = useState("");
+    
+      async function handleReviewSubmit(e) {
+        e.preventDefault();
+    
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+    
+        setStatus("submitting");
+        setMessage("");
+    
+        try {
+          const res = await fetch("https://formspree.io/f/xwvavdnb", {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+    
+          const data = await res.json();
+    
+          if (res.ok) {
+            form.reset();
+            setStatus("success");
+            setMessage("Mulțumesc! Review-ul tău a fost trimis și va apărea pe site după verificare.");
+          } else {
+            setStatus("error");
+            setMessage(data?.errors?.[0]?.message || "A apărut o problemă la trimitere. Te rog încearcă din nou.");
+          }
+        } catch {
+          setStatus("error");
+          setMessage("Nu am reușit să trimit review-ul. Verifică internetul și încearcă din nou.");
+        }
+      }
+    
       if (!book) return null;
     
       return (
@@ -100,14 +137,26 @@ const BASE_PATH =
           >
             <h3 style={{ margin: "0 0 8px 0", fontSize: 18 }}>Lasă un review</h3>
             <p style={{ marginTop: 0, color: "#666", fontSize: 14 }}>
-            Îmi poți lăsa un review aici, iar eu îl voi publica pe site după verificare. 🥰
+              Îmi poți lăsa un review aici, iar eu îl voi publica pe site după verificare. 🥰
             </p>
     
-            <form
-              action="https://formspree.io/f/xwvavdnb"
-              method="POST"
-              style={{ display: "grid", gap: 10 }}
-            >
+            {message && (
+              <div
+                style={{
+                  marginBottom: 14,
+                  padding: "12px 14px",
+                  borderRadius: 12,
+                  border: status === "success" ? "1px solid #7dc9bf" : "1px solid #e3b0b0",
+                  background: status === "success" ? "#e8f8f5" : "#fff3f3",
+                  color: status === "success" ? "#1f6f67" : "#9f2f2f",
+                  fontWeight: 600,
+                }}
+              >
+                {message}
+              </div>
+            )}
+    
+            <form onSubmit={handleReviewSubmit} style={{ display: "grid", gap: 10 }}>
               <input type="hidden" name="bookId" value={book.id} />
               <input type="hidden" name="bookTitle" value={book.title} />
               <input type="hidden" name="_subject" value={`Review nou carte: ${book.title}`} />
@@ -177,6 +226,7 @@ const BASE_PATH =
     
               <button
                 type="submit"
+                disabled={status === "submitting"}
                 style={{
                   width: "fit-content",
                   padding: "10px 16px",
@@ -185,10 +235,11 @@ const BASE_PATH =
                   background: "#2a9d8f",
                   color: "#fff",
                   fontWeight: 700,
-                  cursor: "pointer",
+                  cursor: status === "submitting" ? "wait" : "pointer",
+                  opacity: status === "submitting" ? 0.75 : 1,
                 }}
               >
-                Trimite review-ul
+                {status === "submitting" ? "Se trimite..." : "Trimite review-ul"}
               </button>
             </form>
           </div>
