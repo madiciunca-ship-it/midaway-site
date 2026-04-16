@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { useCart } from "../context/CartContext";
 import { BOOKS } from "../data/books";
 
+
 // util – afișare bani
 function money(amount, currency) {
   const n = Number(amount);
