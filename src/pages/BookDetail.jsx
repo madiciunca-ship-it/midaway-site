@@ -49,6 +49,36 @@ function AddToCart({ id, title, format, lang, price, payLink, children }) {
 export default function BookDetail() {
   const { id } = useParams();
   const book = BOOKS.find((b) => String(b.id) === String(id));
+  const isEN = String(book?.lang || "").toUpperCase() === "EN";
+
+const t = isEN
+  ? {
+      backAll: "← Back to all books",
+      bookMissing: "Book not found",
+      sample: "Read a sample",
+      technical: "Technical details",
+      ebookPages: "eBook",
+      pages: "pages",
+      dimensions: "Dimensions",
+      weight: "Weight",
+      publisher: "Publisher",
+      year: "Year",
+      related: "You may also like",
+    }
+  : {
+      backAll: "← Înapoi la toate cărțile",
+      bookMissing: "Cartea nu există",
+      sample: "Citește un fragment",
+      technical: "Detalii tehnice",
+      ebookPages: "eBook",
+      pages: "pagini",
+      dimensions: "Dimensiuni",
+      weight: "Greutate",
+      publisher: "Editura",
+      year: "An",
+      related: "Poate te mai interesează",
+    };
+  
   const bookSchema = {
     "@context": "https://schema.org",
     "@type": "Book",
@@ -105,7 +135,7 @@ export default function BookDetail() {
         <div style={{ padding: 24 }}>
           <h2>Cartea nu există</h2>
           <p>
-            <Link to="/carti">← Înapoi la toate cărțile</Link>
+            <Link to="/carti">{t.backAll}</Link>
           </p>
         </div>
         </>
@@ -127,7 +157,7 @@ export default function BookDetail() {
   return (
     <div style={{ padding: 24 }}>
       <p style={{ fontSize: 14, margin: 0 }}>
-        <Link to="/carti">← Înapoi la toate cărțile</Link>
+        <Link to="/carti">{t.backAll}</Link>
       </p>
 
       <h1 style={{ margin: "8px 0 0 0" }}>{book.title}</h1>
@@ -237,16 +267,16 @@ export default function BookDetail() {
 
           {/* Detalii tehnice */}
           <div style={{ marginTop: 16 }}>
-            <h3 style={{ margin: "0 0 8px 0" }}>Detalii tehnice</h3>
-            <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
-              {book.pages && <li>eBook • {book.pages} pagini</li>}
-              {book.isbn && <li>ISBN: {book.isbn}</li>}
-              {book.dimensions && <li>Dimensiuni: {book.dimensions}</li>}
-              {book.weight && <li>Greutate: {book.weight}</li>}
-              <li>Editura: {book.publisher}</li>
-              <li>An: {book.year}</li>
-            </ul>
-          </div>
+  <h3 style={{ margin: "0 0 8px 0" }}>{t.technical}</h3>
+  <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
+    {book.pages && <li>{t.ebookPages} • {book.pages} {t.pages}</li>}
+    {book.isbn && <li>ISBN: {book.isbn}</li>}
+    {book.dimensions && <li>{t.dimensions}: {book.dimensions}</li>}
+    {book.weight && <li>{t.weight}: {book.weight}</li>}
+    <li>{t.publisher}: {book.publisher}</li>
+    <li>{t.year}: {book.year}</li>
+  </ul>
+</div>
 
           {/* Butoane acțiune */}
           <div
@@ -274,7 +304,7 @@ export default function BookDetail() {
                   fontWeight: "bold",
                 }}
               >
-                📖 Citește un fragment
+                📖 {t.sample}
               </a>
             )}
 
@@ -652,7 +682,7 @@ export default function BookDetail() {
       {/* Recomandări */}
       {related.length > 0 && (
         <div style={{ marginTop: 40 }}>
-          <h3 style={{ marginBottom: 16 }}>Poate te mai interesează</h3>
+          <h3 style={{ marginBottom: 16 }}>{t.related}</h3>
           <div
             style={{
               display: "grid",
