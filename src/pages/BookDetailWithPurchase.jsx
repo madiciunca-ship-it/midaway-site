@@ -104,7 +104,7 @@ const BASE_PATH =
             </p>
     
             <form
-              action="AICI_PUI_ENDPOINTUL_FORMSPREE"
+              action="https://formspree.io/f/xwvavdnb"
               method="POST"
               style={{ display: "grid", gap: 10 }}
             >
