@@ -521,7 +521,7 @@ const posts = [
       `Dimineața m-am trezit cu o singură concluzie: „Nu pot să mor înghețată într-un oraș cu panda.”`,
       `Noaptea următoare am sesizat situația la recepție. Și am primit alt pat. În altă cameră. Victorie mică. Dar foarte importantă.`,
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Panda Base", href: "https://www.google.com/maps/place/Chengdu+Research+Base+of+Giant+Panda+Breeding/", kind: "external" }, { text: " – locul în care și oamenii devin ursuleți*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Panda Base", href: "https://maps.app.goo.gl/pRrJjFaUnjozHBck9?g_st=iw", kind: "external" }, { text: " – locul în care și oamenii devin ursuleți*" }] },
       `Am stat trei nopți în Chengdu.`,
       `Și am făcut ce face toată lumea aici: am mers la Panda Base.`,
       `Pentru asta m-am trezit la 5:30. Ca să ajung la 8:00 la rezervație, înainte ca ursuleții să intre complet în modul lor preferat: somn.`,
@@ -543,7 +543,7 @@ const posts = [
       `De acolo mi-am luat un suvenir simplu: un tricou alb cu trei panda mici pe el.`,
       `N-am avut nevoie de altceva. Era suficient.`,
   
-      { type: "paragraph", parts: [{ text: "*" }, { text: "People’s Park", href: "https://www.google.com/maps/place/People's+Park,+Chengdu/", kind: "external" }, { text: ", " }, { text: "Kuan Alley & Zhai Alley", href: "https://www.google.com/maps/place/Kuan+Alley+and+Zhai+Alley/", kind: "external" }, { text: " – Chengdu la pas lent*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "People’s Park", href: "https://maps.app.goo.gl/o4gTuq779EATubFE8?g_st=iw", kind: "external" }, { text: ", " }, { text: "Kuan Alley & Zhai Alley", href: "https://maps.app.goo.gl/r2ytEeDs2Vxi8STu8?g_st=iw", kind: "external" }, { text: " – Chengdu la pas lent*" }] },
       `Am mers și în People’s Park.`,
       `Un alt fel de „China”. Una care respiră. Care stă. Care se plimbă fără scop. Care pare că are timp. Care cântă, dansează, citește.`,
   
@@ -660,16 +660,16 @@ const posts = [
       
       `În restul zilelor, m-am plimbat mult cu metroul. Doar ca să mă uit pe geam.`,
       `Pentru că aici metroul nu e doar transport – e atracție. E suspendat, e printre clădiri, e ca un șarpe luminos care taie orașul în bucăți.`,
-      { type: "paragraph", parts: [{ text: "Și, evident, am ajuns și la locul iconic – " }, { text: "Liziba Station", href: "https://www.google.com/maps/place/Liziba+Station/", kind: "external" }, { text: ": blocul prin care intră metroul, pe la etajul nu-știu-cât. (Era etajul 6. Sună prea bine ca să nu fie adevărat.)" }] },
+      { type: "paragraph", parts: [{ text: "Și, evident, am ajuns și la locul iconic – " }, { text: "Liziba Station", href: "https://maps.app.goo.gl/dSpA9MmXfDQHaKvt9?g_st=iw", kind: "external" }, { text: ": blocul prin care intră metroul, pe la etajul nu-știu-cât. (Era etajul 6. Sună prea bine ca să nu fie adevărat.)" }] },
       `Am stat acolo și am privit, cu oamenii strânși grămadă, cu telefoanele ridicate, în poziția clasică de „trebuie să am dovada”.`,
       `Și când a intrat metroul în clădire… chiar e superb.`,
       `E genul de chestie care, dacă n-ai vedea-o cu ochii tăi, ai zice că e editată.`,
       
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Eling Park", href: "https://www.google.com/maps/place/Eling+Park/", kind: "external" }, { text: ": ca din avion*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Eling Park", href: "https://maps.app.goo.gl/s2VpLbkWnXqPSACC9?g_st=iw", kind: "external" }, { text: ": ca din avion*" }] },
       `Am mers și în Eling Park. Și acolo am făcut poze de zici că eram în avion.`,
       `Chongqing e un oraș vertical. Nu se întinde, se ridică. Te face să te simți mic, dar și entuziasmat, ca și cum ai fi într-un decor SF construit pentru oameni care nu obosesc.`,
       
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Ciqikou", href: "https://www.google.com/maps/place/Ciqikou+Ancient+Town/", kind: "external" }, { text: ": pauza care mi-a resetat Chongqingul*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Ciqikou", href: "https://maps.app.goo.gl/khN1zYm47gvLvn86A?g_st=iw", kind: "external" }, { text: ": pauza care mi-a resetat Chongqingul*" }] },
       `În ultima zi, înainte să merg la Hongyadong, am făcut ceva ce n-aș fi crezut că o să-mi placă atât: am mers la Ciqikou.`,
       `E departe de centru. Aproape o oră cu metroul. Și, sincer, când am urcat în metrou, mi-am zis: „Dacă e o țeapă, măcar am văzut orașul pe drum.”`,
       `N-a fost țeapă. A meritat fiecare secundă petrecută în metrou.`,
@@ -679,7 +679,7 @@ const posts = [
       `Și, culmea, aici am ajuns în sfârșit la apă. Incredibil.`,
       `Când am plecat de acolo, aveam deja sentimentul că seara o să fie bună. Și a fost.`,
       
-      { type: "paragraph", parts: [{ text: "*" }, { text: "Hongyadong", href: "https://www.google.com/maps/place/Hongyadong/", kind: "external" }, { text: ": luminile care te hipnotizează*" }] },
+      { type: "paragraph", parts: [{ text: "*" }, { text: "Hongyadong", href: "https://maps.app.goo.gl/JihZwyAGyx7yHMZR8?g_st=iw", kind: "external" }, { text: ": luminile care te hipnotizează*" }] },
       `Ultima seară am păstrat-o pentru Hongyadong. Iconicul cu luminile.`,
       `Și da: e o superbitate.`,
       `Noaptea acolo e ca o scenă. Totul e aprins, strălucește, forfotește. Oamenii sunt peste tot, ca într-un festival continuu. În aer e miros de mâncare dulce, prăjeli, condimente. Te lovește un val de sunete și culori și, cumva, nu vrei să pleci.`,
@@ -749,21 +749,21 @@ const posts = [
 
       { type: "paragraph", parts: [{ text: "*Prima zi în " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: " – când „wow” devine stare permanentă*" }] },
 
-      { type: "paragraph", parts: [{ text: "Zhangjiajie National Forest Park face parte din zona scenică " }, { text: "Wulingyuan", href: "https://www.google.com/maps/place/Wulingyuan+Scenic+Area/", kind: "external" }, { text: ", un teritoriu montan de peste 260 km², sculptat din coloane de gresie cuarțoasă care se ridică vertical până la peste 1.200 de metri." }] },
+      { type: "paragraph", parts: [{ text: "Zhangjiajie National Forest Park face parte din zona scenică " }, { text: "Wulingyuan", href: "https://maps.app.goo.gl/EvX2rZxzwgXxpyWW6?g_st=iw", kind: "external" }, { text: ", un teritoriu montan de peste 260 km², sculptat din coloane de gresie cuarțoasă care se ridică vertical până la peste 1.200 de metri." }] },
       `Nu sunt munți în sensul clasic.`, 
       `Stâlpi de piatră care se ridică din ceață, prăpăstii verticale, platforme suspendate, poteci care par desenate, nu construite.`,
       `Prima zi în parc a fost intensă.`, 
-      { type: "paragraph", parts: [{ text: "Yuanjiajie", href: "https://www.google.com/maps/place/Yuanjiajie+Scenic+Area/", kind: "external" }, { text: ", zona faimoasă pentru peisajele care au inspirat munții plutitori din Avatar, părea un decor construit de o inteligență suprarealistă." }] },
+      { type: "paragraph", parts: [{ text: "Yuanjiajie", href: "https://maps.app.goo.gl/KUPvomQE2bEzQCPD9?g_st=iw", kind: "external" }, { text: ", zona faimoasă pentru peisajele care au inspirat munții plutitori din Avatar, părea un decor construit de o inteligență suprarealistă." }] },
       `Munții nu arătau ca munții. Arătau ca niște coloane desprinse din altă lume.`,
       
-      { type: "paragraph", parts: [{ text: "Am urcat spre " }, { text: "Tianzi Mountain", href: "https://www.google.com/maps/place/Tianzi+Mountain/", kind: "external" }, { text: " cu una dintre cele mai lungi telecabine din " }, { text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "Am urcat spre " }, { text: "Tianzi Mountain", href: "https://maps.app.goo.gl/zYqcahc4TtFQpugM6?g_st=iw", kind: "external" }, { text: " cu una dintre cele mai lungi telecabine din " }, { text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: "." }] },
       `Sus, panorama era atât de vastă încât munții păreau mai degrabă idei decât forme.`, 
       `Și atunci s-a întâmplat ceva absurd: aveam semnal perfect. După zile întregi în orașe fără internet, sus, între stânci și ceață, puteam vorbi la telefon, face video, posta.`,
       
       `Între două creste dramatice am găsit un McDonald’s. O înghețată în vârf de munte a fost mai mult decât binevenită.`, 
       `Globalizarea ajunsese înaintea mea. Bine, McDonald’s nu era singurul gigant de aici, am găsit și altele „cunoscute”.`,
       
-      { type: "paragraph", parts: [{ text: "Apoi am ajuns la " }, { text: "liftul Bailong", href: "https://www.google.com/maps/place/Bailong+Elevator/", kind: "external" }, { text: " – cel mai înalt lift exterior din lume." }] },
+      { type: "paragraph", parts: [{ text: "Apoi am ajuns la " }, { text: "liftul Bailong", href: "https://maps.app.goo.gl/sdEDTpwLTQY8VDej7?g_st=iw", kind: "external" }, { text: " – cel mai înalt lift exterior din lume." }] },
       `În mai puțin de două minute, m-a ridicat aproape 330 de metri pe fața unei stânci verticale.`, 
       `Să urci într-un lift lipit de o stâncă, cu prăpastia sub tine, nu seamănă cu nimic din ce știam despre munți.`,
       `Nici n-am apucat să filmez cum trebuie.`,
@@ -778,7 +778,7 @@ const posts = [
 
 `— Un maimuțel pe o stâncă.`,
 `— Un munte Avatar suspendat în ceață.`,
-{ type: "paragraph", parts: [{ text: "— Un indicator spre „" }, { text: "Fascinating Terrace", href: "https://www.google.com/maps/place/Fascinating+Terrace/", kind: "external" }, { text: "”." }] },
+{ type: "paragraph", parts: [{ text: "— Un indicator spre „" }, { text: "Fascinating Terrace", href: "https://maps.app.goo.gl/AgngBMN9itqcvZQw5?g_st=iw", kind: "external" }, { text: "”." }] },
 `— O potecă prin pădure.`,
 `— Doi australieni pierduți în sat.`,
 `— Un tren absurd de drăguț.`,
@@ -799,9 +799,9 @@ const posts = [
     `În trei zile, am traversat nu doar zonele celebre, ci și pe cele pe care mulți turiști le sar:`,
 `— Yuanjiajie, munții Avatar;`,
 `— Tianzi Mountain, creasta poetică a parcului;`,
-{ type: "paragraph", parts: [{ text: "— " }, { text: "Golden Whip Stream", href: "https://www.google.com/maps/place/Golden+Whip+Stream/", kind: "external" }, { text: ", valea lungă și umedă;" }] },
-{ type: "paragraph", parts: [{ text: "— " }, { text: "Huangshizhai", href: "https://www.google.com/maps/place/Huangshizhai/", kind: "external" }, { text: ", traseele circulare de pe creastă;" }] },
-{ type: "paragraph", parts: [{ text: "— " }, { text: "Yangjiajie", href: "https://www.google.com/maps/place/Yangjiajie+Scenic+Area/", kind: "external" }, { text: ", zona mai sălbatică, mai brutală." }] },
+{ type: "paragraph", parts: [{ text: "— " }, { text: "Golden Whip Stream", href: "https://maps.app.goo.gl/vLhhYaFnfiWGdMcu5?g_st=iw", kind: "external" }, { text: ", valea lungă și umedă;" }] },
+{ type: "paragraph", parts: [{ text: "— " }, { text: "Huangshizhai", href: "https://maps.app.goo.gl/1sPcDs2My23NXpTz9?g_st=iw", kind: "external" }, { text: ", traseele circulare de pe creastă;" }] },
+{ type: "paragraph", parts: [{ text: "— " }, { text: "Yangjiajie", href: "https://maps.app.goo.gl/v6z4iaAi9vBCmnNS9?g_st=iw", kind: "external" }, { text: ", zona mai sălbatică, mai brutală." }] },
 `Nu am urmat hărțile.`,
 `Le-am rescris.`,
 `La final, mi-am dat seama că am parcurs probabil între 40 și 60 de kilometri, pe verticală și orizontală, printre munți, scări, poteci și platforme.`,
