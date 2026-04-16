@@ -1,17 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-  <atom:link href="https://midaway.ro/feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />
+    <atom:link href="https://midaway.ro/feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />
     <title>Midaway — Blog</title>
     <link>https://midaway.ro/blog</link>
     <description>Gânduri, povești și fragmente de drum.</description>
     <language>ro-RO</language>
 
     <item>
+      <title>Libertăți diferite: când bărbatul poate, iar femeia alege</title>
+      <link>https://midaway.ro/blog/cand-libertatea-inseamna-lucruri-diferite-barbat-femeie</link>
+      <guid>https://midaway.ro/blog/cand-libertatea-inseamna-lucruri-diferite-barbat-femeie</guid>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Nu toate formele de libertate arată la fel. Pentru un bărbat, libertatea poate însemna să poată avea orice femeie își dorește. Pentru o femeie, libertatea apare atunci când poate avea… și alege să nu o facă. Despre întâlnirea rară dintre două libertăți diferite.</description>
+    </item>
+
+    <item>
+      <title>Cartea pe care nu voiam să o scriu</title>
+      <link>https://midaway.ro/blog/cartea-pe-care-nu-voiam-sa-o-scriu-focuri-care-nu-ating</link>
+      <guid>https://midaway.ro/blog/cartea-pe-care-nu-voiam-sa-o-scriu-focuri-care-nu-ating</guid>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <description>A început dintr-o glumă și a devenit o probă de foc: un jurnal lucid despre dorință, limite și alegeri – și despre cum un „Nu”, spus la timp, poate deveni cea mai mare formă de iubire de sine.</description>
+    </item>
+
+    <item>
+      <title>Hong Kong – ultimul episod înainte să ies din film</title>
+      <link>https://midaway.ro/blog/hong-kong-ultimul-episod-inainte-sa-ies-din-film</link>
+      <guid>https://midaway.ro/blog/hong-kong-ultimul-episod-inainte-sa-ies-din-film</guid>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+      <description>După haosul Chinei continentale, Hong Kong a venit ca o ieșire din film: fără cartelă, fără cazare, cu un fișier dispărut și cu același «NO CONNECTION» transformat, în sfârșit, în sens.</description>
+    </item>
+
+    <item>
+      <title>Yangshuo – momentul în care nu mai știam dacă plec sau rămân</title>
+      <link>https://midaway.ro/blog/yangshuo-momentul-in-care-nu-mai-stiam-daca-plec-sau-raman</link>
+      <guid>https://midaway.ro/blog/yangshuo-momentul-in-care-nu-mai-stiam-daca-plec-sau-raman</guid>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 GMT</pubDate>
+      <description>Între Zhangjiajie și Yangshuo, China mi-a arătat că uneori direcția nu se alege – se întâmplă. Fără hartă, fără semnal și cu același «NO CONNECTION», dar cu oameni care apar exact când ai nevoie de ei.</description>
+    </item>
+
+    <item>
+      <title>Zhangjiajie – munții Avatar, semnalul imposibil și locul în care China devine ireală</title>
+      <link>https://midaway.ro/blog/zhangjiajie-muntii-avatar-si-semnalul-imposibil</link>
+      <guid>https://midaway.ro/blog/zhangjiajie-muntii-avatar-si-semnalul-imposibil</guid>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Munți care nu par reali, lifturi lipite de stânci, semnal în vârf de lume și un parc care nu e parc, ci univers. Zhangjiajie este locul în care China devine Avatar, iar «NO CONNECTION» capătă un sens neașteptat.</description>
+    </item>
+
+    <item>
+      <title>Chongqing – orașul construit pe verticală, în care noaptea nu se termină niciodată</title>
+      <link>https://midaway.ro/blog/chongqing-orasul-construit-pe-verticala-in-care-noaptea-nu-se-termina-niciodata</link>
+      <guid>https://midaway.ro/blog/chongqing-orasul-construit-pe-verticala-in-care-noaptea-nu-se-termina-niciodata</guid>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Poduri, metrou prin clădiri, lumini hipnotice și un oraș care nu doarme. Chongqing e locul unde «NO CONNECTION» devine haos controlat și curajul învață să meargă pe verticală.</description>
+    </item>
+
+    <item>
+      <title>Chengdu – oraș al ceaiului, al statului pe loc, al timpului care nu se negociază</title>
+      <link>https://midaway.ro/blog/chengdu-orasul-ceaiului-al-timpului-care-nu-se-negociaza</link>
+      <guid>https://midaway.ro/blog/chengdu-orasul-ceaiului-al-timpului-care-nu-se-negociaza</guid>
+      <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Panda, ceai, străzi care nu se grăbesc și un oraș care te așază. Chengdu este locul în care «NO CONNECTION» devine rutină și ritmul încetinește suficient cât să respiri.</description>
+    </item>
+
+    <item>
+      <title>Xi’an – orașul contrastelor în care am respirat din nou</title>
+      <link>https://midaway.ro/blog/xian-orasul-contrastelor-in-care-am-respirat-din-nou</link>
+      <guid>https://midaway.ro/blog/xian-orasul-contrastelor-in-care-am-respirat-din-nou</guid>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Despre trenul-glonț, ziduri vechi, armuri inutile, ploaie, Cartierul Musulman și orașul care m-a învățat să accept – seria «NO CONNECTION» continuă.</description>
+    </item>
+
+    <item>
+      <title>Beijing – orașul în care frigul îți taie respirația</title>
+      <link>https://midaway.ro/blog/beijing-orasul-in-care-frigul-iti-taie-respiratia</link>
+      <guid>https://midaway.ro/blog/beijing-orasul-in-care-frigul-iti-taie-respiratia</guid>
+      <pubDate>Fri, 26 Dec 2025 00:00:00 GMT</pubDate>
+      <description>22 de ore de drum, tuse, hosteluri înghețate și un Beijing care nu negociază. Primul prag din seria «NO CONNECTION» – unde telefonul moare și eu aleg să merg mai departe.</description>
+    </item>
+
+    <item>
+      <title>No Connection – Jurnale de drum din China</title>
+      <link>https://midaway.ro/blog/no-connection-jurnale-de-drum-din-china</link>
+      <guid>https://midaway.ro/blog/no-connection-jurnale-de-drum-din-china</guid>
+      <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.</description>
+    </item>
+
+    <item>
+      <title>Povestea din culise: cum mi-am împins „piatra” până a devenit un website, o editură și un drum nou</title>
+      <link>https://midaway.ro/blog/povestea-din-culise-cum-am-construit-site-ul</link>
+      <guid>https://midaway.ro/blog/povestea-din-culise-cum-am-construit-site-ul</guid>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Uneori, un simplu „nu știu” devine piatra pe care o împingi spre vârf. Așa a început drumul meu...</description>
+    </item>
+
+    <item>
       <title>De ce alegem drumuri neștiute?</title>
       <link>https://midaway.ro/blog/de-ce-alegem-drumuri-nestiute</link>
       <guid>https://midaway.ro/blog/de-ce-alegem-drumuri-nestiute</guid>
-      <pubDate>Sun, 02 Mar 2025 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate>
       <description>Nu alegem drumuri neștiute pentru că sunt comode. Le alegem tocmai pentru că nu știm…</description>
     </item>
 
@@ -19,7 +107,7 @@
       <title>Yda – între ficțiune și realitate?</title>
       <link>https://midaway.ro/blog/yda-intre-fictiune-si-realitate</link>
       <guid>https://midaway.ro/blog/yda-intre-fictiune-si-realitate</guid>
-      <pubDate>Mon, 10 Feb 2025 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 22 Oct 2025 00:00:00 GMT</pubDate>
       <description>Despre felul în care un personaj poate deveni oglindă pentru cine ești tu.</description>
     </item>
 
@@ -27,7 +115,7 @@
       <title>Cum a început călătoria mea</title>
       <link>https://midaway.ro/blog/cum-a-inceput-calatoria-mea</link>
       <guid>https://midaway.ro/blog/cum-a-inceput-calatoria-mea</guid>
-      <pubDate>Wed, 15 Jan 2025 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
       <description>Povestea startului: primele zile, primele decizii, primul pas în necunoscut.</description>
     </item>
   </channel>
