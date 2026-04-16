@@ -1201,7 +1201,7 @@ const posts = [
     content: [
       `Nu știu exact când mi-a venit gândul acesta.`,
       `Nu a apărut într-o conversație profundă și nici într-un moment construit pentru revelații.`,
-      `A apărut brusc, ca o paranteză deschisă în timp ce mă gândeam la „Focuri care nu ating” – la bărbații din carte, la femeia care eram eu în acele întâlniri și la felul în care dinamica părea să se repete… fără să fie vreodată identică.`,
+      { type: "paragraph", parts: [{ text: "A apărut brusc, ca o paranteză deschisă în timp ce mă gândeam la " }, { text: "„Focuri care nu ating”", href: "/carti/focuri-care-nu-ating-ro", kind: "internal" }, { text: " – la bărbații din carte, la femeia care eram eu în acele întâlniri și la felul în care dinamica părea să se repete… fără să fie vreodată identică." }] },
       
       `Și atunci am formulat, aproape instinctiv, o idee simplă, dar incomodă:`,
       
@@ -1278,7 +1278,7 @@ const posts = [
       `Libertatea de a rămâne.`,
       `Poate că unele dintre aceste întâlniri nu sunt doar idei.`,
       `Poate că sunt povești.`,
-      `Unele dintre ele le-am adunat în „Focuri care nu ating”.`, 
+      { type: "paragraph", parts: [{ text: "Unele dintre ele le-am adunat în " }, { text: "„Focuri care nu ating”", href: "/carti/focuri-care-nu-ating-ro", kind: "internal" }, { text: ", dacă simți că vrei să mergi mai departe." }] },
     ]
   }
   
