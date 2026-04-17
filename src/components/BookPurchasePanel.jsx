@@ -257,6 +257,10 @@ const mainVendor = hasAmazon
   // cardul de format (PDF/EPUB/PAPERBACK/etc.)
   const card = (fmt, icon) => {
     const KEY = String(fmt).toUpperCase();
+    const displayLabel =
+  KEY === "PAPERBACK"
+    ? (isEN ? "PAPERBACK" : "CARTE TIPĂRITĂ")
+    : KEY;
     const avail = Boolean(availability?.[KEY]);
     const price = Number(prices?.[KEY]) || 0;
     const labelSoon = t.soon;
@@ -318,7 +322,7 @@ const vendorTermsText = mainVendor
               fontSize: 14,
             }}
           >
-            <span>{icon}</span> {KEY}
+            <span>{icon}</span> {displayLabel}
           </strong>
           {showSoon && (
             <span
