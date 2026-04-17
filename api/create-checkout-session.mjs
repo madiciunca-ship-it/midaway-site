@@ -251,13 +251,19 @@ export default async function handler(req, res) {
     const cancel_url = `${SITE}/carti`;
     console.log("CHK urls:", { SITE, success_url, cancel_url });
 
-    // Sesiune Stripe
+    
+    const checkoutLocale =
+  cleaned.some((x) => String(x?.book?.lang || "").toUpperCase() === "EN")
+    ? "en"
+    : "auto";
+      // Sesiune Stripe
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
       metadata: sessionMeta,
       success_url,
       cancel_url,
+      locale: checkoutLocale,
       customer_creation: "always",
       billing_address_collection: "required",
       phone_number_collection: {           // ← ADĂUGAT

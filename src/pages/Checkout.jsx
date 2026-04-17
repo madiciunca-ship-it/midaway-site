@@ -344,24 +344,47 @@ const t =
                 checked={agreeTerms}
                 onChange={(e) => setAgreeTerms(e.target.checked)}
               />
-              <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-              {t.termsIntro}{" "}
-                <Link to="/termeni" style={{ color: "var(--accent)" }}>
-                {t.terms}
-                </Link>
-                ,{" "}
-                <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
-                {t.cookies}
-                </Link>{" "}
-                și{" "}
-                <Link
-                  to="/politica-confidentialitate"
-                  style={{ color: "var(--accent)" }}
-                >
-                  {t.privacy}
-                </Link>
-                .
-              </span>
+             <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+  {checkoutLang === "en" ? (
+    <>
+      I agree with the{" "}
+      <Link to="/termeni" style={{ color: "var(--accent)" }}>
+        Terms and Conditions
+      </Link>
+      ,{" "}
+      <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
+        Cookie Policy
+      </Link>{" "}
+      and{" "}
+      <Link
+        to="/politica-confidentialitate"
+        style={{ color: "var(--accent)" }}
+      >
+        Privacy Policy
+      </Link>
+      .
+    </>
+  ) : (
+    <>
+      Sunt de acord cu{" "}
+      <Link to="/termeni" style={{ color: "var(--accent)" }}>
+        Termenii și condițiile
+      </Link>
+      ,{" "}
+      <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
+        Politica de cookies
+      </Link>{" "}
+      și{" "}
+      <Link
+        to="/politica-confidentialitate"
+        style={{ color: "var(--accent)" }}
+      >
+        Politica de confidențialitate
+      </Link>
+      .
+    </>
+  )}
+</span>
             </label>
 
             {/* ✅ Acord pentru conținut digital */}
@@ -380,15 +403,28 @@ const t =
                   onChange={(e) => setAgreeDigital(e.target.checked)}
                 />
                 <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                  Sunt de acord cu începerea livrării digitale înainte de expirarea
-                  termenului legal de retragere și înțeleg că îmi pierd dreptul de
-                  retragere după descărcare. (
-                    {t.digitalConsent} (
-  <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
-    {t.details}
-  </Link>
-)
-                </span>
+  {checkoutLang === "en" ? (
+    <>
+      I agree to the start of digital delivery before the legal withdrawal
+      period expires and I understand that I lose my right of withdrawal
+      after download. (
+      <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
+        Details
+      </Link>
+      )
+    </>
+  ) : (
+    <>
+      Sunt de acord cu începerea livrării digitale înainte de expirarea
+      termenului legal de retragere și înțeleg că îmi pierd dreptul de
+      retragere după descărcare. (
+      <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
+        Detalii
+      </Link>
+      )
+    </>
+  )}
+</span>
               </label>
             )}
           </div>
@@ -432,7 +468,7 @@ const t =
                   }}
                 >
                   <input
-                    placeholder="{t.companyName}"
+                    placeholder={t.companyName}
                     value={company.name}
                     onChange={(e) =>
                       setCompany({ ...company, name: e.target.value })
@@ -440,7 +476,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.taxId}"
+                    placeholder={t.taxId}
                     value={company.taxId}
                     onChange={(e) =>
                       setCompany({ ...company, taxId: e.target.value })
@@ -448,7 +484,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.reg}"
+                    placeholder={t.reg}
                     value={company.reg}
                     onChange={(e) =>
                       setCompany({ ...company, reg: e.target.value })
@@ -456,7 +492,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.address}"
+                    placeholder={t.address}
                     value={company.address}
                     onChange={(e) =>
                       setCompany({ ...company, address: e.target.value })
@@ -464,7 +500,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.city}"
+                    placeholder={t.city}
                     value={company.city}
                     onChange={(e) =>
                       setCompany({ ...company, city: e.target.value })
@@ -472,7 +508,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.state}"
+                    placeholder={t.state}
                     value={company.state}
                     onChange={(e) =>
                       setCompany({ ...company, state: e.target.value })
@@ -480,7 +516,7 @@ const t =
                     style={field}
                   />
                   <input
-                    placeholder="{t.country})"
+                    placeholder={t.country}
                     value={company.country}
                     onChange={(e) =>
                       setCompany({
