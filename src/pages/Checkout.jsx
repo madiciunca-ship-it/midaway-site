@@ -147,7 +147,7 @@ const t =
     address: "",
     city: "",
     state: "",
-    country: "RO",
+    country: "",
   });
 
   // trimitem meta doar dacă checkbox-ul e bifat + avem câmpuri minime
