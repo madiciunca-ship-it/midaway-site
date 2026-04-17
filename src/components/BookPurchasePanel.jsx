@@ -44,7 +44,7 @@ export function FormatSpecs({ book }) {
         narrator: "Narator",
         audiobookSoon: "în curs de producție",
         detailsTitle: "Specificații pe format",
-        printLabel: "Paperback",
+        printLabel: "Carte tipărită",
         digitalLabel: "PDF",
         epubLabel: "EPUB",
         audiobookLabel: "Audiobook",
