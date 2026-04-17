@@ -1,6 +1,6 @@
 // src/pages/BookDetailWithPurchase.jsx
 import React, { useEffect, useRef, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BookDetail from "./BookDetail";
 import { BOOKS } from "../data/books";
 import BookPurchasePanel, { FormatSpecs } from "../components/BookPurchasePanel";
@@ -58,6 +58,7 @@ const BASE_PATH =
             showMoreSuffixSingle: "more review",
             showMoreSuffixPlural: "more reviews",
             showFewerReviews: "Show fewer",
+            backAll: "← Back to all books",
           }
         : {
             heading: "Ce spun cititorii",
@@ -82,6 +83,7 @@ const BASE_PATH =
             showMoreSuffixSingle: "review",
             showMoreSuffixPlural: "review-uri",
             showFewerReviews: "Arată mai puține",
+            backAll: "← Înapoi la toate cărțile",
           };
     
       const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 2);
@@ -356,6 +358,25 @@ const BASE_PATH =
               </button>
             </form>
           </div>
+
+          <div
+  style={{
+    marginTop: 18,
+    paddingTop: 14,
+    borderTop: "1px dashed #e6ddd3",
+  }}
+>
+  <Link
+    to="/carti"
+    style={{
+      color: "#7a2e2e",
+      textDecoration: "underline",
+      fontWeight: 500,
+    }}
+  >
+    {t.backAll}
+  </Link>
+</div>
         </section>
       );
     }
