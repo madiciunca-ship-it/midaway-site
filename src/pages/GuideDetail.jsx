@@ -26,18 +26,40 @@ export default function GuideDetail() {
   }, [lang]);
 
   const g = (guides || []).find((x) => x.id === id);
-  if (!g) {
-    return (
-      <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">Ghidul nu există</h1>
-        <p>
-          <Link to="/ghizi" style={{ color: "var(--accent)", textDecoration: "none" }}>
-            ← Înapoi la Ghizi
-          </Link>
-        </p>
-      </div>
-    );
-  }
+  const ui =
+  lang === "en"
+    ? {
+        notFound: "Guide not found",
+        backToGuides: "← Back to guides",
+      }
+    : {
+        notFound: "Ghidul nu există",
+        backToGuides: "← Înapoi la ghizi",
+      };
+
+const backPillStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "8px 12px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--secondary)",
+  textDecoration: "none",
+  fontWeight: 500,
+  background: "transparent",
+};
+if (!g) {
+  return (
+    <div className="container" style={{ padding: "40px 16px" }}>
+      <h1 className="font-cormorant">{ui.notFound}</h1>
+      <p>
+        <Link to="/ghizi" style={backPillStyle}>
+          {ui.backToGuides}
+        </Link>
+      </p>
+    </div>
+  );
+}
 
   const lc = g[lang] || g.ro || g.en;
   const gallery = Array.isArray(g.gallery) ? g.gallery.slice(0, 3) : [];
@@ -49,10 +71,10 @@ export default function GuideDetail() {
     return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
       <p style={{ marginTop: 0 }}>
-      <Link to="/ghizi" style={{ textDecoration: "none" }}>
-  ← Înapoi la Ghizi
-</Link>
-      </p>
+  <Link to="/ghizi" style={backPillStyle}>
+    {ui.backToGuides}
+  </Link>
+</p>
 
       {/* galerie */}
       <div
@@ -174,14 +196,11 @@ export default function GuideDetail() {
         </section>
       )}
 
-      <div style={{ marginTop: 20 }}>
-        <Link
-          to={`/ghizi?lang=${lang}`}
-          style={{ color: "var(--secondary)", textDecoration: "none" }}
-        >
-          ← Înapoi la Ghizi
-        </Link>
-      </div>
+<div style={{ marginTop: 20 }}>
+  <Link to="/ghizi" style={backPillStyle}>
+    {ui.backToGuides}
+  </Link>
+</div>
     </div>
   );
 }
