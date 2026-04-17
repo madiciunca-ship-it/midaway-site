@@ -41,13 +41,51 @@ export default function TravelerDetail() {
   }, [lang]);
 
   const t = travelers.find((x) => x.id === id);
+  const ui = lang === "en"
+  ? {
+      notFound: "Story not found",
+      backToTravelers: "← Back to travelers",
+    }
+  : {
+      notFound: "Povestea nu există",
+      backToTravelers: "← Înapoi la călători",
+    };
+
+const backPillStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "8px 12px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--secondary)",
+  textDecoration: "none",
+  fontWeight: 500,
+  background: "transparent",
+};
+
   if (!t) {
+    const fallbackLang =
+      typeof window !== "undefined" && localStorage.getItem("travelers.lang") === "en"
+        ? "en"
+        : "ro";
+  
+    const fallbackUi =
+      fallbackLang === "en"
+        ? {
+            notFound: "Story not found",
+            backToTravelers: "← Back to travelers",
+          }
+        : {
+            notFound: "Povestea nu există",
+            backToTravelers: "← Înapoi la călători",
+          };
+  
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">Povestea nu există</h1>
+        <h1 className="font-cormorant">{fallbackUi.notFound}</h1>
         <p>
-          <Link to="/calatori" style={{ color: "var(--accent)", textDecoration: "none" }}>
-            ← Înapoi la Călători
+          <Link to="/calatori" style={backPillStyle}>
+            {fallbackUi.backToTravelers}
           </Link>
         </p>
       </div>
@@ -60,13 +98,16 @@ export default function TravelerDetail() {
   const title = pickLang(t.name, lang) || "";
   const subtitle = pickLang(t.tagline, lang) || "";
 
+  
+
+
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
       <p style={{ marginTop: 0 }}>
-        <Link to="/calatori" style={{ textDecoration: "none" }}>
-          ← Înapoi la Călători
-        </Link>
-      </p>
+  <Link to="/calatori" style={backPillStyle}>
+    {ui.backToTravelers}
+  </Link>
+</p>
 
       <div
         style={{
@@ -192,15 +233,10 @@ export default function TravelerDetail() {
         </section>
       )}
 
-      <div style={{ marginTop: 20 }}>
-        <Link
-          to="/calatori"
-          style={{ color: "var(--secondary)", textDecoration: "none" }}
-        >
-          ← Înapoi la Călători
-        </Link>
-      </div>
-    </div>
+  <Link to="/calatori" style={backPillStyle}>
+    {ui.backToTravelers}
+  </Link>
+</div>
   );
 }
 
