@@ -80,8 +80,8 @@ const BASE_PATH =
             genericError: "A apărut o problemă la trimitere. Te rog încearcă din nou.",
             networkError: "Nu am reușit să trimit review-ul. Verifică internetul și încearcă din nou.",
             showMorePrefix: "Vezi încă",
-            showMoreSuffixSingle: "review",
-            showMoreSuffixPlural: "review-uri",
+            showMoreSuffixSingle: "recenzie",
+            showMoreSuffixPlural: "recenzii",
             showFewerReviews: "Arată mai puține",
             backAll: "← Înapoi la toate cărțile",
           };
@@ -233,11 +233,11 @@ const BASE_PATH =
             fontWeight: 600,
           }}
         >
-          {showAllReviews
-            ? t.showFewerReviews
-            : `${t.showMorePrefix} ${hiddenCount} ${
-                hiddenCount === 1 ? t.showMoreSuffixSingle : t.showMoreSuffixPlural
-              }`}
+         {showAllReviews
+  ? t.showFewerReviews
+  : isEN
+    ? `Show ${hiddenCount} ${hiddenCount === 1 ? "more review" : "more reviews"}`
+    : `Vezi încă ${hiddenCount} ${hiddenCount === 1 ? "recenzie" : "recenzii"}`}
         </button>
       </div>
     )}

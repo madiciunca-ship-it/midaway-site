@@ -27,6 +27,14 @@ export const BOOK_REVIEWS = {
       createdAt: "2025-11-12",
       published: true,
     },
+    {
+      id: "vietnam-003",
+      name: "Ana-Maria Ilie",
+      rating: 5,
+      text: "Am citit cartea cu senzația că merg și eu alături de tine. E una dintre acele povești care rămân cu tine și după ce ai închis ultima pagină.",
+      createdAt: "2025-11-13",
+      published: true,
+    },
   ],
 
   "vietnam-en": [
