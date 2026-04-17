@@ -9,6 +9,44 @@ const DEFAULT_SERVICE_IMAGE = "/assets/services/default-service.jpg";
 
 export default function CartDrawer({ open, onClose }) {
   const { items, add, decrement, remove, clear } = useCart();
+  const cartLang =
+  String(items?.[0]?.lang || "").toUpperCase() === "EN" ? "en" : "ro";
+
+const t =
+  cartLang === "en"
+    ? {
+        cart: "Cart",
+        closeCart: "Close cart",
+        close: "Close",
+        empty: "Your cart is empty.",
+        decreaseQty: "Decrease quantity",
+        increaseQty: "Increase quantity",
+        perItem: "/ item",
+        remove: "Remove",
+        mixedCurrencies:
+          "You have products in RON and EUR. Complete the payments separately.",
+        total: "Total",
+        clear: "Clear",
+        checkout: "Place order",
+        noCover: "no cover",
+      }
+    : {
+        cart: "Coș",
+        closeCart: "Închide coșul",
+        close: "Închide",
+        empty: "Coșul este gol.",
+        decreaseQty: "Scade cantitatea",
+        increaseQty: "Crește cantitatea",
+        perItem: "/ buc",
+        remove: "Șterge",
+        mixedCurrencies:
+          "Ai produse în RON și EUR. Finalizează plățile pe rând.",
+        total: "Total",
+        clear: "Golește",
+        checkout: "Plasează comanda",
+        noCover: "fără copertă",
+      };
+
 
   useEffect(() => {
     console.log("🧺 CartDrawer mounted. items:", items.length, "open:", open);
@@ -119,7 +157,7 @@ export default function CartDrawer({ open, onClose }) {
             borderBottom: "1px solid #eee",
           }}
         >
-          <strong>Coș</strong>
+         <strong>{t.cart}</strong>
           <button
             type="button"
             onClick={onClose}
@@ -131,8 +169,8 @@ export default function CartDrawer({ open, onClose }) {
               fontSize: 18,
               lineHeight: 1,
             }}
-            aria-label="Închide coșul"
-            title="Închide"
+            aria-label={t.closeCart}
+            title={t.close}
           >
             ✖
           </button>
@@ -150,7 +188,7 @@ export default function CartDrawer({ open, onClose }) {
           }}
         >
           {items.length === 0 ? (
-            <div style={{ color: "#666" }}>Coșul este gol.</div>
+            <div style={{ color: "#666" }}>{t.empty}</div>
           ) : (
             items.map((it, i) => {
               const cur = (it.currency || "RON").toUpperCase();
@@ -207,7 +245,7 @@ export default function CartDrawer({ open, onClose }) {
                           flexShrink: 0,
                         }}
                       >
-                        no cover
+                        {t.noCover}
                       </div>
                     )}
 
@@ -232,7 +270,7 @@ export default function CartDrawer({ open, onClose }) {
                           <button
                             type="button"
                             onClick={() => decrement(it.key)}
-                            aria-label="Scade cantitatea"
+                            aria-label={t.decreaseQty}
                             style={qtyBtn}
                           >
                             −
@@ -241,7 +279,7 @@ export default function CartDrawer({ open, onClose }) {
                           <button
                             type="button"
                             onClick={() => add(it)}
-                            aria-label="Crește cantitatea"
+                            aria-label={t.increaseQty}
                             style={qtyBtn}
                           >
                             +
@@ -249,7 +287,7 @@ export default function CartDrawer({ open, onClose }) {
                         </div>
 
                         <div style={{ marginLeft: "auto", fontSize: 14 }}>
-                          {unit} {cur} / buc • <strong>{sub} {cur}</strong>
+                        {unit} {cur} {t.perItem} • <strong>{sub} {cur}</strong>
                         </div>
                       </div>
 
@@ -265,7 +303,7 @@ export default function CartDrawer({ open, onClose }) {
                             cursor: "pointer",
                           }}
                         >
-                          🗑 Șterge
+                         🗑 {t.remove}
                         </button>
                       </div>
                     </div>
@@ -290,14 +328,14 @@ export default function CartDrawer({ open, onClose }) {
                 fontSize: 12,
               }}
             >
-              Ai produse în RON și EUR. Finalizează plățile pe rând.
+             {t.mixedCurrencies}
             </div>
           )}
 
           <div style={{ display: "grid", gap: 6 }}>
             {totalsByCurrency.map(([cur, sum]) => (
               <div key={cur} style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>Total ({cur})</span>
+                <span>{t.total} ({cur})</span>
                 <strong>{sum} {cur}</strong>
               </div>
             ))}
@@ -316,7 +354,7 @@ export default function CartDrawer({ open, onClose }) {
                 cursor: "pointer",
               }}
             >
-              Golește
+             {t.clear}
             </button>
             <Link
               to="/checkout"
@@ -332,7 +370,7 @@ export default function CartDrawer({ open, onClose }) {
                 fontWeight: 700,
               }}
             >
-              Plasează comanda
+             {t.checkout}
             </Link>
           </div>
         </div>

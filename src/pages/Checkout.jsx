@@ -11,6 +11,93 @@ const FORMSPREE_ENDPOINT =
 export default function Checkout() {
   const { items, total, clear } = useCart();
   const [error, setError] = useState(null);
+  const checkoutLang =
+  String(items?.[0]?.lang || "").toUpperCase() === "EN" ? "en" : "ro";
+
+const t =
+  checkoutLang === "en"
+    ? {
+        pageTitle: "Checkout",
+        empty: "Your cart is empty.",
+        summary: "Order summary",
+        total: "Total",
+        servicesTitle: "Services",
+        servicesText: "scheduling & delivery based on the agreed terms. Cancellation policy:",
+        seeHere: "see here",
+        missingFiles: "The selected digital files are not currently available.",
+        termsIntro: "I agree with the",
+        terms: "Terms and Conditions",
+        cookies: "Cookie Policy",
+        privacy: "Privacy Policy",
+        digitalConsent:
+          "I agree to the start of digital delivery before the legal withdrawal period expires and I understand that I lose my right of withdrawal after download.",
+        details: "Details",
+        companyInvoice: "I want an invoice for a company",
+        optional: "(optional)",
+        companyName: "Company name",
+        taxId: "VAT / Tax ID",
+        reg: "Registration no. (optional)",
+        address: "Address",
+        city: "City",
+        state: "State / County",
+        country: "Country (ex. RO)",
+        companyHelp: "*Minimum fields for company invoice:",
+        payNow: "💳 Pay now with card (Stripe)",
+        mustAgree: "Please accept the",
+        digitalDelivery: "digital delivery",
+        secure: "Payments are processed securely via Stripe.",
+        emptyAlert: "Your cart is empty!",
+        missingFilesError:
+          "Some digital products are missing files. Please come back when they are uploaded.",
+        legalAlert:
+          "Please accept the legal consent before payment.",
+        stripeError:
+          "There was an error while starting the payment.",
+        networkError: "A network error occurred.",
+        mixedCurrencies:
+          "Complete separate orders for RON (RO) and EUR (EN).",
+      }
+    : {
+        pageTitle: "Finalizare comandă",
+        empty: "Coșul este gol.",
+        summary: "Sumar produse",
+        total: "Total",
+        servicesTitle: "Servicii",
+        servicesText: "programare & prestare în baza termenilor agreați. Politica de anulare:",
+        seeHere: "vezi aici",
+        missingFiles: "Momentan nu sunt disponibile fișiere pentru produsele selectate.",
+        termsIntro: "Sunt de acord cu",
+        terms: "Termenii și condițiile",
+        cookies: "Politica de cookies",
+        privacy: "Politica de confidențialitate",
+        digitalConsent:
+          "Sunt de acord cu începerea livrării digitale înainte de expirarea termenului legal de retragere și înțeleg că îmi pierd dreptul de retragere după descărcare.",
+        details: "Detalii",
+        companyInvoice: "Doresc factură pe firmă",
+        optional: "(opțional)",
+        companyName: "Denumire firmă",
+        taxId: "CUI (ex. RO12345678)",
+        reg: "Reg. Com. (opțional)",
+        address: "Adresă",
+        city: "Oraș",
+        state: "Județ / Stat",
+        country: "Țară (ex. RO)",
+        companyHelp: "*Câmpurile minime pentru factură pe firmă:",
+        payNow: "💳 Plătește acum cu cardul (Stripe)",
+        mustAgree: "Te rugăm bifează",
+        digitalDelivery: "livrare digitală",
+        secure: "Plățile sunt procesate securizat prin Stripe.",
+        emptyAlert: "Coșul este gol!",
+        missingFilesError:
+          "Pentru unele produse digitale lipsesc fișierele. Te rugăm revino când sunt încărcate.",
+        legalAlert:
+          "Te rugăm să bifezi consimțământul legal înainte de plată.",
+        stripeError:
+          "A apărut o eroare la inițierea plății.",
+        networkError: "A apărut o eroare de rețea.",
+        mixedCurrencies:
+          "Finalizează separat comenzile pentru RON (RO) și EUR (EN).",
+      };
 
   // --- helperi pentru tipuri ---
   const isServiceItem = (it) =>
@@ -108,17 +195,15 @@ export default function Checkout() {
 
   // Stripe
   const payWithCard = async () => {
-    if (!items.length) return alert("Coșul este gol!");
+    if (!items.length) return alert(t.emptyAlert);
 
     // blocăm explicit dacă lipsesc fișiere digitale
     if (hasMissingFiles) {
-      setError(
-        "Pentru unele produse digitale lipsesc fișierele. Te rugăm revino când sunt încărcate."
-      );
+      setError(t.missingFilesError);
       return;
     }
     if (!canPay) {
-      alert("Te rugăm să bifezi consimțământul legal înainte de plată.");
+      alert(t.legalAlert);
       return;
     }
 
@@ -138,14 +223,14 @@ export default function Checkout() {
         const data = await res.json().catch(() => ({}));
         setError(
           data?.error ||
-            "Finalizează separat comenzile pentru RON (RO) și EUR (EN)."
+          t.mixedCurrencies
         );
         return;
       }
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data?.error || "A apărut o eroare la inițierea plății.");
+        setError(data?.error || t.stripeError);
         return;
       }
 
@@ -154,19 +239,19 @@ export default function Checkout() {
       else setError("Nu am primit URL-ul de plată de la Stripe.");
     } catch (e) {
       console.error(e);
-      setError("A apărut o eroare de rețea.");
+      setError(t.networkError);
     }
   };
 
   return (
     <div style={{ padding: 24, maxWidth: 720, margin: "0 auto" }}>
-      <h1>Finalizare comandă</h1>
+      <h1>{t.pageTitle}</h1>
 
       {items.length === 0 ? (
-        <p>Coșul este gol.</p>
+        <p>{t.empty}</p>
       ) : (
         <>
-          <h3>Sumar produse</h3>
+          <h3>{t.summary}</h3>
           <ul style={{ paddingLeft: 18 }}>
             {items.map((i) => (
               <li key={i.key}>
@@ -178,7 +263,7 @@ export default function Checkout() {
           </ul>
           <p>
             <strong>
-              Total: {total} {primaryCurrency}
+            {t.total}: {total} {primaryCurrency}
             </strong>
           </p>
 
@@ -195,15 +280,14 @@ export default function Checkout() {
                 fontSize: 13,
               }}
             >
-              <strong>Servicii:</strong> programare & prestare în baza termenilor
-              agreați. Politica de anulare:{" "}
+              <strong>{t.servicesTitle}:</strong> {t.servicesText}{" "}
               <a
                 href="/politica-anulare"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#7a5b00" }}
               >
-                vezi aici
+                {t.seeHere}
               </a>
               .
             </div>
@@ -222,7 +306,7 @@ export default function Checkout() {
                 fontSize: 14,
               }}
             >
-              Momentan nu sunt disponibile fișiere pentru produsele selectate.
+              {t.missingFiles}
             </div>
           )}
 
@@ -261,20 +345,20 @@ export default function Checkout() {
                 onChange={(e) => setAgreeTerms(e.target.checked)}
               />
               <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                Sunt de acord cu{" "}
+              {t.termsIntro}{" "}
                 <Link to="/termeni" style={{ color: "var(--accent)" }}>
-                  Termenii și condițiile
+                {t.terms}
                 </Link>
                 ,{" "}
                 <Link to="/politica-cookies" style={{ color: "var(--accent)" }}>
-                  Politica de cookies
+                {t.cookies}
                 </Link>{" "}
                 și{" "}
                 <Link
                   to="/politica-confidentialitate"
                   style={{ color: "var(--accent)" }}
                 >
-                  Politica de confidențialitate
+                  {t.privacy}
                 </Link>
                 .
               </span>
@@ -299,10 +383,11 @@ export default function Checkout() {
                   Sunt de acord cu începerea livrării digitale înainte de expirarea
                   termenului legal de retragere și înțeleg că îmi pierd dreptul de
                   retragere după descărcare. (
-                  <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
-                    Detalii
-                  </Link>
-                  )
+                    {t.digitalConsent} (
+  <Link to="/politica-descarcare" style={{ color: "var(--accent)" }}>
+    {t.details}
+  </Link>
+)
                 </span>
               </label>
             )}
@@ -324,9 +409,9 @@ export default function Checkout() {
                 checked={invoiceCompany}
                 onChange={(e) => setInvoiceCompany(e.target.checked)}
               />
-              <span style={{ fontWeight: 600 }}>Doresc factură pe firmă</span>
+              <span style={{ fontWeight: 600 }}>{t.companyInvoice}</span>
               <span style={{ fontSize: 12, color: "#666", marginLeft: 6 }}>
-                (opțional)
+              {t.optional}
               </span>
             </label>
 
@@ -347,7 +432,7 @@ export default function Checkout() {
                   }}
                 >
                   <input
-                    placeholder="Denumire firmă"
+                    placeholder="{t.companyName}"
                     value={company.name}
                     onChange={(e) =>
                       setCompany({ ...company, name: e.target.value })
@@ -355,7 +440,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="CUI (ex. RO12345678)"
+                    placeholder="{t.taxId}"
                     value={company.taxId}
                     onChange={(e) =>
                       setCompany({ ...company, taxId: e.target.value })
@@ -363,7 +448,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="Reg. Com. (opțional)"
+                    placeholder="{t.reg}"
                     value={company.reg}
                     onChange={(e) =>
                       setCompany({ ...company, reg: e.target.value })
@@ -371,7 +456,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="Adresă"
+                    placeholder="{t.address}"
                     value={company.address}
                     onChange={(e) =>
                       setCompany({ ...company, address: e.target.value })
@@ -379,7 +464,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="Oraș"
+                    placeholder="{t.city}"
                     value={company.city}
                     onChange={(e) =>
                       setCompany({ ...company, city: e.target.value })
@@ -387,7 +472,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="Județ / Stat"
+                    placeholder="{t.state}"
                     value={company.state}
                     onChange={(e) =>
                       setCompany({ ...company, state: e.target.value })
@@ -395,7 +480,7 @@ export default function Checkout() {
                     style={field}
                   />
                   <input
-                    placeholder="Țară (ex. RO)"
+                    placeholder="{t.country})"
                     value={company.country}
                     onChange={(e) =>
                       setCompany({
@@ -408,8 +493,7 @@ export default function Checkout() {
                 </div>
 
                 <div style={{ fontSize: 12, color: "#666", marginTop: 8 }}>
-                  *Câmpurile minime pentru factură pe firmă:{" "}
-                  <strong>Denumire</strong> și <strong>CUI</strong>.
+                {t.companyHelp} <strong>{checkoutLang === "en" ? "Company name" : "Denumire"}</strong> {checkoutLang === "en" ? "and" : "și"} <strong>{checkoutLang === "en" ? "VAT / Tax ID" : "CUI"}</strong>.
                 </div>
               </div>
             )}
@@ -432,7 +516,7 @@ export default function Checkout() {
               opacity: canPay ? 1 : 0.6,
             }}
           >
-            💳 Plătește acum cu cardul (Stripe) / Pay now with card (Stripe)
+            {t.payNow}
           </button>
 
           {!canPay && (
@@ -448,17 +532,35 @@ export default function Checkout() {
       lineHeight: 1.4,
     }}
   >
-    Te rugăm bifează <strong>Termenii și condițiile</strong>
-    {hasDigital ? (
+    {checkoutLang === "en" ? (
       <>
-        {" "}
-        și acordul pentru <strong>livrare digitală</strong>
+        Please accept the <strong>Terms and Conditions</strong>
+        {hasDigital ? (
+          <>
+            {" "}
+            and the <strong>digital delivery</strong> consent
+          </>
+        ) : null}
+        {!hasMissingFiles
+          ? "."
+          : " (and come back when the digital files are available)."}
       </>
-    ) : null}
-    {!hasMissingFiles ? "." : " (și revino când fișierele digitale sunt disponibile)."}
+    ) : (
+      <>
+        Te rugăm bifează <strong>Termenii și condițiile</strong>
+        {hasDigital ? (
+          <>
+            {" "}
+            și acordul pentru <strong>livrare digitală</strong>
+          </>
+        ) : null}
+        {!hasMissingFiles
+          ? "."
+          : " (și revino când fișierele digitale sunt disponibile)."}
+      </>
+    )}
   </div>
 )}
-
 
           <p
             style={{
@@ -468,9 +570,7 @@ export default function Checkout() {
               color: "var(--secondary)",
             }}
           >
-            Plățile sunt procesate securizat prin Stripe.
-            <br />
-            Payments are processed securely via Stripe.
+            {t.secure}
           </p>
         </>
       )}
