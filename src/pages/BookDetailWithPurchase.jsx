@@ -403,28 +403,14 @@ export default function BookDetailWithPurchase() {
 
     // 3) Mutăm panelul nostru sub „📖 Citește un fragment”
     try {
-      const fragmentBtn = Array.from(
-        document.querySelectorAll("a, button")
-      ).find((el) => {
-        const txt = (el.textContent || "").trim();
-        return (
-          txt.startsWith("📖 Citește un fragment") ||
-          txt.startsWith("📖 Read a sample")
-        );
-      });
+      const fragmentBtn = document.querySelector("[data-book-sample='true']");
       const panelEl = panelRef.current;
       if (fragmentBtn && panelEl && panelEl.parentElement) {
         fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
       }
     } catch {}
     try {
-      const relatedHeading = Array.from(document.querySelectorAll("h3")).find((el) => {
-        const txt = (el.textContent || "").trim().toLowerCase();
-        return (
-          txt.includes("poate te mai interesează") ||
-          txt.includes("you may also like")
-        );
-      });
+      const relatedHeading = document.querySelector("[data-book-related='true']");
     
       const reviewsEl = reviewsRef.current;
     
@@ -435,13 +421,7 @@ export default function BookDetailWithPurchase() {
 
     // 3.5) Inserăm „Specificații pe format” imediat sub „Detalii tehnice”
     try {
-      const h2 = Array.from(document.querySelectorAll("h2, h3")).find((el) => {
-        const txt = (el.textContent || "").trim().toLowerCase();
-        return (
-          txt.includes("detalii tehnice") ||
-          txt.includes("technical details")
-        );
-      });
+      const h2 = document.querySelector("[data-book-technical='true']");
       if (h2) {
         const ul =
           h2.nextElementSibling && h2.nextElementSibling.tagName === "UL"
@@ -458,13 +438,7 @@ export default function BookDetailWithPurchase() {
     } catch {}
 // 4) Populează + stilizează secțiunea „Poate te mai interesează”
 try {
-  const h3 = Array.from(document.querySelectorAll("h3")).find((el) => {
-    const txt = (el.textContent || "").trim().toLowerCase();
-    return (
-      txt.includes("poate te mai interesează") ||
-      txt.includes("you may also like")
-    );
-  });
+  const h3 = document.querySelector("[data-book-related='true']");
   if (h3) {
     const grid = h3.nextElementSibling;
     if (grid && grid.tagName === "DIV") {
@@ -475,10 +449,11 @@ try {
           : "/books";
 
       // recomandările (din BOOKS)
+      
       const rel = (recommendBooks(book, 20) || [])
-      .filter((b) => String(b?.lang || "").toUpperCase() === String(book?.lang || "").toUpperCase())
-      .filter((b) => b.id !== book.id)
-      .slice(0, 3);
+  .filter((b) => String(b?.lang || "").toUpperCase() === String(book?.lang || "").toUpperCase())
+  .filter((b) => b.id !== book.id)
+  .slice(0, 3);
 
       // 4.a) Construieste link ABSOLUT (cu domeniul curent); NO ESCAPES RELATIVE
       const origin = (typeof window !== "undefined" ? window.location.origin : "");
