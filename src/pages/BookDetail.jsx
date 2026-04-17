@@ -266,8 +266,10 @@ const t = isEN
 
 
           {/* Detalii tehnice */}
-          <div style={{ marginTop: 16 }}>
-  <h3 style={{ margin: "0 0 8px 0" }}>{t.technical}</h3>
+<div style={{ marginTop: 16 }}>
+  <h3 style={{ margin: "0 0 8px 0" }} data-book-technical="true">
+    {t.technical}
+  </h3>
   <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.6 }}>
     {book.pages && <li>{t.ebookPages} • {book.pages} {t.pages}</li>}
     {book.isbn && <li>ISBN: {book.isbn}</li>}
@@ -679,17 +681,19 @@ const t = isEN
         </div>
       </div>
 
-      {/* Recomandări */}
-      {related.length > 0 && (
-        <div style={{ marginTop: 40 }}>
-          <h3 style={{ marginBottom: 16 }}>{t.related}</h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 20,
-            }}
-          >
+     {/* Recomandări */}
+{related.length > 0 && (
+  <div style={{ marginTop: 40 }}>
+    <h3 style={{ marginBottom: 16 }} data-book-related="true">
+      {t.related}
+    </h3>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: 20,
+      }}
+    >
             {related.map((b) => (
               <Link
                 key={b.id}
