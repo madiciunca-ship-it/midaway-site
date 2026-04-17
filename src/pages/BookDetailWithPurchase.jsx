@@ -405,8 +405,9 @@ export default function BookDetailWithPurchase() {
     try {
       const fragmentBtn = document.querySelector("[data-book-sample='true']");
       const panelEl = panelRef.current;
-      if (fragmentBtn && panelEl && panelEl.parentElement) {
-        fragmentBtn.parentElement.insertAdjacentElement("afterend", panelEl);
+    
+      if (fragmentBtn && panelEl) {
+        fragmentBtn.insertAdjacentElement("afterend", panelEl);
       }
     } catch {}
     try {
@@ -449,7 +450,7 @@ try {
           : "/books";
 
       // recomandările (din BOOKS)
-      
+
       const rel = (recommendBooks(book, 20) || [])
   .filter((b) => String(b?.lang || "").toUpperCase() === String(book?.lang || "").toUpperCase())
   .filter((b) => b.id !== book.id)

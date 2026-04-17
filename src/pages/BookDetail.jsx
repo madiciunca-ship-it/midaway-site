@@ -291,24 +291,25 @@ const t = isEN
           >
             {/* Citește un fragment – AURIU */}
             {book.sampleUrl && (
-              <a
-                href={book.sampleUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  textAlign: "center",
-                  padding: "12px",
-                  borderRadius: 10,
-                  background: "#d4a017", // auriu
-                  color: "#fff",
-                  textDecoration: "none",
-                  fontSize: 15,
-                  fontWeight: "bold",
-                }}
-              >
-                📖 {t.sample}
-              </a>
-            )}
+  <a
+    href={book.sampleUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    data-book-sample="true"
+    style={{
+      textAlign: "center",
+      padding: "12px",
+      borderRadius: 10,
+      background: "#d4a017",
+      color: "#fff",
+      textDecoration: "none",
+      fontSize: 15,
+      fontWeight: "bold",
+    }}
+  >
+    📖 {t.sample}
+  </a>
+)}
 
             {/* PDF (RO/EN) – buton verde + sub-opțiuni */}
             <>
