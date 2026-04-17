@@ -103,13 +103,22 @@ export default function AuthorDetail() {
         >
   <p style={{ marginTop: 0 }}>
   <Link
-  to="/autori"
-  style={{ textDecoration: "none", color: "var(--secondary)" }}
->
-  ← {lang === "en" ? "Back to Authors" : "Înapoi la Autori"}
-</Link>
-
-  </p>
+    to="/autori"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--secondary)",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
+    }}
+  >
+    ← {lang === "en" ? "Back to authors" : "Înapoi la autori"}
+  </Link>
+</p>
 
   <div
     style={{
@@ -220,8 +229,17 @@ export default function AuthorDetail() {
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
         <Link
   to="/autori"
-  className="btn-outline"
-  style={{ textDecoration: "none" }}
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "8px 12px",
+    borderRadius: 999,
+    border: "1px solid var(--accent)",
+    color: "var(--secondary)",
+    textDecoration: "none",
+    fontWeight: 500,
+    background: "transparent",
+  }}
 >
   {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
 </Link>
