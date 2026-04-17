@@ -54,15 +54,25 @@ export default function BlogDetail() {
   }, [post]);
 
   if (!post) {
+    const backPillStyle = {
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--secondary)",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
+    };
+  
     return (
       <div className="container" style={{ padding: "32px 0 48px" }}>
         <h1 className="font-cormorant">Articolul nu există</h1>
         <p>
-          Înapoi la{" "}
-          <Link to="/blog" style={{ color: "var(--accent)", textDecoration: "none" }}>
-            Blog
+          <Link to="/blog" style={backPillStyle}>
+            ← Înapoi la blog
           </Link>
-          .
         </p>
       </div>
     );
@@ -72,9 +82,25 @@ export default function BlogDetail() {
   const related = posts
     .filter(x => x.slug !== post.slug && x.tags.some(t => post.tags.includes(t)))
     .slice(0, 3);
+    const backPillStyle = {
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--secondary)",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
+    };
 
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
+      <p style={{ marginTop: 0, marginBottom: 16 }}>
+  <Link to="/blog" style={backPillStyle}>
+    ← Înapoi la blog
+  </Link>
+</p>
       {/* cover (robust: cover | image | hero + normalizare cale) */}
 {(() => {
   const cover = resolveSrc(post.cover || post.image || post.hero);
@@ -220,10 +246,10 @@ export default function BlogDetail() {
 
       {/* back */}
       <div style={{ marginTop: 24 }}>
-        <Link to="/blog" className="btn" style={{ textDecoration: "none" }}>
-          ← Înapoi la blog
-        </Link>
-      </div>
+  <Link to="/blog" style={backPillStyle}>
+    ← Înapoi la blog
+  </Link>
+</div>
     </div>
   );
 }
