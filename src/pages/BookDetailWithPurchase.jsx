@@ -367,17 +367,17 @@ const BASE_PATH =
   }}
 >
 <Link
-  to="/carti"
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    padding: "8px 12px",
-    borderRadius: 999,
-    border: "1px solid #ddd4c8",
-    color: "#7a2e2e",
-    textDecoration: "none",
-    fontWeight: 500,
-    background: "transparent",
+    to="/carti"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid #ddd4c8",
+      color: "#2a9d8f",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
     }}
   >
     {t.backAll}

@@ -156,9 +156,25 @@ const t = isEN
 
   return (
     <div style={{ padding: 24 }}>
-      <p style={{ fontSize: 14, margin: 0 }}>
-        <Link to="/carti">{t.backAll}</Link>
-      </p>
+     <p style={{ fontSize: 14, margin: 0 }}>
+  <Link
+    to="/carti"
+    data-book-back="true"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid #ddd4c8",
+      color: "#2a9d8f",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
+    }}
+  >
+    {t.backAll}
+  </Link>
+</p>
 
       <h1 style={{ margin: "8px 0 0 0" }}>{book.title}</h1>
       <p style={{ margin: "4px 0 0 0", color: "#666", fontStyle: "italic" }}>
