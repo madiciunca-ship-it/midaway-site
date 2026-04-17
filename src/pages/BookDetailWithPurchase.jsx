@@ -30,9 +30,10 @@ const BASE_PATH =
     function BookReviewsSection({ book, reviews, averageRating, averageStars }) {
       const [status, setStatus] = useState("idle");
       const [message, setMessage] = useState("");
-
+      const [showAllReviews, setShowAllReviews] = useState(false);
+    
       const isEN = String(book?.lang || "").toUpperCase() === "EN";
-
+    
       const t = isEN
         ? {
             heading: "What readers say",
@@ -53,6 +54,10 @@ const BASE_PATH =
             subject: `New book review: ${book?.title || ""}`,
             genericError: "There was a problem sending your review. Please try again.",
             networkError: "I couldn't send your review. Please check your internet connection and try again.",
+            showMorePrefix: "Show",
+            showMoreSuffixSingle: "more review",
+            showMoreSuffixPlural: "more reviews",
+            showFewerReviews: "Show fewer",
           }
         : {
             heading: "Ce spun cititorii",
@@ -73,8 +78,16 @@ const BASE_PATH =
             subject: `Review nou carte: ${book?.title || ""}`,
             genericError: "A apărut o problemă la trimitere. Te rog încearcă din nou.",
             networkError: "Nu am reușit să trimit review-ul. Verifică internetul și încearcă din nou.",
+            showMorePrefix: "Vezi încă",
+            showMoreSuffixSingle: "review",
+            showMoreSuffixPlural: "review-uri",
+            showFewerReviews: "Arată mai puține",
           };
     
+      const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 2);
+      const hiddenCount = Math.max(reviews.length - 2, 0);
+      const hasHiddenReviews = hiddenCount > 0;
+
       async function handleReviewSubmit(e) {
         e.preventDefault();
     
@@ -144,63 +157,91 @@ const BASE_PATH =
           </div>
     
           {reviews.length > 0 && (
-            <div style={{ display: "grid", gap: 14, marginBottom: 20 }}>
-              {reviews.map((r) => (
-                <article
-                  key={r.id}
-                  style={{
-                    border: "1px solid #ece7df",
-                    borderRadius: 16,
-                    background: "#fff",
-                    padding: 16,
-                    boxShadow: "0 6px 18px rgba(0,0,0,.04)",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      gap: 12,
-                      flexWrap: "wrap",
-                      marginBottom: 8,
-                    }}
-                  >
-                    <strong
-  style={{
-    color: "#2b2b2b",
-    fontSize: 15,
-  }}
->
-  {r.name}
-</strong>
-                    <span
-  style={{
-    color: "#d4a017",
-    letterSpacing: 1.5,
-    fontSize: 16,
-    lineHeight: 1,
-  }}
->
-                      {"★".repeat(Number(r.rating) || 0)}
-                      {"☆".repeat(5 - (Number(r.rating) || 0))}
-                    </span>
-                  </div>
-    
-                  <p
-  style={{
-    margin: 0,
-    lineHeight: 1.8,
-    color: "#2b2b2b",
-    paddingLeft: 12,
-    borderLeft: "3px solid rgba(212,160,23,.22)",
-  }}
->
-  {r.text}
-</p>
-                </article>
-              ))}
-            </div>
-          )}
+  <>
+    <div style={{ display: "grid", gap: 14, marginBottom: 20 }}>
+      {visibleReviews.map((r) => (
+        <article
+          key={r.id}
+          style={{
+            border: "1px solid #ece7df",
+            borderRadius: 16,
+            background: "#fff",
+            padding: 16,
+            boxShadow: "0 6px 18px rgba(0,0,0,.04)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              flexWrap: "wrap",
+              marginBottom: 8,
+            }}
+          >
+            <strong
+              style={{
+                color: "#2b2b2b",
+                fontSize: 15,
+              }}
+            >
+              {r.name}
+            </strong>
+
+            <span
+              style={{
+                color: "#d4a017",
+                letterSpacing: 1.5,
+                fontSize: 16,
+                lineHeight: 1,
+              }}
+            >
+              {"★".repeat(Number(r.rating) || 0)}
+              {"☆".repeat(5 - (Number(r.rating) || 0))}
+            </span>
+          </div>
+
+          <p
+            style={{
+              margin: 0,
+              lineHeight: 1.8,
+              color: "#2b2b2b",
+              paddingLeft: 12,
+              borderLeft: "3px solid rgba(212,160,23,.22)",
+            }}
+          >
+            {r.text}
+          </p>
+        </article>
+      ))}
+    </div>
+
+    {hasHiddenReviews && (
+      <div style={{ marginTop: -6, marginBottom: 18 }}>
+        <button
+          type="button"
+          onClick={() => setShowAllReviews((v) => !v)}
+          style={{
+            border: "1px solid #d8cfc2",
+            background: "#fff",
+            color: "#7a2e2e",
+            padding: "10px 14px",
+            borderRadius: 999,
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          {showAllReviews
+            ? t.showFewerReviews
+            : `${t.showMorePrefix} ${hiddenCount} ${
+                hiddenCount === 1 ? t.showMoreSuffixSingle : t.showMoreSuffixPlural
+              }`}
+        </button>
+      </div>
+    )}
+  </>
+)}
+                 
     
           <div
             style={{
