@@ -368,6 +368,7 @@ const BASE_PATH =
 >
 <Link
     to="/carti"
+    data-book-back="true"
     style={{
       display: "inline-flex",
       alignItems: "center",
