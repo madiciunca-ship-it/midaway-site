@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import App from "./App.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 // ajută la prins erori globale care duc la pagină albă
 window.addEventListener("error", (e) => {
@@ -18,6 +19,7 @@ window.addEventListener("unhandledrejection", (e) => {
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
+    <ScrollToTop />
       <CartProvider>
         <ErrorBoundary>
           <App />

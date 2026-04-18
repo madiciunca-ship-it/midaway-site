@@ -117,9 +117,7 @@ export default function Travelers() {
       window.history.replaceState({}, "", window.location.pathname + qs);
     }
   }, [lang, q]);
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, []);
+  
 
   // când tastezi în căutare, actualizăm doar ?q (nu și lang)
   const onSearchChange = (v) => {
