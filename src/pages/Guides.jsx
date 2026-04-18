@@ -64,6 +64,19 @@ function segBtn(active) {
   };
 }
 
+const sectionNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--accent)",
+  textDecoration: "none",
+  fontWeight: 600,
+  background: "#fff",
+  boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+};
+
 export default function Guides() {
   // citim o singură dată ?q din URL (dacă există)
   const [q, setQ] = useState(() => {
@@ -78,6 +91,17 @@ export default function Guides() {
     const saved = localStorage.getItem("guides.lang");
     return saved === "en" ? "en" : "ro";
   });
+
+  const ui =
+  lang === "en"
+    ? {
+        backHome: "← Back to Home",
+        backTop: "↑ Back to top",
+      }
+    : {
+        backHome: "← Înapoi la Acasă",
+        backTop: "↑ Înapoi sus",
+      };
 
 
   // persistă limba și curăță ?lang din bară (păstrăm ?q dacă există)
@@ -135,6 +159,13 @@ export default function Guides() {
 
   return (
     <div className="container" style={{ padding: "24px 0 48px" }}>
+    <div style={{ marginBottom: 18 }}>
+    <Link to="/" style={sectionNavStyle}>
+    {ui.backHome}
+    </Link>
+    </div>
+      
+      
       {/* ——— Header mare ——— */}
       <header className="font-cormorant" style={{ textAlign: "center", margin: "8px 0 12px" }}>
         <h1 style={{ margin: 0, fontSize: 48 }}>
@@ -256,6 +287,18 @@ export default function Guides() {
           </Link>
         ))}
       </div>
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={sectionNavStyle}
+  >
+    {ui.backTop}
+  </a>
+</div>
     </div>
   );
 }
