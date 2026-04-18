@@ -51,6 +51,19 @@ function segBtn(active) {
   };
 }
 
+const sectionNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--accent)",
+  textDecoration: "none",
+  fontWeight: 600,
+  background: "#fff",
+  boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+};
+
 export default function Authors() {
   // 🔤 LIMBA – doar localStorage, fără ?lang în URL
   const [lang, setLang] = useState(() => {
@@ -58,6 +71,17 @@ export default function Authors() {
     const stored = localStorage.getItem("authors.lang");
     return stored === "en" ? "en" : "ro";
   });
+
+  const ui =
+  lang === "en"
+    ? {
+        backHome: "← Back to Home",
+        backTop: "↑ Back to top",
+      }
+    : {
+        backHome: "← Înapoi la Acasă",
+        backTop: "↑ Înapoi sus",
+      };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -97,6 +121,14 @@ export default function Authors() {
 
   return (
     <div className="container" style={{ padding: "32px 0 48px", overflowX: "hidden" }}>
+    
+    <div style={{ marginBottom: 18 }}>
+        <Link to="/" style={sectionNavStyle}>
+          {ui.backHome}
+        </Link>
+      </div>
+     
+     
       {/* Header centrat — albastru mic sus + descriere negru, ca la Călători */}
       <header
         className="font-cormorant"
@@ -194,6 +226,18 @@ export default function Authors() {
         {Array.from({ length: placeholders }).map((_, i) => (
           <PlaceholderCard key={`ph-${i}`} lang={lang} index={i} />
         ))}
+      </div>
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={sectionNavStyle}
+        >
+          {ui.backTop}
+        </a>
       </div>
     </div>
   );
