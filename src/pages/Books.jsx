@@ -74,6 +74,7 @@ export default function Books() {
     background: "#fff",
     boxShadow: "0 2px 10px rgba(0,0,0,.04)",
   };
+
   const pageUi =
   bookLang === "EN"
     ? {
@@ -135,6 +136,19 @@ export default function Books() {
         </Link>
       </div>
       <h1 style={{ marginTop: 0, textAlign: "center" }}>{pageUi.title}</h1>
+      <p
+  style={{
+    marginTop: 8,
+    marginBottom: 24,
+    textAlign: "center",
+    color: "#666",
+    fontSize: 14,
+  }}
+>
+  Poți filtra cărțile după limbă: RO sau EN.
+  <br />
+  You can filter books by language: RO or EN.
+</p>
 
       {/* Filtre */}
       <div style={{ display: "grid", gap: 10, marginBottom: 20 }}>
@@ -283,8 +297,8 @@ export default function Books() {
             if (yd) return yd;
             return String(b.title || "").localeCompare(String(a.title || ""));
           }) // cele mai noi primele
-          .map((book, i) => {
-            const isNew = i < 2; // badge „NOU” pe primele 2 rezultate
+          .map((book) => {
+            const isNew = book.isNew === true;
             const rating = getBookRating(book.id);
             const isEN = String(book.lang || "").toUpperCase() === "EN";
           

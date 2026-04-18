@@ -533,6 +533,7 @@ payLink: null,
     location: "Indonesia",
     year: 2026,
     publisher: "Independent Publisher Mida Malena",
+    isNew: true,
 
     formatDetails: {
       eBook: {
@@ -612,6 +613,7 @@ payLink: null,
   tags: ["desire", "introspective", "self-mastery", "lovestory", "boundaries", "femininity"],
   year: 2026,
   publisher: "Midaway / Autor Mida Malena",
+  isNew: true,
 
   formatDetails: {
     eBook: {
