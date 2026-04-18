@@ -122,7 +122,7 @@ export default function Authors() {
   return (
     <div className="container" style={{ padding: "32px 0 48px", overflowX: "hidden" }}>
     
-    <div style={{ marginBottom: 18 }}>
+    <div style={{ marginTop: -8, marginBottom: 14 }}>
         <Link to="/" style={sectionNavStyle}>
           {ui.backHome}
         </Link>
