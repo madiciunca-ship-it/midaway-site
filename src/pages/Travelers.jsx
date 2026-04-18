@@ -73,6 +73,19 @@ function segBtn(active) {
   };
 }
 
+const sectionNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--accent)",
+  textDecoration: "none",
+  fontWeight: 600,
+  background: "#fff",
+  boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+};
+
 export default function Travelers() {
   const [params] = useSearchParams();
 
@@ -85,6 +98,16 @@ export default function Travelers() {
       ? "en"
       : (localStorage.getItem("travelers.lang") || "ro");
   const [lang, setLang] = useState(initialLang);
+  const ui =
+  lang === "en"
+    ? {
+        backHome: "← Back to Home",
+        backTop: "↑ Back to top",
+      }
+    : {
+        backHome: "← Înapoi la Acasă",
+        backTop: "↑ Înapoi sus",
+      };
 
   // persistăm limba și curățăm ?lang din bară (păstrăm ?q dacă există)
   useEffect(() => {
@@ -94,6 +117,9 @@ export default function Travelers() {
       window.history.replaceState({}, "", window.location.pathname + qs);
     }
   }, [lang, q]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
 
   // când tastezi în căutare, actualizăm doar ?q (nu și lang)
   const onSearchChange = (v) => {
@@ -146,6 +172,14 @@ export default function Travelers() {
 
   return (
     <div className="container" style={{ padding: "24px 0 48px" }}>
+
+     <div style={{ marginBottom: 18 }}>
+  <Link to="/" style={sectionNavStyle}>
+    {ui.backHome}
+  </Link>
+</div> 
+      
+      
       {/* ——— Header mare, ca înainte ——— */}
       <header className="font-cormorant" style={{ textAlign: "center", margin: "8px 0 12px" }}>
         <h1 style={{ margin: 0, fontSize: 48 }}>
@@ -270,6 +304,18 @@ export default function Travelers() {
           </Link>
         ))}
       </div>
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={sectionNavStyle}
+  >
+    {ui.backTop}
+  </a>
+</div>
     </div>
   );
 }
