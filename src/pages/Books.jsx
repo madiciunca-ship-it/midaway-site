@@ -43,6 +43,7 @@ export default function Books() {
   const [genre, setGenre] = useState("Toate");
   const [location, setLocation] = useState("Toate");
   const [q, setQ] = useState("");
+  const [bookLang, setBookLang] = useState("Toate");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -89,9 +90,14 @@ export default function Books() {
     }
     if (genre !== "Toate") list = list.filter((b) => b.genre === genre);
     if (location !== "Toate") list = list.filter((b) => b.location === location);
+    if (bookLang !== "Toate") {
+      list = list.filter(
+        (b) => String(b.lang || "").toUpperCase() === bookLang
+      );
+    }
 
     return list;
-  }, [q, genre, location]);
+  }, [q, genre, location, bookLang]);
 
   return (
     <div>
@@ -148,7 +154,23 @@ export default function Books() {
               ))}
             </select>
           </div>
-
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+  <span style={{ fontSize: 12, color: "#666", minWidth: 50 }}>Limbă</span>
+  <select
+    value={bookLang}
+    onChange={(e) => setBookLang(e.target.value)}
+    style={{
+      flex: 1,
+      padding: "8px 10px",
+      border: "1px solid #ddd",
+      borderRadius: 10,
+    }}
+  >
+    <option>Toate</option>
+    <option>RO</option>
+    <option>EN</option>
+  </select>
+</div>
           <style>{`
   /* asigurăm grila să nu se comaseze prea mult pe mobil */
   @media (max-width: 640px){
@@ -159,11 +181,12 @@ export default function Books() {
 `}</style>
 
           <button
-            onClick={() => {
-              setQ("");
-              setGenre("Toate");
-              setLocation("Toate");
-            }}
+           onClick={() => {
+            setQ("");
+            setGenre("Toate");
+            setLocation("Toate");
+            setBookLang("Toate");
+          }}
             style={{
               padding: "8px 10px",
               borderRadius: 10,
