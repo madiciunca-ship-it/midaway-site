@@ -21,32 +21,85 @@ function youTubeThumb(url) {
   const id = youTubeId(url);
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
 }
-function labelForType(t) {
-  switch (t) {
-    case "photo": return "Foto";
-    case "video": return "Video";
-    case "audio": return "Audio / Podcast";
-    case "interview": return "Interviu";
-    case "instagram": return "Instagram";
-    case "album": return "Album foto";
-    default: return "";
-  }
+function labelForType(t, lang = "ro") {
+  const ro = {
+    photo: "Foto",
+    video: "Video",
+    audio: "Audio / Podcast",
+    interview: "Interviu",
+    instagram: "Instagram",
+    album: "Album foto",
+  };
+
+  const en = {
+    photo: "Photo",
+    video: "Video",
+    audio: "Audio / Podcast",
+    interview: "Interview",
+    instagram: "Instagram",
+    album: "Photo album",
+  };
+
+  const dict = lang === "en" ? en : ro;
+  return dict[t] || "";
 }
 
-const FILTERS = [
-  { key: "all", label: "Toate" },
-  { key: "photo", label: "Foto" },       // include și „album”
-  { key: "video", label: "Video" },
-  { key: "audio", label: "Audio" },
-  { key: "interview", label: "Interviuri" },
-  { key: "instagram", label: "Instagram" },
-];
+
 
 export default function Multimedia() {
   const [active, setActive] = useState("all");
   const [openIds, setOpenIds] = useState(() => new Set());
   const [q, setQ] = useState("");
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("multimedia.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+  
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("multimedia.lang", lang);
+    }
+  }, [lang]);
+  
+  const ui =
+    lang === "en"
+      ? {
+          title: "🎧 Multimedia",
+          backVision: "← Back to Vision",
+          backTop: "↑ Back to top",
+          search: "Search in multimedia…",
+          clearSearch: "Clear search",
+          all: "All",
+          photo: "Photo",
+          video: "Video",
+          audio: "Audio",
+          interviews: "Interviews",
+          instagram: "Instagram",
+        }
+      : {
+          title: "🎧 Multimedia",
+          backVision: "← Înapoi la Viziune",
+          backTop: "↑ Înapoi sus",
+          search: "Caută în multimedia…",
+          clearSearch: "Șterge căutarea",
+          all: "Toate",
+          photo: "Foto",
+          video: "Video",
+          audio: "Audio",
+          interviews: "Interviuri",
+          instagram: "Instagram",
+        };
 
+
+        const FILTERS = [
+          { key: "all", label: ui.all },
+          { key: "photo", label: ui.photo },
+          { key: "video", label: ui.video },
+          { key: "audio", label: ui.audio },
+          { key: "interview", label: ui.interviews },
+          { key: "instagram", label: ui.instagram },
+        ];
   const list = useMemo(() => {
     let arr = MEDIA;
     if (active !== "all") {
@@ -72,16 +125,35 @@ export default function Multimedia() {
     });
 
   return (
-    <div style={{ padding: "24px 0 48px" }}>
-      <div className="container" style={{ maxWidth: 1100, padding: "0 16px" }}>
+    <div style={{ padding: "10px 0 48px" }}>
+<div className="container" style={{ maxWidth: 1200, padding: "0 16px" }}>
+      <div style={{ marginTop: 14, marginBottom: 16 }}>
+  <Link
+    to={VISION_PATH}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "10px 14px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--accent)",
+      textDecoration: "none",
+      fontWeight: 600,
+      background: "#fff",
+      boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+    }}
+  >
+    {ui.backVision}
+  </Link>
+</div>
+       
+       
         {/* Header + back (sus) */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-          <h1 className="font-cormorant" style={{ margin: 0 }}>🎧 Multimedia</h1>
-          <div style={{ flex: 1 }} />
-          <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
-            ← Înapoi la Viziune
-          </Link>
-        </div>
+        <div style={{ marginBottom: 10 }}>
+  <h1 className="font-cormorant" style={{ margin: 0 }}>
+    {ui.title}
+  </h1>
+</div>
 
         {/* Socials */}
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", margin: "4px 0 10px" }}>
@@ -92,39 +164,83 @@ export default function Multimedia() {
         </div>
 
         {/* Search + filtre (butonașe cu snap) */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 12 }}>
-          <div style={{ position: "relative", flex: "1 1 280px", minWidth: 220 }}>
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Caută în multimedia…"
-              style={{
-                width: "100%",
-                padding: "10px 12px",
-                borderRadius: 999,
-                border: "1px solid #d9d4c8",
-                outline: "none",
-              }}
-            />
-            {q && (
-              <button
-                onClick={() => setQ("")}
-                aria-label="Șterge căutarea"
-                style={{
-                  position: "absolute",
-                  right: 8,
-                  top: 8,
-                  border: 0,
-                  background: "transparent",
-                  cursor: "pointer",
-                  fontWeight: 700,
-                  color: "#777",
-                }}
-              >
-                ×
-              </button>
-            )}
-          </div>
+        <div style={{ display: "grid", gap: 12, marginBottom: 12 }}>
+  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+    <div style={{ position: "relative", flex: "1 1 280px", minWidth: 220 }}>
+      <input
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder={ui.search}
+        style={{
+          width: "100%",
+          padding: "10px 12px",
+          borderRadius: 999,
+          border: "1px solid #d9d4c8",
+          outline: "none",
+        }}
+      />
+      {q && (
+        <button
+          onClick={() => setQ("")}
+          aria-label={ui.clearSearch}
+          style={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            border: 0,
+            background: "transparent",
+            cursor: "pointer",
+            fontWeight: 700,
+            color: "#777",
+          }}
+        >
+          ×
+        </button>
+      )}
+    </div>
+
+    <div
+      role="group"
+      aria-label="Language switch"
+      style={{
+        display: "inline-flex",
+        border: "1px solid #ddd",
+        borderRadius: 999,
+        overflow: "hidden",
+        background: "#fff",
+      }}
+    >
+      <button
+        onClick={() => setLang("ro")}
+        style={{
+          padding: "8px 14px",
+          border: "none",
+          background: lang === "ro" ? "var(--accent)" : "transparent",
+          color: lang === "ro" ? "#fff" : "#444",
+          cursor: "pointer",
+          fontWeight: 700,
+        }}
+      >
+        RO
+      </button>
+      <button
+        onClick={() => setLang("en")}
+        style={{
+          padding: "8px 14px",
+          border: "none",
+          background: lang === "en" ? "var(--accent)" : "transparent",
+          color: lang === "en" ? "#fff" : "#444",
+          cursor: "pointer",
+          fontWeight: 700,
+        }}
+      >
+        EN
+      </button>
+    </div>
+  </div>
+
+  
+
 
           <div
             style={{
@@ -170,31 +286,77 @@ export default function Multimedia() {
         >
           {list.map((item) => (
             <Card
-              key={item.id}
-              item={item}
-              open={openIds.has(item.id)}
-              onToggle={() => toggleOpen(item.id)}
-              getThumb={() =>
-                item.thumb ||
-                (["video", "interview"].includes(item.type) ? youTubeThumb(item.url) : null) ||
-                FALLBACK_THUMB
-              }
-            />
+            key={item.id}
+            item={item}
+            lang={lang}
+            open={openIds.has(item.id)}
+            onToggle={() => toggleOpen(item.id)}
+            getThumb={() =>
+              item.thumb ||
+              (["video", "interview"].includes(item.type) ? youTubeThumb(item.url) : null) ||
+              FALLBACK_THUMB
+            }
+          />
           ))}
         </div>
 
         {/* Back jos */}
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
-          <Link to={VISION_PATH} className="btn-outline" style={{ textDecoration: "none" }}>
-            ← Înapoi la Viziune
-          </Link>
-        </div>
+        <div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: 10,
+    marginTop: 24,
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    to={VISION_PATH}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "10px 14px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--accent)",
+      textDecoration: "none",
+      fontWeight: 600,
+      background: "#fff",
+      boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+    }}
+  >
+    {ui.backVision}
+  </Link>
+
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "10px 14px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--accent)",
+      textDecoration: "none",
+      fontWeight: 600,
+      background: "#fff",
+      boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+    }}
+  >
+    {ui.backTop}
+  </a>
+</div>
+  
       </div>
     </div>
   );
 }
 
-function Card({ item, open, onToggle, getThumb }) {
+function Card({ item, lang, open, onToggle, getThumb }) {
   const isVideo = item.type === "video" || item.type === "interview";
   const isAudio = item.type === "audio";
   const isPhoto = item.type === "photo";
@@ -344,7 +506,7 @@ function Card({ item, open, onToggle, getThumb }) {
       <div style={captionStyle}>
         <div style={{ fontWeight: 700, color: "#2b2a28" }}>{item.title}</div>
         <div style={{ marginTop: 6, fontSize: 13, fontWeight: 600, color: "#2f6d6a" }}>
-          {labelForType(item.type)}
+        {labelForType(item.type, lang)}
         </div>
       </div>
 
