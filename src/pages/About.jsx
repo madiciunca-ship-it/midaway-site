@@ -1,18 +1,47 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+const sectionNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--accent)",
+  textDecoration: "none",
+  fontWeight: 600,
+  background: "#fff",
+  boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+};
 
 export default function About() {
   const [lang, setLang] = useState("ro");
 
+  const ui =
+  lang === "en"
+    ? {
+        backHome: "← Back to Home",
+        backTop: "↑ Back to top",
+      }
+    : {
+        backHome: "← Înapoi la Acasă",
+        backTop: "↑ Înapoi sus",
+      };
   return (
-    <div style={{ padding: 24, maxWidth: 800, margin: "0 auto" }}>
+    <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
+    <div style={{ marginTop: 2, marginBottom: 18 }}>
+  <Link to="/" style={sectionNavStyle}>
+    {ui.backHome}
+  </Link>
+</div> 
+      
+      
       {/* buton switch RO/EN */}
       <div
         style={{
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "center",
-          marginBottom: 12,
+          marginBottom: 20,
           gap: 0,
         }}
       >
@@ -49,7 +78,7 @@ export default function About() {
       {/* conținut română */}
       {lang === "ro" && (
         <>
-          <h1 style={{ marginTop: 0 }}>🌸 Despre Midaway</h1>
+          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>🌸 Despre Midaway</h1>
 
           <p style={{ color: "#555", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
             Eu sunt <strong>Mida Malena</strong> – scriitoare, călătoare și povestitoare.
@@ -130,7 +159,7 @@ export default function About() {
       {/* conținut engleză */}
       {lang === "en" && (
         <>
-          <h1 style={{ marginTop: 0 }}>🌸 About Midaway</h1>
+          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>🌸 About Midaway</h1>
 
           <p style={{ color: "#555", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
             I am <strong>Mida Malena</strong> – writer, traveler, and storyteller.
@@ -203,6 +232,30 @@ export default function About() {
           </p>
         </>
       )}
+      <div
+  style={{
+    marginTop: 28,
+    display: "flex",
+    justifyContent: "center",
+    gap: 10,
+    flexWrap: "wrap",
+  }}
+>
+  <Link to="/" style={sectionNavStyle}>
+    {ui.backHome}
+  </Link>
+
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={sectionNavStyle}
+  >
+    {ui.backTop}
+  </a>
+</div>
     </div>
   );
 }
