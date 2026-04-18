@@ -1,5 +1,5 @@
 // src/pages/Books.jsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { BOOKS } from "../data/books";
 import { Link } from "react-router-dom";
 import { BOOK_REVIEWS } from "../data/bookReviews";
@@ -44,6 +44,36 @@ export default function Books() {
   const [location, setLocation] = useState("Toate");
   const [q, setQ] = useState("");
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
+  const sectionBackStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "10px 14px",
+    borderRadius: 999,
+    border: "1px solid var(--accent)",
+    color: "var(--accent)",
+    textDecoration: "none",
+    fontWeight: 600,
+    background: "#fff",
+    boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+  };
+
+  const sectionTopStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "10px 14px",
+    borderRadius: 999,
+    border: "1px solid var(--accent)",
+    color: "var(--accent)",
+    textDecoration: "none",
+    fontWeight: 600,
+    background: "#fff",
+    boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+  };
+
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
 
@@ -65,6 +95,11 @@ export default function Books() {
 
   return (
     <div>
+            <div style={{ marginBottom: 18 }}>
+        <Link to="/" style={sectionBackStyle}>
+          ← Înapoi la Acasă
+        </Link>
+      </div>
       <h1 style={{ marginTop: 0, textAlign: "center" }}>📚 Biblioteca Midaway</h1>
 
       {/* Filtre */}
@@ -399,6 +434,18 @@ export default function Books() {
                 </div>
             );
           })}
+      </div>
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={sectionTopStyle}
+        >
+          ↑ Înapoi sus
+        </a>
       </div>
     </div>
   );
