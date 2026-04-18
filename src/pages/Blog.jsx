@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import posts from "../data/posts";
 
@@ -19,6 +19,55 @@ function estimateMinutes(p) {
 
 export default function Blog() {
   const [query, setQuery] = useState("");
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("blog.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("blog.lang", lang);
+    }
+  }, [lang]);
+  
+  const ui =
+    lang === "en"
+      ? {
+          backHome: "← Back to Home",
+          backTop: "↑ Back to top",
+          title: "Midaway Blog",
+          subtitle: "Literary texts & personal reflections.",
+          search: "Search by title or excerpt…",
+          noResults: "No articles found for your filter/search.",
+          reset: "Reset",
+          readMore: "Read article →",
+          all: "all",
+        }
+      : {
+          backHome: "← Înapoi la Acasă",
+          backTop: "↑ Înapoi sus",
+          title: "Blog Midaway",
+          subtitle: "Texte literare & reflecții personale.",
+          search: "Caută după titlu sau descriere…",
+          noResults: "N-am găsit articole pentru filtrul/căutarea ta.",
+          reset: "Reset",
+          readMore: "Citește articolul →",
+          all: "toate",
+        };
+  
+  const sectionNavStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "10px 14px",
+    borderRadius: 999,
+    border: "1px solid var(--accent)",
+    color: "var(--accent)",
+    textDecoration: "none",
+    fontWeight: 600,
+    background: "#fff",
+    boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+  };
   const [activeTag, setActiveTag] = useState("toate");
   const [newsletterStatus, setNewsletterStatus] = useState("idle");
   const [newsletterMessage, setNewsletterMessage] = useState("");
@@ -26,33 +75,40 @@ export default function Blog() {
 
   const tags = useMemo(() => {
     const t = new Set();
-    posts.forEach((p) => p.tags.forEach((x) => t.add(x)));
-    return ["toate", ...Array.from(t)];
-  }, []);
+    posts
+      .filter((p) => !p.draft)
+      .filter((p) => String(p.lang || "ro").toLowerCase() === lang)
+      .forEach((p) => p.tags.forEach((x) => t.add(x)));
+  
+    return [ui.all, ...Array.from(t)];
+  }, [lang, ui.all]);
+
+  useEffect(() => {
+    setActiveTag(ui.all);
+  }, [ui.all]);
 
   const filtered = useMemo(() => {
-    // 1) ascundem draft-urile
-    let list = posts.filter((p) => !p.draft);
+  let list = posts
+    .filter((p) => !p.draft)
+    .filter((p) => String(p.lang || "ro").toLowerCase() === lang);
 
-    // 2) sortare descrescătoare după dată (ultimul = primul)
-    list = list.sort((a, b) => b.date.localeCompare(a.date));
+  list = list.sort((a, b) => b.date.localeCompare(a.date));
 
-    // 3) filtrare pe tag
-    if (activeTag !== "toate") {
-      list = list.filter((p) => p.tags.includes(activeTag));
-    }
+  if (activeTag !== ui.all) {
+    list = list.filter((p) => p.tags.includes(activeTag));
+  }
 
-    // 4) căutare text
-    if (query.trim()) {
-      const q = query.toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.excerpt.toLowerCase().includes(q)
-      );
-    }
-    return list;
-  }, [activeTag, query]);
+  if (query.trim()) {
+    const q = query.toLowerCase();
+    list = list.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q)
+    );
+  }
+
+  return list;
+}, [activeTag, query, lang, ui.all]);
 
   async function handleNewsletterSubmit(e) {
     e.preventDefault();
@@ -94,45 +150,98 @@ export default function Blog() {
 
   return (
     <div className="container" style={{ padding: "32px 0 48px" }}>
-      <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 24 }}>
-        <h1 style={{ margin: 0, fontSize: 40 }}>Blog Midaway</h1>
-        <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-          Texte literare & reflecții personale.
-        </p>
-      </header>
+    <div style={{ marginTop: -8, marginBottom: 18 }}>
+      <Link to="/" style={sectionNavStyle}>
+        {ui.backHome}
+      </Link>
+    </div>
+  
+    <header
+      className="font-cormorant"
+      style={{ textAlign: "center", marginBottom: 24 }}
+    >
+      <h1 style={{ margin: 0, fontSize: 40 }}>{ui.title}</h1>
+      <p style={{ color: "var(--secondary)", marginTop: 8 }}>
+        {ui.subtitle}
+      </p>
+    </header>
+    <div className="blog-toolbar">
+  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+    <input
+      className="input"
+      placeholder={ui.search}
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      style={{ flex: 1 }}
+    />
 
-      <div className="blog-toolbar">
-        <input
-          className="input"
-          placeholder="Caută după titlu sau descriere…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <div className="chips">
-          {tags.map((t) => (
-            <button
-              key={t}
-              className={`chip ${activeTag === t ? "active" : ""}`}
-              onClick={() => setActiveTag(t)}
-            >
-              {t[0].toUpperCase() + t.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
+    <div
+      role="group"
+      aria-label="Blog language switch"
+      style={{
+        display: "inline-flex",
+        border: "1px solid #ddd",
+        borderRadius: 999,
+        overflow: "hidden",
+        background: "#fff",
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setLang("ro")}
+        style={{
+          padding: "8px 14px",
+          border: "none",
+          background: lang === "ro" ? "var(--accent)" : "transparent",
+          color: lang === "ro" ? "#fff" : "#444",
+          cursor: "pointer",
+          fontWeight: 700,
+        }}
+      >
+        RO
+      </button>
+      <button
+        type="button"
+        onClick={() => setLang("en")}
+        style={{
+          padding: "8px 14px",
+          border: "none",
+          background: lang === "en" ? "var(--accent)" : "transparent",
+          color: lang === "en" ? "#fff" : "#444",
+          cursor: "pointer",
+          fontWeight: 700,
+        }}
+      >
+        EN
+      </button>
+    </div>
+  </div>
+
+  <div className="chips">
+    {tags.map((t) => (
+      <button
+        key={t}
+        className={`chip ${activeTag === t ? "active" : ""}`}
+        onClick={() => setActiveTag(t)}
+      >
+        {t === ui.all ? (lang === "en" ? "All" : "Toate") : t}
+      </button>
+    ))}
+  </div>
+</div>
 
       {filtered.length === 0 ? (
         <div style={{ marginTop: 16, color: "var(--secondary)" }}>
-          N-am găsit articole pentru filtrul/căutarea ta.
+          {ui.noResults}
           <button
             className="chip"
             style={{ marginLeft: 8 }}
             onClick={() => {
               setQuery("");
-              setActiveTag("toate");
+              setActiveTag(ui.all);
             }}
           >
-            Reset
+          {ui.reset}
           </button>
         </div>
       ) : (
@@ -144,9 +253,29 @@ export default function Blog() {
               className="blog-card"
             >
               <div
-                className="blog-card-cover"
-                style={{ backgroundImage: `url(${p.cover})` }}
-              />
+  className="blog-card-cover"
+  style={{
+    backgroundImage: `url(${p.cover})`,
+    position: "relative",
+  }}
+>
+  <span
+    style={{
+      position: "absolute",
+      top: 10,
+      right: 10,
+      background: "rgba(139,44,52,.92)",
+      color: "#fff",
+      fontSize: 11,
+      fontWeight: 700,
+      padding: "4px 8px",
+      borderRadius: 999,
+      letterSpacing: ".04em",
+    }}
+  >
+    {String(p.lang || "ro").toUpperCase()}
+  </span>
+</div>
               <div className="blog-card-body">
                 <div className="blog-meta">
                   <span>{formatDate(p.date)}</span>
@@ -162,7 +291,7 @@ export default function Blog() {
                     </span>
                   ))}
                 </div>
-                <span className="read-more">Citește articolul →</span>
+                <span className="read-more">{ui.readMore}</span>
               </div>
             </Link>
           ))}
@@ -264,6 +393,18 @@ export default function Blog() {
   </form>
 </>
       </section>
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={sectionNavStyle}
+  >
+    {ui.backTop}
+  </a>
+</div>
     </div>
   );
 }

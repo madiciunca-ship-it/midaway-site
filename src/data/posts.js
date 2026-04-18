@@ -10,6 +10,7 @@ const posts = [
     date: "2025-10-15",
     tags: ["calatorii", "jurnal"],
     cover: "assets/blog/blog-1.jpg",
+    lang: "ro",
     minutes: 5,
     content: [
       `Uneori, călătoriile nu încep cu un pas, ci cu o întrebare care nu te mai lasă să dormi. În cazul meu, întrebarea era: „Ce se întâmplă cu visul când ajungi să-l trăiești?”`,
@@ -36,6 +37,7 @@ const posts = [
     date: "2025-10-22",
     tags: ["proiecte", "scris"],
     cover: "assets/blog/blog-2.jpg",
+    lang: "ro",
     minutes: 6,
     content: [
       { type: "paragraph", parts: [{ text: "„Cine este Yda?” E o întrebare pe care o primesc des, mai ales de când am lansat " }, { text: "„Zile și nopți de Vietnam”", href: "/carti/vietnam-ro", kind: "internal" }, { text: ". E întrebarea din spatele multor priviri curioase, zâmbete în colțul gurii sau mesaje în care cititorii caută... o confirmare. E ea reală? E doar un personaj? Sau e o parte din mine?" }] },
@@ -57,6 +59,7 @@ const posts = [
     date: "2025-10-29",
     tags: ["proiecte", "scris"],
     cover: "assets/blog/blog-3.jpg",
+    lang: "ro",
     minutes: 6,
     content: [
       `Nu alegem drumuri neștiute pentru că sunt comode. Nici pentru că știm unde duc. Le alegem tocmai pentru că nu știm. Pentru că, dincolo de teama de necunoscut, există o altă frică – mai subtilă, dar mai profundă: frica de a rămâne pe loc în propria viață.`,
@@ -78,6 +81,7 @@ const posts = [
     date: "2025-11-18",
     tags: ["scris", "proces creativ", "culise", "editura", "proiecte"],
     cover: "assets/blog/blog-4.jpg",
+    lang: "ro",
     minutes: 8,
     content: [
       { type: "paragraph", parts: [{ text: "Există momente în viață în care nu cauți nimic anume – și totuși găsești exact ce-ți trebuia. Așa a început " }, { text: "povestea site-ului meu", href: "/", kind: "internal" }, { text: ". Nu cu un plan, nici cu o strategie bine definită, ci cu un „nu știu” care mi-a scăpat spontan, sincer, și care a deschis, paradoxal, niște uși pe care până atunci nici nu le vedeam." }] },
@@ -121,7 +125,8 @@ const posts = [
     tags: ["China", "jurnal", "calatorii", "scris", "mindset"],
     excerpt:
       "Unele vise încep când nu te mai gândești la ele. China m-a scos din priză cu un «NO CONNECTION» repetat… și mi-a pus sufletul la loc.",
-    cover: "/assets/blog/no-connection-china.jpg", 
+    cover: "/assets/blog/no-connection-china.jpg",
+    lang: "ro",
     minutes: 11,
     content: [
       `Unele vise încep fix atunci când nu te mai gândești la ele. Când nu mai stai cu ochii pe destinație, cu dorul încordat, cu liste și planuri. Pur și simplu… se întâmplă.`,
@@ -221,6 +226,7 @@ const posts = [
     author: "Mida Malena",
     tags: ["China", "Beijing", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/beijing-no-connection-china.jpg",
+    lang: "ro",
     minutes: 12,
     content: [
       `22 de ore de drum.`,
@@ -366,6 +372,7 @@ const posts = [
     tags: ["China", "Xi’an", "jurnal", "calatorii", "mindset", "No Connection"],
     minutes: 8,
     cover: "/assets/blog/xian-no-connection-china.jpg",
+    lang: "ro",
     content: [
       { type: "paragraph", parts: [{ text: "Am ajuns la gară cu un adevăr simplu în minte: știam că sunt multe trenuri spre " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
       "Aplicația Trip.com confirma. Trenuri multe, rapide, impecabile.",
@@ -486,6 +493,7 @@ const posts = [
     author: "Mida Malena",
     tags: ["China", "Chengdu", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/chengdu-no-connection-china.jpg",
+    lang: "ro",
     minutes: 11,
     content: [
       { type: "paragraph", parts: [{ text: "Am plecat spre " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: " dimineața, după ultimul mic dejun delicios din " }, { text: "Xi’an", href: "https://www.google.com/maps/place/Xi'an/", kind: "external" }, { text: "." }] },
@@ -600,6 +608,7 @@ const posts = [
     author: "Mida Malena",
     tags: ["China", "Chongqing", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/chongqing-no-connection-china.jpg",
+    lang: "ro",
     minutes: 12,
     content: [
       { type: "paragraph", parts: [{ text: "Dimineața m-am trezit devreme. Nu pentru că așa îmi propusesem. Ci pentru că ultima mea noapte în " }, { text: "Chengdu", href: "https://www.google.com/maps/place/Chengdu/", kind: "external" }, { text: " n-a fost noapte." }] },
@@ -716,6 +725,7 @@ const posts = [
     author: "Mida Malena",
     tags: ["China", "Zhangjiajie", "jurnal", "calatorii", "mindset", "No Connection"],
     cover: "/assets/blog/zhangjiajie-no-connection-china1.jpg",
+    lang: "ro",
     minutes: 13,
     content: [
       { type: "paragraph", parts: [{ text: "Plecarea din " }, { text: "Chongqing", href: "https://www.google.com/maps/place/Chongqing/", kind: "external" }, { text: " trebuia să fie simplă. Și, pentru câteva minute, chiar a fost." }] },
@@ -856,6 +866,7 @@ const posts = [
     author: "Mida Malena",
     tags: ["China", "Yangshuo", "Guilin", "Xingping", "No Connection", "jurnal", "calatorii"],
     cover: "/assets/blog/yangshuo-no-connection-china.jpg",
+    lang: "ro",
     minutes: 12,
     content: [
       { type: "paragraph", parts: [{ text: "Decizia de a pleca din " }, { text: "Zhangjiajie", href: "https://www.google.com/maps/place/Zhangjiajie/", kind: "external" }, { text: " n-a fost calculată; a venit pe moment." }] },
@@ -1023,6 +1034,7 @@ const posts = [
       author: "Mida Malena",
       tags: ["China", "Hong Kong", "No Connection", "jurnal", "calatorii", "mindset"],
       cover: "/assets/blog/hong-kong-no-connection-china.jpg",
+      lang: "ro",
       minutes: 13,
       content: [
         { type: "paragraph", parts: [{ text: "După o zi care a mers împotriva oricărei logici, am înțeles ceva simplu: " }, { text: "China", href: "https://www.google.com/maps/place/China/", kind: "external" }, { text: " nu voia să mai stau." }] },
@@ -1105,6 +1117,7 @@ const posts = [
       "iubire de sine",
     ],
     cover: "/assets/blog/cartea-pe-care-nu-voiam-sa-o-scriu-focuri-care-nu-ating.jpg",
+    lang: "ro",
     minutes: 12,
     content: [
       `Le-am primit. Le-am trăit. Le-am scris. Iar acum le las să meargă în lume.`,
@@ -1197,6 +1210,7 @@ const posts = [
       ],
   
     cover: "/assets/blog/libertati-diferite-barbat-femeie.jpg",
+    lang: "ro",
     minutes: 12,
     content: [
       `Nu știu exact când mi-a venit gândul acesta.`,
