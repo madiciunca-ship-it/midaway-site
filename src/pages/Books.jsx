@@ -74,6 +74,34 @@ export default function Books() {
     background: "#fff",
     boxShadow: "0 2px 10px rgba(0,0,0,.04)",
   };
+  const pageUi =
+  bookLang === "EN"
+    ? {
+        backHome: "← Back to Home",
+        title: "📚 Midaway Library",
+        genre: "Genre",
+        location: "Location",
+        language: "Language",
+        all: "All",
+        reset: "Reset filters",
+        search: "Search: title, subtitle, genre, location or tag",
+        clear: "Clear",
+        results: "results",
+        backTop: "↑ Back to top",
+      }
+    : {
+        backHome: "← Înapoi la Acasă",
+        title: "📚 Biblioteca Midaway",
+        genre: "Gen",
+        location: "Locație",
+        language: "Limbă",
+        all: "Toate",
+        reset: "Reset filtre",
+        search: "Caută: titlu, subtitlu, gen, locație sau tag",
+        clear: "Șterge",
+        results: "rezultate",
+        backTop: "↑ Înapoi sus",
+      };
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -103,10 +131,10 @@ export default function Books() {
     <div>
             <div style={{ marginBottom: 18 }}>
         <Link to="/" style={sectionBackStyle}>
-          ← Înapoi la Acasă
+        {pageUi.backHome}
         </Link>
       </div>
-      <h1 style={{ marginTop: 0, textAlign: "center" }}>📚 Biblioteca Midaway</h1>
+      <h1 style={{ marginTop: 0, textAlign: "center" }}>{pageUi.title}</h1>
 
       {/* Filtre */}
       <div style={{ display: "grid", gap: 10, marginBottom: 20 }}>
@@ -117,56 +145,56 @@ export default function Books() {
             gap: 8,
           }}
         >
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <span style={{ fontSize: 12, color: "#666", minWidth: 50 }}>Gen</span>
-            <select
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
-              style={{
-                flex: 1,
-                padding: "8px 10px",
-                border: "1px solid #ddd",
-                borderRadius: 10,
-              }}
-            >
-              <option>Toate</option>
-              {GENRES.map((g) => (
-                <option key={g}>{g}</option>
-              ))}
-            </select>
-          </div>
-
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <span style={{ fontSize: 12, color: "#666", minWidth: 50 }}>Locație</span>
-            <select
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              style={{
-                flex: 1,
-                padding: "8px 10px",
-                border: "1px solid #ddd",
-                borderRadius: 10,
-              }}
-            >
-              <option>Toate</option>
-              {LOCATIONS.map((l) => (
-                <option key={l}>{l}</option>
-              ))}
-            </select>
-          </div>
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-  <span style={{ fontSize: 12, color: "#666", minWidth: 50 }}>Limbă</span>
+         <div style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontSize: 12, color: "#666" }}>{pageUi.genre}</span>
   <select
-    value={bookLang}
-    onChange={(e) => setBookLang(e.target.value)}
+    value={genre}
+    onChange={(e) => setGenre(e.target.value)}
     style={{
-      flex: 1,
+      width: "100%",
       padding: "8px 10px",
       border: "1px solid #ddd",
       borderRadius: 10,
     }}
   >
-    <option>Toate</option>
+    <option>{pageUi.all}</option>
+    {GENRES.map((g) => (
+      <option key={g}>{g}</option>
+    ))}
+  </select>
+</div>
+
+<div style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontSize: 12, color: "#666" }}>{pageUi.location}</span>
+  <select
+    value={location}
+    onChange={(e) => setLocation(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "8px 10px",
+      border: "1px solid #ddd",
+      borderRadius: 10,
+    }}
+  >
+   <option>{pageUi.all}</option>
+    {LOCATIONS.map((l) => (
+      <option key={l}>{l}</option>
+    ))}
+  </select>
+</div>
+<div style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontSize: 12, color: "#666" }}>{pageUi.language}</span>
+  <select
+    value={bookLang}
+    onChange={(e) => setBookLang(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "8px 10px",
+      border: "1px solid #ddd",
+      borderRadius: 10,
+    }}
+  >
+   <option>{pageUi.all}</option>
     <option>RO</option>
     <option>EN</option>
   </select>
@@ -180,23 +208,27 @@ export default function Books() {
   }
 `}</style>
 
-          <button
-           onClick={() => {
-            setQ("");
-            setGenre("Toate");
-            setLocation("Toate");
-            setBookLang("Toate");
-          }}
-            style={{
-              padding: "8px 10px",
-              borderRadius: 10,
-              border: "1px solid #ddd",
-              background: "#fff",
-              cursor: "pointer",
-            }}
-          >
-            Reset filtre
-          </button>
+<div style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontSize: 12, color: "transparent" }}>reset</span>
+  <button
+    onClick={() => {
+      setQ("");
+      setGenre("Toate");
+      setLocation("Toate");
+      setBookLang("Toate");
+    }}
+    style={{
+      width: "100%",
+      padding: "8px 10px",
+      borderRadius: 10,
+      border: "1px solid #ddd",
+      background: "#fff",
+      cursor: "pointer",
+    }}
+  >
+    {pageUi.reset}
+  </button>
+</div>
         </div>
 
         
@@ -206,7 +238,7 @@ export default function Books() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Caută: titlu, subtitlu, gen, locație sau tag"
+            placeholder={pageUi.search}
             style={{
               flex: 1,
               padding: "10px 12px",
@@ -224,12 +256,12 @@ export default function Books() {
               cursor: "pointer",
             }}
           >
-            Șterge
+            {pageUi.clear}
           </button>
         </div>
 
         <div style={{ fontSize: 12, color: "#666" }}>
-          {filtered.length} rezultate
+        {filtered.length} {pageUi.results}
         </div>
       </div>
 
@@ -466,8 +498,9 @@ export default function Books() {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           }}
           style={sectionTopStyle}
+    
         >
-          ↑ Înapoi sus
+          {pageUi.backTop}
         </a>
       </div>
     </div>
