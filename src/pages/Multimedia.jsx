@@ -149,14 +149,22 @@ export default function Multimedia() {
        
        
         {/* Header + back (sus) */}
-        <div style={{ marginBottom: 10 }}>
+        <div style={{ marginBottom: 14, textAlign: "center" }}>
   <h1 className="font-cormorant" style={{ margin: 0 }}>
     {ui.title}
   </h1>
 </div>
 
         {/* Socials */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", margin: "4px 0 10px" }}>
+        <div
+  style={{
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    margin: "4px 0 10px",
+    justifyContent: "center",
+  }}
+>
           {SOCIALS.instagram && <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Instagram</a>}
           {SOCIALS.facebook && <a href={SOCIALS.facebook} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>Facebook</a>}
           {SOCIALS.tiktok && <a href={SOCIALS.tiktok} target="_blank" rel="noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>TikTok</a>}
@@ -165,7 +173,15 @@ export default function Multimedia() {
 
         {/* Search + filtre (butonașe cu snap) */}
         <div style={{ display: "grid", gap: 12, marginBottom: 12 }}>
-  <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <div
+  style={{
+    display: "flex",
+    gap: 12,
+    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  }}
+>
     <div style={{ position: "relative", flex: "1 1 280px", minWidth: 220 }}>
       <input
         value={q}
@@ -242,17 +258,17 @@ export default function Multimedia() {
   
 
 
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              padding: "6px 2px 6px",
-              overflowX: "auto",
-              scrollSnapType: "x mandatory",
-              WebkitOverflowScrolling: "touch",
-              flex: "1 1 auto",
-            }}
-          >
+  <div
+  style={{
+    display: "flex",
+    gap: 8,
+    padding: "6px 2px 6px",
+    overflowX: "auto",
+    scrollSnapType: "x mandatory",
+    WebkitOverflowScrolling: "touch",
+    justifyContent: "center",
+  }}
+>
             {FILTERS.map((f) => (
               <button
                 key={f.key}
