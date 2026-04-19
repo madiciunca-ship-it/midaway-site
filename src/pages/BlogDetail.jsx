@@ -52,27 +52,41 @@ export default function BlogDetail() {
     }
     meta.content = desc;
   }, [post]);
+  const ui =
+  String(post?.lang || "ro").toLowerCase() === "en"
+    ? {
+        notFound: "Article not found",
+        backBlog: "← Back to blog",
+        backTop: "↑ Back to top",
+        related: "Related articles",
+      }
+    : {
+        notFound: "Articolul nu există",
+        backBlog: "← Înapoi la blog",
+        backTop: "↑ Înapoi sus",
+        related: "Articole înrudite",
+      };
+  
+      const backPillStyle = {
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "8px 12px",
+        borderRadius: 999,
+        border: "1px solid var(--accent)",
+        color: "var(--secondary)",
+        textDecoration: "none",
+        fontWeight: 500,
+        background: "transparent",
+      };
 
   if (!post) {
-    const backPillStyle = {
-      display: "inline-flex",
-      alignItems: "center",
-      padding: "8px 12px",
-      borderRadius: 999,
-      border: "1px solid var(--accent)",
-      color: "var(--secondary)",
-      textDecoration: "none",
-      fontWeight: 500,
-      background: "transparent",
-    };
-  
     return (
       <div className="container" style={{ padding: "32px 0 48px" }}>
-        <h1 className="font-cormorant">Articolul nu există</h1>
+        <h1 className="font-cormorant">{ui.notFound}</h1>
         <p>
-          <Link to="/blog" style={backPillStyle}>
-            ← Înapoi la blog
-          </Link>
+        <Link to="/blog" style={backPillStyle}>
+  {ui.backBlog}
+</Link>
         </p>
       </div>
     );
@@ -82,25 +96,15 @@ export default function BlogDetail() {
   const related = posts
     .filter(x => x.slug !== post.slug && x.tags.some(t => post.tags.includes(t)))
     .slice(0, 3);
-    const backPillStyle = {
-      display: "inline-flex",
-      alignItems: "center",
-      padding: "8px 12px",
-      borderRadius: 999,
-      border: "1px solid var(--accent)",
-      color: "var(--secondary)",
-      textDecoration: "none",
-      fontWeight: 500,
-      background: "transparent",
-    };
+    
 
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 900 }}>
-      <p style={{ marginTop: 0, marginBottom: 16 }}>
+      <div style={{ marginTop: 0, marginBottom: 16 }}>
   <Link to="/blog" style={backPillStyle}>
-    ← Înapoi la blog
+    {ui.backBlog}
   </Link>
-</p>
+</div>
       {/* cover (robust: cover | image | hero + normalizare cale) */}
 {(() => {
   const cover = resolveSrc(post.cover || post.image || post.hero);
@@ -219,7 +223,7 @@ export default function BlogDetail() {
       {/* Related posts */}
       {related.length > 0 && (
         <section style={{ marginTop: 32 }}>
-          <h3 className="font-cormorant" style={{ marginBottom: 12 }}>Articole înrudite</h3>
+          <h3 className="font-cormorant" style={{ marginBottom: 12 }}>{ui.related}</h3>
           <div className="blog-grid">
             {related.map((r) => (
               <Link
@@ -245,10 +249,29 @@ export default function BlogDetail() {
       )}
 
       {/* back */}
-      <div style={{ marginTop: 24 }}>
+      <div
+  style={{
+    marginTop: 24,
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    alignItems: "center",
+  }}
+>
   <Link to="/blog" style={backPillStyle}>
-    ← Înapoi la blog
+    {ui.backBlog}
   </Link>
+
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={backPillStyle}
+  >
+    {ui.backTop}
+  </a>
 </div>
     </div>
   );
