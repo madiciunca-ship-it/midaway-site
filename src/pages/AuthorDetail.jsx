@@ -19,6 +19,19 @@ function getLocaleData(author, lang) {
   );
 }
 
+const secondaryNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "8px 12px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--secondary)",
+  textDecoration: "none",
+  fontWeight: 500,
+  background: "transparent",
+};
+
+
 export default function AuthorDetail() {
   const { slug } = useParams();
 
@@ -61,24 +74,33 @@ export default function AuthorDetail() {
   if (!a) {
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">
-          {lang === "en" ? "Author not found" : "Autorul nu există"}
-        </h1>
+        <h1 className="font-cormorant">{ui.notFound}</h1>
         <p>
-          {lang === "en" ? "Back to " : "Înapoi la "}
-          <Link
-            to={`/autori?lang=${lang}`}
-            style={{ color: "var(--accent)", textDecoration: "none" }}
-          >
-            {lang === "en" ? "Authors" : "Autori"}
+          <Link to="/autori" style={secondaryNavStyle}>
+            {ui.backAuthors}
           </Link>
-          .
         </p>
       </div>
     );
   }
   const d = getLocaleData(a, lang);
 
+  const ui =
+  lang === "en"
+    ? {
+        backAuthors: "← Back to authors",
+        backTop: "↑ Back to top",
+        notFound: "Author not found",
+        authors: "Authors",
+        collab: "Propose a collaboration",
+      }
+    : {
+        backAuthors: "← Înapoi la autori",
+        backTop: "↑ Înapoi sus",
+        notFound: "Autorul nu există",
+        authors: "Autori",
+        collab: "Propune o colaborare",
+      };
 
   // ----- BIO: patch pentru RO 
   let bio = Array.isArray(d.bio) ? [...d.bio] : [];
@@ -101,24 +123,11 @@ export default function AuthorDetail() {
           className="container"
           style={{ padding: "24px 0 48px", maxWidth: 1000 }}
         >
-  <p style={{ marginTop: 0 }}>
-  <Link
-    to="/autori"
-    style={{
-      display: "inline-flex",
-      alignItems: "center",
-      padding: "8px 12px",
-      borderRadius: 999,
-      border: "1px solid var(--accent)",
-      color: "var(--secondary)",
-      textDecoration: "none",
-      fontWeight: 500,
-      background: "transparent",
-    }}
-  >
-    ← {lang === "en" ? "Back to authors" : "Înapoi la autori"}
+  <div style={{ marginTop: 0, marginBottom: 18 }}>
+  <Link to="/autori" style={secondaryNavStyle}>
+    {ui.backAuthors}
   </Link>
-</p>
+</div>
 
   <div
     style={{
@@ -227,33 +236,31 @@ export default function AuthorDetail() {
 
         {/* CTA */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 26 }}>
-        <Link
-  to="/autori"
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    padding: "8px 12px",
-    borderRadius: 999,
-    border: "1px solid var(--accent)",
-    color: "var(--secondary)",
-    textDecoration: "none",
-    fontWeight: 500,
-    background: "transparent",
-  }}
->
-  {lang === "en" ? "← Back to authors" : "← Înapoi la autori"}
-</Link>
+  <Link to="/autori" style={secondaryNavStyle}>
+    {ui.backAuthors}
+  </Link>
 
-          <Link
-            to={`/contact?subject=${encodeURIComponent(
-              lang === "en" ? "New author collaboration" : "Colaborare autor nou"
-            )}`}
-            className="btn"
-            style={{ background: "var(--card2)", color: "#fff", textDecoration: "none" }}
-          >
-            {lang === "en" ? "Propose a collaboration" : "Propune o colaborare"}
-          </Link>
-        </div>
+  <Link
+    to={`/contact?subject=${encodeURIComponent(
+      lang === "en" ? "New author collaboration" : "Colaborare autor nou"
+    )}`}
+    className="btn"
+    style={{ background: "var(--card2)", color: "#fff", textDecoration: "none" }}
+  >
+    {ui.collab}
+  </Link>
+
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={secondaryNavStyle}
+  >
+    {ui.backTop}
+  </a>
+</div>
       </div>
     </>
   );
