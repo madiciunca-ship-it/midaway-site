@@ -38,6 +38,8 @@ export default function Blog() {
           backTop: "↑ Back to top",
           title: "Midaway Blog",
           subtitle: "Literary texts & personal reflections.",
+          subtitleRo: "Pentru articolele în limba română, schimbă din butonul RO / EN de mai sus.",
+          subtitleEn: "For Romanian-language articles, use the RO / EN switch above.",
           search: "Search by title or excerpt…",
           noResults: "No articles found for your filter/search.",
           reset: "Reset",
@@ -49,6 +51,8 @@ export default function Blog() {
           backTop: "↑ Înapoi sus",
           title: "Blog Midaway",
           subtitle: "Texte literare & reflecții personale.",
+          subtitleRo: "Pentru articolele în limba engleză, schimbă din butonul RO / EN de mai sus.",
+          subtitleEn: "For English-language articles, use the RO / EN switch above.",
           search: "Caută după titlu sau descriere…",
           noResults: "N-am găsit articole pentru filtrul/căutarea ta.",
           reset: "Reset",
@@ -161,11 +165,27 @@ export default function Blog() {
       style={{ textAlign: "center", marginBottom: 24 }}
     >
       <h1 style={{ margin: 0, fontSize: 40 }}>{ui.title}</h1>
-      <p style={{ color: "var(--secondary)", marginTop: 8 }}>
-        {ui.subtitle}
-      </p>
-    </header>
-    <div className="blog-toolbar">
+<p style={{ color: "var(--secondary)", marginTop: 8 }}>
+  {ui.subtitle}
+</p>
+
+<p
+  className="font-cormorant"
+  style={{
+    marginTop: 10,
+    marginBottom: 24,
+    textAlign: "center",
+    color: "#2b2b2b",
+    fontSize: 18,
+    lineHeight: 1.7,
+  }}
+>
+  {ui.subtitleRo}
+  <br />
+  {ui.subtitleEn}
+</p>
+</header>
+<div className="blog-toolbar">
   <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
     <input
       className="input"
@@ -174,6 +194,7 @@ export default function Blog() {
       onChange={(e) => setQuery(e.target.value)}
       style={{ flex: 1 }}
     />
+
 
     <div
       role="group"
@@ -217,6 +238,7 @@ export default function Blog() {
     </div>
   </div>
 
+  
   <div className="chips">
     {tags.map((t) => (
       <button
