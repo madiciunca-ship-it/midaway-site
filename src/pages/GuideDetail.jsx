@@ -8,39 +8,10 @@ const pickLang = (val, lang) => {
   return String(val);
 };
 
-export default function GuideDetail() {
-  const { id } = useParams();
-
-  // limba: citim o singură dată din localStorage, altfel "ro"
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("guides.lang");
-    return stored === "en" ? "en" : "ro";
-  });
-
-  // păstrăm alegerea în localStorage
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("guides.lang", lang);
-    }
-  }, [lang]);
-
-  const g = (guides || []).find((x) => x.id === id);
-  const ui =
-  lang === "en"
-    ? {
-        notFound: "Guide not found",
-        backToGuides: "← Back to guides",
-      }
-    : {
-        notFound: "Ghidul nu există",
-        backToGuides: "← Înapoi la ghizi",
-      };
-
-const backPillStyle = {
+const secondaryNavStyle = {
   display: "inline-flex",
   alignItems: "center",
-  padding: "8px 12px",
+  padding: "10px 14px",
   borderRadius: 999,
   border: "1px solid var(--accent)",
   color: "var(--secondary)",
@@ -48,18 +19,49 @@ const backPillStyle = {
   fontWeight: 500,
   background: "transparent",
 };
-if (!g) {
-  return (
-    <div className="container" style={{ padding: "40px 16px" }}>
-      <h1 className="font-cormorant">{ui.notFound}</h1>
-      <p>
-        <Link to="/ghizi" style={backPillStyle}>
-          {ui.backToGuides}
-        </Link>
-      </p>
-    </div>
-  );
-}
+
+export default function GuideDetail() {
+  const { id } = useParams();
+
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("guides.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("guides.lang", lang);
+    }
+  }, [lang]);
+
+  const ui =
+    lang === "en"
+      ? {
+          notFound: "Guide not found",
+          backList: "← Back to guides",
+          backTop: "↑ Back to top",
+        }
+      : {
+          notFound: "Ghidul nu există",
+          backList: "← Înapoi la ghizi",
+          backTop: "↑ Înapoi sus",
+        };
+
+  const g = (guides || []).find((x) => x.id === id);
+
+  if (!g) {
+    return (
+      <div className="container" style={{ padding: "40px 16px" }}>
+        <h1 className="font-cormorant">{ui.notFound}</h1>
+        <p>
+          <Link to="/ghizi" style={secondaryNavStyle}>
+            {ui.backList}
+          </Link>
+        </p>
+      </div>
+    );
+  }
 
   const lc = g[lang] || g.ro || g.en;
   const gallery = Array.isArray(g.gallery) ? g.gallery.slice(0, 3) : [];
@@ -67,14 +69,13 @@ if (!g) {
   const title = pickLang(g.name, lang) || "";
   const subtitle = pickLang(g.tagline, lang) || "";
 
-
-    return (
+  return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
-      <p style={{ marginTop: 0 }}>
-  <Link to="/ghizi" style={backPillStyle}>
-    {ui.backToGuides}
-  </Link>
-</p>
+      <div style={{ marginTop: 0, marginBottom: 18 }}>
+        <Link to="/ghizi" style={secondaryNavStyle}>
+          {ui.backList}
+        </Link>
+      </div>
 
       {/* galerie */}
       <div
@@ -118,18 +119,24 @@ if (!g) {
             background: "#fff",
           }}
         >
-          <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>RO</button>
-          <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>EN</button>
+          <button onClick={() => setLang("ro")} style={segBtnHero(lang === "ro")}>
+            RO
+          </button>
+          <button onClick={() => setLang("en")} style={segBtnHero(lang === "en")}>
+            EN
+          </button>
         </div>
       </div>
 
       {/* titlu + tagline */}
       <header className="font-cormorant" style={{ marginTop: 18 }}>
-  <h1 style={{ margin: 0 }}>{g.emoji} {title}</h1>
-  {subtitle && (
-    <p style={{ color: "var(--secondary)", marginTop: 6 }}>{subtitle}</p>
-  )}
-</header>
+        <h1 style={{ margin: 0 }}>
+          {g.emoji} {title}
+        </h1>
+        {subtitle && (
+          <p style={{ color: "var(--secondary)", marginTop: 6 }}>{subtitle}</p>
+        )}
+      </header>
 
       <SocialRow socials={g.socials} />
 
@@ -140,15 +147,25 @@ if (!g) {
         </section>
       )}
 
-      {/* Q&A – cu lista ta de întrebări pentru ghizi */}
+      {/* Q&A */}
       {Array.isArray(lc?.qna) && lc.qna.length > 0 && (
         <section style={{ marginTop: 16 }}>
           {lc.qna.map((item, idx) => (
             <div key={idx} style={{ marginBottom: 12 }}>
-              <h3 className="font-cormorant" style={{ margin: "8px 0 4px 0", fontSize: 20 }}>
+              <h3
+                className="font-cormorant"
+                style={{ margin: "8px 0 4px 0", fontSize: 20 }}
+              >
                 {item.q}
               </h3>
-              <p style={{ margin: 0, lineHeight: 1.7, whiteSpace: "pre-wrap", color: "#333" }}>
+              <p
+                style={{
+                  margin: 0,
+                  lineHeight: 1.7,
+                  whiteSpace: "pre-wrap",
+                  color: "#333",
+                }}
+              >
                 {item.a || "—"}
               </p>
             </div>
@@ -156,7 +173,7 @@ if (!g) {
         </section>
       )}
 
-      {/* video (opțional) */}
+      {/* video */}
       {g.video && (
         <section style={{ marginTop: 16 }}>
           <div
@@ -191,16 +208,37 @@ if (!g) {
       {Array.isArray(lc?.story) && lc.story.length > 0 && (
         <section style={{ marginTop: 16 }}>
           {lc.story.map((p, i) => (
-            <p key={i} style={{ lineHeight: 1.8 }}>{p}</p>
+            <p key={i} style={{ lineHeight: 1.8 }}>
+              {p}
+            </p>
           ))}
         </section>
       )}
 
-<div style={{ marginTop: 20 }}>
-  <Link to="/ghizi" style={backPillStyle}>
-    {ui.backToGuides}
-  </Link>
-</div>
+      <div
+        style={{
+          marginTop: 24,
+          display: "flex",
+          gap: 10,
+          flexWrap: "wrap",
+          alignItems: "center",
+        }}
+      >
+        <Link to="/ghizi" style={secondaryNavStyle}>
+          {ui.backList}
+        </Link>
+
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={secondaryNavStyle}
+        >
+          {ui.backTop}
+        </a>
+      </div>
     </div>
   );
 }
