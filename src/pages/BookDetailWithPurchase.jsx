@@ -59,6 +59,7 @@ const BASE_PATH =
             showMoreSuffixPlural: "more reviews",
             showFewerReviews: "Show fewer",
             backAll: "← Back to all books",
+            backTop: "↑ Back to top",
           }
         : {
             heading: "Ce spun cititorii",
@@ -84,6 +85,7 @@ const BASE_PATH =
             showMoreSuffixPlural: "recenzii",
             showFewerReviews: "Arată mai puține",
             backAll: "← Înapoi la toate cărțile",
+            backTop: "↑ Înapoi sus",
           };
     
       const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 2);
@@ -364,9 +366,13 @@ const BASE_PATH =
     marginTop: 18,
     paddingTop: 14,
     borderTop: "1px dashed #e6ddd3",
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    alignItems: "center",
   }}
 >
-<Link
+  <Link
     to="/carti"
     data-book-back="true"
     style={{
@@ -383,6 +389,27 @@ const BASE_PATH =
   >
     {t.backAll}
   </Link>
+
+  <a
+    href="#top"
+    onClick={(e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 12px",
+      borderRadius: 999,
+      border: "1px solid var(--accent)",
+      color: "var(--secondary)",
+      textDecoration: "none",
+      fontWeight: 500,
+      background: "transparent",
+    }}
+  >
+    {t.backTop}
+  </a>
 </div>
         </section>
       );
