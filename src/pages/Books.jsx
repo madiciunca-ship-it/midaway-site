@@ -43,9 +43,22 @@ export default function Books() {
   const [genre, setGenre] = useState("Toate");
   const [location, setLocation] = useState("Toate");
   const [q, setQ] = useState("");
-  const [bookLang, setBookLang] = useState("Toate");
 
- 
+  const [lang, setLang] = useState(() => {
+    if (typeof window === "undefined") return "ro";
+    const stored = localStorage.getItem("books.lang");
+    return stored === "en" ? "en" : "ro";
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("books.lang", lang);
+    }
+  }, [lang]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
 
   const sectionBackStyle = {
     display: "inline-flex",
@@ -73,40 +86,61 @@ export default function Books() {
     boxShadow: "0 2px 10px rgba(0,0,0,.04)",
   };
 
+  const segBtnStyle = (active) => ({
+    padding: "8px 14px",
+    border: "none",
+    background: active ? "var(--accent)" : "transparent",
+    color: active ? "#fff" : "#444",
+    cursor: "pointer",
+    fontWeight: 700,
+  });
+
   const pageUi =
-  bookLang === "EN"
-    ? {
-        backHome: "← Back to Home",
-        title: "📚 Midaway Library",
-        genre: "Genre",
-        location: "Location",
-        language: "Language",
-        all: "All",
-        reset: "Reset filters",
-        search: "Search: title, subtitle, genre, location or tag",
-        clear: "Clear",
-        results: "results",
-        backTop: "↑ Back to top",
-      }
-    : {
-        backHome: "← Înapoi la Acasă",
-        title: "📚 Biblioteca Midaway",
-        genre: "Gen",
-        location: "Locație",
-        language: "Limbă",
-        all: "Toate",
-        reset: "Reset filtre",
-        search: "Caută: titlu, subtitlu, gen, locație sau tag",
-        clear: "Șterge",
-        results: "rezultate",
-        backTop: "↑ Înapoi sus",
-      };
+    lang === "en"
+      ? {
+          backHome: "← Back to Home",
+          title: "📚 Midaway Library",
+          subtitleRo: "Pentru edițiile în limba română, schimbă din butonul RO / EN de mai sus.",
+          subtitleEn: "For Romanian-language editions, use the RO / EN switch above.",
+          genre: "Genre",
+          location: "Location",
+          all: "All",
+          reset: "Reset filters",
+          search: "Search: title, subtitle, genre, location or tag",
+          clear: "Clear",
+          results: "results",
+          backTop: "↑ Back to top",
+        }
+      : {
+          backHome: "← Înapoi la Acasă",
+          title: "📚 Biblioteca Midaway",
+          subtitleRo: "Pentru edițiile în limba engleză, schimbă din butonul RO / EN de mai sus.",
+          subtitleEn: "For English-language editions, use the RO / EN switch above.",
+          genre: "Gen",
+          location: "Locație",
+          all: "Toate",
+          reset: "Reset filtre",
+          search: "Caută: titlu, subtitlu, gen, locație sau tag",
+          clear: "Șterge",
+          results: "rezultate",
+          backTop: "↑ Înapoi sus",
+        };
+
+  useEffect(() => {
+    setGenre(pageUi.all);
+    setLocation(pageUi.all);
+    setQ("");
+  }, [lang, pageUi.all]);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
 
-    // ✅ pornește de la cărțile vizibile (hidden=false)
-    let list = BOOKS.filter((b) => !b.hidden);
+    // ✅ pornește de la cărțile vizibile + doar limba paginii curente
+let list = BOOKS.filter((b) => {
+  if (b.hidden) return false;
+  const bookLanguage = String(b.lang || "RO").toLowerCase();
+  return lang === "en" ? bookLanguage === "en" : bookLanguage === "ro";
+});
 
     if (s) {
       list = list.filter((b) =>
@@ -115,16 +149,12 @@ export default function Books() {
         )
       );
     }
-    if (genre !== "Toate") list = list.filter((b) => b.genre === genre);
-    if (location !== "Toate") list = list.filter((b) => b.location === location);
-    if (bookLang !== "Toate") {
-      list = list.filter(
-        (b) => String(b.lang || "").toUpperCase() === bookLang
-      );
-    }
+    if (genre !== pageUi.all) list = list.filter((b) => b.genre === genre);
+if (location !== pageUi.all) list = list.filter((b) => b.location === location);
+    
 
     return list;
-  }, [q, genre, location, bookLang]);
+  }, [q, genre, location, lang, pageUi.all]);
 
   return (
     <div>
@@ -134,18 +164,47 @@ export default function Books() {
         </Link>
       </div>
       <h1 style={{ marginTop: 0, textAlign: "center" }}>{pageUi.title}</h1>
-      <p
+      <div
   style={{
-    marginTop: 8,
-    marginBottom: 24,
-    textAlign: "center",
-    color: "#666",
-    fontSize: 14,
+    display: "flex",
+    justifyContent: "center",
+    marginTop: 12,
+    marginBottom: 14,
   }}
 >
-  Poți filtra cărțile după limbă: RO sau EN.
+  <div
+    role="group"
+    aria-label="Books language switch"
+    style={{
+      display: "inline-flex",
+      border: "1px solid #ddd",
+      borderRadius: 999,
+      overflow: "hidden",
+      background: "#fff",
+    }}
+  >
+    <button onClick={() => setLang("ro")} style={segBtnStyle(lang === "ro")}>
+      RO
+    </button>
+    <button onClick={() => setLang("en")} style={segBtnStyle(lang === "en")}>
+      EN
+    </button>
+  </div>
+</div>
+<p
+  className="font-cormorant"
+  style={{
+    marginTop: 0,
+    marginBottom: 24,
+    textAlign: "center",
+    color: "#2b2b2b",
+    fontSize: 18,
+    lineHeight: 1.7,
+  }}
+>
+  {pageUi.subtitleRo}
   <br />
-  You can filter books by language: RO or EN.
+  {pageUi.subtitleEn}
 </p>
 
       {/* Filtre */}
@@ -194,27 +253,10 @@ export default function Books() {
     ))}
   </select>
 </div>
-<div style={{ display: "grid", gap: 6 }}>
-  <span style={{ fontSize: 12, color: "#666" }}>{pageUi.language}</span>
-  <select
-    value={bookLang}
-    onChange={(e) => setBookLang(e.target.value)}
-    style={{
-      width: "100%",
-      padding: "8px 10px",
-      border: "1px solid #ddd",
-      borderRadius: 10,
-    }}
-  >
-   <option>{pageUi.all}</option>
-    <option>RO</option>
-    <option>EN</option>
-  </select>
-</div>
-          <style>{`
-  /* asigurăm grila să nu se comaseze prea mult pe mobil */
-  @media (max-width: 640px){
-    .booksGrid{
+
+<style>{`
+  @media (max-width: 640px) {
+    .booksGrid {
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
     }
   }
@@ -225,9 +267,8 @@ export default function Books() {
   <button
     onClick={() => {
       setQ("");
-      setGenre("Toate");
-      setLocation("Toate");
-      setBookLang("Toate");
+      setGenre(pageUi.all);
+      setLocation(pageUi.all);
     }}
     style={{
       width: "100%",
@@ -278,15 +319,16 @@ export default function Books() {
       </div>
 
                   {/* Grid cărți */}
-      <div
-        style={{
-          marginTop: 12,
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: 24,
-          alignItems: "start",
-        }}
-      >
+                  <div
+  className="booksGrid"
+  style={{
+    marginTop: 12,
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: 24,
+    alignItems: "start",
+  }}
+>
         {[...filtered]
           .sort((a, b) => {
             const ad = new Date(b.addedAt || 0) - new Date(a.addedAt || 0);
