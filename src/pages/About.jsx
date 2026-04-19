@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 const sectionNavStyle = {
   display: "inline-flex",
   alignItems: "center",
@@ -17,25 +18,24 @@ export default function About() {
   const [lang, setLang] = useState("ro");
 
   const ui =
-  lang === "en"
-    ? {
-        backHome: "← Back to Home",
-        backTop: "↑ Back to top",
-      }
-    : {
-        backHome: "← Înapoi la Acasă",
-        backTop: "↑ Înapoi sus",
-      };
+    lang === "en"
+      ? {
+          backHome: "← Back to Home",
+          backTop: "↑ Back to top",
+        }
+      : {
+          backHome: "← Înapoi la Acasă",
+          backTop: "↑ Înapoi sus",
+        };
+
   return (
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
-    <div style={{ marginTop: 2, marginBottom: 18 }}>
-  <Link to="/" style={sectionNavStyle}>
-    {ui.backHome}
-  </Link>
-</div> 
-      
-      
-      {/* buton switch RO/EN */}
+      <div style={{ marginTop: 0, marginBottom: 18 }}>
+        <Link to="/" style={sectionNavStyle}>
+          {ui.backHome}
+        </Link>
+      </div>
+
       <div
         style={{
           display: "flex",
@@ -75,10 +75,11 @@ export default function About() {
         </button>
       </div>
 
-      {/* conținut română */}
       {lang === "ro" && (
         <>
-          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>🌸 Despre Midaway</h1>
+          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>
+            🌸 Despre Midaway
+          </h1>
 
           <p style={{ color: "#555", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
             Eu sunt <strong>Mida Malena</strong> – scriitoare, călătoare și povestitoare.
@@ -92,7 +93,7 @@ export default function About() {
             <br />
             În cei doi ani de rătăcire prin Asia am înțeles că nu ne alegem poveștile –
             <em> ele ne aleg pe noi</em>. Că uneori trebuie să te pierzi cu totul ca să începi
-            cu adevărat. Și că lumea nu poate fi cunoscută decât trăind-o: 
+            cu adevărat. Și că lumea nu poate fi cunoscută decât trăind-o:
             cu rucsacul în spate și cu sufletul deschis.
             <br />
             <br />
@@ -108,14 +109,12 @@ export default function About() {
             <br />
             Bine ai venit în Midaway. O lume construită pe curaj, libertate și adevăr. Pas cu pas.
             <br />
-        
-    
           </p>
 
           <p style={{ marginTop: 16, lineHeight: 1.7 }}>
             Totul a pornit dintr-o întrebare simplă:{" "}
             <em>„Ce se întâmplă cu visul când ajungi să-l trăiești?”</em>.
-            Am ales necunoscutul în locul confortului și am pornit la drum. 
+            Am ales necunoscutul în locul confortului și am pornit la drum.
             Din aceste experiențe s-au născut cărțile, articolele și proiectele care astăzi conturează Midaway.
           </p>
 
@@ -128,8 +127,8 @@ export default function About() {
             }}
           >
             „Singurul lucru pe care îl putem pierde este Timpul.”
-            – Mida Malena
-            </blockquote>
+            <br />– Mida Malena
+          </blockquote>
 
           <h2>✨ Ce este Midaway?</h2>
           <ul style={{ lineHeight: 1.9 }}>
@@ -156,10 +155,11 @@ export default function About() {
         </>
       )}
 
-      {/* conținut engleză */}
       {lang === "en" && (
         <>
-          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>🌸 About Midaway</h1>
+          <h1 style={{ marginTop: 0, marginBottom: 40, textAlign: "center" }}>
+            🌸 About Midaway
+          </h1>
 
           <p style={{ color: "#555", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
             I am <strong>Mida Malena</strong> – writer, traveler, and storyteller.
@@ -187,13 +187,12 @@ export default function About() {
             <br />
             Welcome to Midaway. A world built on courage, freedom, and truth. Step by step.
             <br />
-           
           </p>
 
           <p style={{ marginTop: 16, lineHeight: 1.7 }}>
             It all started with a simple question:{" "}
             <em>“What happens to the dream once you begin to live it?”</em>
-            I chose the unknown over comfort and set out on the road. From these experiences
+            {" "}I chose the unknown over comfort and set out on the road. From these experiences
             came the books, articles, and projects that now shape Midaway.
           </p>
 
@@ -206,7 +205,8 @@ export default function About() {
             }}
           >
             “The only thing we can truly lose is Time.”
-            – Mida Malena</blockquote>
+            <br />– Mida Malena
+          </blockquote>
 
           <h2>✨ What is Midaway?</h2>
           <ul style={{ lineHeight: 1.9 }}>
@@ -232,30 +232,27 @@ export default function About() {
           </p>
         </>
       )}
-      <div
-  style={{
-    marginTop: 28,
-    display: "flex",
-    justifyContent: "center",
-    gap: 10,
-    flexWrap: "wrap",
-  }}
->
-  <Link to="/" style={sectionNavStyle}>
-    {ui.backHome}
-  </Link>
 
-  <a
-    href="#top"
-    onClick={(e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }}
-    style={sectionNavStyle}
-  >
-    {ui.backTop}
-  </a>
-</div>
+      <div
+        style={{
+          marginTop: 28,
+          display: "flex",
+          justifyContent: "center",
+          gap: 10,
+          flexWrap: "wrap",
+        }}
+      >
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={sectionNavStyle}
+        >
+          {ui.backTop}
+        </a>
+      </div>
     </div>
   );
 }
