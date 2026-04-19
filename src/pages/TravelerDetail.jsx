@@ -1,4 +1,3 @@
-// src/pages/TravelerDetail.jsx
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import travelers from "../data/travelers";
@@ -12,17 +11,27 @@ const pickLang = (val, lang) => {
   return String(val);
 };
 
+const secondaryNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--secondary)",
+  textDecoration: "none",
+  fontWeight: 500,
+  background: "transparent",
+};
+
 export default function TravelerDetail() {
   const { id } = useParams();
 
-  // limba: citim doar din localStorage, NU din URL
   const [lang, setLang] = useState(() => {
     if (typeof window === "undefined") return "ro";
     const saved = localStorage.getItem("travelers.lang");
     return saved === "en" ? "en" : "ro";
   });
 
-  // salvăm limba aleasă + curățăm ?lang= din URL dacă cumva există
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("travelers.lang", lang);
@@ -40,52 +49,28 @@ export default function TravelerDetail() {
     }
   }, [lang]);
 
-  const t = travelers.find((x) => x.id === id);
-  const ui = lang === "en"
-  ? {
-      notFound: "Story not found",
-      backToTravelers: "← Back to travelers",
-    }
-  : {
-      notFound: "Povestea nu există",
-      backToTravelers: "← Înapoi la călători",
-    };
+  const ui =
+    lang === "en"
+      ? {
+          notFound: "Story not found",
+          backList: "← Back to travelers",
+          backTop: "↑ Back to top",
+        }
+      : {
+          notFound: "Povestea nu există",
+          backList: "← Înapoi la călători",
+          backTop: "↑ Înapoi sus",
+        };
 
-const backPillStyle = {
-  display: "inline-flex",
-  alignItems: "center",
-  padding: "8px 12px",
-  borderRadius: 999,
-  border: "1px solid var(--accent)",
-  color: "var(--secondary)",
-  textDecoration: "none",
-  fontWeight: 500,
-  background: "transparent",
-};
+  const t = travelers.find((x) => x.id === id);
 
   if (!t) {
-    const fallbackLang =
-      typeof window !== "undefined" && localStorage.getItem("travelers.lang") === "en"
-        ? "en"
-        : "ro";
-  
-    const fallbackUi =
-      fallbackLang === "en"
-        ? {
-            notFound: "Story not found",
-            backToTravelers: "← Back to travelers",
-          }
-        : {
-            notFound: "Povestea nu există",
-            backToTravelers: "← Înapoi la călători",
-          };
-  
     return (
       <div className="container" style={{ padding: "40px 16px" }}>
-        <h1 className="font-cormorant">{fallbackUi.notFound}</h1>
+        <h1 className="font-cormorant">{ui.notFound}</h1>
         <p>
-          <Link to="/calatori" style={backPillStyle}>
-            {fallbackUi.backToTravelers}
+          <Link to="/calatori" style={secondaryNavStyle}>
+            {ui.backList}
           </Link>
         </p>
       </div>
@@ -98,16 +83,13 @@ const backPillStyle = {
   const title = pickLang(t.name, lang) || "";
   const subtitle = pickLang(t.tagline, lang) || "";
 
-  
-
-
   return (
     <div className="container" style={{ padding: "24px 0 48px", maxWidth: 1000 }}>
-      <p style={{ marginTop: 0 }}>
-  <Link to="/calatori" style={backPillStyle}>
-    {ui.backToTravelers}
-  </Link>
-</p>
+      <div style={{ marginTop: 0, marginBottom: 18 }}>
+        <Link to="/calatori" style={secondaryNavStyle}>
+          {ui.backList}
+        </Link>
+      </div>
 
       <div
         style={{
@@ -137,7 +119,6 @@ const backPillStyle = {
         ))}
       </div>
 
-      {/* switch RO/EN – acum doar schimbă state-ul, nu URL-ul */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: 12 }}>
         <div
           role="group"
@@ -233,10 +214,31 @@ const backPillStyle = {
         </section>
       )}
 
-  <Link to="/calatori" style={backPillStyle}>
-    {ui.backToTravelers}
-  </Link>
-</div>
+      <div
+        style={{
+          marginTop: 24,
+          display: "flex",
+          gap: 10,
+          flexWrap: "wrap",
+          alignItems: "center",
+        }}
+      >
+        <Link to="/calatori" style={secondaryNavStyle}>
+          {ui.backList}
+        </Link>
+
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={secondaryNavStyle}
+        >
+          {ui.backTop}
+        </a>
+      </div>
+    </div>
   );
 }
 
