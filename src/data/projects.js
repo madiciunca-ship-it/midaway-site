@@ -162,7 +162,7 @@ const projects = [
   links: [
     { label: "Propune o colaborare", href: "/contact?subject=Propunere%20colaborare%20Midaway" },
     { label: "Devino partener cultural", href: "/contact?subject=Parteneriat%20cultural" },
-    { label: "Alătură-te comunității", href: "/blog" }
+    { label: "Alătură-te comunității", href: "/contact?subject=Alăturare%20comunitate%20Midaway" }
   ]
 } // <— FĂRĂ virgulă dacă acesta e ULTIMUL obiect din array
 ]; // <— închidem array-ul
