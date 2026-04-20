@@ -119,10 +119,10 @@ export default function Contact() {
           facebook: "Facebook",
           youtube: "YouTube",
           introTitle: "Let’s talk",
-          editorCardTitle: "Who reads your message",
+          editorCardTitle: "Who will read your message",
           editorCardRole: "Editorial coordination at Midaway",
           editorCardText:
-            "Messages sent through this page are received and reviewed with care. If you write to us about a manuscript, a collaboration, or an idea, I will most likely be one of the first people to read your message.",
+            "Messages sent through this page are read and reviewed with care. If you write to us about a manuscript, a collaboration, or an idea, I will most likely be one of the first people to read your message.",
         }
       : {
           backHome: "← Înapoi la Acasă",
