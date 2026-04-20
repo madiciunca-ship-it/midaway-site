@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const backPillStyle = {
   display: "inline-flex",
@@ -23,11 +24,7 @@ const segBtnStyle = (active) => ({
 });
 
 export default function Events() {
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("events.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["events.lang"]));
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -36,7 +33,7 @@ export default function Events() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("events.lang", lang);
+      setSiteLanguage(lang, ["events.lang"]);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);

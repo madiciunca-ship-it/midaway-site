@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const sectionNavStyle = {
   display: "inline-flex",
@@ -49,11 +50,7 @@ export default function Contact() {
   const [searchParams] = useSearchParams();
   const subjectPreset = searchParams.get("subject") || "";
 
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("contact.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["contact.lang"]));
 
   const [status, setStatus] = useState("");
   const [statusColor, setStatusColor] = useState("#666");
@@ -65,7 +62,7 @@ export default function Contact() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("contact.lang", lang);
+      setSiteLanguage(lang, ["contact.lang"]);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
