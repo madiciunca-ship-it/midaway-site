@@ -87,18 +87,18 @@ export default function Contact() {
           title: "📬 Contact Midaway",
           subtitle: "Where good ideas meet people willing to listen.",
           guideRo:
-            "Pentru mesaje în limba română, folosește butonul RO / EN de mai jos.",
+            "Pentru mesaje în limba română, folosește butonul RO / EN de mai sus.",
           guideEn:
-            "For messages in Romanian, use the RO / EN switch below.",
+            "For messages in Romanian, use the RO / EN switch above.",
           intro1:
             "Write to us if you want to publish, collaborate, or simply talk about books and journeys.",
           intro2:
-            "At Midaway, we believe in real encounters — with people, ideas, and projects waiting to come alive.",
+            "At Midaway, we believe in real encounters – with people, ideas, and projects waiting to come alive.",
           intro3:
             "Whether you have a manuscript, a story, a question, or an intention, we’ll be glad to hear from you.",
           intro4:
             "Every message can open a door to a new story.",
-          emailLine: "Midaway Publishing House — where words become a road.",
+          emailLine: "Midaway Publishing House – where words become a road.",
           replyTitle: "Response time",
           replyText:
             "We usually reply within 24–48 hours on working days.",
@@ -130,18 +130,18 @@ export default function Contact() {
           title: "📬 Contact Midaway",
           subtitle: "Unde ideile bune găsesc oameni care le ascultă.",
           guideRo:
-            "Pentru mesaje în limba engleză, folosește butonul RO / EN de mai jos.",
+            "Pentru mesaje în limba engleză, folosește butonul RO / EN de mai sus.",
           guideEn:
-            "For messages in English, use the RO / EN switch below.",
+            "For messages in English, use the RO / EN switch above.",
           intro1:
             "Scrie-ne dacă vrei să publici, să colaborăm sau doar să povestim despre cărți și drumuri.",
           intro2:
-            "La Midaway credem în întâlniri adevărate — cu oameni, cu idei și cu proiecte care așteaptă să prindă viață.",
+            "La Midaway credem în întâlniri adevărate – cu oameni, cu idei și cu proiecte care așteaptă să prindă viață.",
           intro3:
             "Fie că ai un manuscris, o poveste, o întrebare sau o intenție, ne bucurăm să te cunoaștem.",
           intro4:
             "Fiecare mesaj poate deschide o ușă spre o poveste nouă.",
-          emailLine: "Editura Midaway — locul unde cuvântul devine drum.",
+          emailLine: "Editura Midaway – locul unde cuvântul devine drum.",
           replyTitle: "Timp de răspuns",
           replyText:
             "De obicei răspundem în 24–48 de ore, în zilele lucrătoare.",
