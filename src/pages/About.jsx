@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const sectionNavStyle = {
   display: "inline-flex",
@@ -15,7 +16,12 @@ const sectionNavStyle = {
 };
 
 export default function About() {
-  const [lang, setLang] = useState("ro");
+  const [lang, setLang] = useState(() => getSiteLanguage(["about.lang"]));
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSiteLanguage(lang, ["about.lang"]);
+    }
+  }, [lang]);
 
   const ui =
     lang === "en"
