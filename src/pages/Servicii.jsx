@@ -58,19 +58,19 @@ export default function Servicii() {
   }, []);
 
   const ui =
-    lang === "en"
-      ? {
-          backHome: "← Back to Home",
-          backTop: "↑ Back to top",
-          title: "Services",
-          subtitle:
+  lang === "en"
+    ? {
+        backHome: "← Back to Home",
+        backTop: "↑ Back to top",
+        title: "Services",
+        subtitle:
           "Choose the kind of support that fits your stage: editorial guidance, design, or publishing. Scheduling and delivery follow our Cancellation Policy.",
-          body:
-          "Every project is approached individually, with clarity, rhythm, and care. We help you shape your direction, refine your message, and move toward a final version that feels ready for publication – whether as an eBook, a paperback, or both. If you are unsure where to begin, editorial consulting is the best first step.",
-          guideRo:
-            "Pentru versiunea în limba română, poți schimba limba din selectorul RO / EN de mai sus.",
-          guideEn:
-            "For the Romanian version, you can switch the language using the RO / EN selector above.",
+        body:
+          "Every project is approached individually, with clarity, rhythm, and care. We help you shape your direction, refine your message, and move toward a final version that feels ready for publication — whether as an eBook, a paperback, or both. If you are unsure where to begin, editorial consulting is the best first step.",
+        guideRo:
+          "Pentru versiunea în limba română, poți schimba limba din selectorul RO / EN de mai jos.",
+        guideEn:
+          "For the Romanian version, you can switch the language using the RO / EN selector below.",
           cancellationPolicy: "Cancellation Policy",
           addToCart: "Add to cart",
           comingSoon: "Coming soon",
@@ -534,38 +534,31 @@ export default function Servicii() {
         </h1>
 
         <p
-          style={{
-            color: "var(--secondary)",
-            marginTop: 10,
-            fontSize: isMobile ? 17 : 18,
-            lineHeight: 1.6,
-          }}
-        >
-          {ui.subtitle.split("Politicii de anulare").length > 1 ||
-          ui.subtitle.split("Cancellation Policy").length > 1 ? (
-            <>
-              {lang === "ro" ? (
-                <>
-                  Alege serviciul potrivit etapei tale: consultanță, design, publicare.
-                  Programarea și prestarea se fac conform{" "}
-                  <Link to="/politica-anulare" style={{ color: "var(--secondary)" }}>
-                    {ui.cancellationPolicy}
-                  </Link>.
-                </>
-              ) : (
-                <>
-                  Choose the service that fits your stage: consulting, design, publishing.
-                  Scheduling and delivery follow the{" "}
-                  <Link to="/politica-anulare" style={{ color: "var(--secondary)" }}>
-                    {ui.cancellationPolicy}
-                  </Link>.
-                </>
-              )}
-            </>
-          ) : (
-            ui.subtitle
-          )}
-        </p>
+  style={{
+    color: "var(--secondary)",
+    marginTop: 10,
+    fontSize: isMobile ? 17 : 18,
+    lineHeight: 1.6,
+  }}
+>
+  {lang === "ro" ? (
+    <>
+      Alege serviciul potrivit etapei tale: consultanță, design, publicare.
+      Programarea și prestarea se fac conform{" "}
+      <Link to="/politica-anulare" style={{ color: "var(--secondary)" }}>
+        {ui.cancellationPolicy}
+      </Link>.
+    </>
+  ) : (
+    <>
+      Choose the kind of support that fits your stage: editorial guidance, design, or publishing.
+      Scheduling and delivery follow our{" "}
+      <Link to="/politica-anulare" style={{ color: "var(--secondary)" }}>
+        {ui.cancellationPolicy}
+      </Link>.
+    </>
+  )}
+</p>
 
         <div
           style={{
