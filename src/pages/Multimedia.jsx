@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { MEDIA, SOCIALS, FALLBACK_THUMB } from "../data/multimedia";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 // Back către „Viziunea” – în header este ruta /proiecte
 const VISION_PATH = "/proiecte";
@@ -50,15 +51,12 @@ export default function Multimedia() {
   const [active, setActive] = useState("all");
   const [openIds, setOpenIds] = useState(() => new Set());
   const [q, setQ] = useState("");
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("multimedia.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["multimedia.lang"]));
   
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("multimedia.lang", lang);
+      setSiteLanguage(lang, ["multimedia.lang"]);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
   

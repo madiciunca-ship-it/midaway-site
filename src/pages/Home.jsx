@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 /* ——— Butoane segmentate RO/EN ——— */
 const sectionNavStyle = {
@@ -351,20 +352,23 @@ function ReviewsSection({ lang = "ro", title = "" , items = [] }) {
 export default function Home() {
   // 1) citim o singură dată ?lang din URL (dacă există), altfel din localStorage, altfel "ro"
   const initialFromQuery =
-    typeof window !== "undefined"
-      ? new URLSearchParams(window.location.search).get("lang")
-      : null;
-  const initialLang =
-    initialFromQuery === "en"
-      ? "en"
-      : (typeof window !== "undefined" && localStorage.getItem("home.lang")) || "ro";
+  typeof window !== "undefined"
+    ? new URLSearchParams(window.location.search).get("lang")
+    : null;
 
-  const [lang, setLang] = useState(initialLang);
+const initialLang =
+  initialFromQuery === "en"
+    ? "en"
+    : initialFromQuery === "ro"
+      ? "ro"
+      : getSiteLanguage(["home.lang"]);
+
+const [lang, setLang] = useState(initialLang);
 
   // 2) persistă alegerea + curăță URL-ul de ?lang pe homepage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("home.lang", lang);
+      setSiteLanguage(lang, ["home.lang"]);
       if (window.location.search.includes("lang=")) {
         window.history.replaceState({}, "", window.location.pathname);
       }
