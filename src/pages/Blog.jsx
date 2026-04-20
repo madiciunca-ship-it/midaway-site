@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import posts from "../data/posts";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 function formatDate(iso) {
   return new Date(iso).toLocaleDateString("ro-RO", {
@@ -18,16 +19,11 @@ function estimateMinutes(p) {
 }
 
 export default function Blog() {
+  const [lang, setLang] = useState(() => getSiteLanguage(["blog.lang"]));
   const [query, setQuery] = useState("");
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("blog.lang");
-    return stored === "en" ? "en" : "ro";
-  });
-  
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("blog.lang", lang);
+      setSiteLanguage(lang, ["blog.lang"]);
     }
   }, [lang]);
   
