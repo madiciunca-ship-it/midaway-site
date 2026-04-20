@@ -20,6 +20,8 @@ const inputStyle = {
   borderRadius: 12,
   fontSize: 15,
   background: "#fff",
+  width: "100%",
+  boxSizing: "border-box",
 };
 
 const socialBtnStyle = {
@@ -56,12 +58,26 @@ export default function Contact() {
   const [status, setStatus] = useState("");
   const [statusColor, setStatusColor] = useState("#666");
 
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 900;
+  });
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("contact.lang", lang);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
+
+  useEffect(() => {
+    function onResize() {
+      setIsMobile(window.innerWidth < 900);
+    }
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const ui =
     lang === "en"
@@ -102,6 +118,11 @@ export default function Contact() {
           instagram: "Instagram",
           facebook: "Facebook",
           youtube: "YouTube",
+          introTitle: "Let’s talk",
+          editorCardTitle: "Who reads your message",
+          editorCardRole: "Editorial coordination at Midaway",
+          editorCardText:
+            "Messages sent through this page are received and reviewed with care. If you write to us about a manuscript, a collaboration, or an idea, I will most likely be one of the first people to read your message.",
         }
       : {
           backHome: "← Înapoi la Acasă",
@@ -140,6 +161,11 @@ export default function Contact() {
           instagram: "Instagram",
           facebook: "Facebook",
           youtube: "YouTube",
+          introTitle: "Hai să vorbim",
+          editorCardTitle: "Cine îți răspunde",
+          editorCardRole: "Coordonare editorială Midaway",
+          editorCardText:
+            "Mesajele trimise prin această pagină ajung într-un spațiu atent citit și gestionat. Dacă ne scrii despre un manuscris, o colaborare sau o idee, cel mai probabil eu voi fi una dintre primele persoane care îți citesc mesajul.",
         };
 
   async function handleSubmit(e) {
@@ -181,16 +207,44 @@ export default function Contact() {
   }
 
   return (
-    <div className="container" style={{ padding: "32px 0 48px", maxWidth: 1100 }}>
+    <div
+      className="container"
+      style={{
+        padding: isMobile ? "20px 0 40px" : "32px 0 48px",
+        maxWidth: 1100,
+      }}
+    >
       <div style={{ marginTop: 0, marginBottom: 18 }}>
         <Link to="/" style={sectionNavStyle}>
           {ui.backHome}
         </Link>
       </div>
 
-      <header className="font-cormorant" style={{ textAlign: "center", marginBottom: 24 }}>
-        <h1 style={{ margin: 0, fontSize: 44 }}>{ui.title}</h1>
-        <p style={{ color: "var(--secondary)", marginTop: 10, fontSize: 18 }}>
+      <header
+        className="font-cormorant"
+        style={{
+          textAlign: "center",
+          marginBottom: isMobile ? 20 : 24,
+        }}
+      >
+        <h1
+          style={{
+            margin: 0,
+            fontSize: isMobile ? 36 : 44,
+            lineHeight: 1.1,
+          }}
+        >
+          {ui.title}
+        </h1>
+
+        <p
+          style={{
+            color: "var(--secondary)",
+            marginTop: 10,
+            fontSize: isMobile ? 17 : 18,
+            lineHeight: 1.5,
+          }}
+        >
           {ui.subtitle}
         </p>
 
@@ -229,8 +283,9 @@ export default function Contact() {
             marginBottom: 22,
             textAlign: "center",
             color: "#2b2b2b",
-            fontSize: 18,
+            fontSize: isMobile ? 16 : 18,
             lineHeight: 1.7,
+            padding: isMobile ? "0 6px" : 0,
           }}
         >
           {ui.guideRo}
@@ -251,8 +306,10 @@ export default function Contact() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "minmax(280px, 1fr) minmax(320px, 1.15fr)",
-          gap: 24,
+          gridTemplateColumns: isMobile
+            ? "1fr"
+            : "minmax(280px, 1fr) minmax(320px, 1.15fr)",
+          gap: isMobile ? 18 : 24,
           alignItems: "start",
         }}
       >
@@ -261,12 +318,20 @@ export default function Contact() {
             background: "#fffef9",
             border: "1px solid #ece7df",
             borderRadius: 18,
-            padding: 22,
+            padding: isMobile ? 18 : 22,
             boxShadow: "0 8px 22px rgba(0,0,0,.05)",
           }}
         >
-          <h2 className="font-cormorant" style={{ marginTop: 0, marginBottom: 14, fontSize: 28 }}>
-            {lang === "en" ? "Let’s talk" : "Hai să vorbim"}
+          <h2
+            className="font-cormorant"
+            style={{
+              marginTop: 0,
+              marginBottom: 14,
+              fontSize: isMobile ? 24 : 28,
+              lineHeight: 1.15,
+            }}
+          >
+            {ui.introTitle}
           </h2>
 
           <div style={{ display: "grid", gap: 14, lineHeight: 1.8, color: "#2b2b2b" }}>
@@ -350,13 +415,21 @@ export default function Contact() {
         <section
           style={{
             background: "#fffef9",
-            padding: 24,
+            padding: isMobile ? 18 : 24,
             borderRadius: 18,
             border: "1px solid #ece7df",
             boxShadow: "0 8px 22px rgba(0,0,0,.05)",
           }}
         >
-          <h2 className="font-cormorant" style={{ marginTop: 0, marginBottom: 8, fontSize: 28 }}>
+          <h2
+            className="font-cormorant"
+            style={{
+              marginTop: 0,
+              marginBottom: 8,
+              fontSize: isMobile ? 24 : 28,
+              lineHeight: 1.15,
+            }}
+          >
             {ui.formTitle}
           </h2>
 
@@ -373,7 +446,14 @@ export default function Contact() {
             }}
           >
             <input type="text" name="name" placeholder={ui.name} required style={inputStyle} />
-            <input type="email" name="email" placeholder={ui.email} required style={inputStyle} />
+
+            <input
+              type="email"
+              name="email"
+              placeholder={ui.email}
+              required
+              style={inputStyle}
+            />
 
             <input
               type="text"
@@ -388,7 +468,12 @@ export default function Contact() {
               placeholder={ui.message}
               rows={7}
               required
-              style={{ ...inputStyle, resize: "vertical" }}
+              style={{
+                ...inputStyle,
+                resize: "vertical",
+                width: "100%",
+                boxSizing: "border-box",
+              }}
             />
 
             <input
@@ -399,13 +484,92 @@ export default function Contact() {
               autoComplete="off"
             />
 
-            <button type="submit" className="btn" style={{ justifySelf: "start" }}>
+            <button
+              type="submit"
+              className="btn"
+              style={{
+                justifySelf: "start",
+                width: isMobile ? "100%" : "auto",
+              }}
+            >
               {ui.submit}
             </button>
 
             <p style={{ margin: 0, color: statusColor }}>{status}</p>
           </form>
         </section>
+      </div>
+
+      <div
+        style={{
+          marginTop: 28,
+          background: "#fffef9",
+          border: "1px solid #ece7df",
+          borderRadius: 18,
+          padding: isMobile ? 18 : 22,
+          boxShadow: "0 8px 22px rgba(0,0,0,.05)",
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "120px 1fr",
+          gap: 18,
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: isMobile ? 96 : 120,
+            height: isMobile ? 96 : 120,
+            borderRadius: "50%",
+            overflow: "hidden",
+            background: "#f3efe8",
+            border: "1px solid #e8dfd0",
+            justifySelf: isMobile ? "center" : "start",
+          }}
+        >
+          <img
+            src="/images/contact-editor.jpg"
+            alt="Midaway editorial contact"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </div>
+
+        <div style={{ textAlign: isMobile ? "center" : "left" }}>
+          <div
+            className="font-cormorant"
+            style={{
+              fontSize: isMobile ? 24 : 28,
+              marginBottom: 6,
+              color: "#2b2b2b",
+              lineHeight: 1.15,
+            }}
+          >
+            {ui.editorCardTitle}
+          </div>
+
+          <div
+            style={{
+              fontWeight: 700,
+              color: "var(--secondary)",
+              marginBottom: 8,
+            }}
+          >
+            {ui.editorCardRole}
+          </div>
+
+          <p
+            style={{
+              margin: 0,
+              color: "#555",
+              lineHeight: 1.7,
+            }}
+          >
+            {ui.editorCardText}
+          </p>
+        </div>
       </div>
 
       <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
