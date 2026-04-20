@@ -63,7 +63,7 @@ export default function Events() {
     //   statusEn: "Open for registration",
     // },
   ];
-
+  
   const ui =
     lang === "en"
       ? {
