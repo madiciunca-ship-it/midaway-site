@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import guides from "../data/guides";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const pickLang = (val, lang) => {
   if (!val) return "";
@@ -23,15 +24,12 @@ const secondaryNavStyle = {
 export default function GuideDetail() {
   const { id } = useParams();
 
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("guides.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["guides.lang"]));
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("guides.lang", lang);
+      setSiteLanguage(lang, ["guides.lang"]);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
 

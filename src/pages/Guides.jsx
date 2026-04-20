@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import guides from "../data/guides";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 /* ——— stil card ca la Autori/Călători ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
@@ -86,11 +87,7 @@ export default function Guides() {
   });
 
   // limba doar din localStorage (fără să mai citim ?lang din URL)
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const saved = localStorage.getItem("guides.lang");
-    return saved === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["guides.lang"]));
 
   const ui =
   lang === "en"
@@ -106,10 +103,13 @@ export default function Guides() {
 
   // persistă limba și curăță ?lang din bară (păstrăm ?q dacă există)
   useEffect(() => {
-    localStorage.setItem("guides.lang", lang);
-    if (typeof window !== "undefined" && window.location.search.includes("lang=")) {
-      const qs = q ? `?q=${encodeURIComponent(q)}` : "";
-      window.history.replaceState({}, "", window.location.pathname + qs);
+    if (typeof window !== "undefined") {
+      setSiteLanguage(lang, ["guides.lang"]);
+  
+      if (window.location.search.includes("lang=")) {
+        const qs = q ? `?q=${encodeURIComponent(q)}` : "";
+        window.history.replaceState({}, "", window.location.pathname + qs);
+      }
     }
   }, [lang, q]);
 
