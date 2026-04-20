@@ -2,6 +2,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import authors from "../data/authors";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 // ⬇️ POZE placeholder (din public/assets/authors/*.webp)
 const PLACEHOLDER_PHOTOS = [
@@ -66,11 +67,8 @@ const sectionNavStyle = {
 
 export default function Authors() {
   // 🔤 LIMBA – doar localStorage, fără ?lang în URL
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("authors.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  
+  const [lang, setLang] = useState(() => getSiteLanguage(["authors.lang"]));
 
   const ui =
   lang === "en"
@@ -83,12 +81,11 @@ export default function Authors() {
         backTop: "↑ Înapoi sus",
       };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("authors.lang", lang);
-    }
-  }, [lang]);
-
+      useEffect(() => {
+        if (typeof window !== "undefined") {
+          setSiteLanguage(lang, ["authors.lang"]);
+        }
+      }, [lang]);
   // 🔍 căutare (doar în state, nu în URL)
   const [q, setQ] = useState("");
 

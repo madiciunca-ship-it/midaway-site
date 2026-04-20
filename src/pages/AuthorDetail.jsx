@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import authors from "../data/authors";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 // Responsive
 const isMobile =
@@ -36,16 +37,13 @@ export default function AuthorDetail() {
   const { slug } = useParams();
 
   // limba: citim o singură dată din localStorage, altfel "ro"
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("authors.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["authors.lang"]));
 
   // păstrăm alegerea în localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("authors.lang", lang);
+      setSiteLanguage(lang, ["authors.lang"]);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
 
