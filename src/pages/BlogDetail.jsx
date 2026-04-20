@@ -137,6 +137,24 @@ export default function BlogDetail() {
         {formatDate(post.date)}{post.minutes ? ` · ${post.minutes} min` : ""}
       </div>
       <h1 className="font-cormorant" style={{ marginTop: 0 }}>{post.title}</h1>
+      <div style={{ marginBottom: 18 }}>
+  <span
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      borderRadius: 999,
+      padding: "4px 10px",
+      background: "#F4E8E4",
+      color: "#7c3740",
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: ".05em",
+      textTransform: "uppercase",
+    }}
+  >
+    {String(post.lang || "ro").toUpperCase()}
+  </span>
+</div>
 
       {/* conținut */}
       <div style={{ lineHeight: 1.85, fontSize: 18 }}>
