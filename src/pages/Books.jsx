@@ -100,8 +100,8 @@ export default function Books() {
       ? {
           backHome: "← Back to Home",
           title: "📚 Midaway Library",
-          subtitleRo: "Pentru edițiile în limba română, schimbă din butonul RO / EN de mai sus.",
-          subtitleEn: "For Romanian-language editions, use the RO / EN switch above.",
+          subtitleRo: "Pentru edițiile în limba română, poți schimba limba din selectorul RO / EN de mai sus.",
+          subtitleEn: "For Romanian-language editions, you can switch the language using the RO / EN selector above.",
           genre: "Genre",
           location: "Location",
           all: "All",
@@ -114,8 +114,8 @@ export default function Books() {
       : {
           backHome: "← Înapoi la Acasă",
           title: "📚 Biblioteca Midaway",
-          subtitleRo: "Pentru edițiile în limba engleză, schimbă din butonul RO / EN de mai sus.",
-          subtitleEn: "For English-language editions, use the RO / EN switch above.",
+          subtitleRo: "Pentru edițiile în limba engleză, poți schimba limba din selectorul RO / EN de mai sus.",
+          subtitleEn: "For English-language editions, you can switch the language using the RO / EN selector above.",
           genre: "Gen",
           location: "Locație",
           all: "Toate",
