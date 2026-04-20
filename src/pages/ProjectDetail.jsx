@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import projects from "../data/projects";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const backPillStyle = {
   display: "inline-flex",
@@ -162,18 +163,16 @@ export default function ProjectDetail() {
   const { id } = useParams();
   const p = projects.find((x) => x.id === id);
 
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("projects.detail.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() =>
+  getSiteLanguage(["projects.detail.lang", "projects.lang"])
+);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("projects.detail.lang", lang);
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    }
-  }, [lang, id]);
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    setSiteLanguage(lang, ["projects.detail.lang", "projects.lang"]);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }
+}, [lang, id]);
 
   const ui =
     lang === "en"
