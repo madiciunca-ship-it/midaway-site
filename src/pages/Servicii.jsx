@@ -507,10 +507,10 @@ export default function Servicii() {
       className="container"
       style={{
         padding: isMobile ? "20px 0 40px" : "32px 0 48px",
-        maxWidth: 1100,
+        maxWidth: 1200,
       }}
     >
-      <div style={{ marginTop: 0, marginBottom: 18 }}>
+      <div style={{ marginTop: -8, marginBottom: 18 }}>
         <Link to="/" style={sectionNavStyle}>
           {ui.backHome}
         </Link>
