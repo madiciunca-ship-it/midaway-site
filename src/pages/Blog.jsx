@@ -278,26 +278,8 @@ subtitleEn: "For English-language articles, use the RO / EN switch next to the s
   className="blog-card-cover"
   style={{
     backgroundImage: `url(${p.cover})`,
-    position: "relative",
   }}
->
-  <span
-    style={{
-      position: "absolute",
-      top: 10,
-      right: 10,
-      background: "rgba(139,44,52,.92)",
-      color: "#fff",
-      fontSize: 11,
-      fontWeight: 700,
-      padding: "4px 8px",
-      borderRadius: 999,
-      letterSpacing: ".04em",
-    }}
-  >
-    {String(p.lang || "ro").toUpperCase()}
-  </span>
-</div>
+/>
               <div className="blog-card-body">
                 <div className="blog-meta">
                   <span>{formatDate(p.date)}</span>
