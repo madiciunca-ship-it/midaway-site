@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const DEFAULT_IMAGE = "/assets/services/default-service.jpg";
 
@@ -30,11 +31,7 @@ const segBtnStyle = (active) => ({
 export default function Servicii() {
   const { add } = useCart();
   const [pages, setPages] = useState({});
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("services.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["services.lang"]));
 
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -43,7 +40,7 @@ export default function Servicii() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("services.lang", lang);
+      setSiteLanguage(lang, ["services.lang"]);
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);

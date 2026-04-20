@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import travelers from "../data/travelers";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 // alege textul corect pentru limba curentă (acceptă string sau {ro,en})
 const pickLang = (val, lang) => {
@@ -26,16 +27,12 @@ const secondaryNavStyle = {
 export default function TravelerDetail() {
   const { id } = useParams();
 
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const saved = localStorage.getItem("travelers.lang");
-    return saved === "en" ? "en" : "ro";
-  });
-
+  const [lang, setLang] = useState(() => getSiteLanguage(["travelers.lang"]));
+  
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("travelers.lang", lang);
-
+      setSiteLanguage(lang, ["travelers.lang"]);
+  
       if (window.location.search.includes("lang=")) {
         const params = new URLSearchParams(window.location.search);
         params.delete("lang");

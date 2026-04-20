@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import travelers from "../data/travelers";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 /* ——— stil card ca la Autori ——— */
 const CARD_BG = "linear-gradient(180deg,#fbf5ea 0%, #f7efe3 100%)";
@@ -92,12 +93,16 @@ export default function Travelers() {
   // păstrăm doar ?q în URL (căutarea)
   const [q, setQ] = useState(params.get("q") || "");
 
-  // limba: 1) citim o dată din query dacă vine, 2) altfel din localStorage, 3) altfel ro
-  const initialLang =
-    params.get("lang") === "en"
-      ? "en"
-      : (localStorage.getItem("travelers.lang") || "ro");
-  const [lang, setLang] = useState(initialLang);
+  // limba: 1) citim o dată din query dacă vine, 2) altfel din site.lang / fallback legacy, 3) altfel ro
+const initialLang =
+params.get("lang") === "en"
+  ? "en"
+  : params.get("lang") === "ro"
+    ? "ro"
+    : getSiteLanguage(["travelers.lang"]);
+
+const [lang, setLang] = useState(initialLang);
+
   const ui =
   lang === "en"
     ? {
@@ -109,14 +114,17 @@ export default function Travelers() {
         backTop: "↑ Înapoi sus",
       };
 
-  // persistăm limba și curățăm ?lang din bară (păstrăm ?q dacă există)
-  useEffect(() => {
-    localStorage.setItem("travelers.lang", lang);
-    if (typeof window !== "undefined" && window.location.search.includes("lang=")) {
+  // persistăm limba global + legacy și curățăm ?lang din bară (păstrăm ?q dacă există)
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    setSiteLanguage(lang, ["travelers.lang"]);
+
+    if (window.location.search.includes("lang=")) {
       const qs = q ? `?q=${encodeURIComponent(q)}` : "";
       window.history.replaceState({}, "", window.location.pathname + qs);
     }
-  }, [lang, q]);
+  }
+}, [lang, q]);
   
 
   // când tastezi în căutare, actualizăm doar ?q (nu și lang)
