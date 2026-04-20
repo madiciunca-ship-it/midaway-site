@@ -2,6 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /* ——— Butoane segmentate RO/EN ——— */
+const sectionNavStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  padding: "10px 14px",
+  borderRadius: 999,
+  border: "1px solid var(--accent)",
+  color: "var(--accent)",
+  textDecoration: "none",
+  fontWeight: 600,
+  background: "#fff",
+  boxShadow: "0 2px 10px rgba(0,0,0,.04)",
+};
+
 function segBtn(active) {
   return {
     padding: "8px 14px",
@@ -614,12 +627,25 @@ export default function Home() {
       {/* BANNER ROTATIV */}
       <Carousel slides={lang === "en" ? slidesEN : slidesRO} />
 
-      {/* REVIEWS */}
-      <ReviewsSection
+            {/* REVIEWS */}
+            <ReviewsSection
         lang={lang}
         title={i18nHome[lang].reviews_heading}
         items={REVIEWS}
       />
+
+      <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
+          style={sectionNavStyle}
+        >
+          {lang === "en" ? "↑ Back to top" : "↑ Înapoi sus"}
+        </a>
+      </div>
     </>
   );
 }
