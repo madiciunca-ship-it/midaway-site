@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { BOOKS } from "../data/books";
 import { Link } from "react-router-dom";
 import { BOOK_REVIEWS } from "../data/bookReviews";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 const CARD_BG = "#fffef9"; // aceeași culoare ca background-ul cardului
 
@@ -44,15 +45,12 @@ export default function Books() {
   const [location, setLocation] = useState("Toate");
   const [q, setQ] = useState("");
 
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "ro";
-    const stored = localStorage.getItem("books.lang");
-    return stored === "en" ? "en" : "ro";
-  });
+  const [lang, setLang] = useState(() => getSiteLanguage(["books.lang"]));
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("books.lang", lang);
+      setSiteLanguage(lang, ["books.lang"]);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [lang]);
 
