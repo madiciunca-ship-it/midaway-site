@@ -64,9 +64,9 @@ export default function Servicii() {
           backTop: "↑ Back to top",
           title: "Services",
           subtitle:
-            "Choose the service that fits your stage: consulting, design, publishing. Scheduling and delivery follow the Cancellation Policy.",
+          "Choose the kind of support that fits your stage: editorial guidance, design, or publishing. Scheduling and delivery follow our Cancellation Policy.",
           body:
-            "We approach each project individually, with rhythm and clarity. We help you define your direction, refine your message, and move toward a final version worthy of publication (eBook and/or paperback). If you are not sure where to begin, choose editorial consulting — it is the best first step.",
+          "Every project is approached individually, with clarity, rhythm, and care. We help you shape your direction, refine your message, and move toward a final version that feels ready for publication – whether as an eBook, a paperback, or both. If you are unsure where to begin, editorial consulting is the best first step.",
           guideRo:
             "Pentru versiunea în limba română, poți schimba limba din selectorul RO / EN de mai sus.",
           guideEn:
@@ -82,8 +82,8 @@ export default function Servicii() {
           pageShort: "pp.",
           alertPages: "Please enter the number of pages (minimum",
           consultationOnly:
-            "For now, only editorial consulting is available for booking. The other services will be announced soon.",
-          consultationOnlyTitle: "Currently available",
+          "For the moment, editorial consulting is the only service open for booking. The other offers will be added soon.",
+          consultationOnlyTitle: "Available now",
         }
       : {
           backHome: "← Înapoi la Acasă",
@@ -119,11 +119,11 @@ export default function Servicii() {
           id: "consultanta-editoriala-60",
           title: "Editorial consulting (60 min)",
           subtitle:
-            "1:1 session — structure, flow, audience, publishing strategy.",
+          "1:1 session focused on structure, narrative flow, readership, and publishing direction.",
           bullets: [
-            "Zoom / Google Meet call",
-            "feedback on synopsis / structure",
-            "clear recommendations for the next steps",
+            "a one-to-one session via Zoom or Google Meet",
+            "feedback on your synopsis, structure, or current direction",
+            "clear recommendations for your next editorial steps",
           ],
           pricing: "fixed",
           price: 50,
@@ -137,11 +137,12 @@ export default function Servicii() {
           id: "design-coperta",
           title: "Cover design",
           subtitle: "Concept + final layout for eBook & Paperback.",
-          bullets: [
-            "4 initial concepts",
-            "2 revision rounds",
-            "final files for eBook & print",
-          ],
+          bullets:
+            [
+              "four initial cover concepts",
+              "two rounds of revisions",
+              "final files prepared for eBook and print",
+            ],
           pricing: "fixed",
           price: 180,
           currency: "EUR",
@@ -154,11 +155,11 @@ export default function Servicii() {
           id: "publicare-distributie-kdp",
           title: "Publishing & distribution (KDP)",
           subtitle:
-            "Account setup, formatting, upload, Amazon page optimization.",
+          "Account setup, formatting, upload, and optimisation for your Amazon listing.",
           bullets: [
-            "eBook/paperback formatting",
-            "description & category optimization",
-            "KDP upload + checks",
+            "formatting for eBook and paperback",
+            "optimisation of description and categories",
+            "KDP upload and final checks",
           ],
           pricing: "fixed",
           price: 360,
@@ -169,15 +170,15 @@ export default function Servicii() {
           image: "/assets/services/kdp.png",
         },
         {
-          id: "editare-completa-ro",
-          title: "Full editing (RO) – per page",
+          id: "editare-completa-en",
+          title: "Full editing (EN) – per page",
           subtitle:
-            "From structure to style: development + copyedit + narrative clarity.",
+          "From structure to style: developmental editing, line refinement, and narrative clarity.",
           bullets: [
-            "structural analysis & coherence",
-            "voice & audience alignment",
-            "style and clarity corrections",
-            "final revision before publishing",
+            "structural analysis and overall coherence",
+            "alignment of voice and intended readership",
+            "style, clarity, and flow improvements",
+            "final revision before publication",
           ],
           pricing: "perPage",
           unitPrice: 2,
@@ -189,14 +190,14 @@ export default function Servicii() {
           image: "/assets/services/editare.png",
         },
         {
-          id: "corectura-ortografie-punctuatie-ro",
-          title: "Proofreading (RO) – per page",
+          id: "corectura-ortografie-punctuatie-en",
+          title: "Proofreading (EN) – per page",
           subtitle:
-            "Orthography, punctuation, micro-styling, diacritic consistency.",
+          "Proofreading for spelling, punctuation, consistency, and final textual polish.",
           bullets: [
-            "orthographic proofreading",
-            "punctuation",
-            "consistency & diacritics",
+            "spelling and language correction",
+            "punctuation review",
+            "consistency, formatting, and diacritics",
           ],
           pricing: "perPage",
           unitPrice: 2,
@@ -208,15 +209,15 @@ export default function Servicii() {
           image: "/assets/services/corectura.png",
         },
         {
-          id: "traducere-literara-ro-en",
-          title: "Literary translation (RO → EN) – per page",
+          id: "traducere-literara-en-ro",
+          title: "Literary translation (EN → RO) – per page",
           subtitle:
-            "Expressive rendering into English + bilingual stylistic revision.",
-          bullets: [
-            "translation + cultural adaptation",
-            "stylistic revision (RO & EN)",
-            "author consultation for tone & nuance",
-            "preparation for international publishing",
+          "A literary rendering into Romanian, shaped with care for voice, cadence, and meaning.",
+          bullets:[
+            "translation with cultural and stylistic adaptation",
+            "revision across both English and Romanian",
+            "consultation on tone, voice, and nuance",
+            "preparation for publication in Romanian",
           ],
           pricing: "perPage",
           unitPrice: 0,
@@ -231,16 +232,16 @@ export default function Servicii() {
           id: "listare-vanzare-midaway",
           title: "Listing & selling on midaway.ro",
           subtitle:
-            "We host your eBooks/books, direct sales, Author page, promo & support.",
+          "We host your books or eBooks on midaway.ro, with direct sales, author presence, promotion, and ongoing support.",
           bullets: [
-            "Author page on the site + product cards",
-            "PDF, EPUB setup / PDF, EPUB download delivery",
-            "support for ISBN / metadata process*",
-            "promotion in Blog / Social media / Projects (when relevant)",
-            "monthly maintenance / operational subscription — according to contract",
+            "author page on the site and product listings",
+            "PDF and EPUB setup, including delivery files",
+            "support with ISBN and metadata procedure*",
+            "promotion through Blog, Social Media, or Projects when relevant",
+            "monthly maintenance and operational support, according to contract",
           ],
           note:
-            "*ISBN is legally obtained through the National Library; we provide procedural support.",
+          "*ISBNs are legally obtained through the National Library; we provide guidance throughout the process.",
           pricing: "fixed",
           price: 0,
           currency: "EUR",
@@ -253,12 +254,12 @@ export default function Servicii() {
           id: "pachet-manuscris-amazon",
           title: "Package: From manuscript to Amazon",
           subtitle:
-            "Editing + cover design + KDP publishing + EN description for the Amazon page.",
-          bullets: [
-            "book editing (negotiated level)",
-            "cover design (eBook & paperback)",
-            "KDP upload & setup",
-            "short English description",
+          "An integrated publishing path that brings your manuscript from working draft to a finished Amazon-ready edition.",
+          bullets: [    
+          "editing tailored to the needs of your manuscript",
+          "cover design for eBook and paperback",
+          "KDP setup, upload, and publication support",
+          "a concise English description for your Amazon listing",
           ],
           pricing: "fixed",
           price: 0,
@@ -272,12 +273,12 @@ export default function Servicii() {
           id: "mentorat-debutant-1luna",
           title: "Debut author mentorship (30 days)",
           subtitle:
-            "1:1 guidance – 4 sessions (strategy, structure, writing, publishing).",
+          "A one-to-one mentorship programme for emerging authors who need structure, encouragement, and a clear publishing path.",
           bullets: [
-            "4 video meetings (60–90 min)",
-            "assignments & feedback between sessions",
-            "realistic publishing plan",
-            "priority email access during the program",
+            "four video sessions of 60–90 minutes each",
+            "feedback and practical guidance between sessions",
+            "a realistic plan for writing and publication",
+            "priority email support throughout the programme",
           ],
           pricing: "fixed",
           price: 0,
@@ -760,6 +761,21 @@ export default function Servicii() {
                   <li key={i}>{b}</li>
                 ))}
               </ul>
+              {svc.id === "consultanta-editoriala-60" && (
+  <p
+    style={{
+      margin: "4px 0 14px",
+      color: "#5b5b5b",
+      lineHeight: 1.7,
+      fontSize: 14,
+      fontStyle: "italic",
+    }}
+  >
+    {lang === "en"
+      ? "After this session, it becomes much easier to decide whether you need editing, cover design, or publishing support next."
+      : "După această sesiune, îți va fi mult mai ușor să decizi dacă ai nevoie mai departe de editare, design de copertă sau sprijin pentru publicare."}
+  </p>
+)}
 
               {svc.note && (
                 <div style={{ fontSize: 12, color: "#666", margin: "6px 0 10px" }}>
