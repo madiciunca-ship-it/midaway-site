@@ -87,9 +87,9 @@ export default function Contact() {
           title: "📬 Contact Midaway",
           subtitle: "Where good ideas meet people willing to listen.",
           guideRo:
-            "Pentru mesaje în limba română, folosește butonul RO / EN de mai sus.",
+            "Pentru mesaje în limba română, poți schimba limba din selectorul RO / EN de mai sus.",
           guideEn:
-            "For messages in Romanian, use the RO / EN switch above.",
+            "For messages in Romanian, you can switch the language using the RO / EN selector above..",
           intro1:
             "Write to us if you want to publish, collaborate, or simply talk about books and journeys.",
           intro2:
@@ -130,9 +130,9 @@ export default function Contact() {
           title: "📬 Contact Midaway",
           subtitle: "Unde ideile bune găsesc oameni care le ascultă.",
           guideRo:
-            "Pentru mesaje în limba engleză, folosește butonul RO / EN de mai sus.",
+            "Pentru mesaje în limba engleză, poți schimba limba din selectorul RO / EN de mai sus.",
           guideEn:
-            "For messages in English, use the RO / EN switch above.",
+            "For messages in English, you can switch the language using the RO / EN selector above.",
           intro1:
             "Scrie-ne dacă vrei să publici, să colaborăm sau doar să povestim despre cărți și drumuri.",
           intro2:
