@@ -232,8 +232,8 @@ export const BOOKS = [
       }
     },
 
-    coverUrl: "/assets/books/days-and-nights-of-vietnam-cover.png",
-    extraImage: "/assets/books/days-and-nights-of-vietnam-back.png",
+    coverUrl: "/assets/books/days-and-nights-of-vietnam-1-cover.png",
+    extraImage: "/assets/books/days-and-nights-of-vietnam-1-back.png",
 
     sampleUrl: "/files/sample-days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
 
