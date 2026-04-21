@@ -301,18 +301,18 @@ export const BOOKS = [
     formatDetails: {
       eBook: {
         type: "pdf",
-        pages: 346,
-        isbn: " - "
+        pages: null,
+        isbn: " — ",
       },
       epub: {
         pages: null, // la epub NU e obligatoriu
-        isbn: " - "
+        isbn: " — ",
       },
       paperback: {
-        pages: 366,
-        isbn: "978-97304-1386-1",
-        dimensions: "13 x 20 cm",
-        weight: "400 gr."
+        pages: null,
+        isbn: " — ",
+        dimensions: null,
+        weight: null,
       }
     },
 
@@ -332,7 +332,7 @@ export const BOOKS = [
     
 
     coverUrl: "/assets/books/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-cover.jpg",
-    extraImage: "/assets/books/pasi-prin-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",
+    extraImage: "/assets/books/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",
 
     files: {
       PDF:  "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
