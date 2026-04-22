@@ -8,6 +8,14 @@ export const BOOK_REVIEWS = {
       createdAt: "2026-03-31",
       published: true,
     },
+    {
+      id: "focuri-002",
+      name: "Ana Mureșan",
+      rating: 5,
+    text: "Ai acolo un fir roșu – focul care nu atinge – îmi place mult mesajul pe care îl transmiți. Te admir foarte tare pentru curajul și expunerea ta. Grozav ar fi să întâlnești „un nebun” de calibrul tău.",
+      createdAt: "2026-04-22",
+      published: true,
+    },
   ],
 
   "vietnam-ro": [
@@ -29,10 +37,10 @@ export const BOOK_REVIEWS = {
     },
     {
       id: "vietnam-003",
-      name: "Ana-Maria Ilie",
+      name: "Ana Mureșan",
       rating: 5,
-      text: "Am citit cartea cu senzația că merg și eu alături de tine. E una dintre acele povești care rămân cu tine și după ce ai închis ultima pagină.",
-      createdAt: "2025-11-13",
+      text: "Am terminat de citit primele două volume. Cărțile tale sunt foarte educative și inspiri prin felul în care te lași schimbată de experiențele trăite. Ești unică prin curajul tău! Și eu sunt curajoasă, dar tu bați recordul mondial! Foarte tare experiența cu motocicleta. Te admir foarte, foarte, foarte mult!!!",
+      createdAt: "2025-04-22",
       published: true,
     },
   ],
@@ -40,10 +48,21 @@ export const BOOK_REVIEWS = {
   "vietnam-en": [
     {
       id: "vietnam-en-001",
-      name: "Emily R.",
+      name: "Adrian Illeș",
       rating: 5,
-      text: "A moving and deeply honest book. It felt less like reading about a journey and more like walking through it with you.",
-      createdAt: "2026-04-16",
+      text: "Make sure to buy this book, to discover a true adventure, and immerse yourself in Yda's story – you won't regret it!",
+      createdAt: "2026-03-27",
+      published: true,
+    },
+  ],
+
+  "indonezia-1-ro": [
+    {
+      id: "indo1-ro-001",
+      name: "Ana Mureșam",
+      rating: 5,
+      text: "Merită să așterni pe hărtie experiențele unice pe care le-ai trăit. Ești o revelație... Ce mi se pare cel mai fantastic este că ți-ai dorit să călătorești și ai primit mult peste ce ți-ai imaginat. Cred că ai fost binecuvântată cu un CURAJ mareee...",
+      createdAt: "2026-04-22",
       published: true,
     },
   ],
@@ -67,6 +86,25 @@ export const BOOK_REVIEWS = {
       text: "Beautifully vulnerable and very alive. I loved the rhythm of the road, the uncertainty, and the way strangers became part of the healing.",
       createdAt: "2026-04-16",
       published: true,
+    },
+  ],
+
+  "o-zi-ro": [
+    {
+      id: "o-zi-ro-001",
+      name: "Florina Grigorie",
+      rating: 5,
+      text: "Recomand cartea cu dragă inimă. Cartea te transpune în fiecare loc descris.",
+      createdAt: "2026-04-16",
+      published: true,
+    },
+    {
+      id: "o-zi-ro-002",
+      name: "",
+      rating: 5,
+      text: "",
+      createdAt: "",
+      published: false,
     },
   ],
 };
