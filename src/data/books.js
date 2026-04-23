@@ -689,6 +689,86 @@ payLink: null,
 
   payLink: null,
 },
+
+ // ————————————————————————————————————————————————
+  // Zile și nopți de Vietnam 2 (RO)
+  // ————————————————————————————————————————————————
+  {
+    id: "vietnam-2-ro",
+    addedAt: "2026-04-29T10:00:00Z",
+    lang: "RO",
+    currency: "RON",
+
+    title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
+    seoTitle: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad | Mida Malena",
+    subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
+    seoDescription: "Zile și nopți de Vietnam este un jurnal de călătorie despre descoperirea sinelui prin experiențe reale, oameni neașteptați și locuri care devin oglinzi ale sufletului.",
+    
+    author: "Mida Malena",
+    genre: "Jurnal de călătorie · Experiențe reale",
+    location: "Vietnam",
+    year: 2026,
+    publisher: "Midaway / Autor Mida Malena",
+
+    formatDetails: {
+      eBook: {
+        type: "pdf",
+        pages: 311,
+        isbn: "978-630-95287-7-3"
+      },
+      epub: {
+        pages: null, // la epub NU e obligatoriu
+        isbn: "978-630-95287-8-0"
+      },
+      paperback: {
+        pages: 334,
+        isbn: "978-630-95287-6-6",
+        dimensions: "13 x 20 cm",
+        weight: "360 gr"
+      }
+    },
+
+    coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
+    extraImage: "/assets/books/zile-si-nopti-de-vietnam-spate.png",
+
+    sampleUrl: "/files/sample-zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+
+    tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
+    format: "eBook",
+
+    vendors: {
+      novela: {
+        url: "https://novela.ro/zile-si-nopti-de-vietnam-mida-malena-978-973-0-41386-1",
+        label: "Novela",
+        visible: false,
+      },
+    },
+
+    prices: { PDF: 40, EPUB: 40, PAPERBACK: 60, AUDIOBOOK: 0 },
+    availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
+
+    files: {
+      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.pdf",
+      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.epub",
+    },
+
+    description: [
+      "Nu trebuie să fi fost în Vietnam. Trebuie doar să fi simțit că previzibilul nu te mai încape.",
+      "„Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad” nu e doar un jurnal de călătorie. E o explorare a sinelui – în care locurile devin oglinzi, iar oamenii care îți intersectează drumul modelează ce ești și ce urmează să devii.",
+      "Prin agitația vibrantă și frumusețea calmă a Vietnamului, Yda descoperă magia din banalul fiecărei zile și țese povești despre curaj, vulnerabilitate și bucuria de a trăi cu autenticitate.",
+      "De la forfota orașelor aglomerate până la liniștea satelor ascunse în munți, fiecare moment se așază ca o piesă dintr-un puzzle mai mare – și îți arată adevăruri care ies la iveală doar când îndrăznești să mergi dincolo de predictibil.",
+      "Aceasta nu este:",
+      "– o carte despre Vietnam ca destinație",
+      "– un ghid de călătorie",
+      "– o lectură cu rețete rapide pentru „reinventare”",
+      "Este o invitație să te rătăcești puțin – și, tocmai de aceea, să te regăsești.",
+      "Cartea asta e pentru tine dacă:",
+      "– vrei o călătorie care te scoate din zona de confort, chiar și pentru câteva pagini",
+      "– simți că fragmentele autentice din tine stau ascunse în imprevizibil",
+      "– îți plac poveștile care rămân cu tine după ce închizi cartea",
+    ],
+    hidden: true,
+  },
 ];
 
 // Export opțional: listă standard pentru UI
