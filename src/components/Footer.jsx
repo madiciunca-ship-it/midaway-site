@@ -45,6 +45,7 @@ export default function Footer() {
      - dacă emiți `window.dispatchEvent(new Event('midaway:lang'))`, se actualizează instant */
      useEffect(() => {
       const refresh = () => setLang(getSiteLanguage());
+      refresh();
       window.addEventListener("storage", refresh);
       window.addEventListener("midaway:lang", refresh);
       return () => {
@@ -52,6 +53,7 @@ export default function Footer() {
         window.removeEventListener("midaway:lang", refresh);
       };
     }, []);
+    
 
   const year = new Date().getFullYear();
 
