@@ -308,7 +308,7 @@ const t = isEN
             {/* Citește un fragment – AURIU */}
             {book.sampleUrl && (
   <a
-    href={book.sampleUrl}
+    href={`${book.sampleUrl}#page=1`}
     target="_blank"
     rel="noopener noreferrer"
     data-book-sample="true"
