@@ -91,12 +91,17 @@ export default async function handler(req, res) {
     // DESCĂRCARE DIRECTĂ: ?f=<bookId>:<FORMAT>
     if (f) {
       const key = String(f);
-
+    
       if (!allowedKeys.includes(key) || !FILES[key]) {
-        res.status(403).send("Fișier indisponibil pentru acest link.");
+        res.status(403).json({
+          error: "Fișier indisponibil pentru acest link.",
+          requestedKey: key,
+          allowedKeys,
+          knownFileKeys: Object.keys(FILES),
+          fileEntry: FILES[key] || null,
+        });
         return;
       }
-
       const safeRelative = sanitizeRelativeFile(FILES[key]);
       if (!safeRelative) {
         res.status(500).send("Configurație invalidă pentru fișier.");
