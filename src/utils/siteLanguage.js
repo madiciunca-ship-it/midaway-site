@@ -32,4 +32,6 @@ export function setSiteLanguage(lang, legacyKeys = []) {
   for (const key of legacyKeys) {
     localStorage.setItem(key, normalized);
   }
+
+  window.dispatchEvent(new Event("midaway:lang"));
 }
