@@ -1,5 +1,7 @@
 // /api/download.mjs
 import crypto from "crypto";
+import fs from "fs";
+import path from "path";
 import { BOOKS } from "../src/data/books.js";
 
 // verificare token HMAC (valabilitate 48h)
@@ -16,7 +18,7 @@ function verifyToken(token) {
     if (sig !== expectedSig) return null;
 
     const data = JSON.parse(Buffer.from(bodyB64, "base64url").toString("utf8"));
-    if (!data || !data.exp || Date.now() > Number(data.exp)) return null; // expirat
+    if (!data || !data.exp || Date.now() > Number(data.exp)) return null;
     return data; // { sid, email, keys, exp }
   } catch (err) {
     console.error("Eroare verificare token:", err);
@@ -24,19 +26,42 @@ function verifyToken(token) {
   }
 }
 
-// Construim dinamic hărțile: <bookId>:<FORMAT> → url și etichetă
+// Construim dinamic hărțile: <bookId>:<FORMAT> → filename și etichetă
 const FILES = {};
 const LABELS = {};
 
 for (const book of BOOKS) {
   if (!book?.files) continue;
   const title = book.title || book.id;
-  for (const [fmtRaw, url] of Object.entries(book.files)) {
+
+  for (const [fmtRaw, fileRef] of Object.entries(book.files)) {
     const fmt = String(fmtRaw).toUpperCase();
     const key = `${book.id}:${fmt}`;
-    FILES[key] = url; // ex: "/files/....pdf"
+
+    FILES[key] = fileRef; // ex: "focuri.pdf"
     LABELS[key] = `${title} — ${fmt}`;
   }
+}
+
+function getMimeType(filename) {
+  const ext = path.extname(filename).toLowerCase();
+  if (ext === ".pdf") return "application/pdf";
+  if (ext === ".epub") return "application/epub+zip";
+  return "application/octet-stream";
+}
+
+function sanitizeRelativeFile(fileRef) {
+  const raw = String(fileRef || "").trim();
+
+  // nu permitem URL-uri sau căi absolute
+  if (!raw || raw.startsWith("http://") || raw.startsWith("https://") || raw.startsWith("/")) {
+    return null;
+  }
+
+  const normalized = path.normalize(raw).replace(/^(\.\.(\/|\\|$))+/, "");
+
+  if (!normalized || normalized.includes("..")) return null;
+  return normalized;
 }
 
 export default async function handler(req, res) {
@@ -60,23 +85,60 @@ export default async function handler(req, res) {
       return;
     }
 
-    const SITE = process.env.SITE_URL || "https://midaway.vercel.app";
     const rawKeys = Array.isArray(data.keys) ? data.keys : [];
-    // Cheile din token sunt deja în forma nouă <bookId>:<FORMAT>
     const allowedKeys = rawKeys.filter(Boolean);
 
     // DESCĂRCARE DIRECTĂ: ?f=<bookId>:<FORMAT>
     if (f) {
       const key = String(f);
-      if (FILES[key] && allowedKeys.includes(key)) {
-        const fileUrl = `${SITE}${FILES[key]}`; // URL public (din /public/files)
-        res.writeHead(302, { Location: fileUrl });
-        res.end();
+
+      if (!allowedKeys.includes(key) || !FILES[key]) {
+        res.status(403).send("Fișier indisponibil pentru acest link.");
         return;
       }
+
+      const safeRelative = sanitizeRelativeFile(FILES[key]);
+      if (!safeRelative) {
+        res.status(500).send("Configurație invalidă pentru fișier.");
+        return;
+      }
+
+      const fullPath = path.join(process.cwd(), "private-files", safeRelative);
+
+      if (!fs.existsSync(fullPath)) {
+        console.error("Fișier lipsă pe server:", fullPath);
+        res.status(404).send("Fișierul nu a fost găsit.");
+        return;
+      }
+
+      const filename = path.basename(fullPath);
+      const stat = fs.statSync(fullPath);
+
+      res.setHeader("Content-Type", getMimeType(filename));
+      res.setHeader("Content-Length", stat.size);
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${filename.replace(/"/g, "")}"`
+      );
+      res.setHeader("Cache-Control", "private, no-store, max-age=0");
+
+      const stream = fs.createReadStream(fullPath);
+      stream.on("error", (err) => {
+        console.error("Stream error:", err);
+        if (!res.headersSent) {
+          res.status(500).send("A apărut o eroare la livrarea fișierului.");
+        } else {
+          res.end();
+        }
+      });
+
+      stream.pipe(res);
+      return;
     }
 
     // LISTA: doar cheile permise + care există în FILES
+    const SITE = process.env.SITE_URL || "https://midaway.ro";
+
     const links = allowedKeys
       .filter((key) => !!FILES[key])
       .map(

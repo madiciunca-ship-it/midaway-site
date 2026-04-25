@@ -54,8 +54,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/o-zi-de-care-sa-ti-amintesti-ro.pdf",
-      EPUB: "/files/o-zi-de-care-sa-ti-amintesti-ro.epub",
+      PDF:  "o-zi-de-care-sa-ti-amintesti.pdf",
+      EPUB: "o-zi-de-care-sa-ti-amintesti.epub",
     },
 
     description: [
@@ -117,7 +117,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam (RO)
+  // Zile și nopți de Vietnam 1 - Bucăți dintr-un suflet nomad (RO)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-ro",
@@ -174,8 +174,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.epub",
+      PDF:  "zile-si-nopti-de-vietnam-1.pdf",
+      EPUB: "zile-si-nopti-de-vietnam-1.epub",
     },
 
     description: [
@@ -197,7 +197,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Days and Nights Of Vietnam (EN)
+  // Days and Nights Of Vietnam 1 - The Puzzle of My Soul (EN)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-en",
@@ -244,8 +244,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.pdf",
-      EPUB: "/files/days-and-nights-of-vietnam-the-puzzle-of-my-soul-en.epub",
+      PDF:  "days-and-nights-of-vietnam-1.pdf",
+      EPUB: "days-and-nights-of-vietnam-1.epub",
     },
 
     vendors: {
@@ -276,7 +276,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Pași prin Indonezia (RO)
+  // Pași prin Indonezia 1 - Când Bali îți atinge sufletul (RO)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-1-ro",
@@ -335,8 +335,8 @@ export const BOOKS = [
     extraImage: "/assets/books/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-back.jpg",
 
     files: {
-      PDF:  "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
-      EPUB: "/files/pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.epub",
+      PDF:  "pasi-prin-indonezia-bali.pdf",
+      EPUB: "pasi-prin-indonezia-bali.epub",
     },
 
     sampleUrl: "/files/sample-pasi-prin-indonezia-cand-bali-iti-atinge-sufletul-ro.pdf",
@@ -348,7 +348,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Steps Through Indonezia (EN)
+  // Steps Through Indonezia 1 - When Bali touches Your soul (EN)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-1-en",
@@ -395,8 +395,8 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/steps-through-indonesia-when-bali-touches-your-soul-en.pdf",
-      EPUB: "/files/steps-through-indonesia-when-bali-touches-your-soul-en.epub"
+      PDF:  "steps-through-indonesia-bali.pdf",
+      EPUB: "steps-through-indonesia-bali.epub"
     },
 
     vendors: {
@@ -430,7 +430,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-// Pași prin Indonezia – Pe mâini de străini (RO)
+// Pași prin Indonezia 2 – Pe mâini de străini - Java (RO)
 // ————————————————————————————————————————————————
 {
   id: "indonezia-2-ro",
@@ -493,8 +493,8 @@ export const BOOKS = [
 extraImage: "/assets/books/pasi-prin-indonezia-pe-maini-de-straini-back.png",
 
 files: {
-  PDF:  "/files/pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
-  EPUB: "/files/pasi-prin-indonezia-pe-maini-de-straini-ro.epub",
+  PDF:  "pasi-prin-indonezia-java.pdf",
+  EPUB: "pasi-prin-indonezia-java.epub",
 },
 
 sampleUrl: "/files/sample-pasi-prin-indonezia-pe-maini-de-straini-ro.pdf",
@@ -517,7 +517,7 @@ payLink: null,
 },
 
 // ————————————————————————————————————————————————
-  // Steps Through Indonezia (EN)
+  // Steps Through Indonezia 2 - In the Hands of Strangers - Java (EN)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-2-en",
@@ -565,8 +565,8 @@ payLink: null,
     availability: { PDF: true, EPUB: true, PAPERBACK: false, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/steps-through-indonesia-in-the-hands-of-strangers-en.pdf",
-      EPUB: "/files/steps-through-indonesia-in-the-hands-of-strangers-en.epub"
+      PDF:  "steps-through-indonesia-java.pdf",
+      EPUB: "steps-through-indonesia-java.epub"
     },
 
     vendors: {
@@ -667,8 +667,8 @@ payLink: null,
   extraImage: "/assets/books/focuri-care-nu-ating-back.png",
 
   files: {
-    PDF: "/files/focuri-care-nu-ating-ro.pdf",
-    EPUB: "/files/focuri-care-nu-ating-ro.epub",
+    PDF: "focuri.pdf",
+    EPUB: "focuri.epub",
   },
 
   sampleUrl: "/files/sample-focuri-care-nu-ating.pdf",
@@ -691,7 +691,7 @@ payLink: null,
 },
 
  // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam 2 (RO)
+  // Zile și nopți de Vietnam 2 - Bucățile care lipseau (RO)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-2-ro",
@@ -699,10 +699,10 @@ payLink: null,
     lang: "RO",
     currency: "RON",
 
-    title: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad",
-    seoTitle: "Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad | Mida Malena",
-    subtitle: "Un drum fără dată de întoarcere. Nu pentru că nu te mai întorci, ci pentru că nu te mai întorci la fel.",
-    seoDescription: "Zile și nopți de Vietnam este un jurnal de călătorie despre descoperirea sinelui prin experiențe reale, oameni neașteptați și locuri care devin oglinzi ale sufletului.",
+    title: "Zile și nopți de Vietnam – Bucățile care lipseau",
+    seoTitle: "Zile și nopți de Vietnam – Bucățile care lipseau | Mida Malena",
+    subtitle: "Un.",
+    seoDescription: "Zile și nopți de Vietnam.",
     
     author: "Mida Malena",
     genre: "Jurnal de călătorie · Experiențe reale",
