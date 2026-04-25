@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SITE_FLAGS } from "../config";
+import { getSiteLanguage } from "../utils/siteLanguage";
 
 /* i18n Footer */
 const i18nFooter = {
@@ -30,42 +31,27 @@ const i18nFooter = {
   },
 };
 
-/* detectăm limba curentă din localStorage (fallback: ro) */
-function detectLang() {
-  if (typeof window === "undefined") return "ro";
-  const candidates = [
-    "lang",
-    "home.lang",
-    "travelers.lang",
-    "guides.lang",
-  ];
-  for (const key of candidates) {
-    const v = localStorage.getItem(key);
-    if (v === "en") return "en";
-    if (v === "ro") return "ro";
-  }
-  return "ro";
-}
+
 
 export default function Footer() {
   const showDon = SITE_FLAGS.showDonations;
   const showSpon = SITE_FLAGS.showSponsorships;
 
-  const [lang, setLang] = useState(detectLang());
+  const [lang, setLang] = useState(() => getSiteLanguage());
   const t = i18nFooter[lang] || i18nFooter.ro;
 
   /* dacă se schimbă limba în altă parte, încercăm să ne sincronizăm:
      - dacă vei seta localStorage.setItem("lang", "..."), funcționează imediat la reload/navigare
      - dacă emiți `window.dispatchEvent(new Event('midaway:lang'))`, se actualizează instant */
-  useEffect(() => {
-    const refresh = () => setLang(detectLang());
-    window.addEventListener("storage", refresh);         // schimbare din alt tab
-    window.addEventListener("midaway:lang", refresh);    // eveniment custom (opțional)
-    return () => {
-      window.removeEventListener("storage", refresh);
-      window.removeEventListener("midaway:lang", refresh);
-    };
-  }, []);
+     useEffect(() => {
+      const refresh = () => setLang(getSiteLanguage());
+      window.addEventListener("storage", refresh);
+      window.addEventListener("midaway:lang", refresh);
+      return () => {
+        window.removeEventListener("storage", refresh);
+        window.removeEventListener("midaway:lang", refresh);
+      };
+    }, []);
 
   const year = new Date().getFullYear();
 
