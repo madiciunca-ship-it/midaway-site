@@ -1,28 +1,17 @@
 // src/pages/Privacy.jsx
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
 /* ——— detect limba globală din localStorage (fără ?lang=) ——— */
-function detectLang() {
-  if (typeof window === "undefined") return "ro";
-  const v =
-    localStorage.getItem("lang") ||
-    localStorage.getItem("home.lang") ||
-    localStorage.getItem("travelers.lang") ||
-    localStorage.getItem("guides.lang") ||
-    "ro";
-  return v === "en" ? "en" : "ro";
-}
+
 
 export default function Privacy() {
-  const [lang, setLang] = useState(detectLang());
+  const [lang, setLang] = useState(() => getSiteLanguage(["lang"]));
 
   const changeLang = (l) => {
     setLang(l);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("lang", l);
-      window.dispatchEvent(new Event("midaway:lang"));
-    }
+    setSiteLanguage(l, ["lang"]);
   };
 
   useEffect(() => {
