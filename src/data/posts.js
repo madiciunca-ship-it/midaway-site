@@ -1432,7 +1432,7 @@ const posts = [
       `Iar dacă există un sens în tot ce s-a întâmplat, poate că el nu stă doar în faptul că am plecat, că am rezistat sau că am scris. Poate că stă în felul în care toate acestea, puse cap la cap, au construit nu doar niște cărți, ci o altă versiune a mea. Una pe care, dacă n-aș fi avut curajul să plec atunci, probabil n-aș fi cunoscut-o niciodată.`,
       `De aceea spun toate astea acum. Nu ca să transform drumul meu într-o vitrină și nici ca să-l fac să pară mai spectaculos decât a fost. Nu mă interesează să lustruiesc povestea până devine de nerecunoscut. Dimpotrivă. Cred că tot ceea ce are cu adevărat valoare într-un om se află exact în locurile în care viața l-a frânt, l-a obligat să plece, să se schimbe, să înțeleagă, să o ia de la capăt.`,
       `Din afară e ușor să vezi doar rezultatul:`,
-      `șase cărți,`,
+      { type: "paragraph", parts: [{ text: "șase cărți", href: "/carti", kind: "internal" }, { text: "," }] },
       { type: "paragraph", parts: [{ text: "site-ul – " }, { text: "midaway.ro", href: "/", kind: "internal" }, { text: "," }] },
       `drumurile,`,
       `imaginile superbe,`,
