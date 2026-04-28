@@ -1389,7 +1389,7 @@ const posts = [
     ],
     cover: "/assets/blog/povestea-unui-șase.jpg",
     lang: "ro",
-    minutes: 12,
+    minutes: 13,
     content: [
       `Se spune că poveștile vând mai mult decât orice lucru concret. Poți crede asta sau nu, poți întoarce ideea pe toate fețele, o poți demonta, explica sau nega. Adevărul e că, dincolo de teorii, oamenii nu cumpără doar lucruri. Cumpără sens, iar sensul vine aproape întotdeauna prin poveste.`,
       `Astăzi nu sunt aici ca să vând, deși, dacă aș fi sinceră până la capăt, nici asta n-ar fi ceva rușinos. Sunt aici pentru altceva. Pentru ceea ce nu se vede. Pentru ceea ce pare ascuns, dar a fost mereu acolo. Doar că, uneori, nu avem timp să ascultăm. Sau curaj să întrebăm.`,
