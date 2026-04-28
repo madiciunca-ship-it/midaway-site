@@ -703,6 +703,7 @@ payLink: null,
     seoTitle: "Zile și nopți de Vietnam – Bucățile care lipseau | Mida Malena",
     subtitle: "Unele țări cer o întoarcere. Nu pentru locuri, ci pentru tine. O carte despre libertate, detașare și felul în care înveți să pleci cu inima împăcată.",
     seoDescription: "Zile și nopți de Vietnam.",
+    isNew: true,
     
     author: "Mida Malena",
     genre: "Jurnal de călătorie · Experiențe reale",
