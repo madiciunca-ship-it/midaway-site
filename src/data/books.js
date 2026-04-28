@@ -701,7 +701,7 @@ payLink: null,
 
     title: "Zile și nopți de Vietnam – Bucățile care lipseau",
     seoTitle: "Zile și nopți de Vietnam – Bucățile care lipseau | Mida Malena",
-    subtitle: "Un.",
+    subtitle: "Unele țări cer o întoarcere. Nu pentru locuri, ci pentru tine. O carte despre libertate, detașare și felul în care înveți să pleci cu inima împăcată.",
     seoDescription: "Zile și nopți de Vietnam.",
     
     author: "Mida Malena",
@@ -713,32 +713,32 @@ payLink: null,
     formatDetails: {
       eBook: {
         type: "pdf",
-        pages: 311,
-        isbn: "978-630-95287-7-3"
+        pages: 253,
+        isbn: "—"
       },
       epub: {
         pages: null, // la epub NU e obligatoriu
-        isbn: "978-630-95287-8-0"
+        isbn: "—"
       },
       paperback: {
-        pages: 334,
-        isbn: "978-630-95287-6-6",
+        pages: 268,
+        isbn: "978-630-95287-3-5",
         dimensions: "13 x 20 cm",
-        weight: "360 gr"
+        weight: "320 gr"
       }
     },
 
-    coverUrl: "/assets/books/zile-si-nopti-de-vietnam-cover.png",
-    extraImage: "/assets/books/zile-si-nopti-de-vietnam-spate.png",
+    coverUrl: "/assets/books/zile-si-nopti-de-vietnam-bucatile-care-lipseau-cover.png",
+    extraImage: "/assets/books/zile-si-nopti-de-vietnam-bucatile-care-lipseau-back.png",
 
-    sampleUrl: "/files/sample-zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro.pdf",
+    sampleUrl: "/files/sample-zile-si-nopti-de-vietnam-bucatile-care-lipseau-ro.pdf",
 
     tags: ["memorii", "călătorii", "cultură", "travel", "autentic"],
     format: "eBook",
 
     vendors: {
       novela: {
-        url: "https://novela.ro/zile-si-nopti-de-vietnam-mida-malena-978-973-0-41386-1",
+        url: "",
         label: "Novela",
         visible: false,
       },
@@ -748,26 +748,26 @@ payLink: null,
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-bucati-dintr-un-suflet-nomad-ro-1.epub",
+      PDF:  "/files/zile-si-nopti-de-vietnam-2.pdf",
+      EPUB: "/files/zile-si-nopti-de-vietnam-2.epub",
     },
 
     description: [
-      "Nu trebuie să fi fost în Vietnam. Trebuie doar să fi simțit că previzibilul nu te mai încape.",
-      "„Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad” nu e doar un jurnal de călătorie. E o explorare a sinelui – în care locurile devin oglinzi, iar oamenii care îți intersectează drumul modelează ce ești și ce urmează să devii.",
-      "Prin agitația vibrantă și frumusețea calmă a Vietnamului, Yda descoperă magia din banalul fiecărei zile și țese povești despre curaj, vulnerabilitate și bucuria de a trăi cu autenticitate.",
-      "De la forfota orașelor aglomerate până la liniștea satelor ascunse în munți, fiecare moment se așază ca o piesă dintr-un puzzle mai mare – și îți arată adevăruri care ies la iveală doar când îndrăznești să mergi dincolo de predictibil.",
+      "Nu trebuie să fi fost în Vietnam. Trebuie doar să fi simțit, măcar o dată, că unele drumuri nu se încheie atunci când pleci.",
+      "„Zile și nopți de Vietnam – Bucățile care lipseau” nu e doar continuarea unei călătorii. E întoarcerea într-un loc care nu mai este doar pe hartă, ci în interiorul tău – acolo unde rămân lucrurile neterminate, oamenii nespus de dragi și întrebările care așteaptă liniște.",
+      "După trei luni de căutări, Yda se întoarce în Vietnam fără să știe exact ce îi lipsește. Sau că îi lipsește ceva. Prin Saigon, Can Tho, Phan Thiet și întâlniri care par întâmplătoare doar la suprafață, descoperă că unele locuri nu te cheamă înapoi ca să retrăiești ce a fost, ci ca să înveți să pleci altfel.",
       "Aceasta nu este:",
       "– o carte despre Vietnam ca destinație",
       "– un ghid de călătorie",
-      "– o lectură cu rețete rapide pentru „reinventare”",
-      "Este o invitație să te rătăcești puțin – și, tocmai de aceea, să te regăsești.",
+      "– o poveste despre întoarceri perfecte",
+      "Este o carte despre libertate, detașare și arta de a spune rămas-bun cu inima împăcată.",
       "Cartea asta e pentru tine dacă:",
-      "– vrei o călătorie care te scoate din zona de confort, chiar și pentru câteva pagini",
-      "– simți că fragmentele autentice din tine stau ascunse în imprevizibil",
-      "– îți plac poveștile care rămân cu tine după ce închizi cartea",
+      "– ai simțit vreodată că o parte din tine a rămas într-un loc, într-un om sau într-o versiune mai veche a ta",
+      "– vrei o lectură sinceră despre călătorie, transformare și plecări care nu rup, ci vindecă",
+      "– cauți o poveste vie, personală, în care drumurile exterioare devin hărți interioare",
+      "„Plecările dor doar cât refuzăm să le înțelegem. Apoi, devin transformare.”",
     ],
-    hidden: true,
+    hidden: false,
   },
 ];
 
