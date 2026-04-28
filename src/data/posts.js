@@ -1369,7 +1369,7 @@ const posts = [
   },
 
   {
-    slug: "povestea unui „șase”",
+    slug: "povestea-unui-sase",
     title: "Povestea unui „șase”",
     excerpt:
       "",
