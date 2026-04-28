@@ -1371,8 +1371,7 @@ const posts = [
   {
     slug: "povestea-unui-sase",
     title: "Povestea unui „șase”",
-    excerpt:
-      "",
+    excerpt: "În spatele acestui „șase” stă tot ce nu se vede: lunile grele, fricile, drumurile, oamenii, despărțirile și felul în care am învățat, pas cu pas, să transform fiecare plecare într-o amintire frumoasă, purtată mai departe.",
     date: "2026-04-28",
     author: "Mida Malena",
     tags: [
