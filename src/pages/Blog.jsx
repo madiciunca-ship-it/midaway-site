@@ -299,7 +299,11 @@ subtitleEn: "For English-language articles, you can switch the language using th
       )}
 
       {/* Newsletter mini-CTA */}
-      <section className="newsletter-cta" style={{ marginTop: 24 }}>
+      <section
+  id="newsletter"
+  className="newsletter-cta"
+  style={{ marginTop: 24, scrollMarginTop: "120px" }}
+>
       <h4 className="font-cormorant" style={{ margin: 0 }}>
   {lang === "en" ? "Subscribe to updates" : "Abonează-te la noutăți"}
 </h4>
