@@ -618,7 +618,7 @@ payLink: null,
   formatDetails: {
     eBook: {
       type: "pdf",
-      pages: 192,
+      pages: 176,
       isbn: "978-630-95287-4-2",
     },
     epub: {
@@ -626,7 +626,7 @@ payLink: null,
       isbn: "978-630-95287-5-9",
     },
     paperback: {
-      pages: 176,
+      pages: 192,
       isbn: "978-630-95287-9-7",
       dimensions: "13 x 20 cm",
       weight: "280 gr.",
