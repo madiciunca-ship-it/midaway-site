@@ -37,7 +37,7 @@ export const BOOKS = [
       paperback: {
         pages: 272,
         isbn: "978-606-95545-7-9",
-        dimensions: "13 x 20 cm",
+        dimensions: "148 x 210 mm",
         weight: "380 gr.",
       },
     },
@@ -149,7 +149,7 @@ export const BOOKS = [
       paperback: {
         pages: 334,
         isbn: "978-630-95287-6-6",
-        dimensions: "13 x 20 cm",
+        dimensions: "148 x 210 mm",
         weight: "360 gr"
       }
     },
@@ -311,7 +311,7 @@ export const BOOKS = [
       paperback: {
         pages: null,
         isbn: " — ",
-        dimensions: null,
+        dimensions: "148 x 210 mm",
         weight: null,
       }
     },
@@ -466,7 +466,7 @@ export const BOOKS = [
     paperback: {
       pages: 262,
       isbn: "978-630-95287-1-1",
-      dimensions: "13 x 20 cm",
+      dimensions: "148 x 210 mm",
       weight: "380 gr"
     }
   },
@@ -724,7 +724,7 @@ payLink: null,
       paperback: {
         pages: 268,
         isbn: "978-630-95287-3-5",
-        dimensions: "13 x 20 cm",
+        dimensions: "148 x 210 mm",
         weight: "320 gr"
       }
     },
@@ -767,6 +767,88 @@ payLink: null,
       "– vrei o lectură sinceră despre călătorie, transformare și plecări care nu rup, ci vindecă",
       "– cauți o poveste vie, personală, în care drumurile exterioare devin hărți interioare",
       "„Plecările dor doar cât refuzăm să le înțelegem. Apoi, devin transformare.”",
+    ],
+    hidden: false,
+  },
+
+    // ————————————————————————————————————————————————
+  // 6. Libertate cu escală în Asia - Peste tot. Și nicăieri. (RO)
+  // ————————————————————————————————————————————————
+  {
+    id: "thailanda-1-ro",
+    addedAt: "2026-05-06T10:00:00Z",
+    lang: "RO",
+    currency: "RON",
+
+    title: "Libertate cu escală în Asia – Peste tot. Și nicăieri.",
+    seoTitle: "Libertate cu escală în Asia – Peste tot. Și nicăieri. | Mida Malena",
+    subtitle: "O călătorie prin Thailanda este o carte despre educația lentă a libertății. Nu libertatea zgomotoasă de a face orice, oricând, ci libertatea mai tăcută de a ști când să rămâi, când să pleci, când să spui da, când să spui nu și când să lași ceva frumos acolo unde l-ai găsit.",
+    seoDescription: "Libertate cu escală în Asia – Peste tot. Și nicăieri. O călătorie prin Thailanda, despre libertate, drumuri, transformare, oameni întâlniți pe fugă și locuri care rămân în tine.",
+    isNew: true,
+    
+    author: "Mida Malena",
+    genre: "Jurnal de călătorie · Memorii · Experiențe reale",
+    location: "Thailanda",
+    year: 2026,
+    publisher: "Midaway / Autor Mida Malena",
+
+    formatDetails: {
+      eBook: {
+        type: "pdf",
+        pages: 168,
+        isbn: "978-630-95396-1-8"
+      },
+      epub: {
+        pages: null,
+        isbn: "978-630-95396-2-5"
+      },
+      paperback: {
+        pages: 190,
+        isbn: "978-630-95396-0-1",
+        dimensions: "148 x 210 mm",
+        weight: null
+      }
+    },
+
+    coverUrl: "/assets/books/libertate-cu-escala-in-asia-peste-tot-si-nicaieri-thailanda-1-cover.jpg",
+    extraImage: "/assets/books/libertate-cu-escala-in-asia-peste-tot-si-nicaieri-thailanda-1-back.jpg",
+
+    sampleUrl: "/files/sample-libertate-cu-escala-in-asia-thailanda-1-ro.pdf",
+
+    tags: ["memorii", "călătorii", "Thailanda", "Asia", "libertate", "travel", "autentic"],
+    format: "eBook",
+
+    vendors: {
+      novela: {
+        url: "",
+        label: "Novela",
+        visible: false,
+      },
+    },
+
+    prices: { PDF: 40, EPUB: 40, PAPERBACK: 60, AUDIOBOOK: 0 },
+    availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
+
+    files: {
+      PDF:  "/files/libertate-cu-escala-in-asia-thailanda-1-ro.pdf",
+      EPUB: "/files/libertate-cu-escala-in-asia-thailanda-1-ro.epub",
+    },
+
+    description: [
+      "Nu trebuie să fi fost în Thailanda. Trebuie doar să fi simțit, măcar o dată, că libertatea nu vine întotdeauna cu răspunsuri mari, ci cu pași mici, camere temporare, drumuri lungi și locuri care îți fac loc fără să te întrebe cine ești.",
+      "„Libertate cu escală în Asia – Peste tot. Și nicăieri.” este o călătorie prin Thailanda, dar nu una despre obiective bifate, drumuri perfecte sau transformări puse în vitrină. Este povestea unei femei care traversează Bangkok, Chiang Mai și Pai cu un rucsac, o inimă atentă și o libertate pe care o învață pe bucăți.",
+      "Prin temple, autogări, taxi-scutere, piețe de noapte, borduri fierbinți, poduri de bambus, drumuri cu sute de curbe, tigri, fluturi, elefanți și ploi tropicale, Yda descoperă libertatea tăcută de a rămâne, de a pleca și de a lăsa unele frumuseți exact acolo unde le-a găsit. În Asia, realitatea și magia nu se contrazic. Se suprapun atât de firesc, încât, după o vreme, nici nu le mai deosebești.",
+      "Aceasta nu este:",
+      "– o carte despre Thailanda ca destinație turistică",
+      "– un ghid de călătorie",
+      "– o poveste despre libertate ca spectacol",
+      "Este o carte despre libertate ca respirație. Despre singurătatea care nu doare. Despre drumuri care te obosesc, dar te reașază. Despre oameni necunoscuți care îți fac loc pe o bordură și îți schimbă, fără să știe, felul în care vei ține minte un oraș.",
+      "Cartea asta e pentru tine dacă:",
+      "– ai visat vreodată să pleci, dar nu ai știut exact de unde să începi",
+      "– ai simțit că unele locuri te primesc fără să-ți ceară să devii altcineva",
+      "– cauți o lectură sinceră, senzorială și vie despre călătorie, libertate și transformare interioară",
+      "– vrei o poveste în care Asia nu este decor, ci drum, oglindă și spațiu de întoarcere în tine",
+      "„Uneori, libertatea nu arată ca un răsărit spectaculos, ci ca o cameră de hotel, un rucsac pe podea și liniștea de a nu mai avea nimic de demonstrat.”",
     ],
     hidden: false,
   },
