@@ -67,6 +67,7 @@ export const BOOK_REVIEWS = {
     },
   ],
 
+
   "indonezia-1-en": [
     {
       id: "indo1-en-001",
@@ -100,11 +101,11 @@ export const BOOK_REVIEWS = {
     },
     {
       id: "o-zi-ro-002",
-      name: "",
+      name: "Anca Gafița",
       rating: 5,
-      text: "",
-      createdAt: "",
-      published: false,
+      text: "O carte de debut al unei scriitoare cu potențial, care descrie o călătorie într-o lume nouă, total necunoscută, de pe un alt continent. Felul plăcut în care scrie autoarea te îmbie să citești cu drag o carte care îți lucrează imaginația. Din postura de cititor te simți acolo, în acele locuri noi, citind și integrând experiențe noi... ca și cum ar fi ale tale. O lectură foarte, foarte plăcută și reconfortantă, care aduce mister și multă bucurie.",
+      createdAt: "2026-06-07",
+      published: true,
     },
   ],
 };
