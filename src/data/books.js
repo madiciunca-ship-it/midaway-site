@@ -4,7 +4,7 @@
 
 export const BOOKS = [
   // ————————————————————————————————————————————————
-  // O zi de care să-ți amintești (RO)
+  // 1. O zi de care să-ți amintești (RO)
   // ————————————————————————————————————————————————
   {
     id: "o-zi-ro",
@@ -78,7 +78,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // O zi de care să-ți amintești (EN) – SOON
+  // 1-1. O zi de care să-ți amintești (EN) – SOON
   // ————————————————————————————————————————————————
   {
     id: "o-zi-en",
@@ -117,7 +117,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam 1 - Bucăți dintr-un suflet nomad (RO)
+  // 2. Zile și nopți de Vietnam 1 - Bucăți dintr-un suflet nomad (RO)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-ro",
@@ -197,7 +197,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Days and Nights Of Vietnam 1 - The Puzzle of My Soul (EN)
+  // 2-2. Days and Nights Of Vietnam 1 - The Puzzle of My Soul (EN)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-en",
@@ -276,7 +276,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Pași prin Indonezia 1 - Când Bali îți atinge sufletul (RO)
+  // 3. Pași prin Indonezia 1 - Când Bali îți atinge sufletul (RO)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-1-ro",
@@ -348,7 +348,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-  // Steps Through Indonezia 1 - When Bali touches Your soul (EN)
+  // 3-3. Steps Through Indonezia 1 - When Bali touches Your soul (EN)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-1-en",
@@ -430,7 +430,7 @@ export const BOOKS = [
   },
 
   // ————————————————————————————————————————————————
-// Pași prin Indonezia 2 – Pe mâini de străini - Java (RO)
+// 4. Pași prin Indonezia 2 – Pe mâini de străini - Java (RO)
 // ————————————————————————————————————————————————
 {
   id: "indonezia-2-ro",
@@ -517,7 +517,7 @@ payLink: null,
 },
 
 // ————————————————————————————————————————————————
-  // Steps Through Indonezia 2 - In the Hands of Strangers - Java (EN)
+  // 4-4. Steps Through Indonezia 2 - In the Hands of Strangers - Java (EN)
   // ————————————————————————————————————————————————
   {
     id: "indonezia-2-en",
@@ -591,7 +591,7 @@ payLink: null,
 
 
 // ————————————————————————————————————————————————
-// Focuri care NU ating (RO)
+// 5. Focuri care NU ating (RO)
 // ————————————————————————————————————————————————
 
 {
@@ -613,7 +613,7 @@ payLink: null,
   tags: ["desire", "introspective", "self-mastery", "lovestory", "boundaries", "femininity"],
   year: 2026,
   publisher: "Midaway / Autor Mida Malena",
-  isNew: true,
+  isNew: false,
 
   formatDetails: {
     eBook: {
@@ -691,7 +691,7 @@ payLink: null,
 },
 
  // ————————————————————————————————————————————————
-  // Zile și nopți de Vietnam 2 - Bucățile care lipseau (RO)
+  // 6. Zile și nopți de Vietnam 2 - Bucățile care lipseau (RO)
   // ————————————————————————————————————————————————
   {
     id: "vietnam-2-ro",
@@ -703,7 +703,7 @@ payLink: null,
     seoTitle: "Zile și nopți de Vietnam – Bucățile care lipseau | Mida Malena",
     subtitle: "Unele țări cer o întoarcere. Nu pentru locuri, ci pentru tine. O carte despre libertate, detașare și felul în care înveți să pleci cu inima împăcată.",
     seoDescription: "Zile și nopți de Vietnam.",
-    isNew: true,
+    isNew: false,
     
     author: "Mida Malena",
     genre: "Jurnal de călătorie · Experiențe reale",
@@ -772,7 +772,7 @@ payLink: null,
   },
 
     // ————————————————————————————————————————————————
-  // 6. Libertate cu escală în Asia - Peste tot. Și nicăieri. (RO)
+  // 7. Libertate cu escală în Asia - Peste tot. Și nicăieri. (RO)
   // ————————————————————————————————————————————————
   {
     id: "thailanda-1-ro",
@@ -854,7 +854,7 @@ payLink: null,
   },
 
      // ————————————————————————————————————————————————
-// Iubește-mă, dar nu mă poseda (RO)
+// 8. Iubește-mă, dar nu mă poseda (RO)
 // ————————————————————————————————————————————————
 
 {
@@ -897,8 +897,7 @@ payLink: null,
   },
 
   description: [
-    "„Iubește-mă, dar nu mă poseda.”",
-
+  
     "O explorare confesivă a graniței fragile dintre apropiere și posesie, dintre a primi și a te pierde.",
 
     "„Iubește-mă, dar nu mă poseda” este o carte de proză autobiografică ficționalizată, cu structură confesivă și narativă de călătorie.",
