@@ -852,6 +852,103 @@ payLink: null,
     ],
     hidden: false,
   },
+
+     // ————————————————————————————————————————————————
+// Iubește-mă, dar nu mă poseda (RO)
+// ————————————————————————————————————————————————
+
+{
+  id: "iubeste-ma-dar-nu-ma-poseda-ro",
+  slug: "iubeste-ma-dar-nu-ma-poseda",
+  addedAt: "2026-07-07T10:00:00Z",
+  lang: "RO",
+  currency: "RON",
+  hidden: false,
+
+  title: "Iubește-mă, dar nu mă poseda",
+  seoTitle: "Iubește-mă, dar nu mă poseda | Mida Malena",
+  subtitle: "O carte despre apropiere, libertate, granițe afective și formele subtile ale posesiei.",
+  seoDescription: "Iubește-mă, dar nu mă poseda este o carte de proză autobiografică ficționalizată, cu structură confesivă și narativă de călătorie, construită din episoade de drum și întâlniri-limită, în care protagonista își explorează granițele dintre dorință, libertate și posesie.",
+
+  author: "Mida Malena",
+  genre: "Proză autobiografică ficționalizată · Proză confesivă contemporană",
+  location: "Romania",
+  tags: ["travel", "introspective", "boundaries", "freedom", "desire", "possession", "autofiction", "femininity"],
+  year: 2026,
+  publisher: "Midaway / Autor Mida Malena",
+  isNew: true,
+
+  formatDetails: {
+    eBook: {
+      type: "pdf",
+      pages: 196,
+      isbn: "978-630-95396-4-9",
+    },
+    epub: {
+      pages: null,
+      isbn: "D978-630-95396-5-6",
+    },
+    paperback: {
+      pages: 248,
+      isbn: "978-630-95396-3-2",
+      dimensions: "13 x 20 cm",
+      weight: "370",
+    },
+  },
+
+  description: [
+    "„Iubește-mă, dar nu mă poseda.”",
+
+    "O explorare confesivă a graniței fragile dintre apropiere și posesie, dintre a primi și a te pierde.",
+
+    "„Iubește-mă, dar nu mă poseda” este o carte de proză autobiografică ficționalizată, cu structură confesivă și narativă de călătorie.",
+
+    "Cartea urmărește episoade de drum, întâlniri intense și momente în care dorința, ajutorul, admirația sau grija ajung să atingă limita libertății personale.",
+
+    "Unele întâlniri vin ca o probă: te apropie, te tulbură, îți oferă ceva, dar îți cer să înțelegi unde se termină darul și unde începe posesia.",
+
+    "Altele te învață că nu orice mână întinsă vrea să te țină captivă. Uneori, ajutorul te ține doar până poți singură.",
+
+    "Aceasta nu este doar o carte despre iubire sau călătorie. Este o carte despre felul în care înveți să primești fără să te predai, să te apropii fără să te pierzi și să pleci fără să anulezi ceea ce te-a atins.",
+
+    "Este pentru tine dacă:",
+
+    "– ai simțit vreodată că apropierea poate deveni prea mult",
+    "– înveți să pui granițe fără să-ți închizi inima",
+    "– ai confundat, măcar o dată, grija cu datoria",
+    "– cauți o formă de libertate care poate exista și în prezența celuilalt",
+
+    "Nu este o carte despre a fugi de oameni. Este despre a nu te lăsa posedată de iubire, de admirație, de ajutor, de dorință sau de propria nevoie de sens.",
+
+    "Este despre acel moment în care înțelegi că poți primi ceva frumos fără să-l transformi într-o colivie."
+  ],
+
+  coverUrl: "/assets/books/iubeste-ma-dar-nu-ma-poseda-cover.png",
+  extraImage: "/assets/books/iubeste-ma-dar-nu-ma-poseda-back.png",
+
+  files: {
+    PDF: "iubeste-ma.pdf",
+    EPUB: "iubeste-ma.epub",
+  },
+
+  sampleUrl: "/files/sample-iubeste-ma-dar-nu-ma-poseda.pdf",
+
+  prices: {
+    PDF: 45,
+    EPUB: 45,
+    PAPERBACK: 70,
+    AUDIOBOOK: 0
+  },
+
+  availability: {
+    PDF: true,
+    EPUB: true,
+    PAPERBACK: true,
+    AUDIOBOOK: false
+  },
+
+  payLink: null,
+},
 ];
 
 // Export opțional: listă standard pentru UI
