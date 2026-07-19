@@ -1526,6 +1526,289 @@ const posts = [
 `Uneori doar ți-l inspiră cineva.`,
 `Un alt locuitor din Galle care părea să știe totul despre demnitate.`,
     ],
+  },
+
+  {
+    slug: "sri-lanka-dupa-trei-luni-de-calatorie",
+    title: "Sri Lanka, după trei luni de călătorie",
+    excerpt: "După trei luni petrecute în Sri Lanka și alte două luni în care experiența s-a așezat, pot privi această călătorie mai limpede. Nu a fost dragoste la prima vedere. Au fost drumuri grele, planuri eșuate, locuri care nu s-au lăsat înțelese din prima și o lecție pe care am descoperit-o abia mai târziu: ritmul în care alegi să cunoști o țară poate face diferența.",
+    date: "2026-07-19",
+    author: "Mida Malena",
+    tags: [
+      "Midaway",
+      "Sri Lanka",
+      "calatorii",
+      "Asia",
+      "Couchsurfing",
+      "calatorie solo",
+      "confesiune",
+      "lectii de calatorie",
+    ],
+    cover: "/assets/blog/sri-lanka-dupa-trei-luni-de-calatorie.jpeg",
+    lang: "ro",
+    minutes: 16,
+    content: [
+      { type: "paragraph", parts: [{ text: "Au trecut mai bine de două luni de când am plecat din " }, { text: "Sri Lanka", href: "/sri-lanka", kind: "internal" }, { text: ". Între timp am fost înghițită complet de India și nu am avut deloc chef să scriu despre Sri Lanka. Acum însă, cum călătoria mea prin India se apropie de sfârșit, simt că pot privi experiența mai limpede. Și că o pot pune în cuvinte, pentru că, între timp, lucrurile s-au așezat." }] },
+  
+      `În primele săptămâni după ce am plecat, dacă mă întreba cineva cum a fost Sri Lanka, răspundeam scurt. Acum răspunsul nu mai încape într-o singură propoziție.`,
+  
+      `Nu va exista o carte despre Sri Lanka. Cel puțin nu acum. Poate că tocmai de aceea am simțit nevoia să încep seria asta. Așa că aici vor apărea câteva articole despre parcursul meu prin această țară.`,
+  
+      `*Cum am ajuns în Sri Lanka*`,
+  
+      `Nu am ajuns în Sri Lanka întâmplător.`,
+  
+      `Sau poate tocmai așa am ajuns: printr-un șir de mici întâmplări care, luate separat, nu însemnau mare lucru, dar puse una lângă alta au început să semene cu o direcție.`,
+  
+      `De ceva vreme cochetam cu ideea de a ajunge fie în India, fie în Sri Lanka. Nu știam exact ce așteptam: un semn, o invitație, o întâmplare, un motiv suficient de mic încât să nu pară o decizie grea și suficient de mare încât să mă pună în mișcare.`,
+  
+      `Așa că am lăsat viața să decidă pentru mine. În felul ei ciudat, dar destul de eficient.`,
+  
+      { type: "paragraph", parts: [{ text: "Sunt de vreun an pe Couchsurfing și, din când în când, apelez la oameni din diferite țări pentru găzduire sau măcar pentru un fir de poveste. Cu ceva timp înainte să mă gândesc serios la Sri Lanka, trimisesem un mesaj unei femei din " }, { text: "Mumbai", href: "/india/mumbai", kind: "internal" }, { text: ". Avea 32 de ani și referințe bune. Nu am primit niciodată răspuns. Mesajul meu părea să fi ajuns undeva în eter, în acel loc unde dispar toate planurile care nu sunt chiar ale tale." }] },
+  
+      `Ceva însă mă împingea și către Sri Lanka.`,
+  
+      { type: "paragraph", parts: [{ text: "Am deschis aplicația. Nu o mai folosisem de când îi scrisesem femeii din Mumbai. Am căutat, așa, la plezneală, " }, { text: "Colombo", href: "/sri-lanka/colombo", kind: "internal" }, { text: ". Aveam convingerea că, dacă drumurile mele urmau să ducă acolo, ceva se va alinia." }] },
+  
+      `Primul nume care mi-a apărut: Hassan.`,
+  
+      `Aproape o sută de referințe.`,
+  
+      `Am zâmbit. De obicei, când caut pe Couchsurfing, mă uit la oamenii cu cele mai multe referințe din orașul respectiv. Nu e neapărat o garanție, dar e un început. Profilul lui m-a oprit.`,
+  
+      `Totuși, nu i-am scris. Încă nu știam dacă vreau cu adevărat să ajung în Sri Lanka. În momentul acela, era doar un punct mic pe hartă. O posibilitate.`,
+  
+      `Eram de câteva zile în Melaka, Malaezia, când am decis să îi dau follow pe Instagram. Avea un profil de Instagram bine pus la punct, iar pe Couchsurfing avea multe referințe care îl ridicau în slăvi și un palmares aproape neverosimil: maratoane pe șapte continente, Inca Trail, un discurs la TEDx, o companie de adventure travel în Colombo. Genul de om despre care îți spui imediat: aici poate fi o poveste.`,
+  
+      `I-am dat follow.`,
+  
+      `Și, ca să înțelegi mai bine felul în care mă ghidez uneori, omul a reacționat în câteva minute.`,
+  
+      `— Interesting profile!`,
+  
+      `Astea au fost primele lui cuvinte.`,
+  
+      `I-am răspuns ceva de genul:`,
+  
+      `— Thank you very much. I am a mix… I think.`,
+  
+      `Eram, totuși, surprinsă. În ziua de azi, când dai follow unui cont, cine răspunde aproape imediat?`,
+  
+      `Următorul lui mesaj a dat direcția conversației.`,
+  
+      `— Any plan to travel to Sri Lanka? I see you’ve done a lot of Asia.`,
+  
+      `Și de acolo s-a rostogolit totul.`,
+  
+      `După câteva zile, aveam pe ecran biletul către Colombo.`,
+  
+      `Sri Lanka nu mai era un punct mic pe hartă. Devenise următoarea mea destinație.`,
+  
+      `Nu a fost dragoste la prima vedere. După aproape trei luni prin această insulă, nu pot spune nici că am iubit Sri Lanka fără rezerve, nici că m-a dezamăgit complet. A fost mai complicat de atât.`,
+  
+      `Au fost zile în care m-a enervat. Zile în care m-a obosit atât de tare, încât singurul lucru pe care mi-l doream era să plec. Zile în care m-am simțit mai mult turistă de taxat decât om de întâlnit, ca și cum pe fruntea mea scria mare: ATM disponibil în apropiere.`,
+  
+      `Au fost și interacțiuni în care am simțit o energie greu de dus, greu de explicat în cuvinte. Priviri, insistențe, apropieri care mă făceau să nu mă simt doar străină, ci expusă. Ca femeie singură, uneori am simțit că trebuie să fiu atentă nu doar la ce mi se cerea, ci și la felul în care eram privită.`,
+  
+      `Dar, printre toate acestea, au fost și drumuri, locuri, chipuri și momente care mi-au rămas în mine mai mult decât m-aș fi așteptat.`,
+  
+      `Acesta nu este un ghid complet despre Sri Lanka. Este Sri Lanka văzută prin ochii mei. Cu frumusețe și cu nervi. Cu palmieri și cu dezamăgiri. Cu autobuze ieftine, plaje frumoase, interacțiuni grele și momente în care țara asta a reușit, totuși, să mă facă să nu o mai judec atât de repede.`,
+  
+      `Cu greu, dar a reușit.`,
+
+      `*Prima mea lună în Sri Lanka*`,
+  
+      `Aveam viză pentru o lună.`,
+  
+      `40 de dolari, o lună de paradis, ai zice. Palmieri, plaje, curry, trenuri albastre, apusuri, elefanți, temple, zâmbete, toate imaginile acelea cu care vine o țară înainte să o cunoști.`,
+  
+      `Doar că luna aceea nu a fost chiar așa.`,
+  
+      `Am stat patru zile în Colombo, două dintre ele cu familia lui Hassan. Și acolo, sub acoperișul lor, totul a fost bine. O familie tradițională, mâncare locală, mult prea picantă pentru gustul meu, un tur gratuit oferit de compania lui Hassan și multe povești cu tatăl lui.`,
+  
+      `Era genul de început care te face să crezi că ai nimerit bine. Dacă plecam atunci din Sri Lanka, probabil aș fi scris un articol complet diferit.`,
+  
+      `Doar că eu știam că nu venisem în Sri Lanka să stau într-o capitală mare, aglomerată și obositoare. Așa că, după cele patru zile, am pornit să explorez insula. Și am înțeles repede ceva: când ieși de sub o mână ocrotitoare, nu știi niciodată unde ajungi.`,
+  
+      { type: "paragraph", parts: [{ text: "Prima oprire a fost " }, { text: "Bentota", href: "/sri-lanka/bentota", kind: "internal" }, { text: "." }] },
+  
+      `Dacă mă întrebi pe mine, Bentota are una dintre cele mai curate plaje pe care le-am văzut în Sri Lanka. Lată, aerisită, cu nisip fin și cu o lumină care, în anumite momente ale zilei, face marea să pară mai blândă decât este. Am stat acolo cinci zile.`,
+  
+      { type: "paragraph", parts: [{ text: "De acolo, am mers în " }, { text: "Hikkaduwa", href: "/sri-lanka/hikkaduwa", kind: "internal" }, { text: ". Încă patru zile. Altă plajă, alt ritm, alt tip de energie. Hikkaduwa era mai turistică, mai vie, mai amestecată. Genul de loc în care, teoretic, ar fi trebuit să mă simt bine. Doar că nu mă simțeam în largul meu. Nici acum nu am o explicație logică." }] },
+  
+      `În acele zile petrecute în Hikkaduwa, am început să caut variante de plecare. Nu din oraș. Din țară.`,
+  
+      `Nu-mi plăcea mai nimic în mod deosebit. Nici mâncarea. Nici interacțiunile cu oamenii. Nici senzația pe care o aveam în multe locuri, aceea că trebuie să fiu mereu atentă, mereu pregătită să negociez, să refuz, să verific, să nu las garda jos.`,
+  
+      `Așa că am decis: plec în India.`,
+  
+      { type: "paragraph", parts: [{ text: "Dar nu voiam avion. Voiam să ies din Sri Lanka altfel, pe apă, ca și cum plecarea trebuia să aibă și ea o poveste. Am început să caut o rută: am verificat hărți, porturi și diferite variante de transport. Și la un moment dat am ajuns la concluzia că aș putea ieși din țară prin zona " }, { text: "Jaffna", href: "/sri-lanka/jaffna", kind: "internal" }, { text: ", cu un feribot." }] },
+  
+      `Părea un plan.`,
+  
+      `Așa că, după ce mi-au expirat zilele plătite în Hikkaduwa, m-am întors în Colombo pentru două zile. Văzusem pe hartă portul din Colombo și voiam să întreb dacă existau nave către Mumbai.`,
+  
+      `S-au uitat la mine ca la o arătare de pe altă planetă.`,
+  
+      `Nu. Nu existau nave către Mumbai. Nu de acolo. Nu așa. Nu pentru mine.`,
+  
+      `Așa că varianta plecării prin Jaffna rămânea de cercetat.`,
+  
+      `Am plecat spre nord, dar nu direct. Pentru că, dacă tot mai aveam două săptămâni din viză, de ce să nu văd și partea central-nordică a insulei?`,
+  
+      { type: "paragraph", parts: [{ text: "M-am oprit în " }, { text: "Anuradhapura", href: "/sri-lanka/anuradhapura", kind: "internal" }, { text: ". Orașul m-a întâmpinat cu ploi, cu umezeală și cu senzația aceea că totul se mișcă mai încet decât planurile mele. Am stat doar două zile. Nu suficient cât să spun că l-am înțeles, dar suficient cât să îl pun pe harta mea interioară a Sri Lankăi." }] },
+  
+      { type: "paragraph", parts: [{ text: "De acolo, am luat autobuzul spre " }, { text: "Vavuniya", href: "/sri-lanka/vavuniya", kind: "internal" }, { text: ", apoi am schimbat spre Jaffna." }] },
+  
+      `Și, fără să-mi dau seama, Sri Lanka începea să se întindă altfel în fața mea. Nu ca o destinație de vacanță, nu ca un paradis tropical, ci ca o țară pe care o traversam cu nervi, curiozitate și încăpățânarea aceea pe care o ai când nu vrei să recunoști că poate, totuși, drumul are ceva să-ți spună.`,
+  
+      `Ajunsă în Jaffna, am descoperit destul de repede că hotelurile erau cam scumpe pentru bugetul meu. Așa că am făcut ce fac uneori călătorii care încă mai cred că pot duce orice: am ales un hostel.`,
+  
+      `Am stat o singură noapte.`,
+  
+      `A fost, probabil, cel mai oribil hostel în care am dormit vreodată. Sau în care am încercat să dorm, ca să fiu mai exactă. Genul de loc în care, după câteva ore, începi să te întrebi dacă nu cumva ai ajuns la vârsta la care suferința voluntară nu mai are niciun farmec.`,
+  
+      `Cred că acolo am decis, măcar pentru o vreme, că nu mai vreau hosteluri. Sau nu dacă nu e musai. Ce rost avea să mă chinui?`,
+  
+      `La recepție însă, înainte să plec, am văzut ceva care mi-a schimbat din nou planul: un afiș cu un număr de contact pentru feriboturi către India.`,
+  
+      `Nu mi-a trebuit mai mult.`,
+  
+      `Am făcut poză afișului, am salvat numărul și, dintr-o dată, am simțit că găsisem informația pe care venisem să o caut. Intenția mea fusese să merg până în port și să întreb direct, dar ceva din mine mi-a spus: „Ai deja informația, există feribot, ai un contact. Te poți relaxa, mai ai timp de explorat. Te întorci când ai viza de India și pleci.”`,
+  
+      `Un plan bun, nu?`,
+  
+      `Doar că aveam să aflu curând că nu era chiar așa.`,
+  
+      `Atunci însă nu știam. Eram prea fericită că avusesem dreptate. Că ideea mea cu ieșitul din Sri Lanka pe apă nu fusese o nebunie completă.`,
+  
+      { type: "paragraph", parts: [{ text: "A doua zi am mers direct la autogară. Primul autobuz pe care l-am văzut era către " }, { text: "Trincomalee", href: "/sri-lanka/trincomalee", kind: "internal" }, { text: "." }] },
+  
+      `Oscilasem între Mannar și Trincomalee, dar autobuzul spre Trincomalee era acolo, în fața mea, gata de plecare, așa că m-am urcat. În nici cinci minute eram deja pe drum.`,
+  
+      `Am mers mult. Mult prea mult.`,
+  
+      `Dar am ajuns.`,
+  
+      `Nu aveam cazare. După câteva mici întâmplări, am ajuns într-un guesthouse. Acolo aveam să am parte de alte povești, dar ele merită un articol separat. Pentru moment, spun doar atât: am stat nouă zile în Trincomalee.`,
+  
+      `Iar când am plecat de acolo, eram bolnavă.`,
+  
+      `Foarte bolnavă.`,
+  
+      `Fără viză de India. Fără feribot către India. Fără un plan real de ieșire din Sri Lanka.`,
+  
+      `Cu o singură destinație: biroul de imigrări din Colombo, unde trebuia să-mi prelungesc viza pentru încă două luni.`,
+  
+      `Povestea e complicată. Desigur că e complicată. În Sri Lanka, cel puțin pentru mine, aproape nimic nu a fost simplu când a venit vorba de acte, drumuri sau „sigur, se poate”.`,
+  
+      `Descoperisem că nu puteam trece spre India pe mare cu o viză online. Aveam nevoie de o viză standard („regular visa”), obținută de la ambasadă. Ambasada Indiei se afla în Colombo, dar nimeni nu-mi răspunsese la e-mailuri. Biletele de avion erau scumpe. Feribotul nu mai era o variantă imediată. Iar viza mea de Sri Lanka era pe terminate.`,
+  
+      `Așa că singura soluție a fost să cer prelungirea.`,
+  
+      `Am aplicat online, din Trincomalee, dar sistemul mi-a trimis un e-mail sec: trebuia să mă prezint la biroul de imigrări din Colombo, să achit taxa și să primesc prelungirea.`,
+  
+      `Așa că, fix cu trei zile înainte ca viza mea de o lună să expire, m-am urcat într-un autobuz de noapte spre Colombo.`,
+  
+      `Bolnavă. Deshidratată. Cu frisoane.`,
+  
+      `A fost cea mai grea zi a mea din Sri Lanka.`,
+  
+      `Nu am dormit în autobuz. Nici nu cred că aș fi putut. Când am ajuns în Colombo, era patru dimineața. Autobuzul m-a lăsat la vreo cinci kilometri de centru, pentru că șoferul nu înțelesese mare lucru din ce încercasem să-i explic.`,
+  
+      `De acolo am găsit cumva un taxi până la gară.`,
+  
+      `Am intrat în gară și m-am întins pe o băncuță.`,
+  
+      `Eram varză.`,
+  
+      `Am stat acolo până pe la șapte dimineața, cu oamenii gării mișcându-se în jurul meu, încercând să-mi adun corpul într-o formă care să poată merge mai departe. Biroul de imigrări se deschidea abia la opt.`,
+  
+      `Ziua a fost cruntă.`,
+  
+      `Am stat în sala aceea de așteptare cinci ore, ca să plătesc o taxă și să primesc o ștampilă. Cinci ore în care am crezut, de câteva ori, că o să-mi pierd mințile. Sau răbdarea. Sau ambele. Aveam frisoane, nu puteam mânca nimic și, cu toate că purtam chiar și geaca – afară erau 35 de grade –, înghețam.`,
+  
+      `Dar la finalul zilei aveam viza în pașaport.`,
+  
+      `Încă două luni în țara imposibilă.`,
+  
+      `Nu, nu-mi doream să fiu acolo. Nu atunci. Nu în starea aceea. Dar nici nu avusesem o opțiune reală de plecare. Nu una simplă. Nu una ieftină. Nu una care să nu mă arunce într-un alt haos.`,
+  
+      `Așa că Sri Lanka continua.`,
+  
+      `Acum, privind în urmă, aproape că pot fi recunoscătoare pentru acele momente. Nu pentru că au fost frumoase. Nu au fost. Au fost grele, obositoare, uneori absurde. Dar aveam nevoie de ele ca să ajung în a doua etapă a călătoriei.`,
+  
+      `*Contextul în care am văzut Sri Lanka*`,
+  
+      `De multe ori, când citim articole despre o țară, uităm că și contextul economic și social contează. Nu călătorim într-un laborator – călătorim în lume, iar lumea se schimbă, uneori chiar în timp ce ești acolo.`,
+  
+      `De aceea, mai e un lucru pe care simt că trebuie să-l spun: experiența mea în Sri Lanka a fost influențată și de perioada în care am ajuns acolo.`,
+  
+      `Am aterizat pe 6 februarie 2026 și am plecat pe 6 mai 2026. În perioada aceea, tensiunile din Orientul Mijlociu au escaladat, iar efectele s-au resimțit puternic și în turismul din această parte a lumii. Se anulau numeroase zboruri, mulți turiști își schimbau planurile, iar proprietarii de cazări îmi spuneau că rezervările erau anulate pe bandă rulantă. Au fost momente în care am simțit că fiecare turist devenise o resursă extrem de prețioasă.`,
+  
+      `Peste toate astea s-au adăugat ploile, zilele cu o căldură aproape imposibil de dus și faptul că multe dintre experiențele mele s-au petrecut în afara perioadei considerate ideale de majoritatea turiștilor.`,
+  
+      `Poate că, dacă ajungeam într-un alt an, aș fi scris un alt articol. Sau poate că nu – nu am cum să știu. Știu doar că aceasta este Sri Lanka pe care am întâlnit-o eu.`,
+  
+      `Și cred că e important să spun asta înainte să trag concluzii.`,
+  
+      `*Ce mi-a plăcut și ce aș face altfel*`,
+  
+      `După trei luni acolo, cred că pot spune și câteva lucruri pe care nu le-aș fi spus după prima săptămână.`,
+  
+      `Ce m-a surprins cel mai mult a fost transportul public. Mă așteptam la autobuze vechi, haotice și greu de folosit. În schimb, am găsit o rețea care m-a dus aproape peste tot, la prețuri incredibil de mici. Da, autobuzele erau deseori aglomerate și uneori călătoream mai înghesuit decât mi-aș fi dorit, dar am apreciat enorm un anumit detaliu: în multe dintre ele exista un compartiment pentru bagaje aflat chiar lângă șofer. Pentru cine călătorește singur, faptul că nu trebuie să stea cu ochii pe rucsac la fiecare oprire face diferența.`,
+  
+      `M-au surprins și vegetația, florile și copacii. După atâtea luni prin Asia, încă am descoperit specii pe care nu le mai întâlnisem nicăieri. Nu mă așteptam la asta.`,
+  
+      `Dacă aș reveni în Sri Lanka, aș călători diferit. Nu aș mai încerca să văd cât mai multe locuri într-un timp scurt. Aș alege câteva destinații și aș rămâne mai mult în fiecare.`,
+  
+      `Culmea, nu plajele au fost cele care mi-au rămas cel mai mult în suflet, ci munții din mijlocul țării, drumurile printre plantațiile de ceai și orașele în care am început să-mi creez mici ritualuri. Fiecare loc mi-a lăsat câte o amintire: o cafenea descoperită întâmplător, o stradă care noaptea părea aproape occidentală, o întâlnire cu o moldoveancă, o revenire într-un loc care, la început, nu mă convinsese deloc.`,
+  
+      `Chiar și Hikkaduwa, unde inițial nu mă simțisem în largul meu, a ajuns să fie locul în care mi-am petrecut ultimele zece zile din Sri Lanka. Poate că tocmai asta mi-a plăcut cel mai mult: unele locuri nu s-au lăsat înțelese din prima, dar au rămas cu mine după ce le-am dat timp.`,
+  
+      `Ce nu aș mai face? Nu m-aș mai baza exclusiv pe Booking. De cele mai multe ori, când am discutat direct cu proprietarii, am găsit prețuri mai bune, condiții mai bune și, poate cel mai important, oameni cu care am rămas în legătură și după ce am plecat. În Sri Lanka încă există loc pentru negociere, iar de multe ori tocmai de acolo începe și conversația.`,
+  
+      `Iar dacă ar fi să recomand un singur lucru, ar fi acesta: nu încerca să alergi dintr-un loc în altul doar ca să bifezi orașe pe hartă.`,
+  
+      `Știu. Exact asta am făcut și eu.`,
+  
+      `Nu-mi pare rău. Așa trebuia să fie atunci. Dar dacă m-aș întoarce mâine, aș călători mult mai încet. Aș lăsa mai multe zile fără plan, aș vorbi mai mult cu oamenii și aș accepta că nu trebuie să văd tot ca să simt că am cunoscut o țară.`,
+  
+      `Poate că atunci încă nu înțelesesem pe deplin asta. Am continuat în India aproape în același ritm, alergând dintr-un loc în altul, până când oboseala m-a ajuns din urmă. Abia acum, la finalul acestei călătorii, înțeleg ce încerca Sri Lanka să mă învețe.`,
+  
+      `Asta este, poate, cea mai mare lecție pe care mi-a lăsat-o Sri Lanka: ritmul în care alegi să o descoperi face diferența.`,
+  
+      `*În loc de final*`,
+
+      `Nu vreau să comprim trei luni într-un singur articol; ar fi nedrept și față de țară, și față de tine.`,
+  
+      {
+        type: "paragraph",
+        parts: [
+          {
+            text: "Despre călugărul din autobuz ți-am povestit deja, în articolul ",
+          },
+          {
+            text: "„Călugărul și respectul”",
+            href: "/blog/calugarul-si-respectul",
+            kind: "internal",
+          },
+          {
+            text: ". Celelalte povești vor veni, pe rând.",
+          },
+        ],
+      },
+  
+      `Seria aceasta nu își propune să spună cum este Sri Lanka – își propune doar să spună cum a fost Sri Lanka pentru mine.`,
+  
+      `Iar dacă ar fi să răspund acum la întrebarea „Mi-a plăcut Sri Lanka?”, răspunsul meu ar fi surprinzător de scurt.`,
+  
+      `La început, nu.`,
+  
+      `La plecare, da.`,
+  
+      `Dar drumul dintre cele două răspunsuri merită povestit.`,
+    ],
   }
       
   
