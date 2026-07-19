@@ -1544,7 +1544,7 @@ const posts = [
       "confesiune",
       "lectii de calatorie",
     ],
-    cover: "/assets/blog/sri-lanka-dupa-trei-luni-de-calatorie.jpeg",
+    cover: "/assets/blog/sri-lanka-dupa-trei-luni-de-calatorie.JPEG",
     lang: "ro",
     minutes: 16,
     content: [
