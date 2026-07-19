@@ -1548,7 +1548,7 @@ const posts = [
     lang: "ro",
     minutes: 16,
     content: [
-      { type: "paragraph", parts: [{ text: "Au trecut mai bine de două luni de când am plecat din " }, { text: "Sri Lanka", href: "/sri-lanka", kind: "internal" }, { text: ". Între timp am fost înghițită complet de India și nu am avut deloc chef să scriu despre Sri Lanka. Acum însă, cum călătoria mea prin India se apropie de sfârșit, simt că pot privi experiența mai limpede. Și că o pot pune în cuvinte, pentru că, între timp, lucrurile s-au așezat." }] },
+      { type: "paragraph", parts: [{ text: "Au trecut mai bine de două luni de când am plecat din " }, { text: "Sri Lanka", href: "https://maps.app.goo.gl/Q8nKrunDB3ZkMmCD7?g_st=iw", kind: "external" }, { text: ". Între timp am fost înghițită complet de India și nu am avut deloc chef să scriu despre Sri Lanka. Acum însă, cum călătoria mea prin India se apropie de sfârșit, simt că pot privi experiența mai limpede. Și că o pot pune în cuvinte, pentru că, între timp, lucrurile s-au așezat." }] },
   
       `În primele săptămâni după ce am plecat, dacă mă întreba cineva cum a fost Sri Lanka, răspundeam scurt. Acum răspunsul nu mai încape într-o singură propoziție.`,
   
@@ -1564,11 +1564,11 @@ const posts = [
   
       `Așa că am lăsat viața să decidă pentru mine. În felul ei ciudat, dar destul de eficient.`,
   
-      { type: "paragraph", parts: [{ text: "Sunt de vreun an pe Couchsurfing și, din când în când, apelez la oameni din diferite țări pentru găzduire sau măcar pentru un fir de poveste. Cu ceva timp înainte să mă gândesc serios la Sri Lanka, trimisesem un mesaj unei femei din " }, { text: "Mumbai", href: "/india/mumbai", kind: "internal" }, { text: ". Avea 32 de ani și referințe bune. Nu am primit niciodată răspuns. Mesajul meu părea să fi ajuns undeva în eter, în acel loc unde dispar toate planurile care nu sunt chiar ale tale." }] },
+      { type: "paragraph", parts: [{ text: "Sunt de vreun an pe Couchsurfing și, din când în când, apelez la oameni din diferite țări pentru găzduire sau măcar pentru un fir de poveste. Cu ceva timp înainte să mă gândesc serios la Sri Lanka, trimisesem un mesaj unei femei din " }, { text: "Mumbai", href: "https://maps.app.goo.gl/YU7NP2ecr6TbTJAx5?g_st=iw", kind: "external" }, { text: ". Avea 32 de ani și referințe bune. Nu am primit niciodată răspuns. Mesajul meu părea să fi ajuns undeva în eter, în acel loc unde dispar toate planurile care nu sunt chiar ale tale." }] },
   
       `Ceva însă mă împingea și către Sri Lanka.`,
   
-      { type: "paragraph", parts: [{ text: "Am deschis aplicația. Nu o mai folosisem de când îi scrisesem femeii din Mumbai. Am căutat, așa, la plezneală, " }, { text: "Colombo", href: "/sri-lanka/colombo", kind: "internal" }, { text: ". Aveam convingerea că, dacă drumurile mele urmau să ducă acolo, ceva se va alinia." }] },
+      { type: "paragraph", parts: [{ text: "Am deschis aplicația. Nu o mai folosisem de când îi scrisesem femeii din Mumbai. Am căutat, așa, la plezneală, " }, { text: "Colombo", href: "https://maps.app.goo.gl/Po1YwCyzXHSLWcnN7?g_st=iw", kind: "external" }, { text: ". Aveam convingerea că, dacă drumurile mele urmau să ducă acolo, ceva se va alinia." }] },
   
       `Primul nume care mi-a apărut: Hassan.`,
   
@@ -1630,11 +1630,11 @@ const posts = [
   
       `Doar că eu știam că nu venisem în Sri Lanka să stau într-o capitală mare, aglomerată și obositoare. Așa că, după cele patru zile, am pornit să explorez insula. Și am înțeles repede ceva: când ieși de sub o mână ocrotitoare, nu știi niciodată unde ajungi.`,
   
-      { type: "paragraph", parts: [{ text: "Prima oprire a fost " }, { text: "Bentota", href: "/sri-lanka/bentota", kind: "internal" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "Prima oprire a fost " }, { text: "Bentota", href: "https://maps.app.goo.gl/ZRwhVkf4JBzNRrLq6?g_st=iw", kind: "external" }, { text: "." }] },
   
       `Dacă mă întrebi pe mine, Bentota are una dintre cele mai curate plaje pe care le-am văzut în Sri Lanka. Lată, aerisită, cu nisip fin și cu o lumină care, în anumite momente ale zilei, face marea să pară mai blândă decât este. Am stat acolo cinci zile.`,
   
-      { type: "paragraph", parts: [{ text: "De acolo, am mers în " }, { text: "Hikkaduwa", href: "/sri-lanka/hikkaduwa", kind: "internal" }, { text: ". Încă patru zile. Altă plajă, alt ritm, alt tip de energie. Hikkaduwa era mai turistică, mai vie, mai amestecată. Genul de loc în care, teoretic, ar fi trebuit să mă simt bine. Doar că nu mă simțeam în largul meu. Nici acum nu am o explicație logică." }] },
+      { type: "paragraph", parts: [{ text: "De acolo, am mers în " }, { text: "Hikkaduwa", href: "https://maps.app.goo.gl/GqrdqGDFgEqiYfsF7?g_st=iw", kind: "external" }, { text: ". Încă patru zile. Altă plajă, alt ritm, alt tip de energie. Hikkaduwa era mai turistică, mai vie, mai amestecată. Genul de loc în care, teoretic, ar fi trebuit să mă simt bine. Doar că nu mă simțeam în largul meu. Nici acum nu am o explicație logică." }] },
   
       `În acele zile petrecute în Hikkaduwa, am început să caut variante de plecare. Nu din oraș. Din țară.`,
   
@@ -1642,8 +1642,7 @@ const posts = [
   
       `Așa că am decis: plec în India.`,
   
-      { type: "paragraph", parts: [{ text: "Dar nu voiam avion. Voiam să ies din Sri Lanka altfel, pe apă, ca și cum plecarea trebuia să aibă și ea o poveste. Am început să caut o rută: am verificat hărți, porturi și diferite variante de transport. Și la un moment dat am ajuns la concluzia că aș putea ieși din țară prin zona " }, { text: "Jaffna", href: "/sri-lanka/jaffna", kind: "internal" }, { text: ", cu un feribot." }] },
-  
+      { type: "paragraph", parts: [{ text: "Dar nu voiam avion. Voiam să ies din Sri Lanka altfel, pe apă, ca și cum plecarea trebuia să aibă și ea o poveste. Am început să caut o rută: am verificat hărți, porturi și diferite variante de transport. Și la un moment dat am ajuns la concluzia că aș putea ieși din țară prin zona " }, { text: "Jaffna", href: "https://maps.app.goo.gl/bStpmB1hNH4vFmET8?g_st=iw", kind: "external" }, { text: ", cu un feribot." }] },
       `Părea un plan.`,
   
       `Așa că, după ce mi-au expirat zilele plătite în Hikkaduwa, m-am întors în Colombo pentru două zile. Văzusem pe hartă portul din Colombo și voiam să întreb dacă existau nave către Mumbai.`,
@@ -1656,9 +1655,9 @@ const posts = [
   
       `Am plecat spre nord, dar nu direct. Pentru că, dacă tot mai aveam două săptămâni din viză, de ce să nu văd și partea central-nordică a insulei?`,
   
-      { type: "paragraph", parts: [{ text: "M-am oprit în " }, { text: "Anuradhapura", href: "/sri-lanka/anuradhapura", kind: "internal" }, { text: ". Orașul m-a întâmpinat cu ploi, cu umezeală și cu senzația aceea că totul se mișcă mai încet decât planurile mele. Am stat doar două zile. Nu suficient cât să spun că l-am înțeles, dar suficient cât să îl pun pe harta mea interioară a Sri Lankăi." }] },
+      { type: "paragraph", parts: [{ text: "M-am oprit în " }, { text: "Anuradhapura", href: "https://maps.app.goo.gl/pKzJVyZFi3EDEwQG9?g_st=iw", kind: "external" }, { text: ". Orașul m-a întâmpinat cu ploi, cu umezeală și cu senzația aceea că totul se mișcă mai încet decât planurile mele. Am stat doar două zile. Nu suficient cât să spun că l-am înțeles, dar suficient cât să îl pun pe harta mea interioară a Sri Lankăi." }] },
   
-      { type: "paragraph", parts: [{ text: "De acolo, am luat autobuzul spre " }, { text: "Vavuniya", href: "/sri-lanka/vavuniya", kind: "internal" }, { text: ", apoi am schimbat spre Jaffna." }] },
+      { type: "paragraph", parts: [{ text: "De acolo, am luat autobuzul spre " }, { text: "Vavuniya", href: "https://maps.app.goo.gl/sR6igdXveMjG7re37?g_st=iw", kind: "external" }, { text: ", apoi am schimbat spre Jaffna." }] },
   
       `Și, fără să-mi dau seama, Sri Lanka începea să se întindă altfel în fața mea. Nu ca o destinație de vacanță, nu ca un paradis tropical, ci ca o țară pe care o traversam cu nervi, curiozitate și încăpățânarea aceea pe care o ai când nu vrei să recunoști că poate, totuși, drumul are ceva să-ți spună.`,
   
@@ -1682,9 +1681,9 @@ const posts = [
   
       `Atunci însă nu știam. Eram prea fericită că avusesem dreptate. Că ideea mea cu ieșitul din Sri Lanka pe apă nu fusese o nebunie completă.`,
   
-      { type: "paragraph", parts: [{ text: "A doua zi am mers direct la autogară. Primul autobuz pe care l-am văzut era către " }, { text: "Trincomalee", href: "/sri-lanka/trincomalee", kind: "internal" }, { text: "." }] },
+      { type: "paragraph", parts: [{ text: "A doua zi am mers direct la autogară. Primul autobuz pe care l-am văzut era către " }, { text: "Trincomalee", href: "https://maps.app.goo.gl/u5mu9NtuDTDx4yiR9?g_st=iw", kind: "external" }, { text: "." }] },
   
-      `Oscilasem între Mannar și Trincomalee, dar autobuzul spre Trincomalee era acolo, în fața mea, gata de plecare, așa că m-am urcat. În nici cinci minute eram deja pe drum.`,
+      { type: "paragraph", parts: [{ text: "Oscilasem între " }, { text: "Mannar", href: "https://maps.app.goo.gl/v9D38hqDmhwZGtyz9?g_st=iw", kind: "external" }, { text: " și Trincomalee, dar autobuzul spre Trincomalee era acolo, în fața mea, gata de plecare, așa că m-am urcat. În nici cinci minute eram deja pe drum." }] },
   
       `Am mers mult. Mult prea mult.`,
   
