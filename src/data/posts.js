@@ -1808,6 +1808,298 @@ const posts = [
   
       `Dar drumul dintre cele două răspunsuri merită povestit.`,
     ],
+  },
+
+  {
+    slug: "cum-am-incercat-sa-plec-din-sri-lanka-cu-feribotul",
+    title: "Cum am încercat să plec din Sri Lanka cu feribotul, dar am mai rămas două luni",
+    excerpt: "După doar două săptămâni în Sri Lanka, voiam deja să plec. Am traversat insula în căutarea unui feribot spre India, am găsit ruta care părea să-mi rezolve toate problemele și am descoperit, chiar înainte de plecare, că nu aveam viza potrivită. În loc să părăsesc țara, mi-am prelungit șederea și am mai rămas două luni.",
+    date: "2026-07-28",
+    author: "Mida Malena",
+    tags: [
+      "Midaway",
+      "Sri Lanka",
+      "calatorii",
+      "Asia",
+      "calatorie solo",
+      "feribot",
+      "India",
+      "Jaffna",
+      "Trincomalee",
+      "viza",
+    ],
+    cover: "/assets/blog/cum-am-incercat-sa-plec-din-sri-lanka-cu-feribotul.jpeg",
+    lang: "ro",
+    minutes: 17,
+    content: [
+      `După doar două săptămâni în Sri Lanka, voiam deja să plec.`,
+  
+      `Într-o noapte în care nu puteam să dorm, am decis că următoarea destinație va fi India. Am căutat toate variantele, dar niciuna nu se potrivea bugetului meu. Când am aflat că exista un feribot, am simțit că găsisem soluția.`,
+  
+      `Ca să ajung la el, trebuia însă să traversez toată insula până în Jaffna. Nu aveam informații concrete, doar ideea unui port din nord, o rută vagă și speranța că feribotul chiar exista.`,
+  
+      `Când am dat, în sfârșit, peste tăblița cu informațiile despre plecare, eram convinsă că rezolvasem totul.`,
+  
+      `Până am aflat că nu aveam viza potrivită.`,
+  
+      `***`,
+  
+      `*Primele zile în Sri Lanka*`,
+  
+      `Pe 6 februarie, la ora 12:33, avionul meu a aterizat în Colombo.`,
+  
+      `Aveam un plan simplu: să cumpăr un SIM local, să schimb niște bani, să ajung la hostel și, seara, să mă întâlnesc cu Hassan.`,
+  
+      `Ne cunoșteam de doar trei săptămâni și nu ne întâlnisem niciodată față în față. Totul începuse cu un mesaj pe Instagram și continuase pe WhatsApp, unde vorbeam aproape zilnic. Eu îi povesteam despre călătoriile mele, el despre Sri Lanka, iar la un moment dat îi făcusem cadou versiunea PDF a cărții mele despre Vietnam.`,
+  
+      `Cu toate astea, până nu ai omul în fața ta, rămâne întotdeauna loc pentru imaginație.`,
+  
+      `Primele două nopți le rezervasem la un hostel. Hassan nu mă putea primi imediat în casa familiei lui, iar eu eram fericită că începutul acestei călătorii îmi aparținea.`,
+  
+      `În seara aceea urma să ieșim la cină și să ne cunoaștem cu adevărat, iar a doua zi aveam să particip la un tur prin Colombo organizat de el. Eram curioasă nu atât să văd obiectivele, cât să descopăr orașul prin ochii unui localnic.`,
+  
+      `Până atunci însă, Sri Lanka îmi oferise deja primul ei test. Șoferul de tuk-tuk m-a taxat aproape dublu față de cât arăta aplicația. Mi-am dat seama imediat.`,
+  
+      `Aș fi putut să negociez sau să mă cert. În schimb, am zâmbit și am plătit. Diferența nu era atât de mare încât să-mi strice prima zi, iar omul, ca mulți alții, încerca probabil doar să-și câștige existența.`,
+  
+      `Totuși, undeva, discret, mi s-a aprins un beculeț. Cu vântul în față și tuk-tuk-ul zdrăngănind în jurul meu, m-am întrebat dacă urma să plătesc peste tot „prețul de turist”.`,
+  
+      `Hostelul, în schimb, a fost exact cum îl descriau recenziile de pe Booking: curat, cu aer condiționat și… fără apă caldă. Afară erau 35 de grade, așa că nu era tocmai o tragedie.`,
+  
+      `Seara, la ora stabilită, l-am cunoscut pe Hassan. A apărut îmbrăcat elegant, zâmbitor și mirosind a parfum, iar eu m-am relaxat aproape imediat.`,
+  
+      `Am mers la cină și am continuat conversațiile începute cu câteva săptămâni înainte. Totul a decurs atât de firesc, încât aveam senzația că ne cunoșteam de mult. Abia a doua zi urma să-i cunosc familia.`,
+  
+      `Dimineața următoare am plecat în turul promis: monumente, repere istorice, conversații cu tatăl lui Hassan și o mulțime de informații pe care, obosită, nu am reușit să le rețin. Am făcut poze, am mâncat într-un restaurant tradițional, iar după-amiaza mi-am rezervat-o pentru odihnă și o plimbare pe faleză.`,
+  
+      `Următoarele două zile le-am petrecut alături de familia lui Hassan.`,
+  
+      `În ultima seară am ieșit împreună să mâncăm într-una dintre cele mai aglomerate piețe stradale din Colombo. Eu, elegantă, într-o rochiță verde, am întors toate privirile – cel puțin asta susținea Hassan. Părea, totuși, încântat să mă aibă acolo, lângă el.`,
+  
+      `Zilele au trecut cât ai zice „pește” și, înainte să-mi dau seama, venise momentul să plec.`,
+  
+      `Hassan mi-a spus să mă întorc după ce terminam de explorat insula. Voiam să iau la rând plajele celebre din sud, dar fără vreun plan concret. Îmi spusese că era perioada potrivită pentru ele, deci aveam o direcție.`,
+  
+      `Mi-am luat bagajul, le-am mulțumit pentru ospitalitate, am comandat din aplicație o cursă cu scuterul și am pornit spre gară.`,
+  
+      `*Drumul spre sud*`,
+  
+      `Prima călătorie cu trenul prin Sri Lanka a fost o experiență în sine. Aproape toată lumea se uita la mine, iar eu nu înțelegeam prea bine de ce. Poate din cauza bagajului. Poate pentru că eram singură. Poate doar pentru că abia ajunsesem și încă simțeam fiecare privire.`,
+  
+      `Am coborât în Bentota flămândă și fără cazare. Primul restaurant în care am intrat s-a dovedit a fi unul dintre cele mai scumpe în care aveam să mănânc în Sri Lanka. Acolo, la acea masă, mi-am căutat un loc unde să dorm. Însă nu voiam să rezerv nimic înainte să văd camera cu ochii mei.`,
+  
+      `Am găsit pe hartă o cazare care părea în regulă și am pornit să o văd. Nu era departe de locul unde mă aflam. Mergeam pe stradă, urmărind traseul pe GPS, când un bătrânel a început să mă strige. La început l-am ignorat, dar omul s-a ținut după mine. Până la urmă, insistența lui a câștigat și am acceptat să văd „camera” despre care tot vorbea.`,
+  
+      `Avea o casă cu patru camere de închiriat, un fel de homestay. După o scurtă negociere și după ce i-am spus că voi rămâne trei nopți, am ajuns la 2.500 de rupii pe noapte. Un preț foarte bun.`,
+  
+      `Camera era simplă și nu tocmai curată, dar am decis că puteam trece peste asta.`,
+  
+      `Problema adevărată locuia în baie.`,
+  
+      `În fiecare dimineață găseam gunoiul răscolit. Cojile de mango și de banane erau târâte prin încăpere, iar resturile pe care le aruncasem seara apăreau împrăștiate pe podea. La început, am presupus că șopârlele erau vinovate.`,
+  
+      `Asta până în penultima zi, când l-am văzut.`,
+  
+      `Mare. Gras. Cu o coadă lungă.`,
+  
+      `Un șobolan.`,
+  
+      `Până atunci îmi prelungisem deja șederea cu două nopți, mai ales pentru că nu aveam un plan, iar următoarea destinație nu se contura deloc.`,
+  
+      `Tot acolo am cunoscut un neamț care mi-a povestit că străbătuse aproape toată insula, dar că nicăieri nu se simțise la fel de bine ca în Bentota. Tocmai de aceea revenise acolo.`,
+  
+      `Îmi amintesc că m-am uitat la el și m-am gândit:`,
+  
+      `„Dacă aici era cel mai bine, cât de rău era în rest?”`,
+  
+      `Plaja era frumoasă – una dintre cele mai curate pe care aveam să le văd în Sri Lanka. Cu toate acestea, locul mă neliniștea. Bătrânul insista să rămân până când îmi expira viza. Era ieftin, recunosc, dar nu mă vedeam petrecând acolo următoarele săptămâni.`,
+  
+      `În plus, mâncarea din zonă mi se părea exagerat de scumpă. Sau poate doar pe mine mă taxau în plus. Cine mai știe?`,
+  
+      `Totuși, găsisem o cafenea micuță cu prețuri decente, așa că mergeam acolo zilnic și stăteam pe scăunelul albastru, privind strada și oamenii care treceau.`,
+  
+      `După cele cinci zile din Bentota, am urcat din nou în tren.`,
+  
+      `Următoarea destinație se alesese aproape singură: Hikkaduwa. Se afla pe traseul meu către sudul insulei și voiam să o văd înainte să ajung în Galle. Planul era relativ simplu: voiam să stau doar două nopți, apoi să merg mai departe.`,
+  
+      `Doar că trenul avea alte planuri. Era atât de aglomerat încât n-am găsit nici măcar un loc unde să mă sprijin cum trebuie. Am făcut tot drumul în picioare, înghesuită printre oameni și bagaje, încercând să-mi conving picioarele că mai rezistă puțin.`,
+  
+      `Când am ajuns, primul lucru pe care l-am căutat n-a fost plaja – a fost cafeaua.`,
+  
+      `De la masa primei cafenele pe care o găsisem aproape de gară, am început să caut cazare pe telefon. O cameră simplă, dar cu recenzii bune pe Booking părea exact ce-mi trebuia pentru două nopți. Doar că proprietarul nu răspundea nici la mesajele din aplicație, nici la telefon.`,
+  
+      `Am ajuns să petrec aproape o oră lângă taraba unei femei care vindea nuci de cocos și fructe, chiar în fața homestay-ului unde încercam să mă cazez. Nu vorbea engleză, dar m-a lăsat să stau acolo, lângă ea.`,
+  
+      `La un moment dat, proprietarul a apărut pe motocicletă, cu ochii umflați de somn. Nu mă ignorase și nici nu încerca să mă păcălească. Pur și simplu dormise la prânz.`,
+  
+      `*Când am început să caut o ieșire*`,
+  
+      `Mi-am prelungit șederea cu încă două zile. Între timp, ceva se schimbase în mine: hotărâsem că vreau să plec din Sri Lanka și aveam nevoie de timp ca să-mi dau seama cum.`,
+  
+      `N-a existat un incident spectaculos și nicio clipă precisă în care să pot spune: aici s-a rupt ceva. A fost mai degrabă o acumulare. Pur și simplu obosisem. Obosisem să caut camere, să caut restaurante, să negociez. Obosisem de țânțari și de senzația că fiecare zi aducea încă o luptă măruntă.`,
+  
+      `Nu trecuseră nici două săptămâni și deja căutam o ieșire.`,
+  
+      `Într-una dintre nopți, când somnul se lăsa așteptat, am început să caut variante. India părea cea mai firească alegere. Oricum trebuia să decid ce urma să fac după expirarea vizei și, cum nu venisem cu un plan strict, îmi permiteam să schimb direcția.`,
+  
+      `Atunci am descoperit că din Kankesanthurai, în zona Jaffna, exista un feribot spre India. Sau, cel puțin, asta părea să spună internetul.`,
+  
+      `Înainte să urc până în nordul insulei, am decis să verific și portul din Colombo. Dacă exista o variantă mai simplă, de ce să n-o încerc?`,
+  
+      `Așa că m-am întors în Colombo, la același hostel în care stătusem în primele două zile. Hassan îmi spusese să mă întorc la ei după ce terminam de explorat insula, dar începuse Ramadanul și nu voiam să-i încurc familia.`,
+  
+      `I-am revăzut în oraș pe Hassan și pe tatăl lui și m-am gândit că s-ar putea să fie ultima dată când ne vedeam. Dacă plecam spre India din Kankesanthurai, șansele să mă mai întorc în Colombo, traversând din nou jumătate de insulă, erau destul de mici.`,
+  
+      `A doua zi am pornit spre port. Drumul s-a dovedit mai complicat decât mă așteptam și a trebuit să întreb mai mulți oameni până am ajuns unde trebuia. După tot efortul, răspunsul a fost simplu: da, existau nave spre Mumbai. Nu, nu luau pasageri. Erau doar nave de marfă.`,
+  
+      `Îmi amintesc și acum privirea unuia dintre angajați. Se uita la mine de parcă venisem cu cea mai absurdă întrebare posibilă. Ce vise aveam și eu…`,
+  
+      `N-am renunțat. Dacă nu mergea din Colombo, aveam să încerc din zona Jaffna.`,
+  
+      `O zi mai târziu, am urcat într-un autobuz spre Anuradhapura. Era prima mea experiență cu autobuzele din Sri Lanka și am înțeles repede de ce șoferii lor sunt celebri: curbele păreau doar niște sugestii, iar viteza, o simplă recomandare.`,
+  
+      `În schimb, compartimentul pentru bagaje din față m-a cucerit. Cu un rucsac mare și greu după mine, mi s-a părut o invenție genială.`,
+  
+      `După șase ore bune de drum, am coborât în Anuradhapura. Căldura era lipicioasă și aveam nevoie de o cafea ca să pot gândi. Mi-am găsit și o cazare, la aproximativ un kilometru și jumătate distanță. Pe hartă părea aproape. În realitate, drumul trecea pe marginea unei șosele aglomerate, aflată parțial în construcție, cu moloz, muncitori și fără trotuare.`,
+  
+      `După ce l-am așteptat vreo zece minute, proprietarul a apărut și a încercat imediat să-mi vândă tururi la prețuri absurde. O simplă cursă cu tuk-tuk-ul până la unul dintre obiective costa aproape 9.000 de rupii – fără să includă și taxele de intrare. L-am refuzat politicos.`,
+  
+      `A doua zi a plouat aproape fără oprire. Când am crezut că vremea se liniștise, am ieșit, dar în scurt timp ploaia a început din nou. Am mers șase sau șapte kilometri cu pantalonii leoarcă și șlapii plini de apă și, surprinzător, nu m-a deranjat deloc. Anuradhapura, pe ploaie, avea ceva aparte. Poate tocmai de aceea orașul mi-a rămas atât de drag. Cred că într-o zi mă voi întoarce.`,
+  
+      `Dimineața următoare am pornit spre Jaffna, cu schimbare în Vavuniya. În autobuz am cunoscut o femeie care lucra la Parlamentul Sri Lankăi și era implicată în proiecte pentru drepturile femeilor. Am vorbit aproape tot drumul.`,
+  
+      `Spre seară am ajuns în Jaffna.`,
+  
+      `Orașul părea diferit de tot ce văzusem până atunci. Nu neapărat mai frumos sau mai urât. Doar… diferit.`,
+  
+      `Am rezervat un hostel și am înțeles aproape imediat că fusese o greșeală. Mirosul m-a lovit încă de la recepție: greu, stătut, intrat parcă în pereți.`,
+  
+      `Patul scârțâia la fiecare mișcare, prosopul a venit după aproape două ore și semăna cu o cârpă obosită, iar ușa băii părea gata să cadă. Despre curățenie, mai bine nu.`,
+  
+      `Am ieșit aproape imediat și am mers spre fort, apoi spre mare, sperând că orașul va compensa cazarea. N-a făcut-o.`,
+  
+      `Nici micul dejun inclus nu mi-a schimbat părerea. Am renunțat după două înghițituri. Nu știam ce mă aștepta în India, dar eram tot mai sigură că voiam să plec din Sri Lanka.`,
+  
+      `*Feribotul care părea să rezolve totul*`,
+  
+      `Tocmai atunci, aproape întâmplător, am observat o tăbliță scrisă cu cretă, agățată pe un perete. Privirea mi-a trecut peste tururi, excursii și nume de locuri pe care nu le cunoșteam. Apoi s-a oprit asupra a două dintre ele:`,
+  
+      `Jaffna – Nagapattinam.`,
+  
+      `Feribot. Două curse pe zi. Cu excepția zilei de marți. Mai jos era trecut și un număr de telefon.`,
+  
+      `Nu-mi venea să cred. Aproape că am chiuit de bucurie. După toate căutările și încercarea eșuată din portul Colombo, aveam, în sfârșit, confirmarea că feribotul exista.`,
+  
+      `Mai trebuia doar să-mi continui călătoria până în ziua plecării.`,
+  
+      `La prânz eram deja într-un autobuz spre Trincomalee. Inițial mă gândisem să merg în Mannar, dar primul autobuz pe care l-am văzut în autogară pleca spre Trincomalee. Cinci minute mai târziu eram pe drum.`,
+  
+      `Nu-mi imaginasem că Jaffna avea să fie o oprire atât de scurtă. Dar, câteodată, traseele se rescriu singure.`,
+  
+      `Am ajuns în Trincomalee pe la cinci după-amiaza. O oră mai târziu eram deja în fața unui guesthouse, unde rezervasem doar o noapte prin Booking. Voiam să văd locul înainte să decid dacă rămân sau caut altceva aproape de plajă.`,
+  
+      `În fața clădirii, un tip cu părul creț până la umeri stătea la o masă, fuma și se uita în telefon.`,
+  
+      `Când m-a văzut cu rucsacul în spate, și-a ridicat privirea, surprins.`,
+  
+      `Nu. Nici el nu văzuse rezervarea mea.`,
+  
+      `Începusem să cred că aveam un talent aparte să apar în viața oamenilor înainte să afle că urmează să ajung.`,
+  
+      `Îi voi spune Amal. Povestea lui merită un articol separat.`,
+  
+      `*Viza care mi-a schimbat planul*`,
+  
+      `În seara aceea, cu laptopul în brațe, am completat cererea pentru eVisa din pat. Voiam să mă asigur că, atunci când aveam să mă întorc în Jaffna pentru feribot, totul va fi pregătit.`,
+  
+      `Formularul s-a dovedit lung și obositor. În timp ce completam rubricile, am observat ceva ciudat: Nagapattinam nu apărea nicăieri printre punctele de intrare acceptate, iar fără să aleg unul nu puteam continua cererea.`,
+  
+      `La început am crezut că nu mă uit unde trebuie. Am verificat încă o dată. Și încă o dată. Apoi am început să caut informații pe internet și am trimis un e-mail Ambasadei Indiei.`,
+  
+      `L-am întrebat și pe Amal.`,
+  
+      `Pe el îl preocupa însă altceva.`,
+  
+      `— De ce pleci? Mai stai. Cunosc pe cineva la biroul de imigrări din Trincomalee. Îți prelungești viza aici, fără să mai mergi până în Colombo.`,
+  
+      `Dar eu nu voiam să-mi prelungesc viza. Eu voiam să plec.`,
+  
+      `Răspunsul Ambasadei Indiei a venit abia după două zile, scurt și clar: cu eVisa puteam intra în India doar prin aeroporturile și punctele de frontieră aprobate. Nagapattinam nu era unul dintre ele. Pentru acel feribot aveam nevoie de o viză standard („regular visa”), obținută înainte de călătorie.`,
+  
+      `Am recitit e-mailul de câteva ori. Atât. Planul meu dispăruse într-o singură propoziție.`,
+  
+      `Cred că acela a fost momentul în care totul a început să se schimbe. Nu mai dormeam bine și nu mai mâncam la ore normale. Nopțile se prelungeau până dimineața, iar primele ore ale zilei mă găseau plimbându-mă pe plaja pustie. În rest, scriam. Uneori ore întregi, ca și cum scrisul ar fi putut pune ordine în tot ce se întâmpla. Refăceam trasee, verificam din nou biletele de avion și căutam alte variante de ieșire din țară. Toate duceau în același loc: nicăieri.`,
+  
+      `Cel mai ciudat era că începeam să mă simt rău. Nu aveam febră și nu mă durea nimic. Și totuși, simțeam că organismul meu cedează.`,
+  
+      `Abia mai târziu am înțeles că starea mea nu venea doar din oboseală sau din stres. În jurul meu se adunaseră și alte lucruri pe care atunci nu știam să le citesc.`,
+  
+      `Ironia era aproape comică: eram într-o țară în care mulți visează să ajungă măcar o dată în viață, iar eu voiam doar să plec. Și nu puteam.`,
+  
+      `N-am renunțat. Dar aveam nevoie de timp.`,
+  
+      `Am aplicat online pentru prelungirea vizei, chiar dacă era ultimul lucru pe care mi-l doream în acel moment. Era singura variantă prin care puteam câștiga timp. La început, procedura a părut surprinzător de simplă. În trei zile trebuia să primesc prin e-mail un link de plată.`,
+  
+      `N-a venit niciodată.`,
+  
+      `În schimb, am primit un alt mesaj: trebuia să merg personal în Colombo ca să plătesc taxa și să primesc ștampila în pașaport.`,
+  
+      `Încă un drum. Încă un plan schimbat. Încă o ușă care nu se deschidea.`,
+  
+      `Cred că atunci am înțeles, fără să-mi spun asta în cuvinte, că lupta mea nu mai era cu feribotul. Era cu mine însămi și cu senzația absurdă că Sri Lanka nu-și terminase povestea cu mine.`,
+  
+      `După nouă zile în Trincomalee, m-am urcat într-un autobuz de noapte spre Colombo. Amal îmi rezervase biletul și insista să mă întorc după ce rezolvam cu viza. Eu știam deja că nu aveam să mă mai întorc.`,
+  
+      `În ultimele trei zile aproape că nu mai mâncasem. Începusem să am și febră, iar uneori abia mă puteam ține pe picioare. Dar zilele acelea au o poveste a lor.`,
+  
+      `Autobuzul a ajuns în Colombo pe la patru dimineața. Șoferul nu înțelegea unde voiam să cobor și, după câteva încercări de a-i explica, m-a lăsat la marginea drumului, într-un cartier pustiu, la câțiva kilometri de gară.`,
+  
+      `Era întuneric și nu mai aveam energie pentru încă o aventură. Am găsit totuși un tuk-tuk care m-a dus până la gară. Biroul de imigrări se deschidea abia la opt, așa că mai aveam aproape patru ore de omorât.`,
+  
+      `Am găsit o bancă liberă, m-am întins pe ea, mi-am pus eșarfa albastră peste cap și am încercat să mă fac invizibilă.`,
+  
+      `După un timp, cineva m-a atins ușor pe umăr. Doi agenți de pază. M-au întrebat ce făceam acolo. Le-am explicat, cu voce răgușită, că așteptam să se facă dimineață ca să merg la biroul de imigrări. Nu știu cât au înțeles, dar m-au lăsat în pace.`,
+  
+      `Am rămas acolo: eu, banca și oamenii străzii care dormeau prin gară.`,
+  
+      `*Oficial, mai rămâneam*`,
+  
+      `La șapte și douăzeci eram deja în fața clădirii biroului de imigrări. Am intrat printre primii. Mai erau doar câteva persoane înaintea mea și mi-am spus că va fi rapid.`,
+  
+      `N-a fost.`,
+  
+      `Am rămas acolo până la ora unu. Pentru o simplă prelungire a vizei. Oamenii veneau. Plecau. Alții veneau. Eu eram tot acolo.`,
+  
+      `În timpul așteptării am cunoscut și un român. Avea o casă în Bentota.`,
+  
+      `M-a întrebat cu ce mă ocup, iar eu i-am spus că sunt scriitoare și că, de trei ani, îmi transformam călătoriile în cărți.`,
+  
+      `— Atunci ești bogată, a concluzionat el.`,
+  
+      `Tipic românesc, mi-am zis. Ce să zic. I-am explicat însă că nu, nu eram deloc bogată. Vândusem tot ce aveam în România ca să pot călători, iar de trei ani trăiam doar din banii rămași din acea vânzare.`,
+  
+      `Parcă i s-au luminat ochii.`,
+  
+      `Atunci mi-a făcut o ofertă pe care nu aveam să o uit prea curând.`,
+  
+      `— Aaa, în cazul ăsta, vino la mine ca housemaid. Chiar îmi căutam una. Îți dau o cameră. Mai gătești, mai faci puțină curățenie… O să-ți placă.`,
+  
+      `Am zâmbit.`,
+  
+      `Exact asta îmi lipsea. Să rămân încă două luni în Sri Lanka ca menajeră.`,
+  
+      `Am schimbat subiectul. Unele oferte se refuză singure.`,
+  
+      `Gândul meu era deja în altă parte. A doua zi urma să mă întâlnesc cu femeia pe care o cunoscusem în autobuz, cea care lucra la Parlament.`,
+  
+      `Am ieșit de la biroul de imigrări cu viza prelungită.`,
+  
+      `Oficial, mai rămâneam în Sri Lanka.`,
+  
+      `Neoficial, încă nu acceptasem asta.`,
+  
+      `Aveam să înțeleg abia peste două luni că, de fapt, fusese unul dintre cele mai bune lucruri care mi se întâmplaseră în călătoria aceea.`,
+    ],
   }
       
   
