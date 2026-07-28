@@ -1832,11 +1832,11 @@ const posts = [
     lang: "ro",
     minutes: 17,
     content: [
-      `După doar două săptămâni în Sri Lanka, voiam deja să plec.`,
+      { type: "paragraph", parts: [{ text: "După doar două săptămâni în " }, { text: "Sri Lanka", href: "https://maps.app.goo.gl/Hedim8srhLenQScx6?g_st=iw", kind: "external" }, { text: ", voiam deja să plec." }] },
   
-      `Într-o noapte în care nu puteam să dorm, am decis că următoarea destinație va fi India. Am căutat toate variantele, dar niciuna nu se potrivea bugetului meu. Când am aflat că exista un feribot, am simțit că găsisem soluția.`,
+      { type: "paragraph", parts: [{ text: "Într-o noapte în care nu puteam să dorm, am decis că următoarea destinație va fi " }, { text: "India", href: "https://maps.app.goo.gl/5EXsoAaEHQqkPfxf7?g_st=iw", kind: "external" }, { text: ". Am căutat toate variantele, dar niciuna nu se potrivea bugetului meu. Când am aflat că exista un feribot, am simțit că găsisem soluția." }] },
   
-      `Ca să ajung la el, trebuia însă să traversez toată insula până în Jaffna. Nu aveam informații concrete, doar ideea unui port din nord, o rută vagă și speranța că feribotul chiar exista.`,
+      { type: "paragraph", parts: [{ text: "Ca să ajung la el, trebuia însă să traversez toată insula până în " }, { text: "Jaffna", href: "https://maps.app.goo.gl/nrLNmJda13G7p4EQ8?g_st=iw", kind: "external" }, { text: ". Nu aveam informații concrete, doar ideea unui port din nord, o rută vagă și speranța că feribotul chiar exista." }] },
   
       `Când am dat, în sfârșit, peste tăblița cu informațiile despre plecare, eram convinsă că rezolvasem totul.`,
   
@@ -1846,7 +1846,7 @@ const posts = [
   
       `*Primele zile în Sri Lanka*`,
   
-      `Pe 6 februarie, la ora 12:33, avionul meu a aterizat în Colombo.`,
+      { type: "paragraph", parts: [{ text: "Pe 6 februarie, la ora 12:33, avionul meu a aterizat în " }, { text: "Colombo", href: "https://maps.app.goo.gl/zsk8JF7MVKNQ6BBKA?g_st=iw", kind: "external" }, { text: "." }] },
   
       `Aveam un plan simplu: să cumpăr un SIM local, să schimb niște bani, să ajung la hostel și, seara, să mă întâlnesc cu Hassan.`,
   
@@ -1886,7 +1886,7 @@ const posts = [
   
       `Prima călătorie cu trenul prin Sri Lanka a fost o experiență în sine. Aproape toată lumea se uita la mine, iar eu nu înțelegeam prea bine de ce. Poate din cauza bagajului. Poate pentru că eram singură. Poate doar pentru că abia ajunsesem și încă simțeam fiecare privire.`,
   
-      `Am coborât în Bentota flămândă și fără cazare. Primul restaurant în care am intrat s-a dovedit a fi unul dintre cele mai scumpe în care aveam să mănânc în Sri Lanka. Acolo, la acea masă, mi-am căutat un loc unde să dorm. Însă nu voiam să rezerv nimic înainte să văd camera cu ochii mei.`,
+      { type: "paragraph", parts: [{ text: "Am coborât în " }, { text: "Bentota", href: "https://maps.app.goo.gl/oQLBtxQ76WUUhmkB8?g_st=iw", kind: "external" }, { text: " flămândă și fără cazare. Primul restaurant în care am intrat s-a dovedit a fi unul dintre cele mai scumpe în care aveam să mănânc în Sri Lanka. Acolo, la acea masă, mi-am căutat un loc unde să dorm. Însă nu voiam să rezerv nimic înainte să văd camera cu ochii mei." }] },
   
       `Am găsit pe hartă o cazare care părea în regulă și am pornit să o văd. Nu era departe de locul unde mă aflam. Mergeam pe stradă, urmărind traseul pe GPS, când un bătrânel a început să mă strige. La început l-am ignorat, dar omul s-a ținut după mine. Până la urmă, insistența lui a câștigat și am acceptat să văd „camera” despre care tot vorbea.`,
   
@@ -1920,7 +1920,7 @@ const posts = [
   
       `După cele cinci zile din Bentota, am urcat din nou în tren.`,
   
-      `Următoarea destinație se alesese aproape singură: Hikkaduwa. Se afla pe traseul meu către sudul insulei și voiam să o văd înainte să ajung în Galle. Planul era relativ simplu: voiam să stau doar două nopți, apoi să merg mai departe.`,
+      { type: "paragraph", parts: [{ text: "Următoarea destinație se alesese aproape singură: " }, { text: "Hikkaduwa", href: "https://maps.app.goo.gl/6YUdA69fmzoQVjvw9?g_st=iw", kind: "external" }, { text: ". Se afla pe traseul meu către sudul insulei și voiam să o văd înainte să ajung în Galle. Planul era relativ simplu: voiam să stau doar două nopți, apoi să merg mai departe." }] },
   
       `Doar că trenul avea alte planuri. Era atât de aglomerat încât n-am găsit nici măcar un loc unde să mă sprijin cum trebuie. Am făcut tot drumul în picioare, înghesuită printre oameni și bagaje, încercând să-mi conving picioarele că mai rezistă puțin.`,
   
@@ -1942,21 +1942,20 @@ const posts = [
   
       `Într-una dintre nopți, când somnul se lăsa așteptat, am început să caut variante. India părea cea mai firească alegere. Oricum trebuia să decid ce urma să fac după expirarea vizei și, cum nu venisem cu un plan strict, îmi permiteam să schimb direcția.`,
   
-      `Atunci am descoperit că din Kankesanthurai, în zona Jaffna, exista un feribot spre India. Sau, cel puțin, asta părea să spună internetul.`,
+      { type: "paragraph", parts: [{ text: "Atunci am descoperit că din " }, { text: "Kankesanthurai", href: "https://maps.app.goo.gl/rVkk2QUVg38pSn7v6?g_st=iw", kind: "external" }, { text: ", în zona Jaffna, exista un feribot spre India. Sau, cel puțin, asta părea să spună internetul." }] },
   
       `Înainte să urc până în nordul insulei, am decis să verific și portul din Colombo. Dacă exista o variantă mai simplă, de ce să n-o încerc?`,
   
       `Așa că m-am întors în Colombo, la același hostel în care stătusem în primele două zile. Hassan îmi spusese să mă întorc la ei după ce terminam de explorat insula, dar începuse Ramadanul și nu voiam să-i încurc familia.`,
   
       `I-am revăzut în oraș pe Hassan și pe tatăl lui și m-am gândit că s-ar putea să fie ultima dată când ne vedeam. Dacă plecam spre India din Kankesanthurai, șansele să mă mai întorc în Colombo, traversând din nou jumătate de insulă, erau destul de mici.`,
-  
-      `A doua zi am pornit spre port. Drumul s-a dovedit mai complicat decât mă așteptam și a trebuit să întreb mai mulți oameni până am ajuns unde trebuia. După tot efortul, răspunsul a fost simplu: da, existau nave spre Mumbai. Nu, nu luau pasageri. Erau doar nave de marfă.`,
+      { type: "paragraph", parts: [{ text: "A doua zi am pornit spre port. Drumul s-a dovedit mai complicat decât mă așteptam și a trebuit să întreb mai mulți oameni până am ajuns unde trebuia. După tot efortul, răspunsul a fost simplu: da, existau nave spre " }, { text: "Mumbai", href: "https://maps.app.goo.gl/BrwrgpDsFWeKaxoVA?g_st=iw", kind: "external" }, { text: ". Nu, nu luau pasageri. Erau doar nave de marfă." }] },
   
       `Îmi amintesc și acum privirea unuia dintre angajați. Se uita la mine de parcă venisem cu cea mai absurdă întrebare posibilă. Ce vise aveam și eu…`,
   
       `N-am renunțat. Dacă nu mergea din Colombo, aveam să încerc din zona Jaffna.`,
   
-      `O zi mai târziu, am urcat într-un autobuz spre Anuradhapura. Era prima mea experiență cu autobuzele din Sri Lanka și am înțeles repede de ce șoferii lor sunt celebri: curbele păreau doar niște sugestii, iar viteza, o simplă recomandare.`,
+      { type: "paragraph", parts: [{ text: "O zi mai târziu, am urcat într-un autobuz spre " }, { text: "Anuradhapura", href: "https://maps.app.goo.gl/G6A9Qb3hpAHJkQgv9?g_st=iw", kind: "external" }, { text: ". Era prima mea experiență cu autobuzele din Sri Lanka și am înțeles repede de ce șoferii lor sunt celebri: curbele păreau doar niște sugestii, iar viteza, o simplă recomandare." }] },
   
       `În schimb, compartimentul pentru bagaje din față m-a cucerit. Cu un rucsac mare și greu după mine, mi s-a părut o invenție genială.`,
   
@@ -1984,7 +1983,7 @@ const posts = [
   
       `Tocmai atunci, aproape întâmplător, am observat o tăbliță scrisă cu cretă, agățată pe un perete. Privirea mi-a trecut peste tururi, excursii și nume de locuri pe care nu le cunoșteam. Apoi s-a oprit asupra a două dintre ele:`,
   
-      `Jaffna – Nagapattinam.`,
+      { type: "paragraph", parts: [{ text: "Jaffna – " }, { text: "Nagapattinam", href: "https://maps.app.goo.gl/nFamJNZyed3rarrc8?g_st=iw", kind: "external" }, { text: "." }] },
   
       `Feribot. Două curse pe zi. Cu excepția zilei de marți. Mai jos era trecut și un număr de telefon.`,
   
@@ -1992,7 +1991,7 @@ const posts = [
   
       `Mai trebuia doar să-mi continui călătoria până în ziua plecării.`,
   
-      `La prânz eram deja într-un autobuz spre Trincomalee. Inițial mă gândisem să merg în Mannar, dar primul autobuz pe care l-am văzut în autogară pleca spre Trincomalee. Cinci minute mai târziu eram pe drum.`,
+      { type: "paragraph", parts: [{ text: "La prânz eram deja într-un autobuz spre " }, { text: "Trincomalee", href: "https://maps.app.goo.gl/1YQbDxwmJacgwPXKA?g_st=iw", kind: "external" }, { text: ". Inițial mă gândisem să merg în " }, { text: "Mannar", href: "https://maps.app.goo.gl/poEPQ6WZyMHa6yJUA?g_st=iw", kind: "external" }, { text: ", dar primul autobuz pe care l-am văzut în autogară pleca spre Trincomalee. Cinci minute mai târziu eram pe drum." }] },
   
       `Nu-mi imaginasem că Jaffna avea să fie o oprire atât de scurtă. Dar, câteodată, traseele se rescriu singure.`,
   
