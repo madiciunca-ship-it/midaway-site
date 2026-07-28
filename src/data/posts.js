@@ -1828,7 +1828,7 @@ const posts = [
       "Trincomalee",
       "viza",
     ],
-    cover: "/assets/blog/cum-am-incercat-sa-plec-din-sri-lanka-cu-feribotul.jpeg",
+    cover: "/assets/blog/cum-am-incercat-sa-plec-din-sri-lanka-cu-feribotul.JPEG",
     lang: "ro",
     minutes: 17,
     content: [
@@ -2028,8 +2028,12 @@ const posts = [
   
       `Am recitit e-mailul de câteva ori. Atât. Planul meu dispăruse într-o singură propoziție.`,
   
-      `Cred că acela a fost momentul în care totul a început să se schimbe. Nu mai dormeam bine și nu mai mâncam la ore normale. Nopțile se prelungeau până dimineața, iar primele ore ale zilei mă găseau plimbându-mă pe plaja pustie. În rest, scriam. Uneori ore întregi, ca și cum scrisul ar fi putut pune ordine în tot ce se întâmpla. Refăceam trasee, verificam din nou biletele de avion și căutam alte variante de ieșire din țară. Toate duceau în același loc: nicăieri.`,
+      `Cred că acela a fost momentul în care totul a început să se schimbe. Nu mai dormeam bine și nu mai mâncam la ore normale. Nopțile se prelungeau până dimineața, iar primele ore ale zilei mă găseau plimbându-mă pe plajă.`,
   
+      `Într-una dintre dimineți, am fotografiat câțiva pescari trăgând năvodul pe plaja din Trincomalee. Ei încercau să aducă plasa la mal, iar eu încercam să-mi dau seama cum să plec din Sri Lanka.`,
+
+      `În rest, scriam. Uneori ore întregi, ca și cum scrisul ar fi putut pune ordine în tot ce se întâmpla. Refăceam trasee, verificam din nou biletele de avion și căutam alte variante de ieșire din țară. Toate duceau în același loc: nicăieri. `,
+      
       `Cel mai ciudat era că începeam să mă simt rău. Nu aveam febră și nu mă durea nimic. Și totuși, simțeam că organismul meu cedează.`,
   
       `Abia mai târziu am înțeles că starea mea nu venea doar din oboseală sau din stres. În jurul meu se adunaseră și alte lucruri pe care atunci nu știam să le citesc.`,
