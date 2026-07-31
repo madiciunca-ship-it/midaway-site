@@ -15,7 +15,6 @@ const navItems = [
   { label: "Cărți", to: "/carti" },
   { label: "Autori", to: "/autori" },          // 👈 NOU
   { label: "Blog", to: "/blog" },
-  { label: "Newsletter", to: "/blog#newsletter" },
   { label: "Viziunea", to: "/proiecte" },      // 👈 Proiecte → Viziunea (ruta rămâne)
   { label: "Voluntari", to: "/voluntari" },
   { label: "Călători", to: "/calatori" },
