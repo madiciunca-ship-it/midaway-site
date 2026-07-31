@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -64,8 +64,14 @@ export default function App() {
           <Route path="/admin/orders" element={<AdminOrders />} />
 
           {/* Blog */}
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+<Route path="/blog" element={<Blog />} />
+<Route path="/blog/:id" element={<BlogDetail />} />
+
+{/* Link scurt pentru newsletter — folosit în social media */}
+<Route
+  path="/newsletter"
+  element={<Navigate to="/blog#newsletter" replace />}
+/>
 
           {/* Proiecte */}
           <Route path="/proiecte" element={<Projects />} />
