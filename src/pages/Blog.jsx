@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import posts from "../data/posts";
 import { getSiteLanguage, setSiteLanguage } from "../utils/siteLanguage";
 
@@ -19,6 +19,7 @@ function estimateMinutes(p) {
 }
 
 export default function Blog() {
+  const location = useLocation();
   const [lang, setLang] = useState(() => getSiteLanguage(["blog.lang"]));
   const [query, setQuery] = useState("");
   useEffect(() => {
@@ -26,6 +27,22 @@ export default function Blog() {
       setSiteLanguage(lang, ["blog.lang"]);
     }
   }, [lang]);
+  useEffect(() => {
+    if (location.hash !== "#newsletter") return;
+  
+    const timer = window.setTimeout(() => {
+      const newsletterSection = document.getElementById("newsletter");
+  
+      if (newsletterSection) {
+        newsletterSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 150);
+  
+    return () => window.clearTimeout(timer);
+  }, [location.hash]);
   
   const ui =
     lang === "en"
