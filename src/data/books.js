@@ -867,7 +867,7 @@ payLink: null,
 
   title: "Iubește-mă, dar nu mă poseda",
   seoTitle: "Iubește-mă, dar nu mă poseda | Mida Malena",
-  subtitle: "O carte despre apropiere, libertate, granițe afective și formele subtile ale posesiei.",
+  subtitle: "O carte despre apropiere, libertate, granițe afective și formele subtile ale posesiei.", seoDescription: "Iubește-mă, dar nu mă poseda este o carte de proză autobiografică ficționalizată, cu structură confesivă și narativă de călătorie, construită din episoade de drum și întâlniri-limită, în care protagonista își explorează granițele dintre dorință, libertate și posesie.",
   seoDescription: "Iubește-mă, dar nu mă poseda este o carte de proză autobiografică ficționalizată, cu structură confesivă și narativă de călătorie, construită din episoade de drum și întâlniri-limită, în care protagonista își explorează granițele dintre dorință, libertate și posesie.",
 
   author: "Mida Malena",
@@ -936,6 +936,99 @@ payLink: null,
     PDF: 45,
     EPUB: 45,
     PAPERBACK: 70,
+    AUDIOBOOK: 0
+  },
+
+  availability: {
+    PDF: true,
+    EPUB: true,
+    PAPERBACK: true,
+    AUDIOBOOK: false
+  },
+
+  payLink: null,
+},
+
+// ————————————————————————————————————————————————
+// 8. Maya, Bro și Hakuna Matata (RO)
+// ————————————————————————————————————————————————
+
+{
+  id: "maya-bro-si-hakuna-matata-ro",
+  slug: "maya-bro-si-hakuna-matata-ro",
+  addedAt: "2026-08-01T10:00:00Z",
+  lang: "RO",
+  currency: "RON",
+  hidden: false,
+
+  title: "Maya, Bro și Hakuna Matata",
+  seoTitle: "Maya, Bro și Hakuna Matata | Mida Malena",
+  subtitle: "O carte despre India, întâlniri improbabile, râs, drumuri care se schimbă din mers și o poveste scrisă chiar în timp ce se întâmpla.",
+  seoDescription: "Maya, Bro și Hakuna Matata este o carte de autoficțiune și călătorie, scrisă în timp real, pe parcursul unei călătorii prin India. Între personaje memorabile, dialoguri cu Bro, umor, introspecție și întâmplări care transformă fiecare zi într-un capitol, cartea urmărește felul în care o călătorie își poate alege singură drumul.",
+  isNew: true,
+
+  author: "Mida Malena",
+  genre: "Proză autobiografică ficționalizată · Proză confesivă contemporană",
+  location: "India",
+  tags: ["călătorie", "umor", "coincidențe", "libertate", "absurd", "autoficțiune", "personaje", "India"],
+  year: 2026,
+  publisher: "Midaway / Autor Mida Malena",
+
+  formatDetails: {
+    eBook: {
+      type: "pdf",
+      pages: 196,
+      isbn: "978-630-95396-7-0",
+    },
+    epub: {
+      pages: null,
+      isbn: "D978-630-95396-8-7",
+    },
+    paperback: {
+      pages: 184,
+      isbn: "978-630-95396-6-3",
+      dimensions: "13 x 20 cm",
+      weight: "240",
+    },
+  },
+
+  description: [
+  
+    "„Maya, Bro și Hakuna Matata” este o carte de autoficțiune și călătorie, scrisă în timp real, pe parcursul unei călătorii prin India, înainte ca amintirile să aibă timp să se așeze.",
+  
+    "Născută dintr-o zi absurdă în Goa, cartea urmărește o poveste care se construiește pe măsură ce este trăită, fără să știe încă unde se va termina.",
+  
+    "Între trenuri, hosteluri, orașe, vaci, ploi, personaje memorabile și dialoguri cu Bro, fiecare întâmplare capătă imediat formă literară.",
+  
+    "Nu este un ghid de călătorie și nici un jurnal clasic. Este o conversație între Maya, Bro și o realitate care pare să aibă propriul simț al umorului.",
+  
+    "Este pentru tine dacă:",
+  
+    "– iubești cărțile de călătorie care pun oamenii înaintea obiectivelor turistice",
+    "– te fascinează întâlnirile care schimbă direcția unei povești",
+    "– crezi că umorul și introspecția pot merge foarte bine împreună",
+    "– ai simțit vreodată că cele mai importante drumuri sunt cele pe care nu le-ai planificat",
+  
+    "Aceasta nu este doar o carte despre India. Este o carte despre felul în care realitatea devine literatură înainte să apuce să se transforme în amintire.",
+  
+    "Uneori pleci într-o călătorie ca să vezi o lume nouă. Alteori, fără să-ți dai seama, ajungi să privești altfel povestea pe care o trăiești."
+  
+  ],
+
+  coverUrl: "/assets/books/maya-bro-si-hakuna-matata-cover.png",
+  extraImage: "/assets/books/maya-bro-si-hakuna-matata-back.png",
+
+  files: {
+    PDF: "maya-bro-si-hakuna-matata.pdf",
+    EPUB: "maya-bro-si-hakuna-matata.epub",
+  },
+
+  sampleUrl: "/files/sample-maya-bro-si-hakuna-matata.pdf",
+
+  prices: {
+    PDF: 45,
+    EPUB: 45,
+    PAPERBACK: 60,
     AUDIOBOOK: 0
   },
 
