@@ -261,16 +261,16 @@ export default function EventCheckout() {
   <div
     style={{
       position: "absolute",
-      top: 14,
-      left: 14,
+      top: 8,
+left: 8,
       zIndex: 2,
-      padding: "7px 12px",
+      padding: "5px 10px",
       borderRadius: 999,
       background: COLORS.burgundy,
       color: "#fff",
-      fontSize: 12,
+      fontSize: 11,
       fontWeight: 800,
-      letterSpacing: ".4px",
+      letterSpacing: ".6px",
       boxShadow: "0 5px 14px rgba(0,0,0,.18)",
     }}
   >
@@ -331,7 +331,7 @@ export default function EventCheckout() {
                       fontSize: 14,
                     }}
                   >
-                    Stoc inițial: {initialStock} exemplare
+                   Disponibil la stand
                   </div>
 
                   <div
