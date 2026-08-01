@@ -155,6 +155,25 @@ export default async function handler(req, res) {
 
   console.log("📬 Event:", event.type);
 
+  // ───────────────── EVENT CHECKOUT GUARD ─────────────────
+// Comenzile de târg sunt procesate exclusiv de webhook-ul separat.
+const eventChannel = String(
+  event?.data?.object?.metadata?.channel || ""
+).toLowerCase();
+
+if (eventChannel === "event") {
+  console.log(
+    "🎪 Event order ignored by standard webhook:",
+    event.type,
+    event?.data?.object?.id
+  );
+
+  return res.json({
+    received: true,
+    skipped: "event_order",
+  });
+}
+
     // ───────────────── CHECKOUT COMPLETED ─────────────────
     if (event.type === "checkout.session.completed") {
       // Idempotency guard – oprește dublurile Stripe
