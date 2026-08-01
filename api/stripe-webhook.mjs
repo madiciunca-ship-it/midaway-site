@@ -2,8 +2,10 @@
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
-import { appendOrder, orderExists } from "./_orders-store.mjs";
-
+import {
+  appendOrder,
+  orderExists,
+} from "../src/server/_orders-store.mjs";
 // ───────────────── EMAIL BUILDER RO+EN ─────────────────
 function buildEmailHTML({
   orderId,

@@ -6,7 +6,7 @@ import crypto from "crypto";
 import {
   appendEventOrder,
   eventOrderExists,
-} from "./_event-orders-store.mjs";
+} from "../src/server/_event-orders-store.mjs";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
