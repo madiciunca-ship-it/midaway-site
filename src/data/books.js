@@ -1028,7 +1028,7 @@ payLink: null,
   prices: {
     PDF: 45,
     EPUB: 45,
-    PAPERBACK: 60,
+    PAPERBACK: 70,
     AUDIOBOOK: 0
   },
 
