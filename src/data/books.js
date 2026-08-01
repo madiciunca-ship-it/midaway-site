@@ -749,8 +749,8 @@ payLink: null,
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/zile-si-nopti-de-vietnam-2.pdf",
-      EPUB: "/files/zile-si-nopti-de-vietnam-2.epub",
+      PDF:  "zile-si-nopti-de-vietnam-2.pdf",
+      EPUB: "zile-si-nopti-de-vietnam-2.epub",
     },
 
     description: [
@@ -830,8 +830,8 @@ payLink: null,
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     files: {
-      PDF:  "/files/libertate-cu-escala-in-asia-thailanda-1-ro.pdf",
-      EPUB: "/files/libertate-cu-escala-in-asia-thailanda-1-ro.epub",
+      PDF:  "libertate-cu-escala-in-asia-thailanda-1-ro.pdf",
+      EPUB: "libertate-cu-escala-in-asia-thailanda-1-ro.epub",
     },
 
     description: [
