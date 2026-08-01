@@ -1,5 +1,5 @@
 // /api/admin/v2.mjs
-import { readOrders } from "../_orders-store.mjs";
+import { readOrders } from "../../src/server/_orders-store.mjs";
 
 export default async function handler(req, res) {
   try {
