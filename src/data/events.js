@@ -21,53 +21,53 @@ export const EVENTS = [
       invoiceMessage:
         "Factura fiscală va fi trimisă ulterior la adresa de email folosită pentru comandă, după încheierea evenimentului.",
   
-      books: [
-        {
-          bookId: "o-zi-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "vietnam-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "indonezia-1-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "indonezia-2-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "focuri-care-nu-ating-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "vietnam-2-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "thailanda-1-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "iubeste-ma-dar-nu-ma-poseda-ro",
-          initialStock: 30,
-          visible: true,
-        },
-        {
-          bookId: "maya-bro-si-hakuna-matata-ro",
-          initialStock: 80,
-          visible: true,
-        },
-      ],
+        books: [
+          {
+            bookId: "maya-bro-si-hakuna-matata-ro",
+            initialStock: 80,
+            visible: true,
+          },
+          {
+            bookId: "iubeste-ma-dar-nu-ma-poseda-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "thailanda-1-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "vietnam-2-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "focuri-care-nu-ating-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "indonezia-2-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "indonezia-1-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "vietnam-ro",
+            initialStock: 30,
+            visible: true,
+          },
+          {
+            bookId: "o-zi-ro",
+            initialStock: 30,
+            visible: true,
+          },
+        ]
     },
   ];
   

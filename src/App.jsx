@@ -1,7 +1,11 @@
 // src/App.jsx
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AdminOrders from "./pages/AdminOrders";
@@ -30,6 +34,7 @@ import Donate from "./pages/Donate";
 import Sponsorizari from "./pages/Sponsorizari";
 import ThanksNewsletter from "./pages/ThanksNewsletter";
 import Events from "./pages/Events.jsx";
+import EventCheckout from "./pages/EventCheckout.jsx";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
@@ -45,14 +50,18 @@ import { SITE_FLAGS } from "./config";
 import ProtectedFlagRoute from "./components/ProtectedFlagRoute";
 
 export default function App() {
+  const location = useLocation();
+
+  const isStandaloneEventPage =
+    location.pathname.startsWith("/event/");
   return (
     <>
       {/* golește coșul automat când ajungem pe /thanks */}
       <ClearCartOnThanks />
 
-      <Header />
+      {!isStandaloneEventPage && <Header />}
 
-      <main className="container">
+      <main className={isStandaloneEventPage ? undefined : "container"}>
         <Routes>
           {/* Acasă */}
           <Route path="/" element={<Home />} />
@@ -140,12 +149,17 @@ export default function App() {
           <Route path="/despre" element={<About />} />
           <Route path="/contact" element={<Contact />} />
 
+          {/* Checkout special pentru târguri și evenimente */}
+<Route
+  path="/event/:slug"
+  element={<EventCheckout />}
+/>
           {/* 404 */}
           <Route path="*" element={<div style={{ padding: 24 }}>Pagina nu există.</div>} />
         </Routes>
       </main>
 
-      <Footer />
+      {!isStandaloneEventPage && <Footer />}
     </>
   );
 }
