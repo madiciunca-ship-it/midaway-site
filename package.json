@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
@@ -14,7 +14,6 @@
     "preview": "vite preview --host 0.0.0.0 --port 4173"
   },
   "dependencies": {
-    "@upstash/redis": "^1.38.1",
     "@vercel/blob": "^0.23.4",
     "nodemailer": "^6.9.8",
     "react": "^18.3.1",
