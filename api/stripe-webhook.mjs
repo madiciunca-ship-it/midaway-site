@@ -154,7 +154,7 @@ export default async function handler(req, res) {
   }
 
   console.log("📬 Event:", event.type);
-
+  
   // ───────────────── EVENT CHECKOUT GUARD ─────────────────
 // Comenzile de târg sunt procesate exclusiv de webhook-ul separat.
 const eventChannel = String(
