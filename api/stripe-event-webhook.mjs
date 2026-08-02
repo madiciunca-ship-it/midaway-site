@@ -8,7 +8,9 @@ import {
   eventOrderExists,
 } from "../src/server/_event-orders-store.mjs";
 
-const stripe = new Stripe(process.env.STRIPE_EVENT_SECRET_KEY || "");
+const stripe = new Stripe(
+  process.env.STRIPE_SECRET_KEY || ""
+);
 
 const SITE = (process.env.SITE_URL || "https://midaway.ro").replace(/\/+$/, "");
 

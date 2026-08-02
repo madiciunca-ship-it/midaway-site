@@ -4,7 +4,7 @@ import { BOOKS } from "../src/data/books.js";
 import { EVENTS, findEventBySlug } from "../src/data/events.js";
 
 const STRIPE_KEY =
-  process.env.STRIPE_EVENT_SECRET_KEY || "";
+  process.env.STRIPE_SECRET_KEY || "";
 const SITE = (process.env.SITE_URL || "https://midaway.ro").replace(/\/+$/, "");
 
 const stripe = STRIPE_KEY ? new Stripe(STRIPE_KEY) : null;
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
   try {
     if (!stripe) {
       return sendJson(res, 500, {
-        error: "Missing STRIPE_EVENT_SECRET_KEY",
+        error: "Missing STRIPE_SECRET_KEY",
       });
     }
 
