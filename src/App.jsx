@@ -35,6 +35,7 @@ import Sponsorizari from "./pages/Sponsorizari";
 import ThanksNewsletter from "./pages/ThanksNewsletter";
 import Events from "./pages/Events.jsx";
 import EventCheckout from "./pages/EventCheckout.jsx";
+import EventConfirmation from "./pages/EventConfirmation.jsx";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
@@ -150,6 +151,10 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
 
           {/* Checkout special pentru târguri și evenimente */}
+          <Route
+  path="/event/confirmare"
+  element={<EventConfirmation />}
+/>
 <Route
   path="/event/:slug"
   element={<EventCheckout />}
