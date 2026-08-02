@@ -58,6 +58,9 @@ export default function EventCheckout() {
   }, [event]);
 
   const [quantities, setQuantities] = useState({});
+  const [step, setStep] = useState("books");
+const [loading, setLoading] = useState(false);
+const [checkoutError, setCheckoutError] = useState("");
 
   useEffect(() => {
     // Pagina nu trebuie indexată de Google.
@@ -162,6 +165,56 @@ export default function EventCheckout() {
   );
 
   const totalAmount = totalQuantity * Number(event.unitPrice || 0);
+  const selectedItems = eventBooks
+  .map(({ bookId, book }) => ({
+    bookId,
+    title: book.title,
+    quantity: Number(quantities[bookId] || 0),
+  }))
+  .filter((item) => item.quantity > 0);
+
+const startStripeCheckout = async () => {
+  if (selectedItems.length === 0 || loading) return;
+
+  setLoading(true);
+  setCheckoutError("");
+
+  try {
+    const response = await fetch("/api/create-event-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId: event.id,
+        items: selectedItems.map(({ bookId, quantity }) => ({
+          bookId,
+          quantity,
+        })),
+      }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        data?.error || "Nu am putut iniția plata. Încearcă din nou."
+      );
+    }
+
+    if (!data?.url) {
+      throw new Error("Stripe nu a returnat adresa paginii de plată.");
+    }
+
+    window.location.assign(data.url);
+  } catch (error) {
+    setCheckoutError(
+      error?.message || "A apărut o eroare la inițierea plății."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div
@@ -230,6 +283,7 @@ export default function EventCheckout() {
           )}
         </header>
 
+        {step === "books" && (
         <div
           style={{
             display: "grid",
@@ -407,7 +461,206 @@ left: 8,
             );
           })}
         </div>
+        )}
 
+{step === "review" && (
+  <section
+    style={{
+      maxWidth: 760,
+      margin: "0 auto",
+      background: "#fff",
+      border: `1px solid ${COLORS.line}`,
+      borderRadius: 22,
+      padding: "clamp(20px, 4vw, 34px)",
+      boxShadow: "0 12px 34px rgba(0,0,0,.08)",
+    }}
+  >
+    <h2
+      className="font-cormorant"
+      style={{
+        margin: "0 0 8px",
+        fontSize: 34,
+        textAlign: "center",
+      }}
+    >
+      Confirmă comanda
+    </h2>
+
+    <p
+      style={{
+        margin: "0 0 24px",
+        textAlign: "center",
+        color: COLORS.muted,
+        lineHeight: 1.6,
+      }}
+    >
+      Datele pentru facturare și plata vor fi completate în pagina
+      securizată Stripe.
+    </p>
+
+    <div style={{ display: "grid", gap: 12 }}>
+      {selectedItems.map((item) => {
+        const lineTotal =
+          item.quantity * Number(event.unitPrice || 0);
+
+        return (
+          <div
+            key={item.bookId}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 18,
+              padding: "14px 0",
+              borderBottom: `1px solid ${COLORS.line}`,
+            }}
+          >
+            <div>
+              <strong style={{ lineHeight: 1.4 }}>
+                {item.title}
+              </strong>
+
+              <div
+                style={{
+                  marginTop: 4,
+                  color: COLORS.muted,
+                  fontSize: 14,
+                }}
+              >
+                {item.quantity} × {event.unitPrice} {event.currency}
+              </div>
+            </div>
+
+            <strong style={{ whiteSpace: "nowrap" }}>
+              {lineTotal} {event.currency}
+            </strong>
+          </div>
+        );
+      })}
+    </div>
+
+    <div
+      style={{
+        marginTop: 22,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "end",
+        gap: 16,
+        flexWrap: "wrap",
+      }}
+    >
+      <div>
+        <div style={{ color: COLORS.muted }}>
+          Total cărți: {totalQuantity}
+        </div>
+
+        <div style={{ fontSize: 32, fontWeight: 800 }}>
+          {totalAmount} {event.currency}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            setCheckoutError("");
+            setStep("books");
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+          }}
+          disabled={loading}
+          style={{
+            padding: "13px 18px",
+            borderRadius: 14,
+            border: `1px solid ${COLORS.line}`,
+            background: "#fff",
+            color: COLORS.text,
+            fontWeight: 800,
+            cursor: loading ? "not-allowed" : "pointer",
+          }}
+        >
+          ← Înapoi la cărți
+        </button>
+
+        <button
+          type="button"
+          onClick={startStripeCheckout}
+          disabled={loading}
+          style={{
+            padding: "13px 20px",
+            borderRadius: 14,
+            border: "none",
+            background: loading
+              ? "#b9b3b0"
+              : COLORS.burgundy,
+            color: "#fff",
+            fontWeight: 800,
+            cursor: loading ? "wait" : "pointer",
+          }}
+        >
+          {loading
+            ? "Se pregătește plata…"
+            : "Continuă la plata securizată"}
+        </button>
+      </div>
+    </div>
+
+    {checkoutError && (
+      <div
+        role="alert"
+        style={{
+          marginTop: 18,
+          padding: "12px 14px",
+          borderRadius: 12,
+          background: "#fff0f0",
+          border: "1px solid #e4b5b5",
+          color: "#8b2c34",
+          lineHeight: 1.5,
+        }}
+      >
+        {checkoutError}
+      </div>
+    )}
+
+    <div
+      style={{
+        marginTop: 22,
+        padding: 16,
+        borderRadius: 14,
+        background: COLORS.cream,
+        color: COLORS.muted,
+        lineHeight: 1.65,
+        fontSize: 14,
+      }}
+    >
+      <div
+  style={{
+    marginBottom: 10,
+    color: COLORS.text,
+    fontWeight: 800,
+    fontSize: 16,
+  }}
+>
+  Ridicare
+</div>
+
+<div>✓ Cărțile se ridică direct de la standul Midaway.</div>
+<div>✓ Nu se percepe taxă de livrare.</div>
+<div>✓ Prezintă confirmarea plății primită pe email.</div>
+<div>✓ Factura fiscală va fi transmisă ulterior pe email.</div>
+    </div>
+  </section>
+)}
+
+{step === "books" && (
         <section
           style={{
             position: "sticky",
@@ -438,6 +691,15 @@ left: 8,
           <button
             type="button"
             disabled={totalQuantity === 0}
+            onClick={() => {
+              setCheckoutError("");
+              setStep("review");
+              window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              });
+            }}
             style={{
               minWidth: 220,
               padding: "14px 20px",
@@ -455,19 +717,9 @@ left: 8,
             Continuă comanda
           </button>
         </section>
+        )}
 
-        <div
-          style={{
-            marginTop: 20,
-            textAlign: "center",
-            color: COLORS.muted,
-            lineHeight: 1.6,
-            fontSize: 14,
-          }}
-        >
-          <p style={{ margin: "0 0 6px" }}>{event.pickupMessage}</p>
-          <p style={{ margin: 0 }}>{event.invoiceMessage}</p>
-        </div>
+        
       </div>
     </div>
   );

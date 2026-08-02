@@ -3,10 +3,11 @@ import Stripe from "stripe";
 import { BOOKS } from "../src/data/books.js";
 import { EVENTS, findEventBySlug } from "../src/data/events.js";
 
-const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
+const STRIPE_KEY =
+  process.env.STRIPE_EVENT_SECRET_KEY || "";
 const SITE = (process.env.SITE_URL || "https://midaway.ro").replace(/\/+$/, "");
 
-const stripe = new Stripe(STRIPE_KEY);
+const stripe = STRIPE_KEY ? new Stripe(STRIPE_KEY) : null;
 
 const BOOK_MAP = new Map(
   BOOKS.map((book) => [String(book.id), book])
@@ -71,9 +72,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (!STRIPE_KEY) {
+    if (!stripe) {
       return sendJson(res, 500, {
-        error: "Missing STRIPE_SECRET_KEY",
+        error: "Missing STRIPE_EVENT_SECRET_KEY",
       });
     }
 
