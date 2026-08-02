@@ -1,5 +1,6 @@
 // /api/admin/v2.mjs
 import { readOrders } from "../../src/server/_orders-store.mjs";
+import { readEventOrders } from "../../src/server/_event-orders-store.mjs";
 
 export default async function handler(req, res) {
   try {
@@ -13,10 +14,12 @@ export default async function handler(req, res) {
     if (!token || !ADMIN || token !== ADMIN) {
       return res.status(401).send("Unauthorized");
     }
+    const source =
+  String(req.query?.source || "online").toLowerCase() === "event"
+    ? "event"
+    : "online";
 
     // Citește comenzile (array sigur)
-    const raw = await readOrders();
-    const list = Array.isArray(raw) ? raw : [];
 
     // Sort desc by createdAt
     const sorted = [...list].sort((a, b) => {
@@ -32,7 +35,10 @@ export default async function handler(req, res) {
 
     const BASE =
       (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
-    const dataUrl = `${BASE}/api/admin/orders?token=${encodeURIComponent(token)}`;
+      const dataUrl =
+      `${BASE}/api/admin/orders` +
+      `?token=${encodeURIComponent(token)}` +
+      `&source=${encodeURIComponent(source)}`;
 
     const html = `<!doctype html>
 <html lang="ro">
@@ -88,10 +94,22 @@ export default async function handler(req, res) {
 </style>
 </head>
 <body>
-  <h1>📦 Comenzi Midaway <span class="muted" id="count"></span></h1>
+<h1>
+  ${source === "event" ? "🎪 Comenzi Gaudeamus" : "📦 Comenzi Midaway"}
+  <span class="muted" id="count"></span>
+</h1>
 
   <div class="bar">
     <input id="token" value="${token}" placeholder="token admin" />
+    <select id="source" onchange="changeSource()">
+  <option value="online" ${source === "online" ? "selected" : ""}>
+    Comenzi online
+  </option>
+  <option value="event" ${source === "event" ? "selected" : ""}>
+    Comenzi Gaudeamus
+  </option>
+</select>
+    
     <input id="q" placeholder="Caută #comandă / email / nume" />
     <select id="status"><option value="">Status (toate)</option></select>
     <select id="currency"><option value="">Monedă (toate)</option></select>
@@ -170,6 +188,10 @@ async function load(force=false){
   if(!t){ document.getElementById('root').innerHTML='<p style="color:#b42318">Introdu token.</p>'; return; }
   const url = new URL('${BASE}/api/admin/orders');
   url.searchParams.set('token', t);
+  url.searchParams.set(
+    'source',
+    document.getElementById('source').value
+  );
   if (force) url.searchParams.set('_', Date.now()); // cache buster
   document.getElementById('src').textContent = url.toString();
 
@@ -320,7 +342,14 @@ function render(){
       <tbody>\${rows}</tbody>
     </table>\`;
 }
+function changeSource(){
+  const selected = document.getElementById('source').value;
 
+  const url = new URL(window.location.href);
+  url.searchParams.set('source', selected);
+
+  window.location.href = url.toString();
+}
 function reload(){ load(true); }
 function copyEmail(email){ try{ navigator.clipboard.writeText(email||""); }catch{} }
 
