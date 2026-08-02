@@ -138,6 +138,7 @@ export default async function handler(req, res) {
   <div id="root">Încărcare…</div>
 
 <script>
+const SOURCE = '${source}';
 const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
 const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
 const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
@@ -283,6 +284,18 @@ function render(){
     const email = o.email||''; const name=o.name||''; const orderNo=o.orderNo||'';
     const total = fmt(o.amount||0, o.currency||'');
     const status = (o.status||'paid').toLowerCase();
+    const pickupStatus =
+  String(o.pickupStatus || "pending").toLowerCase();
+
+const pickupLabel =
+  pickupStatus === "collected"
+    ? "PREDATĂ"
+    : "NEPREDATĂ";
+
+const pickupClass =
+  pickupStatus === "collected"
+    ? "green"
+    : "yellow";
     const fmts = sumFormats(o.items);
     const type = typeFromItems(o.items);
     const country = (o.country||"").toUpperCase();
@@ -312,9 +325,37 @@ function render(){
         <td class="formats">\${fmts}</td>
         <td class="right"><strong>\${total}</strong><br/><span class="typeChip \${type.cls}">\${type.label}</span></td>
         <td>
-          <div class="chip status \${status}">\${status}</div>
-          \${orderNo ? \`<div class="muted" style="font-size:12px">#\${orderNo}</div>\` : '' }
-        </td>
+  <div class="chip status \${status}">
+    \${status}
+  </div>
+
+  \${SOURCE === "event"
+    ? \`
+      <div style="margin-top:7px">
+        <span class="pill \${pickupClass}">
+          \${pickupLabel}
+        </span>
+      </div>
+
+      \${o.pickedUpAt
+        ? \`
+          <div class="muted" style="font-size:11px;margin-top:5px">
+            \${dfmt(o.pickedUpAt)}
+          </div>
+        \`
+        : ''
+      }
+    \`
+    : ''
+  }
+
+  \${orderNo
+    ? \`<div class="muted" style="font-size:12px;margin-top:5px">
+         #\${orderNo}
+       </div>\`
+    : ''
+  }
+</td>
       </tr>\`;
   }).join('');
 
