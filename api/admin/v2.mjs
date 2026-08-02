@@ -1,6 +1,5 @@
 // /api/admin/v2.mjs
-import { readOrders } from "../../src/server/_orders-store.mjs";
-import { readEventOrders } from "../../src/server/_event-orders-store.mjs";
+
 
 export default async function handler(req, res) {
   try {
@@ -9,24 +8,19 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Method Not Allowed" });
     }
 
-    const token = (req.query?.token || "").trim();
-    const ADMIN = (process.env.ADMIN_DASH_TOKEN || "").trim();
+    const token = String(req.query?.token || "").trim();
+    const ADMIN = String(process.env.ADMIN_DASH_TOKEN || "").trim();
+
     if (!token || !ADMIN || token !== ADMIN) {
       return res.status(401).send("Unauthorized");
     }
+
     const source =
-  String(req.query?.source || "online").toLowerCase() === "event"
-    ? "event"
-    : "online";
+      String(req.query?.source || "online").toLowerCase() === "event"
+        ? "event"
+        : "online";
 
-    // Citește comenzile (array sigur)
-
-    // Sort desc by createdAt
-    const sorted = [...list].sort((a, b) => {
-      const aa = typeof a?.createdAt === "number" ? a.createdAt : 0;
-      const bb = typeof b?.createdAt === "number" ? b.createdAt : 0;
-      return bb - aa;
-    });
+    
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
@@ -34,7 +28,7 @@ export default async function handler(req, res) {
     res.setHeader("Expires", "0");
 
     const BASE =
-      (process.env.SITE_URL || "https://midaway.vercel.app").replace(/\/$/, "");
+      (process.env.SITE_URL || "https://midaway.ro").replace(/\/$/, "");
       const dataUrl =
       `${BASE}/api/admin/orders` +
       `?token=${encodeURIComponent(token)}` +

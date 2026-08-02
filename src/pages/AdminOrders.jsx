@@ -38,28 +38,53 @@ export default function AdminOrders() {
   const [currency, setCurrency] = useState("all");
   const [format, setFormat] = useState("all");
 
-  async function fetchOrders(tok) {
+  async function fetchOrders(tok, selectedSource = source) {
     try {
       setLoading(true);
       setErr("");
-      const res = await fetch(`/api/admin/orders?token=${encodeURIComponent(tok)}`, {
-        headers: { "cache-control": "no-store" },
+  
+      const params = new URLSearchParams({
+        token: tok,
+        source: selectedSource,
       });
-      if (!res.ok) throw new Error("Unauthorized sau eroare server");
+  
+      const res = await fetch(
+        `/api/admin/orders?${params.toString()}`,
+        {
+          headers: {
+            "cache-control": "no-store",
+          },
+        }
+      );
+  
+      if (!res.ok) {
+        throw new Error(
+          "Unauthorized sau eroare server"
+        );
+      }
+  
       const data = await res.json();
-      // API poate întoarce [] sau {orders: []}; suportăm ambele.
-      const list = Array.isArray(data) ? data : Array.isArray(data?.orders) ? data.orders : [];
+  
+      const list = Array.isArray(data)
+        ? data
+        : Array.isArray(data?.orders)
+        ? data.orders
+        : [];
+  
       setOrders(list);
-    } catch (e) {
-      setErr(e.message || "Eroare");
+    } catch (error) {
+      setErr(error.message || "Eroare");
     } finally {
       setLoading(false);
     }
   }
+    
 
   useEffect(() => {
-    if (token) fetchOrders(token);
-  }, [token]);
+    if (token) {
+      fetchOrders(token, source);
+    }
+  }, [token, source]);
 
   // seturi pentru dropdown-uri (din date)
   const years = useMemo(() => {
@@ -242,7 +267,9 @@ export default function AdminOrders() {
   return (
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <h1 style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-        📦 Comenzi Midaway
+      {source === "event"
+  ? "🎪 Comenzi Gaudeamus"
+  : "📦 Comenzi online"}
         <span style={{ fontSize: 14, color: "#666" }}>
           • Total: <strong>{filtered.length}</strong>
         </span>
@@ -261,7 +288,34 @@ export default function AdminOrders() {
         <>
           {/* acțiuni / filtre */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-            <button onClick={() => fetchOrders(token)} style={btn}>
+          <button
+  onClick={() => fetchOrders(token, source)}
+  style={btn}
+>
+            <select
+  value={source}
+  onChange={(e) => {
+    setOrders([]);
+    setSource(e.target.value);
+  }}
+  style={{
+    ...fieldSel,
+    fontWeight: 700,
+    color:
+      source === "event"
+        ? "#8b2c34"
+        : "#2a6f75",
+  }}
+>
+  <option value="online">
+    Comenzi online
+  </option>
+
+  <option value="event">
+    Comenzi Gaudeamus
+  </option>
+</select>
+              
               Reîncarcă
             </button>
             <button onClick={asCSV} style={btn}>
@@ -504,6 +558,46 @@ export default function AdminOrders() {
                       >
                         {o.status || "—"}
                       </span>
+                      {source === "event" && (
+  <div style={{ marginTop: 6 }}>
+    <span
+      style={{
+        display: "inline-block",
+        padding: "3px 8px",
+        borderRadius: 999,
+        background:
+          o.pickupStatus === "collected"
+            ? "#e6f4ea"
+            : "#fff4e5",
+        color:
+          o.pickupStatus === "collected"
+            ? "#1e7f4c"
+            : "#9a5b13",
+        fontSize: 11,
+        fontWeight: 800,
+        textTransform: "uppercase",
+      }}
+    >
+      {o.pickupStatus === "collected"
+        ? "Predată"
+        : "Nepredată"}
+    </span>
+
+    {o.pickedUpAt && (
+      <div
+        style={{
+          marginTop: 4,
+          color: "#777",
+          fontSize: 11,
+        }}
+      >
+        {new Date(
+          Number(o.pickedUpAt)
+        ).toLocaleString("ro-RO")}
+      </div>
+    )}
+  </div>
+)}
                     </div>
 
                     {/* Items */}
@@ -535,11 +629,19 @@ export default function AdminOrders() {
                   {/* extra info: Autor / Canal / Tag-uri dacă există */}
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
                     <span style={pillGrey}>Țară: {(o.country || "—").toUpperCase()}</span>
-                    {o.hasDownloads ? (
-                      <span style={pillGreen}>are eBook-uri</span>
-                    ) : (
-                      <span style={pillYellow}>probabil conține Paperback</span>
-                    )}
+                    {source === "event" ? (
+  <span style={pillYellow}>
+    Ridicare la stand
+  </span>
+) : o.hasDownloads ? (
+  <span style={pillGreen}>
+    are eBook-uri
+  </span>
+) : (
+  <span style={pillYellow}>
+    probabil conține Paperback
+  </span>
+)}
                     {hasCourierFee && <span style={pillBlue}>Taxă curier</span>}
                     <span style={pillGrey}>Autor(i): {o.authors?.join(", ") || "—"}</span>
                     <span style={pillGrey}>Canal: {o.channel || "Stripe"}</span>
