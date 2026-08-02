@@ -7,7 +7,7 @@ export const EVENTS = [
       title: "Gaudeamus Sibiu 2026",
   
       // Pagina poate fi construită și testată, dar nu este încă publică.
-      active: false,
+      active: true,
   
       currency: "RON",
       unitPrice: 55,
