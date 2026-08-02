@@ -977,7 +977,7 @@ payLink: null,
   formatDetails: {
     eBook: {
       type: "pdf",
-      pages: 150,
+      pages: 145,
       isbn: "978-630-95396-7-0",
     },
     epub: {
