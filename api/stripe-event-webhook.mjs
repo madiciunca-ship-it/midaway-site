@@ -289,12 +289,34 @@ export default async function handler(req, res) {
       );
     }
 
+    
     const customer = session.customer_details || {};
 
-    const email = customer.email || session.customer_email || "";
-    const name = customer.name || "Client";
-    const phone = customer.phone || "";
-    const address = customer.address || {};
+const shippingDetails =
+  session.shipping_details ||
+  session.collected_information?.shipping_details ||
+  {};
+
+const email =
+  customer.email ||
+  session.customer_email ||
+  "";
+
+const name =
+  shippingDetails.name ||
+  customer.name ||
+  "Client";
+
+const phone =
+  customer.phone ||
+  shippingDetails.phone ||
+  "";
+
+const address =
+  shippingDetails.address ||
+  customer.address ||
+  {};
+
 
     if (!email || !name || !phone) {
       console.warn("⚠️ Event order missing customer data:", {
