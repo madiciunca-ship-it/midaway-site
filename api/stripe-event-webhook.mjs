@@ -1,7 +1,7 @@
 // /api/stripe-event-webhook.mjs
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
-import crypto from "crypto";
+
 
 import {
   appendEventOrder,
@@ -42,16 +42,9 @@ function genEventOrderNo(sessionId) {
   return `GAU-${year}${month}${day}-${tail}`;
 }
 
-function createPickupToken() {
-  return crypto.randomBytes(32).toString("base64url");
-}
 
-function hashPickupToken(token) {
-  return crypto
-    .createHash("sha256")
-    .update(String(token || ""))
-    .digest("hex");
-}
+
+
 
 function formatAddress(address = {}) {
   return [
@@ -80,7 +73,7 @@ function buildClientEmail({
   items,
   amount,
   currency,
-  pickupUrl,
+  eventUrl,
 }) {
   const rows = items
     .map(
@@ -143,33 +136,42 @@ function buildClientEmail({
         </p>
 
         <div style="
-          margin:20px 0;
-          padding:16px;
-          border-radius:12px;
-          background:#e8f8f5;
-          border:1px solid #7dc9bf;
-        ">
-          Prezintă confirmarea comenzii la standul Midaway pentru
-          ridicarea cărților.
-        </div>
+  margin:20px 0;
+  padding:16px;
+  border-radius:12px;
+  background:#e8f8f5;
+  border:1px solid #7dc9bf;
+">
+  <strong>Ridicare la stand</strong>
 
-        <p>
-          <a
-            href="${pickupUrl}"
-            style="
-              display:inline-block;
-              padding:12px 18px;
-              border-radius:10px;
-              background:#2a9d8f;
-              color:#fff;
-              text-decoration:none;
-              font-weight:700;
-            "
-          >
-            Deschide confirmarea pentru ridicare
-          </a>
-        </p>
+  <p style="margin:8px 0 0">
+    Prezintă acest email sau numărul comenzii
+    <strong>${escapeHtml(orderNo)}</strong>
+    la standul Midaway din cadrul Gaudeamus Sibiu.
+  </p>
 
+  <p style="margin:8px 0 0">
+    După predarea cărților vei primi automat un email care
+    confirmă finalizarea comenzii.
+  </p>
+</div>
+
+<p>
+  <a
+    href="${eventUrl}"
+    style="
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:10px;
+      background:#2a9d8f;
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+    "
+  >
+    Vezi cărțile disponibile la Gaudeamus
+  </a>
+</p>
         <p style="color:#666;font-size:14px">
           Factura fiscală va fi emisă ulterior și trimisă la adresa
           de email folosită pentru această comandă.
@@ -342,12 +344,13 @@ export default async function handler(req, res) {
 
     const orderNo = genEventOrderNo(session.id);
 
-    const pickupToken = createPickupToken();
-    const pickupTokenHash = hashPickupToken(pickupToken);
+    const eventSlug =
+  session.metadata?.eventSlug ||
+  session.metadata?.eventId ||
+  "gaudeamus-sibiu-2026";
 
-    const pickupUrl =
-      `${SITE}/ridicare-comanda` +
-      `?token=${encodeURIComponent(pickupToken)}`;
+const eventUrl =
+  `${SITE}/event/${encodeURIComponent(eventSlug)}`;
 
     const order = {
       id: session.id,
@@ -403,9 +406,6 @@ export default async function handler(req, res) {
       amount,
       currency,
 
-      pickupToken,
-      pickupTokenHash,
-
       stripePaymentIntent:
         typeof session.payment_intent === "string"
           ? session.payment_intent
@@ -434,7 +434,7 @@ export default async function handler(req, res) {
         items,
         amount,
         currency,
-        pickupUrl,
+        eventUrl,
       });
 
       const itemsSummary = items
@@ -478,7 +478,7 @@ export default async function handler(req, res) {
           "Cărți:",
           itemsSummary || "-",
           "",
-          `Confirmare ridicare: ${pickupUrl}`,
+          `Pagina Gaudeamus: ${eventUrl}`,
           "",
           "Factura: de emis ulterior manual.",
         ].join("\n"),
