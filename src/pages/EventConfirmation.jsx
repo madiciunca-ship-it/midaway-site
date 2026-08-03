@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useEffect } from "react";
 
 const COLORS = {
   burgundy: "#8b2c34",
@@ -11,10 +10,7 @@ const COLORS = {
 };
 
 export default function EventConfirmation() {
-  const [searchParams] = useSearchParams();
-  const sessionId = searchParams.get("session_id") || "";
-
-  const [copied, setCopied] = useState(false);
+  
 
   useEffect(() => {
     window.scrollTo({
@@ -26,18 +22,7 @@ export default function EventConfirmation() {
     document.title = "Plată confirmată · Midaway";
   }, []);
 
-  const copyReference = async () => {
-    try {
-      await navigator.clipboard.writeText(sessionId);
-      setCopied(true);
-
-      window.setTimeout(() => {
-        setCopied(false);
-      }, 1800);
-    } catch {
-      setCopied(false);
-    }
-  };
+  
 
   return (
     <div
@@ -103,18 +88,17 @@ export default function EventConfirmation() {
         </h1>
 
         <p
-          style={{
-            margin: "18px auto 0",
-            maxWidth: 540,
-            color: COLORS.muted,
-            fontSize: 17,
-            lineHeight: 1.7,
-          }}
-        >
-          Îți mulțumim pentru comandă. Confirmarea și codul pentru
-          ridicarea cărților de la standul Midaway vor fi trimise pe
-          adresa de email folosită la plată.
-        </p>
+  style={{
+    margin: "18px auto 0",
+    maxWidth: 540,
+    color: COLORS.muted,
+    fontSize: 17,
+    lineHeight: 1.7,
+  }}
+>
+  Îți mulțumim pentru comandă. Confirmarea plății și numărul
+  comenzii vor fi trimise la adresa de email folosită la plată.
+</p>
 
         <div
           style={{
@@ -129,65 +113,28 @@ export default function EventConfirmation() {
         >
           <strong>Ce urmează</strong>
 
-          <div style={{ marginTop: 10 }}>
-            ✓ Verifică emailul de confirmare.
-          </div>
+<div style={{ marginTop: 10 }}>
+  ✓ Verifică emailul de confirmare.
+</div>
 
-          <div>
-            ✓ Prezintă emailul sau codul QR la standul Midaway.
-          </div>
+<div>
+  ✓ La stand, prezintă emailul sau numărul comenzii.
+</div>
 
-          <div>
-            ✓ Cărțile se ridică direct de la stand, fără taxă de
-            livrare.
-          </div>
+<div>
+  ✓ Cărțile se ridică direct de la stand, fără taxă de livrare.
+</div>
 
-          <div>
-            ✓ Factura fiscală va fi transmisă ulterior pe email.
-          </div>
+<div>
+  ✓ După predarea cărților vei primi un email de confirmare.
+</div>
+
+<div>
+  ✓ Factura fiscală va fi transmisă ulterior pe email.
+</div>
         </div>
 
-        {sessionId && (
-          <div
-            style={{
-              marginTop: 22,
-              color: COLORS.muted,
-              fontSize: 13,
-            }}
-          >
-            <div>Referință plată:</div>
-
-            <code
-              style={{
-                display: "block",
-                marginTop: 6,
-                padding: "9px 10px",
-                background: "#f7f4f2",
-                borderRadius: 10,
-                overflowWrap: "anywhere",
-              }}
-            >
-              {sessionId}
-            </code>
-
-            <button
-              type="button"
-              onClick={copyReference}
-              style={{
-                marginTop: 10,
-                padding: "9px 14px",
-                borderRadius: 999,
-                border: `1px solid ${COLORS.line}`,
-                background: "#fff",
-                color: COLORS.text,
-                cursor: "pointer",
-                fontWeight: 700,
-              }}
-            >
-              {copied ? "Copiat ✓" : "Copiază referința"}
-            </button>
-          </div>
-        )}
+        
 
         <p
           style={{
