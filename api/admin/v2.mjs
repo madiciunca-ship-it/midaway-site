@@ -345,12 +345,50 @@ const pickupClass =
         \`
         : ''
       }
+
+      \${pickupStatus !== "collected"
+        ? \`
+          <div style="margin-top:9px">
+            <button
+              type="button"
+              onclick="markCollected(
+                decodeURIComponent('\${encodeURIComponent(
+                  String(o.id || o.orderNo || "")
+                )}'),
+                this
+              )"
+              style="
+                padding:7px 10px;
+                border-radius:9px;
+                border:1px solid #7a252d;
+                background:#8b2c34;
+                color:#fff;
+                font-size:12px;
+                font-weight:800;
+                cursor:pointer;
+              "
+            >
+              Marchează ca predată
+            </button>
+          </div>
+        \`
+        : \`
+          <div style="
+            margin-top:8px;
+            color:#1b7f5a;
+            font-size:12px;
+            font-weight:700;
+          ">
+            Comandă finalizată
+          </div>
+        \`
+      }
     \`
     : ''
   }
 
   \${orderNo
-    ? \`<div class="muted" style="font-size:12px;margin-top:5px">
+    ? \`<div class="muted" style="font-size:12px;margin-top:7px">
          #\${orderNo}
        </div>\`
     : ''
@@ -376,6 +414,104 @@ const pickupClass =
       </thead>
       <tbody>\${rows}</tbody>
     </table>\`;
+}
+async function markCollected(orderId, button){
+  if (SOURCE !== "event") return;
+
+  const confirmed = window.confirm(
+    "Sigur marchezi această comandă ca predată?\\n\\n" +
+    "Clientul va primi automat emailul de confirmare."
+  );
+
+  if (!confirmed) return;
+
+  const tokenInput = document.getElementById("token");
+  const token = tokenInput ? tokenInput.value.trim() : "";
+
+  if (!token) {
+    alert("Lipsește tokenul de administrator.");
+    return;
+  }
+
+  const originalText = button.textContent;
+
+  button.disabled = true;
+  button.textContent = "Se salvează…";
+  button.style.opacity = "0.65";
+  button.style.cursor = "not-allowed";
+
+  try {
+    const url = new URL('${BASE}/api/admin/orders');
+    url.searchParams.set("token", token);
+
+    const response = await fetch(url, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "cache-control": "no-store",
+      },
+
+      body: JSON.stringify({
+        action: "mark_collected",
+        orderId,
+      }),
+    });
+
+    const data = await response
+      .json()
+      .catch(() => ({}));
+
+    if (!response.ok) {
+      if (
+        response.status === 409 &&
+        data.error === "already_collected"
+      ) {
+        alert("Această comandă era deja marcată ca predată.");
+        await load(true);
+        return;
+      }
+
+      if (data.error === "order_not_paid") {
+        throw new Error(
+          "Comanda nu poate fi predată deoarece nu apare ca plătită."
+        );
+      }
+
+      if (data.error === "order_not_found") {
+        throw new Error("Comanda nu a fost găsită.");
+      }
+
+      throw new Error(
+        data.error ||
+        "Nu am putut actualiza această comandă."
+      );
+    }
+
+    if (data.emailSent === true) {
+      alert(
+        "Comanda a fost marcată ca PREDATĂ.\\n" +
+        "Emailul de confirmare a fost trimis clientului."
+      );
+    } else {
+      alert(
+        "Comanda a fost marcată ca PREDATĂ.\\n" +
+        "Atenție: emailul de confirmare nu a putut fi trimis."
+      );
+    }
+
+    await load(true);
+  } catch (error) {
+    alert(
+      error?.message ||
+      "A apărut o eroare la confirmarea predării."
+    );
+
+    button.disabled = false;
+    button.textContent = originalText;
+    button.style.opacity = "1";
+    button.style.cursor = "pointer";
+  }
 }
 function changeSource(){
   const selected = document.getElementById('source').value;
