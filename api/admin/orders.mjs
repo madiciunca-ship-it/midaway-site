@@ -176,9 +176,9 @@ function buildPickupEmail({
         </p>
 
         <p>
-          Ne-ar bucura să ne spui, când vei termina lectura,
-          cum ți s-a părut cartea.
-        </p>
+  Ne-ar bucura să ne spui, după lectură,
+  cum a fost experiența ta cu cărțile Midaway.
+</p>
 
         <p>
           Pentru noutăți, apariții editoriale și evenimente,
