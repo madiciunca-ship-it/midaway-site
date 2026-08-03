@@ -260,25 +260,19 @@ export default async function handler(req, res) {
       customer_creation: "always",
 
       /*
-        Stripe colectează obligatoriu:
-        - numele
-        - emailul
-        - adresa de facturare
-      */
-      billing_address_collection: "required",
+  Colectăm obligatoriu numele și adresa completă.
+  Folosim formularul Stripe pentru adresa de expediere,
+  chiar dacă produsele sunt ridicate direct de la stand.
+*/
+billing_address_collection: "required",
 
-      /*
-        Telefonul va fi cerut obligatoriu în pagina Stripe.
-      */
-      phone_number_collection: {
-        enabled: true,
-      },
+shipping_address_collection: {
+  allowed_countries: ["RO"],
+},
 
-      /*
-        Nu folosim shipping_address_collection:
-        cărțile sunt ridicate direct de la stand.
-      */
-
+phone_number_collection: {
+  enabled: true,
+},
       allow_promotion_codes: false,
 
       client_reference_id: `${event.id}-${Date.now()}`,
