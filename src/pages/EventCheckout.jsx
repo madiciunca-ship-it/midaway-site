@@ -37,30 +37,120 @@ export default function EventCheckout() {
 
   const canView = Boolean(event && (event.active || previewMode));
 
+  
+  const [quantities, setQuantities] = useState({});
+const [step, setStep] = useState("books");
+
+const [loading, setLoading] = useState(false);
+const [checkoutError, setCheckoutError] = useState("");
+
+const [inventory, setInventory] = useState({});
+const [inventoryLoading, setInventoryLoading] =
+  useState(true);
+
+const [inventoryError, setInventoryError] =
+  useState("");
+
   const eventBooks = useMemo(() => {
     if (!event) return [];
-
+  
     return event.books
-      .filter((entry) => entry.visible !== false)
+      .filter(
+        (entry) =>
+          entry.visible !== false
+      )
       .map((entry) => {
         const book = BOOKS.find(
-          (item) => String(item.id) === String(entry.bookId)
+          (item) =>
+            String(item.id) ===
+            String(entry.bookId)
         );
-
+  
         if (!book) return null;
-
+  
+        const bookId = String(
+          entry.bookId
+        );
+  
+        const liveStock = Number(
+          inventory?.[bookId]
+        );
+  
         return {
           ...entry,
+          bookId,
           book,
+  
+          stock:
+            Number.isFinite(liveStock)
+              ? Math.max(0, liveStock)
+              : 0,
         };
       })
       .filter(Boolean);
-  }, [event]);
+  }, [event, inventory]);
 
-  const [quantities, setQuantities] = useState({});
-  const [step, setStep] = useState("books");
-const [loading, setLoading] = useState(false);
-const [checkoutError, setCheckoutError] = useState("");
+  const loadInventory = async () => {
+    if (!event?.id) return;
+  
+    setInventoryLoading(true);
+    setInventoryError("");
+  
+    try {
+      const url =
+        "/api/create-event-checkout-session" +
+        `?eventId=${encodeURIComponent(
+          event.id
+        )}` +
+        `&_=${Date.now()}`;
+  
+      const response = await fetch(url, {
+        method: "GET",
+  
+        headers: {
+          "cache-control": "no-store",
+        },
+      });
+  
+      const data = await response
+        .json()
+        .catch(() => ({}));
+  
+      if (!response.ok) {
+        throw new Error(
+          data?.error ||
+            "Nu am putut încărca stocul."
+        );
+      }
+  
+      const nextInventory = {};
+  
+      for (const item of data?.books || []) {
+        nextInventory[
+          String(item.bookId)
+        ] = Math.max(
+          0,
+          Number(item.stock || 0)
+        );
+      }
+  
+      setInventory(nextInventory);
+    } catch (error) {
+      setInventory({});
+      setInventoryError(
+        error?.message ||
+          "Nu am putut încărca stocul."
+      );
+    } finally {
+      setInventoryLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!event || !canView) return;
+  
+    loadInventory();
+  }, [event?.id, canView]);
 
   useEffect(() => {
     // Pagina nu trebuie indexată de Google.
@@ -93,6 +183,28 @@ const [checkoutError, setCheckoutError] = useState("");
       }
     };
   }, [event]);
+  useEffect(() => {
+    if (inventoryLoading) return;
+  
+    setQuantities((current) => {
+      const next = {
+        ...current,
+      };
+  
+      for (const entry of eventBooks) {
+        const selected = Number(
+          next[entry.bookId] || 0
+        );
+  
+        if (selected > entry.stock) {
+          next[entry.bookId] =
+            entry.stock;
+        }
+      }
+  
+      return next;
+    });
+  }, [inventory, inventoryLoading]);
 
   const changeQuantity = (bookId, delta, stock) => {
     setQuantities((current) => {
@@ -197,8 +309,18 @@ const startStripeCheckout = async () => {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
+      if (response.status === 409) {
+        await loadInventory();
+    
+        throw new Error(
+          data?.error ||
+            "Stocul s-a modificat. Verifică din nou selecția."
+        );
+      }
+    
       throw new Error(
-        data?.error || "Nu am putut iniția plata. Încearcă din nou."
+        data?.error ||
+          "Nu am putut iniția plata. Încearcă din nou."
       );
     }
 
@@ -292,7 +414,7 @@ const startStripeCheckout = async () => {
             gap: 18,
           }}
         >
-          {eventBooks.map(({ bookId, initialStock, book }) => {
+         {eventBooks.map(({ bookId, stock, book }) => {
             const quantity = Number(quantities[bookId] || 0);
             const cover = getBookCover(book);
 
@@ -379,14 +501,23 @@ left: 8,
                   </h2>
 
                   <div
-                    style={{
-                      marginTop: 10,
-                      color: COLORS.muted,
-                      fontSize: 14,
-                    }}
-                  >
-                   Disponibil la stand
-                  </div>
+  style={{
+    marginTop: 10,
+    color:
+      stock > 0
+        ? COLORS.muted
+        : COLORS.burgundy,
+    fontSize: 14,
+    fontWeight:
+      stock > 0 ? 400 : 800,
+  }}
+>
+  {inventoryLoading
+    ? "Se verifică disponibilitatea…"
+    : stock > 0
+      ? "Disponibil la stand"
+      : "Stoc epuizat"}
+</div>
 
                   <div
                     style={{
@@ -401,9 +532,12 @@ left: 8,
                     <button
                       type="button"
                       onClick={() =>
-                        changeQuantity(bookId, -1, initialStock)
+                        changeQuantity(bookId, -1, stock)
                       }
-                      disabled={quantity === 0}
+                      disabled={
+                        inventoryLoading ||
+                        quantity === 0
+                      }
                       aria-label={`Scade cantitatea pentru ${book.title}`}
                       style={{
                         width: 42,
@@ -411,9 +545,16 @@ left: 8,
                         borderRadius: 999,
                         border: `1px solid ${COLORS.line}`,
                         background:
-                          quantity === 0 ? "#eee" : "#fff",
-                        cursor:
-                          quantity === 0 ? "not-allowed" : "pointer",
+  inventoryLoading ||
+  quantity === 0
+    ? "#eee"
+    : "#fff",
+
+cursor:
+  inventoryLoading ||
+  quantity === 0
+    ? "not-allowed"
+    : "pointer",
                         fontSize: 24,
                         fontWeight: 700,
                       }}
@@ -434,9 +575,13 @@ left: 8,
                     <button
                       type="button"
                       onClick={() =>
-                        changeQuantity(bookId, 1, initialStock)
+                        changeQuantity(bookId, 1, stock)
                       }
-                      disabled={quantity >= initialStock}
+                      disabled={
+                        inventoryLoading ||
+                        stock <= 0 ||
+                        quantity >= stock
+                      }
                       aria-label={`Crește cantitatea pentru ${book.title}`}
                       style={{
                         width: 42,
@@ -446,9 +591,11 @@ left: 8,
                         background: COLORS.teal,
                         color: "#fff",
                         cursor:
-                          quantity >= initialStock
-                            ? "not-allowed"
-                            : "pointer",
+      inventoryLoading ||
+      stock <= 0 ||
+      quantity >= stock
+        ? "not-allowed"
+        : "pointer",
                         fontSize: 24,
                         fontWeight: 700,
                       }}
@@ -660,6 +807,42 @@ left: 8,
   </section>
 )}
 
+{inventoryError && (
+  <div
+    role="alert"
+    style={{
+      margin: "0 auto 18px",
+      maxWidth: 760,
+      padding: "14px 16px",
+      borderRadius: 14,
+      background: "#fff0f0",
+      border: "1px solid #e4b5b5",
+      color: COLORS.burgundy,
+      lineHeight: 1.5,
+      textAlign: "center",
+    }}
+  >
+    <div>{inventoryError}</div>
+
+    <button
+      type="button"
+      onClick={loadInventory}
+      style={{
+        marginTop: 10,
+        padding: "9px 14px",
+        borderRadius: 10,
+        border: "none",
+        background: COLORS.burgundy,
+        color: "#fff",
+        fontWeight: 800,
+        cursor: "pointer",
+      }}
+    >
+      Reîncearcă
+    </button>
+  </div>
+)}
+
 {step === "books" && (
         <section
           style={{
@@ -690,7 +873,11 @@ left: 8,
 
           <button
             type="button"
-            disabled={totalQuantity === 0}
+            disabled={
+              inventoryLoading ||
+              Boolean(inventoryError) ||
+              totalQuantity === 0
+            }
             onClick={() => {
               setCheckoutError("");
               setStep("review");
@@ -706,12 +893,20 @@ left: 8,
               border: "none",
               borderRadius: 14,
               background:
-                totalQuantity > 0 ? COLORS.burgundy : "#d8d4d2",
+              !inventoryLoading &&
+              !inventoryError &&
+              totalQuantity > 0
+                ? COLORS.burgundy
+                : "#d8d4d2",
               color: "#fff",
               fontSize: 17,
               fontWeight: 800,
               cursor:
-                totalQuantity > 0 ? "pointer" : "not-allowed",
+  !inventoryLoading &&
+  !inventoryError &&
+  totalQuantity > 0
+    ? "pointer"
+    : "not-allowed",
             }}
           >
             Continuă comanda

@@ -8,6 +8,10 @@ import {
   eventOrderExists,
 } from "../src/server/_event-orders-store.mjs";
 
+import {
+  consumeEventStock,
+} from "../src/server/_event-inventory-store.mjs";
+
 const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY || ""
 );
@@ -248,20 +252,15 @@ export default async function handler(req, res) {
     const eventSession = event.data.object;
     const sessionId = eventSession.id;
 
-    // Stripe poate retrimite același webhook.
-    if (await eventOrderExists(sessionId)) {
-      console.log("🔁 Event order already processed:", sessionId);
+    /*
+  Stripe poate retrimite același webhook.
 
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json");
-
-      return res.end(
-        JSON.stringify({
-          received: true,
-          duplicate: true,
-        })
-      );
-    }
+  Nu ieșim încă din funcție, deoarece trebuie să ne asigurăm
+  că și inventarul a fost procesat. Scăderea inventarului are
+  propria protecție împotriva dublării.
+*/
+const orderAlreadyExists =
+await eventOrderExists(sessionId);
 
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: [
@@ -365,6 +364,9 @@ const address =
     const currency = String(session.currency || "RON").toUpperCase();
 
     const orderNo = genEventOrderNo(session.id);
+    const eventId =
+    session.metadata?.eventId ||
+    "gaudeamus-sibiu-2026";
 
     const eventSlug =
   session.metadata?.eventSlug ||
@@ -374,14 +376,66 @@ const address =
 const eventUrl =
   `${SITE}/event/${encodeURIComponent(eventSlug)}`;
 
+  /*
+  Scădem automat stocul pentru toate cărțile plătite.
+
+  `session.id` este referința unică. Dacă Stripe retrimite
+  webhook-ul, inventarul nu va fi scăzut a doua oară.
+*/
+const inventoryResult =
+await consumeEventStock({
+  eventId,
+
+  items: items.map((item) => ({
+    bookId: item.bookId,
+    title: item.title,
+    quantity: item.quantity,
+  })),
+
+  reference: session.id,
+  reason: `Comandă ${orderNo}`,
+  actor: "stripe-event-webhook",
+});
+
+console.log("📚 Event inventory processed:", {
+orderNo,
+duplicate: inventoryResult.duplicate,
+changes: inventoryResult.changes,
+});
+
+/*
+  Dacă această comandă exista deja, inventarul este acum
+  verificat/reparat, dar nu mai salvăm și nu mai trimitem
+  emailurile încă o dată.
+*/
+if (orderAlreadyExists) {
+  console.log(
+    "🔁 Event order already processed:",
+    sessionId
+  );
+
+  res.statusCode = 200;
+  res.setHeader(
+    "Content-Type",
+    "application/json"
+  );
+
+  return res.end(
+    JSON.stringify({
+      received: true,
+      duplicate: true,
+      inventoryDuplicate:
+        inventoryResult.duplicate,
+    })
+  );
+}
+
     const order = {
       id: session.id,
       orderNo,
 
       channel: "event",
-      eventId:
-        session.metadata?.eventId ||
-        "gaudeamus-sibiu-2026",
+      eventId,
 
       createdAt: Date.now(),
       paidAt: Date.now(),

@@ -15,10 +15,22 @@ export default async function handler(req, res) {
       return res.status(401).send("Unauthorized");
     }
 
-    const source =
-      String(req.query?.source || "online").toLowerCase() === "event"
-        ? "event"
-        : "online";
+    const requestedSource = String(
+      req.query?.source || "online"
+    ).toLowerCase();
+    
+    const source = [
+      "online",
+      "event",
+      "inventory",
+    ].includes(requestedSource)
+      ? requestedSource
+      : "online";
+    
+    const eventId = String(
+      req.query?.eventId ||
+        "gaudeamus-sibiu-2026"
+    ).trim();
 
     
 
@@ -30,9 +42,14 @@ export default async function handler(req, res) {
     const BASE =
       (process.env.SITE_URL || "https://midaway.ro").replace(/\/$/, "");
       const dataUrl =
-      `${BASE}/api/admin/orders` +
-      `?token=${encodeURIComponent(token)}` +
-      `&source=${encodeURIComponent(source)}`;
+  `${BASE}/api/admin/orders` +
+  `?token=${encodeURIComponent(token)}` +
+  `&source=${encodeURIComponent(source)}` +
+  (
+    source === "inventory"
+      ? `&eventId=${encodeURIComponent(eventId)}`
+      : ""
+  );
 
     const html = `<!doctype html>
 <html lang="ro">
@@ -85,11 +102,114 @@ export default async function handler(req, res) {
   .typeChip.mix{ background:#fff7e6; color:#9a5b13; }
   .id{ max-width: 420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; vertical-align:bottom; }
   .nowrap{ white-space:nowrap; }
+  .inventory-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:14px;
+  }
+  
+  .inventory-title{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:12px;
+  }
+  
+  .inventory-grid{
+    display:grid;
+    grid-template-columns:
+      minmax(220px, 2fr)
+      repeat(4, minmax(80px, .65fr))
+      minmax(260px, 1.7fr);
+    gap:10px;
+    align-items:center;
+  }
+  
+  .inventory-head{
+    font-size:12px;
+    font-weight:800;
+    color:#555;
+    text-transform:uppercase;
+  }
+  
+  .inventory-number{
+    font-size:20px;
+    font-weight:800;
+  }
+  
+  .inventory-actions{
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:7px;
+    align-items:center;
+  }
+  
+  .inventory-set{
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:7px;
+    align-items:center;
+    margin-top:8px;
+  }
+  
+  .inventory-history{
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:#555;
+  }
+  
+  .inventory-history-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:4px 0;
+  }
+  
+  .btn-burgundy{
+    background:#8b2c34;
+    border-color:#7a252d;
+  }
+  
+  .btn-dark{
+    background:#444;
+    border-color:#333;
+  }
+  
+  @media (max-width:1000px){
+    .inventory-grid{
+      grid-template-columns:1fr 1fr;
+    }
+  
+    .inventory-actions,
+    .inventory-set{
+      grid-column:1 / -1;
+    }
+  }
+  
+  @media (max-width:620px){
+    .inventory-grid{
+      grid-template-columns:1fr;
+    }
+  
+    .inventory-actions,
+    .inventory-set{
+      grid-template-columns:1fr;
+    }
+  }
 </style>
 </head>
 <body>
 <h1>
-  ${source === "event" ? "🎪 Comenzi Gaudeamus" : "📦 Comenzi Midaway"}
+  ${
+    source === "inventory"
+      ? "📚 Inventar Gaudeamus"
+      : source === "event"
+        ? "🎪 Comenzi Gaudeamus"
+        : "📦 Comenzi Midaway"
+  }
   <span class="muted" id="count"></span>
 </h1>
 
@@ -102,6 +222,12 @@ export default async function handler(req, res) {
   <option value="event" ${source === "event" ? "selected" : ""}>
     Comenzi Gaudeamus
   </option>
+  <option
+  value="inventory"
+  ${source === "inventory" ? "selected" : ""}
+>
+  Inventar Gaudeamus
+</option>
 </select>
     
     <input id="q" placeholder="Caută #comandă / email / nume" />
@@ -139,10 +265,18 @@ export default async function handler(req, res) {
 
 <script>
 const SOURCE = '${source}';
+const EVENT_ID = '${eventId}';
 const fmt = (n, cur)=> \`\${n} \${(cur||'').toUpperCase()}\`;
 const dfmt = (ts)=>{ try{const d=new Date(ts); return d.toLocaleDateString('ro-RO')+", "+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}catch{return '-'} };
 const countryName = (code)=>{ if(!code) return "-"; try{ return new Intl.DisplayNames(['ro'],{type:'region'}).of(code)||code }catch{return code} }
 const ym = (ts)=>{ const d=new Date(Number(ts||0)); if(isNaN(d)) return '—'; return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); };
+const esc = (value) =>
+  String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 // Formate listate + SERVICE dacă există servicii în items
 const sumFormats = (items)=>{
@@ -176,6 +310,7 @@ const SERVICE_KEYS = {
 const FORMAT_VALUES = ["PDF","EPUB","PAPERBACK","AUDIOBOOK"];
 
 let ORDERS = [];
+let INVENTORY = null;
 
 // force = true => cache-buster param
 async function load(force=false){
@@ -187,16 +322,36 @@ async function load(force=false){
     'source',
     document.getElementById('source').value
   );
+  if (
+    document.getElementById('source').value ===
+    "inventory"
+  ) {
+    url.searchParams.set(
+      "eventId",
+      EVENT_ID
+    );
+  }
   if (force) url.searchParams.set('_', Date.now()); // cache buster
   document.getElementById('src').textContent = url.toString();
 
   const res = await fetch(url, { headers: {'cache-control':'no-store'} });
   if(!res.ok){ document.getElementById('root').innerHTML='<p style="color:#b42318">Eroare: '+res.status+'</p>'; return; }
   let data = await res.json();
-  ORDERS = Array.isArray(data) ? data : Array.isArray(data?.orders) ? data.orders : [];
 
-  populateFilters(ORDERS);
-  render();
+if (SOURCE === "inventory") {
+  INVENTORY = data;
+  renderInventory();
+  return;
+}
+
+ORDERS = Array.isArray(data)
+  ? data
+  : Array.isArray(data?.orders)
+    ? data.orders
+    : [];
+
+populateFilters(ORDERS);
+render();
 }
 
 function populateFilters(list){
@@ -256,6 +411,189 @@ function applyFilters(){
     }
     return true;
   });
+}
+
+function renderInventory(){
+  const books = Array.isArray(INVENTORY?.books)
+    ? INVENTORY.books
+    : [];
+
+  document.getElementById('count').textContent =
+    '• Titluri: ' + books.length;
+
+  document.getElementById('totals').innerHTML = '';
+  document.getElementById('monthly').innerHTML = '';
+
+  if (!books.length) {
+    document.getElementById('root').innerHTML =
+      '<div class="inventory-card">Inventarul nu conține cărți.</div>';
+    return;
+  }
+
+  const totalStock = books.reduce(
+    (sum, book) => sum + Number(book.stock || 0),
+    0
+  );
+
+  const totalSold = books.reduce(
+    (sum, book) => sum + Number(book.sold || 0),
+    0
+  );
+
+  document.getElementById('totals').innerHTML =
+    '<strong>Stoc disponibil:</strong> ' +
+    totalStock +
+    ' exemplare • <strong>Vândute:</strong> ' +
+    totalSold;
+
+  const cards = books.map((book) => {
+    const bookId = String(book.bookId || '');
+    const safeId = encodeURIComponent(bookId);
+
+    const history = Array.isArray(book.history)
+      ? book.history.slice(0, 8)
+      : [];
+
+    const historyHtml = history.length
+      ? history.map((entry) => {
+          const delta = Number(entry.delta || 0);
+          const sign = delta > 0 ? '+' : '';
+
+          return \`
+            <div class="inventory-history-row">
+              <span>
+                \${esc(dfmt(entry.createdAt))}
+                — \${esc(entry.reason || entry.type || '')}
+              </span>
+
+              <strong style="color:\${
+                delta < 0 ? '#b42318' : '#1b7f5a'
+              }">
+                \${sign}\${delta}
+                (\${Number(entry.stockBefore || 0)}
+                → \${Number(entry.stockAfter || 0)})
+              </strong>
+            </div>
+          \`;
+        }).join('')
+      : '<span class="muted">Fără modificări înregistrate.</span>';
+
+    return \`
+      <div class="inventory-card">
+        <div class="inventory-title">
+          \${esc(book.title || bookId)}
+        </div>
+
+        <div class="inventory-grid">
+          <div class="inventory-head">Carte</div>
+          <div class="inventory-head">Inițial</div>
+          <div class="inventory-head">Disponibil</div>
+          <div class="inventory-head">Vândut</div>
+          <div class="inventory-head">Ajustări</div>
+          <div class="inventory-head">Operațiuni</div>
+
+          <div>
+            <strong>\${esc(book.title || bookId)}</strong>
+            <div class="muted" style="font-size:11px">
+              \${esc(bookId)}
+            </div>
+          </div>
+
+          <div class="inventory-number">
+            \${Number(book.initialStock || 0)}
+          </div>
+
+          <div class="inventory-number" style="color:\${
+            Number(book.stock || 0) <= 5
+              ? '#b42318'
+              : '#1b7f5a'
+          }">
+            \${Number(book.stock || 0)}
+          </div>
+
+          <div class="inventory-number">
+            \${Number(book.sold || 0)}
+          </div>
+
+          <div>
+            <div style="color:#1b7f5a;font-weight:700">
+              +\${Number(book.manualAdded || 0)}
+            </div>
+
+            <div style="color:#b42318;font-weight:700">
+              −\${Number(book.manualRemoved || 0)}
+            </div>
+          </div>
+
+          <div>
+            <div class="inventory-actions">
+              <input
+                id="delta-\${safeId}"
+                type="number"
+                step="1"
+                placeholder="+20 / -10"
+              />
+
+              <input
+                id="reason-\${safeId}"
+                type="text"
+                placeholder="Motiv: aprovizionare, donație..."
+              />
+
+              <button
+                type="button"
+                onclick="adjustInventory(
+                  decodeURIComponent('\${safeId}'),
+                  this
+                )"
+              >
+                Ajustează
+              </button>
+            </div>
+
+            <div class="inventory-set">
+              <input
+                id="stock-\${safeId}"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="Stoc exact"
+              />
+
+              <input
+                id="set-reason-\${safeId}"
+                type="text"
+                placeholder="Motiv: inventar fizic..."
+              />
+
+              <button
+                type="button"
+                class="btn-dark"
+                onclick="setInventoryExact(
+                  decodeURIComponent('\${safeId}'),
+                  this
+                )"
+              >
+                Setează exact
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <details class="inventory-history">
+          <summary style="cursor:pointer;font-weight:700">
+            Istoric recent
+          </summary>
+
+          <div style="margin-top:8px">
+            \${historyHtml}
+          </div>
+        </details>
+      </div>
+    \`;
+  }).join('');
+
+  document.getElementById('root').innerHTML = cards;
 }
 
 function render(){
@@ -415,6 +753,223 @@ const pickupClass =
       <tbody>\${rows}</tbody>
     </table>\`;
 }
+
+async function inventoryRequest(payload, button){
+  const token =
+    document.getElementById('token')
+      .value
+      .trim();
+
+  if (!token) {
+    alert("Lipsește tokenul de administrator.");
+    return null;
+  }
+
+  const originalText =
+    button?.textContent || "";
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Se salvează…";
+    button.style.opacity = "0.65";
+  }
+
+  try {
+    const url =
+      new URL('${BASE}/api/admin/orders');
+
+    url.searchParams.set("token", token);
+
+    const response = await fetch(url, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "cache-control": "no-store",
+      },
+
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response
+      .json()
+      .catch(() => ({}));
+
+    if (!response.ok) {
+      if (
+        data.error ===
+        "insufficient_stock"
+      ) {
+        throw new Error(
+          "Stoc insuficient. Disponibil: " +
+          Number(data.available || 0)
+        );
+      }
+
+      throw new Error(
+        data.error ||
+        "Inventarul nu a putut fi actualizat."
+      );
+    }
+
+    return data;
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = originalText;
+      button.style.opacity = "1";
+    }
+  }
+}
+
+async function adjustInventory(bookId, button){
+  const safeId = encodeURIComponent(bookId);
+
+  const deltaInput =
+    document.getElementById(
+      'delta-' + safeId
+    );
+
+  const reasonInput =
+    document.getElementById(
+      'reason-' + safeId
+    );
+
+  const delta =
+    Number(deltaInput?.value);
+
+  const reason =
+    String(reasonInput?.value || "")
+      .trim();
+
+  if (
+    !Number.isInteger(delta) ||
+    delta === 0
+  ) {
+    alert(
+      "Introdu o cantitate întreagă diferită de zero.\\n" +
+      "Exemple: +20 pentru aprovizionare sau -10 pentru donație."
+    );
+    return;
+  }
+
+  if (!reason) {
+    alert(
+      "Scrie motivul ajustării."
+    );
+    return;
+  }
+
+  const text =
+    delta > 0
+      ? "Adaugi " + delta + " exemplare?"
+      : "Scazi " + Math.abs(delta) + " exemplare?";
+
+  if (
+    !window.confirm(
+      text + "\\n\\nMotiv: " + reason
+    )
+  ) {
+    return;
+  }
+
+  try {
+    await inventoryRequest(
+      {
+        action: "adjust_inventory",
+        eventId: EVENT_ID,
+        bookId,
+        delta,
+        reason,
+      },
+      button
+    );
+
+    alert("Stocul a fost actualizat.");
+    await load(true);
+  } catch (error) {
+    alert(
+      error?.message ||
+      "A apărut o eroare."
+    );
+  }
+}
+
+async function setInventoryExact(bookId, button){
+  const safeId = encodeURIComponent(bookId);
+
+  const stockInput =
+    document.getElementById(
+      'stock-' + safeId
+    );
+
+  const reasonInput =
+    document.getElementById(
+      'set-reason-' + safeId
+    );
+
+  const stock =
+    Number(stockInput?.value);
+
+  const reason =
+    String(reasonInput?.value || "")
+      .trim();
+
+  if (
+    !Number.isInteger(stock) ||
+    stock < 0
+  ) {
+    alert(
+      "Introdu stocul exact, ca număr întreg pozitiv sau zero."
+    );
+    return;
+  }
+
+  if (!reason) {
+    alert(
+      "Scrie motivul corecției."
+    );
+    return;
+  }
+
+  if (
+    !window.confirm(
+      "Setezi stocul exact la " +
+      stock +
+      " exemplare?\\n\\nMotiv: " +
+      reason
+    )
+  ) {
+    return;
+  }
+
+  try {
+    await inventoryRequest(
+      {
+        action: "set_inventory",
+        eventId: EVENT_ID,
+        bookId,
+        stock,
+        reason,
+      },
+      button
+    );
+
+    alert(
+      "Stocul a fost setat la " +
+      stock +
+      " exemplare."
+    );
+
+    await load(true);
+  } catch (error) {
+    alert(
+      error?.message ||
+      "A apărut o eroare."
+    );
+  }
+}
+
 async function markCollected(orderId, button){
   if (SOURCE !== "event") return;
 
@@ -525,6 +1080,12 @@ function reload(){ load(true); }
 function copyEmail(email){ try{ navigator.clipboard.writeText(email||""); }catch{} }
 
 function downloadCSV(){
+  if (SOURCE === "inventory") {
+    alert(
+      "Exportul CSV pentru inventar îl adăugăm după verificarea fluxului."
+    );
+    return;
+  }
   const flt = applyFilters();
   const head = ["nr","orderNo","id","createdAtIso","email","name","country","currency","amount","courierFee","status","formats","items"];
   const rows = flt.map((o,idx)=>{
@@ -552,12 +1113,31 @@ function downloadCSV(){
   URL.revokeObjectURL(url);
 }
 
-document.getElementById('q').addEventListener('input', render);
-document.getElementById('status').addEventListener('change', render);
-document.getElementById('currency').addEventListener('change', render);
-document.getElementById('country').addEventListener('change', render);
-document.getElementById('month').addEventListener('change', render);
-document.getElementById('format').addEventListener('change', render);
+if (SOURCE !== "inventory") {
+  document
+    .getElementById('q')
+    .addEventListener('input', render);
+
+  document
+    .getElementById('status')
+    .addEventListener('change', render);
+
+  document
+    .getElementById('currency')
+    .addEventListener('change', render);
+
+  document
+    .getElementById('country')
+    .addEventListener('change', render);
+
+  document
+    .getElementById('month')
+    .addEventListener('change', render);
+
+  document
+    .getElementById('format')
+    .addEventListener('change', render);
+}
 
 load();
 </script>

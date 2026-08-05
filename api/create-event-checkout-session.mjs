@@ -2,6 +2,11 @@
 import Stripe from "stripe";
 import { BOOKS } from "../src/data/books.js";
 import { EVENTS, findEventBySlug } from "../src/data/events.js";
+import {
+  initializeEventInventory,
+  getEventInventory,
+  validateEventStock,
+} from "../src/server/_event-inventory-store.mjs";
 
 const STRIPE_KEY =
   process.env.STRIPE_SECRET_KEY || "";
@@ -64,14 +69,103 @@ function compactCartMetadata(items) {
 // ─────────────────────────────────────────────────────────────
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
-    return sendJson(res, 405, {
-      error: "Method Not Allowed",
-    });
-  }
-
   try {
+    /*
+      GET — returnează stocul public pentru pagina evenimentului.
+    */
+    if (req.method === "GET") {
+      const eventId = String(
+        req.query?.eventId || ""
+      ).trim();
+
+      const event =
+        findEventBySlug(eventId) ||
+        EVENTS.find(
+          (entry) =>
+            String(entry?.id) === eventId ||
+            String(entry?.slug) === eventId
+        ) ||
+        null;
+
+      if (!event) {
+        return sendJson(res, 404, {
+          error: "Evenimentul nu există.",
+        });
+      }
+
+      if (event.active !== true) {
+        return sendJson(res, 403, {
+          error: "Evenimentul nu este activ.",
+        });
+      }
+
+      await initializeEventInventory({
+        eventId: event.id,
+
+        books: (event.books || []).map((entry) => {
+          const book = BOOK_MAP.get(
+            String(entry.bookId)
+          );
+
+          return {
+            bookId: String(entry.bookId),
+            title: book?.title || "",
+            initialStock:
+              Number(entry.initialStock) || 0,
+          };
+        }),
+      });
+
+      const inventory =
+        await getEventInventory(event.id);
+
+      const books = (event.books || []).map(
+        (entry) => {
+          const bookId = String(
+            entry.bookId
+          );
+
+          const stored =
+            inventory?.books?.[bookId] || null;
+
+          return {
+            bookId,
+            stock: Number(
+              stored?.stock || 0
+            ),
+            initialStock: Number(
+              stored?.initialStock ??
+                entry.initialStock ??
+                0
+            ),
+            sold: Number(
+              stored?.sold || 0
+            ),
+          };
+        }
+      );
+
+      res.setHeader(
+        "Cache-Control",
+        "no-store, max-age=0"
+      );
+
+      return sendJson(res, 200, {
+        eventId: event.id,
+        updatedAt:
+          inventory?.updatedAt || null,
+        books,
+      });
+    }
+
+    if (req.method !== "POST") {
+      res.setHeader("Allow", "GET, POST");
+
+      return sendJson(res, 405, {
+        error: "Method Not Allowed",
+      });
+    }
+
     if (!stripe) {
       return sendJson(res, 500, {
         error: "Missing STRIPE_SECRET_KEY",
@@ -128,6 +222,24 @@ export default async function handler(req, res) {
       ])
     );
 
+    /*
+  Ne asigurăm că inventarul există în Blob.
+  Dacă este prima comandă pentru acest eveniment,
+  se creează automat folosind stocurile inițiale.
+*/
+await initializeEventInventory({
+  eventId: event.id,
+  books: (event.books || []).map((entry) => {
+    const book = BOOK_MAP.get(String(entry.bookId));
+
+    return {
+      bookId: String(entry.bookId),
+      title: book?.title || "",
+      initialStock: Number(entry.initialStock) || 0,
+    };
+  }),
+});
+
     const cleanedItems = [];
     const rejectedItems = [];
 
@@ -153,27 +265,7 @@ export default async function handler(req, res) {
         continue;
       }
 
-      const configuredStock = Number(eventBook.initialStock);
-
-      /*
-        Aceasta este momentan doar o limită de siguranță la checkout.
-
-        Stocul real, actualizat după fiecare plată, va fi verificat
-        în magazia separată de inventar pe care o construim imediat după.
-      */
-      if (
-        Number.isFinite(configuredStock) &&
-        configuredStock >= 0 &&
-        quantity > configuredStock
-      ) {
-        rejectedItems.push({
-          bookId,
-          reason: "quantity_exceeds_initial_stock",
-        });
-
-        continue;
-      }
-
+      
       cleanedItems.push({
         bookId,
         book,
@@ -182,6 +274,26 @@ export default async function handler(req, res) {
         lineTotal: unitPrice * quantity,
       });
     }
+
+    /*
+  Verificăm stocul real din inventar.
+*/
+const inventoryCheck =
+await validateEventStock({
+  eventId: event.id,
+  items: cleanedItems.map((item) => ({
+    bookId: item.bookId,
+    quantity: item.quantity,
+  })),
+});
+
+if (!inventoryCheck.ok) {
+return sendJson(res, 409, {
+  error:
+    "Unele produse nu mai sunt disponibile în stoc.",
+  unavailable: inventoryCheck.unavailable,
+});
+}
 
     if (cleanedItems.length === 0) {
       return sendJson(res, 400, {

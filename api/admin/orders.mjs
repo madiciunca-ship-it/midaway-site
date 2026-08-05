@@ -1,5 +1,11 @@
 // /api/admin/orders.mjs
 import nodemailer from "nodemailer";
+import { BOOKS } from "../../src/data/books.js";
+
+import {
+  EVENTS,
+  findEventBySlug,
+} from "../../src/data/events.js";
 
 import { readOrders } from "../../src/server/_orders-store.mjs";
 
@@ -7,10 +13,47 @@ import {
   readEventOrders,
   updateEventOrder,
 } from "../../src/server/_event-orders-store.mjs";
+import {
+  initializeEventInventory,
+  getEventInventory,
+  adjustEventStock,
+  setEventStock,
+} from "../../src/server/_event-inventory-store.mjs";
 
 const SITE = (
   process.env.SITE_URL || "https://midaway.ro"
 ).replace(/\/+$/, "");
+
+function findConfiguredEvent(eventId) {
+  const id = String(eventId || "").trim();
+
+  return (
+    findEventBySlug(id) ||
+    EVENTS.find(
+      (entry) =>
+        String(entry?.id) === id ||
+        String(entry?.slug) === id
+    ) ||
+    null
+  );
+}
+
+function inventorySeedBooks(event) {
+  return (event?.books || []).map((entry) => {
+    const book = BOOKS.find(
+      (item) =>
+        String(item?.id) ===
+        String(entry?.bookId)
+    );
+
+    return {
+      bookId: String(entry?.bookId || ""),
+      title: book?.title || "",
+      initialStock:
+        Number(entry?.initialStock) || 0,
+    };
+  });
+}
 
 function normalizeEventOrder(order) {
   const currency = String(
@@ -288,6 +331,109 @@ export default async function handler(req, res) {
         req.query?.source || "online"
       ).toLowerCase();
 
+      if (source === "inventory") {
+        const eventId = String(
+          req.query?.eventId ||
+            "gaudeamus-sibiu-2026"
+        ).trim();
+      
+        const event =
+          findConfiguredEvent(eventId);
+      
+        if (!event) {
+          return res.status(404).json({
+            error: "event_not_found",
+          });
+        }
+      
+        /*
+          Creează inventarul la prima accesare.
+          Dacă există deja, nu resetează stocurile.
+        */
+        await initializeEventInventory({
+          eventId: event.id,
+          books: inventorySeedBooks(event),
+        });
+      
+        const inventory =
+          await getEventInventory(event.id);
+      
+        const books = (event.books || []).map(
+          (entry) => {
+            const bookId = String(
+              entry?.bookId || ""
+            );
+      
+            const configuredBook =
+              BOOKS.find(
+                (item) =>
+                  String(item?.id) === bookId
+              ) || null;
+      
+            const stored =
+              inventory?.books?.[bookId] || {};
+      
+            return {
+              bookId,
+              title:
+                stored.title ||
+                configuredBook?.title ||
+                bookId,
+      
+              visible:
+                entry?.visible !== false,
+      
+              initialStock:
+                Number(
+                  stored.initialStock ??
+                    entry?.initialStock ??
+                    0
+                ),
+      
+              stock:
+                Number(stored.stock || 0),
+      
+              sold:
+                Number(stored.sold || 0),
+      
+              manualAdded:
+                Number(
+                  stored.manualAdded || 0
+                ),
+      
+              manualRemoved:
+                Number(
+                  stored.manualRemoved || 0
+                ),
+      
+              updatedAt:
+                stored.updatedAt || null,
+      
+              history:
+                Array.isArray(stored.history)
+                  ? stored.history
+                  : [],
+            };
+          }
+        );
+      
+        res.setHeader(
+          "Content-Type",
+          "application/json; charset=utf-8"
+        );
+      
+        return res.status(200).json({
+          eventId: event.id,
+          eventSlug: event.slug,
+          eventTitle: event.title,
+          updatedAt:
+            inventory?.updatedAt ||
+            inventory?.eventUpdatedAt ||
+            null,
+          books,
+        });
+      }
+
       let raw;
 
       if (source === "event") {
@@ -341,17 +487,215 @@ export default async function handler(req, res) {
         body?.action || ""
       ).trim();
 
-      const orderId = String(
-        body?.orderId ||
-          body?.orderNo ||
-          ""
-      ).trim();
+      /*
+  ─────────────────────────────────────────────
+  Inventar: adăugare / scădere manuală
+  ─────────────────────────────────────────────
+*/
+if (action === "adjust_inventory") {
+  const eventId = String(
+    body?.eventId ||
+      "gaudeamus-sibiu-2026"
+  ).trim();
 
-      if (action !== "mark_collected") {
-        return res.status(400).json({
-          error: "invalid_action",
-        });
-      }
+  const bookId = String(
+    body?.bookId || ""
+  ).trim();
+
+  const delta = Number(body?.delta);
+
+  const reason = String(
+    body?.reason || "Ajustare manuală"
+  ).trim();
+
+  const event =
+    findConfiguredEvent(eventId);
+
+  if (!event) {
+    return res.status(404).json({
+      error: "event_not_found",
+    });
+  }
+
+  const eventBook =
+    (event.books || []).find(
+      (entry) =>
+        String(entry?.bookId) === bookId
+    );
+
+  const configuredBook =
+    BOOKS.find(
+      (book) =>
+        String(book?.id) === bookId
+    );
+
+  if (
+    !bookId ||
+    !eventBook ||
+    !configuredBook
+  ) {
+    return res.status(404).json({
+      error: "book_not_found",
+    });
+  }
+
+  if (
+    !Number.isInteger(delta) ||
+    delta === 0
+  ) {
+    return res.status(400).json({
+      error: "invalid_delta",
+    });
+  }
+
+  await initializeEventInventory({
+    eventId: event.id,
+    books: inventorySeedBooks(event),
+  });
+
+  try {
+    const result =
+      await adjustEventStock({
+        eventId: event.id,
+        bookId,
+        delta,
+        reason,
+        actor: "admin-dashboard",
+        title: configuredBook.title,
+        initialStock:
+          Number(
+            eventBook.initialStock
+          ) || 0,
+        type: "manual",
+      });
+
+    return res.status(200).json({
+      ok: true,
+      action,
+      result,
+    });
+  } catch (inventoryError) {
+    if (
+      inventoryError?.code ===
+      "INSUFFICIENT_STOCK"
+    ) {
+      return res.status(409).json({
+        error: "insufficient_stock",
+        available:
+          inventoryError.available,
+        requested:
+          inventoryError.requested,
+      });
+    }
+
+    throw inventoryError;
+  }
+}
+
+/*
+  ─────────────────────────────────────────────
+  Inventar: setare directă după numărătoare
+  ─────────────────────────────────────────────
+*/
+if (action === "set_inventory") {
+  const eventId = String(
+    body?.eventId ||
+      "gaudeamus-sibiu-2026"
+  ).trim();
+
+  const bookId = String(
+    body?.bookId || ""
+  ).trim();
+
+  const stock = Number(body?.stock);
+
+  const reason = String(
+    body?.reason ||
+      "Corecție după inventar fizic"
+  ).trim();
+
+  const event =
+    findConfiguredEvent(eventId);
+
+  if (!event) {
+    return res.status(404).json({
+      error: "event_not_found",
+    });
+  }
+
+  const eventBook =
+    (event.books || []).find(
+      (entry) =>
+        String(entry?.bookId) === bookId
+    );
+
+  const configuredBook =
+    BOOKS.find(
+      (book) =>
+        String(book?.id) === bookId
+    );
+
+  if (
+    !bookId ||
+    !eventBook ||
+    !configuredBook
+  ) {
+    return res.status(404).json({
+      error: "book_not_found",
+    });
+  }
+
+  if (
+    !Number.isInteger(stock) ||
+    stock < 0
+  ) {
+    return res.status(400).json({
+      error: "invalid_stock",
+    });
+  }
+
+  await initializeEventInventory({
+    eventId: event.id,
+    books: inventorySeedBooks(event),
+  });
+
+  const result =
+    await setEventStock({
+      eventId: event.id,
+      bookId,
+      stock,
+      reason,
+      actor: "admin-dashboard",
+      title: configuredBook.title,
+      initialStock:
+        Number(
+          eventBook.initialStock
+        ) || 0,
+    });
+
+  return res.status(200).json({
+    ok: true,
+    action,
+    result,
+  });
+}
+
+/*
+  ─────────────────────────────────────────────
+  Predarea unei comenzi
+  ─────────────────────────────────────────────
+*/
+if (action !== "mark_collected") {
+  return res.status(400).json({
+    error: "invalid_action",
+  });
+}
+
+const orderId = String(
+  body?.orderId ||
+    body?.orderNo ||
+    ""
+).trim();
 
       if (!orderId) {
         return res.status(400).json({
