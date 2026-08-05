@@ -2103,7 +2103,289 @@ const posts = [
   
       `Aveam să înțeleg abia peste două luni că, de fapt, fusese unul dintre cele mai bune lucruri care mi se întâmplaseră în călătoria aceea.`,
     ],
+  },
+
+  {
+    slug: "cum-am-fost-invitata-in-parlamentul-sri-lankai-si-n-am-mai-ajuns",
+    title: "Cum am fost invitată în Parlamentul Sri Lankăi și n-am mai ajuns",
+    excerpt: "Într-un autobuz spre Jaffna am cunoscut o femeie care lucra la Parlamentul Sri Lankăi. Mi-a vorbit despre cărțile mele, despre adevărata Anuradhapura și, câteva zile mai târziu, m-a invitat să vizitez Parlamentul. Am trimis actele, mi-am pregătit rochia lungă și am așteptat adresa. Apoi totul s-a transformat într-o neînțelegere pe care nici astăzi nu am reușit să o deslușesc.",
+    date: "2026-08-05",
+    author: "Mida Malena",
+    tags: [
+      "Midaway",
+      "Sri Lanka",
+      "calatorii",
+      "Asia",
+      "calatorie solo",
+      "Parlament",
+      "Anuradhapura",
+      "Jaffna",
+      "Vavuniya",
+      "Colombo",
+    ],
+    cover: "/assets/blog/cum-am-fost-invitata-in-parlamentul-sri-lankai-si-n-am-mai-ajuns.JPEG",
+    lang: "ro",
+    minutes: 13,
+    content: [
+      { type: "paragraph", parts: [{ text: "După două zile de ploaie, mi-am pus rucsacul în spate și am plecat din " }, { text: "Anuradhapura", href: "https://maps.app.goo.gl/PhN3ywzp5w65qaji7?g_st=iw", kind: "external" }, { text: "." }] },
+  
+      { type: "paragraph", parts: [{ text: "Nu aveam de unde să știu că, înainte să ajung în " }, { text: "Jaffna", href: "https://maps.app.goo.gl/o6mtK6xMxYKz2f6b8?g_st=iw", kind: "external" }, { text: ", urma să cunosc o femeie pe care nu aveam să reușesc să o înțeleg niciodată." }] },
+      `În zilele petrecute acolo, ploaia mă obligase să caut adăpost în cele mai neașteptate locuri. Mai întâi sub acoperișul unor oameni care vindeau nuci de cocos. Apoi lângă câteva femei care își întinseseră legumele într-o piață improvizată. Mai târziu, într-un magazin mic, unde mi-am cumpărat o înghețată doar ca să mai pot aștepta până se liniștea vremea.`,
+  
+      `Nu vorbeam mult. Nici eu, nici ei. Dar de fiecare dată îmi făceau loc lângă ei, de parcă ar fi fost cel mai firesc lucru din lume.`,
+  
+      `Până la urmă am ajuns și la templul pe care voiam să-l văd. Încă ploua. M-am descălțat și am pășit pe piatra udă, plimbându-mă pur și simplu în jurul templului uriaș. Nu voiam să intru. Voiam doar să simt locul cu toată ființa mea. Poate era liniștea, poate burnița sau faptul că eram aproape singură, dar locul avea un farmec aparte.`,
+  
+      `Atunci m-am gândit pentru prima dată că, într-o zi, aveam să mă întorc în Anuradhapura și să o descopăr așa cum merita.`,
+  
+      `Nu știam că invitația avea să vină chiar a doua zi.`,
+  
+      `***`,
+  
+      `*Femeia din autobuz*`,
+  
+      `Dimineața am predat camera și am chemat un tuk-tuk până la autogara despre care îmi vorbise proprietarul. Era alta decât cea în care ajunsesem cu două zile înainte.`,
+  
+      `Nici n-am apucat bine să intru în incintă. Un autobuz tocmai ieșea din autogară. Pe el scria ceva cu litere pe care încă nu eram în stare să le descifrez.`,
+  
+      `Băiatul care încasa biletele stătea agățat de bara de lângă ușă, cu jumătate de corp în afara autobuzului.`,
+  
+      `— Where?`,
+  
+      `— Jaffna.`,
+  
+      `— Come!`,
+  
+      `Apoi a adăugat, aproape din mers:`,
+  
+      `— You change in Vavuniya.`,
+  
+      { type: "paragraph", parts: [{ text: "Am urcat fără să mă mai gândesc. Nu știam unde era " }, { text: "Vavuniya", href: "https://maps.app.goo.gl/6f49eD3YGcfkWFTT8?g_st=iw", kind: "external" }, { text: " și nici cât mai aveam până în Jaffna. Știam doar că, mai devreme sau mai târziu, aveam să ajung acolo." }] },
+  
+      `Mi-am pus rucsacul în compartimentul pentru bagaje din față, iar băiatul mi-a arătat un loc liber chiar pe prima banchetă din spatele șoferului. Mi s-a părut perfect. În spate era de obicei mai cald și mai aglomerat. Acolo puteam să-mi întind puțin picioarele și vedeam tot drumul.`,
+  
+      `Lângă mine stătea o femeie îmbrăcată într-un sari mov. Părea să aibă puțin peste treizeci de ani și mi-a zâmbit imediat ce m-am așezat.`,
+  
+      `La început m-a întrebat de unde sunt. Apoi unde merg. Dacă sunt singură. Dacă îmi place Sri Lanka. Conversația a curs atât de firesc, încât după câteva minute aveam senzația că ne cunoșteam de mult.`,
+  
+      `Îi voi spune Nadeesha.`,
+  
+      { type: "paragraph", parts: [{ text: "La un moment dat mi-a spus că lucra la " }, { text: "Parlamentul Sri Lankăi", href: "https://maps.app.goo.gl/2UGVeXcXdhj68tRx7?g_st=iw", kind: "external" }, { text: "." }] },
+      `Recunosc că m-a surprins.`,
+  
+      `Vorbea despre instituție fără solemnitate și fără să încerce să mă impresioneze. Era caldă, curioasă și atât de firească, încât diferențele dintre noi păreau să dispară.`,
+  
+      `Când i-am spus că plecasem din Anuradhapura cu senzația că nu apucasem să văd aproape nimic, m-a oprit imediat.`,
+  
+      `— Trebuie să te întorci.`,
+  
+      `Mi-a povestit despre locul în care trăia, la câțiva kilometri de oraș. Despre elefanții care treceau uneori prin apropierea caselor. Despre căprioarele pe care le vedeau aproape zilnic. Despre temple și locuri în care turiștii ajungeau foarte rar.`,
+  
+      `M-a invitat să merg la ea. Am crezut-o.`,
+  
+      `Iar pentru prima dată, întoarcerea în Anuradhapura nu mai părea doar un gând vag, ci un plan posibil.`,
+  
+      `***`,
+  
+      `*Cărțile care trebuiau traduse în sinhaleză*`,
+  
+      `I-am povestit despre călătoriile mele și despre cărțile pe care le scrisesem. A ascultat cu atenție, apoi mi-a spus ceva la care nu mă așteptam:`,
+  
+      `— Ar trebui traduse și în sinhaleză.`,
+  
+      `Am zâmbit. Mi se părea o idee aproape imposibilă.`,
+  
+      `Ea vorbea însă foarte serios.`,
+  
+      `Mi-a explicat că era implicată în proiecte dedicate drepturilor femeilor și că, în comunitățile cu care lucra, existau încă femei care nu știau să citească sau să scrie. Altele învățaseră doar puțin și nu puteau citi în engleză.`,
+  
+      `— Cred că multe s-ar regăsi în povestea ta, mi-a spus.`,
+  
+      `N-am știut ce să răspund.`,
+  
+      `Nu pentru că ideea mi s-ar fi părut absurdă, ci pentru că venea dintr-un loc în care nu mă așteptasem să ajung. Eu îi povesteam unei femei întâlnite întâmplător într-un autobuz despre cărțile mele, iar ea vorbea deja despre cititoare pe care eu nu mi le imaginasem niciodată.`,
+  
+      `În Vavuniya a coborât cu o stație înaintea mea. Avea o întâlnire în oraș.`,
+  
+      `Ne-am schimbat numerele de telefon și am promis să păstrăm legătura. Dacă nu plecam în India, urma să ne revedem. Iar dacă plecam, mi-a spus că, într-o zi, când aveam să mă întorc în Sri Lanka, îmi va arăta adevărata Anuradhapura.`,
+  
+      `În autobuzul acela nu aveam de unde să știu că urma să o revăd mult mai repede decât credeam. Sau, cel puțin, că aveam să încerc.`,
+  
+      `M-am gândit la ea tot drumul până în Jaffna. Apoi orașul și planurile mele au acoperit treptat întâlnirea din autobuz: căutarea unei cazări, plimbarea prin fort, informațiile despre feribot și problema vizei pentru India.`,
+  
+      `Nadeesha a rămas undeva într-un colț al minții.`,
+  
+      `***`,
+  
+      `*Invitația*`,
+  
+      { type: "paragraph", parts: [{ text: "Câteva zile mai târziu, eram deja în " }, { text: "Trincomalee", href: "https://maps.app.goo.gl/JkFnNEiWETWDqTUR7?g_st=iw", kind: "external" }, { text: " când am primit un mesaj de la ea. Mă întreba cum eram. Dacă găsisem feribotul. Dacă plecasem deja spre India." }] },
+      `I-am răspuns că încă nu știam nimic. Așteptam răspunsul Ambasadei Indiei, iar planurile mele rămâneau suspendate.`,
+  
+      `Ea era în Colombo, la Parlament.`,
+  
+      `Apoi conversația s-a oprit din nou.`,
+  
+      `După alte câteva zile i-am scris eu. Fără vreun motiv anume, i-am trimis în format PDF cartea mea despre Vietnam. Pur și simplu mi-am dorit să o citească.`,
+  
+      `Între timp aflasem că nu puteam intra în India cu feribotul folosind eVisa și că trebuia să-mi prelungesc șederea în Sri Lanka. I-am spus că urma să mai rămân o vreme în țară și că, poate, aveam totuși ocazia să ne revedem.`,
+  
+      `Răspunsul ei a venit aproape imediat:`,
+  
+      `— Te pot ajuta cu ceva?`,
+  
+      `I-am spus că nu avea cum să mă ajute. Voiam doar să știe că planurile mele se schimbaseră.`,
+  
+      `M-a îndemnat din nou să merg în Anuradhapura. Mi-a repetat că îmi putea arăta locuri pe care turiștii nu le vedeau niciodată și că aveam să trăiesc experiențe frumoase.`,
+  
+      `Mi-ar fi plăcut. Dar până nu rezolvam prelungirea vizei, nu puteam face niciun plan.`,
+  
+      `Când am primit mesajul prin care eram chemată personal la biroul de imigrări din Colombo, i-am scris imediat:`,
+  
+      `— Pe 5 martie voi fi în Colombo.`,
+  
+      `M-a întrebat cât urma să stau.`,
+  
+      `I-am răspuns sincer:`,
+  
+      `— Nu știu încă.`,
+  
+      `După câteva minute mi-a trimis un singur mesaj:`,
+  
+      `— Bine. Ne vom întâlni în Colombo.`,
+  
+      `Mai târziu, în aceeași zi, m-a sunat. Mi-a spus că urma să fie la Parlament și că ne puteam vedea acolo. Apoi a adăugat, aproape firesc, că mă putea lua și pe mine cu ea. M-a întrebat unde aveam să fiu cazată. Voia să vină să mă ia.`,
+  
+      `Am izbucnit în râs. Câte șanse ai să vizitezi Parlamentul Sri Lankăi? Mi s-a părut una dintre acele invitații pe care nu ai cum să le refuzi.`,
+  
+      `Asta se întâmpla pe 3 martie. Apoi, pentru o vreme, n-am mai primit nimic.`,
+  
+      `***`,
+  
+      `*O noapte, o viză și prea puțină energie*`,
+  
+      `Pe 4 martie am plecat spre Colombo cu autobuzul de noapte. Eram deja bolnavă. Aveam febră, îmi era frig aproape tot timpul și, de câteva zile, abia mai mâncam.`,
+  
+      `Autobuzul m-a lăsat la câțiva kilometri de centru. Un tuk-tuk m-a dus până la gară, iar restul nopții l-am petrecut pe o bancă, cu rucsacul sub cap și eșarfa trasă peste ochi. Nu puteam dormi, dar măcar puteam să stau întinsă.`,
+  
+      `La șapte și douăzeci eram deja la biroul de imigrări. Am ieșit de acolo după mai bine de cinci ore, cu viza prelungită și cu foarte puțină energie rămasă.`,
+  
+      { type: "paragraph", parts: [{ text: "În sala de așteptare am cunoscut și un român care avea o casă în " }, { text: "Bentota", href: "https://maps.app.goo.gl/vTcETEBUQBVBos6V8?g_st=iw", kind: "external" }, { text: ". M-a întrebat cu ce mă ocup, iar când i-am spus că sunt scriitoare, a concluzionat că trebuie să fiu bogată. După ce i-am explicat că trăiam din banii rămași după ce vândusem tot ce aveam în România, mi-a propus să merg cu el." }] },
+  
+      `Îmi oferea o cameră, iar în schimb ar fi trebuit să gătesc din când în când și să fac „puțină” curățenie.`,
+  
+      `— Dacă vrei, te iau cu mine chiar acum, mi-a spus.`,
+  
+      `Părea atât de hotărât, încât aveam impresia că, dacă îl mai lăsam puțin, mă urca direct în mașină. I-am tăiat elanul spunându-i că a doua zi aveam o întâlnire cu o femeie de la Parlament.`,
+  
+      `În mintea mea, alegerea era simplă: între Bentota ca menajeră și o vizită la Parlamentul Sri Lankăi, Parlamentul câștiga fără prea multe negocieri.`,
+  
+      `M-am întors la același hostel în care stătusem la începutul călătoriei, am făcut un duș și m-am băgat în pat. Când m-am trezit, era aproape nouă seara.`,
+  
+      `Primul lucru pe care l-am făcut a fost să-i scriu Nadeeshei. I-am spus că rezolvasem cu viza, că petrecusem mai bine de cinci ore la imigrare și că dormisem toată după-amiaza. I-am trimis și locația hostelului, explicându-i că urma să rămân două nopți în Colombo.`,
+  
+      `M-a întrebat dacă aveam să fiu și a doua zi în oraș. I-am răspuns că da și că nu mai aveam niciun alt plan pentru Colombo.`,
+  
+      `Mi-a scris din nou:`,
+  
+      `— Ne vom întâlni în Colombo.`,
+  
+      `Puțin mai târziu m-a sunat și mi-a confirmat că planul rămânea în picioare. A doua zi urma să merg cu ea la Parlament.`,
+  
+      `Am stabilit doar că ne vedeam. Ora, adresa și restul detaliilor urmau, presupuneam eu, să vină dimineața.`,
+  
+      `***`,
+  
+      `*Rochia lungă*`,
+  
+      `Pe 6 martie m-am trezit târziu. Pe telefon mă așteptau mai multe mesaje de la ea.`,
+  
+      `Primul spunea:`,
+  
+      `— Bună dimineața. Este obligatoriu să porți o rochie lungă dacă vii astăzi la Parlament.`,
+  
+      `Al doilea:`,
+  
+      `— Trimite-mi o fotografie cu pașaportul și cu actul tău de identitate.`,
+  
+      `Mai aveam și un apel pierdut.`,
+  
+      `M-am ridicat din pat instantaneu. I-am trimis fotografiile și mi-am cerut scuze că răspundeam atât de târziu.`,
+  
+      `Apoi am așteptat. Nimic.`,
+  
+      `Mesajele mele erau văzute, dar răspunsul nu mai venea.`,
+  
+      `Pe la prânz eram deja într-un mall din apropiere. Reușisem să mănânc ceva și eram pregătită să chem un taxi imediat ce îmi trimitea adresa. Numai că adresa nu venea.`,
+  
+      `La 11:58 i-am scris din nou:`,
+  
+      `— Totul este în regulă? Dacă nu mă acceptă la Parlament, aș vrea doar să știu.`,
+  
+      `Mesajul a fost citit. Niciun răspuns.`,
+  
+      `Am mai așteptat puțin, apoi am băgat telefonul înapoi în geantă. Mi-am spus că, probabil, nu se mai putea. Oricum încă mă simțeam îngrozitor.`,
+  
+      `Am ieșit din mall hotărâtă să mă întorc la hostel și să mă culc.`,
+  
+      `Atunci m-a lovit. Dintr-odată.`,
+  
+      `Stomacul.`,
+  
+      `Genul acela de urgență care nu lasă loc nici pentru negocieri, nici pentru invitații oficiale.`,
+  
+      `Mergeam cât puteam de repede spre hostel și, în același timp, aveam impresia că nu aveam să ajung la timp.`,
+  
+      `Când am intrat pe strada hostelului, aproape de ora unu, am scos telefonul din geantă. Am încremenit. Aveam trei apeluri video, mai multe apeluri obișnuite și o succesiune de mesaje:`,
+  
+      `— Ok.`,
+  
+      `— Come.`,
+  
+      `— Call me.`,
+  
+      `— Now.`,
+  
+      `— Where are you? I’m here.`,
+  
+      `Am băgat telefonul înapoi. În clipa aceea aveam o singură urgență.`,
+  
+      `Nici nu știu cum am ajuns până la toaletă. Îmi amintesc doar că stăteam acolo, cu broboane de transpirație pe frunte, și mă gândeam că organismul meu cedase complet.`,
+  
+      `Câteva minute mai târziu am ieșit în holul hostelului și am sunat-o.`,
+  
+      `A răspuns imediat.`,
+  
+      `— Unde ești? De ce n-ai venit?`,
+  
+      `Am încercat să-i explic că așteptasem adresa. Că văzusem mesajele abia după ce plecasem din mall. Că nu mă simțeam bine.`,
+  
+      `N-a avut răbdare să mă asculte. A zis doar atât:`,
+  
+      `— Te sun imediat.`,
+  
+      `A închis.`,
+  
+      `Și nu m-a mai sunat niciodată.`,
+  
+      `***`,
+  
+      `*Ușa care nu s-a deschis*`,
+  
+      `Nici astăzi nu știu ce s-a întâmplat.`,
+  
+      `Poate că ea a presupus că știam unde trebuia să ajung. Poate că se așteptase să mă găsească la poarta Parlamentului. Poate că mesajele ei ajunseseră exact în singurul moment în care eu nu le puteam vedea. Poate că înțelesesem greșit totul de la început.`,
+  
+      `Nu am mai primit nicio explicație.`,
+  
+      `Pentru câteva zile, avusesem impresia că o întâlnire întâmplătoare dintr-un autobuz urma să-mi deschidă ușa Parlamentului Sri Lankăi.`,
+  
+      `Ușa nu s-a deschis.`,
+  
+      `Iar cea care îmi vorbise despre cărți, elefanți și adevărata Anuradhapura a rămas femeia pe care nu am reușit niciodată să o înțeleg.`,
+    ],
   }
+      
       
   
 
