@@ -214,13 +214,15 @@ function buildPickupEmail({
         </div>
 
         <p>
-          Îți mulțumim că ai ales Midaway și îți dorim
-          lectură frumoasă!
+        Îți mulțumim că ai ales Midaway.
+        Sperăm ca fiecare dintre aceste cărți să-ți ofere
+        o călătorie frumoasă și inspirație pentru noi drumuri.
         </p>
 
         <p>
-  Ne-ar bucura să ne spui, după lectură,
-  cum a fost experiența ta cu cărțile Midaway.
+        După ce le vei citi, ne-ar bucura să aflăm
+        cum a fost experiența ta.
+        Fiecare mesaj de la cititori înseamnă enorm pentru noi.
 </p>
 
         <p>

@@ -173,7 +173,7 @@ function buildClientEmail({
       font-weight:700;
     "
   >
-    Vezi cărțile disponibile la Gaudeamus
+  Descoperă universul Midaway
   </a>
 </p>
         <p style="color:#666;font-size:14px">
