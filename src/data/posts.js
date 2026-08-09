@@ -2384,6 +2384,153 @@ const posts = [
   
       `Iar cea care îmi vorbise despre cărți, elefanți și adevărata Anuradhapura a rămas femeia pe care nu am reușit niciodată să o înțeleg.`,
     ],
+  },
+
+  {
+    slug: "o-carte-inceputa-in-muson-un-final-cu-trei-de-9-si-o-lansare-la-gaudeamus",
+    title: "O carte începută în muson, un final cu trei de 9 și o lansare la Gaudeamus",
+    excerpt: "O carte începută în plin muson, scrisă aproape în timp real prin India, un final legat de trei apariții ale cifrei 9 și prima lansare Midaway la Gaudeamus. Povestea din spatele „Maya, Bro și Hakuna Matata” și drumul ei de la Goa până la întâlnirea cu cititorii.",
+    date: "2026-08-09",
+    author: "Mida Malena",
+    tags: [
+      "Midaway",
+      "Maya Bro si Hakuna Matata",
+      "Gaudeamus",
+      "Sibiu",
+      "India",
+      "Goa",
+      "Asia",
+      "autofictiune",
+      "calatorii",
+      "lansare de carte",
+    ],
+    cover: "/assets/blog/o-carte-inceputa-in-muson-un-final-cu-trei-de-9-si-o-lansare-la-gaudeamus.JPEG",
+    lang: "ro",
+    minutes: 9,
+    content: [
+  
+      `Unele cărți se nasc ordonat: cu plan, structură, capitole așezate frumos într-un document și cu autorul convins că știe, măcar aproximativ, unde vrea să ajungă.`,
+  
+      `„Maya, Bro și Hakuna Matata” n-a avut parte de asemenea disciplină.`,
+  
+      `S-a născut în Goa, în plin muson, în timp ce eu încă închideam o altă carte. Ploua cu încăpățânarea aceea pe care India pare s-o considere argument, eu eram la mii de kilometri de casă, iar în loc să iau o pauză după ce tocmai terminasem un manuscris, am deschis alt document.`,
+  
+      `Pentru că, aparent, asta fac eu când ar trebui să mă odihnesc: scriu încă o carte.`,
+  
+      `Numai că, de data asta, am făcut ceva diferit: n-am mai lăsat povestea să aștepte.`,
+  
+      `Până atunci scrisesem aproape întotdeauna retrospectiv, după ce experiențele se așezaseră, după ce oamenii dispăruseră sau rămăseseră, după ce timpul făcuse deja o parte din selecție și eu știam ce a contat și ce nu. De data asta am scris aproape în timp real. Călătoream, întâlneam oameni, râdeam, mă rătăceam, schimbam orașe, iar seara întâmplările intrau în carte cât încă erau vii.`,
+  
+      `Nu aveam luxul autorului care cunoaște finalul și își conduce personajele spre el.`,
+  
+      `Eu nu știam finalul.`,
+  
+      `Nici măcar nu știam dacă îl voi recunoaște atunci când va veni.`,
+  
+      `Dar, undeva spre capătul drumului, a apărut Fahad.`,
+  
+      `În holul alb de la White Hostel, pe băncuța aceea pe care stătea și asculta povești, mi-a spus aproape în treacăt că este născut pe 09.09, la ora 09:00.`,
+  
+      `Atunci a fost doar un detaliu curios. Unul dintre acele lucruri pe care le reții fără să știi încă de ce.`,
+  
+      `Abia după ce am plecat din Goa, în mesajele dintre noi, întâlnirea a căpătat un alt strat. Fahad mi-a spus că văzuse în mine nu fața, nu hainele, nu oboseala, ci energia pe care o port.`,
+  
+      `Și atunci am înțeles ceva ce cartea construise deja, fără să-mi spună: după atâtea pagini în care eu îi privisem pe ceilalți, cineva mă privise și pe mine.`,
+  
+      `Mai târziu, când mi-am dat seama că „Maya, Bro și Hakuna Matata” este a noua carte a Editurii Midaway, informația aceea spusă în treacăt pe o băncuță dintr-un hostel din Goa s-a întors altfel.`,
+  
+      `Nouă.`,
+  
+      `09.09.`,
+  
+      `Ora 09.`,
+  
+      `Într-o carte al cărei final nu-l cunoșteam și al cărei sens începuse, încet, să se arate singur.`,
+  
+      `Nu știu dacă asemenea lucruri sunt coincidențe, semne sau pur și simplu felul nostru de a lega punctele atunci când privim înapoi.`,
+  
+      `Știu doar că, atunci când am văzut legătura, am zâmbit.`,
+  
+      `Mi s-a părut magic.`,
+  
+      `Și, pentru o carte născută în Goa, suficient.`,
+
+      `***`,
+  
+      `*Prima lansare Midaway la GAUDEAMUS*`,
+  
+      `Acum, cartea pleacă din Goa, din India, din toate întâmplările care au construit-o și ajunge într-un loc foarte concret: Gaudeamus.`,
+  
+      `Pentru Editura Midaway, este o premieră.`,
+  
+      `Prima noastră lansare la Gaudeamus.`,
+  
+      `Iar pentru „Maya, Bro și Hakuna Matata”, prima întâlnire adevărată cu cititorii într-un târg de carte.`,
+  
+      `Sâmbătă, 22 august, de la ora 17:00, lansăm cartea la Gaudeamus Sibiu. `,
+  
+      `Și îmi place teribil contrastul: o carte începută în ploaia musonică din Goa ajunge, numai câteva săptămâni mai târziu, pe masa unui târg de carte din România.`,
+  
+      `Între cele două puncte sunt mii de kilometri, trenuri, autobuze, hosteluri, oameni care au intrat pentru câteva ore în poveste și au rămas în ea, momente absurde, întrebări, râsete și suficiente întâmplări cât să-mi amintească încă o dată că un autor nu hotărăște singur ce va deveni o carte. Tot ce poate face este să fie atent, să scrie și să țină pasul. `,
+  
+      `În carte există o frază care spune aproape exact asta:`,
+  
+      `„Goa îmi dictase ceva, iar acum verifica dacă țin pasul.”`,
+      
+      `***`,
+  
+      `*Ce este, de fapt, „Maya, Bro și Hakuna Matata”?*`,
+  
+      `Nu vreau să spun prea mult înainte de lansare, pentru că unele cărți trebuie lăsate să-și dezvăluie singure mecanismele, pe măsură ce sunt citite.`,
+  
+      `Dar pot spune atât: este o carte despre drum și despre oamenii care apar în el, despre lucrurile pe care pleci să le cauți și despre cele pe care le găsești tocmai când nu le-ai cerut, despre întâmplări care par mărunte în clipa în care se petrec și capătă greutate abia după ce te-ai îndepărtat de ele.`,
+  
+      `Este și o carte despre iluzie, despre felul în care realitatea refuză uneori să semene cu ceea ce ne-am imaginat și despre vocea aceea din cap care, pe rând, îți este aliat, martor, comentator și uneori cel care îți spune exact ce nu ai chef să auzi.`,
+  
+      `În carte, vocea aceea se numește Bro.`,
+  
+      `Este despre India, desigur, dar nu numai despre India. Despre trenuri, orașe, hosteluri, ploi, vaci, oameni care intră în viața ta pentru câteva ore și rămân în poveste mult mai mult decât au rămas lângă tine. Despre întâmplări care par accidente și despre răspunsuri care nu vin atunci când le forțezi, ci abia după ce încetezi să le mai ceri să apară la comandă.`,
+  
+      `Maya înseamnă, printre altele, „iluzie”.`,
+  
+      `Știusem asta cândva, apoi uitasem complet. Am redescoperit sensul aproape de finalul călătoriei și, dintr-odată, titlul a început să-mi spună lucruri pe care nu le mai avusesem în minte atunci când îl alesesem.`,
+  
+      `Și poate că exact asta definește cel mai bine cartea: sensurile nu au fost așezate de la început, ca niște indicatoare pe marginea drumului. Au apărut mai târziu, din întâmplări, oameni, replici și coincidențe care, privite separat, nu spuneau mare lucru, dar care, puse împreună, au început să deseneze o poveste.`,
+  
+      `Cam așa funcționează „Maya, Bro și Hakuna Matata”.`,
+  
+      `Și, în ultima vreme, cam așa funcționează și viața mea. `,
+      
+      `***`,
+  
+      `*Ne vedem la Gaudeamus*`,
+  
+      `Voi fi la stand în toate cele patru zile ale târgului, iar la Sibiu se va întâmpla pentru mine ceva special: pentru prima dată, toate cele nouă cărți Midaway vor fi la un loc, inclusiv volumele care nu au avut încă parte de o lansare oficială. `,
+  
+      `Doar primele două au fost lansate oficial, în aprilie 2025, la Baia Mare. O alta a apărut cu doar două zile înainte să plec spre Asia, în noiembrie 2025, iar următoarele șase au fost scrise pe parcursul celor opt luni în care am călătorit. În timp ce trăiam experiențe noi, puneam în cărți povești mai vechi, ca și cum două drumuri mergeau în paralel: unul prin Asia și altul prin propriile mele manuscrise.`,
+  
+      `Privind acum înapoi, mi se pare aproape neverosimil: șase cărți scrise în opt luni de drum.`,
+  
+      `Poate tocmai de aceea Gaudeamus are pentru mine și sensul unei reîntâlniri. Nu ajunge acolo doar „Maya, Bro și Hakuna Matata” – ajung, într-un fel, toate lunile astea de mers, scris, trăit și transformat experiențele în cărți.`,
+  
+      `Puteți veni să mă salutați, să povestim, să răsfoiți cărțile sau pur și simplu să vedeți ce mai face un autor care s-a întors din Asia cu prea multe povești și, din fericire, prea puține intenții de a se cuminți.`,
+  
+      `Iar dacă vreți să fiți acolo la momentul principal:`,
+  
+      `Sâmbătă, 22 august, ora 17:00 – lansarea „Maya, Bro și Hakuna Matata”.`,
+  
+      `Cei prezenți la lansare vor avea și un preț special pentru carte, dar, dincolo de asta, mi-ar plăcea să fim acolo împreună pentru primul moment în care povestea iese cu adevărat dintre pagini și intră în mâinile cititorilor.`,
+  
+      `Pentru că o carte poate fi scrisă în singurătate, într-o cameră de hotel, într-un hostel, într-un apartament prea mare, într-un tren sau la mii de kilometri de casă. Poate fi terminată în timp ce drumul continuă și își poate descoperi sensurile prin oameni apăruți pentru câteva ore, prin replici pe care n-ai fi putut să le inventezi și prin coincidențe care, privite din afară, par aproape prea bine așezate.`,
+  
+      `Poate chiar să ajungă la capăt purtând ecoul unui om născut pe 09.09, la ora 09:00, tocmai în a noua carte Midaway. `,
+  
+      `Dar, din clipa în care ajunge la cititor, ceva se schimbă și povestea nu mai rămâne doar a celui care a scris-o. Fiecare cititor o va vedea altfel, va râde în alte locuri, va păstra alte personaje și poate va găsi în ea sensuri pe care eu însămi nu le-am văzut încă.`,
+  
+      `De acolo începe viața ei adevărată.`,
+  
+      `Ne vedem la Gaudeamus.`,
+    ],
   }
       
       
