@@ -2404,7 +2404,7 @@ const posts = [
       "calatorii",
       "lansare de carte",
     ],
-    cover: "/assets/blog/o-carte-inceputa-in-muson-un-final-cu-trei-de-9-si-o-lansare-la-gaudeamus.JPEG",
+    cover: "/assets/blog/goa-gaudeamus-sibiu.jpeg",
     lang: "ro",
     minutes: 9,
     content: [
