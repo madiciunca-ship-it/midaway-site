@@ -2400,7 +2400,7 @@ const posts = [
       "India",
       "Goa",
       "Asia",
-      "autofictiune",
+      "confesiune",
       "calatorii",
       "lansare de carte",
     ],
