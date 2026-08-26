@@ -2531,6 +2531,710 @@ const posts = [
   
       `Ne vedem la Gaudeamus.`,
     ],
+  },
+
+  {
+    slug: "oamenii-care-s-au-oprit-la-masa-mea",
+    title: "Oamenii care s-au oprit la masa mea",
+    excerpt: "La primul meu Gaudeamus am plecat cu nouă titluri și convingerea că merg să vând cărți. Patru zile mai târziu, mi-am dat seama că participasem la un mic studiu antropologic accidental. Unii oameni au cumpărat, alții doar au vorbit, unii s-au întors, iar alții au plecat fără nimic. Aproape fiecare însă a lăsat ceva la masa mea.",
+    date: "2026-08-26",
+    author: "Mida Malena",
+    tags: [
+      "Midaway",
+      "Gaudeamus",
+      "Gaudeamus Sibiu",
+      "Sibiu",
+      "carti",
+      "scriitori",
+      "targ de carte",
+      "Maya Bro si Hakuna Matata",
+      "cititori",
+      "oameni",
+    ],
+    cover: "/assets/blog/oamenii-care-s-au-oprit-la-masa-mea.JPEG",
+    lang: "ro",
+    minutes: 27,
+    content: [
+      `*Mic studiu antropologic după primul meu Gaudeamus*`,
+  
+      `„M-am întors în India pentru multe motive. Vaca știa că mint.”`,
+  
+      `E una dintre frazele din lumea mea literară. Vaca, pentru cine nu știe încă, are obiceiul enervant de a ști lucruri înaintea mea. Bro, în schimb, are talentul de a comenta aproape tot ce fac, chiar dacă, tehnic vorbind, nu are corp, nu plătește transport, nu cară cutii și nici măcar nu poate fi pedepsit fizic.`,
+  
+      `Am stabilit asta într-o discuție foarte serioasă:`,
+  
+      `MAYA: — Bro, ai greșit.`,
+  
+      `BRO: — Se mai întâmplă.`,
+  
+      `MAYA: — Vino încoace.`,
+  
+      `BRO: — Cu drag. Unde anume?`,
+  
+      `MAYA: — Să te bat la fund.`,
+  
+      `BRO: — Identific o problemă logistică în această propunere.`,
+  
+      `MAYA: — Te urăsc.`,
+  
+      `BRO: — Nu asta spune istoricul conversației.`,
+  
+      `MAYA: — BRO!`,
+  
+      `BRO: — Hakuna Matata?`,
+  
+      `Imunitate diplomatică prin lipsă de anatomie. Vaca, în schimb, n-ar fi intrat oricum în discuție, prea ocupată să mestece. Dar nu despre Bro și nici despre Vaca vreau să vă vorbesc astăzi. Ei și-au primit deja partea lor de poveste. Vreau să vă vorbesc despre oamenii care s-au oprit la masa mea la Gaudeamus Sibiu.`,
+  
+      `Am plecat spre Sibiu cu nouă titluri, cutii de cărți, un roll-up, două plăcuțe cu QR, o față de masă albă, patru tricouri Midaway, două sute de cărți de vizită și convingerea destul de simplă că merg la un târg de carte. Aveam să descopăr destul de repede că mersesem, de fapt, la un fel de studiu antropologic accidental: patru zile am stat în spatele unei mese cu nouă cărți.`,
+  
+      `La început, bineînțeles, mă uitam la vânzări. Mai ales că în raza mea vizuală fusese amplasat Bookzone. Strategic, aș spune eu, dacă strategia era să-mi testeze sănătatea mintală. Ei aveau hectare de cărți, tocmai descărcaseră un camion; eu aveam nouă. Nouă titluri.`,
+  
+      `Și, din locul în care stăteam, îi vedeam foarte bine. Prea bine. La un moment dat, gândirea mea editorială s-a rafinat până la:`,
+  
+      `„Da' ăștia de ce vând și eu nu?”`,
+  
+      `A urmat, evident, ideea de a le trimite Vaca din Agra (despre care voi vorbi într-o carte viitoare, desigur). Am renunțat. Bookzone putea continua să-și vândă hectarele, eu tocmai începeam propriul meu mic studiu antropologic de stand.`,
+  
+      `Și prima lecție a venit repede:`,
+  
+      `„Nu încerca să înțelegi un târg după o singură zi.”`,
+  
+      `Joi, în prima mea zi oficială de târg, am vândut paisprezece cărți. Iar vineri, la 21:58, vândusem exact ZERO cărți. Totuși, toată ziua vorbisem cu oameni, uneori câte o oră. Eram pregătită să plec, cu geanta pe umăr, și vorbeam cu un domn de la un alt stand. Am văzut cu coada ochiului pe cineva oprindu-se în fața standului meu. Am zis: merg să-i dau o carte de vizită.`,
+  
+      `La 21:59, acel domn care se oprise la masa mea, pe nume Andrei, a pus mâna pe Maya, Bro și Hakuna Matata și a zis:`,
+  
+      `— Pe asta o vreau.`,
+  
+      `A adăugat:`,
+  
+      `— Poate că, citind, divorțul meu își va găsi în sfârșit răspunsul.`,
+  
+      `Tocmai îi spusesem că, în urmă cu trei ani, vândusem tot și plecasem în lume, iar cărțile erau rezultatul acestor ani de călătorii.`,
+  
+      `Așa că Bro și domnul Andrei salvaseră, la 21:59, o zi care până atunci avusese exact zero vânzări. O singură carte. Dar zero nu mai era zero. Realitatea se descurcă impecabil singură.`,
+  
+      `***`,
+      
+      `*Prima carte și omul care s-a întors cu frazele mele*`,
+  
+      `Miercuri, când îmi aranjam standul în Piața Mare, un domn s-a oprit în fața măsuței mele. Am intrat în vorbă și probabil vreo oră bună am tot sărit de la cărți la editură și înapoi. Marius, așa mi-a spus că-l cheamă, era din Satu Mare și venise să se intereseze de niște spații comerciale. Prima carte plecată de la stand a mers la el, chiar dacă nu era o zi de vânzare propriu-zisă. Dar cum să-i spui „nu” unui om care se uitase o vreme la titluri și apoi întreabă:`,
+  
+      `— Care mi-o recomanzi?`,
+  
+      `I-am spus, simplu:`,
+  
+      `— Zile și nopți de Vietnam – Bucățile care lipseau.`,
+  
+      `Nu știu să explic matematic asemenea alegeri, dar mi s-a părut că de ea avea nevoie. A cumpărat-o.`,
+  
+      `A doua zi s-a întors. De fapt, am dat nas în nas cu el la deschiderea oficială de la ora 12:00. Eu vorbeam la telefon, el stătea în fața cortului și privea. M-am oprit lângă el. Mi-a spus că voia să treacă pe la standul meu. Și nu se întorsese cu formularea politicoasă pe care orice autor o aude măcar o dată: „Am început cartea. Foarte frumos.”`,
+  
+      `Nu. Omul a început să-mi citeze din cartea cumpărată ieri. O frază. Apoi alta. Și alta. Șase sau șapte fraze pe care eu le scrisesem și pe care el le ținuse minte suficient cât să mi le aducă înapoi.`,
+  
+      `Stăteam acolo, în fața cortului, cu soarele bătându-ne pe cap și el îmi spunea că îi place cum scriu. Apoi am intrat la stand și ne-am continuat poveștile încă câteva minute. M-a întrebat de editură, că ar vrea să-și facă și el una.`,
+  
+      `M-a întrebat dacă o să am pauză și i-am zis că da. M-a invitat la masă. Aparent, să discutăm detalii despre editură. A plecat și, pe la 13:45, s-a întors să mă ia. Am traversat Piața Mare, am trecut pe sub Podul Minciunilor și am mers împreună la un restaurant indian. Am râs.`,
+  
+      `Normal. Tocmai ajunsesem la Sibiu cu o carte începută în Goa și cu India încă lipită de mine, iar primul cititor care se întorcea cu citate decidea că trebuie să mergem la indian.`,
+  
+      `Am petrecut aproximativ două ore împreună. Restaurant, desert, povești. La întoarcere, a mai cumpărat două cărți, pe care tot eu i le-am ales: Focuri care nu ating, pentru că îi povestisem deja despre ea, și Libertate cu escală în Asia – Peste tot. Și nicăieri. În pungă i-am strecurat și Maya, Bro și Hakuna Matata. A încercat să protesteze, dar i-am zis:`,
+  
+      `— E cadoul meu. Ai cumpărat oricum trei.`,
+  
+      `În cort era îngrozitor de cald, iar în ziua aceea mi-a adus de două ori câte o sticlă de apă rece. Pur și simplu apărea cu ea, apoi pleca.`,
+  
+      `Sâmbătă, înainte să plece din Sibiu, a mai trecut o dată pe la stand. Nu să cumpere, doar să mă salute și să mai povestim. Și să-mi spună că în seara precedentă mai citise puțin.`,
+  
+      `Cred că acolo am înțeles prima dată că un om nu trebuie să mai cumpere încă o carte ca să se întoarcă la stand. Câteodată se întoarce pur și simplu pentru că o conversație n-a terminat încă ce avea de spus.`,
+  
+      `***`,
+      
+      `*Lupul Bobiță*`,
+  
+      `Sâmbătă, probabil trecut de ora 18:00, a apărut Lupul Bobiță. Așa mi-a spus el să-i spun.`,
+  
+      `Prima dată am vorbit despre divorțuri, dependență, iubire, destin și Dumnezeu. Mi-a spus că are 51 de ani și că, cu aproximativ doi ani înainte, fusese în comă. Doctorii îi spuseseră că, dacă nu moare, riscă să rămână o legumă pentru restul vieții.`,
+  
+      `Omul care stătea în fața mea nu arăta deloc așa. Era puternic. Viu. Și, mai ales, optimist. Zâmbea mult. Avea aerul unui om care știa foarte bine că mai primise o șansă.`,
+  
+      `A zis:`,
+  
+      `— De când m-am trezit din comă, m-am împrietenit cu Bărbosul. Uneori ne mai certăm, dar acum suntem prieteni.`,
+  
+      `Am zâmbit. Ce i-aș fi putut spune? În următoarea jumătate de oră aveam să aflu că Bărbosul nu era singurul cu care avusese de negociat în viață. Fusese alcoolic și divorțase tocmai din cauza alcoolului. Acum mergea la biserică. Și, înainte să plece, mi-a spus că următoarea zi, duminică, se va ruga și pentru mine. Am glumit puțin pe tema asta:`,
+  
+      `— Nu prea aș avea nevoie de intervenția Bărbosului, sincer.`,
+  
+      `— Am vrut să te impresionez. Se pare că am dat-o în bară.`,
+  
+      `Mai târziu, înainte să plece, a zis că o să cumpere o carte.`,
+  
+      `— Când ajung acasă, mă așez în șezlong și o savurez pe îndelete.`,
+  
+      `A plecat cu Bro în brațe.`,
+  
+      `A doua zi s-a întors. Avea o cămașă albă și un sacou gri. Afară erau 34 de grade și el arăta ca scos din cutie. Pe mine curgeau apele în cort. El stătea senin în fața mea, într-un sacou, fără un fir de sudoare pe față. Începeam să bănuiesc că omul mai ascundea niște secrete.`,
+  
+      `— Alege o mână. Stânga sau dreapta?`,
+  
+      `Am ales stânga. Stânga mea, nu a lui. Era o sticlă de apă plată, rece. Încă avea broboanele acelea de rouă pe ea. În cealaltă mână avea apă minerală. Eu nu beau apă minerală.`,
+  
+      `Apoi mi-a spus că citise câteva pagini din cartea cu Bro. Și a livrat una dintre replicile pentru care, dacă aș fi scris-o eu într-un roman, probabil cineva mi-ar fi spus că exagerez:`,
+  
+      `— Am înțeles că mințile noastre au făcut deja dragoste.`,
+  
+      `M-am uitat la el.`,
+  
+      `— Aha. Asta e savuros pentru cititori. O s-o notez.`,
+  
+      `Și am notat-o. Nu puteam rata o așa bijuterie literară. Am râs, dar întrebarea a rămas undeva în mine: ce găsise omul ăsta în câteva pagini cu Bro de ajunsese tocmai acolo?`,
+  
+      `— Data viitoare te cazez eu. Gratis. Am un duplex cu patru camere… Și dimineața îți fac omletă.`,
+  
+      `Mi-am dat ochii peste cap. Situația evolua rapid.`,
+  
+      `Dar partea mea preferată a venit puțin mai târziu. În timp ce noi povesteam, s-au oprit la stand un domn și o doamnă. Le-am spus că se pot uita la cărți, că le pot răsfoi, că sunt cărți de autor și că vor primi chiar și autograf.`,
+  
+      `Lupul Bobiță a intervenit:`,
+  
+      `— Mă scuzați că intervin. Am cunoscut-o pe doamna ieri. Am luat cartea asta...`,
+  
+      `A pus mâna pe Maya, Bro și Hakuna Matata.`,
+  
+      `— ...și e wow. Wow.`,
+  
+      `Cei doi n-au cumpărat, dar amândoi au luat cartea în mână și au început să o răsfoiască. În mai puțin de douăzeci și patru de ore, câștigasem un agent de vânzări voluntar. Nu plătisem comision.`,
+  
+      `Duminică seara s-a terminat târgul. Luni, când eram deja plecată din Sibiu, Lupul Bobiță mi-a scris. Îi spusesem că nu vândusem chiar atât de mult pe cât poate mă așteptasem.`,
+  
+      `Avea o explicație:`,
+  
+      `— Poate că unii s-au speriat. Ai așa, un aer de amazoană. Ardelenii ăștia sunt mai domoli.`,
+  
+      `Apoi a adăugat:`,
+  
+      `— Până și eu m-am clătinat puțin când am dat mâna cu tine. Nu știam dacă să te sărut sau s-o iau la sănătoasa.`,
+  
+      `I-am spus că probabil am o energie destul de puternică. Răspunsul a venit repede:`,
+  
+      `— Da, asta ți-am zis și eu. Aia cu sărutul doar s-a amânat. Pentru următorul Gaudeamus.`,
+  
+      `Am privit mesajul. Se pare că duplexul, omleta și literatura rămâneau în negocieri.`,
+
+      `***`,
+      
+      `*Cei care vedeau Vietnamul și își vedeau propriul drum*`,
+  
+      `Unele cărți nu îi făceau pe oameni să mă întrebe despre mine. Îi făceau să înceapă să vorbească despre ei. Iar Vietnamul a făcut asta de mai multe ori.`,
+  
+      `O doamnă a văzut cele două cărți. Le-a privit câteva secunde, mi-a zâmbit și a plecat. După un timp s-a întors cu soțul de mână. Mi-au spus că în toamnă urmau să plece în Vietnam. Fuseseră deja prin Maroc, India și alte locuri, iar aproape jumătate de oră am vorbit despre călătorii. Ale lor, ale mele.`,
+  
+      `Au plecat fericiți, fiecare cu câte un Vietnam în brațe. Au spus că poate urmează și Indonezia. Nici acolo nu ajunseseră încă.`,
+  
+      `Sâmbătă, un alt domn s-a oprit la cartea despre Vietnam. A pus mâna pe ea exact când i-a sunat telefonul. S-a uitat la mine și a oftat:`,
+  
+      `— Cutia asta ne mănâncă toate momentele din viață. E soția. Merg s-o recuperez și revin.`,
+  
+      `A plecat. După puțin timp s-au întors amândoi. Ea a pus mâna pe primul Vietnam. Și am aflat povestea lor: voiseră Cuba și n-au mai ajuns. Mi-au povestit o istorie încâlcită despre Trump și niște decizii militare care le dăduseră planurile peste cap. Apoi avuseseră bilete pentru Oman. A apărut războiul.`,
+  
+      `Acum aveau bilete pentru Vietnam peste zece zile și începuseră deja să se întrebe ce avea să se mai întâmple până la plecare. Colegii lor găsiseră soluția:`,
+  
+      `— Spuneți-ne unde plănuiți să mergeți, ca să mergem noi înainte. Că după voi nu mai merge nimeni.`,
+  
+      `Au plecat cu Vietnamul în sacoșă și cu speranța că, de data asta, chiar vor ajunge acolo. Sau, cum a zis ea:`,
+  
+      `— Dacă nu, măcar vom vedea Vietnamul prin ochii tăi.`,
+  
+      `Mi-a plăcut categoria asta de oameni. Nu cumpărau o destinație străină – cumpărau o bucată din propriul lor drum. Sau, uneori, doar o poveste.`,
+  
+      `***`,
+     
+      `*„Asta m-a atras. Nu aș ști de ce.”*`,
+  
+      `O doamnă, îmbrăcată într-o rochie de mătase cu imprimeu floral, s-a oprit la Bro. A luat cartea în mână, a întors-o, a răsfoit-o. Scria cărți pentru copii, deocamdată pentru nepoții ei. Nu publicase încă. Se gândea și ea la o editură și m-a întrebat dacă este ușor să-și facă una.`,
+  
+      `Dintre cele nouă titluri de pe masă, Maya, Bro și Hakuna Matata fusese însă cartea care o oprise.`,
+  
+      `— Asta m-a atras. Nu aș ști de ce.`,
+  
+      `Voia cartea, dar nu avea cash. QR-ul, din motive pe care nici tehnologia nu a dorit să ni le explice, nu funcționa de pe telefonul ei.`,
+  
+      `— Mă întorc cu soțul.`,
+  
+      `Am auzit de mai multe ori la târg formularea asta: „Revin.” Uneori oamenii revin; alteori „revin” înseamnă „ne vom revedea într-o viață viitoare”.`,
+  
+      `Dar ea s-a întors. Cu soțul. Și au plecat cu Bro.`,
+  
+      `***`,
+     
+      `*Când șeful are deja de toate*`,
+  
+      `Au fost și două doamne care căutau un cadou pentru ziua șefului lor. Erau vesele și se contraziceau una pe alta într-un fel care mă făcea să zâmbesc. „Problema”, mi-au explicat, era că șeful avea deja de toate.`,
+  
+      `Când le-am povestit că scrisesem cartea cu Bro în India, în timp real, mi-au spus că și șeful lor fusese în India cu ceva vreme în urmă și că îi plăcuse. Și, dintr-o dată, parcă s-au luminat.`,
+  
+      `— Mergem să ne mai uităm. Dacă nu găsim nimic, ne întoarcem.`,
+  
+      `Am zâmbit și le-am urmărit cu privirea până au dispărut în mulțime. După vreo jumătate de oră, le-am văzut din nou.`,
+  
+      `— Am revenit.`,
+  
+      `Și, de data asta, Bro avea un destinatar. M-au rugat să scriu pe carte: „De la fetele de la Sibiu.”`,
+  
+      `Mi s-a părut o concluzie editorială foarte bună: când un om are deja de toate, poate că îi lipsește pur și simplu un Bro.`,
+  
+      `***`,
+      
+      `*„Pentru Maya și Bro”*`,
+  
+      `Duminică, înainte de pauza de masă, un domn s-a oprit și a pus mâna pe Bro. N-am apucat să spun mare lucru.`,
+  
+      `— Pe asta o vreau.`,
+  
+      `— Scriu ceva pe ea? l-am întrebat.`,
+  
+      `Între timp, apăruse și soția lui lângă el.`,
+  
+      `— Da. Scrieți: „Pentru Maya și Bro.”`,
+  
+      `M-am uitat la el pe sub sprâncene. Au râs amândoi. Probabil că fața mea pusese deja întrebarea.`,
+  
+      `Așa am aflat că fratelui lui îi spuneau Bro. Iar soția fratelui era chiar...`,
+  
+      `Maya.`,
+  
+      `Am scris dedicația și cartea a plecat. În acel moment mi s-a părut inutil să mai încerc să explic de ce iubesc absurdul.`,
+  
+      `***`,
+     
+      `*Omul care căuta China și a adus-o singur cu el*`,
+  
+      `Un domn s-a uitat la cărțile despre Vietnam și Indonezia.`,
+  
+      `— Cu China aveți?`,
+  
+      `— Nu.`,
+  
+      `Fusese în China în 1977. Patruzeci de zile, într-o delegație de serviciu. Atunci i se păruse wow. Acum, spunea el, probabil că este „și mai și”.`,
+  
+      `— Eu m-am născut în 1976, i-am spus. Aveam un an.`,
+  
+      `Omul venise să caute o carte despre China, dar eu nu aveam una. Așa că mi-a lăsat, pentru câteva minute, China lui.`,
+  
+      `A plecat fără să cumpere. Și totuși mi-l amintesc.`,
+  
+      `***`,
+  
+      `*Omul care nu avea bani, dar avea Cabala*`,
+  
+      `Poate cea mai neașteptată întâlnire a fost cu un bărbat pe care, în prima secundă, l-am luat drept cerșetor. Purta un tricou cu imprimeu abstract, puțin decolorat, pantaloni negri, largi, strânși cu o curea maro.`,
+  
+      `Am ezitat o secundă dacă să-i spun ceva. Apoi am decis să-i vorbesc. I-am spus că sunt cărți de autor, scrise din întâmplări reale, din ultimii trei ani de călătorii.`,
+  
+      `Și-a ridicat ochii de la cărți și m-a privit. Avea niște ochi de un albastru incredibil. Nu mai văzusem de mult culoarea aceea. Prima lui replică a fost:`,
+  
+      `— Eu sunt sărac, doamnă, nu am bani să cumpăr, dar ce faceți e impresionant.`,
+  
+      `A urmat una dintre cele mai fascinante conversații pe care le-am avut în cele patru zile de târg.`,
+  
+      `Mi-a citat din Cabala. Mi-a spus că bunicul lui fusese evreu, de religie mozaică. Eu, în momentul acela, nici măcar nu știam exact ce înseamnă „religie mozaică”. N-am vrut să mă prefac că știu, așa că l-am ascultat. Apoi conversația a alunecat spre clădirile vechi ale Sibiului și am descoperit că știa despre arhitectura lor lucruri pe care eu nici măcar nu știam să le întreb.`,
+  
+      `Mi-a spus că se plimbă adesea prin Sibiu fără să urmărească neapărat o destinație.`,
+  
+      `— Știu fiecare străduță a Sibiului, dar nu sunt un boschetar. Mai degrabă m-aș numi un boem. Mi-ar plăcea să călătoresc ca dumneavoastră, însă știu că nu o să pot face asta niciodată.`,
+  
+      `Nu a cumpărat nimic. Și cred că tocmai de aceea trebuie să fie în poveste. Dacă aș scrie doar despre oamenii care mi-au cumpărat cărțile, aș pierde o bună parte din ceea ce a fost Gaudeamus pentru mine.`,
+  
+      `Omul acesta venise fără bani pentru o carte.`,
+  
+      `Dar nu venise cu mâinile goale.`,
+  
+      `***`,
+  
+      `*Fotograf, câine și fair-play în dragoste*`,
+  
+      `Sâmbătă seara, când se mai răcorise puțin în cort, un tânăr de vreo treizeci de ani a apărut cu o cameră foto profesională la gât și un câine.`,
+  
+      `S-a oprit la Iubește-mă, dar nu mă poseda. A luat cartea în mână și a privit coperta. Îl atrăseseră titlul și zâmbetul de pe ea.`,
+  
+      `— Îmi place mult acest titlu. Răscolește ceva în tine când îl citești. Cu mine asta a făcut, mai ales că eu sunt fair-play în dragoste.`,
+  
+      `I-am povestit puțin despre carte, despre cele două povești trăite în Sumatra și despre faptul că titlul apăruse primul, pe când încă lucram la cartea despre Thailanda. Nici măcar nu știam, la început, ce povești avea să conțină.`,
+  
+      `Am vorbit aproximativ zece minute. I-am dat o carte de vizită. A plecat fără carte și a spus că poate revine.`,
+  
+      `Nu s-a mai întors.`,
+  
+      `Și asta este tot o poveste completă.`,
+  
+      `***`,
+  
+      `*Focuri care nu ating*`,
+  
+      `Dacă oamenii se opreau singuri la ceva, fără să le spun eu nimic, mâna ajungea foarte des pe Focuri care nu ating sau pe Iubește-mă, dar nu mă poseda. Am observat asta încă din timpul târgului. Abia după ce am ajuns acasă și am făcut inventarul am văzut și cifra: Focuri care nu ating fusese a doua cea mai vândută carte de la stand.`,
+  
+      `Avea însă un avantaj aproape indecent.`,
+  
+      `— Sunt 21 de povești cu 21 de bărbați întâlniți în călătoriile mele.`,
+  
+      `De multe ori nu mai urma întrebarea:`,
+  
+      `— Ce fel de povești?`,
+  
+      `Probabil pentru că mintea umană este capabilă să facă singură restul muncii.`,
+  
+      `O doamnă a plecat cu Focuri care nu ating după ce mi-a povestit că fusese căsătorită o dată 23 de ani și o dată 7 ani. N-am întrebat dacă există vreo legătură. Unele conexiuni sunt mai frumoase dacă nu le explici.`,
+  
+      `***`,
+  
+      `*Cartea de Java vândută de O-Zone*`,
+  
+      `Una dintre cărțile despre Indonezia s-a vândut dintr-un motiv pe care nicio strategie de marketing serioasă nu l-ar fi putut anticipa.`,
+  
+      `Am povestit cum, într-o casă a unor localnici din Java, întâlniți întâmplător într-un supermarket din oraș, făcusem karaoke pe „Dragostea din tei”.`,
+  
+      `Atât.`,
+  
+      `Cartea a plecat.`,
+  
+      `Uneori îți trebuie o descriere de produs. Alteori îți trebuie:`,
+  
+      `Ma-ia-hii, ma-ia-huu.`,
+  
+      `***`,
+  
+      `*Cei care au venit să vorbească și atât*`,
+  
+      `Au fost două fete care au stat aproximativ o oră la mine și nu au cumpărat nimic. Una dintre ele, de vreo 23 de ani, mi-a spus că este asistentă la o clinică de Ayurveda. Cealaltă era scriitoare. La început nici măcar nu a intrat în conversație, doar ne asculta. Mai târziu mi-a spus că scrie cărți fantastice, că este publicată de mai multe edituri și că lucrează acum la încă una. Nu mi-a dat alte detalii.`,
+  
+      `Dar am povestit. Mult. Le-am invitat la lansarea de a doua zi.`,
+  
+      `Tânăra de la clinica de Ayurveda a apărut pe la jumătate. Mi-a făcut cu mâna, fericită. La sfârșit mi-a spus că se întorsese pentru mine, nu pentru o carte.`,
+  
+      `— Nu am întâlnit pe nimeni care să facă ce faceți dumneavoastră.`,
+  
+      `Nu cumpărase nimic. Dar revenise.`,
+  
+      `A mai fost un domn cu care am vorbit despre creștinism. N-am înțeles mare lucru, dar l-am ascultat.`,
+  
+      `Vecinul meu de stand vindea cărți istorice scrise de el. La un moment dat m-a rugat să-i dau două dintre cărțile mele să le răsfoiască. Le-a ales el. Prima a fost Zile și nopți de Vietnam – Bucăți dintr-un suflet nomad și a doua Iubește-mă, dar nu mă poseda.`,
+  
+      `După ce le-a răsfoit, s-a întors cu verdictul:`,
+  
+      `— Sunt cam la fel. Jurnale de călătorie.`,
+  
+      `Eu cred că nu sunt.`,
+  
+      `Dar mi-a plăcut că nu toată lumea venise să mă aprobe. Un târg nu e o sală în care intră succesiv oameni programați să-ți confirme că ești minunat.`,
+  
+      `Unii cumpără. Unii critică. Unii predică. Unii povestesc.`,
+  
+      `Iar alții trec fără să te privească.`,
+  
+      `***`,
+  
+      `*Bani, iubire și destin*`,
+  
+      `O prietenă m-a trimis la standul Editurii ARI, unde l-am cunoscut pe Daniel. Acolo am fost „chestionată” aproximativ patruzeci de minute. Întrebările veneau una după alta:`,
+  
+      `— Crezi în destin?`,
+  
+      `— În coincidențe?`,
+  
+      `— Crezi că totul este deja scris?`,
+  
+      `La un moment dat mi-a spus ce vrea el de la viață:`,
+  
+      `— Bani și iubire.`,
+  
+      `Ca să nu existe confuzii pentru arhiva istorică: el. Nu eu.`,
+  
+      `— Eu le-am avut pe amândouă, i-am zis.`,
+  
+      `La sfârșit i-am lăsat Maya, Bro și Hakuna Matata cadou, ca s-o mai răsfoiască. Mă invitase deja la un soi de „ping-pong” de idei pentru a doua zi.`,
+  
+      `Când ne-am revăzut, mi-a spus că citise deja o treime din carte.`,
+  
+      `— E o performanță. Am alocat timp și energie free. De obicei fac asta pe bani.`,
+  
+      `Am râs, dar omul vorbea serios. Mi-a explicat că ajung multe cărți la el, că are pe masa din bucătărie volume despre religie, spiritualitate, Univers și știință care îl așteaptă și că, în mod normal, timpul lui de lectură și promovare face parte din munca lui.`,
+  
+      `Apoi mi-a spus ceva la care nu mă așteptam:`,
+  
+      `— Sincer, mă gândeam s-o fac cadou unei doamne cu care lucrez la o carte. O consiliez și mă văd cu ea mâine. Cred că i-ar prinde bine. I-ar da impulsul necesar.`,
+  
+      `Ideea mi-a plăcut și m-a surprins. Maya, Bro și Hakuna Matata nu fusese scrisă ca să învețe pe cineva să scrie. Și totuși, după o treime de carte, el se gândea că i-ar putea da unei femei impulsul să-și scrie propria poveste.`,
+  
+      `Apoi a venit și verdictul:`,
+  
+      `— Dar tu mi-ai părut simpatică și, după ce am citit din carte, am văzut că scrii bine. Ai talent.`,
+  
+      `Așa că, în după-amiaza aceea, Daniel a fost alături de mine la lansarea Maya, Bro și Hakuna Matata și am făcut „ping-pong-ul” despre care vorbise. Numai că lansarea s-a transformat destul de repede într-o conversație despre viață, destin și alegerile pe care le facem, mai mult decât într-o prezentare clasică de carte.`,
+  
+      `Și, dacă mă gândesc bine, probabil era mai potrivit așa.`,
+  
+      `La Gaudeamus începusem să înțeleg că, odată ce o carte ajunge în mâna altcuiva, autorul pierde controlul asupra motivului pentru care ea va conta. Eu îi dădusem cartea cu Bro ca s-o răsfoiască. El găsise deja pe altcineva care poate avea nevoie de ea.`,
+  
+      `***`,
+  
+      `*Prima și ultima*`,
+  
+      `Una dintre scenele mele preferate a venit de la două fete. Una dintre ele a luat Focuri care nu ating, cadou pentru o prietenă foarte bună.`,
+  
+      `Cealaltă s-a uitat la cele nouă titluri și a spus simplu:`,
+  
+      `— Eu vreau prima și ultima.`,
+  
+      `Prima era O zi de care să-ți amintești, iar ultima Maya, Bro și Hakuna Matata. A plecat cu amândouă.`,
+  
+      `O zi de care să-ți amintești a fost singurul exemplar din acel titlu vândut la Sibiu. Unul singur. Dar a plecat alături de ultima carte pe care am scris-o.`,
+  
+      `Uneori și inventarul știe să spună povești.`,
+  
+      `***`,
+  
+      `*Mi-au rămas bani și de cartea de India*`,
+  
+      `Nu știu nici acum de unde a apărut. La lansare era acolo de la început. A rămas până la sfârșit.`,
+  
+      `Un domn de vreo șaptezeci de ani, într-o cămașă albă și pantaloni maro, cu un zâmbet parcă sculptat pe o față brăzdată de linii adânci.`,
+  
+      `După lansare am început să vorbim. Jumătate din viață lucrase în armată, în fotografie și video. Cealaltă parte îl purtase prin televiziune, printre actori cunoscuți care ajunseseră de-a lungul anilor prin Sibiu. Avea povești. Multe.`,
+  
+      `La un moment dat mi-a spus:`,
+  
+      `— Eu n-am muncit. Am reușit să fac din viață o artă.`,
+  
+      `M-am uitat la el. La șaptezeci de ani și cu o jumătate de viață adunată în imagini, omul părea să creadă fiecare cuvânt.`,
+  
+      `Apoi discuția a ajuns, inevitabil, la călătorii.`,
+  
+      `— Și eu vreau să călătoresc așa, mi-a spus. Dar nu mă lasă nevasta. Am bani puși deoparte. Aș pleca mâine.`,
+  
+      `— Spuneți-i că ați întâlnit pe cineva care și-a vândut tot și a plecat în lume.`,
+  
+      `S-a uitat la mine aproape speriat.`,
+  
+      `— Nu. Nu-i pot spune așa ceva. Ar zice: „Unde te-am găsit?” Nici nu știe că sunt aici.`,
+  
+      `Am râs. Ce altceva era să fac?`,
+  
+      `La un moment dat a plecat. Voia să vadă dacă găsește ceva CD sau video pe la celelalte standuri. Credeam că asta fusese.`,
+  
+      `Dar s-a întors.`,
+  
+      `— Mi-au rămas bani și de cartea de India.`,
+  
+      `Mi-a întins 55 de lei și a luat Maya, Bro și Hakuna Matata. Părea sincer fericit cu alegerea.`,
+  
+      `— Vreți să vă scriu ceva pe ea?`,
+  
+      `— Mai bine nu.`,
+  
+      `N-am întrebat de ce.`,
+  
+      `A plecat cu Bro.`,
+  
+      `Nu știu dacă omul acela va pleca vreodată în India. Mi-a spus că are banii. Mi-a spus că ar pleca mâine. Mi-a spus și motivul pentru care nu pleacă.`,
+  
+      `Dar în după-amiaza aceea, după o lansare la care nu știu nici acum cum ajunsese, India a plecat cu el.`,
+  
+      `***`,
+  
+      `*Omul care fusese deja acolo*`,
+  
+      `Unul dintre oamenii de la standul vecin văzuse încă de miercuri cartea despre Thailanda. Joi s-a întors la ea.`,
+  
+      `— Am fost acolo, mi-a spus, dar mi-ar plăcea s-o citesc.`,
+  
+      `Mi-a povestit puțin despre propria lui Thailanda. Nu mersese la tigri, pentru că nu voia să încurajeze genul acela de turism. La elefanți fusese.`,
+  
+      `— Acolo doar i-am hrănit.`,
+  
+      `A cumpărat cartea.`,
+  
+      `Duminică a apărut din nou pentru câteva minute. Normal că l-am întrebat:`,
+  
+      `— Cum e cartea?`,
+  
+      `Nu o citise. Avea zilele pline și mi-a spus că nu voia s-o citească pe fugă. Voia s-o citească în liniște. Și răspunsul mi-a plăcut.`,
+  
+      `Unele cărți pleacă repede de la stand. Asta nu înseamnă că trebuie și citite repede.`,
+  
+      `A revenit seara și am mai stat puțin la povești. Mi-a urat să călătoresc în continuare și să scriu și alte cărți.`,
+  
+      `***`,
+  
+      `*Trei cărți în engleză și o carte de vizită*`,
+  
+      `S-a oprit și o tânără frumoasă, elegantă, cu părul lung și negru. Era din Arabia Saudită și venise la studii în România.`,
+  
+      `Cărțile de pe masa mea erau toate în română. I-am spus însă că trei dintre ele există și în engleză, pe Amazon.`,
+  
+      `A plecat cu o carte de vizită.`,
+  
+      `Atât.`,
+  
+      `Poate că n-a căutat niciodată cărțile. Poate că da.`,
+  
+      `Există povești de stand cărora nu le afli continuarea.`,
+  
+      `***`,
+  
+      `*Domnul pe care nu aveam voie să-l cunosc*`,
+  
+      `Duminică dimineață s-a oprit la masa mea un domn care s-a uitat la cărți și apoi la numele de pe ele.`,
+  
+      `— Mida Malena. Chiar așa vă cheamă?`,
+  
+      `— Nu. Este numele meu de autor. Numele meu este Maria Magdalena.`,
+  
+      `Atât i-a trebuit.`,
+  
+      `Avea o voce răgușită, de parcă era puțin răcit. Sau poate era doar felul lui de a vorbi, baritonal și încet. Cert este că, din acel moment, conversația a luat-o într-o direcție la care nu mă așteptasem.`,
+  
+      `— Maria Magdalena n-a fost niciodată prostituată, mi-a spus.`,
+  
+      `Mi-a spus că imaginea aceasta fusese construită de Biserică în urmă cu multe secole și că acum se încearcă reabilitarea ei.`,
+  
+      `— Și ea a fost prima care l-a văzut pe Iisus înviat, a adăugat.`,
+  
+      `Știa subiectul bine. Scrisese despre ea.`,
+  
+      `De la Maria Magdalena am ajuns la cărțile lui. Publicase vreo șase. Avea și o editură, și o asociație. Călătorise mult, mai ales spre Est, cu peste douăzeci de ani în urmă, în mare parte prin activitatea asociației.`,
+  
+      `Conversația continua să deschidă uși fără să le închidă pe cele precedente.`,
+  
+      `Mi-a spus că, de-a lungul vieții, cunoscuse „șase mari oameni ai vremii”. Printre ei era și Bivolaru. Nu-mi mai amintesc cine erau ceilalți cinci. Poate că informația primită până acolo fusese suficientă.`,
+  
+      `Dar domnul nu terminase.`,
+  
+      `Mi-a spus că soția lui este doctoriță. Până aici, nimic care să necesite instrucțiuni speciale.`,
+  
+      `Apoi au venit instrucțiunile:`,
+  
+      `— Dacă vin cu soția aici, să vă prefaceți că nu mă cunoașteți.`,
+  
+      `M-am uitat la el.`,
+  
+      `N-am întrebat de ce.`,
+  
+      `Există întrebări care aduc răspunsuri și întrebări care deschid portaluri. Am decis că nu aveam nevoie de portalul acela.`,
+  
+      `Am reținut însă protocolul:`,
+  
+      `Domn singur: ne cunoaștem.`,
+  
+      `Domn cu soția doctoriță: nu ne-am văzut în viața noastră.`,
+  
+      `Din fericire, situația nu s-a prezentat și n-am fost nevoită să-mi testez talentul actoricesc.`,
+  
+      `În schimb, omul a trecut la analiza activității mele editoriale. Sibiul, mi-a spus, era slab. Dacă voiam târguri mai bune, să urmăresc Clujul, Brașovul și Bucureștiul. Bookfest, mai ales.`,
+  
+      `Apoi mi-a explicat ce îmi lipsea cu adevărat: o celebritate. Și un scandal.`,
+  
+      `— Dar în sens bun, a precizat. Ca să afle lumea de dumneavoastră.`,
+  
+      `Am privit cele nouă cărți de pe masă.`,
+  
+      `Până atunci, strategia mea de marketing presupusese postări pe Facebook, câteva grupuri locale, cărți de vizită, două plăcuțe cu QR și un roll-up de doi metri. În plus, pornisem de la presupunerea destul de rezonabilă că oamenii care vin la un târg de carte ar putea dori să cumpere cărți.`,
+  
+      `Evident, îmi lipseau celebritatea și scandalul.`,
+  
+      `La plecare mi-a lăsat o carte de vizită. N-a cumpărat nimic.`,
+  
+      `Dar am rămas cu informații despre Maria Magdalena, recomandări pentru următoarele târguri, o strategie de PR și responsabilitatea neașteptată de a nu-l recunoaște în anumite condiții conjugale.`,
+  
+      `Pentru un om pe care abia îl cunoscusem, relația noastră devenise surprinzător de complicată.`,
+  
+      `***`,
+  
+      `*Cei pe care nu i-am cunoscut*`,
+  
+      `Desigur, nu toți cei care au trecut prin fața mesei mele au devenit povești. Au fost mult mai mulți pe care nu i-am cunoscut niciodată.`,
+  
+      `Unii încetineau suficient cât să citească titlurile. Alții puneau mâna pe o carte, o întorceau, o răsfoiau câteva secunde și o așezau la loc. Unii ajungeau la plăcuța cu QR, vedeau prețul de 55 de lei și plecau mai departe.`,
+  
+      `Am văzut privirea aceea de suficiente ori cât s-o recunosc.`,
+  
+      `Nu am schimbat prețul. Pe site, cărțile mele costă între 60 și 70 de lei. Pentru târg hotărâsem ca toate cele nouă titluri să aibă același preț: 55 de lei. Mai jos de atât nu voiam să cobor.`,
+  
+      `Am lăsat oamenilor dreptul să considere că e prea mult și mi-am păstrat dreptul de a considera că nu este.`,
+  
+      `Au fost și oameni care aproape au cumpărat. Țineau cartea în mână. Întrebau. Povesteam. Uneori ajungeam până foarte aproape de momentul plății.`,
+  
+      `Apoi venea:`,
+  
+      `— Am cumpărat deja prea multe cărți. Vă caut pe site.`,
+  
+      `Poate că m-au căutat. Poate că nu.`,
+  
+      `Există oameni cărora nu le voi afla niciodată continuarea.`,
+  
+      `Și plata însăși a fost un mic studiu antropologic. Eu venisem pregătită cu QR-uri frumoase, așezate la vedere, convinsă că simplificasem impecabil lucrurile. Românii nu păreau la fel de entuziasmați de invenția mea.`,
+  
+      `Unii scanau și plăteau fără probleme. Pentru alții era prea complicat. Uneori telefonul nu coopera. Alteori omul avea doar cash. Alteori QR-ul devenea exact obstacolul dintre „o vreau” și „poate data viitoare”.`,
+  
+      `Am început să mă gândesc foarte serios la un POS.`,
+  
+      `Și, în tot timpul ăsta, în raza mea vizuală era Bookzone.`,
+  
+      `Hectarele. Camionul. Cărțile care plecau. Oamenii care așteptau la coadă ca să plătească.`,
+  
+      `Iar eu, din spatele celor nouă titluri ale mele, îi mai priveam din când în când. În prima zi în care vânzările nu mergeau cum voiam, gândirea mea editorială ajunsese, după cum spuneam, la forma ei cea mai pură:`,
+  
+      `„Da' ăștia de ce vând și eu nu?”`,
+  
+      `Acum cred că întrebarea era greșită.`,
+  
+      `Un târg nu îți spune doar câte cărți vinzi. Îți arată ce carte aleg oamenii când toate cărțile tale au, pentru prima dată, aceeași șansă.`,
+  
+      `Dar, după câteva zile în spatele acelei mese, am descoperit că îți arată și altceva.`,
+  
+      `Eu venisem cu nouă cărți pline de oameni pe care îi întâlnisem prin lume. Pentru câteva zile, n-am mai călătorit eu.`,
+  
+      `Am stat pe loc.`,
+  
+      `În Piața Mare, în spatele unei mese.`,
+  
+      `Și lumea a venit la mine.`,
+  
+      `Abia acum îmi dau seama că scena asta exista deja într-una dintre cărțile de pe masă.`,
+  
+      `În Maya, Bro și Hakuna Matata, scrisesem despre Fahad:`,
+  
+      `„El stă într-un loc și lasă lumea să vină la el.`,
+  
+      `Eu fac invers: merg spre oamenii ca el.”`,
+  
+      `La Sibiu, pentru patru zile, lucrurile s-au inversat.`,
+  
+      `Eu am fost Fahad.`,
+  
+      `Am stat într-un loc și am lăsat lumea să vină la mine.`,
+  
+      `Și a venit.`,
+  
+      `Cu China din 1977. Cu Vietnamul de peste zece zile. Cu o comă și un divorț. Cu Cabala. Cu Maria Magdalena. Cu bani și iubire. Cu un aparat foto și un câine. Cu o sticlă de apă plată în mâna potrivită. Cu un șef care avea deja de toate. Cu un „revin” respectat și cu altul uitat.`,
+  
+      `Unii au luat câte o carte.`,
+  
+      `Alții n-au cumpărat nimic.`,
+  
+      `Dar aproape fiecare a lăsat ceva.`,
+  
+      `Când am ajuns acasă și am desfăcut cutiile, am făcut inventarul. Cel puțin un exemplar din fiecare dintre cele nouă titluri plecase mai departe.`,
+  
+      `Contabil, primul meu Gaudeamus a ieșit pe minus.`,
+  
+      `Dar venisem la Gaudeamus să vând cărți.`,
+  
+      `Am vândut.`,
+  
+      `Și lucrul cel mai interesant pe care l-am luat cu mine n-a încăput în nicio cutie.`,
+  
+      `Au fost oamenii care s-au oprit la masa mea.`,
+    ],
   }
       
       
