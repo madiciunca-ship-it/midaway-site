@@ -2551,7 +2551,7 @@ const posts = [
       "cititori",
       "oameni",
     ],
-    cover: "/assets/blog/oamenii-care-s-au-oprit-la-masa-mea.JPEG",
+    cover: "/assets/blog/oamenii-care-s-au-oprit-la-masa-mea.jpg",
     lang: "ro",
     minutes: 27,
     content: [
