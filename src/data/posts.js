@@ -2559,7 +2559,7 @@ const posts = [
   
       `„M-am întors în India pentru multe motive. Vaca știa că mint.”`,
   
-      `E una dintre frazele din lumea mea literară. Vaca, pentru cine nu știe încă, are obiceiul enervant de a ști lucruri înaintea mea. Bro, în schimb, are talentul de a comenta aproape tot ce fac, chiar dacă, tehnic vorbind, nu are corp, nu plătește transport, nu cară cutii și nici măcar nu poate fi pedepsit fizic.`,
+      `E una dintre frazele din lumea mea literară. Vaca, pentru cine nu știe încă, are obiceiul enervant de a ști lucruri înaintea mea. Bro, în schimb, are talentul de a comenta aproape tot ce fac, chiar dacă, tehnic vorbind, nu are corp, nu plătește transport, nu cară cutii – deci nici măcar nu poate fi pedepsit fizic.`,
   
       `Am stabilit asta într-o discuție foarte serioasă:`,
   
