@@ -2593,7 +2593,7 @@ const posts = [
   
       `„Da' ăștia de ce vând și eu nu?”`,
   
-      `A urmat, evident, ideea de a le trimite Vaca din Agra (despre care voi vorbi într-o carte viitoare, desigur). Am renunțat. Bookzone putea continua să-și vândă hectarele, eu tocmai începeam propriul meu mic studiu antropologic de stand.`,
+      `A urmat, evident, ideea de a le trimite Vaca din Agra (despre care voi vorbi într-o carte viitoare, desigur). Am renunțat. Vecinii mei de stand puteau continua să-și vândă hectarele, eu tocmai începeam propriul meu mic studiu antropologic de stand.`,
   
       `Și prima lecție a venit repede:`,
   
