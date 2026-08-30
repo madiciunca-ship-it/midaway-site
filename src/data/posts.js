@@ -3177,7 +3177,7 @@ const posts = [
   
       `Am început să mă gândesc foarte serios la un POS.`,
   
-      `Și, în tot timpul ăsta, în raza mea vizuală era Bookzone.`,
+      `Și, în tot timpul ăsta, în raza mea vizuală erau vecinii de stand.`,
   
       `Hectarele. Camionul. Cărțile care plecau. Oamenii care așteptau la coadă ca să plătească.`,
   
