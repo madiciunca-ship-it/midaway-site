@@ -715,7 +715,7 @@ payLink: null,
       eBook: {
         type: "pdf",
         pages: 253,
-        isbn: "—"
+        isbn: "978-630-95396-9-4"
       },
       epub: {
         pages: null, // la epub NU e obligatoriu
