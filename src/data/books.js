@@ -294,7 +294,7 @@ export const BOOKS = [
     genre: "Jurnal de călătorie · Experiențe reale",
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
-    year: 2025,
+    year: 2026,
     publisher: "Midaway / Autor Mida Malena",
 
 
