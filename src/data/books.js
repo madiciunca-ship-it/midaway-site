@@ -301,12 +301,12 @@ export const BOOKS = [
     formatDetails: {
       eBook: {
         type: "pdf",
-        pages: null,
-        isbn: " — ",
+        pages: 347,
+        isbn: "978-630-95478-1-1",
       },
       epub: {
         pages: null, // la epub NU e obligatoriu
-        isbn: " — ",
+        isbn: "978-630-95478-2-8",
       },
       paperback: {
         pages: null,
@@ -719,7 +719,7 @@ payLink: null,
       },
       epub: {
         pages: null, // la epub NU e obligatoriu
-        isbn: "—"
+        isbn: "978-630-95478-0-4"
       },
       paperback: {
         pages: 268,
@@ -886,7 +886,7 @@ payLink: null,
     },
     epub: {
       pages: null,
-      isbn: "D978-630-95396-5-6",
+      isbn: "978-630-95396-5-6",
     },
     paperback: {
       pages: 248,
@@ -982,7 +982,7 @@ payLink: null,
     },
     epub: {
       pages: null,
-      isbn: "D978-630-95396-8-7",
+      isbn: "978-630-95396-8-7",
     },
     paperback: {
       pages: 182,
