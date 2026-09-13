@@ -295,7 +295,7 @@ export const BOOKS = [
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
     year: 2025,
-    publisher: "Independent Publisher Mida Malena",
+    publisher: "Midaway / Autor Mida Malena",
 
 
     formatDetails: {
