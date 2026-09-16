@@ -24,6 +24,7 @@ export default async function handler(req, res) {
       "event",
       "targ",
       "inventory",
+      "inventory_targ",
     ].includes(requestedSource)
       ? requestedSource
       : "online";
@@ -46,15 +47,24 @@ export default async function handler(req, res) {
       `${BASE}/api/admin/orders` +
       `?token=${encodeURIComponent(token)}` +
       `&source=${encodeURIComponent(
-        source === "targ" ? "event" : source
+        source === "targ"
+  ? "event"
+  : source === "inventory_targ"
+    ? "inventory"
+    : source
       )}` +
       (
-        source === "inventory" || source === "event" || source === "targ"
+        source === "inventory" ||
+        source === "inventory_targ" ||
+        source === "event" ||
+        source === "targ"
           ? `&eventId=${encodeURIComponent(
-              source === "targ" ? "targ" : eventId
+              source === "targ" || source === "inventory_targ"
+                ? "targ"
+                : eventId
             )}`
           : ""
-      );
+      )
 
     const html = `<!doctype html>
 <html lang="ro">
@@ -209,7 +219,9 @@ export default async function handler(req, res) {
 <body>
 <h1>
 ${
-  source === "inventory"
+  source === "inventory_targ"
+  ? "📚 Inventar Târg"
+  : source === "inventory"
     ? "📚 Inventar Gaudeamus"
     : source === "targ"
       ? "🎪 Comenzi Târg"
@@ -237,6 +249,11 @@ ${
   ${source === "inventory" ? "selected" : ""}
 >
   Inventar Gaudeamus
+  <option
+  value="inventory_targ"
+  ${source === "inventory_targ" ? "selected" : ""}
+>
+  Inventar Târg
 </option>
 </select>
     
@@ -330,26 +347,26 @@ async function load(force=false){
   url.searchParams.set('token', t);
   const selectedSource = document.getElementById('source').value;
 
-url.searchParams.set(
-  'source',
-  selectedSource === "online"
-    ? "online"
-    : selectedSource === "inventory"
+  url.searchParams.set(
+    'source',
+    selectedSource === "inventory_targ"
       ? "inventory"
-      : "event"
-);
-
-if (selectedSource === "inventory") {
-  url.searchParams.set("eventId", EVENT_ID);
-}
-
-if (selectedSource === "event") {
-  url.searchParams.set("eventId", EVENT_ID);
-}
-
-if (selectedSource === "targ") {
-  url.searchParams.set("eventId", "targ");
-}
+      : selectedSource === "inventory"
+        ? "inventory"
+        : selectedSource === "online"
+          ? "online"
+          : "event"
+  );
+  
+  if (selectedSource === "inventory_targ") {
+    url.searchParams.set("eventId", "targ");
+  } else if (selectedSource === "inventory") {
+    url.searchParams.set("eventId", EVENT_ID);
+  } else if (selectedSource === "event") {
+    url.searchParams.set("eventId", EVENT_ID);
+  } else if (selectedSource === "targ") {
+    url.searchParams.set("eventId", "targ");
+  }
   if (force) url.searchParams.set('_', Date.now()); // cache buster
   document.getElementById('src').textContent = url.toString();
 
@@ -357,7 +374,7 @@ if (selectedSource === "targ") {
   if(!res.ok){ document.getElementById('root').innerHTML='<p style="color:#b42318">Eroare: '+res.status+'</p>'; return; }
   let data = await res.json();
 
-if (SOURCE === "inventory") {
+if (SOURCE === "inventory" || SOURCE === "inventory_targ") {
   INVENTORY = data;
   renderInventory();
   return;
@@ -896,7 +913,7 @@ async function adjustInventory(bookId, button){
     await inventoryRequest(
       {
         action: "adjust_inventory",
-        eventId: EVENT_ID,
+        eventId: SOURCE === "inventory_targ" ? "targ" : EVENT_ID,
         bookId,
         delta,
         reason,
@@ -921,8 +938,6 @@ async function setInventoryExact(bookId, button){
     document.getElementById(
       'stock-' + safeId
     );
-
-  const reasonInput =
     document.getElementById(
       'set-reason-' + safeId
     );
@@ -966,7 +981,7 @@ async function setInventoryExact(bookId, button){
     await inventoryRequest(
       {
         action: "set_inventory",
-        eventId: EVENT_ID,
+        eventId: SOURCE === "inventory_targ" ? "targ" : EVENT_ID,
         bookId,
         stock,
         reason,
@@ -1099,7 +1114,7 @@ function reload(){ load(true); }
 function copyEmail(email){ try{ navigator.clipboard.writeText(email||""); }catch{} }
 
 function downloadCSV(){
-  if (SOURCE === "inventory") {
+  if (SOURCE === "inventory" || SOURCE === "inventory_targ") {
     alert(
       "Exportul CSV pentru inventar îl adăugăm după verificarea fluxului."
     );
