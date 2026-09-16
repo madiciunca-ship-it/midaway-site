@@ -16,7 +16,9 @@ const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY || ""
 );
 
-const SITE = (process.env.SITE_URL || "https://midaway.ro").replace(/\/+$/, "");
+const SITE = (
+  process.env.SITE_URL || "https://midaway.ro"
+).replace(/\/+$/, "");
 
 // ─────────────────────────────────────────────────────────────
 // Helpers
@@ -32,7 +34,7 @@ async function readRawBody(req) {
   return Buffer.concat(chunks);
 }
 
-function genEventOrderNo(sessionId) {
+function genEventOrderNo(sessionId, eventId) {
   const now = new Date();
 
   const year = now.getFullYear();
@@ -43,9 +45,10 @@ function genEventOrderNo(sessionId) {
     .slice(-6)
     .toUpperCase();
 
-  return `GAU-${year}${month}${day}-${tail}`;
-}
+  const prefix = eventId === "targ" ? "TARG" : "GAU";
 
+  return prefix + "-" + year + month + day + "-" + tail;
+}
 
 
 
@@ -78,6 +81,7 @@ function buildClientEmail({
   amount,
   currency,
   eventUrl,
+  eventName,
 }) {
   const rows = items
     .map(
@@ -122,7 +126,7 @@ function buildClientEmail({
         </p>
 
         <p>
-          Comanda ta pentru Gaudeamus Sibiu a fost înregistrată.
+        Comanda ta Midaway pentru ${escapeHtml(eventName)} a fost înregistrată.
         </p>
 
         <p style="font-size:18px">
@@ -151,7 +155,7 @@ function buildClientEmail({
   <p style="margin:8px 0 0">
     Prezintă acest email sau numărul comenzii
     <strong>${escapeHtml(orderNo)}</strong>
-    la standul Midaway din cadrul Gaudeamus Sibiu.
+    la standul Midaway.
   </p>
 
   <p style="margin:8px 0 0">
@@ -363,72 +367,28 @@ const address =
     const amount = Number(session.amount_total || 0) / 100;
     const currency = String(session.currency || "RON").toUpperCase();
 
-    const orderNo = genEventOrderNo(session.id);
     const eventId =
-    session.metadata?.eventId ||
-    "gaudeamus-sibiu-2026";
+  session.metadata?.eventId ||
+  "gaudeamus-sibiu-2026";
 
-    const eventSlug =
+const isTarg = eventId === "targ";
+
+const eventSlug =
   session.metadata?.eventSlug ||
   session.metadata?.eventId ||
   "gaudeamus-sibiu-2026";
 
-const eventUrl =
-  `${SITE}/event/${encodeURIComponent(eventSlug)}`;
+const orderNo = genEventOrderNo(session.id, eventId);
 
-  /*
-  Scădem automat stocul pentru toate cărțile plătite.
+const eventName = isTarg
+  ? "târg"
+  : "Gaudeamus Sibiu";
 
-  `session.id` este referința unică. Dacă Stripe retrimite
-  webhook-ul, inventarul nu va fi scăzut a doua oară.
-*/
-const inventoryResult =
-await consumeEventStock({
-  eventId,
+const eventUrl = isTarg
+  ? SITE + "/targ"
+  : SITE + "/event/" + encodeURIComponent(eventSlug);
 
-  items: items.map((item) => ({
-    bookId: item.bookId,
-    title: item.title,
-    quantity: item.quantity,
-  })),
 
-  reference: session.id,
-  reason: `Comandă ${orderNo}`,
-  actor: "stripe-event-webhook",
-});
-
-console.log("📚 Event inventory processed:", {
-orderNo,
-duplicate: inventoryResult.duplicate,
-changes: inventoryResult.changes,
-});
-
-/*
-  Dacă această comandă exista deja, inventarul este acum
-  verificat/reparat, dar nu mai salvăm și nu mai trimitem
-  emailurile încă o dată.
-*/
-if (orderAlreadyExists) {
-  console.log(
-    "🔁 Event order already processed:",
-    sessionId
-  );
-
-  res.statusCode = 200;
-  res.setHeader(
-    "Content-Type",
-    "application/json"
-  );
-
-  return res.end(
-    JSON.stringify({
-      received: true,
-      duplicate: true,
-      inventoryDuplicate:
-        inventoryResult.duplicate,
-    })
-  );
-}
 
     const order = {
       id: session.id,
@@ -488,11 +448,51 @@ if (orderAlreadyExists) {
           : session.payment_intent?.id || null,
     };
 
-    // Salvează numai în event-orders.json.
-    await appendEventOrder(order);
+   // Salvăm comanda plătită înainte să modificăm stocul.
+// Nu resalvăm o comandă existentă, pentru a nu reseta predarea.
+if (!orderAlreadyExists) {
+  await appendEventOrder(order);
 
-    console.log("✅ Event order saved:", orderNo);
+  console.log("Event order saved:", orderNo);
+}
 
+// Procesăm inventarul folosind sesiunea Stripe drept referință.
+const inventoryResult = await consumeEventStock({
+  eventId: eventId,
+
+  items: items.map((item) => ({
+    bookId: item.bookId,
+    title: item.title,
+    quantity: item.quantity,
+  })),
+
+  reference: session.id,
+  reason: "Comandă " + orderNo,
+  actor: "stripe-event-webhook",
+});
+
+console.log("Event inventory processed:", {
+  orderNo: orderNo,
+  duplicate: inventoryResult.duplicate,
+  changes: inventoryResult.changes,
+});
+
+// La retrimiterea webhook-ului nu retrimitem emailurile
+// și nu modificăm starea de predare a comenzii existente.
+if (orderAlreadyExists) {
+  console.log("Event order already processed:", sessionId);
+
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+
+  return res.end(
+    JSON.stringify({
+      received: true,
+      duplicate: true,
+      inventoryDuplicate: inventoryResult.duplicate,
+    })
+  );
+}
     // Emailuri
     try {
       const transporter = nodemailer.createTransport({
@@ -511,6 +511,7 @@ if (orderAlreadyExists) {
         amount,
         currency,
         eventUrl,
+        eventName,
       });
 
       const itemsSummary = items
@@ -525,8 +526,7 @@ if (orderAlreadyExists) {
         to: email,
         replyTo: process.env.ADMIN_EMAIL,
 
-        subject:
-          `Gaudeamus Sibiu • Comanda ${orderNo} confirmată`,
+       subject: "Midaway • Comanda " + orderNo + " confirmată",
 
         html: clientHtml,
       });
@@ -536,8 +536,14 @@ if (orderAlreadyExists) {
         to: process.env.ADMIN_EMAIL,
 
         subject:
-          `🎪 Comandă Gaudeamus ${orderNo} • ${amount} ${currency}`,
-
+  "🎪 Comandă " +
+  eventName +
+  " " +
+  orderNo +
+  " • " +
+  amount +
+  " " +
+  currency,
         text: [
           `Comandă: ${orderNo}`,
           `Status: PLĂTITĂ`,
@@ -554,7 +560,7 @@ if (orderAlreadyExists) {
           "Cărți:",
           itemsSummary || "-",
           "",
-          `Pagina Gaudeamus: ${eventUrl}`,
+          "Pagina comenzii: " + eventUrl,
           "",
           "Factura: de emis ulterior manual.",
         ].join("\n"),
