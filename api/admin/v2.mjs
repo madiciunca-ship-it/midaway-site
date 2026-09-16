@@ -203,13 +203,15 @@ export default async function handler(req, res) {
 </head>
 <body>
 <h1>
-  ${
-    source === "inventory"
-      ? "📚 Inventar Gaudeamus"
+${
+  source === "inventory"
+    ? "📚 Inventar Gaudeamus"
+    : source === "targ"
+      ? "🎪 Comenzi Târg"
       : source === "event"
         ? "🎪 Comenzi Gaudeamus"
         : "📦 Comenzi Midaway"
-  }
+}
   <span class="muted" id="count"></span>
 </h1>
 
@@ -222,6 +224,9 @@ export default async function handler(req, res) {
   <option value="event" ${source === "event" ? "selected" : ""}>
     Comenzi Gaudeamus
   </option>
+  <option value="targ" ${source === "targ" ? "selected" : ""}>
+  Comenzi Târg
+</option>
   <option
   value="inventory"
   ${source === "inventory" ? "selected" : ""}
@@ -318,19 +323,28 @@ async function load(force=false){
   if(!t){ document.getElementById('root').innerHTML='<p style="color:#b42318">Introdu token.</p>'; return; }
   const url = new URL('${BASE}/api/admin/orders');
   url.searchParams.set('token', t);
-  url.searchParams.set(
-    'source',
-    document.getElementById('source').value
-  );
-  if (
-    document.getElementById('source').value ===
-    "inventory"
-  ) {
-    url.searchParams.set(
-      "eventId",
-      EVENT_ID
-    );
-  }
+  const selectedSource = document.getElementById('source').value;
+
+url.searchParams.set(
+  'source',
+  selectedSource === "online"
+    ? "online"
+    : selectedSource === "inventory"
+      ? "inventory"
+      : "event"
+);
+
+if (selectedSource === "inventory") {
+  url.searchParams.set("eventId", EVENT_ID);
+}
+
+if (selectedSource === "event") {
+  url.searchParams.set("eventId", EVENT_ID);
+}
+
+if (selectedSource === "targ") {
+  url.searchParams.set("eventId", "targ");
+}
   if (force) url.searchParams.set('_', Date.now()); // cache buster
   document.getElementById('src').textContent = url.toString();
 
