@@ -321,34 +321,57 @@ async function writeInventory(data) {
 
 export async function readEventInventory() {
   if (!PUBLIC_BASE) {
-    console.warn(
-      "BLOB_PUBLIC_BASE is not configured."
+    throw new Error(
+      "BLOB_PUBLIC_BASE is not configured. Inventory cannot be read safely."
     );
-
-    return emptyInventory();
   }
 
-  const url = `${PUBLIC_BASE}/${FILE}`;
-  const response = await fetchJson(url);
+  const url = PUBLIC_BASE + "/" + FILE;
+
+  let response;
+
+  try {
+    response = await fetchJson(url);
+  } catch (error) {
+    console.error("readEventInventory fetch failed:", error);
+
+    throw new Error(
+      "Could not read inventory from Blob. Existing data was not modified."
+    );
+  }
+
+  if (response.status === 404) {
+    return emptyInventory();
+  }
 
   if (!response.ok) {
-    if (response.status !== 404) {
-      console.error(
-        "readEventInventory error:",
-        {
-          url,
-          status: response.status,
-          text: response.text,
-        }
-      );
-    }
+    console.error("readEventInventory error:", {
+      status: response.status,
+      text: response.text,
+    });
 
-    return emptyInventory();
+    throw new Error(
+      "Could not read inventory. Existing data was not modified."
+    );
   }
 
-  return normalizeInventory(response.json);
-}
+  const raw = response.json;
 
+  if (
+    !raw ||
+    typeof raw !== "object" ||
+    Array.isArray(raw) ||
+    !raw.events ||
+    typeof raw.events !== "object" ||
+    Array.isArray(raw.events)
+  ) {
+    throw new Error(
+      "Invalid inventory format. Existing data was not modified."
+    );
+  }
+
+  return normalizeInventory(raw);
+}
 export async function getEventInventory(
   eventId
 ) {
@@ -436,14 +459,36 @@ export async function initializeEventInventory({
   }
 
   const data = await readEventInventory();
+
+  const existingEvent = data.events[id];
+
+  const missingEvent =
+    !existingEvent ||
+    typeof existingEvent !== "object";
+
+  const missingBooks = books.some((entry) => {
+    const bookId = String(entry?.bookId || "").trim();
+
+    if (!bookId) {
+      throw new Error("Missing bookId");
+    }
+
+    return !existingEvent?.books?.[bookId];
+  });
+
+  // Inventarul există deja și conține toate cărțile.
+  // Nu îl rescriem doar pentru că cineva a deschis pagina.
+  if (!missingEvent && !missingBooks) {
+    return clone(existingEvent);
+  }
+
   const event = ensureEventRecord(data, id);
 
   for (const entry of books) {
     ensureBookRecord(event, {
       bookId: entry?.bookId,
       title: entry?.title || "",
-      initialStock:
-        entry?.initialStock ?? 0,
+      initialStock: entry?.initialStock ?? 0,
     });
   }
 
@@ -453,7 +498,6 @@ export async function initializeEventInventory({
 
   return clone(event);
 }
-
 // ─────────────────────────────────────────────────────────────
 // Ajustare manuală: +stoc / -stoc
 // ─────────────────────────────────────────────────────────────

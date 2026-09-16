@@ -131,39 +131,67 @@ async function fetchJson(url) {
 
 export async function readEventOrders() {
   if (!PUBLIC_BASE) {
-    console.warn("BLOB_PUBLIC_BASE is not configured.");
-    return [];
+    throw new Error(
+      "BLOB_PUBLIC_BASE is not configured. Orders cannot be read safely."
+    );
   }
 
-  const url = `${PUBLIC_BASE}/${FILE}`;
-  const response = await fetchJson(url);
+  const url = PUBLIC_BASE + "/" + FILE;
+
+  let response;
+
+  try {
+    response = await fetchJson(url);
+  } catch (error) {
+    console.error("readEventOrders fetch failed:", error);
+    throw new Error("Could not read event orders from Blob.");
+  }
+
+  // Un fișier inexistent este diferit de un fișier inaccesibil.
+  if (response.status === 404) {
+    return [];
+  }
 
   if (!response.ok) {
-    if (response.status !== 404) {
-      console.error("readEventOrders error:", {
-        url,
-        status: response.status,
-        text: response.text,
-      });
-    }
+    console.error("readEventOrders error:", {
+      status: response.status,
+      text: response.text,
+    });
 
-    return [];
+    throw new Error(
+      "Could not read event orders. Existing data was not modified."
+    );
   }
 
-  const raw = Array.isArray(response.json)
-    ? response.json
-    : [];
+  if (!Array.isArray(response.json)) {
+    throw new Error(
+      "Invalid event orders format. Existing data was not modified."
+    );
+  }
 
-  return raw
-    .map((row) => {
-      try {
-        return decodeStoredOrder(row);
-      } catch (error) {
-        console.error("decodeStoredOrder failed:", error);
-        return null;
+  // Nu ignorăm comenzile pe care nu le putem decripta.
+  // Altfel, următoarea salvare le-ar putea șterge definitiv.
+  return response.json.map((row, index) => {
+    try {
+      const order = decodeStoredOrder(row);
+
+      if (!order || typeof order !== "object") {
+        throw new Error("Invalid order record.");
       }
-    })
-    .filter(Boolean);
+
+      return order;
+    } catch (error) {
+      console.error(
+        "Could not decode event order at index:",
+        index,
+        error
+      );
+
+      throw new Error(
+        "An existing order could not be decoded. Writing is blocked."
+      );
+    }
+  });
 }
 
 export async function eventOrderExists(id) {
@@ -175,13 +203,7 @@ export async function eventOrderExists(id) {
 }
 
 export async function appendEventOrder(order) {
-  let list = [];
-
-  try {
-    list = await readEventOrders();
-  } catch {
-    list = [];
-  }
+  const list = await readEventOrders();
 
   const normalized = {
     ...order,
@@ -202,15 +224,14 @@ export async function appendEventOrder(order) {
   const index = list.findIndex(
     (item) => item?.id === normalized.id
   );
-
+  
+  // Nu suprascriem o comandă existentă.
+  // Poate fi deja marcată ca predată.
   if (index >= 0) {
-    list[index] = {
-      ...list[index],
-      ...normalized,
-    };
-  } else {
-    list.unshift(normalized);
+    return list[index];
   }
+  
+  list.unshift(normalized);
 
   list.sort((a, b) => {
     const aa =

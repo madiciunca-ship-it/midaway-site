@@ -27,6 +27,7 @@ function ymKey(ts) {
 export default function AdminOrders() {
   const [token, setToken] = useState(() => sessionStorage.getItem("admin_token") || "");
   const [orders, setOrders] = useState([]);
+  const [source, setSource] = useState("online");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
 
@@ -45,8 +46,16 @@ export default function AdminOrders() {
   
       const params = new URLSearchParams({
         token: tok,
-        source: selectedSource,
+        source: selectedSource === "online" ? "online" : "event",
       });
+      
+      if (selectedSource === "targ") {
+        params.set("eventId", "targ");
+      }
+      
+      if (selectedSource === "event") {
+        params.set("eventId", "gaudeamus-sibiu-2026");
+      }
   
       const res = await fetch(
         `/api/admin/orders?${params.toString()}`,
@@ -267,9 +276,11 @@ export default function AdminOrders() {
   return (
     <div style={{ padding: 24, maxWidth: 1200, margin: "0 auto" }}>
       <h1 style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-      {source === "event"
-  ? "🎪 Comenzi Gaudeamus"
-  : "📦 Comenzi online"}
+      {source === "targ"
+  ? "🎪 Comenzi Târg"
+  : source === "event"
+    ? "🎪 Comenzi Gaudeamus"
+    : "📦 Comenzi online"}
         <span style={{ fontSize: 14, color: "#666" }}>
           • Total: <strong>{filtered.length}</strong>
         </span>
@@ -288,11 +299,7 @@ export default function AdminOrders() {
         <>
           {/* acțiuni / filtre */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-          <button
-  onClick={() => fetchOrders(token, source)}
-  style={btn}
->
-            <select
+          <select
   value={source}
   onChange={(e) => {
     setOrders([]);
@@ -301,23 +308,20 @@ export default function AdminOrders() {
   style={{
     ...fieldSel,
     fontWeight: 700,
-    color:
-      source === "event"
-        ? "#8b2c34"
-        : "#2a6f75",
+    color: source === "online" ? "#2a6f75" : "#8b2c34",
   }}
 >
-  <option value="online">
-    Comenzi online
-  </option>
-
-  <option value="event">
-    Comenzi Gaudeamus
-  </option>
+  <option value="online">Comenzi online</option>
+  <option value="event">Comenzi Gaudeamus</option>
+  <option value="targ">Comenzi Târg</option>
 </select>
-              
-              Reîncarcă
-            </button>
+
+<button
+  onClick={() => fetchOrders(token, source)}
+  style={btn}
+>
+  Reîncarcă
+</button>
             <button onClick={asCSV} style={btn}>
               Export CSV
             </button>
@@ -558,7 +562,7 @@ export default function AdminOrders() {
                       >
                         {o.status || "—"}
                       </span>
-                      {source === "event" && (
+                      {(source === "event" || source === "targ") && (
   <div style={{ marginTop: 6 }}>
     <span
       style={{
@@ -629,7 +633,7 @@ export default function AdminOrders() {
                   {/* extra info: Autor / Canal / Tag-uri dacă există */}
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
                     <span style={pillGrey}>Țară: {(o.country || "—").toUpperCase()}</span>
-                    {source === "event" ? (
+                    {(source === "event" || source === "targ") ? (
   <span style={pillYellow}>
     Ridicare la stand
   </span>

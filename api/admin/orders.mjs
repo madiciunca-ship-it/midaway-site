@@ -77,9 +77,13 @@ function normalizeEventOrder(order) {
       ? order.authors
       : [],
 
-    tags: Array.isArray(order?.tags)
+      tags: Array.isArray(order?.tags)
       ? order.tags
-      : ["Gaudeamus"],
+      : [
+          order?.eventId === "targ"
+            ? "Târg"
+            : "Gaudeamus",
+        ],
 
     items: (order?.items || []).map((item) => {
       const quantity = Number(
@@ -448,12 +452,27 @@ export default async function handler(req, res) {
         ? raw
         : [];
 
-      const normalized =
+        const normalized =
         source === "event"
           ? list.map(normalizeEventOrder)
           : list;
-
-      const sorted = [...normalized].sort(
+      
+      // Filtrăm numai când interfața cere explicit un eveniment.
+      // Fără filtru, comportamentul vechi rămâne neschimbat.
+      const requestedEventId = String(
+        req.query?.eventId || ""
+      ).trim();
+      
+      const filtered =
+        source === "event" && requestedEventId
+          ? normalized.filter(
+              (order) =>
+                String(order?.eventId || "") ===
+                requestedEventId
+            )
+          : normalized;
+      
+      const sorted = [...filtered].sort(
         (a, b) => {
           const aa =
             typeof a?.createdAt === "number"
