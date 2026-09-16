@@ -54,7 +54,8 @@ export default function App() {
   const location = useLocation();
 
   const isStandaloneEventPage =
-    location.pathname.startsWith("/event/");
+  location.pathname.startsWith("/event/") ||
+  location.pathname === "/targ";
   return (
     <>
       {/* golește coșul automat când ajungem pe /thanks */}
@@ -151,6 +152,11 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
 
           {/* Checkout special pentru târguri și evenimente */}
+          <Route
+  path="/targ"
+  element={<Navigate to="/event/targ" replace />}
+/>
+          
           <Route
   path="/event/confirmare"
   element={<EventConfirmation />}

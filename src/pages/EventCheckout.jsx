@@ -25,6 +25,22 @@ function getBookCover(book) {
   );
 }
 
+function getEventBookPrice(event, entry) {
+  if (event?.id === "targ") {
+    const price = Number(entry?.price);
+
+    return Number.isFinite(price) && price > 0
+      ? price
+      : null;
+  }
+
+  const price = Number(event?.unitPrice);
+
+  return Number.isFinite(price) && price > 0
+    ? price
+    : null;
+}
+
 export default function EventCheckout() {
   const { slug } = useParams();
   const location = useLocation();
@@ -80,7 +96,14 @@ const [inventoryError, setInventoryError] =
           ...entry,
           bookId,
           book,
-  
+        
+          price: getEventBookPrice(event, entry),
+        
+          launch:
+            event.id === "targ"
+              ? entry.launch === true
+              : bookId === "maya-bro-si-hakuna-matata-ro",
+        
           stock:
             Number.isFinite(liveStock)
               ? Math.max(0, liveStock)
@@ -272,21 +295,44 @@ const [inventoryError, setInventoryError] =
   }
 
   const totalQuantity = eventBooks.reduce(
-    (sum, entry) => sum + Number(quantities[entry.bookId] || 0),
+    (sum, entry) =>
+      sum + Number(quantities[entry.bookId] || 0),
     0
   );
-
-  const totalAmount = totalQuantity * Number(event.unitPrice || 0);
+  
+  const totalAmount = eventBooks.reduce((sum, entry) => {
+    const quantity = Number(
+      quantities[entry.bookId] || 0
+    );
+  
+    return sum + quantity * Number(entry.price || 0);
+  }, 0);
+  
   const selectedItems = eventBooks
-  .map(({ bookId, book }) => ({
-    bookId,
-    title: book.title,
-    quantity: Number(quantities[bookId] || 0),
-  }))
-  .filter((item) => item.quantity > 0);
+    .map(({ bookId, book, price }) => ({
+      bookId,
+      title: book.title,
+      price,
+      quantity: Number(quantities[bookId] || 0),
+    }))
+    .filter((item) => item.quantity > 0);
+  
+  const hasInvalidPrice = selectedItems.some(
+    (item) =>
+      !Number.isFinite(item.price) ||
+      item.price <= 0
+  );
 
 const startStripeCheckout = async () => {
-  if (selectedItems.length === 0 || loading) return;
+  if (
+    selectedItems.length === 0 ||
+    hasInvalidPrice ||
+    inventoryLoading ||
+    inventoryError ||
+    loading
+  ) {
+    return;
+  }
 
   setLoading(true);
   setCheckoutError("");
@@ -384,7 +430,9 @@ const startStripeCheckout = async () => {
               fontWeight: 800,
             }}
           >
-            {event.unitPrice} {event.currency} / exemplar
+            {event.id === "targ"
+  ? "Alege cărțile preferate"
+  : `${event.unitPrice} ${event.currency} / exemplar`}
           </p>
 
           {previewMode && !event.active && (
@@ -414,7 +462,7 @@ const startStripeCheckout = async () => {
             gap: 18,
           }}
         >
-         {eventBooks.map(({ bookId, stock, book }) => {
+        {eventBooks.map(({ bookId, stock, book, price, launch }) => {
             const quantity = Number(quantities[bookId] || 0);
             const cover = getBookCover(book);
 
@@ -433,7 +481,7 @@ const startStripeCheckout = async () => {
                 }}
               >
 
-{bookId === "maya-bro-si-hakuna-matata-ro" && (
+{launch && (
   <div
     style={{
       position: "absolute",
@@ -499,6 +547,19 @@ left: 8,
                   >
                     {book.title}
                   </h2>
+
+                  <div
+  style={{
+    marginTop: 10,
+    color: COLORS.burgundy,
+    fontSize: 22,
+    fontWeight: 800,
+  }}
+>
+  {price === null
+    ? "Preț indisponibil"
+    : `${price} ${event.currency}`}
+</div>
 
                   <div
   style={{
@@ -647,8 +708,7 @@ cursor:
 
     <div style={{ display: "grid", gap: 12 }}>
       {selectedItems.map((item) => {
-        const lineTotal =
-          item.quantity * Number(event.unitPrice || 0);
+       const lineTotal = item.quantity * item.price;
 
         return (
           <div
@@ -673,7 +733,7 @@ cursor:
                   fontSize: 14,
                 }}
               >
-                {item.quantity} × {event.unitPrice} {event.currency}
+                {item.quantity} × {item.price} {event.currency}
               </div>
             </div>
 
@@ -872,45 +932,51 @@ cursor:
           </div>
 
           <button
-            type="button"
-            disabled={
-              inventoryLoading ||
-              Boolean(inventoryError) ||
-              totalQuantity === 0
-            }
-            onClick={() => {
-              setCheckoutError("");
-              setStep("review");
-              window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
-              });
-            }}
-            style={{
-              minWidth: 220,
-              padding: "14px 20px",
-              border: "none",
-              borderRadius: 14,
-              background:
-              !inventoryLoading &&
-              !inventoryError &&
-              totalQuantity > 0
-                ? COLORS.burgundy
-                : "#d8d4d2",
-              color: "#fff",
-              fontSize: 17,
-              fontWeight: 800,
-              cursor:
-  !inventoryLoading &&
-  !inventoryError &&
-  totalQuantity > 0
-    ? "pointer"
-    : "not-allowed",
-            }}
-          >
-            Continuă comanda
-          </button>
+  type="button"
+  disabled={
+    inventoryLoading ||
+    Boolean(inventoryError) ||
+    totalQuantity === 0 ||
+    hasInvalidPrice
+  }
+  onClick={() => {
+    setCheckoutError("");
+    setStep("review");
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }}
+  style={{
+    minWidth: 220,
+    padding: "14px 20px",
+    border: "none",
+    borderRadius: 14,
+
+    background:
+      !inventoryLoading &&
+      !inventoryError &&
+      totalQuantity > 0 &&
+      !hasInvalidPrice
+        ? COLORS.burgundy
+        : "#d8d4d2",
+
+    color: "#fff",
+    fontSize: 17,
+    fontWeight: 800,
+
+    cursor:
+      !inventoryLoading &&
+      !inventoryError &&
+      totalQuantity > 0 &&
+      !hasInvalidPrice
+        ? "pointer"
+        : "not-allowed",
+  }}
+>
+  Continuă comanda
+</button>
         </section>
         )}
 
