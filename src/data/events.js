@@ -31,13 +31,15 @@ function getTargBooks() {
       book?.availability?.PAPERBACK === true &&
       book?.hidden !== true
     );
-  }).map((book) => ({
-    bookId: book.id,
-    visible: true,
-    price: book.targ.price,
-    launch: book.targ.launch === true,
-    initialStock: 0,
-  }));
+  })
+    .reverse()
+    .map((book) => ({
+      bookId: book.id,
+      visible: true,
+      price: book.targ.price,
+      launch: book.targ.launch === true,
+      initialStock: 0,
+    }));
 }
 
 export const EVENTS = [
@@ -50,7 +52,7 @@ export const EVENTS = [
     slug: "gaudeamus-sibiu-2026",
     title: "Gaudeamus Sibiu 2026",
 
-    active: true,
+    active: false,
 
     currency: "RON",
     unitPrice: 55,

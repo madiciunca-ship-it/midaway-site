@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     const source = [
       "online",
       "event",
+      "targ",
       "inventory",
     ].includes(requestedSource)
       ? requestedSource
@@ -42,14 +43,18 @@ export default async function handler(req, res) {
     const BASE =
       (process.env.SITE_URL || "https://midaway.ro").replace(/\/$/, "");
       const dataUrl =
-  `${BASE}/api/admin/orders` +
-  `?token=${encodeURIComponent(token)}` +
-  `&source=${encodeURIComponent(source)}` +
-  (
-    source === "inventory"
-      ? `&eventId=${encodeURIComponent(eventId)}`
-      : ""
-  );
+      `${BASE}/api/admin/orders` +
+      `?token=${encodeURIComponent(token)}` +
+      `&source=${encodeURIComponent(
+        source === "targ" ? "event" : source
+      )}` +
+      (
+        source === "inventory" || source === "event" || source === "targ"
+          ? `&eventId=${encodeURIComponent(
+              source === "targ" ? "targ" : eventId
+            )}`
+          : ""
+      );
 
     const html = `<!doctype html>
 <html lang="ro">
