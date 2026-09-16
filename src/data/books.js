@@ -73,7 +73,14 @@ export const BOOKS = [
       "– simți că ai tot amânat o versiune mai adevărată a ta",
       "– vrei o escapadă care nu e „turism”, ci reset",
       "– ți-e dor de un semn că e ok să pornești chiar și când nu ai planul complet",
-    ],    
+    ],  
+    
+    targ: {
+      visible: true,
+      price: 55,
+      launch: false,
+    },
+
     hidden: false,
   },
 
@@ -193,6 +200,13 @@ export const BOOKS = [
       "– simți că fragmentele autentice din tine stau ascunse în imprevizibil",
       "– îți plac poveștile care rămân cu tine după ce închizi cartea",
     ],
+
+    targ: {
+      visible: true,
+      price: 55,
+      launch: false,
+    },
+
     hidden: false,
   },
 
@@ -272,6 +286,13 @@ export const BOOKS = [
       "– you feel your truest fragments are hidden inside the unknown",
       "– you love stories that stay with you after you close the book",
     ],
+
+    targ: {
+      visible: false,
+      price: 55,
+      launch: false,
+    },
+
     hidden: false,
   },
 
@@ -283,7 +304,7 @@ export const BOOKS = [
     addedAt: "2025-10-31T10:00:00Z",
     lang: "RO",
     currency: "RON",
-    hidden: false,
+   
 
     title: "Pași prin Indonezia – Când Bali îți atinge sufletul",
     seoTitle: "Pași prin Indonezia – Când Bali îți atinge sufletul | Mida Malena",
@@ -345,6 +366,14 @@ export const BOOKS = [
     availability: { PDF: true, EPUB: true, PAPERBACK: true, AUDIOBOOK: false },
 
     payLink: null,
+
+    targ: {
+      visible: true,
+      price: 55,
+      launch: false,
+    },
+
+    hidden: false,
   },
 
   // ————————————————————————————————————————————————
@@ -355,7 +384,6 @@ export const BOOKS = [
     addedAt: "2025-11-08T00:00:00Z",
     lang: "EN",
     currency: "EUR",
-    hidden: false,
 
     title: "Steps Through Indonezia – When Bali Touches Your Soul",
     subtitle: "It’s not about Bali. It’s about what breaks open in you when you arrive – and the calm still doesn’t come.",
@@ -406,8 +434,8 @@ export const BOOKS = [
         visible: true,
         priceLabel: "Price on Amazon",
       },
-    },
 
+      
     description: [
       "This book isn’t about Bali. It’s about what breaks in you when you finally reach what you dreamed of – and the calm still doesn’t come.",
       "It’s not a guide. Not a vacation book. Not a motivational story. Bali is only the setting.",
@@ -427,6 +455,16 @@ export const BOOKS = [
       "It’s a book about you – even if your name never appears anywhere.",
       "If you’ve ever felt you had to leave… so you could return to yourself, this book is for you.",
     ],
+
+    targ: {
+      visible: false,
+      price: 55,
+      launch: false,
+    },
+
+    hidden: false,
+  },
+
   },
 
   // ————————————————————————————————————————————————
@@ -438,7 +476,6 @@ export const BOOKS = [
   addedAt: "2026-01-15T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: false,
 
   title: "Pași prin Indonezia – Pe mâini de străini",
   seoTitle: "Pași prin Indonezia – Pe mâini de străini | Mida Malena",
@@ -514,6 +551,14 @@ availability: {
 },
 
 payLink: null,
+
+targ: {
+  visible: true,
+  price: 55,
+  launch: false,
+},
+
+hidden: false,
 },
 
 // ————————————————————————————————————————————————
@@ -524,7 +569,6 @@ payLink: null,
     addedAt: "2026-03-21T00:00:00Z",
     lang: "EN",
     currency: "EUR",
-    hidden: false,
 
     title: "Steps Through Indonezia – In the Hands of Strangers",
     subtitle: "Based on a true journey through Bali and Java, this memoir follows a woman who lets go of control and discovers that strangers can sometimes hold the deepest lessons.",
@@ -587,6 +631,14 @@ payLink: null,
       "Perfect for readers of travel memoirs, solo female journeys, and stories of personal transformation, Steps Through Indonesia: In the Hands of Strangers is a memoir about human connection, courage, and what happens when you let life unfold.",
       "“Sometimes, life becomes clearer when you look at it from the middle of the unknown.”",
     ],
+
+    targ: {
+      visible: false,
+      price: 55,
+      launch: false,
+    },
+
+    hidden: false,
   },
 
 
@@ -600,7 +652,6 @@ payLink: null,
   addedAt: "2026-03-22T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: false,
 
   title: "Focuri care nu ating",
   seoTitle: "Focuri care nu ating | Mida Malena",
@@ -688,6 +739,14 @@ payLink: null,
   },
 
   payLink: null,
+
+  targ: {
+    visible: true,
+    price: 60,
+    launch: false,
+  },
+
+  hidden: false,
 },
 
  // ————————————————————————————————————————————————
@@ -768,6 +827,13 @@ payLink: null,
       "– cauți o poveste vie, personală, în care drumurile exterioare devin hărți interioare",
       "„Plecările dor doar cât refuzăm să le înțelegem. Apoi, devin transformare.”",
     ],
+
+    targ: {
+      visible: true,
+      price: 55,
+      launch: false,
+    },
+  
     hidden: false,
   },
 
@@ -850,6 +916,13 @@ payLink: null,
       "– vrei o poveste în care Asia nu este decor, ci drum, oglindă și spațiu de întoarcere în tine",
       "„Uneori, libertatea nu arată ca un răsărit spectaculos, ci ca o cameră de hotel, un rucsac pe podea și liniștea de a nu mai avea nimic de demonstrat.”",
     ],
+
+    targ: {
+      visible: true,
+      price: 55,
+      launch: false,
+    },
+  
     hidden: false,
   },
 
@@ -863,7 +936,6 @@ payLink: null,
   addedAt: "2026-07-07T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: false,
 
   title: "Iubește-mă, dar nu mă poseda",
   seoTitle: "Iubește-mă, dar nu mă poseda | Mida Malena",
@@ -947,6 +1019,14 @@ payLink: null,
   },
 
   payLink: null,
+
+  targ: {
+    visible: true,
+    price: 60,
+    launch: false,
+  },
+
+  hidden: false,
 },
 
 // ————————————————————————————————————————————————
@@ -959,7 +1039,6 @@ payLink: null,
   addedAt: "2026-08-01T10:00:00Z",
   lang: "RO",
   currency: "RON",
-  hidden: false,
 
   title: "Maya, Bro și Hakuna Matata",
   seoTitle: "Maya, Bro și Hakuna Matata | Mida Malena",
@@ -1040,6 +1119,14 @@ payLink: null,
   },
 
   payLink: null,
+
+  targ: {
+    visible: true,
+    price: 55,
+    launch: false,
+  },
+
+  hidden: false,
 },
 ];
 
