@@ -207,9 +207,13 @@ export default async function handler(req, res) {
     }
 
     const currency = String(event.currency || "RON").toLowerCase();
+    const isTarg = event.id === "targ";
     const unitPrice = Number(event.unitPrice);
-
-    if (!Number.isFinite(unitPrice) || unitPrice <= 0) {
+    
+    if (
+      !isTarg &&
+      (!Number.isFinite(unitPrice) || unitPrice <= 0)
+    ) {
       return sendJson(res, 500, {
         error: "Prețul evenimentului nu este configurat corect.",
       });
@@ -255,6 +259,9 @@ await initializeEventInventory({
         !quantity ||
         !eventBook ||
         eventBook.visible === false ||
+        (isTarg && book.targ?.visible !== true) ||
+        (isTarg && book.availability?.PAPERBACK !== true) ||
+(isTarg && book.hidden === true) ||
         !book
       ) {
         rejectedItems.push({
@@ -266,13 +273,30 @@ await initializeEventInventory({
       }
 
       
-      cleanedItems.push({
+      const itemPrice = isTarg
+      ? Number(eventBook.price)
+      : unitPrice;
+    
+    if (
+      !Number.isFinite(itemPrice) ||
+      itemPrice <= 0 ||
+      !Number.isInteger(itemPrice * 100)
+    ) {
+      rejectedItems.push({
         bookId,
-        book,
-        quantity,
-        unitPrice,
-        lineTotal: unitPrice * quantity,
+        reason: "invalid_price",
       });
+    
+      continue;
+    }
+    
+    cleanedItems.push({
+      bookId,
+      book,
+      quantity,
+      unitPrice: itemPrice,
+      lineTotal: itemPrice * quantity,
+    });
     }
 
     /*
@@ -346,7 +370,7 @@ return sendJson(res, 409, {
       channel: "event",
       eventId: String(event.id),
       eventSlug: String(event.slug),
-      unitPrice: String(unitPrice),
+      unitPrice: isTarg ? "variable" : String(unitPrice),
       totalQuantity: String(totalQuantity),
       expectedTotal: String(totalAmount),
       cart: compactCartMetadata(cleanedItems),
@@ -356,8 +380,9 @@ return sendJson(res, 409, {
       `${SITE}/event/confirmare` +
       `?session_id={CHECKOUT_SESSION_ID}`;
 
-    const cancelUrl =
-      `${SITE}/event/${encodeURIComponent(event.slug)}`;
+      const cancelUrl = isTarg
+      ? `${SITE}/targ`
+      : `${SITE}/event/${encodeURIComponent(event.slug)}`;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
