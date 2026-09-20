@@ -1123,7 +1123,7 @@ hidden: false,
   targ: {
     visible: true,
     price: 55,
-    launch: true,
+    launch: false,
   },
 
   hidden: false,
