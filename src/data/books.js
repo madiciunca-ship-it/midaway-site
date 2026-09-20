@@ -850,7 +850,7 @@ hidden: false,
     seoTitle: "Libertate cu escală în Asia – Peste tot. Și nicăieri. | Mida Malena",
     subtitle: "O călătorie prin Thailanda este o carte despre educația lentă a libertății. Libertatea de a ști când să rămâi, când să pleci, când să spui da, când să spui nu și când să lași ceva frumos acolo unde l-ai găsit.",
     seoDescription: "Libertate cu escală în Asia – Peste tot. Și nicăieri. O călătorie prin Thailanda, despre libertate, drumuri, transformare, oameni întâlniți pe fugă și locuri care rămân în tine.",
-    isNew: true,
+    isNew: false,
     
     author: "Mida Malena",
     genre: "Jurnal de călătorie · Memorii · Experiențe reale",
