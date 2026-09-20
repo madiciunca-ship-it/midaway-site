@@ -1229,7 +1229,7 @@ hidden: false,
   availability: {
     PDF: true,
     EPUB: true,
-    PAPERBACK: false,
+    PAPERBACK: true,
     AUDIOBOOK: false
   },
 
