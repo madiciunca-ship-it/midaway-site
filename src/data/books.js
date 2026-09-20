@@ -1213,8 +1213,8 @@ hidden: false,
   extraImage: "/assets/books/maya-bedsheet-certification-back.png",
 
   files: {
-    PDF: "maya-bedsheet-certification.pdf",
-    EPUB: "maya-bedsheet-certification.epub",
+    PDF: "maya-bedsheet-certification-ro.pdf",
+    EPUB: "maya-bedsheet-certification-ro.epub",
   },
 
   sampleUrl: "/files/sample-maya-bedsheet-certification.pdf",
