@@ -1166,7 +1166,7 @@ hidden: false,
   formatDetails: {
     eBook: {
       type: "pdf",
-      pages: 306,
+      pages: 277,
       isbn: "978-630-95478-4-2",
     },
     epub: {
@@ -1236,9 +1236,9 @@ hidden: false,
   payLink: null,
 
   targ: {
-    visible: false,
-    price: 55,
-    launch: false,
+    visible: true,
+    price: 60,
+    launch: true,
   },
 
   hidden: false,

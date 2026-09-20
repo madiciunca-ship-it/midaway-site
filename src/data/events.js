@@ -126,7 +126,7 @@ export const EVENTS = [
 
     // Îl activăm după adaptarea checkout-ului,
     // webhook-ului și testarea fluxului complet.
-    active: false,
+    active: true,
 
     currency: "RON",
 
