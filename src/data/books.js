@@ -1128,6 +1128,121 @@ hidden: false,
 
   hidden: false,
 },
+
+// ————————————————————————————————————————————————
+// 9. Maya Bedsheet Certification™ (RO)
+// ————————————————————————————————————————————————
+
+{
+  id: "maya-bedsheet-certification-ro",
+  slug: "maya-bedsheet-certification-ro",
+  addedAt: "2026-09-20T10:00:00Z",
+  lang: "RO",
+  currency: "RON",
+
+  title: "Maya Bedsheet Certification™",
+  seoTitle: "Maya Bedsheet Certification™ | Mida Malena",
+  subtitle: "Tamil Nadu ••• Pondicherry. India. Verificată personal.",
+  seoDescription: "Jurnalul real al primelor 21 de zile ale Midei Malena în India: Tamil Nadu, Pondicherry, cazări, drumuri și întâlniri verificate personal.",
+  isNew: true,
+
+  author: "Mida Malena",
+  genre: "Jurnal de călătorie · Experiențe reale",
+  location: "Tamil Nadu · Pondicherry · India",
+  tags: [
+    "India",
+    "Tamil Nadu",
+    "Pondicherry",
+    "jurnal de călătorie",
+    "experiențe reale",
+    "călătorie solo",
+    "cazări",
+    "întâlniri",
+    "libertate",
+  ],
+  year: 2026,
+  publisher: "Midaway / Autor Mida Malena",
+
+  formatDetails: {
+    eBook: {
+      type: "pdf",
+      pages: 306,
+      isbn: "978-630-95478-4-2",
+    },
+    epub: {
+      pages: null,
+      isbn: "978-630-95478-5-9",
+    },
+    paperback: {
+      pages: 306,
+      isbn: "978-630-95478-3-5",
+      dimensions: "14,8 x 21 cm",
+      weight: null,
+    },
+  },
+
+  description: [
+    "În India, verificarea începe cu un cearșaf. Și scapă repede de sub control.",
+
+    "Maya ajunge în Chennai fără un traseu fix și fără să știe unde o vor purta următoarele săptămâni. Are câteva contacte, un rucsac, un buget care trebuie supravegheat și obiceiul de a privi cu atenție locurile în care doarme. Cearșaful există sau nu. Baia trece testul sau îl ratează spectaculos. Ventilatorul funcționează, prețul se negociază, iar fiecare cameră primește, mai devreme sau mai târziu, un verdict.",
+
+    "Numai că India refuză să rămână într-o fișă de evaluare.",
+
+    "În primele douăzeci și una de zile ale călătoriei, drumul o poartă prin Tamil Nadu și Pondicherry, de la Chennai la Mokshaa, Mahabalipuram, Pondicherry, Tiruvannamalai, Madurai, Kodaikanal și Dindigul. Uneori traseul este schimbat de o conversație purtată într-o bucătărie, alteori de un om întâlnit pe drum, de o cameră indisponibilă, de o ploaie, de un autobuz sau de un corp care nu mai vrea să coopereze.",
+
+    "Planurile se modifică, standardele se lovesc de realitate, iar locurile care par nepotrivite oferă, uneori, exact ceea ce lipsea.",
+
+    "Cu umor, luciditate și vulnerabilitate, Mida Malena povestește o Indie trăită de aproape: case străine în care este primită, hoteluri inspectate fără menajamente, drumuri făcute cu transportul local, întâlniri care îi schimbă direcția și momente în care libertatea de a pleca oriunde se întâlnește cu oboseala de a nu ști unde va dormi seara.",
+
+    "Este pentru tine dacă:",
+
+    "– iubești jurnalele de călătorie bazate pe experiențe reale",
+    "– preferi oamenii, întâmplările și drumurile neplanificate în locul listelor de obiective turistice",
+    "– crezi că umorul și vulnerabilitatea pot încăpea în aceeași poveste",
+    "– ai verificat vreodată un loc după felul în care te-ai simțit acolo, nu doar după ceea ce oferea",
+    "– vrei să descoperi India din transportul local, din casele oamenilor și din camerele în care lucrurile nu funcționează întotdeauna conform planului",
+
+    "„Maya Bedsheet Certification™ – Tamil Nadu ••• Pondicherry” este un jurnal de călătorie în care certificarea pornește de la curățenia unei camere și ajunge, treptat, la ceva mult mai greu de măsurat.",
+
+    "Pentru că un loc nu este făcut numai din patul în care dormi, din prețul pe care îl plătești sau din lucrurile care funcționează. Este făcut și din oamenii care te primesc, din felul în care te simți acolo și din ceea ce iei cu tine când pleci.",
+
+    "„După ce criterii hotărâm că un loc este bun?”"
+  ],
+
+  coverUrl: "/assets/books/maya-bedsheet-certification-cover.png",
+  extraImage: "/assets/books/maya-bedsheet-certification-back.png",
+
+  files: {
+    PDF: "maya-bedsheet-certification.pdf",
+    EPUB: "maya-bedsheet-certification.epub",
+  },
+
+  sampleUrl: "/files/sample-maya-bedsheet-certification.pdf",
+
+  prices: {
+    PDF: 45,
+    EPUB: 45,
+    PAPERBACK: 70,
+    AUDIOBOOK: 0
+  },
+
+  availability: {
+    PDF: true,
+    EPUB: true,
+    PAPERBACK: false,
+    AUDIOBOOK: false
+  },
+
+  payLink: null,
+
+  targ: {
+    visible: false,
+    price: 55,
+    launch: false,
+  },
+
+  hidden: false,
+},
 ];
 
 // Export opțional: listă standard pentru UI
