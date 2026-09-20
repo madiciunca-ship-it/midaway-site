@@ -1142,7 +1142,7 @@ hidden: false,
 
   title: "Maya Bedsheet Certification™",
   seoTitle: "Maya Bedsheet Certification™ | Mida Malena",
-  subtitle: "Tamil Nadu ••• Pondicherry. India. Verificată personal.",
+  subtitle: "Un jurnal real de călătorie prin India, în care verificarea începe cu un cearșaf și ajunge la locuri, oameni și propriile criterii.",
   seoDescription: "Jurnalul real al primelor 21 de zile ale Midei Malena în India: Tamil Nadu, Pondicherry, cazări, drumuri și întâlniri verificate personal.",
   isNew: true,
 
