@@ -1005,7 +1005,7 @@ async function setInventoryExact(bookId, button){
 }
 
 async function markCollected(orderId, button){
-  if (SOURCE !== "event") return;
+  if (SOURCE !== "event" && SOURCE !== "targ") return;
 
   const confirmed = window.confirm(
     "Sigur marchezi această comandă ca predată?\\n\\n" +
