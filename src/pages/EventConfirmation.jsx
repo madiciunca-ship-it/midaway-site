@@ -143,7 +143,7 @@ export default function EventConfirmation() {
             fontWeight: 800,
           }}
         >
-          Ne vedem la Gaudeamus Sibiu!
+          Te așteptăm cu drag la standul Midaway!
         </p>
       </section>
     </div>
