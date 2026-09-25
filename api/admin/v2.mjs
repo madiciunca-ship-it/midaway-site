@@ -703,8 +703,8 @@ const pickupClass =
     \${status}
   </div>
 
-  \${SOURCE === "event"
-    ? \`
+  \${(SOURCE === "event" || SOURCE === "targ")
+  ? \`
       <div style="margin-top:7px">
         <span class="pill \${pickupClass}">
           \${pickupLabel}
