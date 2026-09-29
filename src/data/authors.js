@@ -54,6 +54,7 @@ const authors = [
         "Travel has taught me that fear is an illusion – one we can overcome the moment we take a single brave step. This is what I hope my books inspire in you: to step into your own adventure, face your fears, and rediscover the vast potential you carry within.",
         "When I’m not writing or exploring, I connect with readers, shape new ideas, and look for small ways to leave kindness along the road.",
         "Thank you for being part of this journey – may these stories bring a spark of courage and joy into your life.",
+        "Mida Malena is the author pen name used by Maria Magdalena Ciunca, founder of Midaway Publishing House.",
       ],
     },
   },
