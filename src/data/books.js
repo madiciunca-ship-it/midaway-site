@@ -1206,7 +1206,8 @@ hidden: false,
 
     "Pentru că un loc nu este făcut numai din patul în care dormi, din prețul pe care îl plătești sau din lucrurile care funcționează. Este făcut și din oamenii care te primesc, din felul în care te simți acolo și din ceea ce iei cu tine când pleci.",
 
-    "„După ce criterii hotărâm că un loc este bun?”"
+    "„După ce criterii hotărâm că un loc este bun?”",
+    
   ],
 
   coverUrl: "/assets/books/maya-bedsheet-certification-cover.png",
