@@ -38,6 +38,7 @@ const authors = [
         "Următoarele două volume, din seria „Pași prin Indonezia”, vorbesc despre transformare, curaj și magia de a te lăsa purtat(ă) de viață atunci când renunți la hartă: Bali, o insulă-oglindă ce arde lent și vindecă profund, și Java, un teritoriu viu și haotic, unde rătăcirea devine formă de regăsire.",
         "Am învățat că frica este doar o iluzie – una pe care o depășim în clipa în care facem primul pas curajos. Asta sper să inspire cărțile mele: să pășiți în propria aventură, să vă întâmpinați temerile și să redescoperiți potențialul nelimitat din voi.",
         "Când nu scriu sau explorez, vorbesc cu cititori, pregătesc noi povești și caut să las mici gesturi de bunătate oriunde mă poartă drumul. Mulțumesc că faceți parte din călătorie – sper ca paginile mele să aducă o scânteie de curaj și bucurie.",
+        "Mida Malena este numele de autor sub care publică Maria Magdalena Ciunca, fondatoarea Editurii Midaway.",
       ],
     },
     en: {
