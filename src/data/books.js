@@ -411,6 +411,27 @@ export const BOOKS = [
       }
     },
 
+    description: [
+      "This book isn’t about Bali. It’s about what breaks in you when you finally reach what you dreamed of – and the calm still doesn’t come.",
+      "It’s not a guide. Not a vacation book. Not a motivational story. Bali is only the setting.",
+      "This book is for you if:",
+      "– you feel like you “should” be okay, but you’re not",
+      "– you’ve changed places, people, contexts – and still something is missing",
+      "– you’re thinking of leaving, but you know that’s not the real problem",
+      "– you want peace, but you don’t know where it went",
+      "You don’t have to have been to Bali. You only have to have gotten a little lost along the way.",
+      "Yda arrives on the Island of the Gods hoping for a new beginning. But what awaits her isn’t a vacation – it’s a deep immersion into herself.",
+      "“Steps Through Indonesia – When Bali Touches Your Soul” is a poetic confession about fear, about boundaries held underwater, about a woman learning to say “no,” about people who appear and disappear – and still matter.",
+      "It’s not places that change us, but the way we choose to live them.",
+      "This is not:",
+      "– a book about Bali as a destination",
+      "– a travel guide",
+      "– a motivational read",
+      "It’s a book about you – even if your name never appears anywhere.",
+      "If you’ve ever felt you had to leave… so you could return to yourself, this book is for you.",
+    ],
+
+
     coverUrl: "/assets/books/steps-through-indonesia-when-bali-touches-your-soul-cover.jpg",
     extraImage: "/assets/books/steps-through-steps-through-indonesia-when-bali-touches-your-soul-back.png",
 
@@ -436,26 +457,7 @@ export const BOOKS = [
       },
 
       
-    description: [
-      "This book isn’t about Bali. It’s about what breaks in you when you finally reach what you dreamed of – and the calm still doesn’t come.",
-      "It’s not a guide. Not a vacation book. Not a motivational story. Bali is only the setting.",
-      "This book is for you if:",
-      "– you feel like you “should” be okay, but you’re not",
-      "– you’ve changed places, people, contexts – and still something is missing",
-      "– you’re thinking of leaving, but you know that’s not the real problem",
-      "– you want peace, but you don’t know where it went",
-      "You don’t have to have been to Bali. You only have to have gotten a little lost along the way.",
-      "Yda arrives on the Island of the Gods hoping for a new beginning. But what awaits her isn’t a vacation – it’s a deep immersion into herself.",
-      "“Steps Through Indonesia – When Bali Touches Your Soul” is a poetic confession about fear, about boundaries held underwater, about a woman learning to say “no,” about people who appear and disappear – and still matter.",
-      "It’s not places that change us, but the way we choose to live them.",
-      "This is not:",
-      "– a book about Bali as a destination",
-      "– a travel guide",
-      "– a motivational read",
-      "It’s a book about you – even if your name never appears anywhere.",
-      "If you’ve ever felt you had to leave… so you could return to yourself, this book is for you.",
-    ],
-
+   
     targ: {
       visible: false,
       price: 55,
