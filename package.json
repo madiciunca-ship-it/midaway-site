@@ -10,7 +10,7 @@
     "dev": "vite --host 0.0.0.0 --port 5173",
     "start": "npm run dev",
     "build": "vite build",
-    "postbuild": "node scripts/generate-rss.js",
+    "postbuild": "node scripts/generate-rss.js && node scripts/generate-book-pages.js",
     "preview": "vite preview --host 0.0.0.0 --port 4173"
   },
   "dependencies": {

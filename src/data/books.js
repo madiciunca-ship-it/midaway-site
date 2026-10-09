@@ -141,7 +141,7 @@ export const BOOKS = [
     genre: "Jurnal de călătorie · Experiențe reale",
     location: "Vietnam",
     year: 2026,
-    publisher: "Midaway / Autor Mida Malena",
+    publisher: "Editura Midaway",
 
     formatDetails: {
       eBook: {
@@ -316,7 +316,7 @@ export const BOOKS = [
     location: "Indonezia",
     tags: ["memoir", "travel", "authentic"],
     year: 2026,
-    publisher: "Midaway / Autor Mida Malena",
+    publisher: "Editura Midaway",
 
 
     formatDetails: {
@@ -487,7 +487,7 @@ export const BOOKS = [
   location: "Indonezia",
   tags: ["memoir", "travel", "introspective", "authentic"],
   year: 2026,
-  publisher: "Midaway / Autor Mida Malena",
+  publisher: "Editura Midaway",
 
 
   formatDetails: {
@@ -663,7 +663,7 @@ hidden: false,
   location: "Romania",
   tags: ["roman confesiv", "proza contemporana", "dorinta", "limite personale", "libertate", "introspectie", "feminitate"],
   year: 2026,
-  publisher: "Midaway / Autor Mida Malena",
+  publisher: "Editura Midaway",
   isNew: false,
 
   formatDetails: {
@@ -768,7 +768,7 @@ hidden: false,
     genre: "Jurnal de călătorie · Experiențe reale",
     location: "Vietnam",
     year: 2026,
-    publisher: "Midaway / Autor Mida Malena",
+    publisher: "Editura Midaway",
 
     formatDetails: {
       eBook: {
@@ -856,7 +856,7 @@ hidden: false,
     genre: "Jurnal de călătorie · Memorii · Experiențe reale",
     location: "Thailanda",
     year: 2026,
-    publisher: "Midaway / Autor Mida Malena",
+    publisher: "Editura Midaway",
 
     formatDetails: {
       eBook: {
@@ -947,7 +947,7 @@ hidden: false,
   location: "Romania",
   tags: ["travel", "introspective", "boundaries", "freedom", "desire", "possession", "autofiction", "femininity"],
   year: 2026,
-  publisher: "Midaway / Autor Mida Malena",
+  publisher: "Editura Midaway",
   isNew: true,
 
   formatDetails: {
@@ -1051,7 +1051,7 @@ hidden: false,
   location: "India",
   tags: ["călătorie", "umor", "coincidențe", "libertate", "absurd", "autoficțiune", "personaje", "India"],
   year: 2026,
-  publisher: "Midaway / Autor Mida Malena",
+  publisher: "Editura Midaway",
 
   formatDetails: {
     eBook: {
@@ -1161,7 +1161,7 @@ hidden: false,
     "libertate",
   ],
   year: 2026,
-  publisher: "Midaway / Autor Mida Malena",
+  publisher: "Editura Midaway",
 
   formatDetails: {
     eBook: {

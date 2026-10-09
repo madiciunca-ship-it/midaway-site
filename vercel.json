@@ -8,6 +8,7 @@
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/feed.xml", "destination": "/feed.xml" },
     { "source": "/placeholder-cover.png", "destination": "/placeholder-cover.png" },
+    { "source": "/carti/:id", "destination": "/carti/:id.html" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
