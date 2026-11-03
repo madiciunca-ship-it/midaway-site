@@ -108,4 +108,26 @@ export const BOOK_REVIEWS = {
       published: true,
     },
   ],
+
+  "maya-bro-and-hakuna-matata-en": [
+    {
+      id: "maya-bro-and-hakuna-matata-en-001",
+      name: "Adina I.",
+      rating: 5,
+      text: "I started reading Maya, Bro & Hakuna Matata first, out of all the books I bought. There's something so beautiful about it that I'm trying to read just one chapter a day—it's the kind of book you want to savour. I was completely drawn in by the author's contemporary, direct storytelling style. Discovering India through her eyes truly touched me. I loved it so much that I want to introduce it to a book club.",
+      createdAt: "2026-11-03",
+      published: true,
+    },
+  
+      {
+        id: "maya-bro-and-hakuna-matata-en-002",
+        name: "Adrian Webermann",
+        rating: 5,
+        text: "I've been an avid reader since childhood, across all kinds of literary genres, but I can honestly say I've never read anything quite like this. Original, vivid, and full of personality, with memorable dialogue between Maya and Bro. A different kind of book, with lines that really stay with you.",
+        createdAt: "2026-11-03",
+        published: true,
+      },
+  ],
+
+
 };
