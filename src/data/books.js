@@ -579,7 +579,7 @@ hidden: false,
     location: "Indonesia",
     year: 2026,
     publisher: "Independent Publisher Mida Malena",
-    isNew: true,
+    isNew: false,
 
     formatDetails: {
       eBook: {
@@ -1248,7 +1248,7 @@ hidden: false,
 },
 
 // ————————————————————————————————————————————————
-  // 9-1 EN. Maya, Bro & Hakuna Matata (EN)
+  // 9-1. Maya, Bro & Hakuna Matata (EN)
   // ————————————————————————————————————————————————
   {
     id: "maya-bro-and-hakuna-matata-en",
@@ -1259,7 +1259,7 @@ hidden: false,
 
     title: "Maya, Bro & Hakuna Matata",
     seoTitle: "Maya, Bro & Hakuna Matata | Mida Malena",
-    subtitle: "A journey through India, unexpected encounters, a sarcastic inner voice, and a story written while life was still unfolding.",
+    subtitle: "A journey through India, unexpected encounters, and a sarcastic inner voice – captured in a story written while life was still unfolding.",
 
     seoDescription: "Maya, Bro & Hakuna Matata by Mida Malena is a humorous, introspective work of autofiction inspired by a real journey through India. Between unexpected encounters, conversations with Bro, wandering cows, wrong turns, and stories born from everyday chaos, reality becomes literature almost as it happens.",
 
@@ -1306,7 +1306,7 @@ hidden: false,
 
       "Born from an absurd day in Goa, the book follows a story taking shape almost as quickly as it is lived, before memory has had time to turn the unexpected into something neat and predictable.",
 
-      "Between trains, buses, hostels, rainstorms, wandering cows, unforgettable characters, and conversations with Bro, Maya's sharp-tongued inner voice, ordinary situations become stories of their own.",
+      "Between trains, buses, hostels, rainstorms, wandering cows, unforgettable characters, and conversations with Bro—Maya's sharp-tongued inner voice—ordinary situations become stories of their own.",
 
       "Maya sets out looking for simple things: a coffee, a room, a bus, somewhere to eat. But life has other ideas. Wrong turns lead to unexpected encounters, strangers become characters, and the smallest details begin to form a language of their own.",
 
