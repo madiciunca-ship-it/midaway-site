@@ -22,6 +22,10 @@ export function FormatSpecs({ book }) {
   const items = [];
 
   const isEN = String(book?.lang || "").toUpperCase() === "EN";
+  const getIdLabel = (value) =>
+  /^B0[A-Z0-9]{8}$/i.test(String(value ?? "").trim())
+    ? "ASIN"
+    : "ISBN";
 
   const t = isEN
     ? {
@@ -57,7 +61,7 @@ export function FormatSpecs({ book }) {
 if (fdet.eBook) {
   const e = fdet.eBook, p = [];
   if (e.pages) p.push(`${e.pages} ${t.pages}`);
-if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
+if (e.isbn && e.isbn !== "—") p.push(`${getIdLabel(e.isbn)}: ${e.isbn}`);
 if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="pdf">
@@ -70,7 +74,7 @@ if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
 if (fdet.epub) {
   const e = fdet.epub, p = [];
   if (e.pages) p.push(`${e.pages} ${t.pages}`);
-if (e.isbn && e.isbn !== "—") p.push(`${t.idLabel}: ${e.isbn}`);
+  if (e.isbn && e.isbn !== "—") p.push(`${getIdLabel(e.isbn)}: ${e.isbn}`);
 if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   items.push(
     <li key="epub">
@@ -83,7 +87,7 @@ if (e.language && e.language !== "—") p.push(`${t.language}: ${e.language}`);
   if (fdet.paperback) {
     const pb = fdet.paperback, p = [];
     if (pb.pages) p.push(`${pb.pages} ${t.pages}`);
-    if (pb.isbn && pb.isbn !== "—") p.push(`${t.idLabel}: ${pb.isbn}`);
+    if (pb.isbn && pb.isbn !== "—") p.push(`${getIdLabel(pb.isbn)}: ${pb.isbn}`);
     if (pb.language && pb.language !== "—") p.push(`${t.language}: ${pb.language}`);
     if (pb.dimensions && pb.dimensions !== "—") p.push(`${t.dimensions}: ${pb.dimensions}`);
     if (pb.weight && pb.weight !== "—") p.push(`${t.weight}: ${pb.weight}`);
