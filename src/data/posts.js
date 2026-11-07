@@ -3313,9 +3313,9 @@ const posts = [
 
     `A doua zi, Ranga a făcut un adevărat raliu pe străzile blocate de aceeași ploaie, ca să mă ducă din nou la autobuz. L-a sunat pe șofer și l-a rugat să mă aștepte. La 18:10 am urcat în autobuzul spre Goa, după ce i-am îmbrățișat pe amândoi.`,
 
-    `Autobuzul m-a lăsat în Panaji duminică, la prânz, după optsprezece ore de drum. Nu știam dacă Fahad era acolo. Putea fi plecat. Nici cazare nu-mi rezervasem la hostel, ca să nu dau de gol surpriza. Mă dădusem peste cap pentru o voce mică din cap care îmi spusese doar atât: Du-te acum. Trebuie să ajungi până duminică.`,
+    `Autobuzul m-a lăsat în Panaji duminică, la prânz, după optsprezece ore de drum. Nu știam dacă Fahad era acolo. Putea fi plecat. Nici cazare nu-mi rezervasem la hostel, ca să nu dau de gol surpriza. Mă dădusem peste cap pentru o voce mică din cap care îmi spusese doar atât: du-te acum. Trebuie să ajungi până duminică.`,
 
-    `Am ajuns nemâncată, transpirată, dar întreagă. Am mers un kilometru pe jos până la hostel. Aveam nevoie să mă mișc puțin după atâtea ore în autobuz. Abia atunci mi-am îngăduit să mă întreb: Oare era Fahad acolo sau avea să-mi facă el mie surpriza să nu fie?`,
+    `Am ajuns nemâncată, transpirată, dar întreagă. Am mers un kilometru pe jos până la hostel. Aveam nevoie să mă mișc puțin după atâtea ore în autobuz. Abia atunci mi-am îngăduit să mă întreb: oare era Fahad acolo sau avea să-mi facă el mie surpriza să nu fie?`,
 
     `Am avut noroc. Fata de la recepție mi-a spus că era la shop. Și era.`,
 
@@ -3444,7 +3444,7 @@ const posts = [
 
     `Îmi închipuiam că partea grea va fi să găsesc imaginile potrivite. Nu știam încă de câte ori avea să se schimbe chipul Mayei, ce obiecte noi urmau să apară în cadru și câtă răbdare putea încăpea într-un clip de trei-patru secunde.`,
 
-    `Partea creativă din mine a spus: De ce nu? Partea economică a adăugat o condiție: Să fie gratis. Am deschis în ChatGPT un chat nou și l-am numit „Special Delivery, primul meu film cu AI. Gratis”. Titlul era poate puțin pompos, dar berbecul din mine avea deja răspunsul: De ce să nu încerc?`,
+    `Partea creativă din mine a spus: de ce nu? Partea economică a adăugat o condiție: să fie gratis. Am deschis în ChatGPT un chat nou și l-am numit „Special Delivery, primul meu film cu AI. Gratis”. Titlul era poate puțin pompos, dar berbecul din mine avea deja răspunsul: de ce să nu încerc?`,
 
     `Am început cu întrebarea firească: Pot să fac un film cap-coadă cu AI, fără să plătesc? ChatGPT mi-a răspuns că da și mi-a dat o listă de platforme, pași și linkuri. Am încercat câteva. Unele îmi ofereau doar un clip de probă, după care apărea invitația de a cumpăra un abonament. Altele îmi cereau să mă abonez înainte să pot converti prima imagine. La una dintre platforme, primul cadru reda surprinzător de bine trăsăturile mele, dar după primul clip a apărut același îndemn la abonare. Am continuat să caut.`,
 
