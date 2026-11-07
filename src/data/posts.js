@@ -3483,8 +3483,258 @@ const posts = [
   ],
 },
 
-      
-      
+  
+{
+  slug: "the-book-that-crossed-continents-to-meet-its-characters",
+  title: "The Book That Crossed Continents to Meet Its Characters",
+  excerpt: "I left Romania with fifteen copies of a book I had written in India, determined to give them to the people who had become part of its story. An eighteen-hour journey to Goa, a surprise for Fahad, and an unexpected encounter with Alina would change everything I had planned. That adventure also inspired SPECIAL DELIVERY, my first short film created with the help of AI.",
+  date: "2026-11-07",
+  author: "Mida Malena",
+  tags: [
+    "Midaway",
+    "India",
+    "Goa",
+    "travel",
+    "solo travel",
+    "Maya Bro & Hakuna Matata",
+    "SPECIAL DELIVERY",
+    "artificial intelligence",
+    "PixVerse",
+    "books",
+  ],
+  cover: "/assets/blog/cartea-care-a-traversat-continente.png",
+  lang: "en",
+  minutes: 19,
+  content: [
+    
+    `A true story about a book, fifteen copies in a backpack, and a surprise I could never have planned.`,
+
+    `*The Book That Began in Goa*`,
+
+    { type: "paragraph", parts: [{ text: "“Maya, Bro & Hakuna Matata”", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }, { text: " was born on a rainy night in Goa, after an absolutely impossible day. Those who have read the book know exactly what I'm talking about. Those who haven't will find the whole story waiting for them inside its pages." }] },
+
+    `It all started with a cow. Yes, you read that right. A cow.`,
+
+    `She had stopped in the narrow entrance to Cesare's café and was staring straight at me. I have no idea what she had in mind, but our encounter had some unexpected literary consequences. I'd originally called the manuscript “Maya, Bro and a Cow”. I changed it later, in Panaji, after arriving at Fahad's hostel. At reception, there was a brown wooden plaque with “Hakuna Matata” carved into it. Fahad had brought it back from Africa, and those words would eventually find their way into both the book and its title. By the time I left, he already knew I intended to use them in the manuscript.`,
+
+    `But long before I reached Goa, India had already given me more than enough memorable experiences.`,
+
+    `My first journey through India lasted 85 days. I travelled 6,500 kilometres, travelled through 11 administrative regions, and visited 30 cities. I had gathered enough material for several books, as I usually do when I travel and write. But in Goa, I did something different: I opened a blank document and began writing in the heat of the moment, while the story was still unfolding around me.`,
+
+    `I had no idea who would find their way into the book, or how it would end. All I knew was that I wanted to capture what I was experiencing before those moments settled into memories. I kept travelling, meeting people, and adding pages. I filled them with my experiences in India as they happened, alongside the conversations between Maya and Bro, her alter ego. Bro is a character in the book – the only one who had permission to tease me.`,
+
+    `It wasn't the first book I'd written. It was the first one I wrote while living the story itself. I wrote the opening page on June 19. By July 30, the very day I returned from India, the printed copies had already arrived at my mother's house. On August 22, I launched the book at the Gaudeamus Book Fair in Sibiu. Looking back at how quickly everything had fallen into place, it felt as though the book had found its own path.`,
+
+    `Towards the end of the book, Fahad had become one of its characters. After I left Panaji, he sent me a message saying he hoped we would meet again. I replied that perhaps one day I would return with a book in which his name appeared. His message, “Hope to Meet U Again”, became the title of Chapter 12, while “The Energy U Carry” became the title of the epilogue. After returning to Romania, I stayed in touch with the people I had met in India, and that exchange of messages stayed with me.`,
+
+    `I turned my promise to Fahad into a personal challenge: I would not return to India without the English edition. I wanted to surprise the people who had helped bring the book into existence by giving each of them a personally inscribed copy.`,
+
+    `I didn't translate it myself – my English is still rather hopeless, and I certainly couldn't take the credit. My youngest daughter, who was volunteering at the time, managed to finish the translation in time, after a little persuasion on my part. Two days before my departure, the printed copies arrived. I had ordered fifteen.`,
+
+    `Not for a launch, not to sell, and not for any literary event. I wanted to give them to the people who had become part of the story, the people without whom the book would never have taken the shape it has today: Fahad, Srushti, Cesare, Surya, Safi, and the others. It was my way of saying thank you.`,
+
+    `And so I set off for India a second time, with fifteen books in my backpack. From Bucharest, I spent thirteen hours on a FlixBus to Istanbul, then flew to Bahrain and onwards to Bangalore. The books' journey would continue on an overnight bus to Goa.`,
+
+    
+    `*Fifteen Books in a Backpack*`,
+
+    `I was in Bangalore, staying with Ranga and Shobha, whom I'd met through a mutual friend and who had invited me to stay with them. They had nothing to do with the book. The people I had written about – those in Fort Kochi, Mangalore, Gokarna, Palolem, and Panaji – knew I was back in India, but they had no idea I had brought copies with me. I'd kept the surprise for them, and I couldn't wait to see their faces when they received the English edition, with their names appearing in its pages.`,
+
+    `I'd planned to start in Fort Kochi, with Safi, and leave Panaji for later. Since I was going to Goa anyway, I wanted to spend at least a month there. I was already working on another book about India and had promised myself some time to write, somewhere with a sea view.`,
+
+    `About three days before my sudden decision to leave for Goa, Fahad sent me two messages: “Translate this into English” and “Is the English version released?”. I replied, “Not yet.” I don't know why, but his question about the English edition felt like a sign.`,
+
+    `I decided to change my route and head straight to Panaji without telling him. I didn't even know whether Fahad was in Goa or away on a trip. I didn't want to ask, because that would have ruined the surprise.`,
+
+    `Ranga and Shobha were not at all happy with my decision.`,
+
+    `— Why don't you stay? You've only just arrived!`,
+
+    `I told them I had to reach Panaji by Sunday. Monday would be too late. I couldn't explain why I was so determined to get there that particular day. Whatever arguments they came up with, I kept returning to the same thing: I had to get there on Sunday. In the end, although they weren't happy about my leaving, they bought me the bus ticket.`,
+
+    `On Friday, at 7 p.m., Ranga and Shobha drove me to the bus station through torrential rain and horrendous traffic. We had planned to stop by a birthday party as well, but we had already lost far too much time in the traffic jam. We decided to go straight to the station so I wouldn't miss my bus. All three of us were there when the message arrived: the bus company had cancelled the trip`,
+
+    `I burst out laughing. Ranga said he had never seen anything like it and asked whether I wasn't upset.`,
+
+    `— No. If I'm meant to get there, I'll get there, I replied.`,
+
+    `We went to the booking office and changed my ticket to the following evening, Saturday, at six. After all that drama, even though it was late, we still made it to the birthday party.`,
+
+    `The next day, Ranga raced through the traffic-clogged streets by the same pouring rain to get me to the bus. He called the driver and asked him to wait for me. At 6:10 p.m., after hugging them both, I finally climbed aboard the bus to Goa.`,
+
+    `The bus dropped me off in Panaji at noon on Sunday, after eighteen hours on the road. I still had no idea whether Fahad was there. He could have been away. I hadn't even booked a bed at his hostel, afraid it might give the surprise away. I had gone to all that trouble because of a little voice in my head that kept telling me one thing: Go now. You have to get there by Sunday.`,
+
+    `I arrived hungry and sweaty, but in one piece. I walked the kilometre to the hostel. After so many hours on the bus, I needed to stretch my legs. Only then did I allow myself to wonder: Was Fahad actually there, or was he about to surprise me by not being there at all?`,
+
+    `Luckily, he was. The young woman at reception told me he was at the shop. And sure enough, there he was.`,
+
+    `When Fahad saw me, he hugged me and exclaimed:`,
+
+    `— Oh my God! You're here? I thought you were in Bangalore!`,
+
+    `In theory, that's exactly where I should have been. In practice, I had just crossed half of southern India with fifteen copies of a book in my backpack.`,
+
+    `Standing beside him was Alina, a young woman from Moldova.`,
+
+    
+    `*The Reunion in Panaji*`,
+
+    `Alina had returned to Fahad's shop to ask him to take in a dress she had bought there. It was a little too loose, and I arrived just as they were discussing it. I was so excited to have finally arrived that I barely noticed anything else around me.`,
+
+    `Fahad introduced me to Alina:`,
+
+    `— This is Maya, from Romania.`,
+
+    `Alina told him:`,
+
+    `— You know, we speak the same language.`,
+
+    `Although Romanian was our mother tongue, we found it strangely difficult to switch to Romanian; somehow, continuing in English felt more natural.`,
+
+    `After a little more conversation and a few smiles, Fahad suggested we step outside the shop. He had called someone to mind the shop, and three customers were waiting to come in. We moved to the hostel, to the same white corridor where we had first talked. This time, we had plenty to talk about.`,
+
+    `Fahad asked whether I had eaten and said we would go for lunch together. He hadn't eaten either, and it was almost one o'clock. Alina returned to the hostel and joined us. Fahad invited her along too, but she had already made plans with two other girls from the hostel. She told me she was leaving for Palolem the following day.`,
+
+    `— Oh, you can't possibly go to Palolem without reading my book! I told her.`,
+
+    `Alina had mentioned that she was curious to read it, so I hurried to my room to fetch her a copy. Fahad had reserved a bed for me in a four-bed dormitory, and I discovered that Alina was my roommate. She told me she would never have imagined meeting a Romanian woman in Goa, let alone sharing a room with her.`,
+
+    `I gave her the book as a gift. Alina took it and went off to enjoy the rest of her day. That evening, when she returned, we chatted for a little while. She had come from Nepal and was heading towards Kerala, where she hoped to visit a meditation centre. She was curious to read the book. Then she went to sleep.`,
+
+    `The next morning, we talked a little more and hugged goodbye. I thought we would never see each other again. I was planning to spend another two days in Panaji before heading to Agonda, where I wanted to find a room for a month. Only after she had left did I realise I hadn't written a personal inscription in her copy.`,
+
+    `On the morning I left for Agonda, Fahad told me:`,
+
+    `— You wrote too much about me. You exaggerated.`,
+
+    `He was right. I'd written quite a lot about him. But it made for a delicious read.`,
+
+    `Fahad took me to the bus station on his scooter, even though he was due to join an online conference in just a few minutes. He told me that if I stayed in Agonda for a month, he would come and visit. He hadn't been to that beach in about five years.`,
+
+    `I set off for Agonda, changing buses three times along the way. When I arrived, I had no signal. My SIM card seemed completely dead. I looked at a few places to stay, then stopped at a café, where I discovered that Airtel wasn't working in the area. The rooms smelled of mould, and I hadn't liked a single one.`,
+
+    `I thought about my month by the beach, the private room where I was supposed to write, Fahad's promised visit, and all the plans I had made. Then I told myself:`,
+
+    `— I'm leaving.`,
+
+    `I had lasted exactly one hour in Agonda.`,
+
+    
+    `*Two Metres Away, in Palolem*`,
+
+    `Palolem was nearby, and I wanted to see Cesare. The last time we met, he had told me to come back in October and promised to find me a room. I hopped into a tuk-tuk and headed there.`,
+
+    `At his café, I ordered a tuna salad and a lemonade. I was starving. Cesare wasn't there, but one of his employees recognised me. I was sure he had already let Cesare know I was back and that he would turn up soon. While I waited, I took a selfie in the enormous mirror, posted it to my Instagram story, and tagged the location. I was happy to be back in the place where the book's story had begun. In a way, I could hardly believe I was really there.`,
+
+    `Then a message from Alina appeared:`,
+
+    `— I'm two metres away from you.`,
+
+    `A minute later, she was on the other side of the café fence, waving at me. I hadn't even had time to reply. She reached my table at the exact moment Cesare pulled up in his car. The kind of timing I could never have scripted. Cesare was surprised to see me back, too.`,
+
+    `— I've come to bring you a present, I told him.`,
+
+    `When I handed Cesare his copy of the book, Alina took a photograph of us. There had been nobody ready to capture the moment with Fahad. This time, there was.`,
+
+    `Cesare asked whether I had somewhere to stay. I didn't. I hadn't planned on ending up in Palolem that day. The apartment I had stayed in last time wasn't available, but he offered me another one for two weeks. After that, the next guests would be arriving. Deep down, I had hoped to get the same apartment as before, but it wasn't meant to be.`,
+
+    `Alina and I stayed at the café talking for about four hours. She eventually left for her accommodation, while I went upstairs to settle into my apartment, late in the evening, after 8:30 p.m. Alina was leaving for Gokarna the next day at 5 p.m.; she had bought her ticket before I arrived. I still hadn't decided what to do next.`,
+
+    `The new apartment was a far cry from what I had hoped for. Nobody had stayed there in ages; the mattress was far too hard, and the place struck me as something of a spider-breeding facility. It didn't feel like somewhere I belonged. I spent just one night in Palolem.`,
+
+    `The next morning, at breakfast, Alina spotted me with all my luggage and asked:`,
+
+    `— So, where are you going now?`,
+
+    `— Wherever you're going, that's where I'm going too.`,
+
+    `The decision was made. Alina gave me a leather notebook she had bought in France. She had been carrying it around in her backpack for months and told me she hadn't wanted to give it to just anyone.`,
+
+    `It was only then, in Palolem, that I understood why I had been so determined to reach Panaji by Sunday. If I had arrived on Monday, Alina would already have left for Palolem, and I would never have met her at the hostel before she continued her journey.`,
+
+    `Alina had booked her ticket online for the private bus to Gokarna, paying 500 rupees. I had no ticket. The three young men running the bus told me they couldn't take me without an online reservation. Alina insisted, went after one of them, and kept pestering him until he came back to discuss it with the others. They conferred among themselves, then told us to get on.`,
+
+    `— How much? I asked.`,
+
+    `— One thousand rupees, replied the only one of them who spoke English.`,
+
+    `— No, no, that's too much. I paid about 120 rupees for the train in the opposite direction.`,
+
+    `Alina told them she had paid 500 for her online ticket. I turned to her:`,
+
+    `— Never mind, Alina. I'll take the train tomorrow. It's cheaper.`,
+
+    `I hugged her and told the men that the train cost less. That was when they agreed to 500 rupees. I handed over the money discreetly, behind a curtain. I imagined the man didn't want the security cameras to catch him taking it.`,
+
+    `As Alina was boarding, the same man told her:`,
+
+    `— You're not in your own country here.`,
+
+    `Neither was I. In the end, I climbed aboard too, and we both made it to Gokarna. It was the first day we laughed until our sides hurt. There would be plenty more.`,
+
+    `In the book, the journey runs from Fort Kochi to Mangalore, then Gokarna, Palolem, and Panaji. Our story unfolded in reverse: we first met in Panaji, found each other again by chance in Palolem, then travelled together through Gokarna and Mangalore to Fort Kochi. We parted ways near Kollam, after leaving Kochi together.`,
+
+    `From our reunion in Palolem to Fort Kochi, our journey covered eleven nights: one in Palolem, four in Gokarna, two in Mangalore, and four in Fort Kochi. Apart from the two nights in Mangalore, when we shared a room again, we stayed in separate accommodation. In Gokarna, we were two kilometres apart.`,
+
+    `During those days, we laughed, gossiped, tried on clothes, went to the cinema, travelled by train in second class, drank coffee, and shared meals. For a while, I really was “Maya”.`,
+
+    `I thought I was going to Goa to surprise Fahad, but I had no idea life had a surprise waiting for me. I had left Romania with fifteen copies of a book about the people I had met in India. One of those copies had found its way to Alina, a woman who had never been part of the printed story, but with whom I was about to live an entirely new one. And I have photographs – lots of them, with Alina. Perhaps their story will find its way into another book someday.`,
+
+    `This is how Bro replies to Maya in “Maya, Bro & Hakuna Matata”:`,
+
+    `MAYA: — I have photos.`,
+
+    `BRO: — Exactly. The chapter speaks for itself.`,
+
+    `---`,
+
+   
+    `*SPECIAL DELIVERY – One Minute of Film, Three or Four Seconds at a Time*`,
+
+    `When I first started thinking about making my first short film with the help of artificial intelligence, my reunion with Fahad seemed the obvious choice. I kept thinking about the eighteen-hour journey, the surprise at his shop, and the book I had brought all the way from Romania. So I decided to recreate that moment using AI-generated and animated images. As I worked on it, I realised the reunion couldn't really be separated from the journey that had brought me there. The film recreates the encounter; this article tells the story behind it.`,
+
+    `In the film, Fahad asks me, “I thought you were in Bangalore!” Maya replies, “Not even Amazon offers delivery…” – and finishes the sentence in the next shot: “…with the author included in the package!” I had to split the line in two because it wouldn't fit into a single four-second clip. Unlike Fahad's surprise, which was entirely real, the Amazon joke was something I invented for the film.`,
+
+    `I imagined the hardest part would be finding the right images. I had no idea how many times Maya's face would change, what unexpected objects would appear in the frame, or how much patience could possibly fit into a three- or four-second clip.`,
+
+    `The creative side of me said: Why not? The practical, budget-conscious side added one condition: It has to be free. I opened a new chat in ChatGPT and named it “Special Delivery, My First AI Film. For Free”. The title might have been a little grandiose, but the Aries in me already had her answer: Why shouldn't I give it a try?`,
+
+    `I started with the obvious question: Could I make an entire film with AI without paying a penny? ChatGPT told me I could and gave me a list of platforms, instructions, and links. I tried several. Some offered a single trial clip before inviting me to buy a subscription. Others wanted me to subscribe before I could even animate my first image. On one platform, the first clip captured my features surprisingly well, but as soon as it was finished, the same subscription prompt appeared. So I kept looking.`,
+
+    `By then, I already had my reference images, the prompt, and almost all the scenes planned out. Only then did I begin to understand that each scene would have to be generated separately, in fragments lasting just a few seconds.`,
+
+    `PixVerse finally gave me a way to keep going without buying a subscription. While I was working on the film, my account received 30 free credits each day when I logged in. I even tested what happened if I didn't use them: they didn't carry over to the following day. I still received just 30 credits, enough to generate a single clip of roughly three or four seconds.`,
+
+    `— We can build the film frame by frame: one short clip a day, ChatGPT explained.`,
+
+    `The plan sounded simple, until the AI started improvising. Sometimes it failed to preserve the same facial features from one shot to the next. Other times, it altered objects, moved the characters around, or added movements I had never asked for. Almost half the generated clips never made it into the final edit. For some scenes, I had to wait another day, recreate the reference image, and try again.`,
+
+    `— Let's stop asking for too many actions in a four-second clip, ChatGPT told me. Otherwise, the generator starts improvising.`,
+
+    `And its improvisations sometimes followed a schedule of their own. In one scene, Maya was supposed to arrive in Panaji at noon, after eighteen hours on the bus. ChatGPT spotted the problem:`,
+
+    `— Twelve noon, Panaji, Goa. No sunrise lighting: Maya arrived at midday.`,
+
+    `I had to learn to simplify the scenes and choose each starting image carefully. If the still image didn't look like me, the animation wasn't going to fix the inconsistency. And if a sequence began with the wrong image, there was no point spending the next 30 credits trying to rescue it.`,
+
+    `In the end, the film was about a minute long and consisted of roughly fifteen shots. Not every detail remained identical, and the generated sounds weren't always at the same volume from one scene to the next. I kept the shots that worked and accepted that a few decorative details had changed along the way.`,
+
+    `And that was how I made my first AI-assisted short film, without buying credits or a subscription to generate the clips. It wasn't simply a collection of images stitched together, but an exercise in patience: creating a scene, checking it, discarding what didn't work, and coming back the next day.`,
+
+    `I called it “SPECIAL DELIVERY”, because that was exactly what my journey to Panaji had been: a personal delivery, without confirmation from the recipient, and with the author included in the package.`,
+
+    `The film is an AI-assisted recreation of real events. Only at the very end, in a single shot, do actual photographs from my journey with Alina appear. Beyond all my attempts to recreate a moment, the most beautiful part of the story remains the one I never had to invent.`,
+
+    { type: "paragraph", parts: [{ text: "Watch SPECIAL DELIVERY", href: "https://youtu.be/JOJ19vlR_2M", kind: "external" }] },
+
+    `“Maya, Bro & Hakuna Matata” – a book written in India while the events that inspired it were still unfolding.`,
+
+    { type: "paragraph", parts: [{ text: "Maya, Bro și Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-si-hakuna-matata-ro", kind: "external" }] },
+
+    { type: "paragraph", parts: [{ text: "Maya, Bro & Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }] },
+
+  ],
+},
   
 
   
