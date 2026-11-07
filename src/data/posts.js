@@ -3235,7 +3235,254 @@ const posts = [
   
       `Au fost oamenii care s-au oprit la masa mea.`,
     ],
-  }
+  },
+  
+{
+  slug: "cartea-care-a-traversat-continente-ca-sa-si-intalneasca-personajele",
+  title: "Cartea care a traversat continente ca să-și întâlnească personajele",
+  excerpt: "Am plecat din România cu cincisprezece exemplare ale unei cărți scrise în India, hotărâtă să le dăruiesc oamenilor care făcuseră parte din poveste. Un drum de optsprezece ore până în Goa, o surpriză pentru Fahad și o întâlnire neașteptată cu Alina aveau să schimbe tot ce plănuisem. Din această aventură s-a născut și SPECIAL DELIVERY, primul meu scurtmetraj realizat cu ajutorul AI.",
+  date: "2026-11-07",
+  author: "Mida Malena",
+  tags: [
+    "Midaway",
+    "India",
+    "Goa",
+    "calatorii",
+    "calatorie solo",
+    "Maya Bro si Hakuna Matata",
+    "SPECIAL DELIVERY",
+    "inteligenta artificiala",
+    "PixVerse",
+    "carti"
+  ],
+  cover: "/assets/blog/cartea-care-a-traversat-continente.png",
+  lang: "ro",
+  minutes: 19,
+  content: [
+    `O poveste adevărată despre o carte, cincisprezece exemplare în rucsac și o surpriză pe care nu aș fi putut-o plănui.`,
+
+    `*Cartea începută în Goa*`,
+
+{ type: "paragraph", parts: [{ text: "„Maya, Bro și Hakuna Matata”", href: "https://midaway.ro/carti/maya-bro-si-hakuna-matata-ro", kind: "external" }, { text: " s-a născut într-o noapte ploioasă, în Goa, după o zi absolut imposibilă. Cine a citit cartea știe despre ce vorbesc. Cine n-a citit-o va descoperi întreaga întâmplare în paginile ei." }] },
+
+    `Totul a început de la o vacă. Da, ai citit bine. O vacă.`,
+
+    `Se oprise în portița cafenelei lui Cesare și mă privea. Nu știu ce intenții avea, dar întâlnirea noastră a avut consecințe literare neașteptate. Primul titlu al manuscrisului a fost „Maya, Bro și o vacă”. L-am schimbat mai târziu, în Panaji, după ce am ajuns la hostelul lui Fahad. La recepție era o plăcuță maro din lemn, cu „Hakuna Matata” sculptat în ea. Fahad o adusese din Africa, iar expresia avea să-și găsească locul în carte și în titlu. Când am plecat, el știa deja că urma să o folosesc în manuscris.`,
+
+    `Până să ajung însă în Goa, India îmi oferise deja suficiente întâmplări memorabile.`,
+
+    `Prima mea călătorie în India a durat 85 de zile. Am parcurs 6.500 de kilometri, am trecut prin 11 regiuni administrative și prin 30 de orașe. Adunasem material pentru mai multe cărți, cum fac de obicei când călătoresc și scriu. În Goa, am făcut ceva diferit: am deschis un document alb și am început să scriu la cald, în timp ce povestea încă se desfășura.`,
+
+    `Nu știam cine avea să intre în carte și nici cum se va termina. Știam doar că voiam să notez ce trăiam, înainte ca întâmplările să se așeze în amintiri. Am continuat să călătoresc, să întâlnesc oameni și să adaug pagini. În ele am pus întâmplările din India așa cum le trăiam, împreună cu dialogurile Mayei și ale lui Bro, alter ego-ul ei interior. Bro este personajul cărții – singurul care avea voie să mă ironizeze.`,
+
+    `Nu era prima carte pe care o scriam, ci prima pe care o scriam în timp ce o trăiam. Am scris prima pagină pe 19 iunie. Pe 30 iulie, chiar în ziua în care m-am întors din India, exemplarele tipărite ajunseseră deja acasă, la mama. Pe 22 august am lansat cartea la Gaudeamus Sibiu. Când mă uitam la cât de repede se legaseră toate, aveam impresia că și ea își găsise singură traseul.`,
+
+    `Spre finalul cărții, Fahad devenise unul dintre personajele ei. După ce plecasem din Panaji, mi-a scris că speră să ne revedem. I-am răspuns că poate mă voi întoarce într-o zi cu o carte în care va apărea numele lui. Mesajul lui, „Hope to Meet U Again”, a devenit titlul capitolului 12, iar „The Energy U Carry” a rămas titlul epilogului. După revenirea în România, am păstrat legătura cu oamenii întâlniți în India, iar schimbul acela de mesaje a rămas cu mine.`,
+
+    `Mi-am transformat promisiunea făcută lui Fahad într-o provocare personală: să nu mă întorc în India fără cartea în engleză. Voiam să-i surprind pe oamenii care contribuiseră la existența cărții, oferindu-le câte un exemplar cu dedicație.`,
+
+    `Traducerea nu am făcut-o eu – engleza mea e în continuare „de baltă”, iar meritele nu mi le-aș putea atribui. Fiica mea cea mică, aflată într-un program de voluntariat, a tradus-o la timp, după câteva rugăminți de-ale mele. Cu două zile înainte să plec, exemplarele au sosit de la tipar. Comandasem cincisprezece.`,
+
+    `Nu pentru o lansare, nu pentru vânzare și nici pentru vreun eveniment editorial. Voiam să le dăruiesc oamenilor care făcuseră parte din poveste și fără de care cartea nu ar fi existat în forma ei de astăzi: Fahad, Srushti, Cesare, Surya, Safi și ceilalți. Era felul meu de a le mulțumi.`,
+
+    `Așa am pornit a doua oară spre India, cu cărțile în bagaj. Din București am mers treisprezece ore cu FlixBus până la Istanbul, apoi am zburat spre Bahrain și, de acolo, spre Bangalore. Drumul exemplarelor avea să continue cu autobuzul de noapte spre Goa.`,
+
+    `*Cincisprezece cărți în rucsac*`,
+
+    `Ajunsesem în Bangalore și stăteam la Ranga și Shobha, doi prieteni pe care îi cunoscusem printr-un prieten comun și care mă invitaseră la ei acasă. Ei nu aveau nicio legătură cu cartea. Oamenii despre care scrisesem – cei din Fort Kochi, Mangalore, Gokarna, Palolem și Panaji – știau că mă întorsesem în India, dar nu știau că aveam exemplarele cu mine. Surpriza o păstrasem pentru ei și eram nerăbdătoare să le văd privirile când primeau cărțile în engleză, cu numele lor în pagini.`,
+
+    `Planul era să încep din Fort Kochi, de la Safi, și să las Panaji pentru mai târziu. Dacă tot ajungeam în Goa, voiam să stau acolo măcar o lună. Lucram deja la o nouă carte despre India și îmi propusesem să-mi ofer timp și un loc de lucru cu vedere la mare.`,
+
+    `Cu vreo trei zile înainte să mă hotărăsc să plec brusc spre Goa, Fahad mi-a trimis două mesaje: „Translate this into English” și „Is the English version released?”. I-am răspuns: „Not yet.” Nu știu de ce, dar întrebarea lui despre ediția în engleză mi s-a părut un semn.`,
+
+    `Am hotărât să schimb traseul și să merg direct în Panaji, fără să-l anunț. Nici măcar nu știam dacă Fahad se afla în Goa sau dacă era plecat într-o călătorie. Nu am vrut să întreb, fiindcă aș fi stricat surpriza.`,
+
+    `Ranga și Shobha nu erau deloc încântați de hotărârea mea.`,
+
+    `— De ce nu mai stai? Abia ai ajuns!`,
+
+    `Le-am spus că trebuia să ajung până duminică în Panaji. Luni era prea târziu. Nu știam de ce mă agățasem atât de tare de ziua aceea. Orice argument aduceau, eu reveneam la aceeași idee: trebuia să ajung duminică. Până la urmă, deși nu erau de acord cu plecarea mea, mi-au cumpărat biletul.`,
+
+    `Vineri, la ora 19:00, Ranga și Shobha m-au dus la stația de autobuz printr-o ploaie infernală și un blocaj îngrozitor. Aveam în plan să trecem și pe la o zi de naștere, dar pierduserăm deja prea mult timp în ambuteiaj. Am decis să mergem direct la stație, ca să nu pierd autobuzul. Eram toți trei acolo când a venit mesajul: operatorul anulase cursa.`,
+
+    `Am început să râd. Ranga mi-a spus că nu mai întâlnise așa ceva și m-a întrebat dacă nu eram supărată.`,
+
+    `— Nu. Dacă trebuie să ajung, o să ajung, i-am răspuns.`,
+
+    `Am mers la agenție și am mutat biletul pentru seara următoare, sâmbătă, la ora șase. După toată aventura, chiar dacă era târziu, am ajuns și la aniversarea aceea.`,
+
+    `A doua zi, Ranga a făcut un adevărat raliu pe străzile blocate de aceeași ploaie, ca să mă ducă din nou la autobuz. L-a sunat pe șofer și l-a rugat să mă aștepte. La 18:10 am urcat în autobuzul spre Goa, după ce i-am îmbrățișat pe amândoi.`,
+
+    `Autobuzul m-a lăsat în Panaji duminică, la prânz, după optsprezece ore de drum. Nu știam dacă Fahad era acolo. Putea fi plecat. Nici cazare nu-mi rezervasem la hostel, ca să nu dau de gol surpriza. Mă dădusem peste cap pentru o voce mică din cap care îmi spusese doar atât: Du-te acum. Trebuie să ajungi până duminică.`,
+
+    `Am ajuns nemâncată, transpirată, dar întreagă. Am mers un kilometru pe jos până la hostel. Aveam nevoie să mă mișc puțin după atâtea ore în autobuz. Abia atunci mi-am îngăduit să mă întreb: Oare era Fahad acolo sau avea să-mi facă el mie surpriza să nu fie?`,
+
+    `Am avut noroc. Fata de la recepție mi-a spus că era la shop. Și era.`,
+
+    `Când m-a văzut, Fahad m-a îmbrățișat și mi-a spus:`,
+
+    `— Oh my God! Ești aici? Credeam că ești în Bangalore!`,
+
+    `Teoretic, acolo ar fi trebuit să fiu. Practic, tocmai traversasem jumătate din sudul Indiei cu cincisprezece exemplare în rucsac.`,
+
+    `Alături de el se afla Alina, o tânără din Moldova.`,
+
+    `*Revederea din Panaji*`,
+
+    `Alina se întorsese la shopul lui Fahad ca să-l roage să-i strâmteze o rochie cumpărată de acolo. Îi era puțin largă, iar eu am ajuns exact când discutau despre asta. Eram prea entuziasmată de sosirea mea ca să mai observ multe în jur.`,
+
+    `Fahad m-a prezentat Alinei:`,
+
+    `— Ea este Maya, din România.`,
+
+    `Alina i-a spus:`,
+
+    `— Știi, noi două vorbim aceeași limbă.`,
+
+    `Deși aveam aceeași limbă maternă, ne venea greu să trecem la română; parcă ne era mai firesc să continuăm în engleză.`,
+
+    `După alte câteva schimburi de replici și zâmbete, Fahad mi-a propus să ieșim din magazin. Între timp, chemase pe cineva să-l înlocuiască, iar trei clienți așteptau să intre. Ne-am mutat la hostel, pe același coridor alb unde vorbiserăm prima dată. De data aceasta aveam ce povesti.`,
+
+    `Fahad m-a întrebat dacă mâncasem și mi-a spus că urma să mergem împreună la masă. Nici el nu mâncase și era aproape ora unu. Alina a revenit la hostel și ni s-a alăturat. Fahad a invitat-o și pe ea, dar își făcuse deja planuri cu alte două fete de la hostel. Mi-a spus că a doua zi urma să plece spre Palolem.`,
+
+    `— Vai, nu trebuie să ajungi în Palolem fără să-mi citești cartea, i-am spus.`,
+
+    `Alina zisese că era curioasă să o citească, așa că m-am dus repede în cameră să-i aduc un exemplar. Fahad îmi rezervase un pat într-o cameră cu patru locuri și am descoperit că Alina era colega mea de cameră. Mi-a spus că nu s-ar fi gândit să întâlnească o româncă în Goa și să mai împartă și camera cu ea.`,
+
+    `I-am oferit cartea cadou. Alina a luat-o și a plecat să-și continue programul. Seara, când s-a întors, am mai stat puțin de vorbă. Venea din Nepal și se îndrepta spre Kerala, unde voia să ajungă la un centru de meditație. Era curioasă să citească volumul. Apoi s-a culcat.`,
+
+    `Dimineața am mai povestit puțin și am îmbrățișat-o la plecare. Credeam că nu aveam să ne mai revedem. Eu urma să mai stau două zile în Panaji, apoi să plec spre Agonda, unde voiam să caut o cameră pentru o lună. Doar după ce a plecat am realizat că nu-i scrisesem nicio dedicație pe carte.`,
+
+    `În dimineața în care am plecat spre Agonda, Fahad mi-a spus:`,
+
+    `— Ai scris prea multe despre mine. Ai exagerat.`,
+
+    `Avea dreptate. Scrisesem mult despre el. Cartea era delicioasă oricum.`,
+
+    `Fahad m-a dus cu scuterul la autogară, deși peste câteva minute trebuia să intre într-o conferință online. Mi-a spus că, dacă rămâneam o lună în Agonda, venea să mă viziteze. Nu mai fusese pe plaja aceea de vreo cinci ani.`,
+
+    `Am pornit spre Agonda cu trei autobuze de schimbat. Când am ajuns, nu aveam semnal. Cartela mea părea moartă. Am cercetat câteva cazări, apoi m-am oprit la o cafenea, unde am aflat că Airtel nu funcționa în zonă. Cazările miroseau a mucegai și niciuna nu-mi plăcuse.`,
+
+    `M-am gândit la luna mea lângă plajă, la camera privată în care urma să scriu, la vizita lui Fahad și la toate planurile pe care mi le făcusem. Apoi mi-am spus:`,
+
+    `— Plec.`,
+
+    `Rezistasem în Agonda doar o oră.`,
+
+    `*La doi metri, în Palolem*`,
+
+    `Palolem era aproape, iar eu voiam să ajung la Cesare. Data trecută îmi spusese să mă întorc în octombrie și că avea să-mi găsească o cameră. Am luat un tuk-tuk și am pornit într-acolo.`,
+
+    `La cafeneaua lui mi-am comandat o salată cu ton și o limonadă. Eram flămândă. Cesare nu era acolo, dar angajatul lui mă recunoscuse. Eram sigură că îl anunțase deja și că urma să apară. Cât așteptam, mi-am făcut un selfie în oglinda uriașă, l-am pus la story și am marcat locația. Mă bucuram să fiu din nou în locul unde începuse povestea cărții. Într-un fel, nici nu-mi venea să cred că eram chiar acolo.`,
+
+    `Atunci am primit mesajul Alinei:`,
+
+    `— Sunt la doi metri de tine.`,
+
+    `În următorul minut era de cealaltă parte a gardului cafenelei și îmi făcea cu mâna. Nici nu apucasem să-i răspund. A ajuns la masa mea chiar în clipa în care Cesare a apărut cu mașina. O sincronizare pe care n-aș fi știut s-o regizez. Și Cesare era surprins că mă întorsesem.`,
+
+    `— Am venit să-ți aduc un cadou, i-am spus.`,
+
+    `Când i-am dat cartea lui Cesare, Alina mi-a făcut o fotografie. La Fahad nu fusese nimeni pe fază să surprindă momentul. Acum era.`,
+
+    `Cesare m-a întrebat dacă aveam cazare. Nu aveam. Nu plănuisem să ajung în Palolem în ziua aceea. Apartamentul în care stătusem data trecută nu era liber, dar mi-a oferit altul, pe care îl puteam ocupa două săptămâni. După aceea urma să fie ocupat de următorii oaspeți. În sufletul meu sperasem să-l primesc pe același, dar n-a fost să fie.`,
+
+    `Am rămas la cafenea cu Alina, la povești, vreo patru ore. Ea a plecat spre cazarea ei, iar eu am urcat să-mi preiau apartamentul târziu, după ora 20:30. Alina urma să plece a doua zi spre Gokarna, la ora 17:00; își cumpărase biletul înainte să ajung eu. Eu încă nu mă hotărâsem ce să fac mai departe.`,
+
+    `Noul apartament era departe de ce mi-aș fi dorit. Nu mai stătuse nimeni acolo de mult; salteaua era prea tare, iar locul mi s-a părut o „crescătorie de păianjeni”. Nu simțeam că acolo era locul meu. Am rămas o singură noapte în Palolem.`,
+
+    `A doua zi, la micul dejun, Alina m-a văzut cu bagajul după mine și m-a întrebat:`,
+
+    `— Și acum, unde mergi?`,
+
+    `— Unde mergi tu, acolo merg și eu.`,
+
+    `Hotărârea era luată. Alina mi-a dăruit o agendă din piele, cumpărată în Franța. O purta de câteva luni în rucsac și mi-a spus că nu voia s-o dea „oricui”.`,
+
+    `Abia atunci, în Palolem, am înțeles de ce mă încăpățânasem să ajung în Panaji până duminică. Dacă aș fi ajuns luni, Alina ar fi plecat deja spre Palolem și n-aș mai fi întâlnit-o la hostel, înainte să pornească mai departe.`,
+
+    `Alina avea bilet online pentru autobuzul privat spre Gokarna, cumpărat cu 500 de rupii. Eu nu aveam bilet. Cei trei băieți care se ocupau de autobuz mi-au spus că nu mă puteau lua fără rezervare online. Alina a insistat, s-a dus după unul dintre ei și l-a bătut la cap până când acesta s-a întors să discute cu ceilalți. S-au sfătuit între ei, apoi ne-au spus să urcăm.`,
+
+    `— Cât? am întrebat.`,
+
+    `— O mie de rupii, mi-a răspuns singurul dintre ei care vorbea engleză.`,
+
+    `— Nu, nu, e prea mult. Eu am dat cam 120 de rupii pe tren, în sens invers.`,
+
+    `Alina le-a spus că ea plătise 500 pentru biletul online. M-am întors spre ea:`,
+
+    `— Lasă, Alina. Vin mâine cu trenul. E mai ieftin.`,
+
+    `Am îmbrățișat-o și le-am spus și lor că trenul costa mai puțin. Atunci au acceptat 500 de rupii. I-am dat banii pe ascuns, după o perdea. Mi-am închipuit că omul nu voia să fie văzut de camerele de supraveghere.`,
+
+    `În timp ce Alina urca, același bărbat i-a spus:`,
+
+    `— Aici nu ești în țara ta.`,
+
+    `Nici eu nu eram în țara mea. Până la urmă, am urcat și am ajuns amândouă la Gokarna. A fost prima zi în care am râs pe săturate. Aveau să urmeze și altele.`,
+
+    `În carte, traseul merge de la Fort Kochi la Mangalore, apoi la Gokarna, Palolem și Panaji. Povestea noastră s-a desfășurat în sens invers: ne-am întâlnit prima dată în Panaji, ne-am regăsit întâmplător în Palolem, apoi am mers împreună spre Gokarna, Mangalore și Fort Kochi. Ne-am despărțit aproape de Kollam, după ce am plecat împreună din Kochi.`,
+
+    `De la reîntâlnirea din Palolem până la Fort Kochi, traseul a cuprins unsprezece nopți: una în Palolem, patru în Gokarna, două în Mangalore și patru în Fort Kochi. În afară de cele două nopți din Mangalore, când am împărțit din nou camera, am stat în cazări separate. În Gokarna, eram la doi kilometri una de cealaltă.`,
+
+    `În zilele acelea am râs, am bârfit, am probat haine, am mers la cinema, am călătorit cu trenul la „second class”, am băut cafele și am mâncat împreună. Pentru o vreme, eu am fost cu adevărat „Maya”.`,
+
+    `Eu credeam că merg în Goa să-i fac o surpriză lui Fahad, dar nu știam că viața îmi pregătise una mie. Plecasem din România cu cincisprezece exemplare ale unei cărți în care scrisesem despre oamenii întâlniți în India. Unul dintre ele ajunsese la Alina, o femeie care nu făcuse parte din povestea tipărită, dar alături de care aveam să trăiesc o alta. Am și fotografii – multe, cu Alina. Poate că povestea lor va ajunge cândva într-o altă carte.`,
+
+    `Așa îi răspunde Bro Mayei în „Maya, Bro și Hakuna Matata”:`,
+
+    `MAYA: — Am poze.`,
+    `BRO: — Exact. Capitolul se apără singur.`,
+
+    `---`,
+
+    `*SPECIAL DELIVERY – Un minut de film, câte trei-patru secunde pe rând*`,
+
+    `Când am început să mă gândesc la primul meu filmuleț realizat cu ajutorul inteligenței artificiale, întâlnirea cu Fahad mi s-a părut alegerea firească. Aveam în minte drumul de optsprezece ore, surpriza de la magazin și cartea pe care o adusesem din România, așa că am hotărât să recreez momentul folosind imagini generate și animate cu AI. Pe măsură ce lucram la el, mi-am dat seama că momentul nu putea fi desprins de drumul care mă adusese acolo. Filmulețul reconstituie întâlnirea; articolul spune povestea din spatele ei.`,
+
+    `În film, Fahad mă întreabă: „I thought you were in Bangalore!” Maya îi răspunde: „Not even Amazon offers delivery…” – iar replica se încheie în cadrul următor: „…with the author included in the package!” A trebuit s-o împart în două, fiindcă nu încăpea într-un singur clip de patru secunde. Spre deosebire de surpriza lui Fahad, care a fost cât se poate de reală, replica despre Amazon am inventat-o pentru film.`,
+
+    `Îmi închipuiam că partea grea va fi să găsesc imaginile potrivite. Nu știam încă de câte ori avea să se schimbe chipul Mayei, ce obiecte noi urmau să apară în cadru și câtă răbdare putea încăpea într-un clip de trei-patru secunde.`,
+
+    `Partea creativă din mine a spus: De ce nu? Partea economică a adăugat o condiție: Să fie gratis. Am deschis în ChatGPT un chat nou și l-am numit „Special Delivery, primul meu film cu AI. Gratis”. Titlul era poate puțin pompos, dar berbecul din mine avea deja răspunsul: De ce să nu încerc?`,
+
+    `Am început cu întrebarea firească: Pot să fac un film cap-coadă cu AI, fără să plătesc? ChatGPT mi-a răspuns că da și mi-a dat o listă de platforme, pași și linkuri. Am încercat câteva. Unele îmi ofereau doar un clip de probă, după care apărea invitația de a cumpăra un abonament. Altele îmi cereau să mă abonez înainte să pot converti prima imagine. La una dintre platforme, primul cadru reda surprinzător de bine trăsăturile mele, dar după primul clip a apărut același îndemn la abonare. Am continuat să caut.`,
+
+    `Între timp, aveam deja imaginile de referință, promptul și aproape toate scenele gândite. Abia atunci am început să înțeleg că fiecare scenă urma să fie generată separat, în fragmente de câteva secunde.`,
+
+    `La PixVerse am găsit o soluție care mi-a permis să continui fără să cumpăr un abonament: în perioada în care am lucrat la film, contul primea zilnic 30 de credite la accesare. Am testat și ce se întâmpla dacă nu le foloseam: nu se cumulau cu cele de a doua zi. Primeam tot 30, cu care puteam genera un singur clip de aproximativ trei-patru secunde.`,
+
+    `— Putem construi filmul cadru cu cadru: câte un clip scurt pe zi, mi-a explicat ChatGPT.`,
+
+    `Planul părea simplu până când AI-ul începea să improvizeze. Uneori nu păstra aceleași trăsături ale feței de la un cadru la altul. Alteori modifica obiectele, schimba poziția personajelor sau adăuga mișcări pe care nu le cerusem. Aproape jumătate dintre fragmentele generate au rămas în afara montajului. Pentru unele scene a trebuit să aștept o nouă zi, să refac imaginea de referință și să încerc din nou.`,
+
+    `— Nu mai cerem prea multe acțiuni într-un clip de patru secunde, mi-a spus ChatGPT. Altfel, generatorul începe să improvizeze.`,
+
+    `Improvizația lui avea uneori propriul program. Într-o scenă, Maya trebuia să ajungă la Panaji la prânz, după cele optsprezece ore de autobuz. ChatGPT a observat problema:`,
+
+    `— Ora douăsprezece, Panaji, Goa. Fără lumină de răsărit: Maya ajunsese la prânz.`,
+
+    `A trebuit să învăț să simplific scenele și să aleg cu grijă imaginea de pornire. Dacă imaginea statică nu semăna cu mine, animația nu avea cum să repare continuitatea. Iar dacă o secvență pornea de la o imagine greșită, nu avea rost să cheltuiesc următoarele 30 de credite încercând s-o salvez.`,
+
+    `La final, filmulețul avea aproximativ un minut și era alcătuit din vreo cincisprezece cadre. Nu fiecare detaliu rămăsese identic, iar sunetele generate nu aveau întotdeauna același volum de la o scenă la alta. Am păstrat cadrele care funcționau și am acceptat că unele ornamente se schimbaseră pe drum.`,
+
+    `Așa a ieșit primul meu filmuleț realizat cu ajutorul AI, fără să cumpăr credite sau un abonament pentru generarea clipurilor. Nu a fost doar o succesiune de imagini puse una după alta, ci un exercițiu de răbdare: să construiesc o scenă, s-o verific, să renunț la ce nu se potrivea și să revin a doua zi.`,
+
+    `I-am spus „SPECIAL DELIVERY”, pentru că exact asta fusese călătoria mea spre Panaji: o livrare personală, fără confirmarea destinatarului și cu autoarea inclusă în pachet.`,
+
+    `Filmul este o reconstituire realizată cu ajutorul AI, pornind de la întâmplări reale. Doar la final, într-un singur cadru, apar fotografii reale din călătoria mea cu Alina. Dincolo de toate încercările de a recrea un moment, partea cea mai frumoasă a poveștii rămâne cea pe care n-am avut nevoie s-o inventez.`,
+ 
+{ type: "paragraph", parts: [{ text: "Urmărește SPECIAL DELIVERY", href: "https://youtu.be/JOJ19vlR_2M", kind: "external" }] },
+
+    `„Maya, Bro și Hakuna Matata” – o carte scrisă în India, în timp ce întâmplările care au inspirat-o încă se desfășurau.`,
+  
+{ type: "paragraph", parts: [{ text: "Maya, Bro și Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-si-hakuna-matata-ro", kind: "external" }] },
+   
+{ type: "paragraph", parts: [{ text: "Maya, Bro & Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }] },
+
+  ],
+},
+
       
       
   
