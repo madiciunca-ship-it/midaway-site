@@ -3478,8 +3478,6 @@ const posts = [
   
 { type: "paragraph", parts: [{ text: "Maya, Bro și Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-si-hakuna-matata-ro", kind: "external" }] },
    
-{ type: "paragraph", parts: [{ text: "Maya, Bro & Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }] },
-
   ],
 },
 
@@ -3729,9 +3727,7 @@ const posts = [
 
     `“Maya, Bro & Hakuna Matata” – a book written in India while the events that inspired it were still unfolding.`,
 
-    { type: "paragraph", parts: [{ text: "Maya, Bro și Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-si-hakuna-matata-ro", kind: "external" }] },
-
-    { type: "paragraph", parts: [{ text: "Maya, Bro & Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }] },
+      { type: "paragraph", parts: [{ text: "Maya, Bro & Hakuna Matata | Mida Malena", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }] },
 
   ],
 },
