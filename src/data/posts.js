@@ -3511,7 +3511,7 @@ const posts = [
 
     `*The Book That Began in Goa*`,
 
-    { type: "paragraph", parts: [{ text: "“Maya, Bro & Hakuna Matata”", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }, { text: " was born on a rainy night in Goa, after an absolutely impossible day. Those who have read the book know exactly what I'm talking about. Those who haven't will find the whole story waiting for them inside its pages." }] },
+    { type: "paragraph", parts: [{ text: "“Maya, Bro & Hakuna Matata”", href: "https://midaway.ro/carti/maya-bro-and-hakuna-matata-en", kind: "external" }, { text: " was born on a rainy night in Goa, after one of those days that seem determined to test you. Those who have read the book know exactly what I'm talking about. Those who haven't will find the whole story waiting for them inside its pages." }] },
 
     `It all started with a cow. Yes, you read that right. A cow.`,
 
@@ -3519,17 +3519,17 @@ const posts = [
 
     `But long before I reached Goa, India had already given me more than enough memorable experiences.`,
 
-    `My first journey through India lasted 85 days. I travelled 6,500 kilometres, travelled through 11 administrative regions, and visited 30 cities. I had gathered enough material for several books, as I usually do when I travel and write. But in Goa, I did something different: I opened a blank document and began writing in the heat of the moment, while the story was still unfolding around me.`,
+    `My first journey through India lasted 85 days. I covered 6,500 kilometres, travelled through 11 administrative regions, and visited 30 cities. I had gathered enough material for several books, as I usually do when I travel and write. But in Goa, I did something different: I opened a blank document and began writing in the heat of the moment, while the story was still unfolding around me.`,
 
-    `I had no idea who would find their way into the book, or how it would end. All I knew was that I wanted to capture what I was experiencing before those moments settled into memories. I kept travelling, meeting people, and adding pages. I filled them with my experiences in India as they happened, alongside the conversations between Maya and Bro, her alter ego. Bro is a character in the book – the only one who had permission to tease me.`,
+    `I had no idea who would find their way into the book, or how it would end. All I knew was that I wanted to capture what I was experiencing before those moments settled into memories. I kept travelling, meeting people, and adding pages. I filled them with the events as they unfolded, alongside the conversations between Maya and Bro, her alter ego. Bro is a character in the book – the only one allowed to make fun of me.`,
 
     `It wasn't the first book I'd written. It was the first one I wrote while living the story itself. I wrote the opening page on June 19. By July 30, the very day I returned from India, the printed copies had already arrived at my mother's house. On August 22, I launched the book at the Gaudeamus Book Fair in Sibiu. Looking back at how quickly everything had fallen into place, it felt as though the book had found its own path.`,
 
-    `Towards the end of the book, Fahad had become one of its characters. After I left Panaji, he sent me a message saying he hoped we would meet again. I replied that perhaps one day I would return with a book in which his name appeared. His message, “Hope to Meet U Again”, became the title of Chapter 12, while “The Energy U Carry” became the title of the epilogue. After returning to Romania, I stayed in touch with the people I had met in India, and that exchange of messages stayed with me.`,
+    `Towards the end of the book, Fahad had become one of its characters. After I left Panaji, he sent me a message saying he hoped we would meet again. I replied that perhaps one day I would come back with a book that had his name in it. His message, “Hope to Meet U Again”, became the title of Chapter 12, while “The Energy U Carry” became the title of the epilogue. After returning to Romania, I stayed in touch with the people I had met in India, and that exchange of messages stayed with me.`,
 
     `I turned my promise to Fahad into a personal challenge: I would not return to India without the English edition. I wanted to surprise the people who had helped bring the book into existence by giving each of them a personally inscribed copy.`,
 
-    `I didn't translate it myself – my English is still rather hopeless, and I certainly couldn't take the credit. My youngest daughter, who was volunteering at the time, managed to finish the translation in time, after a little persuasion on my part. Two days before my departure, the printed copies arrived. I had ordered fifteen.`,
+    `I didn't translate it myself – my English is still rather hopeless, and I certainly couldn't take the credit. My youngest daughter was volunteering at the time, but after a little persuasion on my part, she managed to finish the translation. Two days before my departure, the printed copies arrived. I had ordered fifteen.`,
 
     `Not for a launch, not to sell, and not for any literary event. I wanted to give them to the people who had become part of the story, the people without whom the book would never have taken the shape it has today: Fahad, Srushti, Cesare, Surya, Safi, and the others. It was my way of saying thank you.`,
 
@@ -3552,7 +3552,7 @@ const posts = [
 
     `I told them I had to reach Panaji by Sunday. Monday would be too late. I couldn't explain why I was so determined to get there that particular day. Whatever arguments they came up with, I kept returning to the same thing: I had to get there on Sunday. In the end, although they weren't happy about my leaving, they bought me the bus ticket.`,
 
-    `On Friday, at 7 p.m., Ranga and Shobha drove me to the bus station through torrential rain and horrendous traffic. We had planned to stop by a birthday party as well, but we had already lost far too much time in the traffic jam. We decided to go straight to the station so I wouldn't miss my bus. All three of us were there when the message arrived: the bus company had cancelled the trip`,
+    `On Friday, at 7 p.m., Ranga and Shobha drove me to the bus station through torrential rain and horrendous traffic. We had planned to stop by a birthday party as well, but we had already lost far too much time in the traffic jam. We decided to go straight to the station so I wouldn't miss my bus. All three of us were there when the message arrived: the bus company had cancelled the trip.`,
 
     `I burst out laughing. Ranga said he had never seen anything like it and asked whether I wasn't upset.`,
 
@@ -3560,7 +3560,7 @@ const posts = [
 
     `We went to the booking office and changed my ticket to the following evening, Saturday, at six. After all that drama, even though it was late, we still made it to the birthday party.`,
 
-    `The next day, Ranga raced through the traffic-clogged streets by the same pouring rain to get me to the bus. He called the driver and asked him to wait for me. At 6:10 p.m., after hugging them both, I finally climbed aboard the bus to Goa.`,
+    `The next day, Ranga raced through the traffic-clogged streets in the same pouring rain to get me to the bus. He called the driver and asked him to wait for me. At 6:10 p.m., after hugging them both, I finally climbed aboard the bus to Goa.`,
 
     `The bus dropped me off in Panaji at noon on Sunday, after eighteen hours on the road. I still had no idea whether Fahad was there. He could have been away. I hadn't even booked a bed at his hostel, afraid it might give the surprise away. I had gone to all that trouble because of a little voice in my head that kept telling me one thing: Go now. You have to get there by Sunday.`,
 
@@ -3589,17 +3589,17 @@ const posts = [
 
     `— You know, we speak the same language.`,
 
-    `Although Romanian was our mother tongue, we found it strangely difficult to switch to Romanian; somehow, continuing in English felt more natural.`,
+    `Although Romanian was our mother tongue, we found it strangely difficult to switch to it; somehow, continuing in English felt more natural.`,
 
     `After a little more conversation and a few smiles, Fahad suggested we step outside the shop. He had called someone to mind the shop, and three customers were waiting to come in. We moved to the hostel, to the same white corridor where we had first talked. This time, we had plenty to talk about.`,
 
-    `Fahad asked whether I had eaten and said we would go for lunch together. He hadn't eaten either, and it was almost one o'clock. Alina returned to the hostel and joined us. Fahad invited her along too, but she had already made plans with two other girls from the hostel. She told me she was leaving for Palolem the following day.`,
+    `Fahad asked whether I had eaten and said we would go for lunch together. He hadn't eaten either, and it was almost one o'clock. Alina returned to the hostel and joined our conversation. Fahad invited her along too, but she had already made plans with two other girls from the hostel. She told me she was leaving for Palolem the following day.`,
 
     `— Oh, you can't possibly go to Palolem without reading my book! I told her.`,
 
     `Alina had mentioned that she was curious to read it, so I hurried to my room to fetch her a copy. Fahad had reserved a bed for me in a four-bed dormitory, and I discovered that Alina was my roommate. She told me she would never have imagined meeting a Romanian woman in Goa, let alone sharing a room with her.`,
 
-    `I gave her the book as a gift. Alina took it and went off to enjoy the rest of her day. That evening, when she returned, we chatted for a little while. She had come from Nepal and was heading towards Kerala, where she hoped to visit a meditation centre. She was curious to read the book. Then she went to sleep.`,
+    `I gave her the book as a gift. Alina took it and went off to carry on with her day. That evening, when she returned, we chatted for a little while. She had come from Nepal and was heading towards Kerala, where she hoped to visit a meditation centre. She was curious to read the book. Then she went to sleep.`,
 
     `The next morning, we talked a little more and hugged goodbye. I thought we would never see each other again. I was planning to spend another two days in Panaji before heading to Agonda, where I wanted to find a room for a month. Only after she had left did I realise I hadn't written a personal inscription in her copy.`,
 
@@ -3678,7 +3678,7 @@ const posts = [
 
     `During those days, we laughed, gossiped, tried on clothes, went to the cinema, travelled by train in second class, drank coffee, and ate together. For a while, I really was “Maya”.`,
 
-    `I thought I was going to Goa to surprise Fahad, but I had no idea life had a surprise waiting for me. I had left Romania with fifteen copies of a book about the people I had met in India. One of those copies had found its way to Alina, a woman who had never appeared in the book, but with whom I would go on to live a whole new story. Perhaps their story will find its way into another book someday.`,
+    `I thought I was going to Goa to surprise Fahad, but I had no idea life had a surprise waiting for me. I had left Romania with fifteen copies of a book about the people I had met in India. One of those copies had found its way to Alina, a woman who had never appeared in the book, but with whom I would go on to live a whole new story. Perhaps our story will find its way into another book someday.`,
 
     `This is how Bro replies to Maya in “Maya, Bro & Hakuna Matata”:`,
 
