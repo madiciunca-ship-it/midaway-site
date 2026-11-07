@@ -3533,7 +3533,7 @@ const posts = [
 
     `Not for a launch, not to sell, and not for any literary event. I wanted to give them to the people who had become part of the story, the people without whom the book would never have taken the shape it has today: Fahad, Srushti, Cesare, Surya, Safi, and the others. It was my way of saying thank you.`,
 
-    `And so I set off for India a second time, with fifteen books in my backpack. From Bucharest, I spent thirteen hours on a FlixBus to Istanbul, then flew to Bahrain and onwards to Bangalore. The books' journey would continue on an overnight bus to Goa.`,
+    `And so I set off for India a second time, with the books in my luggage. From Bucharest, I spent thirteen hours on a FlixBus to Istanbul, then flew to Bahrain and onwards to Bangalore. The books' journey would continue on an overnight bus to Goa.`,
 
     
     `*Fifteen Books in a Backpack*`,
@@ -3624,9 +3624,9 @@ const posts = [
 
     `Palolem was nearby, and I wanted to see Cesare. The last time we met, he had told me to come back in October and promised to find me a room. I hopped into a tuk-tuk and headed there.`,
 
-    `At his café, I ordered a tuna salad and a lemonade. I was starving. Cesare wasn't there, but one of his employees recognised me. I was sure he had already let Cesare know I was back and that he would turn up soon. While I waited, I took a selfie in the enormous mirror, posted it to my Instagram story, and tagged the location. I was happy to be back in the place where the book's story had begun. In a way, I could hardly believe I was really there.`,
+    `At his café, I ordered a tuna salad and a lemonade. I was starving. Cesare wasn't there, but one of his employees recognised me. I was sure he had already let Cesare know I was back and that he would turn up soon. While I waited, I took a selfie in the enormous mirror, posted it on my Instagram story, and tagged the location. I was happy to be back in the place where the story of my book had begun. In a way, I could hardly believe I was really there.`,
 
-    `Then a message from Alina appeared:`,
+    `Then I got a message from Alina:`,
 
     `— I'm two metres away from you.`,
 
@@ -3634,13 +3634,13 @@ const posts = [
 
     `— I've come to bring you a present, I told him.`,
 
-    `When I handed Cesare his copy of the book, Alina took a photograph of us. There had been nobody ready to capture the moment with Fahad. This time, there was.`,
+    `Alina took a photograph as I handed Cesare the book. No one had been there to capture the moment with Fahad. This time, there was.`,
 
-    `Cesare asked whether I had somewhere to stay. I didn't. I hadn't planned on ending up in Palolem that day. The apartment I had stayed in last time wasn't available, but he offered me another one for two weeks. After that, the next guests would be arriving. Deep down, I had hoped to get the same apartment as before, but it wasn't meant to be.`,
+    `Cesare asked whether I had somewhere to stay. I didn't. I hadn't planned to be in Palolem that day. The apartment I had stayed in last time wasn't available, but he offered me another one for two weeks. After that, the next guests would be arriving. Deep down, I had hoped to get the same apartment as before, but it wasn't meant to be.`,
 
-    `Alina and I stayed at the café talking for about four hours. She eventually left for her accommodation, while I went upstairs to settle into my apartment, late in the evening, after 8:30 p.m. Alina was leaving for Gokarna the next day at 5 p.m.; she had bought her ticket before I arrived. I still hadn't decided what to do next.`,
+    `Alina and I stayed at the café talking for about four hours. She went back to where she was staying, while I went upstairs to settle into my apartment, late in the evening, after 8:30 p.m. Alina was leaving for Gokarna the next day at 5 p.m.; she had bought her ticket before I arrived. I still hadn't decided what to do next.`,
 
-    `The new apartment was a far cry from what I had hoped for. Nobody had stayed there in ages; the mattress was far too hard, and the place struck me as something of a spider-breeding facility. It didn't feel like somewhere I belonged. I spent just one night in Palolem.`,
+    `The new apartment was a far cry from what I had hoped for. Nobody had stayed there in ages; the mattress was far too hard, and the place struck me as a spider farm. It didn't feel like the place for me. I spent just one night in Palolem.`,
 
     `The next morning, at breakfast, Alina spotted me with all my luggage and asked:`,
 
@@ -3652,7 +3652,7 @@ const posts = [
 
     `It was only then, in Palolem, that I understood why I had been so determined to reach Panaji by Sunday. If I had arrived on Monday, Alina would already have left for Palolem, and I would never have met her at the hostel before she continued her journey.`,
 
-    `Alina had booked her ticket online for the private bus to Gokarna, paying 500 rupees. I had no ticket. The three young men running the bus told me they couldn't take me without an online reservation. Alina insisted, went after one of them, and kept pestering him until he came back to discuss it with the others. They conferred among themselves, then told us to get on.`,
+    `Alina had booked her ticket online for the private bus to Gokarna, paying 500 rupees. I had no ticket. The three men in charge of the bus told me they couldn't take me without an online reservation. Alina insisted, followed one of them, and wouldn't let up until he came back to talk it over with the others. They talked among themselves, then told us to get on.`,
 
     `— How much? I asked.`,
 
@@ -3664,64 +3664,64 @@ const posts = [
 
     `— Never mind, Alina. I'll take the train tomorrow. It's cheaper.`,
 
-    `I hugged her and told the men that the train cost less. That was when they agreed to 500 rupees. I handed over the money discreetly, behind a curtain. I imagined the man didn't want the security cameras to catch him taking it.`,
+    `I hugged her and told the men that the train cost less. That was when they agreed to 500 rupees. I handed over the money discreetly, behind a curtain. I assumed he didn't want to be seen on the security cameras.`,
 
     `As Alina was boarding, the same man told her:`,
 
     `— You're not in your own country here.`,
 
-    `Neither was I. In the end, I climbed aboard too, and we both made it to Gokarna. It was the first day we laughed until our sides hurt. There would be plenty more.`,
+    `Neither was I. In the end, I climbed aboard too, and we both made it to Gokarna. It was the first day we laughed ourselves silly. There would be plenty more.`,
 
     `In the book, the journey runs from Fort Kochi to Mangalore, then Gokarna, Palolem, and Panaji. Our story unfolded in reverse: we first met in Panaji, found each other again by chance in Palolem, then travelled together through Gokarna and Mangalore to Fort Kochi. We parted ways near Kollam, after leaving Kochi together.`,
 
     `From our reunion in Palolem to Fort Kochi, our journey covered eleven nights: one in Palolem, four in Gokarna, two in Mangalore, and four in Fort Kochi. Apart from the two nights in Mangalore, when we shared a room again, we stayed in separate accommodation. In Gokarna, we were two kilometres apart.`,
 
-    `During those days, we laughed, gossiped, tried on clothes, went to the cinema, travelled by train in second class, drank coffee, and shared meals. For a while, I really was “Maya”.`,
+    `During those days, we laughed, gossiped, tried on clothes, went to the cinema, travelled by train in second class, drank coffee, and ate together. For a while, I really was “Maya”.`,
 
-    `I thought I was going to Goa to surprise Fahad, but I had no idea life had a surprise waiting for me. I had left Romania with fifteen copies of a book about the people I had met in India. One of those copies had found its way to Alina, a woman who had never been part of the printed story, but with whom I was about to live an entirely new one. And I have photographs – lots of them, with Alina. Perhaps their story will find its way into another book someday.`,
+    `I thought I was going to Goa to surprise Fahad, but I had no idea life had a surprise waiting for me. I had left Romania with fifteen copies of a book about the people I had met in India. One of those copies had found its way to Alina, a woman who had never appeared in the book, but with whom I would go on to live a whole new story. Perhaps their story will find its way into another book someday.`,
 
     `This is how Bro replies to Maya in “Maya, Bro & Hakuna Matata”:`,
 
     `MAYA: — I have photos.`,
 
-    `BRO: — Exactly. The chapter speaks for itself.`,
+    `BRO: — Exactly. The chapter can defend itself.`,
 
     `---`,
 
-   
+
     `*SPECIAL DELIVERY – One Minute of Film, Three or Four Seconds at a Time*`,
 
-    `When I first started thinking about making my first short film with the help of artificial intelligence, my reunion with Fahad seemed the obvious choice. I kept thinking about the eighteen-hour journey, the surprise at his shop, and the book I had brought all the way from Romania. So I decided to recreate that moment using AI-generated and animated images. As I worked on it, I realised the reunion couldn't really be separated from the journey that had brought me there. The film recreates the encounter; this article tells the story behind it.`,
+    `When I began thinking about making my first short film with the help of artificial intelligence, my reunion with Fahad seemed the obvious choice. I kept thinking about the eighteen-hour journey, the surprise at his shop, and the book I had brought all the way from Romania. So I decided to recreate that moment using images generated and animated with AI. As I worked on it, I realised the reunion couldn't be separated from the journey that had brought me there. The film recreates the encounter; this article tells the story behind it.`,
 
     `In the film, Fahad asks me, “I thought you were in Bangalore!” Maya replies, “Not even Amazon offers delivery…” – and finishes the sentence in the next shot: “…with the author included in the package!” I had to split the line in two because it wouldn't fit into a single four-second clip. Unlike Fahad's surprise, which was entirely real, the Amazon joke was something I invented for the film.`,
 
     `I imagined the hardest part would be finding the right images. I had no idea how many times Maya's face would change, what unexpected objects would appear in the frame, or how much patience could possibly fit into a three- or four-second clip.`,
 
-    `The creative side of me said: Why not? The practical, budget-conscious side added one condition: It has to be free. I opened a new chat in ChatGPT and named it “Special Delivery, My First AI Film. For Free”. The title might have been a little grandiose, but the Aries in me already had her answer: Why shouldn't I give it a try?`,
+    `The creative side of me said: Why not? The thrifty side had just one condition: It had to be free. I opened a new chat in ChatGPT and named it “Special Delivery, My First AI Film. For Free”. The title might have been a little grandiose, but the Aries in me already had her answer: Why shouldn't I give it a try?`,
 
-    `I started with the obvious question: Could I make an entire film with AI without paying a penny? ChatGPT told me I could and gave me a list of platforms, instructions, and links. I tried several. Some offered a single trial clip before inviting me to buy a subscription. Others wanted me to subscribe before I could even animate my first image. On one platform, the first clip captured my features surprisingly well, but as soon as it was finished, the same subscription prompt appeared. So I kept looking.`,
+    `I started with the obvious question: Could I make an entire film with AI without paying a penny? ChatGPT told me I could and gave me a list of platforms, instructions, and links. I tried several. Some let me generate one trial clip before asking me to subscribe. Others wanted me to subscribe before I could even animate my first image. On one platform, the first clip captured my features surprisingly well, but as soon as it was finished, the same subscription prompt appeared. So I kept looking.`,
 
-    `By then, I already had my reference images, the prompt, and almost all the scenes planned out. Only then did I begin to understand that each scene would have to be generated separately, in fragments lasting just a few seconds.`,
+    `By then, I already had my reference images, the prompt, and almost all the scenes planned out. Only then did I begin to understand that each scene would have to be generated separately, in clips lasting only a few seconds.`,
 
-    `PixVerse finally gave me a way to keep going without buying a subscription. While I was working on the film, my account received 30 free credits each day when I logged in. I even tested what happened if I didn't use them: they didn't carry over to the following day. I still received just 30 credits, enough to generate a single clip of roughly three or four seconds.`,
+    `PixVerse finally gave me a way to keep going without buying a subscription. While I was making the film, I received 30 free credits each day when I logged in. I even tested what happened if I didn't use them: they didn't carry over to the following day. The next day, I still got just 30 credits – enough for a single three- or four-second clip.`,
 
-    `— We can build the film frame by frame: one short clip a day, ChatGPT explained.`,
+    `— We can build the film one shot at a time: one short clip a day, ChatGPT explained.`,
 
     `The plan sounded simple, until the AI started improvising. Sometimes it failed to preserve the same facial features from one shot to the next. Other times, it altered objects, moved the characters around, or added movements I had never asked for. Almost half the generated clips never made it into the final edit. For some scenes, I had to wait another day, recreate the reference image, and try again.`,
 
     `— Let's stop asking for too many actions in a four-second clip, ChatGPT told me. Otherwise, the generator starts improvising.`,
 
-    `And its improvisations sometimes followed a schedule of their own. In one scene, Maya was supposed to arrive in Panaji at noon, after eighteen hours on the bus. ChatGPT spotted the problem:`,
+    `Sometimes, the AI even had its own ideas about the time of day. In one scene, Maya was supposed to arrive in Panaji at noon, after eighteen hours on the bus. ChatGPT spotted the problem:`,
 
     `— Twelve noon, Panaji, Goa. No sunrise lighting: Maya arrived at midday.`,
 
     `I had to learn to simplify the scenes and choose each starting image carefully. If the still image didn't look like me, the animation wasn't going to fix the inconsistency. And if a sequence began with the wrong image, there was no point spending the next 30 credits trying to rescue it.`,
 
-    `In the end, the film was about a minute long and consisted of roughly fifteen shots. Not every detail remained identical, and the generated sounds weren't always at the same volume from one scene to the next. I kept the shots that worked and accepted that a few decorative details had changed along the way.`,
+    `In the end, the film was about a minute long, made up of roughly fifteen shots. Not every detail remained consistent, and the audio levels varied from one scene to the next. I kept the shots that worked and accepted that a few details had changed along the way.`,
 
     `And that was how I made my first AI-assisted short film, without buying credits or a subscription to generate the clips. It wasn't simply a collection of images stitched together, but an exercise in patience: creating a scene, checking it, discarding what didn't work, and coming back the next day.`,
 
-    `I called it “SPECIAL DELIVERY”, because that was exactly what my journey to Panaji had been: a personal delivery, without confirmation from the recipient, and with the author included in the package.`,
+    `I called it “SPECIAL DELIVERY” because that was exactly what my journey to Panaji had been: a personal delivery, without even knowing whether the recipient would be there, and with the author included in the package.`,
 
     `The film is an AI-assisted recreation of real events. Only at the very end, in a single shot, do actual photographs from my journey with Alina appear. Beyond all my attempts to recreate a moment, the most beautiful part of the story remains the one I never had to invent.`,
 
